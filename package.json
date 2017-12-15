@@ -1,0 +1,9 @@
+{
+  "name": "prettier-php",
+  "version": "0.0.0-development",
+  "description": "Prettier PHP Plugin",
+  "main": "src",
+  "repository": "https://github.com/prettier/prettier-php",
+  "author": "Lucas Azzola <@azz>",
+  "license": "MIT"
+}
