@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`errors.php 1`] = `
+<?php
+try {
+    throw new OtherException();
+} catch (Exception | TestException $e) {
+    echo 'Caught exception: ',  $e->getMessage();
+} catch (OtherException $i) {
+    echo 'Caugh other';
+} finally {
+    echo "First finally";
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+try {
+  throw new OtherException();
+} catch (Exception | TestException $e) {
+  echo 'Caught exception: ', $e->getMessage();
+} catch (OtherException $i) {
+  echo 'Caugh other';
+} always {
+  echo "First finally";
+}
+`;
