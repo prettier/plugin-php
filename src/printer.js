@@ -41,8 +41,13 @@ function lineShouldEndWithSemicolon(node) {
     "print",
     "isset",
     "unset",
-    "empty"
+    "empty",
+    "traitprecedence",
+    "traitalias"
   ];
+  if (node.kind === "traituse") {
+    return !node.adaptations;
+  }
   return includes(semiColonWhitelist, node.kind);
 }
 
@@ -379,7 +384,15 @@ function printStatement(node) {
           ),
           hardline,
           indent(
-            concat(node.body.map(child => concat([hardline, printNode(child)])))
+            concat(
+              node.body.map(child =>
+                concat([
+                  hardline,
+                  printNode(child),
+                  lineShouldEndWithSemicolon(child) ? ";" : ""
+                ])
+              )
+            )
           ),
           hardline,
           "}"
@@ -489,6 +502,33 @@ function printStatement(node) {
           "}"
         ]);
       case "trait":
+        return concat([
+          group(
+            concat([
+              concat(["trait ", node.name]),
+              node.extends
+                ? indent(concat([line, "extends ", printNode(node.extends)]))
+                : "",
+              node.implements
+                ? indent(
+                    concat([
+                      line,
+                      "implements ",
+                      join(", ", node.implements.map(printNode))
+                    ])
+                  )
+                : "",
+              " {"
+            ])
+          ),
+          indent(
+            concat(
+              node.body.map(element => concat([hardline, printNode(element)]))
+            )
+          ),
+          hardline,
+          "}"
+        ]);
       case "constant":
       case "classconstant":
       default:
@@ -698,10 +738,49 @@ function printNode(node) {
         node.key ? concat([printNode(node.key), " => "]) : "",
         printNode(node.value)
       ]);
-    case "label":
     case "traituse":
-    case "traitalias":
+      return group(
+        concat([
+          "use ",
+          join(", ", node.traits.map(printNode)),
+          node.adaptations
+            ? concat([
+                " {",
+                indent(
+                  concat(
+                    node.adaptations.map(adaptation =>
+                      concat([
+                        line,
+                        printNode(adaptation),
+                        lineShouldEndWithSemicolon(adaptation) ? ";" : ""
+                      ])
+                    )
+                  )
+                ),
+                line,
+                "}"
+              ])
+            : ""
+        ])
+      );
     case "traitprecedence":
+      return concat([
+        printNode(node.trait),
+        "::",
+        node.method,
+        " insteadof ",
+        join(", ", node.instead.map(printNode))
+      ]);
+    case "traitalias":
+      return concat([
+        printNode(node.trait),
+        "::",
+        node.method,
+        " as ",
+        node.visibility ? concat([node.visibility, " "]) : "",
+        node.as
+      ]);
+    case "label":
     case "error":
     default:
       return "Have not implemented kind " + node.kind + " yet.";
