@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`global.php 1`] = `
+<?php
+global $a, $b;
+global $c;
+global $testReallyReallyLong, $someOtherReallyReallyLongVariable, $oneMoreReallyLongVariable;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+global $a, $b;
+global $c;
+global
+  $testReallyReallyLong,
+  $someOtherReallyReallyLongVariable,
+  $oneMoreReallyLongVariable;
+`;

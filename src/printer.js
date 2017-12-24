@@ -46,7 +46,9 @@ function lineShouldEndWithSemicolon(node) {
     "traitalias",
     "constant",
     "classconstant",
-    "exit"
+    "exit",
+    "global",
+    "static"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -745,11 +747,44 @@ function printStatement(node) {
         printDeclareChildren(node)
       ]);
     }
+    case "global":
+      return group(
+        concat([
+          "global",
+          indent(
+            concat([line, join(concat([",", line]), node.items.map(printNode))])
+          )
+        ])
+      );
+    case "static":
+      return group(
+        concat([
+          "static",
+          indent(
+            concat([
+              line,
+              join(
+                concat([",", line]),
+                node.items.map(item => {
+                  // @TODO: hacking this for now. assignments nested inside a static
+                  // declaration doesn't have the operator set, so printing manually
+                  if (item.kind === "assign") {
+                    return concat([
+                      printNode(item.left),
+                      " = ",
+                      printNode(item.right)
+                    ]);
+                  }
+                  return printNode(item);
+                })
+              )
+            ])
+          )
+        ])
+      );
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
     case "halt":
-    case "global":
-    case "static":
     case "include":
     case "goto":
     case "silent":

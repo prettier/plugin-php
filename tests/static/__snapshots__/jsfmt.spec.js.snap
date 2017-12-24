@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`static.php 1`] = `
+<?php
+static $a, $b;
+static $c = 2;
+static $testReallyReallyLong = 1, $someOtherReallyReallyLongVariable = 2, $oneMoreReallyLongVariable = 3;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+static $a, $b;
+static $c = 2;
+static
+  $testReallyReallyLong = 1,
+  $someOtherReallyReallyLongVariable = 2,
+  $oneMoreReallyLongVariable = 3;
+`;
