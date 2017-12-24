@@ -1,6 +1,6 @@
 "use strict";
 
-const docBuilders = require("./doc-builders");
+const docBuilders = require("prettier").doc.builders;
 const concat = docBuilders.concat;
 const join = docBuilders.join;
 const line = docBuilders.line;
