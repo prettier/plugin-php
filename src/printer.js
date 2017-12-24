@@ -45,7 +45,8 @@ function lineShouldEndWithSemicolon(node) {
     "traitprecedence",
     "traitalias",
     "constant",
-    "classconstant"
+    "classconstant",
+    "exit"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -697,11 +698,56 @@ function printStatement(node) {
           )
         ])
       );
-    case "eval":
     case "exit":
-    case "halt":
+      return concat(["exit(", printNode(node.status), ")"]);
     case "clone":
-    case "declare":
+      return concat(["clone ", printNode(node.what)]);
+    case "declare": {
+      const printDeclareArguments = function(node) {
+        const directive = Object.keys(node.what)[0];
+        return concat([directive, "=", printNode(node.what[directive])]);
+      };
+      const printDeclareChildren = function(node) {
+        return concat(
+          node.children.map(child =>
+            concat([
+              printNode(child),
+              lineShouldEndWithSemicolon(child) ? ";" : ""
+            ])
+          )
+        );
+      };
+      if (node.mode === "short") {
+        return concat([
+          "declare(",
+          printDeclareArguments(node),
+          "):",
+          hardline,
+          printDeclareChildren(node),
+          hardline,
+          "enddeclare;"
+        ]);
+      } else if (node.mode === "block") {
+        return concat([
+          "declare(",
+          printDeclareArguments(node),
+          ") {",
+          indent(concat([hardline, printDeclareChildren(node)])),
+          hardline,
+          "}"
+        ]);
+      }
+      return concat([
+        "declare(",
+        printDeclareArguments(node),
+        ");",
+        hardline,
+        printDeclareChildren(node)
+      ]);
+    }
+    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
+    case "eval":
+    case "halt":
     case "global":
     case "static":
     case "include":
