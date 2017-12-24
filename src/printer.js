@@ -682,6 +682,21 @@ function printStatement(node) {
     case "useitem":
       return node.name;
     case "retif":
+      return group(
+        concat([
+          printNode(node.test),
+          indent(
+            concat([
+              line,
+              "? ",
+              printNode(node.trueExpr),
+              line,
+              ": ",
+              printNode(node.falseExpr)
+            ])
+          )
+        ])
+      );
     case "eval":
     case "exit":
     case "halt":
