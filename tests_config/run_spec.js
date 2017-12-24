@@ -3,8 +3,8 @@
 const fs = require("fs");
 const extname = require("path").extname;
 const prettier = require("prettier");
-const parser = require("../src/parser");
-const massageAST = ast => ast; // require("../src/common/clean-ast.js").massageAST;
+const plugin = require("../src");
+const massageAST = require("prettier/src/common/clean-ast").massageAST;
 
 const AST_COMPARE = process.env["AST_COMPARE"];
 
@@ -104,7 +104,7 @@ function stripLocation(ast) {
 }
 
 function parse(string, opts) {
-  return stripLocation(parser.parse(string, opts));
+  return stripLocation(plugin.parsers.php.parse(string, {}, opts));
 }
 
 function prettyprint(src, filename, options) {
