@@ -35,7 +35,13 @@ function lineShouldEndWithSemicolon(node) {
     "bin",
     "unary",
     "yield",
-    "yieldfrom"
+    "yieldfrom",
+    "echo",
+    "list",
+    "print",
+    "isset",
+    "unset",
+    "empty"
   ];
   return includes(semiColonWhitelist, node.kind);
 }
@@ -46,7 +52,6 @@ const expressionKinds = [
   "constref",
   "yield",
   "yieldfrom",
-  "lookup",
   "variable",
   "propertylookup",
   "staticlookup",
@@ -195,7 +200,6 @@ function printExpression(node) {
       ]);
     case "yieldfrom":
       return concat(["yield from ", printNode(node.value)]);
-    case "lookup":
     default:
       return "Have not implemented expression kind " + node.kind + " yet.";
   }
@@ -231,7 +235,6 @@ const statementKinds = [
   "block",
   "program",
   "namespace",
-  "sys",
   "echo",
   "list",
   "print",
@@ -303,16 +306,31 @@ function printStatement(node) {
     return printBlock(node);
   }
 
-  const sysKinds = ["sys", "echo", "list", "print", "isset", "unset", "empty"];
+  const sysKinds = ["echo", "list", "print", "isset", "unset", "empty"];
   function printSys(node) {
     switch (node.kind) {
-      case "sys":
       case "echo":
-      case "list":
+        return concat(["echo ", join(", ", node.arguments.map(printNode))]);
       case "print":
+        return concat(["print ", printNode(node.arguments)]);
+      case "list":
       case "isset":
       case "unset":
       case "empty":
+        return group(
+          concat([
+            node.kind,
+            "(",
+            indent(
+              concat([
+                softline,
+                join(concat([",", line]), node.arguments.map(printNode))
+              ])
+            ),
+            softline,
+            ")"
+          ])
+        );
       default:
         return "Have not implemented sys kind " + node.kind + " yet.";
     }
