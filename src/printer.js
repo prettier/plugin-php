@@ -33,7 +33,9 @@ function lineShouldEndWithSemicolon(node) {
     "pre",
     "post",
     "bin",
-    "unary"
+    "unary",
+    "yield",
+    "yieldfrom"
   ];
   return includes(semiColonWhitelist, node.kind);
 }
@@ -186,7 +188,13 @@ function printExpression(node) {
         ])
       );
     case "yield":
+      return concat([
+        "yield ",
+        node.key ? concat([printNode(node.key), " => "]) : "",
+        printNode(node.value)
+      ]);
     case "yieldfrom":
+      return concat(["yield from ", printNode(node.value)]);
     case "lookup":
     default:
       return "Have not implemented expression kind " + node.kind + " yet.";
