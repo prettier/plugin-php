@@ -6,6 +6,9 @@
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
   "main": "src",
+  "files": [
+    "src"
+  ],
   "dependencies": {
     "php-parser": "2.1.0",
     "prettier": "azz/prettier#f6d0b5fe"
