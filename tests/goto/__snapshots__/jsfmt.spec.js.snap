@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`goto.php 1`] = `
+<?php
+goto a;
+echo 'Foo';
+
+a:
+echo 'Bar';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+goto a;
+echo 'Foo';
+a:
+echo 'Bar';
+`;

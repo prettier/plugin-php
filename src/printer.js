@@ -49,7 +49,8 @@ function lineShouldEndWithSemicolon(node) {
     "exit",
     "global",
     "static",
-    "include"
+    "include",
+    "goto"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -790,10 +791,11 @@ function printStatement(node) {
         " ",
         printNode(node.target)
       ]);
+    case "goto":
+      return concat(["goto ", node.label]);
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
     case "halt":
-    case "goto":
     case "silent":
     case "try":
     case "catch":
@@ -887,6 +889,7 @@ function printNode(node) {
         node.as
       ]);
     case "label":
+      return concat([node.name, ":"]);
     case "error":
     default:
       return "Have not implemented kind " + node.kind + " yet.";
