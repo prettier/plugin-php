@@ -48,7 +48,8 @@ function lineShouldEndWithSemicolon(node) {
     "classconstant",
     "exit",
     "global",
-    "static"
+    "static",
+    "include"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -782,10 +783,16 @@ function printStatement(node) {
           )
         ])
       );
+    case "include":
+      return concat([
+        node.require ? "require" : "include",
+        node.once ? "_once" : "",
+        " ",
+        printNode(node.target)
+      ]);
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
     case "halt":
-    case "include":
     case "goto":
     case "silent":
     case "try":

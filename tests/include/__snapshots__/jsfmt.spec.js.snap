@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`include.php 1`] = `
+<?php
+include "test.php";
+include_once "other.php";
+require "test/test.php";
+require_once "other/other.php";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+include "test.php";
+include_once "other.php";
+require "test/test.php";
+require_once "other/other.php";
+`;
