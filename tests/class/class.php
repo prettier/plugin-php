@@ -8,6 +8,8 @@ class Foo extends Bar implements Baz, Buzz {
   }
 }
 
+$test = new Foo();
+
 abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResourceController implements TooMuchObjectOrientation, ThisIsMadness {
   // variable doc
   public $test;
