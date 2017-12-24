@@ -43,7 +43,9 @@ function lineShouldEndWithSemicolon(node) {
     "unset",
     "empty",
     "traitprecedence",
-    "traitalias"
+    "traitalias",
+    "constant",
+    "classconstant"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -531,6 +533,7 @@ function printStatement(node) {
         ]);
       case "constant":
       case "classconstant":
+        return concat(["const ", node.name, " = ", printNode(node.value)]);
       default:
         return "Have not implmented declaration kind " + node.kind + " yet.";
     }
