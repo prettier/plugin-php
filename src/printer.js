@@ -199,8 +199,21 @@ function printExpression(node) {
           getEncapsedQuotes(node, { opening: false })
         ]);
       case "inline":
+        // might need to figure out better way to do this. don't want to send through printNode()
+        // because value is a string and we don't want the quotes
+        return concat(["`", concat(node.value.map(value => value.value)), "`"]);
       case "magic":
+        return node.value;
       case "nowdoc":
+        return concat([
+          "<<<'",
+          node.label,
+          "'",
+          hardline,
+          node.value,
+          hardline,
+          node.label
+        ]);
       default:
         return "Have not implemented literal kind " + node.kind + " yet.";
     }
@@ -718,6 +731,42 @@ function printStatement(node) {
       ]);
     case "useitem":
       return node.name;
+    case "closure":
+      return concat([
+        "function (",
+        group(
+          concat([
+            indent(
+              join(
+                ", ",
+                node.arguments.map(argument =>
+                  concat([softline, printNode(argument)])
+                )
+              )
+            ),
+            softline
+          ])
+        ),
+        node.uses && node.uses.length > 0
+          ? group(
+              concat([
+                ") use (",
+                indent(
+                  join(
+                    ", ",
+                    node.uses.map(use => {
+                      return concat([softline, printNode(use)]);
+                    })
+                  )
+                ),
+                softline
+              ])
+            )
+          : "",
+        group(") {"),
+        indent(concat([hardline, printNode(node.body)])),
+        concat([hardline, "}"])
+      ]);
     case "retif":
       return group(
         concat([
@@ -832,7 +881,6 @@ function printStatement(node) {
     case "try":
     case "catch":
     case "throw":
-    case "closure":
     case "new":
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
