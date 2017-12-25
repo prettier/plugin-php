@@ -155,6 +155,20 @@ function printExpression(node) {
     "encapsed"
   ];
   function printLiteral(node) {
+    function getEncapsedQuotes(node, { opening = true } = {}) {
+      if (node.type === "heredoc") {
+        return opening ? "<<<" + node.label : node.label;
+      }
+      const quotes = {
+        string: '"',
+        shell: "`"
+      };
+      if (quotes[node.type]) {
+        return quotes[node.type];
+      }
+      return "Unimplemented encapsed type " + node.type;
+    }
+
     switch (node.kind) {
       case "boolean":
         return node.value ? "true" : "false";
@@ -168,9 +182,22 @@ function printExpression(node) {
       case "number":
         return node.value;
       case "encapsed":
-        // might need to figure out better way to do this. don't want to send through printNode()
-        // because value is a string and we don't want the quotes
-        return concat(["`", concat(node.value.map(value => value.value)), "`"]);
+        if (node.type === "offset") {
+          return group(concat(node.value.map(printNode)));
+        }
+        return concat([
+          getEncapsedQuotes(node),
+          node.type === "heredoc" ? hardline : "",
+          concat(
+            node.value.map(value => {
+              // might need to figure out better way to do this. don't want
+              // to send through printNode() because value is a string and
+              // we don't want the quotes
+              return value.kind === "string" ? value.value : printNode(value);
+            })
+          ),
+          getEncapsedQuotes(node, { opening: false })
+        ]);
       case "inline":
       case "magic":
       case "nowdoc":
@@ -184,7 +211,12 @@ function printExpression(node) {
 
   switch (node.kind) {
     case "variable":
-      return "$" + node.name;
+      return concat([
+        "$",
+        node.curly ? "{" : "",
+        node.name,
+        node.curly ? "}" : ""
+      ]);
     case "constref":
       if (typeof node.name === "object") {
         return printNode(node.name);

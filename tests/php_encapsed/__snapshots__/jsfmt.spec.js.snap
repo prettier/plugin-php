@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`encapsed.php 1`] = `
+<?php
+$encapsShell = \`a $b\`;
+$encaps = "one $b";
+$encapsHereDoc = <<<STR
+ Hello $a
+STR;
+$encapsHereDoc2 = <<<STR
+Hello foo $a bar
+new line
+STR;
+$encapsedOffset = $a->bar$b;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$encapsShell = \`a $b\`;
+$encaps = "one $b";
+$encapsHereDoc = <<<STR
+ Hello $a
+STR;
+$encapsHereDoc2 = <<<STR
+Hello foo $a bar
+new line
+STR;
+$encapsedOffset = $a->bar$b;
+`;
