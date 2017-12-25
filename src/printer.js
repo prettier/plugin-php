@@ -33,8 +33,28 @@ function lineShouldEndWithSemicolon(node) {
     "pre",
     "post",
     "bin",
-    "unary"
+    "unary",
+    "yield",
+    "yieldfrom",
+    "echo",
+    "list",
+    "print",
+    "isset",
+    "unset",
+    "empty",
+    "traitprecedence",
+    "traitalias",
+    "constant",
+    "classconstant",
+    "exit",
+    "global",
+    "static",
+    "include",
+    "goto"
   ];
+  if (node.kind === "traituse") {
+    return !node.adaptations;
+  }
   return includes(semiColonWhitelist, node.kind);
 }
 
@@ -44,7 +64,6 @@ const expressionKinds = [
   "constref",
   "yield",
   "yieldfrom",
-  "lookup",
   "variable",
   "propertylookup",
   "staticlookup",
@@ -186,8 +205,13 @@ function printExpression(node) {
         ])
       );
     case "yield":
+      return concat([
+        "yield ",
+        node.key ? concat([printNode(node.key), " => "]) : "",
+        printNode(node.value)
+      ]);
     case "yieldfrom":
-    case "lookup":
+      return concat(["yield from ", printNode(node.value)]);
     default:
       return "Have not implemented expression kind " + node.kind + " yet.";
   }
@@ -223,7 +247,6 @@ const statementKinds = [
   "block",
   "program",
   "namespace",
-  "sys",
   "echo",
   "list",
   "print",
@@ -295,16 +318,31 @@ function printStatement(node) {
     return printBlock(node);
   }
 
-  const sysKinds = ["sys", "echo", "list", "print", "isset", "unset", "empty"];
+  const sysKinds = ["echo", "list", "print", "isset", "unset", "empty"];
   function printSys(node) {
     switch (node.kind) {
-      case "sys":
       case "echo":
-      case "list":
+        return concat(["echo ", join(", ", node.arguments.map(printNode))]);
       case "print":
+        return concat(["print ", printNode(node.arguments)]);
+      case "list":
       case "isset":
       case "unset":
       case "empty":
+        return group(
+          concat([
+            node.kind,
+            "(",
+            indent(
+              concat([
+                softline,
+                join(concat([",", line]), node.arguments.map(printNode))
+              ])
+            ),
+            softline,
+            ")"
+          ])
+        );
       default:
         return "Have not implemented sys kind " + node.kind + " yet.";
     }
@@ -353,7 +391,15 @@ function printStatement(node) {
           ),
           hardline,
           indent(
-            concat(node.body.map(child => concat([hardline, printNode(child)])))
+            concat(
+              node.body.map(child =>
+                concat([
+                  hardline,
+                  printNode(child),
+                  lineShouldEndWithSemicolon(child) ? ";" : ""
+                ])
+              )
+            )
           ),
           hardline,
           "}"
@@ -463,8 +509,36 @@ function printStatement(node) {
           "}"
         ]);
       case "trait":
+        return concat([
+          group(
+            concat([
+              concat(["trait ", node.name]),
+              node.extends
+                ? indent(concat([line, "extends ", printNode(node.extends)]))
+                : "",
+              node.implements
+                ? indent(
+                    concat([
+                      line,
+                      "implements ",
+                      join(", ", node.implements.map(printNode))
+                    ])
+                  )
+                : "",
+              " {"
+            ])
+          ),
+          indent(
+            concat(
+              node.body.map(element => concat([hardline, printNode(element)]))
+            )
+          ),
+          hardline,
+          "}"
+        ]);
       case "constant":
       case "classconstant":
+        return concat(["const ", node.name, " = ", printNode(node.value)]);
       default:
         return "Have not implmented declaration kind " + node.kind + " yet.";
     }
@@ -613,15 +687,115 @@ function printStatement(node) {
     case "useitem":
       return node.name;
     case "retif":
-    case "eval":
+      return group(
+        concat([
+          printNode(node.test),
+          indent(
+            concat([
+              line,
+              "? ",
+              printNode(node.trueExpr),
+              line,
+              ": ",
+              printNode(node.falseExpr)
+            ])
+          )
+        ])
+      );
     case "exit":
-    case "halt":
+      return concat(["exit(", printNode(node.status), ")"]);
     case "clone":
-    case "declare":
+      return concat(["clone ", printNode(node.what)]);
+    case "declare": {
+      const printDeclareArguments = function(node) {
+        const directive = Object.keys(node.what)[0];
+        return concat([directive, "=", printNode(node.what[directive])]);
+      };
+      const printDeclareChildren = function(node) {
+        return concat(
+          node.children.map(child =>
+            concat([
+              printNode(child),
+              lineShouldEndWithSemicolon(child) ? ";" : ""
+            ])
+          )
+        );
+      };
+      if (node.mode === "short") {
+        return concat([
+          "declare(",
+          printDeclareArguments(node),
+          "):",
+          hardline,
+          printDeclareChildren(node),
+          hardline,
+          "enddeclare;"
+        ]);
+      } else if (node.mode === "block") {
+        return concat([
+          "declare(",
+          printDeclareArguments(node),
+          ") {",
+          indent(concat([hardline, printDeclareChildren(node)])),
+          hardline,
+          "}"
+        ]);
+      }
+      return concat([
+        "declare(",
+        printDeclareArguments(node),
+        ");",
+        hardline,
+        printDeclareChildren(node)
+      ]);
+    }
     case "global":
+      return group(
+        concat([
+          "global",
+          indent(
+            concat([line, join(concat([",", line]), node.items.map(printNode))])
+          )
+        ])
+      );
     case "static":
+      return group(
+        concat([
+          "static",
+          indent(
+            concat([
+              line,
+              join(
+                concat([",", line]),
+                node.items.map(item => {
+                  // @TODO: hacking this for now. assignments nested inside a static
+                  // declaration doesn't have the operator set, so printing manually
+                  if (item.kind === "assign") {
+                    return concat([
+                      printNode(item.left),
+                      " = ",
+                      printNode(item.right)
+                    ]);
+                  }
+                  return printNode(item);
+                })
+              )
+            ])
+          )
+        ])
+      );
     case "include":
+      return concat([
+        node.require ? "require" : "include",
+        node.once ? "_once" : "",
+        " ",
+        printNode(node.target)
+      ]);
     case "goto":
+      return concat(["goto ", node.label]);
+    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
+    case "eval":
+    case "halt":
     case "silent":
     case "try":
     case "catch":
@@ -672,10 +846,50 @@ function printNode(node) {
         node.key ? concat([printNode(node.key), " => "]) : "",
         printNode(node.value)
       ]);
-    case "label":
     case "traituse":
-    case "traitalias":
+      return group(
+        concat([
+          "use ",
+          join(", ", node.traits.map(printNode)),
+          node.adaptations
+            ? concat([
+                " {",
+                indent(
+                  concat(
+                    node.adaptations.map(adaptation =>
+                      concat([
+                        line,
+                        printNode(adaptation),
+                        lineShouldEndWithSemicolon(adaptation) ? ";" : ""
+                      ])
+                    )
+                  )
+                ),
+                line,
+                "}"
+              ])
+            : ""
+        ])
+      );
     case "traitprecedence":
+      return concat([
+        printNode(node.trait),
+        "::",
+        node.method,
+        " insteadof ",
+        join(", ", node.instead.map(printNode))
+      ]);
+    case "traitalias":
+      return concat([
+        printNode(node.trait),
+        "::",
+        node.method,
+        " as ",
+        node.visibility ? concat([node.visibility, " "]) : "",
+        node.as
+      ]);
+    case "label":
+      return concat([node.name, ":"]);
     case "error":
     default:
       return "Have not implemented kind " + node.kind + " yet.";
