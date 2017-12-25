@@ -200,9 +200,7 @@ function printExpression(node) {
           getEncapsedQuotes(node, { opening: false })
         ]);
       case "inline":
-        // might need to figure out better way to do this. don't want to send through printNode()
-        // because value is a string and we don't want the quotes
-        return concat(["`", concat(node.value.map(value => value.value)), "`"]);
+        return node.value;
       case "magic":
         return node.value;
       case "nowdoc":

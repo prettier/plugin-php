@@ -8,3 +8,5 @@ $magic = __LINE__;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
+?>
+<p>Inline HTML</p>
