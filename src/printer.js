@@ -911,11 +911,12 @@ function printStatement(node) {
       ]);
     case "throw":
       return concat(["throw ", printNode(node.what)]);
-    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
-    case "eval":
-    case "halt":
     case "silent":
       return concat(["@", printNode(node.expr)]);
+    case "halt":
+      return concat(["__halt_compiler();", node.after]);
+    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
+    case "eval":
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
