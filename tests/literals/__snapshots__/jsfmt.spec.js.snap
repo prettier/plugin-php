@@ -12,8 +12,6 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
-?>
-<p>Inline HTML</p>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $boolean_test_true = true;
@@ -25,6 +23,4 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
-<p>Inline HTML</p>
-
 `;

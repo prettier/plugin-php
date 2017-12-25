@@ -9,5 +9,3 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
-?>
-<p>Inline HTML</p>

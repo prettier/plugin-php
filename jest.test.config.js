@@ -7,7 +7,7 @@ module.exports = {
   setupFiles: ["<rootDir>/tests_config/run_spec.js"],
   snapshotSerializers: ["<rootDir>/tests_config/raw-serializer.js"],
   testRegex: "jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
-  testPathIgnorePatterns: ["tests/php_encapsed_curly"],
+  testPathIgnorePatterns: [],
   collectCoverage: ENABLE_COVERAGE,
   collectCoverageFrom: ["src/**/*.js", "!<rootDir>/node_modules/"],
   transform: {}
