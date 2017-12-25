@@ -138,6 +138,7 @@ function printExpression(node) {
       case "unary":
         return concat([node.type, printNode(node.what)]);
       case "cast":
+        return concat(["(", node.type, ") ", printNode(node.what)]);
       default:
         return "Have not implemented operation kind " + node.kind + " yet.";
     }
