@@ -182,6 +182,7 @@ function printExpression(node) {
       case "number":
         return node.value;
       case "encapsed":
+<<<<<<< HEAD
         if (node.type === "offset") {
           return group(concat(node.value.map(printNode)));
         }
@@ -199,8 +200,22 @@ function printExpression(node) {
           getEncapsedQuotes(node, { opening: false })
         ]);
       case "inline":
+        // might need to figure out better way to do this. don't want to send through printNode()
+        // because value is a string and we don't want the quotes
+        return concat(["`", concat(node.value.map(value => value.value)), "`"]);
       case "magic":
+        return node.value;
       case "nowdoc":
+        return concat([
+          "<<<'",
+          node.label,
+          "'",
+          hardline,
+          node.value,
+          hardline,
+          node.label
+        ]);
+      case "inline":
       default:
         return "Have not implemented literal kind " + node.kind + " yet.";
     }
