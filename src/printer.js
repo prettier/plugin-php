@@ -915,6 +915,7 @@ function printStatement(node) {
     case "eval":
     case "halt":
     case "silent":
+      return concat(["@", printNode(node.expr)]);
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
