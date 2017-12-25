@@ -50,8 +50,7 @@ function lineShouldEndWithSemicolon(node) {
     "global",
     "static",
     "include",
-    "goto",
-    "throw"
+    "goto"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -794,48 +793,15 @@ function printStatement(node) {
       ]);
     case "goto":
       return concat(["goto ", node.label]);
-    case "new":
-      return concat(["new ", printNode(node.what), "()"]);
-    case "try":
-      return concat([
-        "try {",
-        indent(concat([hardline, printNode(node.body)])),
-        hardline,
-        "}",
-        node.catches ? concat(node.catches.map(printNode)) : "",
-        node.always
-          ? concat([
-              " always {",
-              indent(concat([hardline, printNode(node.always)])),
-              hardline,
-              "}"
-            ])
-          : ""
-      ]);
-    case "catch":
-      return concat([
-        " catch",
-        node.what
-          ? concat([
-              " (",
-              join(" | ", node.what.map(printNode)),
-              " ",
-              printNode(node.variable),
-              ")"
-            ])
-          : "",
-        " {",
-        indent(concat([hardline, printNode(node.body)])),
-        hardline,
-        "}"
-      ]);
-    case "throw":
-      return concat(["throw ", printNode(node.what)]);
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
     case "halt":
     case "silent":
+    case "try":
+    case "catch":
+    case "throw":
     case "closure":
+    case "new":
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
