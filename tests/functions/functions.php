@@ -33,3 +33,5 @@ $arr = [1,2,3];
 array_map(function($entry) {
   return $entry * 2;
 }, $arr);
+
+$silent = @hello();

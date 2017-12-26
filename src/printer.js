@@ -138,6 +138,7 @@ function printExpression(node) {
       case "unary":
         return concat([node.type, printNode(node.what)]);
       case "cast":
+        return concat(["(", node.type, ") ", printNode(node.what)]);
       default:
         return "Have not implemented operation kind " + node.kind + " yet.";
     }
@@ -200,9 +201,7 @@ function printExpression(node) {
           getEncapsedQuotes(node, { opening: false })
         ]);
       case "inline":
-        // might need to figure out better way to do this. don't want to send through printNode()
-        // because value is a string and we don't want the quotes
-        return concat(["`", concat(node.value.map(value => value.value)), "`"]);
+        return node.value;
       case "magic":
         return node.value;
       case "nowdoc":
@@ -912,10 +911,12 @@ function printStatement(node) {
       ]);
     case "throw":
       return concat(["throw ", printNode(node.what)]);
+    case "silent":
+      return concat(["@", printNode(node.expr)]);
+    case "halt":
+      return concat(["__halt_compiler();", node.after]);
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
-    case "halt":
-    case "silent":
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
