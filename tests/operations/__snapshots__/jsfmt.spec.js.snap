@@ -105,5 +105,5 @@ $a . $b;
 $a .= $b;
 $a instanceof stdClass;
 $output = \`ls -al\`;
-$a = (boolean) "test";
+$a = (bool) "test";
 `;
