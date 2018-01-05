@@ -1,5 +1,5 @@
 {
-  "name": "@prettier/php",
+  "name": "@prettier/plugin-php",
   "version": "0.0.0-development",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
