@@ -9,3 +9,4 @@ if (true) {
 
 return true ? 1 : 2;
 return ($testReallyReallyLong >= 1) ? $someOtherReallyReallyLongVariable : $thisOtherVariable;
+return true ?: 2;

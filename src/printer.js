@@ -774,9 +774,10 @@ function printStatement(node) {
           indent(
             concat([
               line,
-              "? ",
-              printNode(node.trueExpr),
-              line,
+              "?",
+              node.trueExpr
+                ? concat([" ", printNode(node.trueExpr), line])
+                : "",
               ": ",
               printNode(node.falseExpr)
             ])
