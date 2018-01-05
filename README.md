@@ -1,4 +1,4 @@
-# Prettier PHP
+# Prettier PHP Plugin
 
 ![](https://i.giphy.com/media/GNvOUgBvLzVwA/giphy.webp)
 
@@ -8,7 +8,7 @@ Check back soon :)
 ## Install
 
 ```bash
-yarn add --dev --exact prettier @prettier/php
+yarn add --dev --exact prettier @prettier/plugin-php
 ```
 
 ## Configure
@@ -17,7 +17,7 @@ yarn add --dev --exact prettier @prettier/php
 
 ```json
 {
-  "plugins": ["@prettier/php"]
+  "plugins": ["@prettier/plugin-php"]
 }
 ```
 
