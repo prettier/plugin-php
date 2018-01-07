@@ -1,6 +1,7 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
+
 const concat = docBuilders.concat;
 const join = docBuilders.join;
 const line = docBuilders.line;
@@ -14,17 +15,18 @@ function includes(array, val) {
   return array.indexOf(val) !== -1;
 }
 
-function genericPrint(path) {
+function genericPrint(path, options, print) {
   const n = path.getValue();
   if (!n) {
     return "";
   } else if (typeof n === "string") {
     return n;
   }
-  return printNode(n);
+  return printNode(path, options, print);
 }
 
-function lineShouldEndWithSemicolon(node) {
+function lineShouldEndWithSemicolon(path) {
+  const node = path.getValue();
   const semiColonWhitelist = [
     "assign",
     "return",
@@ -83,27 +85,32 @@ const expressionKinds = [
   "nowdoc",
   "encapsed"
 ];
-function printExpression(node) {
+function printExpression(path, options, print) {
+  const node = path.getValue();
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
     switch (node.kind) {
       case "propertylookup":
         return group(
           concat([
-            printNode(node.what),
+            path.call(print, "what"),
             "->",
-            indent(concat([softline, printNode(node.offset)]))
+            indent(concat([softline, path.call(print, "offset")]))
           ])
         );
       case "staticlookup":
-        return concat([printNode(node.what), "::", printNode(node.offset)]);
+        return concat([
+          path.call(print, "what"),
+          "::",
+          path.call(print, "offset")
+        ]);
       case "offsetlookup":
         return group(
           concat([
-            printNode(node.what),
+            path.call(print, "what"),
             "[",
             softline,
-            node.offset ? printNode(node.offset) : "",
+            node.offset ? path.call(print, "offset") : "",
             softline,
             "]"
           ])
@@ -120,25 +127,25 @@ function printExpression(node) {
   function printOperation(node) {
     switch (node.kind) {
       case "pre":
-        return concat([node.type + node.type, printNode(node.what)]);
+        return concat([node.type + node.type, path.call(print, "what")]);
       case "post":
-        return concat([printNode(node.what), node.type + node.type]);
+        return concat([path.call(print, "what"), node.type + node.type]);
       case "bin":
         return concat([
-          printNode(node.left),
+          path.call(print, "left"),
           " ",
           node.type,
           " ",
-          printNode(node.right)
+          path.call(print, "right")
         ]);
       case "parenthesis":
         return group(
-          concat(["(", softline, printNode(node.inner), softline, ")"])
+          concat(["(", softline, path.call(print, "inner"), softline, ")"])
         );
       case "unary":
-        return concat([node.type, printNode(node.what)]);
+        return concat([node.type, path.call(print, "what")]);
       case "cast":
-        return concat(["(", node.type, ") ", printNode(node.what)]);
+        return concat(["(", node.type, ") ", path.call(print, "what")]);
       default:
         return "Have not implemented operation kind " + node.kind + " yet.";
     }
@@ -185,18 +192,19 @@ function printExpression(node) {
         return node.value;
       case "encapsed":
         if (node.type === "offset") {
-          return group(concat(node.value.map(printNode)));
+          return group(concat(path.map(print, "value")));
         }
         return concat([
           getEncapsedQuotes(node),
           node.type === "heredoc" ? hardline : "",
           concat(
-            node.value.map(value => {
+            path.map(valuePath => {
               // might need to figure out better way to do this. don't want
               // to send through printNode() because value is a string and
               // we don't want the quotes
-              return value.kind === "string" ? value.value : printNode(value);
-            })
+              const node = valuePath.getValue();
+              return node.kind === "string" ? node.value : print(valuePath);
+            }, "value")
           ),
           getEncapsedQuotes(node, { opening: false })
         ]);
@@ -232,7 +240,7 @@ function printExpression(node) {
       ]);
     case "constref":
       if (typeof node.name === "object") {
-        return printNode(node.name);
+        return path.call(print, "name");
       }
       return node.name;
     case "array":
@@ -242,7 +250,7 @@ function printExpression(node) {
           indent(
             concat([
               softline,
-              join(concat([",", line]), node.items.map(item => printNode(item)))
+              join(concat([",", line]), path.map(print, "items"))
             ])
           ),
           softline,
@@ -252,11 +260,11 @@ function printExpression(node) {
     case "yield":
       return concat([
         "yield ",
-        node.key ? concat([printNode(node.key), " => "]) : "",
-        printNode(node.value)
+        node.key ? concat([path.call(print, "key"), " => "]) : "",
+        path.call(print, "value")
       ]);
     case "yieldfrom":
-      return concat(["yield from ", printNode(node.value)]);
+      return concat(["yield from ", path.call(print, "value")]);
     default:
       return "Have not implemented expression kind " + node.kind + " yet.";
   }
@@ -309,49 +317,48 @@ const statementKinds = [
   "parameter",
   "property"
 ];
-function printStatement(node) {
+function printStatement(path, options, print) {
+  const node = path.getValue();
   const blockKinds = ["block", "program", "namespace"];
-  function printBlock(node) {
+  function printBlock(path, options, print) {
     switch (node.kind) {
       case "block":
         return concat(
-          node.children.map((child, i) => {
+          path.map((child, i) => {
             if (i === 0) {
               return concat([
-                printNode(child),
+                print(child),
                 lineShouldEndWithSemicolon(child) ? ";" : ""
               ]);
             }
             return concat([
               hardline,
               concat([
-                printNode(child),
+                print(child),
                 lineShouldEndWithSemicolon(child) ? ";" : ""
               ])
             ]);
-          })
+          }, "children")
         );
-      case "program":
-        return concat([
-          "<?php",
-          concat(
-            node.children.map(child =>
-              concat([
-                hardline,
-                printNode(child),
-                lineShouldEndWithSemicolon(child) ? ";" : ""
-              ])
-            )
-          )
-        ]);
+      case "program": {
+        const parts = path.map(childPath => {
+          return concat([
+            hardline,
+            print(childPath),
+            lineShouldEndWithSemicolon(childPath) ? ";" : ""
+          ]);
+        }, "children");
+        return concat(["<?php", concat(parts)]);
+      }
       case "namespace":
         return concat([
           "namespace ",
           node.name,
           ";",
           concat(
-            node.children.map(usegroup =>
-              concat([hardline, printNode(usegroup), ";"])
+            path.map(
+              usegroup => concat([hardline, print(usegroup), ";"]),
+              "children"
             )
           )
         ]);
@@ -360,16 +367,16 @@ function printStatement(node) {
     }
   }
   if (includes(blockKinds, node.kind)) {
-    return printBlock(node);
+    return printBlock(path, options, print);
   }
 
   const sysKinds = ["echo", "list", "print", "isset", "unset", "empty"];
   function printSys(node) {
     switch (node.kind) {
       case "echo":
-        return concat(["echo ", join(", ", node.arguments.map(printNode))]);
+        return concat(["echo ", join(", ", path.map(print, "arguments"))]);
       case "print":
-        return concat(["print ", printNode(node.arguments)]);
+        return concat(["print ", path.call(print, "arguments")]);
       case "list":
       case "isset":
       case "unset":
@@ -381,7 +388,7 @@ function printStatement(node) {
             indent(
               concat([
                 softline,
-                join(concat([",", line]), node.arguments.map(printNode))
+                join(concat([",", line]), path.map(print, "arguments"))
               ])
             ),
             softline,
@@ -420,13 +427,13 @@ function printStatement(node) {
               indent(
                 concat([
                   node.extends
-                    ? concat([line, "extends ", printNode(node.extends)])
+                    ? concat([line, "extends ", path.call(print, "extends")])
                     : "",
                   node.implements
                     ? concat([
                         line,
                         "implements ",
-                        join(", ", node.implements.map(printNode))
+                        join(", ", path.map(print, "implements"))
                       ])
                     : ""
                 ])
@@ -437,13 +444,13 @@ function printStatement(node) {
           hardline,
           indent(
             concat(
-              node.body.map(child =>
-                concat([
+              path.map(child => {
+                return concat([
                   hardline,
-                  printNode(child),
+                  print(child),
                   lineShouldEndWithSemicolon(child) ? ";" : ""
-                ])
-              )
+                ]);
+              }, "body")
             )
           ),
           hardline,
@@ -457,8 +464,9 @@ function printStatement(node) {
               indent(
                 join(
                   ", ",
-                  node.arguments.map(argument =>
-                    concat([softline, printNode(argument)])
+                  path.map(
+                    argument => concat([softline, print(argument)]),
+                    "arguments"
                   )
                 )
               ),
@@ -466,7 +474,7 @@ function printStatement(node) {
             ])
           ),
           group(") {"),
-          indent(concat([hardline, printNode(node.body)])),
+          indent(concat([hardline, path.call(print, "body")])),
           concat([hardline, "}"])
         ]);
       case "method":
@@ -485,8 +493,9 @@ function printStatement(node) {
               indent(
                 join(
                   ", ",
-                  node.arguments.map(argument =>
-                    concat([softline, printNode(argument)])
+                  path.map(
+                    argument => concat([softline, print(argument)]),
+                    "arguments"
                   )
                 )
               ),
@@ -497,7 +506,7 @@ function printStatement(node) {
           node.body
             ? concat([
                 " {",
-                indent(concat([hardline, printNode(node.body)])),
+                indent(concat([hardline, path.call(print, "body")])),
                 hardline,
                 "}"
               ])
@@ -508,7 +517,7 @@ function printStatement(node) {
           return group(
             concat([
               concat(["$", node.name]),
-              indent(concat([line, "= ", printNode(node.value)]))
+              indent(concat([line, "= ", path.call(print, "value")]))
             ])
           );
         }
@@ -521,7 +530,7 @@ function printStatement(node) {
             " $",
             node.name,
             node.value
-              ? indent(concat([line, "= ", printNode(node.value)]))
+              ? indent(concat([line, "= ", path.call(print, "value")]))
               : "",
             ";"
           ])
@@ -536,7 +545,7 @@ function printStatement(node) {
                     concat([
                       line,
                       "extends ",
-                      join(", ", node.extends.map(printNode))
+                      join(", ", path.map(print, "extends"))
                     ])
                   )
                 : "",
@@ -545,9 +554,9 @@ function printStatement(node) {
           ),
           indent(
             concat(
-              node.body.map(element =>
-                concat([hardline, printNode(element), ";"])
-              )
+              path.map(element => {
+                return concat([hardline, print(element), ";"]);
+              }, "body")
             )
           ),
           hardline,
@@ -559,14 +568,16 @@ function printStatement(node) {
             concat([
               concat(["trait ", node.name]),
               node.extends
-                ? indent(concat([line, "extends ", printNode(node.extends)]))
+                ? indent(
+                    concat([line, "extends ", path.call(print, "extends")])
+                  )
                 : "",
               node.implements
                 ? indent(
                     concat([
                       line,
                       "implements ",
-                      join(", ", node.implements.map(printNode))
+                      join(", ", path.map(print, "implements"))
                     ])
                   )
                 : "",
@@ -575,7 +586,7 @@ function printStatement(node) {
           ),
           indent(
             concat(
-              node.body.map(element => concat([hardline, printNode(element)]))
+              path.map(element => concat([hardline, print(element)]), "body")
             )
           ),
           hardline,
@@ -583,7 +594,7 @@ function printStatement(node) {
         ]);
       case "constant":
       case "classconstant":
-        return concat(["const ", node.name, " = ", printNode(node.value)]);
+        return concat(["const ", node.name, " = ", path.call(print, "value")]);
       default:
         return "Have not implmented declaration kind " + node.kind + " yet.";
     }
@@ -595,8 +606,8 @@ function printStatement(node) {
   switch (node.kind) {
     case "assign":
       return join(concat([" ", node.operator, " "]), [
-        printNode(node.left),
-        printNode(node.right)
+        path.call(print, "left"),
+        path.call(print, "right")
       ]);
     case "if": {
       const handleIfAlternate = alternate => {
@@ -604,20 +615,20 @@ function printStatement(node) {
           return "}";
         }
         if (alternate.kind === "if") {
-          return concat(["} else", printNode(alternate)]);
+          return concat(["} else", path.call(print, "alternate")]);
         }
         return concat([
           "} else {",
-          indent(concat([line, printNode(alternate)])),
+          indent(concat([line, path.call(print, "alternate")])),
           line,
           "}"
         ]);
       };
       return concat([
         group(
-          concat(["if (", softline, printNode(node.test), softline, ") {"])
+          concat(["if (", softline, path.call(print, "test"), softline, ") {"])
         ),
-        indent(concat([line, printNode(node.body)])),
+        indent(concat([line, path.call(print, "body")])),
         line,
         handleIfAlternate(node.alternate)
       ]);
@@ -625,14 +636,14 @@ function printStatement(node) {
     case "do":
       return concat([
         "do {",
-        indent(concat([line, printNode(node.body)])),
+        indent(concat([line, path.call(print, "body")])),
         line,
         group(
           concat([
             "} while (",
             group(
               concat([
-                indent(concat([softline, printNode(node.test)])),
+                indent(concat([softline, path.call(print, "test")])),
                 softline
               ])
             ),
@@ -643,9 +654,15 @@ function printStatement(node) {
     case "while":
       return concat([
         group(
-          concat(["while (", softline, printNode(node.test), softline, ") {"])
+          concat([
+            "while (",
+            softline,
+            path.call(print, "test"),
+            softline,
+            ") {"
+          ])
         ),
-        indent(concat([line, printNode(node.body)])),
+        indent(concat([line, path.call(print, "body")])),
         line,
         "}"
       ]);
@@ -657,24 +674,18 @@ function printStatement(node) {
             indent(
               concat([
                 softline,
-                group(
-                  concat([concat(node.init.map(init => printNode(init))), ";"])
-                ),
+                group(concat([concat(path.map(print, "init")), ";"])),
                 softline,
-                group(
-                  concat([concat(node.test.map(test => printNode(test))), ";"])
-                ),
+                group(concat([concat(path.map(print, "test")), ";"])),
                 softline,
-                group(
-                  concat(node.increment.map(increment => printNode(increment)))
-                )
+                group(concat(path.map(print, "increment")))
               ])
             ),
             softline,
             ") {"
           ])
         ),
-        indent(concat([line, printNode(node.body)])),
+        indent(concat([line, path.call(print, "body")])),
         line,
         "}"
       ]);
@@ -686,31 +697,42 @@ function printStatement(node) {
             indent(
               concat([
                 softline,
-                printNode(node.source),
+                path.call(print, "source"),
                 " as",
                 line,
                 node.key
-                  ? join(" => ", [printNode(node.key), printNode(node.value)])
-                  : printNode(node.value)
+                  ? join(" => ", [
+                      path.call(print, "key"),
+                      path.call(print, "value")
+                    ])
+                  : path.call(print, "value")
               ])
             ),
             softline,
             ") {"
           ])
         ),
-        indent(concat([line, printNode(node.body)])),
+        indent(concat([line, path.call(print, "body")])),
         line,
         "}"
       ]);
     case "switch":
       return concat([
         group(
-          concat(["switch (", softline, printNode(node.test), softline, ") {"])
+          concat([
+            "switch (",
+            softline,
+            path.call(print, "test"),
+            softline,
+            ") {"
+          ])
         ),
         indent(
           concat(
-            node.body.children.map(caseChild =>
-              concat([line, printNode(caseChild)])
+            path.map(
+              caseChild => concat([line, print(caseChild)]),
+              "body",
+              "children"
             )
           )
         ),
@@ -719,15 +741,15 @@ function printStatement(node) {
       ]);
     case "call":
       return concat([
-        printNode(node.what),
+        path.call(print, "what"),
         "(",
-        join(", ", node.arguments.map(argument => printNode(argument))),
+        join(", ", path.map(print, "arguments")),
         ")"
       ]);
     case "usegroup":
       return concat([
         "use ",
-        join(", ", node.items.map(item => concat([printNode(item)])))
+        join(", ", path.map(item => concat([print(item)]), "items"))
       ]);
     case "useitem":
       return node.name;
@@ -739,8 +761,9 @@ function printStatement(node) {
             indent(
               join(
                 ", ",
-                node.arguments.map(argument =>
-                  concat([softline, printNode(argument)])
+                path.map(
+                  argument => concat([softline, print(argument)]),
+                  "arguments"
                 )
               )
             ),
@@ -754,9 +777,9 @@ function printStatement(node) {
                 indent(
                   join(
                     ", ",
-                    node.uses.map(use => {
-                      return concat([softline, printNode(use)]);
-                    })
+                    path.map(use => {
+                      return concat([softline, print(use)]);
+                    }, "uses")
                   )
                 ),
                 softline
@@ -764,71 +787,71 @@ function printStatement(node) {
             )
           : "",
         group(") {"),
-        indent(concat([hardline, printNode(node.body)])),
+        indent(concat([hardline, path.call(print, "body")])),
         concat([hardline, "}"])
       ]);
     case "retif":
       return group(
         concat([
-          printNode(node.test),
+          path.call(print, "test"),
           indent(
             concat([
               line,
               "?",
               node.trueExpr
-                ? concat([" ", printNode(node.trueExpr), line])
+                ? concat([" ", path.call(print, "trueExpr"), line])
                 : "",
               ": ",
-              printNode(node.falseExpr)
+              path.call(print, "falseExpr")
             ])
           )
         ])
       );
     case "exit":
-      return concat(["exit(", printNode(node.status), ")"]);
+      return concat(["exit(", path.call(print, "status"), ")"]);
     case "clone":
-      return concat(["clone ", printNode(node.what)]);
+      return concat(["clone ", path.call(print, "what")]);
     case "declare": {
-      const printDeclareArguments = function(node) {
-        const directive = Object.keys(node.what)[0];
-        return concat([directive, "=", printNode(node.what[directive])]);
+      const printDeclareArguments = function(path) {
+        const directive = Object.keys(path.getValue().what)[0];
+        return concat([directive, "=", path.call(print, "what", directive)]);
       };
-      const printDeclareChildren = function(node) {
+      const printDeclareChildren = function(path) {
         return concat(
-          node.children.map(child =>
-            concat([
-              printNode(child),
+          path.map(child => {
+            return concat([
+              print(child),
               lineShouldEndWithSemicolon(child) ? ";" : ""
-            ])
-          )
+            ]);
+          }, "children")
         );
       };
       if (node.mode === "short") {
         return concat([
           "declare(",
-          printDeclareArguments(node),
+          printDeclareArguments(path),
           "):",
           hardline,
-          printDeclareChildren(node),
+          printDeclareChildren(path),
           hardline,
           "enddeclare;"
         ]);
       } else if (node.mode === "block") {
         return concat([
           "declare(",
-          printDeclareArguments(node),
+          printDeclareArguments(path),
           ") {",
-          indent(concat([hardline, printDeclareChildren(node)])),
+          indent(concat([hardline, printDeclareChildren(path)])),
           hardline,
           "}"
         ]);
       }
       return concat([
         "declare(",
-        printDeclareArguments(node),
+        printDeclareArguments(path),
         ");",
         hardline,
-        printDeclareChildren(node)
+        printDeclareChildren(path)
       ]);
     }
     case "global":
@@ -836,7 +859,7 @@ function printStatement(node) {
         concat([
           "global",
           indent(
-            concat([line, join(concat([",", line]), node.items.map(printNode))])
+            concat([line, join(concat([",", line]), path.map(print, "items"))])
           )
         ])
       );
@@ -849,18 +872,18 @@ function printStatement(node) {
               line,
               join(
                 concat([",", line]),
-                node.items.map(item => {
+                path.map(item => {
                   // @TODO: hacking this for now. assignments nested inside a static
                   // declaration doesn't have the operator set, so printing manually
-                  if (item.kind === "assign") {
+                  if (item.getValue().kind === "assign") {
                     return concat([
-                      printNode(item.left),
+                      item.call(print, "left"),
                       " = ",
-                      printNode(item.right)
+                      item.call(print, "right")
                     ]);
                   }
-                  return printNode(item);
-                })
+                  return item.call(print);
+                }, "items")
               )
             ])
           )
@@ -871,23 +894,23 @@ function printStatement(node) {
         node.require ? "require" : "include",
         node.once ? "_once" : "",
         " ",
-        printNode(node.target)
+        path.call(print, "target")
       ]);
     case "goto":
       return concat(["goto ", node.label]);
     case "new":
-      return concat(["new ", printNode(node.what), "()"]);
+      return concat(["new ", path.call(print, "what"), "()"]);
     case "try":
       return concat([
         "try {",
-        indent(concat([hardline, printNode(node.body)])),
+        indent(concat([hardline, path.call(print, "body")])),
         hardline,
         "}",
-        node.catches ? concat(node.catches.map(printNode)) : "",
+        node.catches ? concat(path.map(print, "catches")) : "",
         node.always
           ? concat([
               " finally {",
-              indent(concat([hardline, printNode(node.always)])),
+              indent(concat([hardline, path.call(print, "always")])),
               hardline,
               "}"
             ])
@@ -899,21 +922,21 @@ function printStatement(node) {
         node.what
           ? concat([
               " (",
-              join(" | ", node.what.map(printNode)),
+              join(" | ", path.map(print, "what")),
               " ",
-              printNode(node.variable),
+              path.call(print, "variable"),
               ")"
             ])
           : "",
         " {",
-        indent(concat([hardline, printNode(node.body)])),
+        indent(concat([hardline, path.call(print, "body")])),
         hardline,
         "}"
       ]);
     case "throw":
-      return concat(["throw ", printNode(node.what)]);
+      return concat(["throw ", path.call(print, "what")]);
     case "silent":
-      return concat(["@", printNode(node.expr)]);
+      return concat(["@", path.call(print, "expr")]);
     case "halt":
       return concat(["__halt_compiler();", node.after]);
     //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
@@ -923,12 +946,13 @@ function printStatement(node) {
   }
 }
 
-function printNode(node) {
+function printNode(path, options, print) {
+  const node = path.getValue();
   if (includes(expressionKinds, node.kind)) {
-    return printExpression(node);
+    return printExpression(path, options, print);
   }
   if (includes(statementKinds, node.kind)) {
-    return printStatement(node);
+    return printStatement(path, options, print);
   }
   switch (node.kind) {
     case "identifier":
@@ -936,14 +960,16 @@ function printNode(node) {
       return node.name;
     case "case":
       return concat([
-        node.test ? concat(["case ", printNode(node.test), ":"]) : "default:",
-        indent(concat([line, printNode(node.body)]))
+        node.test
+          ? concat(["case ", path.call(print, "test"), ":"])
+          : "default:",
+        indent(concat([line, path.call(print, "body")]))
       ]);
     case "break":
       return "break";
     case "return":
       if (node.expr) {
-        return concat(["return ", printNode(node.expr)]);
+        return concat(["return ", path.call(print, "expr")]);
       }
       return "return";
     case "doc":
@@ -959,26 +985,26 @@ function printNode(node) {
         : concat(node.lines.map(comment => concat(["// ", comment])));
     case "entry":
       return concat([
-        node.key ? concat([printNode(node.key), " => "]) : "",
-        printNode(node.value)
+        node.key ? concat([path.call(print, "key"), " => "]) : "",
+        path.call(print, "value")
       ]);
     case "traituse":
       return group(
         concat([
           "use ",
-          join(", ", node.traits.map(printNode)),
+          join(", ", path.map(print, "traits")),
           node.adaptations
             ? concat([
                 " {",
                 indent(
                   concat(
-                    node.adaptations.map(adaptation =>
-                      concat([
+                    path.map(adaptationPath => {
+                      return concat([
                         line,
-                        printNode(adaptation),
-                        lineShouldEndWithSemicolon(adaptation) ? ";" : ""
-                      ])
-                    )
+                        print(adaptationPath),
+                        lineShouldEndWithSemicolon(adaptationPath) ? ";" : ""
+                      ]);
+                    }, "adaptations")
                   )
                 ),
                 line,
@@ -989,15 +1015,15 @@ function printNode(node) {
       );
     case "traitprecedence":
       return concat([
-        printNode(node.trait),
+        path.call(print, "trait"),
         "::",
         node.method,
         " insteadof ",
-        join(", ", node.instead.map(printNode))
+        join(", ", path.map(print, "instead"))
       ]);
     case "traitalias":
       return concat([
-        printNode(node.trait),
+        path.call(print, "trait"),
         "::",
         node.method,
         " as ",
