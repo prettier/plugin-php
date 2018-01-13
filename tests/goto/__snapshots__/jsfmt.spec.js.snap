@@ -11,6 +11,7 @@ echo 'Bar';
 <?php
 goto a;
 echo 'Foo';
+
 a:
 echo 'Bar';
 `;
