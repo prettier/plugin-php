@@ -61,7 +61,6 @@ trait C extends A implements B {
 
 class ImplementingClass
 {
-
   use testTrait, otherTrait;
   use testTrait, implementingTrait {
     A::testFunction insteadof C;
@@ -72,7 +71,6 @@ class ImplementingClass
 
 class ShortImplementingClass
 {
-
   use testTrait { A::testFunction insteadof C; }
 }
 `;

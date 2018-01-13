@@ -25,7 +25,6 @@ $test = OTHER_TEST_CONSTANT;
 
 class Constants
 {
-
   const TEST_CLASS_CONSTANT = 3;
 
   public static function testClassConstant()

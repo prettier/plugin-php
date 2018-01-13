@@ -1108,4 +1108,14 @@ function printNode(path, options, print) {
   }
 }
 
+function isLastStatement(path) {
+  const parent = path.getParentNode();
+  if (!parent) {
+    return true;
+  }
+  const node = path.getValue();
+  const body = parent.children;
+  return body && body[body.length - 1] === node;
+}
+
 module.exports = genericPrint;
