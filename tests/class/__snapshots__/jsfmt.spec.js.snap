@@ -44,7 +44,9 @@ class Foo extends Bar implements Baz, Buzz {
     return "test";
   }
 }
+
 $test = new Foo();
+
 abstract class ReallyReallyReallyLongClassName
   extends AbstractModelFactoryResourceController
   implements TooMuchObjectOrientation, ThisIsMadness {

@@ -1,6 +1,7 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
+const util = require("prettier/src/common/util");
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
@@ -341,14 +342,21 @@ function printStatement(path, options, print) {
           }, "children")
         );
       case "program": {
-        const parts = path.map(childPath => {
-          return concat([
-            hardline,
-            print(childPath),
-            lineShouldEndWithSemicolon(childPath) ? ";" : ""
-          ]);
+        const printed = [];
+        const text = options.originalText;
+        path.map(stmtPath => {
+          const stmt = stmtPath.getValue();
+          const parts = [];
+          parts.push(print(stmtPath));
+          if (lineShouldEndWithSemicolon(stmtPath)) {
+            parts.push(";");
+          }
+          if (util.isNextLineEmpty(text, stmt) && !isLastStatement(stmtPath)) {
+            parts.push(hardline);
+          }
+          printed.push(concat(parts));
         }, "children");
-        return concat(["<?php", concat(parts)]);
+        return concat(["<?php", hardline, join(hardline, printed)]);
       }
       case "namespace":
         return concat([
@@ -1036,6 +1044,16 @@ function printNode(path, options, print) {
     default:
       return "Have not implemented kind " + node.kind + " yet.";
   }
+}
+
+function isLastStatement(path) {
+  const parent = path.getParentNode();
+  if (!parent) {
+    return true;
+  }
+  const node = path.getValue();
+  const body = parent.children;
+  return body && body[body.length - 1] === node;
 }
 
 module.exports = genericPrint;
