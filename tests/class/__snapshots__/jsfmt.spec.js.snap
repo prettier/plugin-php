@@ -40,6 +40,7 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
 class Foo extends Bar implements Baz, Buzz {
 
   public $test;
+
   public function test() {
     return "test";
   }
@@ -55,6 +56,7 @@ abstract class ReallyReallyReallyLongClassName
   public $test;
   public $other = 1;
   public static  $staticTest = ['hi'];
+
   /**
    *
    * This is a function
@@ -63,12 +65,14 @@ abstract class ReallyReallyReallyLongClassName
   private function hi($input) {
     return $input . $this->test;
   }
+
   public function reallyReallyReallyReallyReallyReallyReallyLongMethodName(
     $input,
     $otherInput = 1
   ) {
     return true;
   }
+
   // doc test
   public static function testStaticFunction($input) {
     return self::$staticTest[0];
