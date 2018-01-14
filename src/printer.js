@@ -342,21 +342,13 @@ function printStatement(path, options, print) {
           }, "children")
         );
       case "program": {
-        const printed = [];
-        const text = options.originalText;
-        path.map(stmtPath => {
-          const stmt = stmtPath.getValue();
-          const parts = [];
-          parts.push(print(stmtPath));
-          if (lineShouldEndWithSemicolon(stmtPath)) {
-            parts.push(";");
-          }
-          if (util.isNextLineEmpty(text, stmt) && !isLastStatement(stmtPath)) {
-            parts.push(hardline);
-          }
-          printed.push(concat(parts));
-        }, "children");
-        return concat(["<?php", hardline, join(hardline, printed)]);
+        return concat([
+          "<?php",
+          hardline,
+          path.call(childrenPath => {
+            return printStatementSequence(childrenPath, options, print);
+          }, "children")
+        ]);
       }
       case "namespace":
         return concat([
@@ -451,15 +443,12 @@ function printStatement(path, options, print) {
           ),
           hardline,
           indent(
-            concat(
-              path.map(child => {
-                return concat([
-                  hardline,
-                  print(child),
-                  lineShouldEndWithSemicolon(child) ? ";" : ""
-                ]);
+            concat([
+              hardline,
+              path.call(bodyPath => {
+                return printStatementSequence(bodyPath, options, print);
               }, "body")
-            )
+            ])
           ),
           hardline,
           "}"
@@ -1054,6 +1043,24 @@ function isLastStatement(path) {
   const node = path.getValue();
   const body = parent.children;
   return body && body[body.length - 1] === node;
+}
+
+function printStatementSequence(path, options, print) {
+  const printed = [];
+  const text = options.originalText;
+  path.map(stmtPath => {
+    const stmt = stmtPath.getValue();
+    const parts = [];
+    parts.push(print(stmtPath));
+    if (lineShouldEndWithSemicolon(stmtPath)) {
+      parts.push(";");
+    }
+    if (util.isNextLineEmpty(text, stmt) && !isLastStatement(stmtPath)) {
+      parts.push(hardline);
+    }
+    printed.push(concat(parts));
+  });
+  return join(hardline, printed);
 }
 
 module.exports = genericPrint;
