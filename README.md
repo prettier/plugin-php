@@ -1,4 +1,6 @@
-# Prettier PHP Plugin
+<p align="center">
+    :construction: Work in Progress! :construction:
+</p>
 
 <div align="center">
 <img alt="Prettier"
@@ -6,6 +8,29 @@
 <img alt="PHP" height="180" hspace="25" vspace="15"
   src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/500px-PHP-logo.svg.png">
 </div>
+
+<h2 align="center">Prettier PHP Plugin</h2>
+
+<p align="center">
+  <a href="https://gitter.im/jlongster/prettier">
+    <img alt="Gitter" src="https://img.shields.io/gitter/room/jlongster/prettier.svg?style=flat-square">
+  </a>
+  <a href="https://travis-ci.org/prettier/prettier-php">
+    <img alt="Travis" src="https://img.shields.io/travis/prettier/prettier-php/master.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/@prettier/plugin-php">
+    <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
+  </a>
+  <!-- <a href="https://www.npmjs.com/package/@prettier/plugin-php">
+    <img alt="monthly downloads" src="https://img.shields.io/npm/dm/@prettier/plugin-php.svg?style=flat-square">
+  </a> -->
+  <a href="#badge">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  </a>
+  <a href="https://twitter.com/PrettierCode">
+    <img alt="Follow+Prettier+on+Twitter" src="https://img.shields.io/twitter/follow/prettiercode.svg?label=follow+prettier&style=flat-square">
+  </a>
+</p>
 
 ## WORK IN PROGRESS
 
