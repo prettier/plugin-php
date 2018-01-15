@@ -23,7 +23,8 @@
     "jest-runner-eslint": "0.3.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prettier": "prettier --plugin=. --parser=php"
   },
   "jest": {
     "projects": [
