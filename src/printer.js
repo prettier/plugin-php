@@ -1028,6 +1028,9 @@ function printNode(path, options, print) {
         indent(concat([line, path.call(print, "body")]))
       ]);
     case "break":
+      if (node.level) {
+        return concat(["break ", path.call(print, "level")]);
+      }
       return "break";
     case "return":
       if (node.expr) {
