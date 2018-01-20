@@ -16,4 +16,5 @@ while(true) {
   break (1);
   break 2;
   break (2);
+  break(((3)));
 }

@@ -19,6 +19,7 @@ while(true) {
   continue (1);
   continue 2;
   continue (2);
+  continue(((3)));
 }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 for ($i = 0;$i < 10;$i++) {
@@ -33,9 +34,10 @@ for ($i = 0;$i < 10;$i++) {
 
 while (true) {
   continue;
-  continue 1;
-  continue (1);
+  continue;
+  continue;
   continue 2;
-  continue (2);
+  continue 2;
+  continue 3;
 }
 `;
