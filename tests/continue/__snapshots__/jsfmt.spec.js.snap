@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`continue.php 1`] = `
+<?php
+
+for($i = 0; $i < 10; $i++) {
+  continue;
+}
+
+for($i = 0; $i < 10; $i++) {
+  for($j = 0; $j < 10; $j++) {
+    continue 2;
+  }
+}
+
+while(true) {
+  continue;
+  continue 1;
+  continue (1);
+  continue 2;
+  continue (2);
+}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+for ($i = 0;$i < 10;$i++) {
+  Have not implemented kind continue yet.
+}
+
+for ($i = 0;$i < 10;$i++) {
+  for ($j = 0;$j < 10;$j++) {
+    Have not implemented kind continue yet.
+  }
+}
+
+while (true) {
+  Have not implemented kind continue yet.
+  Have not implemented kind continue yet.
+  Have not implemented kind continue yet.
+  Have not implemented kind continue yet.
+  Have not implemented kind continue yet.
+}
+`;
