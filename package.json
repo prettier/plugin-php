@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "php-parser": "2.2.0",
-    "prettier": "czosel/prettier#locend_php"
+    "prettier": "https://github.com/czosel/prettier#configurable_util"
   },
   "devDependencies": {
     "eslint": "4.1.1",

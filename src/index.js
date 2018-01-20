@@ -28,10 +28,21 @@ const languages = [
   }
 ];
 
+const loc = function(prop) {
+  return function(node) {
+    if (node.loc && node.loc[prop] && node.loc[prop].offset) {
+      return node.loc[prop].offset;
+    }
+    return null;
+  };
+};
+
 const parsers = {
   php: {
     parse,
-    astFormat: "php"
+    astFormat: "php",
+    locStart: loc("start"),
+    locEnd: loc("end")
   }
 };
 
