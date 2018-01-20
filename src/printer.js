@@ -1030,12 +1030,24 @@ function printNode(path, options, print) {
       ]);
     case "break":
       if (node.level) {
-        return concat(["break ", path.call(print, "level")]);
+        while (node.level.kind == "parenthesis") {
+          node.level = node.level.inner;
+        }
+        if (node.level.kind == "number" && node.level.value != 1) {
+          return concat(["break ", path.call(print, "level")]);
+        }
+        return "break";
       }
       return "break";
     case "continue":
       if (node.level) {
-        return concat(["continue ", path.call(print, "level")]);
+        while (node.level.kind == "parenthesis") {
+          node.level = node.level.inner;
+        }
+        if (node.level.kind == "number" && node.level.value != 1) {
+          return concat(["continue ", path.call(print, "level")]);
+        }
+        return "continue";
       }
       return "continue";
     case "return":
