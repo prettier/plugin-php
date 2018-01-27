@@ -56,7 +56,7 @@ yarn add --dev --exact prettier @prettier/plugin-php
 ## Use
 
 ```bash
-prettier --write "**/*.php"
+prettier --write "**/*.php" --plugin=@prettier/plugin-php --parser=php
 ```
 
 ## Maintainers
