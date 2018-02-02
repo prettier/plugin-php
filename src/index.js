@@ -30,10 +30,7 @@ const languages = [
 
 const loc = function(prop) {
   return function(node) {
-    if (node.loc && node.loc[prop] && node.loc[prop].offset) {
-      return node.loc[prop].offset;
-    }
-    return null;
+    return node.loc && node.loc[prop] && node.loc[prop].offset;
   };
 };
 

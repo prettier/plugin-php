@@ -1,6 +1,7 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
+const util = require("prettier/src/common/util-shared");
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
@@ -15,7 +16,7 @@ function includes(array, val) {
   return array.indexOf(val) !== -1;
 }
 
-function genericPrint(path, options, print, args, util) {
+function genericPrint(path, options, print) {
   const n = path.getValue();
   if (!n) {
     return "";
@@ -126,7 +127,10 @@ function genericPrint(path, options, print, args, util) {
       if (lineShouldEndWithSemicolon(stmtPath)) {
         parts.push(";");
       }
-      if (util.isNextLineEmpty(text, stmt) && !isLastStatement(stmtPath)) {
+      if (
+        util.isNextLineEmpty(text, stmt, options) &&
+        !isLastStatement(stmtPath)
+      ) {
         parts.push(hardline);
       }
       printed.push(concat(parts));
