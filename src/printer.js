@@ -427,18 +427,18 @@ function printStatement(path, options, print) {
               indent(
                 concat([
                   node.extends
-                    ? concat([line, "extends ", path.call(print, "extends")])
+                    ? concat([" extends ", path.call(print, "extends")])
                     : "",
                   node.implements
                     ? concat([
-                        line,
-                        "implements ",
+                        " implements ",
                         join(", ", path.map(print, "implements"))
                       ])
                     : ""
                 ])
               ),
-              " {"
+              hardline,
+              "{"
             ])
           ),
           hardline,
@@ -481,6 +481,7 @@ function printStatement(path, options, print) {
         return concat([
           group(
             concat([
+              node.isFinal ? "final " : "",
               node.visibility,
               node.isStatic ? " static" : "",
               " function ",
@@ -505,7 +506,8 @@ function printStatement(path, options, print) {
           ")",
           node.body
             ? concat([
-                " {",
+                hardline,
+                "{",
                 indent(concat([hardline, path.call(print, "body")])),
                 hardline,
                 "}"
@@ -752,7 +754,7 @@ function printStatement(path, options, print) {
         join(", ", path.map(item => concat([print(item)]), "items"))
       ]);
     case "useitem":
-      return node.name;
+      return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
     case "closure":
       return concat([
         "function (",
