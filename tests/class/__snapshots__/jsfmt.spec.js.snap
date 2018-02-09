@@ -37,17 +37,20 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-class Foo extends Bar implements Baz, Buzz {
+class Foo extends Bar implements Baz, Buzz
+{
 
   public $test;
-  public function test() {
+  public function test()
+  {
     return "test";
   }
 }
 $test = new Foo();
 abstract class ReallyReallyReallyLongClassName
   extends AbstractModelFactoryResourceController
-  implements TooMuchObjectOrientation, ThisIsMadness {
+  implements TooMuchObjectOrientation, ThisIsMadness
+{
 
   // variable doc
   public $test;
@@ -56,17 +59,20 @@ abstract class ReallyReallyReallyLongClassName
   /**
    * This is a function
    */
-  private function hi($input) {
+  private function hi($input)
+  {
     return $input . $this->test;
   }
   public function reallyReallyReallyReallyReallyReallyReallyLongMethodName(
     $input,
     $otherInput = 1
-  ) {
+  )
+  {
     return true;
   }
   // doc test
-  public static function testStaticFunction($input) {
+  public static function testStaticFunction($input)
+  {
     return self::$staticTest[0];
   }
 }

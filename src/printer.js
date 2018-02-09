@@ -427,20 +427,21 @@ function printStatement(path, options, print) {
               indent(
                 concat([
                   node.extends
-                    ? concat([" extends ", path.call(print, "extends")])
+                    ? concat([line, "extends ", path.call(print, "extends")])
                     : "",
                   node.implements
                     ? concat([
-                        " implements ",
+                        line,
+                        "implements ",
                         join(", ", path.map(print, "implements"))
                       ])
                     : ""
                 ])
-              ),
-              hardline,
-              "{"
+              )
             ])
           ),
+          hardline,
+          "{",
           hardline,
           indent(
             concat(
