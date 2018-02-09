@@ -1,7 +1,7 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
-const util = require("prettier/src/common/util-shared");
+const util = require("prettier").util;
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
