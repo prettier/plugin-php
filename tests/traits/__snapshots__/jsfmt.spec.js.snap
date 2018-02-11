@@ -38,11 +38,13 @@ trait A {
     // 2
   }
 }
+
 trait B extends otherTrait {
   public function someOtherTestFunction() {
     // 3
   }
 }
+
 trait C extends A implements B {
   public function someOtherTestFunction() {
     // 4
@@ -51,6 +53,7 @@ trait C extends A implements B {
     // 5
   }
 }
+
 class ImplementingClass {
 
   use testTrait, otherTrait;
@@ -60,6 +63,7 @@ class ImplementingClass {
     C::testFunction as private testVisibility;
   }
 }
+
 class ShortImplementingClass {
 
   use testTrait { A::testFunction insteadof C; }

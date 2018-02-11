@@ -7,6 +7,7 @@ function hello($input){
     return "hello" + $input;
 }
 
+
 $i = 0;
 if ($test == 1) {
   switch ($test) {
@@ -37,6 +38,7 @@ do {
 function hello($input) {
   return "hello" + $input;
 }
+
 $i = 0;
 if ($test == 1) {
   switch ($test) {
@@ -51,6 +53,7 @@ if ($test == 1) {
     hello($i);
   }
 }
+
 function really_long_function(
   $test2 = 1,
   $long_parameter_name,
@@ -58,6 +61,7 @@ function really_long_function(
 ) {
   return $test2;
 }
+
 do {
   $test = 1;
   for (
