@@ -58,9 +58,7 @@ abstract class ReallyReallyReallyLongClassName
   public static  $staticTest = ['hi'];
 
   /**
-   *
    * This is a function
-   *
    */
   private function hi($input) {
     return $input . $this->test;

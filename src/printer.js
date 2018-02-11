@@ -973,10 +973,19 @@ function printNode(path, options, print) {
       return node.isDoc
         ? concat([
             "/**",
-            concat(
-              node.lines.map(comment => concat([hardline, " * ", comment]))
-            ),
-            hardline,
+            // we use the number of lines to determine if this is a single or
+            // multi line docblock
+            node.lines.length > 1
+              ? concat(
+                  node.lines.map(
+                    (comment, index) =>
+                      index != 0 && index != node.lines.length - 1
+                        ? concat([hardline, " * ", comment])
+                        : ""
+                  )
+                )
+              : concat([" ", node.lines[0]], " "),
+            node.lines.length > 1 ? hardline : "",
             " */"
           ])
         : concat(node.lines.map(comment => concat(["// ", comment])));
