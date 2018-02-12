@@ -899,7 +899,15 @@ function printStatement(path, options, print) {
     case "goto":
       return concat(["goto ", node.label]);
     case "new":
-      return concat(["new ", path.call(print, "what"), "()"]);
+      console.log(node);
+      return group(concat([
+        "new ",
+        path.call(print, "what"),
+        "(",
+        indent(join(", ", path.map(argument => concat([softline, print(argument)]), "arguments"))),
+        softline,
+        ")"
+      ]));
     case "try":
       return concat([
         "try {",
