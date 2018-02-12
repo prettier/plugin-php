@@ -41,12 +41,15 @@ class Foo extends Bar implements Baz, Buzz
 {
 
   public $test;
+
   public function test()
   {
     return "test";
   }
 }
+
 $test = new Foo();
+
 abstract class ReallyReallyReallyLongClassName
   extends AbstractModelFactoryResourceController
   implements TooMuchObjectOrientation, ThisIsMadness
@@ -56,6 +59,7 @@ abstract class ReallyReallyReallyLongClassName
   public $test;
   public $other = 1;
   public static  $staticTest = ['hi'];
+
   /**
    * This is a function
    */
@@ -63,6 +67,7 @@ abstract class ReallyReallyReallyLongClassName
   {
     return $input . $this->test;
   }
+
   public function reallyReallyReallyReallyReallyReallyReallyLongMethodName(
     $input,
     $otherInput = 1
@@ -70,6 +75,7 @@ abstract class ReallyReallyReallyLongClassName
   {
     return true;
   }
+
   // doc test
   public static function testStaticFunction($input)
   {
