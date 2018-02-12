@@ -4,6 +4,7 @@ function hello($input){
     return "hello" + $input;
 }
 
+
 $i = 0;
 if ($test == 1) {
   switch ($test) {
