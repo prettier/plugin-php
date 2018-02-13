@@ -32,3 +32,5 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
     return self::$staticTest[0];
   }
 }
+
+$this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
