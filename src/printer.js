@@ -737,12 +737,22 @@ function printStatement(path, options, print) {
         "}"
       ]);
     case "call":
-      return concat([
-        path.call(print, "what"),
-        "(",
-        join(", ", path.map(print, "arguments")),
-        ")"
-      ]);
+      return group(
+        concat([
+          path.call(print, "what"),
+          concat([
+            "(",
+            indent(
+              concat([
+                softline,
+                join(concat([",", line]), path.map(print, "arguments"))
+              ])
+            ),
+            softline,
+            ")"
+          ])
+        ])
+      );
     case "usegroup":
       return concat([
         "use ",

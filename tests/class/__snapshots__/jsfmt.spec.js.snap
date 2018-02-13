@@ -35,6 +35,8 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
     return self::$staticTest[0];
   }
 }
+
+$this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz {
@@ -76,4 +78,9 @@ abstract class ReallyReallyReallyLongClassName
     return self::$staticTest[0];
   }
 }
+
+$this->something->method(
+  $argument,
+  $this->more->stuff($this->even->more->things->complicatedMethod())
+);
 `;
