@@ -50,7 +50,7 @@ To test it out on a PHP file:
 ## Install
 
 ```bash
-yarn add --dev --exact prettier @prettier/plugin-php
+yarn add --dev --exact prettier @prettier/php
 ```
 
 ## Use
