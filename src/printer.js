@@ -62,6 +62,36 @@ function lineShouldEndWithSemicolon(path) {
   return includes(semiColonWhitelist, node.kind);
 }
 
+function isLastStatement(path) {
+  const parent = path.getParentNode();
+  if (!parent) {
+    return true;
+  }
+  const node = path.getValue();
+  const body = parent.children;
+  return body && body[body.length - 1] === node;
+}
+
+function printLines(path, options, print) {
+  const text = options.originalText;
+  const printed = path.map(stmtPath => {
+    const stmt = stmtPath.getValue();
+    const parts = [];
+    parts.push(print(stmtPath));
+    if (lineShouldEndWithSemicolon(stmtPath)) {
+      parts.push(";");
+    }
+    if (
+      util.isNextLineEmpty(text, stmt, options) &&
+      !isLastStatement(stmtPath)
+    ) {
+      parts.push(hardline);
+    }
+    return concat(parts);
+  });
+  return join(hardline, printed);
+}
+
 const expressionKinds = [
   "array",
   "variable",
@@ -324,29 +354,16 @@ function printStatement(path, options, print) {
   function printBlock(path, options, print) {
     switch (node.kind) {
       case "block":
-        return concat(
-          path.map((child, i) => {
-            if (i === 0) {
-              return concat([
-                print(child),
-                lineShouldEndWithSemicolon(child) ? ";" : ""
-              ]);
-            }
-            return concat([
-              hardline,
-              concat([
-                print(child),
-                lineShouldEndWithSemicolon(child) ? ";" : ""
-              ])
-            ]);
-          }, "children")
+        return path.call(
+          childrenPath => printLines(childrenPath, options, print),
+          "children"
         );
       case "program": {
         return concat([
           "<?php",
           hardline,
           path.call(childrenPath => {
-            return printStatementSequence(childrenPath, options, print);
+            return printLines(childrenPath, options, print);
           }, "children")
         ]);
       }
@@ -447,7 +464,7 @@ function printStatement(path, options, print) {
             concat([
               hardline,
               path.call(bodyPath => {
-                return printStatementSequence(bodyPath, options, print);
+                return printLines(bodyPath, options, print);
               }, "body")
             ])
           ),
@@ -1072,37 +1089,6 @@ function printNode(path, options, print) {
     default:
       return "Have not implemented kind " + node.kind + " yet.";
   }
-}
-
-function isLastStatement(path) {
-  const parent = path.getParentNode();
-  if (!parent) {
-    return true;
-  }
-  const node = path.getValue();
-  const body = parent.children;
-  return body && body[body.length - 1] === node;
-}
-
-function printStatementSequence(path, options, print) {
-  const printed = [];
-  const text = options.originalText;
-  path.map(stmtPath => {
-    const stmt = stmtPath.getValue();
-    const parts = [];
-    parts.push(print(stmtPath));
-    if (lineShouldEndWithSemicolon(stmtPath)) {
-      parts.push(";");
-    }
-    if (
-      util.isNextLineEmpty(text, stmt, options) &&
-      !isLastStatement(stmtPath)
-    ) {
-      parts.push(hardline);
-    }
-    printed.push(concat(parts));
-  });
-  return join(hardline, printed);
 }
 
 module.exports = genericPrint;

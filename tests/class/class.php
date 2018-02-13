@@ -42,7 +42,15 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
    * This is a function
    */
   private function hi($input) {
+    $test = 1;
+
+    //testing line spacing
+    $other_test = 2;
+
+
+    $one_more_test = 3;
     return $input . $this->test;
+
   }
 
   public function reallyReallyReallyReallyReallyReallyReallyLongMethodName($input, $otherInput = 1) {
