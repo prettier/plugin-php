@@ -23,5 +23,3 @@ class Foo extends Bar implements FooInterface
         // method body
     }
 }
-
-// @TODO: need to add more, have basic example here from https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md#11-example
