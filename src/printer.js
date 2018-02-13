@@ -843,23 +843,16 @@ function printStatement(path, options, print) {
         const directive = Object.keys(path.getValue().what)[0];
         return concat([directive, "=", path.call(print, "what", directive)]);
       };
-      const printDeclareChildren = function(path) {
-        return concat(
-          path.map(child => {
-            return concat([
-              print(child),
-              lineShouldEndWithSemicolon(child) ? ";" : ""
-            ]);
-          }, "children")
-        );
-      };
       if (node.mode === "short") {
         return concat([
           "declare(",
           printDeclareArguments(path),
           "):",
           hardline,
-          printDeclareChildren(path),
+          path.call(
+            childrenPath => printLines(childrenPath, options, print),
+            "children"
+          ),
           hardline,
           "enddeclare;"
         ]);
@@ -868,7 +861,15 @@ function printStatement(path, options, print) {
           "declare(",
           printDeclareArguments(path),
           ") {",
-          indent(concat([hardline, printDeclareChildren(path)])),
+          indent(
+            concat([
+              hardline,
+              path.call(
+                childrenPath => printLines(childrenPath, options, print),
+                "children"
+              )
+            ])
+          ),
           hardline,
           "}"
         ]);
@@ -878,7 +879,10 @@ function printStatement(path, options, print) {
         printDeclareArguments(path),
         ");",
         hardline,
-        printDeclareChildren(path)
+        path.call(
+          childrenPath => printLines(childrenPath, options, print),
+          "children"
+        )
       ]);
     }
     case "global":
