@@ -22,6 +22,10 @@ function variadicTest($one, ...$others) {
   return count($others);
 }
 
+function pass_by_reference_test($x, &$a) {
+  $a + 1;
+}
+
 $anonymous = function($name) use ($otherthing){
   printf("Hello %s", $name);
 };

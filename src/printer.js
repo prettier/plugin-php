@@ -529,16 +529,23 @@ function printStatement(path, options, print) {
               ])
             : ""
         ]);
-      case "parameter":
+      case "parameter": {
+        const name = concat([
+          node.variadic ? "..." : "",
+          node.byref ? "&" : "",
+          "$",
+          node.name
+        ]);
         if (node.value) {
           return group(
             concat([
-              concat(["$", node.name]),
+              name,
               indent(concat([line, "= ", path.call(print, "value")]))
             ])
           );
         }
-        return concat([node.variadic ? "..." : "", "$", node.name]);
+        return name;
+      }
       case "property":
         return group(
           concat([
