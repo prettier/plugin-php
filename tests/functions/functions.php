@@ -23,11 +23,12 @@ function variadicTest($one, ...$others) {
 }
 
 function pass_by_reference_test($x, &$a) {
-  $a + 1;
+  $a += 1;
 }
 
-$anonymous = function($name) use ($otherthing){
+$anonymous = function($name) use ($otherthing, &$reference_test){
   printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooooooooooooooooooong) use ($all, $kinds, $of, $stuff) {
   printf("Hello %s", $name);

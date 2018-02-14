@@ -264,6 +264,7 @@ function printExpression(path, options, print) {
   switch (node.kind) {
     case "variable":
       return concat([
+        node.byref ? "&" : "",
         "$",
         node.curly ? "{" : "",
         node.name,
