@@ -532,6 +532,7 @@ function printStatement(path, options, print) {
         ]);
       case "parameter": {
         const name = concat([
+          node.type ? path.call(print, "type") + " " : "",
           node.variadic ? "..." : "",
           node.byref ? "&" : "",
           "$",
