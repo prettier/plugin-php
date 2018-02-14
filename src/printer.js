@@ -437,10 +437,11 @@ function printStatement(path, options, print) {
                       ])
                     : ""
                 ])
-              ),
-              " {"
+              )
             ])
           ),
+          hardline,
+          "{",
           hardline,
           indent(
             concat([
@@ -478,6 +479,7 @@ function printStatement(path, options, print) {
         return concat([
           group(
             concat([
+              node.isFinal ? "final " : "",
               node.visibility,
               node.isStatic ? " static" : "",
               " function ",
@@ -502,7 +504,8 @@ function printStatement(path, options, print) {
           ")",
           node.body
             ? concat([
-                " {",
+                hardline,
+                "{",
                 indent(concat([hardline, path.call(print, "body")])),
                 hardline,
                 "}"
@@ -759,7 +762,7 @@ function printStatement(path, options, print) {
         join(", ", path.map(item => concat([print(item)]), "items"))
       ]);
     case "useitem":
-      return node.name;
+      return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
     case "closure":
       return concat([
         "function (",
@@ -906,7 +909,24 @@ function printStatement(path, options, print) {
     case "goto":
       return concat(["goto ", node.label]);
     case "new":
-      return concat(["new ", path.call(print, "what"), "()"]);
+      return group(
+        concat([
+          "new ",
+          path.call(print, "what"),
+          "(",
+          indent(
+            join(
+              ", ",
+              path.map(
+                argument => concat([softline, print(argument)]),
+                "arguments"
+              )
+            )
+          ),
+          softline,
+          ")"
+        ])
+      );
     case "try":
       return concat([
         "try {",
