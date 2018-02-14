@@ -1054,15 +1054,14 @@ function printNode(path, options, print) {
             ? concat([
                 " {",
                 indent(
-                  concat(
-                    path.map(adaptationPath => {
-                      return concat([
-                        line,
-                        print(adaptationPath),
-                        lineShouldEndWithSemicolon(adaptationPath) ? ";" : ""
-                      ]);
-                    }, "adaptations")
-                  )
+                  concat([
+                    line,
+                    path.call(
+                      adaptationsPath =>
+                        printLines(adaptationsPath, options, print),
+                      "adaptations"
+                    )
+                  ])
                 ),
                 line,
                 "}"
