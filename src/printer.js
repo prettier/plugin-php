@@ -701,9 +701,9 @@ function printStatement(path, options, print) {
               concat([
                 softline,
                 group(concat([concat(path.map(print, "init")), ";"])),
-                softline,
+                line,
                 group(concat([concat(path.map(print, "test")), ";"])),
-                softline,
+                line,
                 group(concat(path.map(print, "increment")))
               ])
             ),
