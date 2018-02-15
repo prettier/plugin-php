@@ -1048,7 +1048,7 @@ function printNode(path, options, print) {
             node.lines.length > 1 ? hardline : "",
             " */"
           ])
-        : concat(node.lines.map(comment => concat(["// ", comment])));
+        : join(hardline, node.lines.map(comment => concat(["// ", comment])));
     case "entry":
       return concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",

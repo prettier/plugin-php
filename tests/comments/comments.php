@@ -5,6 +5,12 @@ $int = 0;
 // there should be no docblock here
 $int++;
 
+// multi
+// line
+// comment
+// test
+$hi = 1;
+
 /**
  * This class acts as an example on where to position a DocBlock.
  */
