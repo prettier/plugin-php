@@ -49,7 +49,7 @@ if ($test == 1) {
     default:
       $i = 1;
   }
-  for ($i = 1;$i <= $test;$i++) {
+  for ($i = 1; $i <= $test; $i++) {
     hello($i);
   }
 }
