@@ -264,6 +264,7 @@ function printExpression(path, options, print) {
   switch (node.kind) {
     case "variable":
       return concat([
+        node.byref ? "&" : "",
         "$",
         node.curly ? "{" : "",
         node.name,
@@ -529,16 +530,24 @@ function printStatement(path, options, print) {
               ])
             : ""
         ]);
-      case "parameter":
+      case "parameter": {
+        const name = concat([
+          node.type ? path.call(print, "type") + " " : "",
+          node.variadic ? "..." : "",
+          node.byref ? "&" : "",
+          "$",
+          node.name
+        ]);
         if (node.value) {
           return group(
             concat([
-              concat(["$", node.name]),
+              name,
               indent(concat([line, "= ", path.call(print, "value")]))
             ])
           );
         }
-        return concat([node.variadic ? "..." : "", "$", node.name]);
+        return name;
+      }
       case "property":
         return group(
           concat([

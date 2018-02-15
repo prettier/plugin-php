@@ -41,6 +41,11 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
     return $model;
   }
 
+  public function test_pass_by_reference(&$test)
+  {
+    $test + 1;
+  }
+
   /**
    * This is a function
    */
@@ -118,6 +123,11 @@ abstract class ReallyReallyReallyLongClassName
       $test_string
     );
     return $model;
+  }
+
+  public function test_pass_by_reference(&$test)
+  {
+    $test + 1;
   }
 
   /**

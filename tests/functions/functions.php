@@ -22,8 +22,18 @@ function variadicTest($one, ...$others) {
   return count($others);
 }
 
-$anonymous = function($name) use ($otherthing){
+function pass_by_reference_test($x, int &$a) {
+  $a += 1;
+}
+
+//leaving out array and callable until https://github.com/glayzzle/php-parser/issues/113 is fixed
+function type_hinting_test(bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+  return $int_test;
+}
+
+$anonymous = function($name) use ($otherthing, &$reference_test){
   printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooooooooooooooooooong) use ($all, $kinds, $of, $stuff) {
   printf("Hello %s", $name);
