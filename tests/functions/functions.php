@@ -26,8 +26,7 @@ function pass_by_reference_test($x, int &$a) {
   $a += 1;
 }
 
-//leaving out array and callable until https://github.com/glayzzle/php-parser/issues/113 is fixed
-function type_hinting_test(bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
   return $int_test;
 }
 
