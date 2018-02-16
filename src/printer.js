@@ -692,29 +692,43 @@ function printStatement(path, options, print) {
         line,
         "}"
       ]);
-    case "for":
-      return concat([
+    case "for": {
+      const parts = [
         "for (",
         group(
           concat([
             indent(
               concat([
                 softline,
-                group(concat([concat(path.map(print, "init")), ";"])),
+                group(
+                  concat([
+                    join(concat([",", line]), path.map(print, "init")),
+                    ";"
+                  ])
+                ),
                 line,
-                group(concat([concat(path.map(print, "test")), ";"])),
+                group(
+                  concat([
+                    join(concat([",", line]), path.map(print, "test")),
+                    ";"
+                  ])
+                ),
                 line,
-                group(concat(path.map(print, "increment")))
+                group(join(concat([",", line]), path.map(print, "increment")))
               ])
             ),
             softline,
-            ") {"
+            node.body ? ") {" : ");"
           ])
-        ),
-        indent(concat([line, path.call(print, "body")])),
-        line,
-        "}"
-      ]);
+        )
+      ];
+      if (node.body) {
+        parts.push(
+          concat([indent(concat([line, path.call(print, "body")])), line, "}"])
+        );
+      }
+      return concat(parts);
+    }
     case "foreach":
       return concat([
         "foreach (",
