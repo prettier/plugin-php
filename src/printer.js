@@ -797,10 +797,20 @@ function printStatement(path, options, print) {
         ])
       );
     case "usegroup":
-      return concat([
-        "use ",
-        join(", ", path.map(item => concat([print(item)]), "items"))
-      ]);
+      return group(
+        indent(
+          concat([
+            "use ",
+            node.type ? concat([node.type, " "]) : "",
+            node.name ? concat([node.name, "\\{"]) : "",
+            join(
+              concat([",", line]),
+              path.map(item => concat([print(item)]), "items")
+            ),
+            node.name ? "}" : ""
+          ])
+        )
+      );
     case "useitem":
       return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
     case "closure":
