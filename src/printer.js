@@ -1129,32 +1129,4 @@ function printNode(path, options, print) {
   }
 }
 
-function isLastStatement(path) {
-  const parent = path.getParentNode();
-  if (!parent) {
-    return true;
-  }
-  const node = path.getValue();
-  const body = parent.children;
-  return body && body[body.length - 1] === node;
-}
-
-function printStatementSequence(path, options, print) {
-  const printed = [];
-  const text = options.originalText;
-  path.map(stmtPath => {
-    const stmt = stmtPath.getValue();
-    const parts = [];
-    parts.push(print(stmtPath));
-    if (lineShouldEndWithSemicolon(stmtPath)) {
-      parts.push(";");
-    }
-    if (util.isNextLineEmpty(text, stmt) && !isLastStatement(stmtPath)) {
-      parts.push(hardline);
-    }
-    printed.push(concat(parts));
-  });
-  return join(hardline, printed);
-}
-
 module.exports = genericPrint;
