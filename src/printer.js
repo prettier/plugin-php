@@ -1013,7 +1013,12 @@ function printNode(path, options, print) {
   }
   switch (node.kind) {
     case "identifier":
-      // @TODO: do we need to conider node.resolution?
+      // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
+      if (node.name === "\\array") {
+        return "array";
+      } else if (node.name === "\\callable") {
+        return "callable";
+      }
       return node.name;
     case "case":
       return concat([
