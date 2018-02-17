@@ -44,3 +44,7 @@ array_map(function($entry) {
 }, $arr);
 
 $silent = @hello();
+
+function returnTypeTest(): string {
+  return 'hi';
+}

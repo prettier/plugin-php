@@ -47,6 +47,10 @@ array_map(function($entry) {
 }, $arr);
 
 $silent = @hello();
+
+function returnTypeTest(): string {
+  return 'hi';
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 function hello() {
@@ -112,4 +116,8 @@ array_map(
 );
 
 $silent = @hello();
+
+function returnTypeTest(): string {
+  return 'hi';
+}
 `;
