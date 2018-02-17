@@ -2,6 +2,7 @@
 
 const parse = require("./parser");
 const print = require("./printer");
+const clean = require("./clean");
 
 const languages = [
   {
@@ -45,7 +46,8 @@ const parsers = {
 
 const printers = {
   php: {
-    print
+    print,
+    massageAstNode: clean
   }
 };
 
