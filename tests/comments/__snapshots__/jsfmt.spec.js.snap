@@ -55,20 +55,20 @@ $hi = 1;
 class Foo
 {
 
-  /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */
-  protected $title = null;
+    /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */
+    protected $title = null;
 
-  /**
-   * Sets a single-line title.
-   *
-   * @param string $title A text with a maximum of 24 characters.
-   *
-   * @return void
-   */
-  public function setTitle($title)
-  {
-    // there should be no docblock here
-    $this->title = $title;
-  }
+    /**
+     * Sets a single-line title.
+     *
+     * @param string $title A text with a maximum of 24 characters.
+     *
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        // there should be no docblock here
+        $this->title = $title;
+    }
 }
 `;

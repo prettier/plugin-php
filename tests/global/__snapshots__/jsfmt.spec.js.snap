@@ -10,7 +10,7 @@ global $testReallyReallyLong, $someOtherReallyReallyLongVariable, $oneMoreReally
 global $a, $b;
 global $c;
 global
-  $testReallyReallyLong,
-  $someOtherReallyReallyLongVariable,
-  $oneMoreReallyLongVariable;
+    $testReallyReallyLong,
+    $someOtherReallyReallyLongVariable,
+    $oneMoreReallyLongVariable;
 `;

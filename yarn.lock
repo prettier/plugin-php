@@ -1440,6 +1440,10 @@ html-encoding-sniffer@^1.0.1:
   dependencies:
     whatwg-encoding "^1.0.1"
 
+html-tag-names@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/html-tag-names/-/html-tag-names-1.1.1.tgz#f8a076113f16e393518937f6b3b5d22296755d4a"
+
 http-signature@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.1.1.tgz#df72e267066cd0ac67fb76adf8e134a8fbcf91bf"
@@ -1830,9 +1834,9 @@ jest-diff@^21.2.1:
     jest-get-type "^21.2.0"
     pretty-format "^21.2.1"
 
-jest-docblock@21.3.0-beta.11:
-  version "21.3.0-beta.11"
-  resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.3.0-beta.11.tgz#feb4de87c55a2f563ac24c5f4861f61921550896"
+jest-docblock@22.2.2:
+  version "22.2.2"
+  resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-22.2.2.tgz#617f13edb16ec64202002b3c336cd14ae36c0631"
   dependencies:
     detect-newline "^2.1.0"
 
@@ -2621,9 +2625,9 @@ postcss-selector-parser@2.2.3:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-values-parser@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-values-parser/-/postcss-values-parser-1.3.1.tgz#2a6ceb39cecbbacd1d060f3b16f4c52dd6720c96"
+postcss-values-parser@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/postcss-values-parser/-/postcss-values-parser-1.3.2.tgz#051aa9619e15fa1b672aaf0f6c1398be961f17fd"
   dependencies:
     flatten "^1.0.2"
     indexes-of "^1.0.1"
@@ -2654,9 +2658,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@prettier/prettier#b449a526ce0f16703cdf5b4b22731b2a94775473:
+prettier@czosel/prettier#20884158e63dac6a20116ea94ef432ba78a3827e:
   version "1.10.2"
-  resolved "https://codeload.github.com/prettier/prettier/tar.gz/b449a526ce0f16703cdf5b4b22731b2a94775473"
+  resolved "https://codeload.github.com/czosel/prettier/tar.gz/20884158e63dac6a20116ea94ef432ba78a3827e"
   dependencies:
     "@babel/code-frame" "7.0.0-beta.35"
     "@glimmer/syntax" "0.30.3"
@@ -2679,8 +2683,9 @@ prettier@prettier/prettier#b449a526ce0f16703cdf5b4b22731b2a94775473:
     globby "6.1.0"
     graphql "0.12.3"
     gray-matter "3.1.1"
+    html-tag-names "1.1.1"
     ignore "3.3.7"
-    jest-docblock "21.3.0-beta.11"
+    jest-docblock "22.2.2"
     json-stable-stringify "1.0.1"
     leven "2.1.0"
     mem "1.1.0"
@@ -2691,7 +2696,7 @@ prettier@prettier/prettier#b449a526ce0f16703cdf5b4b22731b2a94775473:
     postcss-media-query-parser "0.2.3"
     postcss-scss "1.0.2"
     postcss-selector-parser "2.2.3"
-    postcss-values-parser "1.3.1"
+    postcss-values-parser "1.3.2"
     read-pkg-up "3.0.0"
     remark-frontmatter "1.1.0"
     remark-parse "5.0.0"
@@ -2699,7 +2704,7 @@ prettier@prettier/prettier#b449a526ce0f16703cdf5b4b22731b2a94775473:
     semver "5.4.1"
     string-width "2.1.1"
     typescript "2.7.0-insiders.20171214"
-    typescript-eslint-parser "11.0.0"
+    typescript-eslint-parser "13.0.0"
     unicode-regex "1.0.1"
     unified "6.1.6"
 
@@ -3018,7 +3023,7 @@ sax@^1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-"semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@^5.4.1:
+"semver@2 || 3 || 4 || 5", semver@5.5.0, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
@@ -3340,12 +3345,12 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript-eslint-parser@11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-11.0.0.tgz#37dba6a0130dd307504aa4b4b21b0d3dc7d4e9f2"
+typescript-eslint-parser@13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-13.0.0.tgz#57f9be603d0fad7c26da76c2be67c0779d23362c"
   dependencies:
     lodash.unescape "4.0.1"
-    semver "5.4.1"
+    semver "5.5.0"
 
 typescript@2.7.0-insiders.20171214:
   version "2.7.0-insiders.20171214"

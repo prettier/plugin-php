@@ -25,9 +25,9 @@ echo $test, $other;
 $info = array('coffee', 'brown', 'caffeine');
 list($drink, $color, $power) = $info;
 list(
-  $reallyReallyReallyReallyLongName,
-  $otherReallyReallyReallyLongName,
-  $lastOne
+    $reallyReallyReallyReallyLongName,
+    $otherReallyReallyReallyLongName,
+    $lastOne
 ) = $info;
 
 print "test print";

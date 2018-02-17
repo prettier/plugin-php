@@ -16,16 +16,16 @@ return true ?: 2;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 if (true) {
-  return 1;
+    return 1;
 } elseif (false) {
-  return 2;
+    return 2;
 } else {
-  return;
+    return;
 }
 
 return true ? 1 : 2;
 return ($testReallyReallyLong >= 1)
-  ? $someOtherReallyReallyLongVariable
-  : $thisOtherVariable;
+    ? $someOtherReallyReallyLongVariable
+    : $thisOtherVariable;
 return true ?: 2;
 `;

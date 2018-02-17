@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "php-parser": "2.2.0",
-    "prettier": "prettier/prettier#b449a526ce0f16703cdf5b4b22731b2a94775473"
+    "prettier": "czosel/prettier#20884158e63dac6a20116ea94ef432ba78a3827e"
   },
   "devDependencies": {
     "eslint": "4.1.1",
