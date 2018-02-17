@@ -14,12 +14,12 @@ try {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 try {
-  throw new OtherException();
+    throw new OtherException();
 } catch (Exception | TestException $e) {
-  echo 'Caught exception: ', $e->getMessage();
+    echo 'Caught exception: ', $e->getMessage();
 } catch (OtherException $i) {
-  echo 'Caugh other';
+    echo 'Caugh other';
 } finally {
-  echo "First finally";
+    echo "First finally";
 }
 `;

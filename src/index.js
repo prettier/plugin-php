@@ -45,7 +45,10 @@ const parsers = {
 
 const printers = {
   php: {
-    print
+    print,
+    defaultOptions: {
+      tabWidth: 4
+    }
   }
 };
 
