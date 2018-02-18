@@ -66,6 +66,11 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   public static function testStaticFunction($input) {
     return self::$staticTest[0];
   }
+
+  public function returnTypeTest() : string
+  {
+    return 'hi';
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));

@@ -489,7 +489,9 @@ function printStatement(path, options, print) {
               softline
             ])
           ),
-          group(") {"),
+          ")",
+          node.type ? concat([": ", path.call(print, "type")]) : "",
+          " {",
           indent(concat([hardline, path.call(print, "body")])),
           concat([hardline, "}"])
         ]);
@@ -520,6 +522,7 @@ function printStatement(path, options, print) {
             ])
           ),
           ")",
+          node.type ? concat([": ", path.call(print, "type")]) : "",
           node.body
             ? concat([
                 hardline,
