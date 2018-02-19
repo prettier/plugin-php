@@ -48,3 +48,9 @@ $silent = @hello();
 function returnTypeTest(): string {
   return 'hi';
 }
+
+function &passByReferenceTest()
+{
+  $a = 1;
+  return $a;
+}
