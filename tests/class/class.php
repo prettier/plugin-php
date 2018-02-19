@@ -76,6 +76,13 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   {
     return 'hi';
   }
+
+  final public static function bar()
+  {
+    // Nothing
+  }
+
+  abstract protected function zim();
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));

@@ -61,6 +61,9 @@ function lineShouldEndWithSemicolon(path) {
   if (node.kind === "traituse") {
     return !node.adaptations;
   }
+  if (node.kind === "method" && node.isAbstract) {
+    return true;
+  }
   return includes(semiColonWhitelist, node.kind);
 }
 
@@ -502,6 +505,7 @@ function printStatement(path, options, print) {
           group(
             concat([
               node.isFinal ? "final " : "",
+              node.isAbstract ? "abstract " : "",
               node.visibility,
               node.isStatic ? " static" : "",
               " function ",
