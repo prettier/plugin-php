@@ -366,7 +366,8 @@ function printStatement(path, options, print) {
           hardline,
           path.call(childrenPath => {
             return printLines(childrenPath, options, print);
-          }, "children")
+          }, "children"),
+          hardline
         ]);
       }
       case "namespace":

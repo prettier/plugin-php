@@ -173,4 +173,5 @@ $this->something->method(
   $argument,
   $this->more->stuff($this->even->more->things->complicatedMethod())
 );
+
 `;

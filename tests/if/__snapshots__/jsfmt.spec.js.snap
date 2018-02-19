@@ -28,4 +28,5 @@ return ($testReallyReallyLong >= 1)
   ? $someOtherReallyReallyLongVariable
   : $thisOtherVariable;
 return true ?: 2;
+
 `;

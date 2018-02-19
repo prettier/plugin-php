@@ -402,4 +402,5 @@ $a = array_fill_keys(array('foo', 5, 10, 'bar'), 'banana');
 $a = array_fill_keys(array('foo', 5, 10, 'bar'), 'banana');
 $a = array_fill_keys(['foo', 5, 10, 'bar'], 'banana');
 $a = array_fill_keys(['foo', 5, 10, 'bar'], 'banana');
+
 `;

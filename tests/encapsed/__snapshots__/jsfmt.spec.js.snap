@@ -24,4 +24,5 @@ Hello foo $a bar
 new line
 STR;
 $encapsedOffset = $a->bar$b;
+
 `;

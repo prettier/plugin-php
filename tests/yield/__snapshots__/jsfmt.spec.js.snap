@@ -26,4 +26,5 @@ function gen() {
   yield from from();
   yield 4;
 }
+
 `;
