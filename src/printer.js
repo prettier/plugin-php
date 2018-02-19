@@ -11,6 +11,20 @@ const indent = docBuilders.indent;
 const hardline = docBuilders.hardline;
 const softline = docBuilders.softline;
 
+const makeString = util.makeString;
+
+function stringEscape(str) {
+  return str
+    .replace(/[\\]/g, "\\\\")
+    .replace(/["]/g, '\\"')
+    .replace(/[/]/g, "\\/")
+    .replace(/[\b]/g, "\\b")
+    .replace(/[\f]/g, "\\f")
+    .replace(/[\n]/g, "\\n")
+    .replace(/[\r]/g, "\\r")
+    .replace(/[\t]/g, "\\t");
+}
+
 // polyfill for node 4
 function includes(array, val) {
   return array.indexOf(val) !== -1;
@@ -218,7 +232,7 @@ function printExpression(path, options, print) {
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
-        return quote + node.value + quote;
+        return makeString(stringEscape(node.value), quote, true);
       }
       case "number":
         return node.value;
