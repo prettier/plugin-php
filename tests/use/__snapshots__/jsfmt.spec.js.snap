@@ -30,3 +30,21 @@ use function some\\Full\\{fn_a, fn_b, fn_c};
 use const some\\Full\\{ConstA, ConstB, ConstC};
 
 `;
+
+exports[`without-namespace.php 1`] = `
+<?php
+
+use NamespaceA\\ClassA;
+use NamespaceA\\ClassB;
+use NamespaceA\\ClassC;
+use NamespaceB\\ClassC,
+    NamespaceB\\ClassB,
+    NamespaceB\\ClassC;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+use NamespaceA\\ClassA;
+use NamespaceA\\ClassB;
+use NamespaceA\\ClassC;
+use NamespaceB\\ClassC, NamespaceB\\ClassB, NamespaceB\\ClassC;
+
+`;

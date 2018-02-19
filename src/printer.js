@@ -377,7 +377,7 @@ function printStatement(path, options, print) {
           ";",
           concat(
             path.map(
-              usegroup => concat([hardline, print(usegroup), ";"]),
+              childrenPath => concat([hardline, print(childrenPath)]),
               "children"
             )
           )
@@ -812,7 +812,8 @@ function printStatement(path, options, print) {
               concat([",", line]),
               path.map(item => concat([print(item)]), "items")
             ),
-            node.name ? "}" : ""
+            node.name ? "}" : "",
+            ";"
           ])
         )
       );
