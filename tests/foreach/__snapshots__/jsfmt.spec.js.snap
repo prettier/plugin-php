@@ -21,4 +21,5 @@ foreach (
 ) {
   $test3 = $really_really_really_long_value;
 }
+
 `;

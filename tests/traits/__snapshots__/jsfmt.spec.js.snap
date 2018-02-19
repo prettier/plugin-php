@@ -75,4 +75,5 @@ class ShortImplementingClass
 
   use testTrait { A::testFunction insteadof C; }
 }
+
 `;

@@ -71,4 +71,5 @@ class Foo
     $this->title = $title;
   }
 }
+
 `;

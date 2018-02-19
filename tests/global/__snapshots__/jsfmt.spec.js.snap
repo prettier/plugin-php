@@ -13,4 +13,5 @@ global
   $testReallyReallyLong,
   $someOtherReallyReallyLongVariable,
   $oneMoreReallyLongVariable;
+
 `;

@@ -22,4 +22,5 @@ try {
 } finally {
   echo "First finally";
 }
+
 `;

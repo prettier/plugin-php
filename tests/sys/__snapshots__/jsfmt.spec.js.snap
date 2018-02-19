@@ -38,4 +38,5 @@ isset($test);
 unset($test);
 
 empty($test);
+
 `;

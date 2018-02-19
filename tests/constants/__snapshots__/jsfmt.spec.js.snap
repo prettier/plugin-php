@@ -33,4 +33,5 @@ class Constants
     return self::TEST_CLASS_CONSTANT;
   }
 }
+
 `;

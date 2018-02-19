@@ -24,4 +24,5 @@ switch (2) {
   default:
     $test = 1;
 }
+
 `;

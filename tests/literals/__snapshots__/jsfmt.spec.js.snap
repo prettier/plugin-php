@@ -23,4 +23,5 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
+
 `;
