@@ -3,7 +3,7 @@
 function clean(ast) {
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
-  if (ast.kind === "continue" || ast.kind === "break") {
+  if ((ast.kind === "continue" || ast.kind === "break") && ast.level) {
     let level = ast.level;
     while (level.kind === "parenthesis") {
       level = level.inner;

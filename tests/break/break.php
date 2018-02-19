@@ -18,3 +18,14 @@ while(true) {
   break (2);
   break(((3)));
 }
+
+switch ($test) {
+  case 1:
+    $hi = 1;
+    break;
+  case 2:
+    $hi = 2;
+    break;
+  default:
+    break;
+}
