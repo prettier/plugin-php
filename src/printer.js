@@ -32,6 +32,7 @@ function lineShouldEndWithSemicolon(path) {
     "assign",
     "return",
     "break",
+    "continue",
     "call",
     "pre",
     "post",
@@ -1055,7 +1056,27 @@ function printNode(path, options, print) {
         indent(concat([line, path.call(print, "body")]))
       ]);
     case "break":
+      if (node.level) {
+        while (node.level.kind == "parenthesis") {
+          node.level = node.level.inner;
+        }
+        if (node.level.kind == "number" && node.level.value != 1) {
+          return concat(["break ", path.call(print, "level")]);
+        }
+        return "break";
+      }
       return "break";
+    case "continue":
+      if (node.level) {
+        while (node.level.kind == "parenthesis") {
+          node.level = node.level.inner;
+        }
+        if (node.level.kind == "number" && node.level.value != 1) {
+          return concat(["continue ", path.call(print, "level")]);
+        }
+        return "continue";
+      }
+      return "continue";
     case "return":
       if (node.expr) {
         return concat(["return ", path.call(print, "expr")]);
