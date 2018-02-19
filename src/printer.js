@@ -477,7 +477,7 @@ function printStatement(path, options, print) {
         ]);
       case "function":
         return concat([
-          group(concat(["function ", node.name, "("])),
+          group(concat(["function ", node.byref ? "&" : "", node.name, "("])),
           group(
             concat([
               indent(
@@ -506,6 +506,7 @@ function printStatement(path, options, print) {
               node.visibility,
               node.isStatic ? " static" : "",
               " function ",
+              node.byref ? "&" : "",
               node.name,
               "("
             ])

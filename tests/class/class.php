@@ -6,6 +6,11 @@ class Foo extends Bar implements Baz, Buzz {
   function test() {
     return "test";
   }
+
+  public function &passByReferenceTest() {
+    $a = 1;
+    return $a;
+  }
 }
 
 $test = new Foo();
