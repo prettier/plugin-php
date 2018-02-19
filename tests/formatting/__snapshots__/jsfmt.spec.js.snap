@@ -29,6 +29,7 @@ class Foo extends Bar implements FooInterface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Vendor\\Package;
+
 use FooInterface;
 use BarClass as Bar;
 use OtherVendor\\OtherPackage\\BazClass;

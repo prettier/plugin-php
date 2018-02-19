@@ -17,6 +17,7 @@ use const some\\Full\\{ConstA, ConstB, ConstC};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace foo;
+
 use My\\Full\\Classname as Another;
 use MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeyLongNamespace\\Full\\Classname as Another;
 use function some\\Full\\fn_a;

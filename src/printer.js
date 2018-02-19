@@ -375,6 +375,7 @@ function printStatement(path, options, print) {
           "namespace ",
           node.name,
           ";",
+          node.children.length > 0 ? hardline : "",
           concat(
             path.map(
               usegroup => concat([hardline, print(usegroup), ";"]),

@@ -5,10 +5,21 @@ exports[`namespace.php 1`] = `
 namespace Base\\Test\\To\\Extend;
 
 use Other\\Test\\Import;
-use One\\More\\Test;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+use One\\More\\Test;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Base\\Test\\To\\Extend;
+
 use Other\\Test\\Import;
 use One\\More\\Test;
+
+`;
+
+exports[`single.php 1`] = `
+<?php
+namespace Foo;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Foo;
 
 `;
