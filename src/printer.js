@@ -1087,7 +1087,8 @@ function printNode(path, options, print) {
         return concat(["return ", path.call(print, "expr")]);
       }
       return "return";
-    case "doc":
+    case "doc": {
+      let canAddEmptyLine = false;
       return node.isDoc
         ? concat([
             "/**",
@@ -1095,18 +1096,25 @@ function printNode(path, options, print) {
             // multi line docblock
             node.lines.length > 1
               ? concat(
-                  node.lines.map(
-                    (comment, index) =>
-                      index != 0 && index != node.lines.length - 1
-                        ? concat([hardline, " * ", comment])
-                        : ""
-                  )
+                  node.lines.map((comment, index) => {
+                    if (comment.length > 0) {
+                      canAddEmptyLine = true;
+                      return concat([hardline, " * ", comment]);
+                    } else if (!canAddEmptyLine) {
+                      return "";
+                    }
+                    canAddEmptyLine = false;
+                    return index < node.lines.length - 1
+                      ? concat([hardline, " *"])
+                      : "";
+                  })
                 )
               : concat([" ", node.lines[0]], " "),
             node.lines.length > 1 ? hardline : "",
             " */"
           ])
         : join(hardline, node.lines.map(comment => concat(["// ", comment])));
+    }
     case "entry":
       return concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
