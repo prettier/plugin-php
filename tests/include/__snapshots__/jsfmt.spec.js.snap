@@ -2,12 +2,16 @@
 
 exports[`include.php 1`] = `
 <?php
+namespace \\test\\testing;
+
 include "test.php";
 include_once "other.php";
 require "test/test.php";
 require_once "other/other.php";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+namespace \\test\\testing;
+
 include "test.php";
 include_once "other.php";
 require "test/test.php";
