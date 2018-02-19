@@ -68,7 +68,7 @@ prettier --write "**/*.php"
         <a href="https://github.com/mgrip">
           <img width="150" height="150" src="https://github.com/mgrip.png?v=3&s=150">
           </br>
-          Mike
+          Mike Grip
         </a>
       </td>
       <td align="center">
@@ -76,6 +76,13 @@ prettier --write "**/*.php"
           <img width="150" height="150" src="https://github.com/czosel.png?v=3&s=150">
           </br>
           Christian Zosel
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/evilebottnawi">
+          <img width="150" height="150" src="https://github.com/evilebottnawi.png?v=3&s=150">
+          </br>
+          Evilebot Tnawi
         </a>
       </td>
     </tr>
