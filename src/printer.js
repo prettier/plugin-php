@@ -44,6 +44,7 @@ function lineShouldEndWithSemicolon(path) {
     "list",
     "print",
     "isset",
+    "retif",
     "unset",
     "empty",
     "traitprecedence",
