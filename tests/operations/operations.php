@@ -54,3 +54,5 @@ $a instanceof stdClass;
 
 $output = `ls -al`;
 $a = (bool) "test";
+
+$b = &$a;
