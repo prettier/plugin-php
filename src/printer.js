@@ -258,7 +258,8 @@ function printExpression(path, options, print) {
       case "inline":
         return node.value;
       case "magic":
-        return node.value;
+        // for magic constant we prefer upper case
+        return node.value.toUpperCase();
       case "nowdoc":
         return concat([
           "<<<'",
@@ -1072,14 +1073,31 @@ function printNode(path, options, print) {
     return printStatement(path, options, print);
   }
   switch (node.kind) {
-    case "identifier":
+    case "identifier": {
       // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
+      // for reserved words we prefer lowercase case
       if (node.name === "\\array") {
         return "array";
       } else if (node.name === "\\callable") {
         return "callable";
       }
-      return node.name;
+
+      const lowerCasedName = node.name.toLowerCase();
+      const isLowerCase =
+        [
+          "int",
+          "float",
+          "bool",
+          "string",
+          "null",
+          "void",
+          "iterable",
+          "object",
+          "self"
+        ].indexOf(lowerCasedName) !== -1;
+
+      return isLowerCase ? lowerCasedName : node.name;
+    }
     case "case":
       return concat([
         node.test
