@@ -12,6 +12,16 @@ $int++;
 $hi = 1;
 
 /**
+ * Multi line
+* test with wrong indentation
+*/
+
+/**
+ * Multi line
+ * test with right indentation
+ */
+
+/**
  * This class acts as an example on where to position a DocBlock.
  */
 class Foo
