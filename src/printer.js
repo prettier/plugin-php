@@ -376,13 +376,11 @@ function printStatement(path, options, print) {
           "namespace ",
           node.name,
           ";",
-          node.children.length > 0 ? hardline : "",
-          concat(
-            path.map(
-              childrenPath => concat([hardline, print(childrenPath)]),
-              "children"
-            )
-          )
+          // don't know why we need 2 line breaks here, but 1 doesn't work
+          node.children.length > 0 ? concat([hardline, hardline]) : "",
+          path.call(childrenPath => {
+            return printLines(childrenPath, options, print);
+          }, "children")
         ]);
       default:
         return "Have not implemented block kind " + node.kind + " yet.";
