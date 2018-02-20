@@ -1,5 +1,7 @@
 "use strict";
 
+const util = require("./util");
+
 function clean(ast) {
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
@@ -13,6 +15,11 @@ function clean(ast) {
         ? { kind: ast.kind, level: {} }
         : { kind: ast.kind, level };
     }
+  }
+  if (ast.kind === "number") {
+    ast.value = util.printNumber(ast.value);
+
+    return ast;
   }
 }
 
