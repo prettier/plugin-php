@@ -49,14 +49,20 @@ To test it out on a PHP file:
 
 ## Install
 
+yarn:
 ```bash
-yarn add --dev --exact prettier @prettier/plugin-php
+yarn add --dev prettier/prettier prettier/plugin-php
+```
+
+npm:
+```bash
+npm install --save-dev prettier/prettier prettier/plugin-php
 ```
 
 ## Use
 
 ```bash
-prettier --write "**/*.php"
+prettier --parser=php --write "**/*.php"
 ```
 
 ## Maintainers
