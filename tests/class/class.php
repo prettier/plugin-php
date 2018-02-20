@@ -83,6 +83,10 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   }
 
   abstract protected function zim();
+
+  public function method(iterable $iterable): array {
+    // Parameter broadened and return type narrowed.
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
