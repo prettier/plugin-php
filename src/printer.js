@@ -374,17 +374,23 @@ function printStatement(path, options, print) {
           hardline
         ]);
       }
-      case "namespace":
+      case "namespace": {
+        const printed = path.call(childrenPath => {
+          return printLines(childrenPath, options, print);
+        }, "children");
+
         return concat([
           "namespace ",
           node.name,
-          ";",
+          node.withBrackets ? concat([" ", "{"]) : ";",
           // don't know why we need 2 line breaks here, but 1 doesn't work
-          node.children.length > 0 ? concat([hardline, hardline]) : "",
-          path.call(childrenPath => {
-            return printLines(childrenPath, options, print);
-          }, "children")
+          node.children.length > 0 && !node.withBrackets
+            ? concat([hardline, hardline])
+            : "",
+          node.withBrackets ? indent(concat([hardline, printed])) : printed,
+          node.withBrackets ? concat([hardline, "}"]) : ""
         ]);
+      }
       default:
         return "Have not implemented block kind " + node.kind + " yet.";
     }

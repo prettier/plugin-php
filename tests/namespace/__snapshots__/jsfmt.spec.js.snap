@@ -15,6 +15,26 @@ use One\\More\\Test;
 
 `;
 
+exports[`nested.php 1`] = `
+<?php
+
+namespace foo {
+    function bar($a, $b) {
+        return $a + $b;
+    }
+    echo bar(2, 3);
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace foo {
+  function bar($a, $b) {
+    return $a + $b;
+  }
+  echo bar(2, 3);
+}
+
+`;
+
 exports[`single.php 1`] = `
 <?php
 namespace Foo;
