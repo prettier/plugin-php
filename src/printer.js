@@ -1066,7 +1066,7 @@ function printNode(path, options, print) {
         node.test
           ? concat(["case ", path.call(print, "test"), ":"])
           : "default:",
-        indent(concat([line, path.call(print, "body")]))
+        node.body ? indent(concat([line, path.call(print, "body")])) : ""
       ]);
     case "break":
       if (node.level) {
