@@ -7,3 +7,7 @@ while ($i <= 5) {
 while ($i <= 5):
   $i++;
 endwhile;
+
+while ( $i <= 5 ) {
+    $i++;
+}

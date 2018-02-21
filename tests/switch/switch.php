@@ -23,3 +23,11 @@ switch ($var):
   default:
     echo "I only understand 1 and 2.";
 endswitch;
+
+switch ( 2 ) {
+    case 1:
+        $test = 'first';
+        break;
+    default:
+        $test = 1;
+}

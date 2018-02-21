@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`return.php 1`] = `
+<?php
+
+function sum($a, $b) {
+    return ($a + $b);
+}
+
+function division($a, $b) {
+    return ( $a / $b );
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function sum($a, $b) {
+  return ($a + $b);
+}
+
+function division($a, $b) {
+  return ($a / $b);
+}
+
+`;
