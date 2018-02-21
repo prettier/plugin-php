@@ -47,6 +47,7 @@ class Foo
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 /** @var int $int This is a counter. */
 $int = 0;
 
@@ -91,5 +92,19 @@ class Foo
     $this->title = $title;
   }
 }
+
+`;
+
+exports[`file-level-docblock.php 1`] = `
+<?php
+/**
+ * This file contains an example of coding styles.
+ */
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * This file contains an example of coding styles.
+ */
 
 `;

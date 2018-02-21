@@ -77,11 +77,24 @@ function isLastStatement(path) {
   return body && body[body.length - 1] === node;
 }
 
+function isFileLevelDocBlock(path) {
+  const parent = path.getParentNode();
+  if (!parent || parent.kind !== "program") {
+    return false;
+  }
+  const node = path.getValue();
+  const body = parent.children;
+  return node.kind === "doc" && node.isDoc && body && body.indexOf(node) === 0;
+}
+
 function printLines(path, options, print) {
   const text = options.originalText;
   const printed = path.map(stmtPath => {
     const stmt = stmtPath.getValue();
     const parts = [];
+    if (isFileLevelDocBlock(path)) {
+      parts.push(hardline);
+    }
     parts.push(print(stmtPath));
     if (lineShouldEndWithSemicolon(stmtPath)) {
       parts.push(";");
