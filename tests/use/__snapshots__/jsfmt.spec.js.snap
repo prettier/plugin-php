@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`single.php 1`] = `
+<?php
+use My\\Full\\Classname;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+use My\\Full\\Classname;
+
+`;
+
 exports[`use.php 1`] = `
 <?php
 namespace foo;
@@ -17,8 +26,8 @@ use const some\\Full\\{ConstA, ConstB, ConstC};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace foo;
-
 use My\\Full\\Classname as Another;
+
 use MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeyLongNamespace\\Full\\Classname as Another;
 use function some\\Full\\fn_a;
 use function My\\Full\\functionName as func;
@@ -29,6 +38,57 @@ use MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeyLon
 use some\\Full\\{ClassA, ClassB, ClassC as C};
 use function some\\Full\\{fn_a, fn_b, fn_c};
 use const some\\Full\\{ConstA, ConstB, ConstC};
+
+`;
+
+exports[`with-class.php 1`] = `
+<?php
+namespace foo;
+use My\\Full\\Classname as Another;
+class A {}
+
+namespace bar;
+use My\\Full\\Classname as Another;
+use some\\Full\\{ClassA, ClassB, ClassC as C};
+use function My\\Full\\functionName as func;
+class A {}
+
+namespace foobar;
+
+use My\\Full\\Classname as Another;
+
+class A {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace foo;
+use My\\Full\\Classname as Another;
+
+class A
+{
+
+
+}
+
+namespace bar;
+use My\\Full\\Classname as Another;
+
+use some\\Full\\{ClassA, ClassB, ClassC as C};
+use function My\\Full\\functionName as func;
+
+class A
+{
+
+
+}
+
+namespace foobar;
+use My\\Full\\Classname as Another;
+
+class A
+{
+
+
+}
 
 `;
 

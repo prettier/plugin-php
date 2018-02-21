@@ -34,6 +34,7 @@ use FooInterface;
 use BarClass as Bar;
 use OtherVendor\\OtherPackage\\BazClass;
 
+
 class Foo extends Bar implements FooInterface
 {
 
