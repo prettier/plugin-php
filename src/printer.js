@@ -651,18 +651,32 @@ function printStatement(path, options, print) {
           return "}";
         }
         if (alternate.kind === "if") {
-          return concat(["} else", path.call(print, "alternate")]);
+          return concat([
+            node.shortForm ? "" : "} ",
+            "else",
+            path.call(print, "alternate")
+          ]);
         }
         return concat([
-          "} else {",
+          concat([
+            node.shortForm ? "" : "} ",
+            "else",
+            node.shortForm ? ":" : " {"
+          ]),
           indent(concat([line, path.call(print, "alternate")])),
           line,
-          "}"
+          node.shortForm ? "endif;" : "}"
         ]);
       };
       return concat([
         group(
-          concat(["if (", softline, path.call(print, "test"), softline, ") {"])
+          concat([
+            "if (",
+            softline,
+            path.call(print, "test"),
+            softline,
+            concat([")", node.shortForm ? ":" : " {"])
+          ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
@@ -695,12 +709,12 @@ function printStatement(path, options, print) {
             softline,
             path.call(print, "test"),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
-        "}"
+        node.shortForm ? "endwhile;" : "}"
       ]);
     case "for": {
       const parts = [
@@ -728,13 +742,17 @@ function printStatement(path, options, print) {
               ])
             ),
             softline,
-            node.body ? ") {" : ");"
+            node.body ? concat([")", node.shortForm ? ":" : " {"]) : ");"
           ])
         )
       ];
       if (node.body) {
         parts.push(
-          concat([indent(concat([line, path.call(print, "body")])), line, "}"])
+          concat([
+            indent(concat([line, path.call(print, "body")])),
+            line,
+            node.shortForm ? "endfor;" : "}"
+          ])
         );
       }
       return concat(parts);
@@ -759,12 +777,12 @@ function printStatement(path, options, print) {
               ])
             ),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
-        "}"
+        node.shortForm ? "endforeach;" : "}"
       ]);
     case "switch":
       return concat([
@@ -774,7 +792,7 @@ function printStatement(path, options, print) {
             softline,
             path.call(print, "test"),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(
@@ -787,7 +805,7 @@ function printStatement(path, options, print) {
           )
         ),
         line,
-        "}"
+        node.shortForm ? "endswitch;" : "}"
       ]);
     case "call":
       return group(
