@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`propertylookup.php 1`] = `
+<?php
+
+$a = $obj->value;
+$a = &$obj->getValue();
+$obj->value = 2;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a = $obj->value;
+$a = &$obj->getValue();
+$obj->value = 2;
+
+`;
