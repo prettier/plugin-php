@@ -374,7 +374,7 @@ function printStatement(path, options, print) {
           path.call(childrenPath => {
             return printLines(childrenPath, options, print);
           }, "children"),
-          hardline
+          node.children.length ? hardline : ""
         ]);
       }
       case "namespace": {
