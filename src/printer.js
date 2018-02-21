@@ -59,6 +59,7 @@ function lineShouldEndWithSemicolon(path) {
     "include",
     "goto",
     "throw",
+    "magic",
     "new",
     "eval"
   ];
