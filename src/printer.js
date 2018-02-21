@@ -94,10 +94,13 @@ function isNextStatement(path, kind) {
   return body[index + 1] && body[index + 1].kind === kind;
 }
 
-function isBeforeNamespace(path) {
+function isBeforeStandardNamespace(path) {
   const parent = path.getParentNode();
   if (!parent || parent.kind !== "namespace") {
-    return;
+    return false;
+  }
+  if (parent.withBrackets) {
+    return false;
   }
   const node = path.getValue();
   const body = parent.children;
@@ -114,14 +117,16 @@ function printLines(path, options, print) {
   const printed = path.map(stmtPath => {
     const stmt = stmtPath.getValue();
     const parts = [];
+    if (isBeforeStandardNamespace(path)) {
+      parts.push(hardline);
+    }
     parts.push(print(stmtPath));
     if (lineShouldEndWithSemicolon(stmtPath)) {
       parts.push(";");
     }
     if (
       (util.isNextLineEmpty(text, stmt, options) ||
-        (stmt.kind === "usegroup" && !isNextStatement(path, "usegroup")) ||
-        isBeforeNamespace(path)) &&
+        (stmt.kind === "usegroup" && !isNextStatement(path, "usegroup"))) &&
       !isLastStatement(stmtPath)
     ) {
       parts.push(hardline);
@@ -418,9 +423,7 @@ function printStatement(path, options, print) {
           node.name,
           node.withBrackets ? concat([" ", "{"]) : ";",
           // don't know why we need 2 line breaks here, but 1 doesn't work
-          node.children.length > 0 && !node.withBrackets
-            ? concat([hardline])
-            : "",
+          node.children.length > 0 && !node.withBrackets ? hardline : "",
           node.withBrackets ? indent(concat([hardline, printed])) : printed,
           node.withBrackets ? concat([hardline, "}"]) : ""
         ]);
