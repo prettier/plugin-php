@@ -74,7 +74,6 @@ $hi = 1;
  */
 class Foo
 {
-
   /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */
   protected $title = null;
 

@@ -93,11 +93,12 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
+
+class A {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz
 {
-
   public $test;
 
   public function test()
@@ -118,7 +119,6 @@ abstract class ReallyReallyReallyLongClassName
   extends AbstractModelFactoryResourceController
   implements TooMuchObjectOrientation, ThisIsMadness
 {
-
   // variable doc
   public $test;
   public $other = 1;
@@ -207,5 +207,10 @@ $this->something->method(
   $argument,
   $this->more->stuff($this->even->more->things->complicatedMethod())
 );
+
+class A
+{
+
+}
 
 `;
