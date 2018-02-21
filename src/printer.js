@@ -475,7 +475,6 @@ function printStatement(path, options, print) {
           ),
           hardline,
           "{",
-          hardline,
           indent(
             concat([
               hardline,
