@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cast.php 1`] = `
+<?php
+
+$bar = (int) $foo;
+$bar = (integer) $foo;
+$bar = (bool) $foo;
+$bar = (boolean) $foo;
+$bar = (float) $foo;
+$bar = (double) $foo;
+$bar = (real) $foo;
+$bar = (array) $foo;
+$bar = (object) $foo;
+$bar = (unset) $foo;
+
+$bar = ( int ) $foo;
+$bar = (  int  )  $foo;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$bar = (int) $foo;
+$bar = (int) $foo;
+$bar = (bool) $foo;
+$bar = (bool) $foo;
+$bar = (float) $foo;
+$bar = (float) $foo;
+$bar = (float) $foo;
+$bar = (array) $foo;
+$bar = (object) $foo;
+$bar = (unset) $foo;
+
+$bar = (int) $foo;
+$bar = (int) $foo;
+
+`;
