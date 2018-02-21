@@ -59,6 +59,7 @@ function lineShouldEndWithSemicolon(path) {
     "include",
     "goto",
     "throw",
+    "new",
     "eval"
   ];
   if (node.kind === "traituse") {
