@@ -627,10 +627,11 @@ function printStatement(path, options, print) {
                       join(", ", path.map(print, "implements"))
                     ])
                   )
-                : "",
-              " {"
+                : ""
             ])
           ),
+          hardline,
+          "{",
           indent(
             concat(
               path.map(element => concat([hardline, print(element)]), "body")
