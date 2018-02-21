@@ -54,3 +54,15 @@ function &passByReferenceTest()
   $a = 1;
   return $a;
 }
+
+function foo(iterable $iterable = []) {}
+
+function bar(): iterable {
+    return [1, 2, 3];
+}
+
+function gen(): iterable {
+    yield 1;
+    yield 2;
+    yield 3;
+}
