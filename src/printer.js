@@ -1,7 +1,9 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
-const util = require("prettier").util;
+const sharedUtil = require("prettier").util;
+
+const util = require("./util");
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
@@ -57,7 +59,8 @@ function lineShouldEndWithSemicolon(path) {
     "include",
     "goto",
     "throw",
-    "new"
+    "new",
+    "eval"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -88,7 +91,7 @@ function printLines(path, options, print) {
       parts.push(";");
     }
     if (
-      util.isNextLineEmpty(text, stmt, options) &&
+      sharedUtil.isNextLineEmpty(text, stmt, options) &&
       !isLastStatement(stmtPath)
     ) {
       parts.push(hardline);
@@ -226,7 +229,7 @@ function printExpression(path, options, print) {
         return quote + node.value + quote;
       }
       case "number":
-        return node.value;
+        return util.printNumber(node.value);
       case "encapsed":
         if (node.type === "offset") {
           return group(concat(path.map(print, "value")));
@@ -372,7 +375,7 @@ function printStatement(path, options, print) {
           path.call(childrenPath => {
             return printLines(childrenPath, options, print);
           }, "children"),
-          hardline
+          node.children.length ? hardline : ""
         ]);
       }
       case "namespace": {
@@ -658,18 +661,32 @@ function printStatement(path, options, print) {
           return "}";
         }
         if (alternate.kind === "if") {
-          return concat(["} else", path.call(print, "alternate")]);
+          return concat([
+            node.shortForm ? "" : "} ",
+            "else",
+            path.call(print, "alternate")
+          ]);
         }
         return concat([
-          "} else {",
+          concat([
+            node.shortForm ? "" : "} ",
+            "else",
+            node.shortForm ? ":" : " {"
+          ]),
           indent(concat([line, path.call(print, "alternate")])),
           line,
-          "}"
+          node.shortForm ? "endif;" : "}"
         ]);
       };
       return concat([
         group(
-          concat(["if (", softline, path.call(print, "test"), softline, ") {"])
+          concat([
+            "if (",
+            softline,
+            path.call(print, "test"),
+            softline,
+            concat([")", node.shortForm ? ":" : " {"])
+          ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
@@ -702,12 +719,12 @@ function printStatement(path, options, print) {
             softline,
             path.call(print, "test"),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
-        "}"
+        node.shortForm ? "endwhile;" : "}"
       ]);
     case "for": {
       const parts = [
@@ -735,13 +752,17 @@ function printStatement(path, options, print) {
               ])
             ),
             softline,
-            node.body ? ") {" : ");"
+            node.body ? concat([")", node.shortForm ? ":" : " {"]) : ");"
           ])
         )
       ];
       if (node.body) {
         parts.push(
-          concat([indent(concat([line, path.call(print, "body")])), line, "}"])
+          concat([
+            indent(concat([line, path.call(print, "body")])),
+            line,
+            node.shortForm ? "endfor;" : "}"
+          ])
         );
       }
       return concat(parts);
@@ -766,12 +787,12 @@ function printStatement(path, options, print) {
               ])
             ),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(concat([line, path.call(print, "body")])),
         line,
-        "}"
+        node.shortForm ? "endforeach;" : "}"
       ]);
     case "switch":
       return concat([
@@ -781,7 +802,7 @@ function printStatement(path, options, print) {
             softline,
             path.call(print, "test"),
             softline,
-            ") {"
+            concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
         indent(
@@ -794,7 +815,7 @@ function printStatement(path, options, print) {
           )
         ),
         line,
-        "}"
+        node.shortForm ? "endswitch;" : "}"
       ]);
     case "call":
       return group(
@@ -886,6 +907,8 @@ function printStatement(path, options, print) {
         ])
       );
     case "exit":
+      // Todo use `node.useDie` for determining `exit` or `die`
+      // after https://github.com/glayzzle/php-parser/commit/b22ea4863be9125c381951dc008820b68fc3d135 shipped
       return concat(["exit(", path.call(print, "status"), ")"]);
     case "clone":
       return concat(["clone ", path.call(print, "what")]);
@@ -1038,8 +1061,8 @@ function printStatement(path, options, print) {
       return concat(["@", path.call(print, "expr")]);
     case "halt":
       return concat(["__halt_compiler();", node.after]);
-    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
+      return concat(["eval(", path.call(print, "source"), ")"]);
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
@@ -1067,7 +1090,7 @@ function printNode(path, options, print) {
         node.test
           ? concat(["case ", path.call(print, "test"), ":"])
           : "default:",
-        indent(concat([line, path.call(print, "body")]))
+        node.body ? indent(concat([line, path.call(print, "body")])) : ""
       ]);
     case "break":
       if (node.level) {
