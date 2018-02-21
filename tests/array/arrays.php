@@ -323,3 +323,7 @@ $a = array_fill_keys(array('foo', 5, 10, 'bar'), 'banana');
 $a = array_fill_keys(array('foo',5,10,'bar'),'banana');
 $a = array_fill_keys(['foo', 5, 10, 'bar'], 'banana') ;
 $a = array_fill_keys(  [  'foo'  ,  5  ,  10  ,  'bar'  ]  , 'banana'  )  ;
+$secondElement = getArray()[1];
+unset($arr[5]);
+$arr["x"] = 42;
+echo $arr[somefunc($bar)];
