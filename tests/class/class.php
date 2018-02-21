@@ -87,6 +87,16 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   public function method(iterable $iterable): array {
     // Parameter broadened and return type narrowed.
   }
+
+  public function method1() { return 'hi'; }
+
+  public function method2() {
+      return 'hi'; }
+
+  public function method3()
+    { return 'hi'; }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
+
+class A {}

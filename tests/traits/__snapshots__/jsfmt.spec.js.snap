@@ -30,7 +30,8 @@ class ShortImplementingClass {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-trait A {
+trait A
+{
   public function testFunction()
   {
     // 1
@@ -41,14 +42,16 @@ trait A {
   }
 }
 
-trait B extends otherTrait {
+trait B extends otherTrait
+{
   public function someOtherTestFunction()
   {
     // 3
   }
 }
 
-trait C extends A implements B {
+trait C extends A implements B
+{
   public function someOtherTestFunction()
   {
     // 4
@@ -61,7 +64,6 @@ trait C extends A implements B {
 
 class ImplementingClass
 {
-
   use testTrait, otherTrait;
   use testTrait, implementingTrait {
     A::testFunction insteadof C;
@@ -72,7 +74,6 @@ class ImplementingClass
 
 class ShortImplementingClass
 {
-
   use testTrait { A::testFunction insteadof C; }
 }
 
