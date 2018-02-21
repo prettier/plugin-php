@@ -56,7 +56,8 @@ function lineShouldEndWithSemicolon(path) {
     "static",
     "include",
     "goto",
-    "throw"
+    "throw",
+    "eval"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -1031,8 +1032,8 @@ function printStatement(path, options, print) {
       return concat(["@", path.call(print, "expr")]);
     case "halt":
       return concat(["__halt_compiler();", node.after]);
-    //@TODO: leaving eval until we figure out encapsed https://github.com/prettier/prettier-php/pull/2
     case "eval":
+      return concat(["eval(", path.call(print, "source"), ")"]);
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
