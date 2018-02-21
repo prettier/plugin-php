@@ -1,7 +1,9 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
-const util = require("prettier").util;
+const sharedUtil = require("prettier").util;
+
+const util = require("./util");
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
@@ -87,7 +89,7 @@ function printLines(path, options, print) {
       parts.push(";");
     }
     if (
-      util.isNextLineEmpty(text, stmt, options) &&
+      sharedUtil.isNextLineEmpty(text, stmt, options) &&
       !isLastStatement(stmtPath)
     ) {
       parts.push(hardline);
@@ -225,7 +227,7 @@ function printExpression(path, options, print) {
         return quote + node.value + quote;
       }
       case "number":
-        return node.value;
+        return util.printNumber(node.value);
       case "encapsed":
         if (node.type === "offset") {
           return group(concat(path.map(print, "value")));
