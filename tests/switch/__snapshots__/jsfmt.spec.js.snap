@@ -9,6 +9,11 @@ switch (2) {
   case 2:
     $test = 'second';
     break;
+  case 10:
+  case 20:
+    $test = 'big';
+    break;
+  case 100:
   default:
     $test = 1;
 }
@@ -30,6 +35,11 @@ switch (2) {
   case 2:
     $test = 'second';
     break;
+  case 10:
+  case 20:
+    $test = 'big';
+    break;
+  case 100:
   default:
     $test = 1;
 }
