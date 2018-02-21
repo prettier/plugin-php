@@ -56,7 +56,8 @@ function lineShouldEndWithSemicolon(path) {
     "static",
     "include",
     "goto",
-    "throw"
+    "throw",
+    "new"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;

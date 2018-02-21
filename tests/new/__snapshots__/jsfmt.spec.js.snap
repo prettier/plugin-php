@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new.php 1`] = `
+<?php
+new Foo();
+new Foo;
+$a = new Foo;
+$b = new Foo();
+$c = new Foo([1, 2, 3], "foo", $variable);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+new Foo();
+new Foo();
+$a = new Foo();
+$b = new Foo();
+$c = new Foo([1, 2, 3], "foo", $variable);
+
+`;
