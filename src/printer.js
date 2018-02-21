@@ -594,10 +594,11 @@ function printStatement(path, options, print) {
                       join(", ", path.map(print, "extends"))
                     ])
                   )
-                : "",
-              " {"
+                : ""
             ])
           ),
+          hardline,
+          "{",
           indent(
             concat(
               path.map(element => {
