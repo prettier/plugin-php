@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`halt.php 1`] = `
+<?php
+__halt_compiler(); the installation data (eg. tar, gz, PHP, etc.)
+other text
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+__halt_compiler(); the installation data (eg. tar, gz, PHP, etc.)
+other text
+
+`;

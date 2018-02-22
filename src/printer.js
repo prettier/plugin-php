@@ -1062,7 +1062,7 @@ function printStatement(path, options, print) {
     case "silent":
       return concat(["@", path.call(print, "expr")]);
     case "halt":
-      return concat(["__halt_compiler();", node.after]);
+      return concat(["__halt_compiler();", node.after.replace(/\n$/, "")]);
     case "eval":
       return concat(["eval(", path.call(print, "source"), ")"]);
     default:
