@@ -3,6 +3,7 @@
 const parse = require("./parser");
 const print = require("./printer");
 const clean = require("./clean");
+const options = require("./options");
 
 const languages = [
   {
@@ -54,5 +55,6 @@ const printers = {
 module.exports = {
   languages,
   printers,
-  parsers
+  parsers,
+  options
 };

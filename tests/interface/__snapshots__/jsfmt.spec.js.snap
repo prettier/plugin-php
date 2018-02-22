@@ -25,3 +25,27 @@ interface test2 extends testInterface
 }
 
 `;
+
+exports[`interface.php 2`] = `
+<?php
+
+interface testInterface {
+    public function setVariable($test);
+    public function method(array $array): iterable;
+}
+
+interface test2 extends testInterface {
+  public function other($hi);
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+interface testInterface {
+  public function setVariable($test);
+  public function method(array $array): iterable;
+}
+
+interface test2 extends testInterface {
+  public function other($hi);
+}
+
+`;
