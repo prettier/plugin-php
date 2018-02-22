@@ -10,3 +10,7 @@ foreach ($really_really_really_really_really_long_array as $key => $really_reall
 foreach ($test as $i):
   $test2 = $i;
 endforeach;
+
+foreach ( $test as $i ) {
+    $test2 = $i;
+}

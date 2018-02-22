@@ -14,3 +14,7 @@ for ($really_really_long_variable_name = 0, $and_something_else = 0; $really_rea
 for (;;):
   $test = $i;
 endfor;
+
+for ( $i = 0; $i <= 5; $i++ ) {
+    $test = $i;
+}
