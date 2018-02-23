@@ -626,7 +626,13 @@ function printStatement(path, options, print) {
         });
       case "constant":
       case "classconstant":
-        return concat(["const ", node.name, " = ", path.call(print, "value")]);
+        return concat([
+          node.visibility ? concat([node.visibility, " "]) : "",
+          "const ",
+          node.name,
+          " = ",
+          path.call(print, "value")
+        ]);
       default:
         return "Have not implmented declaration kind " + node.kind + " yet.";
     }
