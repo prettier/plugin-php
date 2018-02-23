@@ -69,6 +69,12 @@ function lineShouldEndWithSemicolon(path) {
   if (node.kind === "method" && node.isAbstract) {
     return true;
   }
+  if (node.kind === "method") {
+    const parent = path.getParentNode();
+    if (parent && parent.kind === "interface") {
+      return true;
+    }
+  }
   return includes(semiColonWhitelist, node.kind);
 }
 
@@ -449,107 +455,101 @@ function printStatement(path, options, print) {
     "property"
   ];
   function printDeclaration(node) {
+    function printDeclarationBlock({
+      declaration,
+      argumentsList = [],
+      returnTypeContents = "",
+      bodyContents = ""
+    }) {
+      return concat([
+        concat([
+          group(
+            concat([
+              declaration,
+              !["class", "interface", "trait"].includes(node.kind) ? "(" : ""
+            ])
+          ),
+          group(
+            concat([
+              !["class", "interface", "trait"].includes(node.kind)
+                ? concat([
+                    indent(
+                      concat([
+                        softline,
+                        join(concat([",", line]), argumentsList)
+                      ])
+                    ),
+                    softline,
+                    ")",
+                    returnTypeContents ? concat([": ", returnTypeContents]) : ""
+                  ])
+                : ""
+            ])
+          )
+        ]),
+        // @TODO: need to figure out how to not break between ") {" if the larger
+        // group has already broken
+        bodyContents
+          ? concat([
+              options.openingBraceNewLine ? hardline : " ",
+              "{",
+              indent(concat([hardline, bodyContents])),
+              hardline,
+              "}"
+            ])
+          : ""
+      ]);
+    }
+
     switch (node.kind) {
       case "class":
-        return concat([
-          group(
-            concat([
-              node.isAbstract ? "abstract " : "",
-              node.isFinal ? "final " : "",
-              "class ",
-              node.name,
-              indent(
-                concat([
-                  node.extends
-                    ? concat([line, "extends ", path.call(print, "extends")])
-                    : "",
-                  node.implements
-                    ? concat([
-                        line,
-                        "implements ",
-                        join(", ", path.map(print, "implements"))
-                      ])
-                    : ""
-                ])
-              )
-            ])
-          ),
-          hardline,
-          "{",
-          indent(
-            concat([
-              hardline,
-              path.call(bodyPath => {
-                return printLines(bodyPath, options, print);
-              }, "body")
-            ])
-          ),
-          hardline,
-          "}"
-        ]);
-      case "function":
-        return concat([
-          group(concat(["function ", node.byref ? "&" : "", node.name, "("])),
-          group(
-            concat([
-              indent(
-                join(
-                  ", ",
-                  path.map(
-                    argument => concat([softline, print(argument)]),
-                    "arguments"
-                  )
-                )
-              ),
-              softline
-            ])
-          ),
-          ")",
-          node.type ? concat([": ", path.call(print, "type")]) : "",
-          " {",
-          indent(concat([hardline, path.call(print, "body")])),
-          concat([hardline, "}"])
-        ]);
-      case "method":
-        return concat([
-          group(
-            concat([
-              node.isFinal ? "final " : "",
-              node.isAbstract ? "abstract " : "",
-              node.visibility,
-              node.isStatic ? " static" : "",
-              " function ",
-              node.byref ? "&" : "",
-              node.name,
-              "("
-            ])
-          ),
-          group(
-            concat([
-              indent(
-                join(
-                  ", ",
-                  path.map(
-                    argument => concat([softline, print(argument)]),
-                    "arguments"
-                  )
-                )
-              ),
-              softline
-            ])
-          ),
-          ")",
-          node.type ? concat([": ", path.call(print, "type")]) : "",
-          node.body
-            ? concat([
-                hardline,
-                "{",
-                indent(concat([hardline, path.call(print, "body")])),
-                hardline,
-                "}"
+        return printDeclarationBlock({
+          declaration: concat([
+            node.isAbstract ? "abstract " : "",
+            node.isFinal ? "final " : "",
+            "class ",
+            node.name,
+            indent(
+              concat([
+                node.extends
+                  ? concat([line, "extends ", path.call(print, "extends")])
+                  : "",
+                node.implements
+                  ? concat([
+                      line,
+                      "implements ",
+                      join(", ", path.map(print, "implements"))
+                    ])
+                  : ""
               ])
-            : ""
-        ]);
+            )
+          ]),
+          bodyContents: path.call(bodyPath => {
+            return printLines(bodyPath, options, print);
+          }, "body")
+        });
+      case "function":
+        return printDeclarationBlock({
+          declaration: concat(["function ", node.byref ? "&" : "", node.name]),
+          argumentsList: path.map(print, "arguments"),
+          returnTypeContents: node.type ? path.call(print, "type") : "",
+          bodyContents: node.body ? path.call(print, "body") : ""
+        });
+      case "method":
+        return printDeclarationBlock({
+          declaration: concat([
+            node.isFinal ? "final " : "",
+            node.isAbstract ? "abstract " : "",
+            node.visibility,
+            node.isStatic ? " static" : "",
+            " function ",
+            node.byref ? "&" : "",
+            node.name
+          ]),
+          argumentsList: path.map(print, "arguments"),
+          returnTypeContents: node.type ? path.call(print, "type") : "",
+          bodyContents: node.body ? path.call(print, "body") : ""
+        });
       case "parameter": {
         const name = concat([
           node.type ? path.call(print, "type") + " " : "",
@@ -582,64 +582,46 @@ function printStatement(path, options, print) {
           ])
         );
       case "interface":
-        return concat([
-          group(
-            concat([
-              concat(["interface ", node.name]),
-              node.extends
-                ? indent(
-                    concat([
-                      line,
-                      "extends ",
-                      join(", ", path.map(print, "extends"))
-                    ])
-                  )
-                : ""
-            ])
-          ),
-          hardline,
-          "{",
-          indent(
-            concat(
-              path.map(element => {
-                return concat([hardline, print(element), ";"]);
-              }, "body")
-            )
-          ),
-          hardline,
-          "}"
-        ]);
+        return printDeclarationBlock({
+          declaration: concat([
+            concat(["interface ", node.name]),
+            node.extends
+              ? indent(
+                  concat([
+                    line,
+                    "extends ",
+                    join(", ", path.map(print, "extends"))
+                  ])
+                )
+              : ""
+          ]),
+          bodyContents: path.call(
+            bodyPath => printLines(bodyPath, options, print),
+            "body"
+          )
+        });
       case "trait":
-        return concat([
-          group(
-            concat([
-              concat(["trait ", node.name]),
-              node.extends
-                ? indent(
-                    concat([line, "extends ", path.call(print, "extends")])
-                  )
-                : "",
-              node.implements
-                ? indent(
-                    concat([
-                      line,
-                      "implements ",
-                      join(", ", path.map(print, "implements"))
-                    ])
-                  )
-                : ""
-            ])
-          ),
-          hardline,
-          "{",
-          indent(
-            concat(
-              path.map(element => concat([hardline, print(element)]), "body")
-            )
-          ),
-          hardline,
-          "}"
-        ]);
+        return printDeclarationBlock({
+          declaration: concat([
+            concat(["trait ", node.name]),
+            node.extends
+              ? indent(concat([line, "extends ", path.call(print, "extends")]))
+              : "",
+            node.implements
+              ? indent(
+                  concat([
+                    line,
+                    "implements ",
+                    join(", ", path.map(print, "implements"))
+                  ])
+                )
+              : ""
+          ]),
+          bodyContents: path.call(
+            bodyPath => printLines(bodyPath, options, print),
+            "body"
+          )
+        });
       case "constant":
       case "classconstant":
         return concat(["const ", node.name, " = ", path.call(print, "value")]);
