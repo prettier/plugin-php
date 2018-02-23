@@ -1,2 +1,3 @@
 run_spec(__dirname, ["php"]);
-run_spec(__dirname, ["php"], { openingBraceNewLine: false });
+// see https://github.com/prettier/plugin-php/issues/107
+// run_spec(__dirname, ["php"], { openingBraceNewLine: false });
