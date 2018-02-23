@@ -491,7 +491,9 @@ function printStatement(path, options, print) {
         // group has already broken
         bodyContents
           ? concat([
-              options.openingBraceNewLine ? hardline : " ",
+              hardline,
+              // see https://github.com/prettier/plugin-php/issues/107
+              // options.openingBraceNewLine ? hardline : " ",
               "{",
               indent(concat([hardline, bodyContents])),
               hardline,

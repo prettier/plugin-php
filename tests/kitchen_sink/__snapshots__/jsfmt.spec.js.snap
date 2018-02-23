@@ -114,7 +114,8 @@ do {
 } while ($really_really_really_really_really_really_really_really_long_array >= 10);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-function hello($input) {
+function hello($input)
+{
   return "hello" + $input;
 }
 
@@ -137,7 +138,8 @@ function really_long_function(
   $test2 = 1,
   $long_parameter_name,
   $even_longer_longer_longer_longer_longer_parameter_name
-) {
+)
+{
   return $test2;
 }
 
