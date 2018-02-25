@@ -62,7 +62,7 @@ npm install --save-dev prettier/prettier prettier/plugin-php
 ## Use
 
 ```bash
-prettier --parser=php --write "**/*.php"
+prettier --write "**/*.php"
 ```
 
 ## Maintainers
