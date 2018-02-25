@@ -87,3 +87,26 @@ function test(object $obj): object
 {
     return new SplQueue();
 }
+
+$db->Execute($sql, [
+  $foo,
+  $bar,
+  $foobar,
+  $somewhatLongParameter,
+  $evenLongerParameter
+]);
+
+$app->get('/hello/{name}', function ($name) use ($app) {
+    return 'Hello ' . $app->escape($name);
+});
+
+$this->something->method($argument, $this->more->stuff(
+  $this->even->more->things->complicatedMethod()
+));
+
+$this->something->method(
+  $argument,
+  $otherArgument,
+  array("foo" => "bar", "baz" => "buzz"),
+  $this->even->more->things->complicatedMethod()
+);
