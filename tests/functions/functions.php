@@ -71,3 +71,14 @@ function testReturn(?string $name): ?string
 {
     return $name;
 }
+
+function swap(&$left, &$right): void
+{
+    if ($left === $right) {
+        return;
+    }
+
+    $tmp = $left;
+    $left = $right;
+    $right = $tmp;
+}
