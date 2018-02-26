@@ -10,12 +10,24 @@ const join = docBuilders.join;
 const line = docBuilders.line;
 const group = docBuilders.group;
 const indent = docBuilders.indent;
+const ifBreak = docBuilders.ifBreak;
 const hardline = docBuilders.hardline;
 const softline = docBuilders.softline;
 
 // polyfill for node 4
 function includes(array, val) {
   return array.indexOf(val) !== -1;
+}
+
+function shouldPrintComma(options) {
+  switch (options.trailingComma) {
+    case "all":
+      return true;
+    // fallthrough
+    case "none":
+    default:
+      return false;
+  }
 }
 
 function genericPrint(path, options, print) {
@@ -301,6 +313,7 @@ function printExpression(path, options, print) {
               join(concat([",", line]), path.map(print, "items"))
             ])
           ),
+          ifBreak(shouldPrintComma(options) ? "," : ""),
           softline,
           node.shortForm ? "]" : ")"
         ])
