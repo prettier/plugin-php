@@ -1153,6 +1153,7 @@ function printNode(path, options, print) {
       return "return";
     case "doc": {
       let canAddEmptyLine = false;
+      // @TODO: need refactor after resolve https://github.com/glayzzle/php-parser/issues/114
       return node.isDoc
         ? concat([
             "/**",
@@ -1177,7 +1178,23 @@ function printNode(path, options, print) {
             node.lines.length > 1 ? hardline : "",
             " */"
           ])
-        : join(hardline, node.lines.map(comment => concat(["// ", comment])));
+        : join(
+            hardline,
+            node.lines.map(comment =>
+              concat([
+                comment.split(/\n/).length > 1
+                  ? concat(["/*", comment[0] === "*" ? "" : " "])
+                  : "// ",
+                comment,
+                comment.split(/\n/).length > 1
+                  ? concat([
+                      comment[comment.length - 1] === "*" ? "" : " ",
+                      "*/"
+                    ])
+                  : ""
+              ])
+            )
+          );
     }
     case "entry":
       return concat([

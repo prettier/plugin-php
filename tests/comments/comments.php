@@ -42,3 +42,20 @@ class Foo
         $this->title = $title;
     }
 }
+
+/*********************
+ * Some long comment *
+ *********************/
+
+// This is a one-line c++ style comment
+
+/* This is a multi line comment
+   yet another line of comment */
+
+/*
+This is a multiple-lines comment block
+that spans over multiple
+lines
+*/
+
+# This is a one-line shell-style comment
