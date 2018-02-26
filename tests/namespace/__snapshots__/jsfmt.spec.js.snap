@@ -44,3 +44,14 @@ namespace Foo;
 namespace Foo;
 
 `;
+
+exports[`without-name.php 1`] = `
+<?php
+namespace {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace  {
+
+}
+
+`;
