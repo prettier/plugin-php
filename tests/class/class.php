@@ -113,6 +113,11 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
       $left = $right;
       $right = $tmp;
   }
+
+  public function test(object $obj): object
+  {
+    return new SplQueue();
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));

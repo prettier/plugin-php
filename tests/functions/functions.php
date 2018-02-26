@@ -82,3 +82,8 @@ function swap(&$left, &$right): void
     $left = $right;
     $right = $tmp;
 }
+
+function test(object $obj): object
+{
+    return new SplQueue();
+}
