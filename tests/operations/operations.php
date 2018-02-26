@@ -56,3 +56,5 @@ $output = `ls -al`;
 $a = (bool) "test";
 
 $b = &$a;
+
+$a ?? $b;
