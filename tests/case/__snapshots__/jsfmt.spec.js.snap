@@ -1,0 +1,488 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`case.php 1`] = `
+<?php
+DECLARE(ticks=1);
+
+NAMESPACE Vendor\\Package;
+
+USE FooClass;
+USE BarClass AS Bar;
+
+INTERFACE iTemplate {}
+
+ABSTRACT CLASS AbstractClass
+{
+    ABSTRACT PROTECTED FUNCTION getValue();
+    ABSTRACT PROTECTED FUNCTION prefixValue($prefix);
+
+    PUBLIC function printOut() {
+        PRINT $this->getValue();
+    }
+}
+
+TRAIT ezcReflectionReturnInfo {
+    FUNCTION getReturnType() { /* 1 */ }
+    FUNCTION getReturnDescription() { /* 2 */ }
+}
+
+FINAL CLASS MyClass EXTENDS Bar IMPLEMENTS iTemplate
+{
+    USE A, B {
+        B::smallTalk INSTEADOF A;
+        A::bigTalk INSTEADOF B;
+        B::bigTalk AS talk;
+    }
+
+    CONST CONSTANT = 'CONSTANT';
+
+    PUBLIC $public = 'Public';
+
+    PROTECTED $protected = 'Protected';
+
+    PRIVATE $private = 'Private';
+
+    VAR $foo = 'Bar';
+
+    FUNCTION printHello()
+    {
+        ECHO $this->public;
+
+        $myclass = NEW MyClass();
+
+        $true = TRUE;
+        $false = FALSE;
+        $null = NULL;
+        $other_null = nUlL;
+        $null_string = "NULL";
+
+        IF ($expr1) {
+            // IF body
+        } ELSEIF ($expr2) {
+            // ELSEIF body
+        } ELSE IF ($expr3) {
+            // ELSE IF body
+        } ELSE {
+            // Else body
+        }
+
+        SWITCH ($expr) {
+            CASE 0:
+                ECHO 'First case, with a break';
+                BREAK;
+            CASE 1:
+            CASE 4:
+                ECHO 'Third case, return instead of break';
+                RETURN;
+            DEFAULT:
+                ECHO 'Default case';
+                BREAK;
+        }
+
+        WHILE (LIST($key, $value) = foo($arr)) {
+            if (!($key % 2)) {
+                CONTINUE;
+            }
+
+            do_something_odd($value);
+        }
+
+        DO {
+            // Structure body
+        } WHILE ($expr);
+
+        FOR ($i = 0; $i < 10; $i++) {
+            // For body
+        }
+
+        FOREACH ($iterable AS $key => $value) {
+            // Foreach body
+        }
+
+        TRY {
+            // Try body
+        } CATCH (FirstExceptionType $e) {
+            // Catch body
+        } FINALLY {
+            restore_error_handler();
+        }
+
+        $noArgs_longVars = FUNCTION () USE (
+            $longVar1,
+            $longerVar2,
+            $muchLongerVar3
+        ) {
+            // Body
+        };
+
+        $obj2 = CLONE $obj;
+
+        IF (EMPTY($var)) {
+            ECHO '$var или 0, или пусто, или вообще не определена';
+        }
+
+        IF (ISSET($var)) {
+            ECHO '$var определена, даже если она пустая';
+        }
+
+        __line__;
+        __file__;
+        __dir__;
+        __function__;
+        __class__;
+        __trait__;
+        __method__;
+        __namespace__;
+
+        $c = (FALSE AND foo());
+        $d = (TRUE OR foo());
+        $c = (FALSE XOR foo());
+
+        $array = ARRAY(1, 1, 1);
+
+        IF ($step <= 0) {
+            THROW NEW LogicException('Logic');
+        }
+
+        FOR ($i = $start; $i <= $limit; $i += $step) {
+            YIELD $i;
+        }
+
+        GLOBAL $foo;
+        UNSET($foo);
+
+        var_dump($a INSTANCEOF MyClass);
+
+        DIE();
+        EXIT();
+        EVAL('test');
+    }
+
+    PUBLIC FUNCTION MyPublic()
+    {
+        ECHO self::CONSTANT;
+    }
+
+    PROTECTED FUNCTION MyProtected()
+    {
+        REQUIRE('somefile.php');
+        REQUIRE_ONCE('somefile.php');
+        INCLUDE('somefile.php');
+        INCLUDE_ONCE('somefile.php');
+    }
+
+    PRIVATE FUNCTION MyPrivate()
+    {
+        GOTO a;
+        ECHO 'Foo';
+
+        a:
+        ECHO 'Bar';
+    }
+
+    FINAL PUBLIC STATIC FUNCTION bar(CALLABLE $callback, $coffeeMaker = NULL)
+    {
+        IF ($a == 5):
+            ECHO "5";
+        ELSEIF ($a == 6):
+            ECHO "6";
+        ELSE:
+            ECHO "other";
+        ENDIF;
+
+        $i = 1;
+
+        WHILE ($i <= 10):
+            ECHO $i;
+            $i++;
+        ENDWHILE;
+
+        FOR (;;):
+            if ($i > 10) {
+                BREAK;
+            }
+
+            ECHO $i;
+            $i++;
+        ENDFOR;
+
+        FOREACH ($array AS $element):
+            echo $element;
+        ENDFOREACH;
+
+        SWITCH ($var):
+            CASE 1:
+            CASE 2:
+                ECHO "Goodbye!";
+                BREAK;
+            DEFAULT:
+                ECHO "I only understand 1 and 2.";
+        ENDSWITCH;
+    }
+
+    PUBLIC FUNCTION method(
+        INT $param1,
+        FLOAT $param2,
+        BOOL $param3,
+        STRING $param4,
+        ITERABLE $param5,
+        OBJECT $param6,
+        ClassA $param7,
+        SELF $param8,
+        Name\\Space\\ClassA $param8
+    ): VOID
+    {
+        // Nothing
+    }
+}
+
+__HALT_COMPILER();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+declare(ticks=1);
+namespace Vendor\\Package;
+
+use FooClass;
+use BarClass as Bar;
+
+interface iTemplate
+{
+
+}
+
+abstract class AbstractClass
+{
+  abstract protected function getValue();
+  abstract protected function prefixValue($prefix);
+
+  public function printOut()
+  {
+    print $this->getValue();
+  }
+}
+
+trait ezcReflectionReturnInfo
+{
+  public function getReturnType()
+  {
+    // 1
+  }
+  public function getReturnDescription()
+  {
+    // 2
+  }
+}
+
+final class MyClass extends Bar implements iTemplate
+{
+  use A, B {
+    B::smallTalk insteadof A;
+    A::bigTalk insteadof B;
+    B::bigTalk as talk;
+  }
+
+  public const CONSTANT = 'CONSTANT';
+
+  public $public = 'Public';
+
+  protected $protected = 'Protected';
+
+  private $private = 'Private';
+
+  public $foo = 'Bar';
+
+  public function printHello()
+  {
+    echo $this->public;
+
+    $myclass = new MyClass();
+
+    $true = true;
+    $false = false;
+    $null = null;
+    $other_null = null;
+    $null_string = "NULL";
+
+    if ($expr1) {
+      // IF body
+    } elseif ($expr2) {
+      // ELSEIF body
+    } elseif ($expr3) {
+      // ELSE IF body
+    } else {
+      // Else body
+    }
+
+    switch ($expr) {
+      case 0:
+        echo 'First case, with a break';
+        break;
+      case 1:
+      case 4:
+        echo 'Third case, return instead of break';
+        return;
+      default:
+        echo 'Default case';
+        break;
+    }
+
+    while (list($key, $value) = foo($arr)) {
+      if (!($key % 2)) {
+        continue;
+      }
+
+      do_something_odd($value);
+    }
+
+    do {
+      // Structure body
+    } while ($expr);
+
+    for ($i = 0; $i < 10; $i++) {
+      // For body
+    }
+
+    foreach ($iterable as $key => $value) {
+      // Foreach body
+    }
+
+    try {
+      // Try body
+    } catch (FirstExceptionType $e) {
+      // Catch body
+    } finally {
+      restore_error_handler();
+    }
+
+    $noArgs_longVars = function () use (
+      $longVar1,
+      $longerVar2,
+      $muchLongerVar3
+    ) {
+      // Body
+    };
+
+    $obj2 = clone $obj;
+
+    if (empty($var)) {
+      echo '$var или 0, или пусто, или вообще не определена';
+    }
+
+    if (isset($var)) {
+      echo '$var определена, даже если она пустая';
+    }
+
+    __LINE__;
+    __FILE__;
+    __DIR__;
+    __FUNCTION__;
+    __CLASS__;
+    __TRAIT__;
+    __METHOD__;
+    __NAMESPACE__;
+
+    $c = (false and foo());
+    $d = (true or foo());
+    $c = (false xor foo());
+
+    $array = array(1, 1, 1);
+
+    if ($step <= 0) {
+      throw new LogicException('Logic');
+    }
+
+    for ($i = $start; $i <= $limit; $i += $step) {
+      yield $i;
+    }
+
+    global $foo;
+    unset($foo);
+
+    var_dump($a instanceof MyClass);
+
+    exit();
+    exit();
+    eval('test');
+  }
+
+  public function MyPublic()
+  {
+    echo self::CONSTANT;
+  }
+
+  protected function MyProtected()
+  {
+    require ('somefile.php');
+    require_once ('somefile.php');
+    include ('somefile.php');
+    include_once ('somefile.php');
+  }
+
+  private function MyPrivate()
+  {
+    goto a;
+    echo 'Foo';
+
+    a:
+    echo 'Bar';
+  }
+
+  final public static function bar(callable $callback, $coffeeMaker = null)
+  {
+    if ($a == 5):
+      echo "5";
+    elseif ($a == 6):
+      echo "6";
+    else:
+      echo "other";
+    endif;
+
+    $i = 1;
+
+    while ($i <= 10):
+      echo $i;
+      $i++;
+    endwhile;
+
+    for (; ; ):
+      if ($i > 10) {
+        break;
+      }
+
+      echo $i;
+      $i++;
+    endfor;
+
+    foreach ($array as $element):
+      echo $element;
+    endforeach;
+
+    switch ($var):
+      case 1:
+      case 2:
+        echo "Goodbye!";
+        break;
+      default:
+        echo "I only understand 1 and 2.";
+    endswitch;
+  }
+
+  public function method(
+    int $param1,
+    float $param2,
+    bool $param3,
+    string $param4,
+    iterable $param5,
+    object $param6,
+    ClassA $param7,
+    self $param8,
+    Name\\Space\\ClassA $param8
+  ): void
+  {
+    // Nothing
+  }
+}
+
+__halt_compiler();
+
+`;
