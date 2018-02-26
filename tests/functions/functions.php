@@ -66,3 +66,8 @@ function gen(): iterable {
     yield 2;
     yield 3;
 }
+
+function testReturn(?string $name): ?string
+{
+    return $name;
+}

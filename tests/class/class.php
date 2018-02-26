@@ -97,6 +97,11 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
 
   public function method3()
     { return 'hi'; }
+
+  public function testReturn(?string $name): ?string
+  {
+        return $name;
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));

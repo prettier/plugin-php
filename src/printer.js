@@ -534,7 +534,9 @@ function printStatement(path, options, print) {
         return printDeclarationBlock({
           declaration: concat(["function ", node.byref ? "&" : "", node.name]),
           argumentsList: path.map(print, "arguments"),
-          returnTypeContents: node.type ? path.call(print, "type") : "",
+          returnTypeContents: node.type
+            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
       case "method":
@@ -549,11 +551,14 @@ function printStatement(path, options, print) {
             node.name
           ]),
           argumentsList: path.map(print, "arguments"),
-          returnTypeContents: node.type ? path.call(print, "type") : "",
+          returnTypeContents: node.type
+            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
       case "parameter": {
         const name = concat([
+          node.nullable ? "?" : "",
           node.type ? path.call(print, "type") + " " : "",
           node.variadic ? "..." : "",
           node.byref ? "&" : "",
