@@ -577,9 +577,7 @@ function printStatement(path, options, print) {
             node.isStatic ? " static " : "",
             " $",
             node.name,
-            node.value
-              ? indent(concat([line, "= ", path.call(print, "value")]))
-              : "",
+            node.value ? concat([" = ", path.call(print, "value")]) : "",
             ";"
           ])
         );

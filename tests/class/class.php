@@ -20,6 +20,8 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   public $test;
   public $other = 1;
   public static $staticTest = ['hi'];
+  protected $fillable = ['title', 'requester_id', 'type', 'summary', 'proof'];
+  protected $fillable2 = ['title', 'description', 'requester_id', 'type', 'summary', 'proof'];
 
   /**
    * test constructor
