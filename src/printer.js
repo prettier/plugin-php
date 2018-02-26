@@ -389,10 +389,10 @@ function printStatement(path, options, print) {
         const printed = path.call(childrenPath => {
           return printLines(childrenPath, options, print);
         }, "children");
-
+        const hasName = node.name && typeof node.name === "string";
         return concat([
           "namespace ",
-          node.name,
+          hasName ? node.name : "",
           node.withBrackets ? concat([" ", "{"]) : ";",
           // don't know why we need 2 line breaks here, but 1 doesn't work
           node.children.length > 0 && !node.withBrackets
