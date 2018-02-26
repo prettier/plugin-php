@@ -509,8 +509,7 @@ function printStatement(path, options, print) {
           declaration: concat([
             node.isAbstract ? "abstract " : "",
             node.isFinal ? "final " : "",
-            "class ",
-            node.name,
+            concat(["class", node.name ? concat([" ", node.name]) : ""]),
             indent(
               concat([
                 node.extends
@@ -998,25 +997,32 @@ function printStatement(path, options, print) {
       ]);
     case "goto":
       return concat(["goto ", node.label]);
-    case "new":
+    case "new": {
+      const isAnonymousClassNode =
+        node.what && node.what.kind === "class" && node.what.isAnonymous;
       return group(
         concat([
           "new ",
           path.call(print, "what"),
-          "(",
-          indent(
-            join(
-              ", ",
-              path.map(
-                argument => concat([softline, print(argument)]),
-                "arguments"
-              )
-            )
-          ),
-          softline,
-          ")"
+          isAnonymousClassNode
+            ? ""
+            : concat([
+                "(",
+                indent(
+                  join(
+                    ", ",
+                    path.map(
+                      argument => concat([softline, print(argument)]),
+                      "arguments"
+                    )
+                  )
+                ),
+                softline,
+                ")"
+              ])
         ])
       );
+    }
     case "try":
       return concat([
         "try {",
