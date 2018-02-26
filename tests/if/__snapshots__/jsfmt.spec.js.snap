@@ -39,35 +39,35 @@ return $test ?: doSomething();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 if (true) {
-  return 1;
+    return 1;
 } elseif (false) {
-  return 2;
+    return 2;
 } elseif (null) {
-  return 3;
+    return 3;
 } else {
-  return;
+    return;
 }
 
 if (true):
-  return 1;
+    return 1;
 elseif (false):
-  return 2;
+    return 2;
 else:
-  return;
+    return;
 endif;
 
 if (true) {
-  return 1;
+    return 1;
 } elseif (false) {
-  return 2;
+    return 2;
 } elseif (null) {
-  return 3;
+    return 3;
 }
 
 return true ? 1 : 2;
 return ($testReallyReallyLong >= 1)
-  ? $someOtherReallyReallyLongVariable
-  : $thisOtherVariable;
+    ? $someOtherReallyReallyLongVariable
+    : $thisOtherVariable;
 return true ?: 2;
 
 $test ? doSomething() : doSomethingElse();

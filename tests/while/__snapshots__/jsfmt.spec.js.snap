@@ -18,15 +18,15 @@ while ( $i <= 5 ) {
 <?php
 $i = 1;
 while ($i <= 5) {
-  $i++;
+    $i++;
 }
 
 while ($i <= 5):
-  $i++;
+    $i++;
 endwhile;
 
 while ($i <= 5) {
-  $i++;
+    $i++;
 }
 
 `;
