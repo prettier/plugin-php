@@ -102,6 +102,17 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   {
         return $name;
   }
+
+  public function swap(&$left, &$right): void
+  {
+      if ($left === $right) {
+          return;
+      }
+
+      $tmp = $left;
+      $left = $right;
+      $right = $tmp;
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
