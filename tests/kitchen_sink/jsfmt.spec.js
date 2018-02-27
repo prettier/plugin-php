@@ -1,2 +1,2 @@
 run_spec(__dirname, ["php"]);
-run_spec(__dirname, ["php"], { openingBraceNewLine: false });
+// run_spec(__dirname, ["php"], { openingBraceNewLine: false });
