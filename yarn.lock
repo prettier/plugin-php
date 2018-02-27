@@ -2667,9 +2667,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@prettier/prettier#c1107a86dd088c5f12bf7cd2f23a4b7634708de3:
-  version "1.11.0-rc.1"
-  resolved "https://codeload.github.com/prettier/prettier/tar.gz/c1107a86dd088c5f12bf7cd2f23a4b7634708de3"
+prettier@prettier/prettier#d05a29da05b2084790491eaef85917ce584e4fbd:
+  version "1.11.0"
+  resolved "https://codeload.github.com/prettier/prettier/tar.gz/d05a29da05b2084790491eaef85917ce584e4fbd"
   dependencies:
     "@babel/code-frame" "7.0.0-beta.35"
     "@glimmer/syntax" "0.30.3"

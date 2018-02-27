@@ -32,49 +32,49 @@ class ShortImplementingClass {
 <?php
 trait A
 {
-  public function testFunction()
-  {
-    // 1
-  }
-  public function otherTestFunction()
-  {
-    // 2
-  }
+    public function testFunction()
+    {
+        // 1
+    }
+    public function otherTestFunction()
+    {
+        // 2
+    }
 }
 
 trait B extends otherTrait
 {
-  public function someOtherTestFunction()
-  {
-    // 3
-  }
+    public function someOtherTestFunction()
+    {
+        // 3
+    }
 }
 
 trait C extends A implements B
 {
-  public function someOtherTestFunction()
-  {
-    // 4
-  }
-  public function testFunction()
-  {
-    // 5
-  }
+    public function someOtherTestFunction()
+    {
+        // 4
+    }
+    public function testFunction()
+    {
+        // 5
+    }
 }
 
 class ImplementingClass
 {
-  use testTrait, otherTrait;
-  use testTrait, implementingTrait {
-    A::testFunction insteadof C;
-    B::someOtherTestFunction as aliasedFunctionName;
-    C::testFunction as private testVisibility;
-  }
+    use testTrait, otherTrait;
+    use testTrait, implementingTrait {
+        A::testFunction insteadof C;
+        B::someOtherTestFunction as aliasedFunctionName;
+        C::testFunction as private testVisibility;
+    }
 }
 
 class ShortImplementingClass
 {
-  use testTrait { A::testFunction insteadof C; }
+    use testTrait { A::testFunction insteadof C; }
 }
 
 `;

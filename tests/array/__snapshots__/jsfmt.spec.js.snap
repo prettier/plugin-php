@@ -368,14 +368,14 @@ $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 
 $short_keyed_test = array(
-  'reallyreallyreallyreallylongkey' => 1248,
-  'otherkey' => 234,
-  'one more' => $hi
+    'reallyreallyreallyreallylongkey' => 1248,
+    'otherkey' => 234,
+    'one more' => $hi
 );
 $short_keyed_test = [
-  'reallyreallyreallyreallylongkey' => 1248,
-  'otherkey' => 234,
-  'one more' => $hi
+    'reallyreallyreallyreallylongkey' => 1248,
+    'otherkey' => 234,
+    'one more' => $hi
 ];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
@@ -386,9 +386,9 @@ $foo = $bar[1][2][3][4][5][6];
 $array = array(1 => "a", "1" => "b", 1.5 => "c", true => "d");
 $array = array("a", "b", 6 => "c", "d");
 $array = array(
-  "foo" => "bar",
-  42 => 24,
-  "multi" => array("dimensional" => array("array" => "foo"))
+    "foo" => "bar",
+    42 => 24,
+    "multi" => array("dimensional" => array("array" => "foo"))
 );
 $secondElement = getArray()[1];
 $arr[] = 56;
