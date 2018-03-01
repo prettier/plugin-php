@@ -14,6 +14,8 @@ const ifBreak = docBuilders.ifBreak;
 const hardline = docBuilders.hardline;
 const softline = docBuilders.softline;
 
+const makeString = sharedUtil.makeString;
+
 // polyfill for node 4
 function includes(array, val) {
   return array.indexOf(val) !== -1;
@@ -241,11 +243,18 @@ function printExpression(path, options, print) {
       case "boolean":
         return node.value ? "true" : "false";
       case "string": {
+        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
+        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/123
+        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/124
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
-        return quote + node.value + quote;
+        return makeString(
+          node.isDoubleQuote ? util.stringEscape(node.value) : node.value,
+          quote,
+          false
+        );
       }
       case "number":
         return util.printNumber(node.value);
@@ -296,7 +305,7 @@ function printExpression(path, options, print) {
         node.byref ? "&" : "",
         "$",
         node.curly ? "{" : "",
-        node.name,
+        path.call(print, "name"),
         node.curly ? "}" : ""
       ]);
     case "constref":
@@ -831,13 +840,17 @@ function printStatement(path, options, print) {
           path.call(print, "what"),
           concat([
             "(",
-            indent(
-              concat([
-                softline,
-                join(concat([",", line]), path.map(print, "arguments"))
-              ])
-            ),
-            softline,
+            node.arguments.length > 0
+              ? concat([
+                  indent(
+                    concat([
+                      softline,
+                      join(concat([",", line]), path.map(print, "arguments"))
+                    ])
+                  ),
+                  softline
+                ])
+              : "",
             ")"
           ])
         ])
