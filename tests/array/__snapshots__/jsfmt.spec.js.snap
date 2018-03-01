@@ -330,6 +330,7 @@ $secondElement = getArray()[1];
 unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
+$test = $array[foo];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = array(1, 2, 3, 4, "test");
@@ -410,5 +411,6 @@ $secondElement = getArray()[1];
 unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
+$test = $array[foo];
 
 `;
