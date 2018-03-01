@@ -17,6 +17,30 @@ function printNumber(rawNumber) {
   );
 }
 
+function stringEscape(str) {
+  return str.replace(/[\n\r\t\v\f\u001b\\]/g, (character, index) => {
+    switch (character) {
+      case "\n":
+        return "\\n";
+      case "\r":
+        return "\\r";
+      case "\t":
+        return "\\t";
+      case "\v":
+        return "\\v";
+      case "\f":
+        return "\\f";
+      case "\u001b":
+        return "\\e";
+      case "\\": {
+        const nextCharacter = str[index + 1];
+        return nextCharacter && !/[ux0-7]/.test(nextCharacter) ? "\\\\" : "\\";
+      }
+    }
+  });
+}
+
 module.exports = {
-  printNumber
+  printNumber,
+  stringEscape
 };
