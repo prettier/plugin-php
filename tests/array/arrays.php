@@ -327,3 +327,4 @@ $secondElement = getArray()[1];
 unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
+$test = $array[foo];
