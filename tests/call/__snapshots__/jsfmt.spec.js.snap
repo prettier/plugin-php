@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`call.php 1`] = `
+<?php
+func();
+func($a, $b, $c);
+func(...$a);
+func($a, ...$b);
+$foo->func();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+func();
+func($a, $b, $c);
+func(...$a);
+func($a, ...$b);
+$foo->func();
+
+`;
