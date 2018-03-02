@@ -93,7 +93,8 @@ $db->Execute($sql, [
   $bar,
   $foobar,
   $somewhatLongParameter,
-  $evenLongerParameter
+  $somewhatLongParameterX,
+  $somewhatLongParameterXYZ
 ]);
 
 $app->get('/hello/{name}', function ($name) use ($app) {
@@ -101,12 +102,45 @@ $app->get('/hello/{name}', function ($name) use ($app) {
 });
 
 $this->something->method($argument, $this->more->stuff(
-  $this->even->more->things->complicatedMethod()
+    $this->even->more->things->complicatedMethod()
 ));
 
 $this->something->method(
-  $argument,
-  $otherArgument,
-  array("foo" => "bar", "baz" => "buzz"),
-  $this->even->more->things->complicatedMethod()
+    $this->more->stuff($this->even->more->things->complicatedMethod()),
+    $argument
 );
+
+$this->something->method(
+    $argument,
+    $otherArgument,
+    array("foo" => "bar", "baz" => "buzz"),
+    $this->even->more->things->complicatedMethod()
+);
+
+$this->files->put(
+    $path, $this->expiration($minutes).serialize($value), true
+);
+
+tap(((int) $raw['data']) + $value, function ($newValue) use ($key, $raw) {
+    $this->put($key, $newValue, $raw['time']);
+});
+
+$expire = substr(
+    $contents = $this->files->get($path, true), 0, 10
+);
+$this->app->singleton('session', function ($app) {
+    return new SessionManager($app);
+});
+
+$this->filter([
+    new MergeValue(['First', 'Second']),
+    'Taylor',
+    'Mohamed',
+    $this->mergeWhen(false, ['Adam', 'Matt']),
+    'Jeffrey',
+    new MergeValue(['Abigail', 'Lydia']),
+]);
+
+$this->assertEquals([
+    'First', 'Second', 'Taylor', 'Mohamed', 'Jeffrey', 'Abigail', 'Lydia',
+], $results);

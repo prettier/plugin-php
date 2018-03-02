@@ -33,12 +33,12 @@ function shouldPrintComma(options) {
   }
 }
 
-function getLast(arr) {
+/* function getLast(arr) {
   if (arr.length > 0) {
     return arr[arr.length - 1];
   }
   return null;
-}
+} */
 
 function genericPrint(path, options, print) {
   const n = path.getValue();
@@ -132,26 +132,31 @@ function printLines(path, options, print) {
 
 function printArgumentsList(path, options, print) {
   const printed = path.map(print, "arguments");
+  // const somePrintedArgumentsWillBreak = printed.some(docUtils.willBreak);
   if (printed.length === 0) {
     return "()";
   }
+  const shortForm = concat(["(", join(", ", printed), ")"]);
+  /* const mediumForm = concat([
+    "(",
+    join(concat([",", line]), printed.slice(0, -1)),
+    printed.length > 1 ? ", " : "",
+    group(getLast(printed), { shouldBreak: true }),
+    ")"
+  ]); */
   const longForm = group(
     concat([
       "(",
       indent(concat([line, join(concat([",", line]), printed)])),
       line,
       ")"
-    ])
+    ]),
+    { shouldBreak: true }
   );
-  const mediumForm = concat([
-    "(",
-    join(concat([",", line]), printed.slice(0, -1)),
-    printed.length > 1 ? ", " : "",
-    group(getLast(printed), { shouldBreak: true }),
-    ")"
+  return concat([
+    //somePrintedArgumentsWillBreak ? breakParent : "",
+    conditionalGroup([shortForm, longForm])
   ]);
-  const shortForm = concat(["(", join(", ", printed), ")"]);
-  return conditionalGroup([shortForm, mediumForm, longForm]);
 }
 
 const expressionKinds = [

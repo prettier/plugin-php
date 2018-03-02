@@ -341,9 +341,10 @@ abstract class ReallyReallyReallyLongClassName
     }
 }
 
-$this->something->method($argument, $this->more->stuff($this->even->more->
-    things->
-    complicatedMethod()));
+$this->something->method(
+    $argument,
+    $this->more->stuff($this->even->more->things->complicatedMethod())
+);
 
 class A
 {
