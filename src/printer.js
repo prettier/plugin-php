@@ -693,7 +693,13 @@ function printStatement(path, options, print) {
             "else",
             node.shortForm ? ":" : " {"
           ]),
-          indent(concat([line, path.call(print, "alternate")])),
+          indent(
+            concat([
+              line,
+              path.call(print, "alternate"),
+              node.alternate.kind === "block" ? "" : ";"
+            ])
+          ),
           line,
           node.shortForm ? "endif;" : "}"
         ]);
@@ -708,7 +714,13 @@ function printStatement(path, options, print) {
             concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
-        indent(concat([line, path.call(print, "body")])),
+        indent(
+          concat([
+            line,
+            path.call(print, "body"),
+            node.body.kind === "block" ? "" : ";"
+          ])
+        ),
         line,
         handleIfAlternate(node.alternate)
       ]);
@@ -716,7 +728,13 @@ function printStatement(path, options, print) {
     case "do":
       return concat([
         "do {",
-        indent(concat([line, path.call(print, "body")])),
+        indent(
+          concat([
+            line,
+            path.call(print, "body"),
+            node.body.kind === "block" ? "" : ";"
+          ])
+        ),
         line,
         group(
           concat([
@@ -742,7 +760,13 @@ function printStatement(path, options, print) {
             concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
-        indent(concat([line, path.call(print, "body")])),
+        indent(
+          concat([
+            line,
+            path.call(print, "body"),
+            node.body.kind === "block" ? "" : ";"
+          ])
+        ),
         line,
         node.shortForm ? "endwhile;" : "}"
       ]);
@@ -779,7 +803,13 @@ function printStatement(path, options, print) {
       if (node.body) {
         parts.push(
           concat([
-            indent(concat([line, path.call(print, "body")])),
+            indent(
+              concat([
+                line,
+                path.call(print, "body"),
+                node.body.kind === "block" ? "" : ";"
+              ])
+            ),
             line,
             node.shortForm ? "endfor;" : "}"
           ])
@@ -810,7 +840,13 @@ function printStatement(path, options, print) {
             concat([")", node.shortForm ? ":" : " {"])
           ])
         ),
-        indent(concat([line, path.call(print, "body")])),
+        indent(
+          concat([
+            line,
+            path.call(print, "body"),
+            node.body.kind === "block" ? "" : ";"
+          ])
+        ),
         line,
         node.shortForm ? "endforeach;" : "}"
       ]);

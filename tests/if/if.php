@@ -17,6 +17,11 @@ else:
   return;
 endif;
 
+if (true) return 1;
+elseif (false) return 2;
+else if (null) return 3;
+else return;
+
 if ( true ) {
     return 1;
 } elseif ( false ) {

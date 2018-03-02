@@ -14,3 +14,6 @@ endforeach;
 foreach ( $test as $i ) {
     $test2 = $i;
 }
+
+foreach ($test as $i)
+    $test2 = $i;

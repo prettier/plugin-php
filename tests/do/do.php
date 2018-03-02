@@ -13,3 +13,6 @@ do {
 do {
     $i++;
 } while ( $i <= 5 );
+
+do $var++;
+while ($var < 10);

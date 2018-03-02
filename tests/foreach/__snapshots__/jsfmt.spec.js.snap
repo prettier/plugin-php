@@ -17,6 +17,9 @@ endforeach;
 foreach ( $test as $i ) {
     $test2 = $i;
 }
+
+foreach ($test as $i)
+    $test2 = $i;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 foreach ($test as $i) {
@@ -33,6 +36,10 @@ foreach (
 foreach ($test as $i):
     $test2 = $i;
 endforeach;
+
+foreach ($test as $i) {
+    $test2 = $i;
+}
 
 foreach ($test as $i) {
     $test2 = $i;

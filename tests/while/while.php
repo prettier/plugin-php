@@ -11,3 +11,6 @@ endwhile;
 while ( $i <= 5 ) {
     $i++;
 }
+
+while (true)
+    $a = 1;
