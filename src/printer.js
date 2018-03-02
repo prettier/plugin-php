@@ -33,12 +33,12 @@ function shouldPrintComma(options) {
   }
 }
 
-/* function getLast(arr) {
+function getLast(arr) {
   if (arr.length > 0) {
     return arr[arr.length - 1];
   }
   return null;
-} */
+}
 
 function genericPrint(path, options, print) {
   const n = path.getValue();
@@ -131,19 +131,29 @@ function printLines(path, options, print) {
 }
 
 function printArgumentsList(path, options, print) {
+  const args = path.getValue().arguments;
   const printed = path.map(print, "arguments");
-  // const somePrintedArgumentsWillBreak = printed.some(docUtils.willBreak);
   if (printed.length === 0) {
     return "()";
   }
+  const shouldGroupLast = getLast(args).kind === "array";
+  const shouldGroupFirst = !shouldGroupLast && args[0].kind === "array";
   const shortForm = concat(["(", join(", ", printed), ")"]);
-  /* const mediumForm = concat([
-    "(",
-    join(concat([",", line]), printed.slice(0, -1)),
-    printed.length > 1 ? ", " : "",
-    group(getLast(printed), { shouldBreak: true }),
-    ")"
-  ]); */
+  const mediumForm = shouldGroupFirst
+    ? concat([
+        "(",
+        group(printed[0], { shouldBreak: true }),
+        printed.length > 1 ? ", " : "",
+        join(concat([",", line]), printed.slice(1)),
+        ")"
+      ])
+    : concat([
+        "(",
+        join(concat([",", line]), printed.slice(0, -1)),
+        printed.length > 1 ? ", " : "",
+        group(getLast(printed), { shouldBreak: true }),
+        ")"
+      ]);
   const longForm = group(
     concat([
       "(",
@@ -153,10 +163,11 @@ function printArgumentsList(path, options, print) {
     ]),
     { shouldBreak: true }
   );
-  return concat([
-    //somePrintedArgumentsWillBreak ? breakParent : "",
-    conditionalGroup([shortForm, longForm])
-  ]);
+  const formsToConsider = [shortForm, longForm];
+  if (shouldGroupFirst || shouldGroupLast) {
+    formsToConsider.splice(1, 0, mediumForm);
+  }
+  return conditionalGroup(formsToConsider);
 }
 
 const expressionKinds = [

@@ -97,6 +97,15 @@ $db->Execute($sql, [
   $somewhatLongParameterXYZ
 ]);
 
+$db->Execute([
+  $foo,
+  $bar,
+  $foobar,
+  $somewhatLongParameter,
+  $somewhatLongParameterX,
+  $somewhatLongParameterXYZ
+], $sql);
+
 $app->get('/hello/{name}', function ($name) use ($app) {
     return 'Hello ' . $app->escape($name);
 });
@@ -144,3 +153,22 @@ $this->filter([
 $this->assertEquals([
     'First', 'Second', 'Taylor', 'Mohamed', 'Jeffrey', 'Abigail', 'Lydia',
 ], $results);
+
+$this->assertEquals(['First'], $results);
+
+$some->other->thing(array(
+  'foo' => 'bar',
+  'buzz' => $this->is->nested(array(
+    'complex' => 'stuff',
+    'foo' => 'bar',
+    'buzz' => 'bazz'
+  ))
+));
+
+$some->other->thing(array(
+  'foo' => 'bar',
+  'buzz' => $this->is->nested(array(12, 34, 45, 67, 89))
+), array(
+  11323123,
+  1231, 13231233243, 324234234
+));
