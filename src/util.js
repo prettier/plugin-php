@@ -40,7 +40,99 @@ function stringEscape(str) {
   });
 }
 
+// http://php.net/manual/en/language.operators.precedence.php
+const PRECEDENCE = {};
+[
+  ["or"],
+  ["xor"],
+  ["and"],
+  [
+    "=",
+    "+=",
+    "-=",
+    "*=",
+    "**=",
+    "/=",
+    ".=",
+    "%=",
+    "&=",
+    "|=",
+    "^=",
+    "<<=",
+    ">>="
+  ],
+  ["?:"],
+  ["??"],
+  ["||"],
+  ["&&"],
+  ["|"],
+  ["^"],
+  ["&"],
+  ["==", "===", "!=", "!==", "<>", "<=>"],
+  ["<", ">", "<=", ">="],
+  [">>", "<<"],
+  ["+", "-", "."],
+  ["*", "/", "%"],
+  ["!"],
+  ["++", "--", "~"],
+  ["**"],
+  ["["],
+  ["clone", "new"]
+].forEach((tier, i) => {
+  tier.forEach(op => {
+    PRECEDENCE[op] = i;
+  });
+});
+
+function getPrecedence(op) {
+  return PRECEDENCE[op];
+}
+
+const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
+const multiplicativeOperators = ["*", "/", "%"];
+const bitshiftOperators = [">>", "<<"];
+
+function shouldFlatten(parentOp, nodeOp) {
+  if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
+    return false;
+  }
+
+  // ** is right-associative
+  // x ** y ** z --> x ** (y ** z)
+  if (parentOp === "**") {
+    return false;
+  }
+
+  // x == y == z --> (x == y) == z
+  if (
+    equalityOperators.includes(parentOp) &&
+    equalityOperators.includes(nodeOp)
+  ) {
+    return false;
+  }
+
+  // x * y % z --> (x * y) % z
+  if (
+    (nodeOp === "%" && multiplicativeOperators.includes(parentOp)) ||
+    (parentOp === "%" && multiplicativeOperators.includes(nodeOp))
+  ) {
+    return false;
+  }
+
+  // x << y << z --> (x << y) << z
+  if (
+    bitshiftOperators.includes(parentOp) &&
+    bitshiftOperators.includes(nodeOp)
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 module.exports = {
   printNumber,
-  stringEscape
+  stringEscape,
+  getPrecedence,
+  shouldFlatten
 };

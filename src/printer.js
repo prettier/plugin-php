@@ -192,14 +192,50 @@ function printExpression(path, options, print) {
         return concat([node.type + node.type, path.call(print, "what")]);
       case "post":
         return concat([path.call(print, "what"), node.type + node.type]);
-      case "bin":
-        return concat([
-          path.call(print, "left"),
-          " ",
-          node.type,
-          " ",
-          path.call(print, "right")
-        ]);
+      case "bin": {
+        // general idea here is that we are continually checking nested
+        // binary expressions to see if we should be starting a new group
+        // or not (based on operator precedence)
+        const printBinaryExpression = (
+          path,
+          print,
+          options,
+          isNested = false
+        ) => {
+          const node = path.getValue();
+          if (node.kind !== "bin") {
+            return path.call(print);
+          }
+
+          const shouldGroupLeft = !(
+            node.left.kind === "bin" &&
+            util.shouldFlatten(node.type, node.left.type)
+          );
+          const printedLeft = path.call(
+            left => printBinaryExpression(left, print, options, true),
+            "left"
+          );
+
+          const shouldGroupRight = !(
+            node.right.kind === "bin" &&
+            util.shouldFlatten(node.type, node.right.type)
+          );
+          const printedRight = path.call(
+            right => printBinaryExpression(right, print, options, true),
+            "right"
+          );
+
+          const printedExpression = concat([
+            shouldGroupLeft ? group(printedLeft) : printedLeft,
+            " ",
+            node.type,
+            line,
+            shouldGroupRight ? group(printedRight) : printedRight
+          ]);
+          return isNested ? printedExpression : group(printedExpression);
+        };
+        return printBinaryExpression(path, print, options);
+      }
       case "parenthesis":
         return group(
           concat(["(", softline, path.call(print, "inner"), softline, ")"])
@@ -702,8 +738,7 @@ function printStatement(path, options, print) {
         group(
           concat([
             "if (",
-            softline,
-            path.call(print, "test"),
+            indent(concat([softline, path.call(print, "test")])),
             softline,
             concat([")", node.shortForm ? ":" : " {"])
           ])

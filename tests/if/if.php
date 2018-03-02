@@ -25,6 +25,34 @@ if ( true ) {
     return 3;
 }
 
+if (reallyReallyReallyLongFunction() && $this->reallyreallyreallyreallyLongMethodName()) {
+  return true;
+}
+
+if ($this || $that && $theOtherThing && $someReallyReallyReallyLongBooleanVariable) {
+  return true;
+}
+
+if ($this || $that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable) {
+  return true;
+}
+
+if ($this || $that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck) {
+  return true;
+}
+
+if ($this || $that && $theOtherThing || $someReallyReallyReallyLongBooleanVariable) {
+  return true;
+}
+
+if ($this || $that || $theOtherThing || $someReallyReallyReallyLongBooleanVariable) {
+  return true;
+}
+
+if (($this || $that) && $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck) {
+  return true;
+}
+
 return true ? 1 : 2;
 return ($testReallyReallyLong >= 1) ? $someOtherReallyReallyLongVariable : $thisOtherVariable;
 return true ?: 2;
