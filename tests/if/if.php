@@ -49,6 +49,10 @@ if ($this || $that || $theOtherThing || $someReallyReallyReallyLongBooleanVariab
   return true;
 }
 
+if (($this || $that) && $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck) {
+  return true;
+}
+
 return true ? 1 : 2;
 return ($testReallyReallyLong >= 1) ? $someOtherReallyReallyLongVariable : $thisOtherVariable;
 return true ?: 2;
