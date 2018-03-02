@@ -144,7 +144,8 @@ const expressionKinds = [
   "inline",
   "magic",
   "nowdoc",
-  "encapsed"
+  "encapsed",
+  "variadic"
 ];
 function printExpression(path, options, print) {
   const node = path.getValue();
@@ -336,6 +337,8 @@ function printExpression(path, options, print) {
       ]);
     case "yieldfrom":
       return concat(["yield from ", path.call(print, "value")]);
+    case "variadic":
+      return concat(["...", path.call(print, "what")]);
     default:
       return "Have not implemented expression kind " + node.kind + " yet.";
   }
