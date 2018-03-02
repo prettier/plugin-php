@@ -33,6 +33,14 @@ if ($this || $that && $theOtherThing && $someReallyReallyReallyLongBooleanVariab
   return true;
 }
 
+if ($this || $that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable) {
+  return true;
+}
+
+if ($this || $that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck) {
+  return true;
+}
+
 if ($this || $that && $theOtherThing || $someReallyReallyReallyLongBooleanVariable) {
   return true;
 }
