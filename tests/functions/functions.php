@@ -157,18 +157,24 @@ $this->assertEquals([
 $this->assertEquals(['First'], $results);
 
 $some->other->thing(array(
-  'foo' => 'bar',
-  'buzz' => $this->is->nested(array(
-    'complex' => 'stuff',
     'foo' => 'bar',
-    'buzz' => 'bazz'
-  ))
+    'buzz' => $this->is->nested(array(
+        'complex' => 'stuff',
+        'foo' => 'bar',
+        'buzz' => 'bazz'
+    ))
 ));
 
+return str_replace_array('#', [
+    $this->budget->name,
+    $this->requester->name,
+    'justif',
+], '# - # - #');
+
 $some->other->thing(array(
-  'foo' => 'bar',
-  'buzz' => $this->is->nested(array(12, 34, 45, 67, 89))
+    'foo' => 'bar',
+    'buzz' => $this->is->nested(array(12, 34, 45, 67, 89))
 ), array(
-  11323123,
-  1231, 13231233243, 324234234
+    11323123,
+    1231, 13231233243, 324234234
 ));

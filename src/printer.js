@@ -130,6 +130,88 @@ function printLines(path, options, print) {
   return join(hardline, printed);
 }
 
+function printMemberChain(path, options, print) {
+  // Frist step: Linearize and reorder the AST
+  //
+  //   a()->b()
+  // has the AST structure
+  //   Call (PropertyLookup b (Call (Identifier a)))
+  // and we transform it into
+  //   [Identifier a, Call, PropertyLookup, Call]
+  const printedNodes = [];
+
+  // recursive call to traverse AST
+  function rec(path) {
+    const node = path.getValue();
+    if (node.kind === "call") {
+      printedNodes.unshift({
+        node: node,
+        printed: concat([printArgumentsList(path, options, print)])
+      });
+      path.call(what => rec(what), "what");
+    } else if (node.kind === "propertylookup") {
+      printedNodes.unshift({
+        node: node,
+        printed: concat(["->", path.call(print, "offset")])
+      });
+      path.call(what => rec(what), "what");
+    } else {
+      printedNodes.unshift({
+        node: node,
+        printed: path.call(print)
+      });
+    }
+  }
+  rec(path);
+
+  // create groups from list of nodes:
+  //   a()->b()->c()
+  // will be grouped as
+  //   [
+  //     [Identifier a, Call],
+  //     [PropertyLookup b, Call],
+  //     [PropertyLookup c, Call]
+  //   ]
+  // so that we can print it as
+  //   a()
+  //     ->b()
+  //     ->c()
+  const groups = [];
+  let currentGroup = [];
+  printedNodes.forEach(printedNode => {
+    if (printedNode.node.kind === "propertylookup") {
+      groups.push(currentGroup);
+      currentGroup = [printedNode];
+    } else {
+      currentGroup.push(printedNode);
+    }
+  });
+  groups.push(currentGroup);
+
+  function printGroup(printedGroup) {
+    return concat(printedGroup.map(tuple => tuple.printed));
+  }
+  function printIndentedGroup(groups) {
+    if (groups.length === 0) {
+      return "";
+    }
+    return indent(
+      group(concat([hardline, join(hardline, groups.map(printGroup))]))
+    );
+  }
+
+  const printedGroups = groups.map(printGroup);
+  if (groups.length <= 2) {
+    return group(concat(printedGroups));
+  }
+
+  const expanded = concat([
+    printGroup(groups[0]),
+    printIndentedGroup(groups.slice(1))
+  ]);
+  return expanded;
+}
+
 function printArgumentsList(path, options, print) {
   const args = path.getValue().arguments;
   const printed = path.map(print, "arguments");
@@ -921,6 +1003,13 @@ function printStatement(path, options, print) {
         node.shortForm ? "endswitch;" : "}"
       ]);
     case "call": {
+      // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
+      if (
+        node.what.kind === "propertylookup" &&
+        node.what.what.kind === "call"
+      ) {
+        return printMemberChain(path, options, print);
+      }
       return concat([
         path.call(print, "what"),
         printArgumentsList(path, options, print)
