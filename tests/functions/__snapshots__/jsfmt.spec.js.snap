@@ -2,8 +2,10 @@
 
 exports[`chaining.php 1`] = `
 <?php
-// chaining
-one()->two()->three();
+one()->two();
+one()
+    ->two()
+    ->three();
 
 Route::prefix('api')
     ->middleware('api')
@@ -20,7 +22,7 @@ return collect(parent::jsonSerialize())->mapWithKeys(function ($value, $key) {
 })->toArray();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-// chaining
+one()->two();
 one()
     ->two()
     ->three();

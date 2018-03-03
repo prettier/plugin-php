@@ -130,14 +130,23 @@ function printLines(path, options, print) {
   return join(hardline, printed);
 }
 
+// special layout for "chained" function calls, i.e.
+// $foo = a()
+//     ->b()
+//     ->c();
 function printMemberChain(path, options, print) {
-  // Frist step: Linearize and reorder the AST
+  // First step: Linearize and reorder the AST.
   //
-  //   a()->b()
+  // Example:
+  //   a()->b()->c()
   // has the AST structure
-  //   Call (PropertyLookup b (Call (Identifier a)))
-  // and we transform it into
-  //   [Identifier a, Call, PropertyLookup, Call]
+  //   Call (PropertyLookup c (
+  //     Call (PropertyLookup b (
+  //       Call (Identifier a)
+  //     ))
+  //   ))
+  // and we transform it into (notice the reversed order)
+  //   [Identifier a, Call, PropertyLookup b, Call, PropertyLookup c, Call]
   const printedNodes = [];
 
   // recursive call to traverse AST
@@ -164,8 +173,8 @@ function printMemberChain(path, options, print) {
   }
   rec(path);
 
-  // create groups from list of nodes:
-  //   a()->b()->c()
+  // create groups from list of nodes, i.e.
+  //   [Identifier a, Call, PropertyLookup b, Call, PropertyLookup c, Call]
   // will be grouped as
   //   [
   //     [Identifier a, Call],

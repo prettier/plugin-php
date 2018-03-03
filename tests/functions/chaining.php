@@ -1,6 +1,8 @@
 <?php
-// chaining
-one()->two()->three();
+one()->two();
+one()
+    ->two()
+    ->three();
 
 Route::prefix('api')
     ->middleware('api')
