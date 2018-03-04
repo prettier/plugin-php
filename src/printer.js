@@ -1082,7 +1082,7 @@ function printStatement(path, options, print) {
                     )
                   )
                 ),
-                softline,
+                node.arguments.length ? softline : "",
                 ")"
               ])
         ])

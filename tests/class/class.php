@@ -123,3 +123,5 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
 
 class A {}
+
+$someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
