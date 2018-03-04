@@ -3,6 +3,9 @@ one()->two();
 one()
     ->two()
     ->three();
+one()
+    ->two->three()
+    ->four->five();
 
 Route::prefix('api')
     ->middleware('api')

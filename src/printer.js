@@ -138,15 +138,18 @@ function printMemberChain(path, options, print) {
   // First step: Linearize and reorder the AST.
   //
   // Example:
-  //   a()->b()->c()
+  //   a()->b->c()->d()
   // has the AST structure
-  //   Call (PropertyLookup c (
-  //     Call (PropertyLookup b (
-  //       Call (Identifier a)
+  //   Call (PropertyLookup d (
+  //     Call (PropertyLookup c (
+  //       PropertyLookup b (
+  //         Call (Identifier a)
+  //       )
   //     ))
   //   ))
   // and we transform it into (notice the reversed order)
-  //   [Identifier a, Call, PropertyLookup b, Call, PropertyLookup c, Call]
+  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
+  //    PropertyLookup d, Call]
   const printedNodes = [];
 
   // recursive call to traverse AST
@@ -174,25 +177,32 @@ function printMemberChain(path, options, print) {
   rec(path);
 
   // create groups from list of nodes, i.e.
-  //   [Identifier a, Call, PropertyLookup b, Call, PropertyLookup c, Call]
+  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
+  //    PropertyLookup d, Call]
   // will be grouped as
   //   [
   //     [Identifier a, Call],
-  //     [PropertyLookup b, Call],
-  //     [PropertyLookup c, Call]
+  //     [PropertyLookup b, PropertyLookup c, Call],
+  //     [PropertyLookup d, Call]
   //   ]
   // so that we can print it as
   //   a()
-  //     ->b()
-  //     ->c()
+  //     ->b->c()
+  //     ->d()
   const groups = [];
   let currentGroup = [];
+  let hasSeenCall = false;
   printedNodes.forEach(printedNode => {
-    if (printedNode.node.kind === "propertylookup") {
+    if (hasSeenCall && printedNode.node.kind === "propertylookup") {
       groups.push(currentGroup);
       currentGroup = [printedNode];
+      hasSeenCall = false;
     } else {
       currentGroup.push(printedNode);
+    }
+
+    if (printedNode.node.kind === "call") {
+      hasSeenCall = true;
     }
   });
   groups.push(currentGroup);
@@ -1013,10 +1023,7 @@ function printStatement(path, options, print) {
       ]);
     case "call": {
       // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
-      if (
-        node.what.kind === "propertylookup" &&
-        node.what.what.kind === "call"
-      ) {
+      if (node.what.kind === "propertylookup") {
         return printMemberChain(path, options, print);
       }
       return concat([
