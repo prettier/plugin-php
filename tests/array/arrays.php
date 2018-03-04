@@ -328,3 +328,7 @@ unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
 $test = $array[foo];
+
+$this->long->expression->before->array->statesArray[
+  $state->getCirculationStateId()
+] = $state->getName();
