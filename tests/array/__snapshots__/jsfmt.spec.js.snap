@@ -331,6 +331,10 @@ unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
 $test = $array[foo];
+
+$this->long->expression->before->array->statesArray[
+  $state->getCirculationStateId()
+] = $state->getName();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = array(1, 2, 3, 4, "test");
@@ -412,5 +416,9 @@ unset($arr[5]);
 $arr["x"] = 42;
 echo $arr[somefunc($bar)];
 $test = $array[foo];
+
+$this->long->expression->before->array->statesArray[
+    $state->getCirculationStateId()
+] = $state->getName();
 
 `;

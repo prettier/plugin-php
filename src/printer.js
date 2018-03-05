@@ -320,8 +320,7 @@ function printExpression(path, options, print) {
           concat([
             path.call(print, "what"),
             "[",
-            softline,
-            node.offset ? path.call(print, "offset") : "",
+            group(indent(concat([softline, path.call(print, "offset")]))),
             softline,
             "]"
           ])
@@ -1220,7 +1219,7 @@ function printStatement(path, options, print) {
                     )
                   )
                 ),
-                softline,
+                node.arguments.length ? softline : "",
                 ")"
               ])
         ])
