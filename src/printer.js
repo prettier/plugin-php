@@ -9,6 +9,7 @@ const concat = docBuilders.concat;
 const join = docBuilders.join;
 const line = docBuilders.line;
 const group = docBuilders.group;
+const conditionalGroup = docBuilders.conditionalGroup;
 const indent = docBuilders.indent;
 const ifBreak = docBuilders.ifBreak;
 const hardline = docBuilders.hardline;
@@ -30,6 +31,13 @@ function shouldPrintComma(options) {
     default:
       return false;
   }
+}
+
+function getLast(arr) {
+  if (arr.length > 0) {
+    return arr[arr.length - 1];
+  }
+  return null;
 }
 
 function genericPrint(path, options, print) {
@@ -120,6 +128,46 @@ function printLines(path, options, print) {
     return concat(parts);
   });
   return join(hardline, printed);
+}
+
+function printArgumentsList(path, options, print) {
+  const args = path.getValue().arguments;
+  const printed = path.map(print, "arguments");
+  if (printed.length === 0) {
+    return "()";
+  }
+  const shouldGroupLast = getLast(args).kind === "array";
+  const shouldGroupFirst = !shouldGroupLast && args[0].kind === "array";
+  const shortForm = concat(["(", join(", ", printed), ")"]);
+  const mediumForm = shouldGroupFirst
+    ? concat([
+        "(",
+        group(printed[0], { shouldBreak: true }),
+        printed.length > 1 ? ", " : "",
+        join(concat([",", line]), printed.slice(1)),
+        ")"
+      ])
+    : concat([
+        "(",
+        join(concat([",", line]), printed.slice(0, -1)),
+        printed.length > 1 ? ", " : "",
+        group(getLast(printed), { shouldBreak: true }),
+        ")"
+      ]);
+  const longForm = group(
+    concat([
+      "(",
+      indent(concat([line, join(concat([",", line]), printed)])),
+      line,
+      ")"
+    ]),
+    { shouldBreak: true }
+  );
+  const formsToConsider = [shortForm, longForm];
+  if (shouldGroupFirst || shouldGroupLast) {
+    formsToConsider.splice(1, 0, mediumForm);
+  }
+  return conditionalGroup(formsToConsider);
 }
 
 const expressionKinds = [
@@ -871,27 +919,12 @@ function printStatement(path, options, print) {
         line,
         node.shortForm ? "endswitch;" : "}"
       ]);
-    case "call":
-      return group(
-        concat([
-          path.call(print, "what"),
-          concat([
-            "(",
-            node.arguments.length > 0
-              ? concat([
-                  indent(
-                    concat([
-                      softline,
-                      join(concat([",", line]), path.map(print, "arguments"))
-                    ])
-                  ),
-                  softline
-                ])
-              : "",
-            ")"
-          ])
-        ])
-      );
+    case "call": {
+      return concat([
+        path.call(print, "what"),
+        printArgumentsList(path, options, print)
+      ]);
+    }
     case "usegroup":
       return group(
         indent(

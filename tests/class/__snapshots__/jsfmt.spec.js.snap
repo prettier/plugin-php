@@ -47,15 +47,13 @@ class Application
 }
 
 $app = new Application();
-$app->setLogger(
-    new class implements Logger
+$app->setLogger(new class implements Logger
+{
+    public function log(string $msg)
     {
-        public function log(string $msg)
-        {
-            echo $msg;
-        }
+        echo $msg;
     }
-);
+});
 
 `;
 
