@@ -51,6 +51,24 @@ function clean(node, newObj) {
   if (["Location", "Position"].includes(node.constructor.name)) {
     newObj = "locationNode";
   }
+
+  const statements = ["foreach", "for", "if", "while", "do"];
+
+  if (statements.includes(node.kind)) {
+    if (node.body && node.body.kind !== "block") {
+      newObj.body = {
+        kind: "block",
+        children: [newObj.body]
+      };
+    }
+
+    if (node.alternate && node.alternate.kind !== "block") {
+      newObj.alternate = {
+        kind: "block",
+        children: [newObj.alternate]
+      };
+    }
+  }
 }
 
 module.exports = clean;
