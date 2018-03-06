@@ -137,3 +137,5 @@ implements \ArrayAccess, \Countable
     // constants, properties, methods
 
 }
+
+class FooBar { public $property; public $property2; public function method() {} public function method2() {} }

@@ -197,6 +197,8 @@ implements \\ArrayAccess, \\Countable
     // constants, properties, methods
 
 }
+
+class FooBar { public $property; public $property2; public function method() {} public function method2() {} }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz
@@ -370,6 +372,20 @@ $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName(
 class ClassName extends ParentClass implements \\ArrayAccess, \\Countable
 {
     // constants, properties, methods
+}
+
+class FooBar
+{
+    public $property;
+    public $property2;
+    public function method()
+    {
+
+    }
+    public function method2()
+    {
+
+    }
 }
 
 `;
