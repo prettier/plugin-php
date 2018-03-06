@@ -130,6 +130,106 @@ function printLines(path, options, print) {
   return join(hardline, printed);
 }
 
+// special layout for "chained" function calls, i.e.
+// $foo = a()
+//     ->b()
+//     ->c();
+function printMemberChain(path, options, print) {
+  // First step: Linearize and reorder the AST.
+  //
+  // Example:
+  //   a()->b->c()->d()
+  // has the AST structure
+  //   Call (PropertyLookup d (
+  //     Call (PropertyLookup c (
+  //       PropertyLookup b (
+  //         Call (Identifier a)
+  //       )
+  //     ))
+  //   ))
+  // and we transform it into (notice the reversed order)
+  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
+  //    PropertyLookup d, Call]
+  const printedNodes = [];
+
+  function traverse(path) {
+    const node = path.getValue();
+    if (node.kind === "call") {
+      printedNodes.unshift({
+        node: node,
+        printed: concat([printArgumentsList(path, options, print)])
+      });
+      path.call(what => traverse(what), "what");
+    } else if (node.kind === "propertylookup") {
+      printedNodes.unshift({
+        node: node,
+        printed: concat(["->", path.call(print, "offset")])
+      });
+      path.call(what => traverse(what), "what");
+    } else {
+      printedNodes.unshift({
+        node: node,
+        printed: path.call(print)
+      });
+    }
+  }
+  traverse(path);
+
+  // create groups from list of nodes, i.e.
+  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
+  //    PropertyLookup d, Call]
+  // will be grouped as
+  //   [
+  //     [Identifier a, Call],
+  //     [PropertyLookup b, PropertyLookup c, Call],
+  //     [PropertyLookup d, Call]
+  //   ]
+  // so that we can print it as
+  //   a()
+  //     ->b->c()
+  //     ->d()
+  const groups = [];
+  let currentGroup = [];
+  let hasSeenCall = false;
+  printedNodes.forEach(printedNode => {
+    if (hasSeenCall && printedNode.node.kind === "propertylookup") {
+      groups.push(currentGroup);
+      currentGroup = [printedNode];
+      hasSeenCall = false;
+    } else {
+      currentGroup.push(printedNode);
+    }
+
+    if (printedNode.node.kind === "call") {
+      hasSeenCall = true;
+    }
+  });
+  groups.push(currentGroup);
+
+  function printGroup(printedGroup) {
+    return concat(printedGroup.map(tuple => tuple.printed));
+  }
+  function printIndentedGroup(groups) {
+    if (groups.length === 0) {
+      return "";
+    }
+    return indent(
+      group(concat([hardline, join(hardline, groups.map(printGroup))]))
+    );
+  }
+
+  const printedGroups = groups.map(printGroup);
+  if (groups.length <= 2) {
+    return group(concat(printedGroups));
+  }
+
+  const expanded = concat([
+    printGroup(groups[0]),
+    printIndentedGroup(groups.slice(1))
+  ]);
+  return expanded;
+}
+
 function printArgumentsList(path, options, print) {
   const args = path.getValue().arguments;
   const printed = path.map(print, "arguments");
@@ -959,6 +1059,10 @@ function printStatement(path, options, print) {
         node.shortForm ? "endswitch;" : "}"
       ]);
     case "call": {
+      // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
+      if (node.what.kind === "propertylookup") {
+        return printMemberChain(path, options, print);
+      }
       return concat([
         path.call(print, "what"),
         printArgumentsList(path, options, print)
