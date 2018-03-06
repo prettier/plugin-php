@@ -152,21 +152,20 @@ function printMemberChain(path, options, print) {
   //    PropertyLookup d, Call]
   const printedNodes = [];
 
-  // recursive call to traverse AST
-  function rec(path) {
+  function traverse(path) {
     const node = path.getValue();
     if (node.kind === "call") {
       printedNodes.unshift({
         node: node,
         printed: concat([printArgumentsList(path, options, print)])
       });
-      path.call(what => rec(what), "what");
+      path.call(what => traverse(what), "what");
     } else if (node.kind === "propertylookup") {
       printedNodes.unshift({
         node: node,
         printed: concat(["->", path.call(print, "offset")])
       });
-      path.call(what => rec(what), "what");
+      path.call(what => traverse(what), "what");
     } else {
       printedNodes.unshift({
         node: node,
@@ -174,7 +173,7 @@ function printMemberChain(path, options, print) {
       });
     }
   }
-  rec(path);
+  traverse(path);
 
   // create groups from list of nodes, i.e.
   //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
