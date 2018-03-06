@@ -16,3 +16,7 @@ do {
 
 do $var++;
 while ($var < 10);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
