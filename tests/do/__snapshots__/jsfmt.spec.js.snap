@@ -19,6 +19,10 @@ do {
 
 do $var++;
 while ($var < 10);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $i = 1;
@@ -42,5 +46,18 @@ do {
 do {
     $var++;
 } while ($var < 10);
+
+do {
+
+} while (
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+);
+
+do {
+
+} while (
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable &&
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+);
 
 `;
