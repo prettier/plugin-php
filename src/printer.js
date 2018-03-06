@@ -1040,8 +1040,7 @@ function printStatement(path, options, print) {
         group(
           concat([
             "switch (",
-            softline,
-            path.call(print, "test"),
+            indent(concat([softline, path.call(print, "test")])),
             softline,
             concat([")", node.shortForm ? ":" : " {"])
           ])
