@@ -125,3 +125,15 @@ $this->something->method($argument, $this->more->stuff($this->even->more->things
 class A {}
 
 $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
+
+class ClassName
+
+extends ParentClass
+
+implements \ArrayAccess, \Countable
+
+{
+
+    // constants, properties, methods
+
+}

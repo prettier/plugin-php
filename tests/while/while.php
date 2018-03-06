@@ -11,3 +11,10 @@ endwhile;
 while ( $i <= 5 ) {
     $i++;
 }
+
+while (true)
+    $a = 1;
+
+while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
+
+while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}

@@ -13,3 +13,10 @@ do {
 do {
     $i++;
 } while ( $i <= 5 );
+
+do $var++;
+while ($var < 10);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
+
+do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);

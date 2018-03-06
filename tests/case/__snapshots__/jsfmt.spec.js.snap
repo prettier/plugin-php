@@ -444,7 +444,7 @@ final class MyClass extends Bar implements iTemplate
             $i++;
         endwhile;
 
-        for (; ; ):
+        for (;;):
             if ($i > 10) {
                 break;
             }
