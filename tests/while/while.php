@@ -14,3 +14,7 @@ while ( $i <= 5 ) {
 
 while (true)
     $a = 1;
+
+while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
+
+while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
