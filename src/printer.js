@@ -891,10 +891,16 @@ function printStatement(path, options, print) {
 
   switch (node.kind) {
     case "assign":
-      return join(concat([" ", node.operator, " "]), [
-        path.call(print, "left"),
-        path.call(print, "right")
-      ]);
+      return group(
+        concat([
+          path.call(print, "left"),
+          " ",
+          node.operator,
+          node.right.kind === "bin"
+            ? indent(concat([line, path.call(print, "right")]))
+            : concat([" ", path.call(print, "right")])
+        ])
+      );
     case "if": {
       const handleIfAlternate = alternate => {
         if (!alternate) {
