@@ -861,7 +861,7 @@ function printStatement(path, options, print) {
     case "if": {
       const handleIfAlternate = alternate => {
         if (!alternate) {
-          return "}";
+          return node.shortForm ? "endif;" : "}";
         }
         if (alternate.kind === "if") {
           return concat([

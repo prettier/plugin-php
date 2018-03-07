@@ -9,12 +9,20 @@ if (true) {
   return;
 }
 
+if (true) {
+    return 1;
+}
+
 if (true):
   return 1;
 elseif (false):
   return 2;
 else:
   return;
+endif;
+
+if (true):
+    return 1;
 endif;
 
 if (true) return 1;
