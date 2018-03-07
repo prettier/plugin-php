@@ -4,6 +4,9 @@ func($a, $b, $c);
 func(...$a);
 func($a, ...$b);
 $foo->func();
+func( $arg1,$arg2 ,$arg3, $arg4 , $arg5 );
+$foo -> bar ( $arg1,$arg2 ,$arg3, $arg4 , $arg5 ) ;
+Foo :: bar( $arg1,$arg2 ,$arg3, $arg4 , $arg5 ) ;
 
 $db->Execute($sql, [
     $foo,
