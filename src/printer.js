@@ -425,7 +425,12 @@ function printExpression(path, options, print) {
       }
       case "parenthesis":
         return group(
-          concat(["(", softline, path.call(print, "inner"), softline, ")"])
+          concat([
+            "(",
+            indent(concat([softline, path.call(print, "inner")])),
+            softline,
+            ")"
+          ])
         );
       case "unary":
         return concat([node.type, path.call(print, "what")]);
