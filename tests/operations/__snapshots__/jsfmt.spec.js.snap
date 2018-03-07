@@ -61,6 +61,8 @@ $a = (bool) "test";
 $b = &$a;
 
 $a ?? $b;
+
+$this->reallyLong->testPropertyName = 'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $a++;
@@ -122,5 +124,8 @@ $a = (bool) "test";
 $b = &$a;
 
 $a ?? $b;
+
+$this->reallyLong->testPropertyName =
+    'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
 
 `;

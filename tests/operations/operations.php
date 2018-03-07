@@ -58,3 +58,5 @@ $a = (bool) "test";
 $b = &$a;
 
 $a ?? $b;
+
+$this->reallyLong->testPropertyName = 'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
