@@ -139,3 +139,8 @@ implements \ArrayAccess, \Countable
 }
 
 class FooBar { public $property; public $property2; public function method() {} public function method2() {} }
+
+class FooBarFoo
+{
+    public function fooBarBaz ( $x,$y ,$z, $foo , $bar ) { /* Comment */ }
+}
