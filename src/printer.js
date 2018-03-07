@@ -40,6 +40,23 @@ function getLast(arr) {
   return null;
 }
 
+function getParentNodeListProperty(path) {
+  const parent = path.getParentNode();
+  if (!parent) {
+    return null;
+  }
+  const body = parent.children || parent.body || parent.adaptations;
+  return Array.isArray(body) ? body : null;
+}
+
+function getNodeIndex(path) {
+  const body = getParentNodeListProperty(path);
+  if (!body) {
+    return -1;
+  }
+  return body.indexOf(path.getValue());
+}
+
 function genericPrint(path, options, print) {
   const n = path.getValue();
   if (!n) {
@@ -47,7 +64,31 @@ function genericPrint(path, options, print) {
   } else if (typeof n === "string") {
     return n;
   }
-  return printNode(path, options, print);
+  if (n.kind === "program" && n.children.length === 0) {
+    return concat(["<?php", hardline]);
+  }
+  const printed = printNode(path, options, print);
+  const parentNode = path.getParentNode();
+  const isParentProgramNode = parentNode && parentNode.kind === "program";
+  const nodeBody = getParentNodeListProperty(path);
+  const nodeIndex = getNodeIndex(path);
+  const isFirstNodeInParentProgramNode = isParentProgramNode && nodeIndex === 0;
+  const isLastNodeInParentProgramNode =
+    isParentProgramNode && nodeBody && nodeIndex === nodeBody.length - 1;
+  if (n.kind === "inline") {
+    return concat([
+      isFirstNodeInParentProgramNode ? "" : "?>",
+      printed,
+      isLastNodeInParentProgramNode ? "" : "<?php"
+    ]);
+  }
+  return concat([
+    isFirstNodeInParentProgramNode ? concat(["<?php ", hardline]) : "",
+    printed,
+    n.kind === "program"
+      ? n.children[n.children.length - 1].kind !== "inline" ? hardline : ""
+      : ""
+  ]);
 }
 
 function lineShouldEndWithSemicolon(path) {
@@ -101,13 +142,12 @@ function lineShouldEndWithSemicolon(path) {
 }
 
 function isLastStatement(path) {
-  const parent = path.getParentNode();
-  if (!parent) {
+  const body = getParentNodeListProperty(path);
+  if (!body) {
     return true;
   }
   const node = path.getValue();
-  const body = parent.children;
-  return body && body[body.length - 1] === node;
+  return body[body.length - 1] === node;
 }
 
 function printLines(path, options, print) {
@@ -119,15 +159,15 @@ function printLines(path, options, print) {
     if (lineShouldEndWithSemicolon(stmtPath)) {
       parts.push(";");
     }
-    if (
-      sharedUtil.isNextLineEmpty(text, stmt, options) &&
-      !isLastStatement(stmtPath)
-    ) {
+    if (!isLastStatement(stmtPath)) {
+      if (sharedUtil.isNextLineEmpty(text, stmt, options)) {
+        parts.push(hardline);
+      }
       parts.push(hardline);
     }
     return concat(parts);
   });
-  return join(hardline, printed);
+  return concat(printed);
 }
 
 // special layout for "chained" function calls, i.e.
@@ -586,12 +626,9 @@ function printStatement(path, options, print) {
         );
       case "program": {
         return concat([
-          "<?php",
-          hardline,
           path.call(childrenPath => {
             return printLines(childrenPath, options, print);
-          }, "children"),
-          node.children.length ? hardline : ""
+          }, "children")
         ]);
       }
       case "namespace": {
@@ -767,7 +804,7 @@ function printStatement(path, options, print) {
       case "parameter": {
         const name = concat([
           node.nullable ? "?" : "",
-          node.type ? path.call(print, "type") + " " : "",
+          node.type ? concat([path.call(print, "type"), " "]) : "",
           node.variadic ? "..." : "",
           node.byref ? "&" : "",
           "$",

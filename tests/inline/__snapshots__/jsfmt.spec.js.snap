@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inline.php 1`] = `
+<?php
+
+function inline() {
+    ?>
+    <span>Hello World!</span>
+    <?php
+}
+
+function inline1() {
+    ?><span>Hello World!</span>
+    <?php
+}
+
+function inline2() {
+    ?>
+    <span>Hello World!</span><?php
+}
+
+function inlineInOneLine() {
+    ?><span>Hello World!</span><?php
+}
+
+function inlineNested() {
+    ?>
+    <div>
+      <span>Hello World!</span>
+    </div>
+    <?php
+}
+
+function inlineNested1() {
+    ?><div>
+    <span>Hello World!</span>
+    </div><?php
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function inline()
+{
+    ?>    <span>Hello World!</span>
+    <?php
+}
+
+function inline1()
+{
+    ?><span>Hello World!</span>
+    <?php
+}
+
+function inline2()
+{
+    ?>    <span>Hello World!</span><?php
+}
+
+function inlineInOneLine()
+{
+    ?><span>Hello World!</span><?php
+}
+
+function inlineNested()
+{
+    ?>    <div>
+      <span>Hello World!</span>
+    </div>
+    <?php
+}
+
+function inlineNested1()
+{
+    ?><div>
+    <span>Hello World!</span>
+    </div><?php
+}
+
+`;
+
+exports[`mixed.php 1`] = `
+<p>Test.</p>
+<?php echo 'String.'; ?>
+<p>Test.</p>
+<?php if ($expression == true): ?>
+  <p>Test.</p>
+<?php else: ?>
+  <p>Test.</p>
+<?php endif; ?>
+<?php echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
+<div></div>
+<?php
+echo 'foo';
+echo 'bar';
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<p>Test.</p>
+<?php
+echo 'String.';
+?><p>Test.</p>
+<?php
+if ($expression == true):
+    ?>  <p>Test.</p>
+<?php
+else:
+    ?>  <p>Test.</p>
+<?php
+endif;
+echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />';
+?><div></div>
+<?php
+echo 'foo';
+echo 'bar';
+
+`;
+
+exports[`only-html.php 1`] = `
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+  </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+  </body>
+</html>
+
+`;
