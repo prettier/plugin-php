@@ -48,3 +48,7 @@ switch ($expr) {
         echo 'Default case';
         break;
 }
+
+switch ($longLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongVariable) {}
+
+switch ($longLongLongLongLongLongLongVariable && $longLongLongLongLongLongLongVariable) {}
