@@ -479,11 +479,7 @@ function printExpression(path, options, print) {
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
-        return makeString(
-          node.isDoubleQuote ? util.stringEscape(node.value) : node.value,
-          quote,
-          false
-        );
+        return makeString(util.stringEscape(node.value), quote, false);
       }
       case "number":
         return util.printNumber(node.value);

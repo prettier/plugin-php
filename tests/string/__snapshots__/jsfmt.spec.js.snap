@@ -57,6 +57,8 @@ $string = "This is the value of the var named by the return value of getName(): 
 // $string = "This is the value of the var named by the return value of \\$object->getName(): {\${$object->getName()}}";
 $string = "I'd like an {\${beers::softdrink}}\\n";
 $string = "I'd like an {\${beers::$ale}}\\n";
+$test = "\\\\";
+$test = '\\\\';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $string = 'this is a simple string';
@@ -64,8 +66,8 @@ $string = 'this is a simple string';
 // strings this way as it is
 // okay to do';
 $string = 'Arnold once said: "I\\'ll be back"';
-$string = 'You deleted C:\\*.*?';
-$string = 'You deleted C:\\*.*?';
+$string = 'You deleted C:\\\\*.*?';
+$string = 'You deleted C:\\\\*.*?';
 // $string = 'This will not expand: \\n a newline';
 $string = 'Variables do not $expand $either';
 $string = 'qwe{$a}rty';
@@ -85,14 +87,14 @@ $string = "foo\\\\\\\\bar";
 $string = "foo\\"bar";
 $string = "foo\\"";
 $string = "foo'bar";
-$string = "foo\\377bar";
-$string = "foo\\3";
-$string = "foo\\xFFbar";
-$string = "foo\\xr";
-$string = "foo\\x";
-$string = "foo\\u{ff}bar";
-$string = "foo\\ubar";
-$string = "foo\\u";
+$string = "foo\\\\377bar";
+$string = "foo\\\\3";
+$string = "foo\\\\xFFbar";
+$string = "foo\\\\xr";
+$string = "foo\\\\x";
+$string = "foo\\\\u{ff}bar";
+$string = "foo\\\\ubar";
+$string = "foo\\\\u";
 $string = "He drank some $juice juice.";
 $string = "He drank some $juice juice.";
 $string = "He drank some \${juice} juice.";
@@ -120,5 +122,7 @@ $string = "I'd like an \${beers::softdrink}
 ";
 $string = "I'd like an \${beers::$ale}
 ";
+$test = "\\\\";
+$test = '\\\\';
 
 `;

@@ -18,7 +18,7 @@ function printNumber(rawNumber) {
 }
 
 function stringEscape(str) {
-  return str.replace(/[\n\r\t\v\f\u001b\\]/g, (character, index) => {
+  return str.replace(/[\n\r\t\v\f\u001b\\]/g, character => {
     switch (character) {
       case "\n":
         return "\\n";
@@ -33,8 +33,7 @@ function stringEscape(str) {
       case "\u001b":
         return "\\e";
       case "\\": {
-        const nextCharacter = str[index + 1];
-        return nextCharacter && !/[ux0-7]/.test(nextCharacter) ? "\\\\" : "\\";
+        return "\\\\";
       }
     }
   });
