@@ -426,7 +426,12 @@ function printExpression(path, options, print) {
           ]);
           return isNested ? printedExpression : group(printedExpression);
         };
-        return printBinaryExpression(path, print, options);
+        const addCurly = path.getParentNode().kind === "propertylookup";
+        return concat([
+          addCurly ? "{" : "",
+          printBinaryExpression(path, print, options),
+          addCurly ? "}" : ""
+        ]);
       }
       case "parenthesis":
         return group(
