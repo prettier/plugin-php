@@ -6,10 +6,16 @@ exports[`propertylookup.php 1`] = `
 $a = $obj->value;
 $a = &$obj->getValue();
 $obj->value = 2;
+
+$b = $this->{foo};
+$b = $this->{foo['bar']};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $a = $obj->value;
 $a = &$obj->getValue();
 $obj->value = 2;
+
+$b = $this->{foo};
+$b = $this->{foo['bar']};
 
 `;

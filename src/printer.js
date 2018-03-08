@@ -354,16 +354,21 @@ function printExpression(path, options, print) {
           "::",
           path.call(print, "offset")
         ]);
-      case "offsetlookup":
+      case "offsetlookup": {
+        // https://github.com/glayzzle/php-parser/issues/128
+        const addCurly = path.getParentNode().kind === "propertylookup";
         return group(
           concat([
+            addCurly ? "{" : "",
             path.call(print, "what"),
             "[",
             group(indent(concat([softline, path.call(print, "offset")]))),
             softline,
-            "]"
+            "]",
+            addCurly ? "}" : ""
           ])
         );
+      }
       default:
         return "Have not implemented lookup kind " + node.kind + " yet.";
     }
@@ -1384,7 +1389,21 @@ function printNode(path, options, print) {
           "self"
         ].indexOf(lowerCasedName) !== -1;
 
-      return isLowerCase ? lowerCasedName : node.name;
+      const parent = path.getParentNode();
+      const grandParent = path.getParentNode(1);
+
+      // https://github.com/glayzzle/php-parser/issues/128
+      const addCurly =
+        parent &&
+        grandParent &&
+        parent.kind === "constref" &&
+        grandParent.kind === "propertylookup";
+
+      return concat([
+        addCurly ? "{" : "",
+        isLowerCase ? lowerCasedName : node.name,
+        addCurly ? "}" : ""
+      ]);
     }
     case "case":
       return concat([
