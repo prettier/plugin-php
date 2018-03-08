@@ -54,3 +54,5 @@ $string = "This is the value of the var named by the return value of getName(): 
 // $string = "This is the value of the var named by the return value of \$object->getName(): {${$object->getName()}}";
 $string = "I'd like an {${beers::softdrink}}\n";
 $string = "I'd like an {${beers::$ale}}\n";
+$test = "\\";
+$test = '\\';

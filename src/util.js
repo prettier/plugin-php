@@ -34,7 +34,7 @@ function stringEscape(str) {
         return "\\e";
       case "\\": {
         const nextCharacter = str[index + 1];
-        return nextCharacter && !/[ux0-7]/.test(nextCharacter) ? "\\\\" : "\\";
+        return !nextCharacter || !/[ux0-7]/.test(nextCharacter) ? "\\\\" : "\\";
       }
     }
   });
