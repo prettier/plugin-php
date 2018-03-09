@@ -9,8 +9,7 @@ global $testReallyReallyLong, $someOtherReallyReallyLongVariable, $oneMoreReally
 <?php
 global $a, $b;
 global $c;
-global
-    $testReallyReallyLong,
+global $testReallyReallyLong,
     $someOtherReallyReallyLongVariable,
     $oneMoreReallyLongVariable;
 
