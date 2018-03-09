@@ -367,16 +367,28 @@ function printExpression(path, options, print) {
           "::",
           path.call(print, "offset")
         ]);
-      case "offsetlookup":
+      case "offsetlookup": {
+        const isOffsetNumberNode = node.offset && node.offset.kind === "number";
+
         return group(
           concat([
             path.call(print, "what"),
             "[",
-            group(indent(concat([softline, path.call(print, "offset")]))),
-            softline,
+            group(
+              concat([
+                indent(
+                  concat([
+                    isOffsetNumberNode ? "" : softline,
+                    path.call(print, "offset")
+                  ])
+                ),
+                isOffsetNumberNode ? "" : softline
+              ])
+            ),
             "]"
           ])
         );
+      }
       default:
         return "Have not implemented lookup kind " + node.kind + " yet.";
     }
