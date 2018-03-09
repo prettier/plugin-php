@@ -310,15 +310,6 @@ function printArgumentsList(path, options, print) {
   return conditionalGroup(formsToConsider);
 }
 
-// https://github.com/glayzzle/php-parser/issues/128
-function wrapPropertyLookup(path, doc, override) {
-  const addCurly =
-    override !== undefined
-      ? override
-      : path.getParentNode().kind === "propertylookup";
-  return addCurly ? concat(["{", doc, "}"]) : doc;
-}
-
 const expressionKinds = [
   "array",
   "variable",
@@ -349,33 +340,41 @@ function printExpression(path, options, print) {
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
     switch (node.kind) {
-      case "propertylookup":
+      case "propertylookup": {
+        const addCurly =
+          node.offset.kind !== "constref" ||
+          typeof node.offset.name !== "string";
         return group(
           concat([
             path.call(print, "what"),
             "->",
-            indent(concat([softline, path.call(print, "offset")]))
+            indent(
+              concat([
+                softline,
+                addCurly ? "{" : "",
+                path.call(print, "offset"),
+                addCurly ? "}" : ""
+              ])
+            )
           ])
         );
-      case "staticlookup":
-        return wrapPropertyLookup(
-          path,
-          concat([path.call(print, "what"), "::", path.call(print, "offset")])
-        );
-      case "offsetlookup": {
-        return group(
-          wrapPropertyLookup(
-            path,
-            concat([
-              path.call(print, "what"),
-              "[",
-              group(indent(concat([softline, path.call(print, "offset")]))),
-              softline,
-              "]"
-            ])
-          )
-        );
       }
+      case "staticlookup":
+        return concat([
+          path.call(print, "what"),
+          "::",
+          path.call(print, "offset")
+        ]);
+      case "offsetlookup":
+        return group(
+          concat([
+            path.call(print, "what"),
+            "[",
+            group(indent(concat([softline, path.call(print, "offset")]))),
+            softline,
+            "]"
+          ])
+        );
       default:
         return "Have not implemented lookup kind " + node.kind + " yet.";
     }
@@ -433,10 +432,7 @@ function printExpression(path, options, print) {
           ]);
           return isNested ? printedExpression : group(printedExpression);
         };
-        return wrapPropertyLookup(
-          path,
-          printBinaryExpression(path, print, options)
-        );
+        return printBinaryExpression(path, print, options);
       }
       case "parenthesis":
         return group(
@@ -1399,18 +1395,7 @@ function printNode(path, options, print) {
           "self"
         ].indexOf(lowerCasedName) !== -1;
 
-      // https://github.com/glayzzle/php-parser/issues/128
-      const parent = path.getParentNode();
-      const grandParent = path.getParentNode(1);
-
-      return wrapPropertyLookup(
-        path,
-        isLowerCase ? lowerCasedName : node.name,
-        parent &&
-          grandParent &&
-          parent.kind === "constref" &&
-          grandParent.kind === "propertylookup"
-      );
+      return isLowerCase ? lowerCasedName : node.name;
     }
     case "case":
       return concat([
