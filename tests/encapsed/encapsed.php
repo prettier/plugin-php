@@ -8,4 +8,3 @@ $encapsHereDoc2 = <<<STR
 Hello foo $a bar
 new line
 STR;
-$encapsedOffset = $a->bar$b;

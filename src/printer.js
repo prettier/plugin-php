@@ -342,14 +342,25 @@ function printExpression(path, options, print) {
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
     switch (node.kind) {
-      case "propertylookup":
+      case "propertylookup": {
+        const addCurly =
+          node.offset.kind !== "constref" ||
+          typeof node.offset.name !== "string";
         return group(
           concat([
             path.call(print, "what"),
             "->",
-            indent(concat([softline, path.call(print, "offset")]))
+            indent(
+              concat([
+                softline,
+                addCurly ? "{" : "",
+                path.call(print, "offset"),
+                addCurly ? "}" : ""
+              ])
+            )
           ])
         );
+      }
       case "staticlookup":
         return concat([
           path.call(print, "what"),
