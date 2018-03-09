@@ -1222,7 +1222,7 @@ function printStatement(path, options, print) {
         concat([
           "global",
           indent(
-            concat([line, join(concat([",", line]), path.map(print, "items"))])
+            concat([" ", join(concat([",", line]), path.map(print, "items"))])
           )
         ])
       );
