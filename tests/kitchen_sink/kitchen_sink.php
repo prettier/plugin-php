@@ -30,3 +30,15 @@ do {
     really_long_function($test, $test, $test);
   }
 } while ($really_really_really_really_really_really_really_really_long_array >= 10);
+
+$this->test(function ($a, $b) {
+  if ($a == $b) {
+    return 0;
+  } else {
+    if ($a) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+});

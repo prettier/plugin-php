@@ -270,9 +270,11 @@ function printMemberChain(path, options, print) {
   return expanded;
 }
 
-function printArgumentsList(path, options, print) {
-  const args = path.getValue().arguments;
-  const printed = path.map(print, "arguments");
+function printArgumentsList(path, options, print, argumentsKey = "arguments") {
+  const args = path.getValue()[argumentsKey];
+  const printed = path
+    .map(print, argumentsKey)
+    .map(argument => group(argument));
   if (printed.length === 0) {
     return "()";
   }
@@ -1131,38 +1133,17 @@ function printStatement(path, options, print) {
       return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
     case "closure":
       return concat([
-        "function (",
-        group(
-          concat([
-            indent(
-              join(
-                ", ",
-                path.map(
-                  argument => concat([softline, print(argument)]),
-                  "arguments"
-                )
-              )
-            ),
-            softline
-          ])
-        ),
+        "function ",
+        printArgumentsList(path, options, print),
         node.uses && node.uses.length > 0
           ? group(
               concat([
-                ") use (",
-                indent(
-                  join(
-                    ", ",
-                    path.map(use => {
-                      return concat([softline, print(use)]);
-                    }, "uses")
-                  )
-                ),
-                softline
+                " use ",
+                printArgumentsList(path, options, print, "uses")
               ])
             )
           : "",
-        group(") {"),
+        group(" {"),
         indent(concat([hardline, path.call(print, "body")])),
         concat([hardline, "}"])
       ]);
