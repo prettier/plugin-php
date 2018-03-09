@@ -335,6 +335,7 @@ $test = $array[foo];
 $this->long->expression->before->array->statesArray[
   $state->getCirculationStateId()
 ] = $state->getName();
+$arr[ ] = 1;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = array(1, 2, 3, 4, "test");
@@ -420,5 +421,6 @@ $test = $array[foo];
 $this->long->expression->before->array->statesArray[
     $state->getCirculationStateId()
 ] = $state->getName();
+$arr[] = 1;
 
 `;
