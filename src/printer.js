@@ -203,7 +203,10 @@ function printMemberChain(path, options, print) {
     } else if (node.kind === "propertylookup") {
       printedNodes.unshift({
         node: node,
-        printed: concat(["->", path.call(print, "offset")])
+        printed: concat([
+          "->",
+          wrapPropertyLookup(node, path.call(print, "offset"))
+        ])
       });
       path.call(what => traverse(what), "what");
     } else {
@@ -312,6 +315,13 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   return conditionalGroup(formsToConsider);
 }
 
+function wrapPropertyLookup(node, doc) {
+  const addCurly =
+    node.offset.kind !== "constref" || typeof node.offset.name !== "string";
+
+  return addCurly ? concat(["{", doc, "}"]) : doc;
+}
+
 const expressionKinds = [
   "array",
   "variable",
@@ -343,9 +353,6 @@ function printExpression(path, options, print) {
   function printLookup(node) {
     switch (node.kind) {
       case "propertylookup": {
-        const addCurly =
-          node.offset.kind !== "constref" ||
-          typeof node.offset.name !== "string";
         return group(
           concat([
             path.call(print, "what"),
@@ -353,9 +360,7 @@ function printExpression(path, options, print) {
             indent(
               concat([
                 softline,
-                addCurly ? "{" : "",
-                path.call(print, "offset"),
-                addCurly ? "}" : ""
+                wrapPropertyLookup(node, path.call(print, "offset"))
               ])
             )
           ])
