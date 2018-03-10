@@ -1,6 +1,7 @@
 "use strict";
 
 const docBuilders = require("prettier").doc.builders;
+const docUtils = require("prettier").doc.utils;
 const sharedUtil = require("prettier").util;
 
 const util = require("./util");
@@ -14,6 +15,7 @@ const indent = docBuilders.indent;
 const ifBreak = docBuilders.ifBreak;
 const hardline = docBuilders.hardline;
 const softline = docBuilders.softline;
+const willBreak = docUtils.willBreak;
 
 const makeString = sharedUtil.makeString;
 
@@ -281,6 +283,12 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   if (printed.length === 0) {
     return "()";
   }
+  const breakingIndex = printed.findIndex(willBreak);
+  const breakingInTheMiddle =
+    printed.length > 2 &&
+    breakingIndex !== 0 &&
+    breakingIndex !== printed.length - 1;
+
   const shouldGroupLast = getLast(args).kind === "array";
   const shouldGroupFirst = !shouldGroupLast && args[0].kind === "array";
   const shortForm = concat(["(", join(", ", printed), ")"]);
@@ -302,17 +310,17 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const longForm = group(
     concat([
       "(",
-      indent(concat([line, join(concat([",", line]), printed)])),
-      line,
+      indent(concat([softline, join(concat([",", line]), printed)])),
+      softline,
       ")"
-    ]),
-    { shouldBreak: true }
+    ])
   );
-  const formsToConsider = [shortForm, longForm];
-  if (shouldGroupFirst || shouldGroupLast) {
-    formsToConsider.splice(1, 0, mediumForm);
-  }
-  return conditionalGroup(formsToConsider);
+  const formsToConsider = [
+    !breakingInTheMiddle ? shortForm : null,
+    shouldGroupFirst || shouldGroupLast ? mediumForm : null,
+    longForm
+  ];
+  return conditionalGroup(formsToConsider.filter(Boolean));
 }
 
 function wrapPropertyLookup(node, doc) {
