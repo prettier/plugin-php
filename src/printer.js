@@ -317,7 +317,8 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
 function wrapPropertyLookup(node, doc) {
   const addCurly =
-    node.offset.kind !== "constref" || typeof node.offset.name !== "string";
+    node.kind === "propertylookup" &&
+    (node.offset.kind !== "constref" || typeof node.offset.name !== "string");
 
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
