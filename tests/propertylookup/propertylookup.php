@@ -8,3 +8,4 @@ $b = $this->{foo};
 $b = $this->{foo['bar']};
 $b = $this->{'foo' . $bar};
 $b = $this->{self::STUFF};
+$object = $this->{'bar' . $foo}->buzz();
