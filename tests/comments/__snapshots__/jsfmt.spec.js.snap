@@ -64,6 +64,7 @@ lines
 # This is a one-line shell-style comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 /** @var int $int This is a counter. */
 $int = 0;
 
@@ -118,5 +119,19 @@ class Foo
 that spans over multiple
 lines */
 // This is a one-line shell-style comment
+
+`;
+
+exports[`file-level-docblock.php 1`] = `
+<?php
+/**
+ * This file contains an example of coding styles.
+ */
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * This file contains an example of coding styles.
+ */
 
 `;
