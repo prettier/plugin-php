@@ -323,6 +323,16 @@ function wrapPropertyLookup(node, doc) {
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
 
+function isPropertyLookupChain(node) {
+  if (node.kind !== "propertylookup") {
+    return false;
+  }
+  if (node.what.kind === "variable") {
+    return true;
+  }
+  return isPropertyLookupChain(node.what);
+}
+
 const expressionKinds = [
   "array",
   "variable",
@@ -926,7 +936,8 @@ function printStatement(path, options, print) {
     case "assign": {
       const canBreak =
         node.right.kind === "bin" ||
-        ["number", "string"].indexOf(node.right.kind) > -1;
+        ["number", "string"].indexOf(node.right.kind) > -1 ||
+        isPropertyLookupChain(node.right);
       return group(
         concat([
           path.call(print, "left"),
