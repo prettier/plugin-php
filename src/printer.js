@@ -788,19 +788,33 @@ function printStatement(path, options, print) {
             node.isAbstract ? "abstract " : "",
             node.isFinal ? "final " : "",
             concat(["class", node.name ? concat([" ", node.name]) : ""]),
-            indent(
-              concat([
-                node.extends
-                  ? concat([line, "extends ", path.call(print, "extends")])
-                  : "",
-                node.implements
-                  ? concat([
-                      line,
-                      "implements ",
-                      join(", ", path.map(print, "implements"))
-                    ])
-                  : ""
-              ])
+            group(
+              indent(
+                concat([
+                  node.extends
+                    ? group(
+                        concat([line, "extends ", path.call(print, "extends")])
+                      )
+                    : "",
+                  line,
+                  node.implements
+                    ? concat([
+                        "implements",
+                        group(
+                          indent(
+                            concat([
+                              line,
+                              join(
+                                concat([",", line]),
+                                path.map(print, "implements")
+                              )
+                            ])
+                          )
+                        )
+                      ])
+                    : ""
+                ])
+              )
             )
           ]),
           bodyContents: path.call(bodyPath => {
