@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`trailing_whitespace.php 1`] = `
+<?php   
+$test = 'string';   
+   
+$test1 = 'string';   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$test = 'string';
+
+$test1 = 'string';
+
+`;
