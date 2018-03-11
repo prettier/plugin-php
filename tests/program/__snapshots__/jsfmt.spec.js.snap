@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`empty-line-between-php-tag-and-statement.php 1`] = `
+<?php
+$variable = 'test';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$variable = 'test';
+
+`;
+
+exports[`multiple-lines-between-php-tag-and-statement.php 1`] = `
+<?php
+
+
+$variable = 'test';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$variable = 'test';
+
+`;
+
+exports[`one-line-between-php-tag-and-statement.php 1`] = `
+<?php
+
+$variable = 'test';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$variable = 'test';
+
+`;
+
 exports[`single-open-php-tag.php 1`] = `
 <?php
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

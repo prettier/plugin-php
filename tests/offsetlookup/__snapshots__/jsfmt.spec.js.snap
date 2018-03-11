@@ -12,6 +12,7 @@ $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $variable = get_taxonomy_function(get_queried_object_function()->taxonomy)->object_type[0];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $variable['data']['title'] = html_entity_decode(wp_get_document_title());
 $variable[
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'

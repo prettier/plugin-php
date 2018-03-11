@@ -17,6 +17,7 @@ $foo = array('very-very-very-very-very-very-very-very-very-long-item-1' => 'foo'
 $foo = array('very-very-very-very-very-very-very-very-very-long-item-1' => 'foo', 'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
@@ -73,6 +74,7 @@ $foo = array('very-very-very-very-very-very-very-very-very-long-item-1' => 'foo'
 $foo = array('very-very-very-very-very-very-very-very-very-long-item-1' => 'foo', 'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [

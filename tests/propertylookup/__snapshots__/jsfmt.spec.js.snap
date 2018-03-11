@@ -14,6 +14,7 @@ $b = $this->{self::STUFF};
 $object = $this->{'bar' . $foo}->buzz();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $a = $obj->value;
 $a = &$obj->getValue();
 $obj->value = 2;

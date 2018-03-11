@@ -214,6 +214,7 @@ class FooBarFoo
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 class Foo extends Bar implements Baz, Buzz
 {
     public $test;

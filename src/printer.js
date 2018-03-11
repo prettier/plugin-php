@@ -83,7 +83,13 @@ function genericPrint(path, options, print) {
     ]);
   }
   return concat([
-    isFirstNodeInParentProgramNode ? concat(["<?php ", hardline]) : "",
+    isFirstNodeInParentProgramNode
+      ? concat([
+          "<?php",
+          hardline,
+          n.loc.start.line - parentNode.loc.start.line > 1 ? hardline : ""
+        ])
+      : "",
     printed,
     n.kind === "program"
       ? n.children[n.children.length - 1].kind !== "inline" ? hardline : ""
