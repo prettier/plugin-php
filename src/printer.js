@@ -1311,7 +1311,7 @@ function printStatement(path, options, print) {
       return concat([
         node.require ? "require" : "include",
         node.once ? "_once" : "",
-        " ",
+        node.target.kind === "parenthesis" ? "" : " ",
         path.call(print, "target")
       ]);
     case "goto":
