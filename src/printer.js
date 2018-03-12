@@ -323,6 +323,16 @@ function wrapPropertyLookup(node, doc) {
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
 
+function isPropertyLookupChain(node) {
+  if (node.kind !== "propertylookup") {
+    return false;
+  }
+  if (node.what.kind === "variable") {
+    return true;
+  }
+  return isPropertyLookupChain(node.what);
+}
+
 const expressionKinds = [
   "array",
   "variable",
@@ -354,13 +364,14 @@ function printExpression(path, options, print) {
   function printLookup(node) {
     switch (node.kind) {
       case "propertylookup": {
+        const canBreak = path.stack.indexOf("left") === -1;
         return group(
           concat([
             path.call(print, "what"),
             "->",
             indent(
               concat([
-                softline,
+                canBreak ? softline : "",
                 wrapPropertyLookup(node, path.call(print, "offset"))
               ])
             )
@@ -922,17 +933,22 @@ function printStatement(path, options, print) {
   }
 
   switch (node.kind) {
-    case "assign":
+    case "assign": {
+      const canBreak =
+        node.right.kind === "bin" ||
+        ["number", "string"].indexOf(node.right.kind) > -1 ||
+        isPropertyLookupChain(node.right);
       return group(
         concat([
           path.call(print, "left"),
           " ",
           node.operator,
-          node.right.kind === "bin"
+          canBreak
             ? indent(concat([line, path.call(print, "right")]))
             : concat([" ", path.call(print, "right")])
         ])
       );
+    }
     case "if": {
       const handleIfAlternate = alternate => {
         if (!alternate) {
