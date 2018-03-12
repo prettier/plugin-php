@@ -1287,7 +1287,7 @@ function printStatement(path, options, print) {
           "static",
           indent(
             concat([
-              line,
+              " ",
               join(
                 concat([",", line]),
                 path.map(item => {
