@@ -1144,19 +1144,21 @@ function printStatement(path, options, print) {
     }
     case "usegroup":
       return group(
-        indent(
-          concat([
-            "use ",
-            node.type ? concat([node.type, " "]) : "",
-            node.name ? concat([node.name, "\\{"]) : "",
-            join(
-              concat([",", line]),
-              path.map(item => concat([print(item)]), "items")
-            ),
-            node.name ? "}" : "",
-            ";"
-          ])
-        )
+        concat([
+          "use ",
+          node.type ? concat([node.type, " "]) : "",
+          indent(
+            concat([
+              node.name ? concat([node.name, "\\{", softline]) : "",
+              join(
+                concat([",", line]),
+                path.map(item => concat([print(item)]), "items")
+              )
+            ])
+          ),
+          node.name ? concat([softline, "}"]) : "",
+          ";"
+        ])
       );
     case "useitem":
       return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
