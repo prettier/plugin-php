@@ -92,3 +92,11 @@ $some->other->thing(array(
     11323123,
     1231, 13231233243, 324234234
 ));
+
+$foo->bar(
+    $arg1,
+    function ($arg2) use ($var1) {
+        // body
+    },
+    $arg3
+);

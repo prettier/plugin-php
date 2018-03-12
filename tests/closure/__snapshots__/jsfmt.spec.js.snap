@@ -108,9 +108,11 @@ $longArgs_shortVars = function (
     // body
 };
 
-$shortArgs_longVars = function (
-    $arg
-) use ($longVar1, $longerVar2, $muchLongerVar3) {
+$shortArgs_longVars = function ($arg) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
     // body
 };
 
