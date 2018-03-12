@@ -15,6 +15,10 @@ if ((include 'vars.php') == TRUE) {
   echo 'OK';
 }
 
+if ((include ('vars.php')) == TRUE) {
+    echo 'OK';
+}
+
 include 'php/product' . $variable . '.php';
 
 include ( "test.php" );

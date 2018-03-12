@@ -412,10 +412,10 @@ final class MyClass extends Bar implements iTemplate
 
     protected function MyProtected()
     {
-        require ('somefile.php');
-        require_once ('somefile.php');
-        include ('somefile.php');
-        include_once ('somefile.php');
+        require('somefile.php');
+        require_once('somefile.php');
+        include('somefile.php');
+        include_once('somefile.php');
     }
 
     private function MyPrivate()
