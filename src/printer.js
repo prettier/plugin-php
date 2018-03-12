@@ -1185,7 +1185,11 @@ function printStatement(path, options, print) {
         ])
       );
     case "useitem":
-      return node.alias ? concat([node.name, " as ", node.alias]) : node.name;
+      return concat([
+        node.type ? concat([node.type, " "]) : "",
+        node.name,
+        node.alias ? concat([" as ", node.alias]) : ""
+      ]);
     case "closure":
       return concat([
         "function ",
