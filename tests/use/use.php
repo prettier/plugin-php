@@ -11,3 +11,9 @@ use MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeyLon
 use some\Full\{ClassA, ClassB, ClassC as C};
 use function some\Full\{fn_a, fn_b, fn_c};
 use const some\Full\{ConstA, ConstB, ConstC};
+use Vendor\Package\SomeNamespace\{
+    SubnamespaceOne\ClassA,
+    SubnamespaceOne\ClassB,
+    SubnamespaceTwo\ClassY,
+    ClassZ
+};
