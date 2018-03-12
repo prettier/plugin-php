@@ -69,6 +69,11 @@ function clean(node, newObj) {
       };
     }
   }
+
+  // Ignore `parenthesis` in `expr`
+  if (node.kind === "return" && node.expr.kind === "parenthesis") {
+    newObj.expr = newObj.expr.inner;
+  }
 }
 
 module.exports = clean;

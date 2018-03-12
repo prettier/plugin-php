@@ -1425,11 +1425,28 @@ function printNode(path, options, print) {
         return "continue";
       }
       return "continue";
-    case "return":
+    case "return": {
+      const parts = [];
+      parts.push("return");
       if (node.expr) {
-        return concat(["return ", path.call(print, "expr")]);
+        const printedExpr = path.call(print, "expr");
+        if (node.expr.kind === "bin") {
+          parts.push(
+            group(
+              concat([
+                ifBreak(" (", " "),
+                indent(concat([softline, printedExpr])),
+                softline,
+                ifBreak(")")
+              ])
+            )
+          );
+        } else {
+          parts.push(" ", printedExpr);
+        }
       }
-      return "return";
+      return concat(parts);
+    }
     case "doc": {
       let canAddEmptyLine = false;
       // @TODO: need refactor after resolve https://github.com/glayzzle/php-parser/issues/114
