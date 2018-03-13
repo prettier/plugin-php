@@ -212,6 +212,28 @@ class FooBarFoo
 {
     public function fooBarBaz ( $x,$y ,$z, $foo , $bar ) { /* Comment */ }
 }
+
+class ClassName extends ParentClass implements InterfaceClass {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz
@@ -416,6 +438,87 @@ class FooBarFoo
     {
         // Comment
     }
+}
+
+class ClassName extends ParentClass implements InterfaceClass
+{
+
+}
+
+class ClassName extends ParentClass
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+
+}
+
+class ClassName extends ParentClass
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements InterfaceClass
+{
+
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements InterfaceClass
+{
+
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+
+}
+
+class ClassName extends ParentClass
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    extends ParentClass
+    implements InterfaceClass
+{
+
 }
 
 `;
