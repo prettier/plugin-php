@@ -539,7 +539,8 @@ function printExpression(path, options, print) {
         }
         return concat([
           getEncapsedQuotes(node),
-          node.type === "heredoc" ? hardline : "",
+          // Respect `indent` for `heredoc` nodes
+          node.type === "heredoc" ? "\n" : "",
           concat(
             path.map(valuePath => {
               // might need to figure out better way to do this. don't want
@@ -557,13 +558,14 @@ function printExpression(path, options, print) {
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
       case "nowdoc":
+        // Respect `indent` for `nowdoc` nodes
         return concat([
           "<<<'",
           node.label,
           "'",
-          hardline,
+          "\n",
           node.value,
-          hardline,
+          "\n",
           node.label
         ]);
       default:
