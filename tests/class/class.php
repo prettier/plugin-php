@@ -119,13 +119,21 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
     return new SplQueue();
   }
 
-    public function longLongAnotherFunction(
-        string $foo,
-        string $bar,
-        int $baz
-    ): string {
-        return 'foo';
-    }
+  public function longLongAnotherFunction(
+    string $foo,
+    string $bar,
+    int $baz
+  ): string {
+    return 'foo';
+  }
+
+  public function longLongAnotherFunctionOther(
+    string $foo,
+    string $bar,
+    int $baz
+  ) {
+    return 'foo';
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));

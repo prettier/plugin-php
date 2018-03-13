@@ -179,13 +179,21 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
     return new SplQueue();
   }
 
-    public function longLongAnotherFunction(
-        string $foo,
-        string $bar,
-        int $baz
-    ): string {
-        return 'foo';
-    }
+  public function longLongAnotherFunction(
+    string $foo,
+    string $bar,
+    int $baz
+  ): string {
+    return 'foo';
+  }
+
+  public function longLongAnotherFunctionOther(
+    string $foo,
+    string $bar,
+    int $baz
+  ) {
+    return 'foo';
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
@@ -294,8 +302,7 @@ abstract class ReallyReallyReallyLongClassName
         $test,
         $test_int,
         $test_string
-    )
-    {
+    ) {
         $model = new self($test, $test_int, $test_string);
         $model = new self(
             $really_really_really_really_really_really_really_really_long_array,
@@ -327,8 +334,7 @@ abstract class ReallyReallyReallyLongClassName
     public function reallyReallyReallyReallyReallyReallyReallyLongMethodName(
         $input,
         $otherInput = 1
-    )
-    {
+    ) {
         return true;
     }
 
@@ -395,8 +401,15 @@ abstract class ReallyReallyReallyLongClassName
         string $foo,
         string $bar,
         int $baz
-    ): string
-    {
+    ): string {
+        return 'foo';
+    }
+
+    public function longLongAnotherFunctionOther(
+        string $foo,
+        string $bar,
+        int $baz
+    ) {
         return 'foo';
     }
 }
