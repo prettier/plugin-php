@@ -38,6 +38,7 @@ function inlineNested1() {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function inline()
 {
     ?>    <span>Hello World!</span>

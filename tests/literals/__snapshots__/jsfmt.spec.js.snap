@@ -14,6 +14,7 @@ $nowdoc = <<<'EOL'
 EOL;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $boolean_test_true = true;
 $boolean_test_false = false;
 $string_test = 'hello_world';
