@@ -150,8 +150,29 @@ function nodeHasStatement(node) {
   ].includes(node.kind);
 }
 
+function isControlStructureNode(node) {
+  return ["if", "while", "do", "for", "foreach"].includes(node.kind);
+}
+
+function getBodyFirstChild(node) {
+  let body = node.body;
+  if (!body) {
+    return null;
+  }
+  if (body.kind === "block") {
+    body = body.children;
+  }
+  return body[0];
+}
+
 function shouldRemoveLines(path) {
-  return isPrevNodeInline(path) && isNextNodeInline(path);
+  const node = path.getValue();
+  const firstChild = getBodyFirstChild(node);
+
+  return (
+    (isPrevNodeInline(path) && isNextNodeInline(path)) ||
+    (isControlStructureNode(node) && firstChild && firstChild.kind === "inline")
+  );
 }
 
 function removeNewlines(doc) {
@@ -330,6 +351,8 @@ module.exports = {
   getNodeIndex,
   getLast,
   isLastStatement,
+  getBodyFirstChild,
+  isControlStructureNode,
   isFirstNodeInParentProgramNode,
   isFirstNodeInParentNode,
   isLastNodeInParentNode,

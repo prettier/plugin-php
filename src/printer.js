@@ -22,7 +22,6 @@ const getNodeListProperty = util.getNodeListProperty;
 const getLast = util.getLast;
 const isFirstNodeInParentProgramNode = util.isFirstNodeInParentProgramNode;
 const isFirstNodeInParentNode = util.isFirstNodeInParentNode;
-const isLastNodeInParentNode = util.isLastNodeInParentNode;
 const isPrevNodeInline = util.isPrevNodeInline;
 const isNextNodeInline = util.isNextNodeInline;
 const lineShouldHaveStartPHPTag = util.lineShouldHaveStartPHPTag;
@@ -76,8 +75,7 @@ function genericPrint(path, options, print) {
       ? concat([
           "<?php",
           isFirstNodeInParentProgramNode(path) ||
-          isLastNodeInParentNode(path) ||
-          !isNextNodeInline(path)
+          (!isNextNodeInline(path) && !util.isControlStructureNode(node))
             ? hardline
             : " "
         ])

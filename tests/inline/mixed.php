@@ -60,3 +60,25 @@ echo 'bar';
   <span>Text</span>
 <?php endwhile; ?>
 <h1>Head</h1>
+<?php $var = 1; ?>
+<?php if ($expression == true): ?>
+  <p>Test.</p>
+<?php else: ?>
+  <p>Test.</p>
+<?php endif; ?>
+<?php $var = 1; ?>
+<div>
+  <?php while ($i <= 10): ?>
+    <span><?php echo $i; ?></span>
+    <?php $i++; ?>
+  <?php endwhile; ?>
+</div>
+<div>
+  <?php if($a > $b): ?>
+    <span><?php echo $a." > ".$b;?></span>
+  <?php elseif($a == $b): ?>
+    <span><?php echo $a." == ".$b; ?></span>
+  <?php else: ?>
+    <span><?php echo $a." < ".$b; ?></span>
+  <?php endif; ?>
+</div>
