@@ -477,8 +477,7 @@ final class MyClass extends Bar implements iTemplate
         ClassA $param7,
         self $param8,
         Name\\Space\\ClassA $param8
-    ): void
-    {
+    ): void {
         // Nothing
     }
 }

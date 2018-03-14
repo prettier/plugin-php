@@ -683,17 +683,15 @@ function printStatement(path, options, print) {
       returnTypeContents = "",
       bodyContents = ""
     }) {
-      return concat([
-        concat([
-          group(
+      const isClassLikeNode = ["class", "interface", "trait"].includes(
+        node.kind
+      );
+      const printedDeclaration = group(declaration);
+      const printedSignature = !isClassLikeNode
+        ? group(
             concat([
-              declaration,
-              !["class", "interface", "trait"].includes(node.kind) ? "(" : ""
-            ])
-          ),
-          group(
-            concat([
-              !["class", "interface", "trait"].includes(node.kind)
+              "(",
+              argumentsList.length
                 ? concat([
                     indent(
                       concat([
@@ -701,27 +699,39 @@ function printStatement(path, options, print) {
                         join(concat([",", line]), argumentsList)
                       ])
                     ),
-                    softline,
-                    ")",
-                    returnTypeContents ? concat([": ", returnTypeContents]) : ""
+                    softline
                   ])
-                : ""
+                : "",
+              ")",
+              returnTypeContents ? concat([": ", returnTypeContents]) : ""
             ])
           )
-        ]),
-        // @TODO: need to figure out how to not break between ") {" if the larger
-        // group has already broken
-        bodyContents
-          ? concat([
-              hardline,
-              // see https://github.com/prettier/plugin-php/issues/107
-              // options.openingBraceNewLine ? hardline : " ",
-              "{",
-              indent(concat([hardline, bodyContents])),
-              hardline,
-              "}"
-            ])
-          : ""
+        : "";
+      const printedBody = bodyContents
+        ? concat(["{", indent(concat([hardline, bodyContents])), hardline, "}"])
+        : "";
+      return concat([
+        group(
+          concat([
+            printedDeclaration,
+            printedSignature,
+            // see https://github.com/prettier/plugin-php/issues/107
+            // options.openingBraceNewLine ? hardline : " ",
+            // Hack, we need `invertLine` command here, as `line`, but have versa vice logic
+            bodyContents
+              ? node.kind === "method"
+                ? ifBreak(
+                    " ",
+                    concat([
+                      docBuilders.lineSuffix(""),
+                      docBuilders.lineSuffixBoundary
+                    ])
+                  )
+                : hardline
+              : ""
+          ])
+        ),
+        printedBody
       ]);
     }
 
