@@ -63,8 +63,8 @@ lines
 
 # This is a one-line shell-style comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
 /** @var int $int This is a counter. */
+<?php
 $int = 0;
 
 // there should be no docblock here
@@ -78,8 +78,8 @@ $hi = 1;
 
 /**
  * Multi line
- * test with wrong indentation
- */
+* test with wrong indentation
+*/
 
 /**
  * Multi line
@@ -106,17 +106,23 @@ class Foo
         // there should be no docblock here
         $this->title = $title;
     }
-}
 
-/*********************
+    /*********************
  * Some long comment *
  *********************/
-// This is a one-line c++ style comment
-/* This is a multi line comment
+
+    // This is a one-line c++ style comment
+
+    /* This is a multi line comment
    yet another line of comment */
-/* This is a multiple-lines comment block
+
+    /*
+This is a multiple-lines comment block
 that spans over multiple
-lines */
-// This is a one-line shell-style comment
+lines
+*/
+
+    # This is a one-line shell-style comment
+}
 
 `;

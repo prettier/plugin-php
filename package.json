@@ -10,7 +10,7 @@
     "src"
   ],
   "dependencies": {
-    "php-parser": "2.2.0",
+    "php-parser": "glayzzle/php-parser#6075cc8d0147e09d70cf96fbe29092e13fa66ddc",
     "prettier": "prettier/prettier#d05a29da05b2084790491eaef85917ce584e4fbd"
   },
   "devDependencies": {

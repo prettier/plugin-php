@@ -1484,12 +1484,12 @@ function printNode(path, options, print) {
       }
       return concat(parts);
     }
-    case "doc": {
+    /*case "doc": {
       let canAddEmptyLine = false;
       // @TODO: need refactor after resolve https://github.com/glayzzle/php-parser/issues/114
       return node.isDoc
         ? concat([
-            "/**",
+            "/!**",
             // we use the number of lines to determine if this is a single or
             // multi line docblock
             node.lines.length > 1
@@ -1509,26 +1509,26 @@ function printNode(path, options, print) {
                 )
               : concat([" ", node.lines[0]], " "),
             node.lines.length > 1 ? hardline : "",
-            " */"
+            " *!/"
           ])
         : join(
             hardline,
             node.lines.map(comment =>
               concat([
                 comment.split(/\n/).length > 1
-                  ? concat(["/*", comment[0] === "*" ? "" : " "])
+                  ? concat(["/!*", comment[0] === "*" ? "" : " "])
                   : "// ",
                 comment,
                 comment.split(/\n/).length > 1
                   ? concat([
                       comment[comment.length - 1] === "*" ? "" : " ",
-                      "*/"
+                      "*!/"
                     ])
                   : ""
               ])
             )
           );
-    }
+    }*/
     case "entry":
       return concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",

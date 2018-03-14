@@ -45,17 +45,19 @@ try {
 
 try {
     throw new FirstException();
-} catch (FirstException | SecondException $e) {
     // handle first and second exceptions
+} catch (FirstException | SecondException $e) {
+
 }
 
 try {
     throw new FirstException();
+    // handle second exceptions
 } catch (FirstException $e) {
     try {
         throw new SecondException();
     } catch (SecondException $e) {
-        // handle second exceptions
+
     }
 }
 
