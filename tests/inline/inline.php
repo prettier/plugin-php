@@ -33,3 +33,15 @@ function inlineNested1() {
     <span>Hello World!</span>
     </div><?php
 }
+
+function inlineMultipleStatements() {
+    $a = 1;
+    ?>
+    <span>Hello World!</span>
+    <?php
+    $b = 1;
+    ?>
+    <span>Hello World!</span>
+    <?php
+    $c = 1;
+}
