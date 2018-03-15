@@ -145,6 +145,17 @@ function test(object $obj): object
 {
     return new SplQueue();
 }
+
+function returnTypeTestOther() : string {
+    return 'hi';
+}
+
+function returnTypeTestOtherOther()
+:
+string
+{
+    return 'hi';
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 function hello()
@@ -267,6 +278,16 @@ function swap(&$left, &$right): void
 function test(object $obj): object
 {
     return new SplQueue();
+}
+
+function returnTypeTestOther(): string
+{
+    return 'hi';
+}
+
+function returnTypeTestOtherOther(): string
+{
+    return 'hi';
 }
 
 `;

@@ -134,6 +134,18 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   ) {
     return 'foo';
   }
+
+  public function testReturnTypeDeclaration() : object
+  {
+    return new SplQueue();
+  }
+
+  public function testReturnTypeDeclarationOther()
+  :
+  object
+  {
+    return new SplQueue();
+  }
 }
 
 $this->something->method($argument, $this->more->stuff($this->even->more->things->complicatedMethod()));
