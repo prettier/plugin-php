@@ -58,7 +58,15 @@ function genericPrint(path, options, print) {
   }
   const printed = printNode(path, options, print);
   if (node.kind === "inline") {
-    return concat([printed]);
+    const parentNode = path.getParentNode();
+    return concat([
+      parentNode &&
+      parentNode.kind === "declare" &&
+      parentNode.children.indexOf(node) === 0
+        ? "?>"
+        : "",
+      printed
+    ]);
   }
   if (node.kind === "block") {
     const nodeBody = getNodeListProperty(node);

@@ -334,9 +334,20 @@ function lineShouldHaveEndPHPTag(path) {
 function fileShouldEndWithHardline(path) {
   const node = path.getValue();
   const isProgramNode = node.kind === "program";
-  return (
-    isProgramNode && node.children[node.children.length - 1].kind !== "inline"
-  );
+  const lastNode = node.children && getLast(node.children);
+  if (!isProgramNode) {
+    return false;
+  }
+  if (lastNode && lastNode.kind === "inline") {
+    return false;
+  }
+  if (lastNode.kind === "declare") {
+    const lastNestedNode = lastNode.children && getLast(lastNode.children);
+    if (lastNestedNode && lastNestedNode.kind === "inline") {
+      return false;
+    }
+  }
+  return true;
 }
 
 module.exports = {

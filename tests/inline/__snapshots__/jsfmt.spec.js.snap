@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`declare.php 1`] = `
+<?php declare(strict_types=1); ?>
+<html>
+    <body>
+        <?php
+          $a = 1;
+        ?>
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+declare(strict_types=1);
+?><html>
+    <body>
+        <?php $a = 1; ?>    </body>
+</html>
+
+`;
+
 exports[`inline.php 1`] = `
 <?php
 
@@ -268,6 +287,37 @@ $a = 1;
 <div>Foo</div>
 <?php
 $a = 1;
+
+`;
+
+exports[`mixed-3.php 1`] = `
+<?php if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
+<?php endif; ?>
+<div>Hello world</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+if ($expression == true): ?>    <p>Test.</p>
+<?php else: ?>    <p>Test.</p>
+<?php endif;
+?><div>Hello world</div>
+
+`;
+
+exports[`mixed-4.php 1`] = `
+<div>Hello world</div>
+<?php if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
+<?php endif; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>Hello world</div>
+<?php if ($expression == true): ?>    <p>Test.</p>
+<?php else: ?>    <p>Test.</p>
+<?php endif;
 
 `;
 
