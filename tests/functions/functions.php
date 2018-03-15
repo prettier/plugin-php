@@ -89,3 +89,14 @@ function test(object $obj): object
 {
     return new SplQueue();
 }
+
+function returnTypeTestOther() : string {
+    return 'hi';
+}
+
+function returnTypeTestOtherOther()
+:
+string
+{
+    return 'hi';
+}
