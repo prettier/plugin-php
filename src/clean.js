@@ -74,6 +74,21 @@ function clean(node, newObj) {
   if (node.kind === "return" && node.expr.kind === "parenthesis") {
     newObj.expr = newObj.expr.inner;
   }
+
+  // Ignore `parenthesis` for `print`
+  if (node.kind === "print" && node.arguments.kind === "parenthesis") {
+    newObj.arguments = newObj.arguments.inner;
+  }
+
+  // Ignore `parenthesis` for `echo`
+  if (node.kind === "echo" && node.arguments.length > 0) {
+    node.arguments.forEach((argument, index) => {
+      newObj.arguments[index] =
+        node.arguments[index].kind === "parenthesis"
+          ? newObj.arguments[index].inner
+          : newObj.arguments[index];
+    });
+  }
 }
 
 module.exports = clean;

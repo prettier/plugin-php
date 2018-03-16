@@ -12,6 +12,7 @@ const line = docBuilders.line;
 const group = docBuilders.group;
 const conditionalGroup = docBuilders.conditionalGroup;
 const indent = docBuilders.indent;
+const dedent = docBuilders.dedent;
 const ifBreak = docBuilders.ifBreak;
 const hardline = docBuilders.hardline;
 const softline = docBuilders.softline;
@@ -411,15 +412,23 @@ function printExpression(path, options, print) {
         };
         return printBinaryExpression(path, print, options);
       }
-      case "parenthesis":
+      case "parenthesis": {
+        const parentNode = path.getParentNode();
+        const shouldPrintParenthesis =
+          parentNode.kind !== "print" && parentNode.kind !== "echo";
         return group(
           concat([
-            "(",
-            indent(concat([softline, path.call(print, "inner")])),
-            softline,
-            ")"
+            shouldPrintParenthesis ? "(" : "",
+            indent(
+              concat([
+                shouldPrintParenthesis ? softline : "",
+                path.call(print, "inner")
+              ])
+            ),
+            shouldPrintParenthesis ? concat([softline, ")"]) : ""
           ])
         );
+      }
       case "unary":
         return concat([node.type, path.call(print, "what")]);
       case "cast":
@@ -641,10 +650,31 @@ function printStatement(path, options, print) {
   const sysKinds = ["echo", "list", "print", "isset", "unset", "empty"];
   function printSys(node) {
     switch (node.kind) {
-      case "echo":
-        return concat(["echo ", join(", ", path.map(print, "arguments"))]);
-      case "print":
-        return concat(["print ", path.call(print, "arguments")]);
+      case "echo": {
+        const printedArguments = path.map(argumentPath => {
+          const node = argumentPath.getValue();
+          return node.kind === "bin"
+            ? print(argumentPath)
+            : dedent(print(argumentPath));
+        }, "arguments");
+        return indent(
+          group(
+            concat([
+              "echo ",
+              group(join(concat([",", line]), printedArguments))
+            ])
+          )
+        );
+      }
+      case "print": {
+        const printedArguments = path.call(print, "arguments");
+        return concat([
+          "print ",
+          node.arguments.kind === "bin"
+            ? indent(printedArguments)
+            : printedArguments
+        ]);
+      }
       case "list":
       case "isset":
       case "unset":
