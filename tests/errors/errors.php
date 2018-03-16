@@ -24,3 +24,7 @@ try {
         // handle second exceptions
     }
 }
+
+throw new VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassException('exception');
+throw $e;
+throw new \Exception('Bad logic in order cancel');
