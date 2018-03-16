@@ -17,3 +17,16 @@ abstract class A
     }
 
 }
+
+$class = (new Foo)->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = (new Foo(['VeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue']))->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = (new PendingDispatch(new $this->class(...func_get_args())))->chain($this->chain);
+$dumper = in_array(PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper : new HtmlDumper;
+$class = new static('Error encoding model ['.get_class($model).'] with ID ['.$model->getKey().'] to JSON: '.$message);
+$response = new \Illuminate\Http\JsonResponse(new JsonResponseTestJsonSerializeObject);
+$result = (new Pipeline(new \Illuminate\Container\Container))
+    ->send('foo')
+    ->through([new PipelineTestPipeOne])
+    ->then(function ($piped) {
+        return $piped;
+    });
