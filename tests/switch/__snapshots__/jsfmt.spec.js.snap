@@ -1,5 +1,170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`empty_lines.php 1`] = `
+<?php
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (foo) {
+
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+
+}
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (x) {
+    case y:
+        call();
+
+        break;
+
+    case z:
+        call();
+
+        break;
+}
+
+switch (a) {
+    case b:
+        if (1) {};
+        c();
+}
+
+switch (a) {
+    case x:
+    case y:
+        call();
+
+    case z:
+        call();
+}
+
+switch (a) {
+    case x: case y:
+    call();
+
+    case z:
+        call();
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (foo) {
+    case "bar":
+        doSomething();
+
+    case "baz":
+        doOtherThing();
+}
+
+switch (x) {
+    case y:
+        call();
+
+        break;
+
+    case z:
+        call();
+
+        break;
+}
+
+switch (a) {
+    case b:
+        if (1) {
+
+        }
+        c();
+}
+
+switch (a) {
+    case x:
+    case y:
+        call();
+
+    case z:
+        call();
+}
+
+switch (a) {
+    case x:
+    case y:
+        call();
+
+    case z:
+        call();
+}
+
+`;
+
+exports[`empty_switch.php 1`] = `
+<?php
+switch (1) { default:; }
+switch (1) {}
+switch ($var):
+endswitch;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+switch (1) {
+    default:;
+}
+switch (1) {
+}
+switch ($var):
+endswitch;
+
+`;
+
 exports[`switch.php 1`] = `
 <?php
 switch (2) {
@@ -34,6 +199,20 @@ switch ( 2 ) {
     default:
         $test = 1;
 }
+switch ($i):
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+    case 3:
+    default:
+        echo "i is not equal to 0, 1 or 2";
+endswitch;
 
 switch ($expr) {
     case 0:
@@ -55,6 +234,11 @@ switch ($expr) {
 switch ($longLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongVariable) {}
 
 switch ($longLongLongLongLongLongLongVariable && $longLongLongLongLongLongLongVariable) {}
+
+switch (1) {
+    case $exception->veryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryVeryVeryLongProperty:
+        break;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 switch (2) {
@@ -89,6 +273,20 @@ switch (2) {
     default:
         $test = 1;
 }
+switch ($i):
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+    case 3:
+    default:
+        echo "i is not equal to 0, 1 or 2";
+endswitch;
 
 switch ($expr) {
     case 0:
@@ -116,6 +314,12 @@ switch (
     $longLongLongLongLongLongLongVariable &&
     $longLongLongLongLongLongLongVariable
 ) {
+}
+
+switch (1) {
+    case $exception->veryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod()->
+        veryVeryVeryVeryVeryVeryVeryLongProperty:
+        break;
 }
 
 `;

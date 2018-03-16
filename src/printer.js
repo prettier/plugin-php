@@ -1118,19 +1118,40 @@ function printStatement(path, options, print) {
             "switch (",
             indent(concat([softline, path.call(print, "test")])),
             softline,
-            concat([")", node.shortForm ? ":" : " {"])
+            ")"
           ])
         ),
-        indent(
-          concat(
-            path.map(
-              caseChild => concat([line, print(caseChild)]),
-              "body",
-              "children"
+        node.shortForm ? ":" : " {",
+        node.body.children.length > 0
+          ? indent(
+              concat([
+                hardline,
+                join(
+                  hardline,
+                  path.map(
+                    casePath => {
+                      const caseNode = casePath.getValue();
+                      return concat([
+                        casePath.call(print),
+                        node.body.children.indexOf(caseNode) !==
+                          node.body.children.length - 1 &&
+                        sharedUtil.isNextLineEmpty(
+                          options.originalText,
+                          caseNode,
+                          options
+                        )
+                          ? hardline
+                          : ""
+                      ]);
+                    },
+                    "body",
+                    "children"
+                  )
+                )
+              ])
             )
-          )
-        ),
-        line,
+          : "",
+        hardline,
         node.shortForm ? "endswitch;" : "}"
       ]);
     case "call": {
@@ -1401,7 +1422,11 @@ function printNode(path, options, print) {
         node.test
           ? concat(["case ", path.call(print, "test"), ":"])
           : "default:",
-        node.body ? indent(concat([line, path.call(print, "body")])) : ""
+        node.body
+          ? node.body.children && node.body.children.length
+            ? indent(concat([hardline, path.call(print, "body")]))
+            : ";"
+          : ""
       ]);
     case "break":
       if (node.level) {
