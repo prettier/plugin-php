@@ -415,7 +415,9 @@ function printExpression(path, options, print) {
       case "parenthesis": {
         const parentNode = path.getParentNode();
         const shouldPrintParenthesis =
-          parentNode.kind !== "print" && parentNode.kind !== "echo";
+          parentNode.kind !== "print" &&
+          parentNode.kind !== "echo" &&
+          parentNode.kind !== "include";
         const isNewNode = node.inner.kind === "new";
         const printedInner = concat([
           isNewNode || !shouldPrintParenthesis ? "" : softline,
@@ -1308,7 +1310,7 @@ function printStatement(path, options, print) {
       return concat([
         node.require ? "require" : "include",
         node.once ? "_once" : "",
-        node.target.kind === "parenthesis" ? "" : " ",
+        " ",
         path.call(print, "target")
       ]);
     case "goto":
