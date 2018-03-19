@@ -20,3 +20,11 @@ foreach ($test as $i)
 
 foreach (['foo' => ['very-very-very-long-value'], 'bar' => ['very-very-very-long-value']] as $veryVeryVeryVeryVeryVeryVeryVeryLongKey) {}
 foreach (['foo' => ['very-very-very-long-value'], 'bar' => ['very-very-very-long-value']] as $veryVeryVeryVeryVeryVeryVeryVeryLongKey => $veryVeryVeryVeryVeryVeryVeryVeryLongValue) {}
+
+foreach ($test as $i);
+
+foreach ($test as $i):
+endforeach;
+
+foreach ($test as $i) {
+}
