@@ -1208,7 +1208,7 @@ function printStatement(path, options, print) {
               ])
             )
           : "",
-        group(" {"),
+        " {",
         indent(concat([hardline, path.call(print, "body")])),
         concat([hardline, "}"])
       ]);
