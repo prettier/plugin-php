@@ -89,6 +89,11 @@ function clean(node, newObj) {
           : newObj.arguments[index];
     });
   }
+
+  // Ignore `parenthesis` for `include`
+  if (node.kind === "include" && node.target.kind === "parenthesis") {
+    newObj.target = newObj.target.inner;
+  }
 }
 
 module.exports = clean;
