@@ -1081,7 +1081,24 @@ function printStatement(path, options, print) {
         ])
       );
     }
-    case "foreach":
+    case "foreach": {
+      const body = node.body
+        ? concat([
+            node.shortForm ? ":" : " {",
+            node.body.kind !== "block" || node.body.children.length > 0
+              ? indent(
+                  concat([
+                    hardline,
+                    path.call(print, "body"),
+                    node.body.kind === "block" ? "" : ";"
+                  ])
+                )
+              : "",
+            hardline,
+            node.shortForm ? "endforeach;" : "}"
+          ])
+        : ";";
+
       return concat([
         "foreach (",
         group(
@@ -1102,20 +1119,13 @@ function printStatement(path, options, print) {
                   : path.call(print, "value")
               ])
             ),
-            softline,
-            concat([")", node.shortForm ? ":" : " {"])
+            softline
           ])
         ),
-        indent(
-          concat([
-            line,
-            path.call(print, "body"),
-            node.body.kind === "block" ? "" : ";"
-          ])
-        ),
-        line,
-        node.shortForm ? "endforeach;" : "}"
+        ")",
+        body
       ]);
+    }
     case "switch":
       return concat([
         group(
