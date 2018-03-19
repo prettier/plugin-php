@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`staticlookup.php 1`] = `
+<?php
+Foo::aStaticMethod();
+$classname = 'Foo';
+$classname::aStaticMethod();
+print $classname::$my_static . "\\n";
+Foo::method([
+    'foo' => 'bar',
+    'bar' => 'foo',
+    'foobar' => 'barfoo',
+    'barfoo' => 'foobar'
+]);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+Foo::aStaticMethod();
+$classname = 'Foo';
+$classname::aStaticMethod();
+print $classname::$my_static . "\\n";
+Foo::method([
+    'foo' => 'bar',
+    'bar' => 'foo',
+    'foobar' => 'barfoo',
+    'barfoo' => 'foobar'
+]);
+
+`;
