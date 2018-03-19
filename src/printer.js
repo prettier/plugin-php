@@ -416,16 +416,18 @@ function printExpression(path, options, print) {
         const parentNode = path.getParentNode();
         const shouldPrintParenthesis =
           parentNode.kind !== "print" && parentNode.kind !== "echo";
+        const isNewNode = node.inner.kind === "new";
+        const printedInner = concat([
+          isNewNode || !shouldPrintParenthesis ? "" : softline,
+          path.call(print, "inner")
+        ]);
         return group(
           concat([
             shouldPrintParenthesis ? "(" : "",
-            indent(
-              concat([
-                shouldPrintParenthesis ? softline : "",
-                path.call(print, "inner")
-              ])
-            ),
-            shouldPrintParenthesis ? concat([softline, ")"]) : ""
+            isNewNode ? printedInner : indent(printedInner),
+            shouldPrintParenthesis
+              ? concat([isNewNode ? "" : softline, ")"])
+              : ""
           ])
         );
       }
@@ -1318,22 +1320,7 @@ function printStatement(path, options, print) {
         concat([
           "new ",
           path.call(print, "what"),
-          isAnonymousClassNode
-            ? ""
-            : concat([
-                "(",
-                indent(
-                  join(
-                    ", ",
-                    path.map(
-                      argument => concat([softline, print(argument)]),
-                      "arguments"
-                    )
-                  )
-                ),
-                node.arguments.length ? softline : "",
-                ")"
-              ])
+          isAnonymousClassNode ? "" : printArgumentsList(path, options, print)
         ])
       );
     }
