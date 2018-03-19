@@ -53,6 +53,7 @@ print(str_replace('test', 'test', 'test'));
 
 print(1);
 print (1);
+print (((1)));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 print "Hello World";
@@ -128,6 +129,7 @@ print $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->
 print str_replace('test', 'test', 'test');
 print str_replace('test', 'test', 'test');
 
+print 1;
 print 1;
 print 1;
 

@@ -414,6 +414,9 @@ function printExpression(path, options, print) {
       }
       case "parenthesis": {
         const parentNode = path.getParentNode();
+        if (parentNode && parentNode.kind === "parenthesis") {
+          return path.call(print, "inner");
+        }
         const shouldPrintParenthesis =
           parentNode.kind !== "print" &&
           parentNode.kind !== "echo" &&

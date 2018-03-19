@@ -30,3 +30,4 @@ include 'http://www.example.com/file.php?foo=1&bar=2';
 include $filename;
 (isset($_GET['p']) && $_GET['p'] === 'home') ? include 'pages/home.php' : '';
 include Kohana::find_file('views', 'admin/system/errors');
+include((("test.php")));
