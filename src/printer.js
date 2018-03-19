@@ -1039,14 +1039,16 @@ function printStatement(path, options, print) {
       const body = node.body
         ? concat([
             node.shortForm ? ":" : " {",
-            indent(
-              concat([
-                hardline,
-                path.call(print, "body"),
-                node.body.kind === "block" ? "" : ";"
-              ])
-            ),
-            line,
+            node.body.kind !== "block" || node.body.children.length > 0
+              ? indent(
+                  concat([
+                    hardline,
+                    path.call(print, "body"),
+                    node.body.kind === "block" ? "" : ";"
+                  ])
+                )
+              : "",
+            hardline,
             node.shortForm ? "endfor;" : "}"
           ])
         : ";";
