@@ -3,6 +3,8 @@
 const docBuilders = require("prettier").doc.builders;
 const docUtils = require("prettier").doc.utils;
 const sharedUtil = require("prettier").util;
+//@TODO: super hacky, remove once comment functions are exported for plugin use
+const comments = require("../node_modules/prettier/src/main/comments");
 
 const util = require("./util");
 
@@ -628,7 +630,10 @@ function printStatement(path, options, print) {
   function printBlock(path, options, print) {
     switch (node.kind) {
       case "block":
-        return concat(path.map(print, "children"));
+        return concat([
+          concat(path.map(print, "children")),
+          comments.printDanglingComments(path, options, true)
+        ]);
       case "program": {
         return concat(path.map(print, "children"));
       }
@@ -780,11 +785,15 @@ function printStatement(path, options, print) {
     }
 
     switch (node.kind) {
-      case "class":
+      case "class": {
+        const classPrefixes = [
+          ...(node.isFinal ? ["final"] : []),
+          ...(node.isAbstract ? ["abstract"] : [])
+        ];
         return printDeclarationBlock({
           declaration: concat([
-            node.isAbstract ? "abstract " : "",
-            node.isFinal ? "final " : "",
+            classPrefixes.join(" "),
+            classPrefixes.length > 0 ? " " : "",
             concat(["class", node.name ? concat([" ", node.name]) : ""]),
             group(
               indent(
@@ -817,6 +826,7 @@ function printStatement(path, options, print) {
           ]),
           bodyContents: concat(path.map(print, "body"))
         });
+      }
       case "function":
         return printDeclarationBlock({
           declaration: concat(["function ", node.byref ? "&" : "", node.name]),
@@ -826,14 +836,18 @@ function printStatement(path, options, print) {
             : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
-      case "method":
+      case "method": {
+        const methodPrefixes = [
+          ...(node.isFinal ? ["final"] : []),
+          ...(node.isAbstract ? ["abstract"] : []),
+          ...(node.visibility ? [node.visibility] : []),
+          ...(node.isStatic ? ["static"] : [])
+        ];
         return printDeclarationBlock({
           declaration: concat([
-            node.isFinal ? "final " : "",
-            node.isAbstract ? "abstract " : "",
-            node.visibility,
-            node.isStatic ? " static" : "",
-            " function ",
+            methodPrefixes.join(" "),
+            methodPrefixes.length > 0 ? " " : "",
+            "function ",
             node.byref ? "&" : "",
             node.name
           ]),
@@ -841,8 +855,9 @@ function printStatement(path, options, print) {
           returnTypeContents: node.type
             ? concat([node.nullable ? "?" : "", path.call(print, "type")])
             : "",
-          bodyContents: node.body ? path.call(print, "body") : ""
+          bodyContents: node.body ? concat([path.call(print, "body")]) : ""
         });
+      }
       case "parameter": {
         const name = concat([
           node.nullable ? "?" : "",

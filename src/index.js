@@ -4,6 +4,11 @@ const parse = require("./parser");
 const print = require("./printer");
 const clean = require("./clean");
 const options = require("./options");
+const docBuilders = require("prettier").doc.builders;
+
+const concat = docBuilders.concat;
+const join = docBuilders.join;
+const hardline = docBuilders.hardline;
 
 const languages = [
   {
@@ -49,15 +54,27 @@ const printers = {
   php: {
     print,
     massageAstNode: clean,
+    // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {
-      let children = node.children || node.body || node.traits;
-      if (!children) {
-        return [];
+      if (node.kind === "assign") {
+        return [node.left, node.right];
       }
-      if (children.kind && children.kind === "block") {
-        children = children.children;
+      if (node.kind === "if") {
+        return [node.body, node.alternate, node.test];
       }
-      return Array.isArray(children) ? children : [];
+      if (node.kind === "class") {
+        return [
+          ...(node.body || []),
+          ...(node.implements || []),
+          ...(node.extends ? [node.extends] : [])
+        ];
+      }
+      if (node.body) {
+        // for some nodes body is array, others its a block node
+        return Array.isArray(node.body) ? node.body : [node.body];
+      }
+      const children = node.children || node.traits || node.arguments;
+      return children ? children : [];
     },
     canAttachComment(node) {
       return (
@@ -69,7 +86,45 @@ const printers = {
 
       switch (comment.kind) {
         case "commentblock": {
-          return comment.value;
+          // for now, don't touch single line block comments
+          if (!comment.value.includes("\n")) {
+            return comment.value;
+          }
+          const lines = comment.value.split("\n");
+
+          const linesToPrint = [];
+          let canPrintBlankLine = false;
+          lines.forEach((line, index) => {
+            const lineContainsRealText = /[^(*|/|\s)]/.test(line);
+            if (
+              !lineContainsRealText &&
+              canPrintBlankLine &&
+              index < lines.length - 1
+            ) {
+              linesToPrint.push("");
+              canPrintBlankLine = false;
+            } else if (lineContainsRealText) {
+              linesToPrint.push(
+                line
+                  .replace("/", "")
+                  .replace("*", "")
+                  .trim()
+              );
+              canPrintBlankLine = true;
+            }
+          });
+          return concat([
+            "/**",
+            hardline,
+            join(
+              hardline,
+              linesToPrint.map(line => {
+                return " *" + (line.length > 0 ? " " + line : "");
+              })
+            ),
+            hardline,
+            " */"
+          ]);
         }
         case "commentline": {
           return comment.value.trimRight();
