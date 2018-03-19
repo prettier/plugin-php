@@ -1370,7 +1370,14 @@ function printStatement(path, options, print) {
     case "halt":
       return concat(["__halt_compiler();", node.after.replace(/\n$/, "")]);
     case "eval":
-      return concat(["eval(", path.call(print, "source"), ")"]);
+      return group(
+        concat([
+          "eval(",
+          indent(concat([softline, path.call(print, "source")])),
+          softline,
+          ")"
+        ])
+      );
     default:
       return "Have not implemented statement kind " + node.kind + " yet.";
   }
