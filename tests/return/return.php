@@ -18,3 +18,4 @@ return 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 10000000
 return (1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000);
 return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable ? true : false;
 return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
+return ((($true ? ('foo' . ('foo'. 'bar')) : "foobarfoo")));

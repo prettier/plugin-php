@@ -9,21 +9,30 @@ const util = require("./util");
  * changed by the printer, etc.)
  */
 function clean(node, newObj) {
+  // Ignore `parenthesis` inside `parenthesis`
+  if (node.kind === "parenthesis" && node.inner.kind === "parenthesis") {
+    while (newObj.inner.kind === "parenthesis") {
+      newObj.inner = newObj.inner.inner;
+    }
+  }
+
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
-  if ((node.kind === "continue" || node.kind === "break") && node.level) {
-    let level = node.level;
-    while (level.kind === "parenthesis") {
+  if (node.kind === "continue" || node.kind === "break") {
+    let level = newObj.level;
+    if (level.kind === "parenthesis") {
       level = level.inner;
     }
     if (level.kind === "number") {
       newObj.level = level.value == 1 ? {} : level;
     }
   }
+
   // Normalize numbers
   if (node.kind === "number") {
     newObj.value = util.printNumber(node.value);
   }
+
   // All magic constant should be upper case
   if (node.kind === "magic") {
     newObj.value = node.value.toUpperCase();
@@ -70,7 +79,7 @@ function clean(node, newObj) {
     }
   }
 
-  // Ignore `parenthesis` in `expr`
+  // Ignore `parenthesis` for `return`
   if (node.kind === "return" && node.expr.kind === "parenthesis") {
     newObj.expr = newObj.expr.inner;
   }
