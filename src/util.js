@@ -299,7 +299,9 @@ function lineShouldEndWithSemicolon(path) {
     "throw",
     "magic",
     "new",
-    "eval"
+    "eval",
+    "propertylookup",
+    "offsetlookup"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;

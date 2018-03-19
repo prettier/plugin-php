@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`single.php 1`] = `
+<?php
+Foo::bar();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+Foo::bar();
+
+`;
+
 exports[`staticlookup.php 1`] = `
 <?php
 Foo::aStaticMethod();
