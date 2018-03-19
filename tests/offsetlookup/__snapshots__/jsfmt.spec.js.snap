@@ -36,3 +36,12 @@ $variable = get_taxonomy_function(get_queried_object_function()->taxonomy)->
     object_type[0];
 
 `;
+
+exports[`single.php 1`] = `
+<?php
+$arr[1];
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$arr[1];
+
+`;
