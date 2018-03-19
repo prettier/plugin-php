@@ -418,17 +418,18 @@ function printExpression(path, options, print) {
           parentNode.kind !== "print" &&
           parentNode.kind !== "echo" &&
           parentNode.kind !== "include";
-        const isNewNode = node.inner.kind === "new";
+        const shouldBeInlined =
+          node.inner.kind === "new" || node.inner.kind === "clone";
         const printedInner = concat([
-          isNewNode || !shouldPrintParenthesis ? "" : softline,
+          shouldBeInlined || !shouldPrintParenthesis ? "" : softline,
           path.call(print, "inner")
         ]);
         return group(
           concat([
             shouldPrintParenthesis ? "(" : "",
-            isNewNode ? printedInner : indent(printedInner),
+            shouldBeInlined ? printedInner : indent(printedInner),
             shouldPrintParenthesis
-              ? concat([isNewNode ? "" : softline, ")"])
+              ? concat([shouldBeInlined ? "" : softline, ")"])
               : ""
           ])
         );
