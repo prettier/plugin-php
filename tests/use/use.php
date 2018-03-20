@@ -27,3 +27,11 @@ use Mizo\Web\{
     const JS\BUAIKUM,
     const JS\MAUTAM
 };
+use \Illuminate\Foundation\Bootstrap\BootProviders;
+use function \some\Full\fn_a;
+use const \My\Full\CONSTANT;
+use \Vendor\Package\SomeNamespace\{
+    SubnamespaceOne\ClassA
+};
+use Exception;
+use \Exception;

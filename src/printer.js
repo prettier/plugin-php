@@ -32,6 +32,7 @@ const fileShouldEndWithHardline = util.fileShouldEndWithHardline;
 const lineShouldHaveEndPHPTag = util.lineShouldHaveEndPHPTag;
 const shouldRemoveLines = util.shouldRemoveLines;
 const removeNewlines = util.removeNewlines;
+const maybeStripLeadingSlashFromUse = util.maybeStripLeadingSlashFromUse;
 
 const makeString = sharedUtil.makeString;
 
@@ -1191,7 +1192,13 @@ function printStatement(path, options, print) {
           node.type ? concat([node.type, " "]) : "",
           indent(
             concat([
-              node.name ? concat([node.name, "\\{", softline]) : "",
+              node.name
+                ? concat([
+                    maybeStripLeadingSlashFromUse(node.name),
+                    "\\{",
+                    softline
+                  ])
+                : "",
               join(
                 concat([",", line]),
                 path.map(item => concat([print(item)]), "items")
@@ -1205,7 +1212,7 @@ function printStatement(path, options, print) {
     case "useitem":
       return concat([
         node.type ? concat([node.type, " "]) : "",
-        node.name,
+        maybeStripLeadingSlashFromUse(node.name),
         node.alias ? concat([" as ", node.alias]) : ""
       ]);
     case "closure":

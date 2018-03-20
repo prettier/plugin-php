@@ -352,6 +352,14 @@ function fileShouldEndWithHardline(path) {
   return true;
 }
 
+function maybeStripLeadingSlashFromUse(name) {
+  const nameWithoutLeadingSlash = name.replace(/^\\/, "");
+  if (nameWithoutLeadingSlash.indexOf("\\") !== -1) {
+    return nameWithoutLeadingSlash;
+  }
+  return name;
+}
+
 module.exports = {
   includes,
   printNumber,
@@ -377,5 +385,6 @@ module.exports = {
   lineShouldHaveEndPHPTag,
   fileShouldEndWithHardline,
   shouldRemoveLines,
-  removeNewlines
+  removeNewlines,
+  maybeStripLeadingSlashFromUse
 };
