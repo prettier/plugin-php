@@ -946,6 +946,68 @@ function printStatement(path, options, print) {
     return printDeclaration(node);
   }
 
+  function printBodyControlStructure(path, bodyProperty = "body") {
+    const node = path.getValue();
+    if (!node[bodyProperty]) {
+      return ";";
+    }
+    let printedBody = null;
+    if (node.kind === "switch") {
+      printedBody = concat([
+        join(
+          hardline,
+          path.map(
+            casePath => {
+              const caseNode = casePath.getValue();
+              return concat([
+                casePath.call(print),
+                node[bodyProperty].children.indexOf(caseNode) !==
+                  node[bodyProperty].children.length - 1 &&
+                sharedUtil.isNextLineEmpty(
+                  options.originalText,
+                  caseNode,
+                  options
+                )
+                  ? hardline
+                  : ""
+              ]);
+            },
+            "body",
+            "children"
+          )
+        )
+      ]);
+    } else {
+      printedBody = concat([
+        path.call(print, bodyProperty),
+        node[bodyProperty].kind === "block" ? "" : ";"
+      ]);
+    }
+
+    return concat([
+      node.shortForm ? ":" : " {",
+      indent(
+        concat([
+          node.comments && node.comments.length > 0 ? hardline : "",
+          comments.printDanglingComments(path, options, true),
+          node[bodyProperty].kind !== "block" ||
+          (node[bodyProperty].children &&
+            node[bodyProperty].children.length > 0) ||
+          (node[bodyProperty].comments &&
+            node[bodyProperty].comments.length > 0)
+            ? concat([hardline, printedBody])
+            : ""
+        ])
+      ),
+      node.kind === "if" && bodyProperty === "body"
+        ? ""
+        : concat([
+            hardline,
+            node.shortForm ? concat(["end", node.kind, ";"]) : "}"
+          ])
+    ]);
+  }
+
   switch (node.kind) {
     case "assign": {
       const canBreak =
@@ -976,173 +1038,90 @@ function printStatement(path, options, print) {
           ]);
         }
         return concat([
-          concat([
-            node.shortForm ? "" : "} ",
-            "else",
-            node.shortForm ? ":" : " {"
-          ]),
-          indent(
-            concat([
-              line,
-              path.call(print, "alternate"),
-              node.alternate.kind === "block" ? "" : ";"
-            ])
-          ),
-          line,
-          node.shortForm ? "endif;" : "}"
+          node.shortForm ? "" : "} ",
+          "else",
+          printBodyControlStructure(path, "alternate")
         ]);
       };
       return concat([
         group(
           concat([
             "if (",
-            indent(concat([softline, path.call(print, "test")])),
-            softline,
-            concat([")", node.shortForm ? ":" : " {"])
-          ])
-        ),
-        indent(
-          concat([
-            line,
-            path.call(print, "body"),
-            node.body.kind === "block" ? "" : ";"
-          ])
-        ),
-        line,
-        handleIfAlternate(node.alternate)
-      ]);
-    }
-    case "do":
-      return concat([
-        "do {",
-        indent(
-          concat([
-            line,
-            path.call(print, "body"),
-            node.body.kind === "block" ? "" : ";"
-          ])
-        ),
-        line,
-        group(
-          concat([
-            "} while (",
             group(
               concat([
                 indent(concat([softline, path.call(print, "test")])),
                 softline
               ])
             ),
-            ");"
+            ")",
+            printBodyControlStructure(path)
           ])
-        )
+        ),
+        hardline,
+        handleIfAlternate(node.alternate)
       ]);
-    case "while":
+    }
+    case "do":
       return concat([
+        "do",
+        printBodyControlStructure(path),
+        " while (",
         group(
           concat([
-            "while (",
             indent(concat([softline, path.call(print, "test")])),
-            softline,
-            concat([")", node.shortForm ? ":" : " {"])
+            softline
           ])
         ),
-        indent(
-          concat([
-            line,
-            path.call(print, "body"),
-            node.body.kind === "block" ? "" : ";"
-          ])
-        ),
-        line,
-        node.shortForm ? "endwhile;" : "}"
+        ");"
       ]);
+    case "while":
+      return group(
+        concat([
+          "while (",
+          group(
+            concat([
+              indent(concat([softline, path.call(print, "test")])),
+              softline
+            ])
+          ),
+          ")",
+          printBodyControlStructure(path)
+        ])
+      );
     case "for": {
-      const body = node.body
-        ? concat([
-            node.shortForm ? ":" : " {",
-            node.body.kind !== "block" || node.body.children.length > 0
-              ? indent(
-                  concat([
-                    hardline,
-                    path.call(print, "body"),
-                    node.body.kind === "block" ? "" : ";"
-                  ])
-                )
-              : indent(
-                  concat([
-                    node.comments && node.comments.length > 0 ? hardline : "",
-                    comments.printDanglingComments(path, options, true)
-                  ])
-                ),
-            hardline,
-            node.shortForm ? "endfor;" : "}"
-          ])
-        : ";";
-
+      const body = printBodyControlStructure(path);
       if (!node.init.length && !node.test.length && !node.increment.length) {
         return concat([group(concat(["for (;;)", body]))]);
       }
 
       return concat([
+        "for (",
         group(
           concat([
-            "for (",
-            group(
+            indent(
               concat([
-                indent(
-                  concat([
-                    softline,
-                    group(
-                      concat([
-                        join(concat([",", line]), path.map(print, "init"))
-                      ])
-                    ),
-                    ";",
-                    line,
-                    group(
-                      concat([
-                        join(concat([",", line]), path.map(print, "test"))
-                      ])
-                    ),
-                    ";",
-                    line,
-                    group(
-                      join(concat([",", line]), path.map(print, "increment"))
-                    )
-                  ])
+                softline,
+                group(
+                  concat([join(concat([",", line]), path.map(print, "init"))])
                 ),
-                softline
+                ";",
+                line,
+                group(
+                  concat([join(concat([",", line]), path.map(print, "test"))])
+                ),
+                ";",
+                line,
+                group(join(concat([",", line]), path.map(print, "increment")))
               ])
             ),
-            ")",
-            body
+            softline
           ])
-        )
+        ),
+        ")",
+        body
       ]);
     }
-    case "foreach": {
-      const body = node.body
-        ? concat([
-            node.shortForm ? ":" : " {",
-            node.body.kind !== "block" || node.body.children.length > 0
-              ? indent(
-                  concat([
-                    hardline,
-                    path.call(print, "body"),
-                    node.body.kind === "block" ? "" : ";"
-                  ])
-                )
-              : indent(
-                  concat([
-                    node.comments && node.comments.length > 0 ? hardline : "",
-                    comments.printDanglingComments(path, options, true)
-                  ])
-                ),
-            hardline,
-            node.shortForm ? "endforeach;" : "}"
-          ])
-        : ";";
-
+    case "foreach":
       return concat([
         "foreach (",
         group(
@@ -1167,9 +1146,8 @@ function printStatement(path, options, print) {
           ])
         ),
         ")",
-        body
+        printBodyControlStructure(path)
       ]);
-    }
     case "switch":
       return concat([
         group(
@@ -1180,38 +1158,7 @@ function printStatement(path, options, print) {
             ")"
           ])
         ),
-        node.shortForm ? ":" : " {",
-        node.body.children.length > 0
-          ? indent(
-              concat([
-                hardline,
-                join(
-                  hardline,
-                  path.map(
-                    casePath => {
-                      const caseNode = casePath.getValue();
-                      return concat([
-                        casePath.call(print),
-                        node.body.children.indexOf(caseNode) !==
-                          node.body.children.length - 1 &&
-                        sharedUtil.isNextLineEmpty(
-                          options.originalText,
-                          caseNode,
-                          options
-                        )
-                          ? hardline
-                          : ""
-                      ]);
-                    },
-                    "body",
-                    "children"
-                  )
-                )
-              ])
-            )
-          : "",
-        hardline,
-        node.shortForm ? "endswitch;" : "}"
+        printBodyControlStructure(path)
       ]);
     case "call": {
       // chain: Call (PropertyLookup (Call (PropertyLookup (...))))

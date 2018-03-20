@@ -52,7 +52,6 @@ list($bar) = "abcde";
 var_dump($bar);
 
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) { // NULL
-
 }
 
 list($a, list($b, $c)) = array(1, array(2, 3));
