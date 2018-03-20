@@ -757,7 +757,13 @@ function printStatement(path, options, print) {
           )
         : "";
       const printedBody = bodyContents
-        ? concat(["{", indent(concat([hardline, bodyContents])), hardline, "}"])
+        ? concat([
+            "{",
+            indent(concat([hardline, bodyContents])),
+            comments.printDanglingComments(path, options, true),
+            hardline,
+            "}"
+          ])
         : "";
       return concat([
         group(
@@ -824,10 +830,7 @@ function printStatement(path, options, print) {
               )
             )
           ]),
-          bodyContents: concat([
-            concat(path.map(print, "body")),
-            comments.printDanglingComments(path, options, true)
-          ])
+          bodyContents: concat(path.map(print, "body"))
         });
       }
       case "function":
