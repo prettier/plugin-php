@@ -1276,11 +1276,10 @@ function printStatement(path, options, print) {
         ])
       );
     case "exit":
-      // Todo use `node.useDie` for determining `exit` or `die`
-      // after https://github.com/glayzzle/php-parser/commit/b22ea4863be9125c381951dc008820b68fc3d135 shipped
       return group(
         concat([
-          "exit(",
+          node.useDie ? "die" : "exit",
+          "(",
           indent(concat([softline, path.call(print, "status")])),
           softline,
           ")"
