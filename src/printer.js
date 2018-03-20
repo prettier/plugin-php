@@ -1068,38 +1068,57 @@ function printStatement(path, options, print) {
           ])
         : ";";
 
+      // We want to keep dangling comments above the loop to stay consistent.
+      // Any comment positioned between the for statement and the parentheses
+      // is going to be printed before the statement.
+      const dangling = comments.printDanglingComments(
+        path,
+        options,
+        /* sameLine */ true
+      );
+      const printedComments = dangling ? concat([dangling, softline]) : "";
+
       if (!node.init.length && !node.test.length && !node.increment.length) {
-        return concat([group(concat(["for (;;)", body]))]);
+        return concat([printedComments, group(concat(["for (;;)", body]))]);
       }
 
-      return group(
-        concat([
-          "for (",
-          group(
-            concat([
-              indent(
-                concat([
-                  softline,
-                  group(
-                    concat([join(concat([",", line]), path.map(print, "init"))])
-                  ),
-                  ";",
-                  line,
-                  group(
-                    concat([join(concat([",", line]), path.map(print, "test"))])
-                  ),
-                  ";",
-                  line,
-                  group(join(concat([",", line]), path.map(print, "increment")))
-                ])
-              ),
-              softline
-            ])
-          ),
-          ")",
-          body
-        ])
-      );
+      return concat([
+        printedComments,
+        group(
+          concat([
+            "for (",
+            group(
+              concat([
+                indent(
+                  concat([
+                    softline,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "init"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "test"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      join(concat([",", line]), path.map(print, "increment"))
+                    )
+                  ])
+                ),
+                softline
+              ])
+            ),
+            ")",
+            body
+          ])
+        )
+      ]);
     }
     case "foreach": {
       const body = node.body

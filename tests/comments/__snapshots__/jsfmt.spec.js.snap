@@ -128,3 +128,19 @@ class Foo
 }
 
 `;
+
+exports[`dangling_for.php 1`] = `
+<?php
+for // comment
+(;;);
+
+for /* comment */(;;);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// comment
+<?php
+for (;;);
+
+/* comment */
+for (;;);
+
+`;
