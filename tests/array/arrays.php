@@ -333,3 +333,4 @@ $this->long->expression->before->array->statesArray[
   $state->getCirculationStateId()
 ] = $state->getName();
 $arr[ ] = 1;
+$arr{"x"} = 42;
