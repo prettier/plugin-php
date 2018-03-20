@@ -72,21 +72,18 @@ $bar = "barbaz";
 
 print "foo is $foo";
 
-// foo is foobar
-// Using single quotes will print the variable name, not the value
+// Using single quotes will print the variable name, not the value // foo is foobar
 print 'foo is $foo';
 
-// foo is $foo
-// If you are not using any other characters, you can just print variables
+// If you are not using any other characters, you can just print variables // foo is $foo
 print $foo;
 
-// foobar
 print <<<END
 This uses the "here document" syntax to output
 multiple lines with $variable interpolation. Note
 that the here document terminator must appear on a
 line with just a semicolon no extra whitespace!
-END;
+END; // foobar
 
 // However, the following examples will work:
 ($some_var) ? print 'true' : print 'false';

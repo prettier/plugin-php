@@ -62,6 +62,9 @@ const printers = {
       if (node.kind === "if") {
         return [node.body, node.alternate, node.test];
       }
+      if (node.kind === "for") {
+        return [node.body.children];
+      }
       if (node.kind === "class") {
         return [
           ...(node.body || []),
