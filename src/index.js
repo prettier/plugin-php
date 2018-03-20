@@ -5,10 +5,14 @@ const print = require("./printer");
 const clean = require("./clean");
 const options = require("./options");
 const docBuilders = require("prettier").doc.builders;
+const utils = require("prettier").util;
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
 const hardline = docBuilders.hardline;
+const addLeadingComment = utils.addLeadingComment;
+const addTrailingComment = utils.addTrailingComment;
+const addDanglingComment = utils.addDanglingComment;
 
 const languages = [
   {
@@ -83,6 +87,20 @@ const printers = {
       return (
         node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
       );
+    },
+    handleComment(comment, text, options) {
+      const precedingNode = comment.precedingNode;
+      const enclosingNode = comment.enclosingNode;
+      const followingNode = comment.followingNode;
+      if (enclosingNode.kind === "class") {
+        // for an empty class where the body is only made up of comments, we
+        // need to attach this as a dangling comment on the class node itself
+        if (!(enclosingNode.body && enclosingNode.body.length > 0)) {
+          addDanglingComment(enclosingNode, comment);
+          return true;
+        }
+      }
+      return false;
     },
     printComment(commentPath) {
       const comment = commentPath.getValue();

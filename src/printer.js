@@ -824,7 +824,10 @@ function printStatement(path, options, print) {
               )
             )
           ]),
-          bodyContents: concat(path.map(print, "body"))
+          bodyContents: concat([
+            concat(path.map(print, "body")),
+            comments.printDanglingComments(path, options, true)
+          ])
         });
       }
       case "function":

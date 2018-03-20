@@ -448,14 +448,9 @@ class A
 
 $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
 
-class ClassName extends ParentClass
-    implements
-        \\ArrayAccess,
-        \\Countable
-
-        // constants, properties, methods
+class ClassName extends ParentClass implements \\ArrayAccess, \\Countable
 {
-
+    // constants, properties, methods
 }
 
 class FooBar
