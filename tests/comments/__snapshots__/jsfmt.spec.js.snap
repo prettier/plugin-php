@@ -107,9 +107,9 @@ class Foo
         $this->title = $title;
     }
 
-    /**
+    /*********************
      * Some long comment *
-     */
+     *********************/
 
     // This is a one-line c++ style comment
 

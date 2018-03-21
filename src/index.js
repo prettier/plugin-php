@@ -124,6 +124,20 @@ const printers = {
           if (!comment.value.includes("\n")) {
             return comment.value;
           }
+
+          // if this is not a doc comment, just print as is, replacing new lines
+          if (
+            !(
+              comment.value.startsWith("/* ") ||
+              comment.value.startsWith("/** ") ||
+              comment.value.startsWith("/*\n") ||
+              comment.value.startsWith("/**\n")
+            )
+          ) {
+            return join(hardline, comment.value.split("\n"));
+          }
+
+          // if this is a doc comment, lets try to make it a little pretty
           const lines = comment.value.split("\n");
 
           const linesToPrint = [];
