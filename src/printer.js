@@ -3,6 +3,7 @@
 const docBuilders = require("prettier").doc.builders;
 const docUtils = require("prettier").doc.utils;
 const sharedUtil = require("prettier").util;
+const comments = require("./comments");
 
 const util = require("./util");
 
@@ -628,7 +629,10 @@ function printStatement(path, options, print) {
   function printBlock(path, options, print) {
     switch (node.kind) {
       case "block":
-        return concat(path.map(print, "children"));
+        return concat([
+          concat(path.map(print, "children")),
+          comments.printDanglingComments(path, options, true)
+        ]);
       case "program": {
         return concat(path.map(print, "children"));
       }
@@ -752,7 +756,13 @@ function printStatement(path, options, print) {
           )
         : "";
       const printedBody = bodyContents
-        ? concat(["{", indent(concat([hardline, bodyContents])), hardline, "}"])
+        ? concat([
+            "{",
+            indent(concat([hardline, bodyContents])),
+            comments.printDanglingComments(path, options, true),
+            hardline,
+            "}"
+          ])
         : "";
       return concat([
         group(
@@ -780,11 +790,15 @@ function printStatement(path, options, print) {
     }
 
     switch (node.kind) {
-      case "class":
+      case "class": {
+        const classPrefixes = [
+          ...(node.isFinal ? ["final"] : []),
+          ...(node.isAbstract ? ["abstract"] : [])
+        ];
         return printDeclarationBlock({
           declaration: concat([
-            node.isAbstract ? "abstract " : "",
-            node.isFinal ? "final " : "",
+            classPrefixes.join(" "),
+            classPrefixes.length > 0 ? " " : "",
             concat(["class", node.name ? concat([" ", node.name]) : ""]),
             group(
               indent(
@@ -817,6 +831,7 @@ function printStatement(path, options, print) {
           ]),
           bodyContents: concat(path.map(print, "body"))
         });
+      }
       case "function":
         return printDeclarationBlock({
           declaration: concat(["function ", node.byref ? "&" : "", node.name]),
@@ -826,14 +841,18 @@ function printStatement(path, options, print) {
             : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
-      case "method":
+      case "method": {
+        const methodPrefixes = [
+          ...(node.isFinal ? ["final"] : []),
+          ...(node.isAbstract ? ["abstract"] : []),
+          ...(node.visibility ? [node.visibility] : []),
+          ...(node.isStatic ? ["static"] : [])
+        ];
         return printDeclarationBlock({
           declaration: concat([
-            node.isFinal ? "final " : "",
-            node.isAbstract ? "abstract " : "",
-            node.visibility,
-            node.isStatic ? " static" : "",
-            " function ",
+            methodPrefixes.join(" "),
+            methodPrefixes.length > 0 ? " " : "",
+            "function ",
             node.byref ? "&" : "",
             node.name
           ]),
@@ -841,8 +860,9 @@ function printStatement(path, options, print) {
           returnTypeContents: node.type
             ? concat([node.nullable ? "?" : "", path.call(print, "type")])
             : "",
-          bodyContents: node.body ? path.call(print, "body") : ""
+          bodyContents: node.body ? concat([path.call(print, "body")]) : ""
         });
+      }
       case "parameter": {
         const name = concat([
           node.nullable ? "?" : "",
@@ -1047,7 +1067,12 @@ function printStatement(path, options, print) {
                     node.body.kind === "block" ? "" : ";"
                   ])
                 )
-              : "",
+              : indent(
+                  concat([
+                    node.comments && node.comments.length > 0 ? hardline : "",
+                    comments.printDanglingComments(path, options, true)
+                  ])
+                ),
             hardline,
             node.shortForm ? "endfor;" : "}"
           ])
@@ -1057,34 +1082,42 @@ function printStatement(path, options, print) {
         return concat([group(concat(["for (;;)", body]))]);
       }
 
-      return group(
-        concat([
-          "for (",
-          group(
-            concat([
-              indent(
-                concat([
-                  softline,
-                  group(
-                    concat([join(concat([",", line]), path.map(print, "init"))])
-                  ),
-                  ";",
-                  line,
-                  group(
-                    concat([join(concat([",", line]), path.map(print, "test"))])
-                  ),
-                  ";",
-                  line,
-                  group(join(concat([",", line]), path.map(print, "increment")))
-                ])
-              ),
-              softline
-            ])
-          ),
-          ")",
-          body
-        ])
-      );
+      return concat([
+        group(
+          concat([
+            "for (",
+            group(
+              concat([
+                indent(
+                  concat([
+                    softline,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "init"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "test"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      join(concat([",", line]), path.map(print, "increment"))
+                    )
+                  ])
+                ),
+                softline
+              ])
+            ),
+            ")",
+            body
+          ])
+        )
+      ]);
     }
     case "foreach": {
       const body = node.body
@@ -1098,7 +1131,12 @@ function printStatement(path, options, print) {
                     node.body.kind === "block" ? "" : ";"
                   ])
                 )
-              : "",
+              : indent(
+                  concat([
+                    node.comments && node.comments.length > 0 ? hardline : "",
+                    comments.printDanglingComments(path, options, true)
+                  ])
+                ),
             hardline,
             node.shortForm ? "endforeach;" : "}"
           ])
@@ -1242,11 +1280,10 @@ function printStatement(path, options, print) {
         ])
       );
     case "exit":
-      // Todo use `node.useDie` for determining `exit` or `die`
-      // after https://github.com/glayzzle/php-parser/commit/b22ea4863be9125c381951dc008820b68fc3d135 shipped
       return group(
         concat([
-          "exit(",
+          node.useDie ? "die" : "exit",
+          "(",
           indent(concat([softline, path.call(print, "status")])),
           softline,
           ")"
@@ -1345,7 +1382,13 @@ function printStatement(path, options, print) {
     case "try":
       return concat([
         "try {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([
+            hardline,
+            path.call(print, "body"),
+            comments.printDanglingComments(path, options, true)
+          ])
+        ),
         hardline,
         "}",
         node.catches ? concat(path.map(print, "catches")) : "",
@@ -1371,7 +1414,13 @@ function printStatement(path, options, print) {
             ])
           : "",
         " {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([
+            hardline,
+            path.call(print, "body"),
+            comments.printDanglingComments(path, options, true)
+          ])
+        ),
         hardline,
         "}"
       ]);
@@ -1483,51 +1532,6 @@ function printNode(path, options, print) {
         }
       }
       return concat(parts);
-    }
-    case "doc": {
-      let canAddEmptyLine = false;
-      // @TODO: need refactor after resolve https://github.com/glayzzle/php-parser/issues/114
-      return node.isDoc
-        ? concat([
-            "/**",
-            // we use the number of lines to determine if this is a single or
-            // multi line docblock
-            node.lines.length > 1
-              ? concat(
-                  node.lines.map((comment, index) => {
-                    if (comment.length > 0) {
-                      canAddEmptyLine = true;
-                      return concat([hardline, " * ", comment]);
-                    } else if (!canAddEmptyLine) {
-                      return "";
-                    }
-                    canAddEmptyLine = false;
-                    return index < node.lines.length - 1
-                      ? concat([hardline, " *"])
-                      : "";
-                  })
-                )
-              : concat([" ", node.lines[0]], " "),
-            node.lines.length > 1 ? hardline : "",
-            " */"
-          ])
-        : join(
-            hardline,
-            node.lines.map(comment =>
-              concat([
-                comment.split(/\n/).length > 1
-                  ? concat(["/*", comment[0] === "*" ? "" : " "])
-                  : "// ",
-                comment,
-                comment.split(/\n/).length > 1
-                  ? concat([
-                      comment[comment.length - 1] === "*" ? "" : " ",
-                      "*/"
-                    ])
-                  : ""
-              ])
-            )
-          );
     }
     case "entry":
       return concat([

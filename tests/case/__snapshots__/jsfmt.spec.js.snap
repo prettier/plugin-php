@@ -263,13 +263,13 @@ abstract class AbstractClass
 
 trait ezcReflectionReturnInfo
 {
-    public function getReturnType()
+    function getReturnType()
     {
-        // 1
+        /* 1 */
     }
-    public function getReturnDescription()
+    function getReturnDescription()
     {
-        // 2
+        /* 2 */
     }
 }
 
@@ -281,7 +281,7 @@ final class MyClass extends Bar implements iTemplate
         B::bigTalk as talk;
     }
 
-    public const CONSTANT = 'CONSTANT';
+    const CONSTANT = 'CONSTANT';
 
     public $public = 'Public';
 
@@ -291,7 +291,7 @@ final class MyClass extends Bar implements iTemplate
 
     public $foo = 'Bar';
 
-    public function printHello()
+    function printHello()
     {
         echo $this->public;
 
@@ -400,7 +400,7 @@ final class MyClass extends Bar implements iTemplate
 
         var_dump($a instanceof MyClass);
 
-        exit();
+        die();
         exit();
         eval('test');
     }

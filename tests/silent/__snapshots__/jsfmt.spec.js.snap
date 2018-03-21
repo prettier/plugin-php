@@ -15,9 +15,9 @@ $variable = @foo('VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVe
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $variable = @foo();
-// Intentional file error
+/* Intentional file error */
 $my_file = @file('non_existent_file') or
-exit("Failed opening file: error was '$php_errormsg'");
+die("Failed opening file: error was '$php_errormsg'");
 
 // this works for any expression, not just functions:
 $value = @$cache[$key];

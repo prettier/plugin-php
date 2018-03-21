@@ -46,12 +46,12 @@ echo "$drink has $power.
 // Or let's skip to only the third one
 // list( , , $power) = $info;
 // echo "I need $power!\\n";
+
 // list() doesn't work with strings
 list($bar) = "abcde";
 var_dump($bar);
 
-// NULL
-while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
+while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) { // NULL
 
 }
 

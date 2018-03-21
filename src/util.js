@@ -256,7 +256,13 @@ function isNextNodeInline(path) {
 }
 
 function lineShouldHaveStartPHPTag(path) {
-  return isFirstNodeInParentProgramNode(path) || isPrevNodeInline(path);
+  const node = path.getValue();
+  return (
+    (node.kind === "program" &&
+      node.children[0] &&
+      node.children[0].kind !== "inline") ||
+    isPrevNodeInline(path)
+  );
 }
 
 function lineShouldEndWithSemicolon(path) {

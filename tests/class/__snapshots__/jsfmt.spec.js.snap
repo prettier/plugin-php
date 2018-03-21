@@ -260,7 +260,7 @@ class Foo extends Bar implements Baz, Buzz
 {
     public $test;
 
-    public function test()
+    function test()
     {
         return "test";
     }
@@ -327,16 +327,16 @@ abstract class ReallyReallyReallyLongClassName
     public function test_pass_by_reference(&$test)
     {
         $test + 1;
-    }
 
-    /**
-     * This is a function
-     */
+        /**
+         * This is a function
+         */
+    }
     private function hi($input)
     {
         $test = 1;
 
-        // testing line spacing
+        //testing line spacing
         $other_test = 2;
 
         $one_more_test = 3;
@@ -348,9 +348,9 @@ abstract class ReallyReallyReallyLongClassName
         $otherInput = 1
     ) {
         return true;
-    }
 
-    // doc test
+        // doc test
+    }
     public static function testStaticFunction($input)
     {
         return self::$staticTest[0];
@@ -471,7 +471,7 @@ class FooBarFoo
 {
     public function fooBarBaz($x, $y, $z, $foo, $bar)
     {
-        // Comment
+        /* Comment */
     }
 }
 

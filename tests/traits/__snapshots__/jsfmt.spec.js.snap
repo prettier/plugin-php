@@ -32,33 +32,33 @@ class ShortImplementingClass {
 <?php
 trait A
 {
-    public function testFunction()
+    function testFunction()
     {
-        // 1
+        /*1*/
     }
-    public function otherTestFunction()
+    function otherTestFunction()
     {
-        // 2
+        /*2*/
     }
 }
 
 trait B extends otherTrait
 {
-    public function someOtherTestFunction()
+    function someOtherTestFunction()
     {
-        // 3
+        /*3*/
     }
 }
 
 trait C extends A implements B
 {
-    public function someOtherTestFunction()
+    function someOtherTestFunction()
     {
-        // 4
+        /*4*/
     }
-    public function testFunction()
+    function testFunction()
     {
-        // 5
+        /*5*/
     }
 }
 
