@@ -4,15 +4,12 @@ const parse = require("./parser");
 const print = require("./printer");
 const clean = require("./clean");
 const options = require("./options");
+const comments = require("./comments");
 const docBuilders = require("prettier").doc.builders;
-const utils = require("prettier").util;
 
 const concat = docBuilders.concat;
 const join = docBuilders.join;
 const hardline = docBuilders.hardline;
-const addLeadingComment = utils.addLeadingComment;
-const addTrailingComment = utils.addTrailingComment;
-const addDanglingComment = utils.addDanglingComment;
 
 const languages = [
   {
@@ -91,33 +88,10 @@ const printers = {
         node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
       );
     },
-    handleComment(comment, text, options) {
-      const precedingNode = comment.precedingNode;
-      const enclosingNode = comment.enclosingNode;
-      const followingNode = comment.followingNode;
-      if (enclosingNode && enclosingNode.kind === "class") {
-        // for an empty class where the body is only made up of comments, we
-        // need to attach this as a dangling comment on the class node itself
-        if (!(enclosingNode.body && enclosingNode.body.length > 0)) {
-          addDanglingComment(enclosingNode, comment);
-          return true;
-        }
-      }
-      if (
-        (enclosingNode && enclosingNode.kind === "function") ||
-        (enclosingNode && enclosingNode.kind === "method")
-      ) {
-        // for empty functions where the body is only made up of comments, we need
-        // to attach this as a dangling comment on the function node itself
-        if (
-          !followingNode && // make sure we're not grabbing inline parameter comments
-          !(enclosingNode.body && enclosingNode.body.children.length > 0)
-        ) {
-          addDanglingComment(enclosingNode, comment);
-          return true;
-        }
-      }
-      return false;
+    handleComments: {
+      ownLine: comments.handleOwnLineComment,
+      endOfLine: comments.handleEndOfLineComment,
+      remaining: comments.handleRemainingComment
     },
     printComment(commentPath) {
       const comment = commentPath.getValue();
