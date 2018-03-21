@@ -22,39 +22,30 @@ args:
 */
 
 const handleOwnLineComment = function(comment) {
-  if (
+  return (
     handleClass(comment) ||
     handleFunction(comment) ||
     handleForLoop(comment) ||
     handleTryCatch(comment)
-  ) {
-    return true;
-  }
-  return false;
+  );
 };
 
 const handleEndOfLineComment = function(comment) {
-  if (
+  return (
     handleClass(comment) ||
     handleFunction(comment) ||
     handleForLoop(comment) ||
     handleTryCatch(comment)
-  ) {
-    return true;
-  }
-  return false;
+  );
 };
 
 const handleRemainingComment = function(comment) {
-  if (
+  return (
     handleClass(comment) ||
     handleFunction(comment) ||
     handleForLoop(comment) ||
     handleTryCatch(comment)
-  ) {
-    return true;
-  }
-  return false;
+  );
 };
 
 const handleForLoop = function(comment) {
