@@ -3,8 +3,7 @@
 const docBuilders = require("prettier").doc.builders;
 const docUtils = require("prettier").doc.utils;
 const sharedUtil = require("prettier").util;
-//@TODO: super hacky, remove once comment functions are exported for plugin use
-const comments = require("../node_modules/prettier/src/main/comments");
+const comments = require("./comments");
 
 const util = require("./util");
 
