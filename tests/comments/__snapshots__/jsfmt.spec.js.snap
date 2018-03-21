@@ -63,8 +63,8 @@ lines
 
 # This is a one-line shell-style comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/** @var int $int This is a counter. */
 <?php
+/** @var int $int This is a counter. */
 $int = 0;
 
 // there should be no docblock here
@@ -136,8 +136,8 @@ for // comment
 
 for /* comment */(;;);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// comment
 <?php
+// comment
 for (;;);
 
 /* comment */

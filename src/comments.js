@@ -2,43 +2,40 @@
 
 const utils = require("prettier").util;
 
-const addLeadingComment = utils.addLeadingComment;
-const addTrailingComment = utils.addTrailingComment;
 const addDanglingComment = utils.addDanglingComment;
 
-const handleOwnLineComment = function(
-  comment,
-  text,
-  options,
-  ast,
+/*
+Comment functions are meant to inspect various edge cases using given comment nodes,
+with information about where those comment nodes exist in the tree (ie enclosingNode,
+previousNode, followingNode), and then either call the built in functions to handle
+certain cases (ie addLeadingComment, addTrailingComment, addDanglingComment), or just
+let prettier core handle them. To signal that the plugin is taking over, the comment
+handler function should return true, otherwise returning false signals that prettier
+core should handle the comment
+
+args:
+  comment
+  text
+  options
+  ast
   isLastComment
-) {
+*/
+
+const handleOwnLineComment = function(comment) {
   if (handleClass(comment) || handleFunction(comment)) {
     return true;
   }
   return false;
 };
 
-const handleEndOfLineComment = function(
-  comment,
-  text,
-  options,
-  ast,
-  isLastComment
-) {
+const handleEndOfLineComment = function(comment) {
   if (handleClass(comment) || handleFunction(comment)) {
     return true;
   }
   return false;
 };
 
-const handleRemainingComment = function(
-  comment,
-  text,
-  options,
-  ast,
-  isLastComment
-) {
+const handleRemainingComment = function(comment) {
   if (handleClass(comment) || handleFunction(comment)) {
     return true;
   }
@@ -56,7 +53,7 @@ const handleClass = function(comment) {
     }
   }
   return false;
-}
+};
 
 const handleFunction = function(comment) {
   const enclosingNode = comment.enclosingNode;
@@ -76,7 +73,7 @@ const handleFunction = function(comment) {
     }
   }
   return false;
-}
+};
 
 module.exports = {
   handleOwnLineComment,
