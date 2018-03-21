@@ -63,6 +63,28 @@ const printers = {
       if (node.kind === "if") {
         return [node.body, node.alternate, node.test];
       }
+      if (node.kind === "foreach") {
+        return [
+          ...(node.body.children || []),
+          node.key,
+          node.source,
+          node.value
+        ];
+      }
+      if (node.kind === "try") {
+        return [
+          ...((node.always && node.always.children) || []),
+          ...((node.body && node.body.children) || []),
+          ...(node.catches || [])
+        ];
+      }
+      if (node.kind === "catch") {
+        return [
+          ...(node.what || []),
+          ...(node.variable ? [node.variable] : []),
+          ...(node.body.children || [])
+        ];
+      }
       if (node.kind === "for") {
         return [node.body.children];
       }

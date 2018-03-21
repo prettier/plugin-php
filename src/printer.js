@@ -1068,28 +1068,22 @@ function printStatement(path, options, print) {
                     node.body.kind === "block" ? "" : ";"
                   ])
                 )
-              : "",
+              : indent(
+                  concat([
+                    node.comments && node.comments.length > 0 ? hardline : "",
+                    comments.printDanglingComments(path, options, true)
+                  ])
+                ),
             hardline,
             node.shortForm ? "endfor;" : "}"
           ])
         : ";";
 
-      // We want to keep dangling comments above the loop to stay consistent.
-      // Any comment positioned between the for statement and the parentheses
-      // is going to be printed before the statement.
-      const dangling = comments.printDanglingComments(
-        path,
-        options,
-        /* sameLine */ true
-      );
-      const printedComments = dangling ? concat([dangling, softline]) : "";
-
       if (!node.init.length && !node.test.length && !node.increment.length) {
-        return concat([printedComments, group(concat(["for (;;)", body]))]);
+        return concat([group(concat(["for (;;)", body]))]);
       }
 
       return concat([
-        printedComments,
         group(
           concat([
             "for (",
@@ -1138,7 +1132,12 @@ function printStatement(path, options, print) {
                     node.body.kind === "block" ? "" : ";"
                   ])
                 )
-              : "",
+              : indent(
+                  concat([
+                    node.comments && node.comments.length > 0 ? hardline : "",
+                    comments.printDanglingComments(path, options, true)
+                  ])
+                ),
             hardline,
             node.shortForm ? "endforeach;" : "}"
           ])
@@ -1384,7 +1383,13 @@ function printStatement(path, options, print) {
     case "try":
       return concat([
         "try {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([
+            hardline,
+            path.call(print, "body"),
+            comments.printDanglingComments(path, options, true)
+          ])
+        ),
         hardline,
         "}",
         node.catches ? concat(path.map(print, "catches")) : "",
@@ -1410,7 +1415,13 @@ function printStatement(path, options, print) {
             ])
           : "",
         " {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([
+            hardline,
+            path.call(print, "body"),
+            comments.printDanglingComments(path, options, true)
+          ])
+        ),
         hardline,
         "}"
       ]);
