@@ -103,6 +103,14 @@ function clean(node, newObj) {
   if (node.kind === "include" && node.target.kind === "parenthesis") {
     newObj.target = newObj.target.inner;
   }
+
+  if (node.kind === "usegroup" && typeof node.name === "string") {
+    newObj.name = newObj.name.replace(/^\\/, "");
+  }
+
+  if (node.kind === "useitem") {
+    newObj.name = newObj.name.replace(/^\\/, "");
+  }
 }
 
 module.exports = clean;
