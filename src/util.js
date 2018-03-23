@@ -2,11 +2,6 @@
 
 const docUtils = require("prettier").doc.utils;
 
-// polyfill for node 4
-function includes(array, val) {
-  return array.indexOf(val) !== -1;
-}
-
 function printNumber(rawNumber) {
   return (
     rawNumber
@@ -154,8 +149,7 @@ function isControlStructureNode(node) {
   return ["if", "while", "do", "for", "foreach"].includes(node.kind);
 }
 
-function getBodyFirstChild(node) {
-  let body = node.body;
+function getBodyFirstChild({ body }) {
   if (!body) {
     return null;
   }
@@ -321,7 +315,7 @@ function lineShouldEndWithSemicolon(path) {
       return true;
     }
   }
-  return includes(semiColonWhitelist, node.kind);
+  return semiColonWhitelist.includes(node.kind);
 }
 
 function lineShouldEndWithHardline(path) {
@@ -367,7 +361,6 @@ function maybeStripLeadingSlashFromUse(name) {
 }
 
 module.exports = {
-  includes,
   printNumber,
   stringEscape,
   getPrecedence,

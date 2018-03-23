@@ -23,8 +23,11 @@ rules:
   one-var:
   - error
   - never
+  object-shorthand: error
   prefer-arrow-callback: error
   prefer-const: error
+  prefer-destructuring: error
+  prefer-template: error
   react/no-deprecated: off
   strict: error
   symbol-description: error

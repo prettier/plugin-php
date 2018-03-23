@@ -5,11 +5,7 @@ const print = require("./printer");
 const clean = require("./clean");
 const options = require("./options");
 const comments = require("./comments");
-const docBuilders = require("prettier").doc.builders;
-
-const concat = docBuilders.concat;
-const join = docBuilders.join;
-const hardline = docBuilders.hardline;
+const { concat, join, hardline } = require("prettier").doc.builders;
 
 const languages = [
   {
@@ -36,11 +32,7 @@ const languages = [
   }
 ];
 
-const loc = function(prop) {
-  return function(node) {
-    return node.loc && node.loc[prop] && node.loc[prop].offset;
-  };
-};
+const loc = prop => node => node.loc && node.loc[prop] && node.loc[prop].offset;
 
 const parsers = {
   php: {
@@ -167,7 +159,7 @@ const printers = {
             join(
               hardline,
               linesToPrint.map(line => {
-                return " *" + (line.length > 0 ? " " + line : "");
+                return ` *${line.length > 0 ? ` ${line}` : ""}`;
               })
             ),
             hardline,
@@ -178,7 +170,7 @@ const printers = {
           return comment.value.trimRight();
         }
         default:
-          throw new Error("Not a comment: " + JSON.stringify(comment));
+          throw new Error(`Not a comment: ${JSON.stringify(comment)}`);
       }
     }
   }

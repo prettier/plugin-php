@@ -1,13 +1,13 @@
 "use strict";
 
 const fs = require("fs");
-const extname = require("path").extname;
+const { extname } = require("path");
 const prettier = require("prettier");
 const plugin = require("../src");
-const massageAST = require("prettier/src/common/clean-ast").massageAST;
-const normalizeOptions = require("prettier/src/main/options").normalize;
+const { massageAST } = require("prettier/src/common/clean-ast");
+const { normalize } = require("prettier/src/main/options");
 
-const AST_COMPARE = process.env["AST_COMPARE"];
+const { AST_COMPARE } = process.env;
 
 function run_spec(dirname, parsers, options) {
   options = Object.assign(
@@ -23,7 +23,7 @@ function run_spec(dirname, parsers, options) {
   }
 
   fs.readdirSync(dirname).forEach(filename => {
-    const path = dirname + "/" + filename;
+    const path = `${dirname}/${filename}`;
     if (
       extname(filename) !== ".snap" &&
       fs.lstatSync(path).isFile() &&
@@ -37,7 +37,7 @@ function run_spec(dirname, parsers, options) {
       });
       const output = prettyprint(source, path, mergedOptions);
       test(`${filename} - ${mergedOptions.parser}-verify`, () => {
-        expect(raw(source + "~".repeat(80) + "\n" + output)).toMatchSnapshot(
+        expect(raw(`${source + "~".repeat(80)}\n${output}`)).toMatchSnapshot(
           filename
         );
       });
@@ -53,7 +53,7 @@ function run_spec(dirname, parsers, options) {
       });
 
       if (AST_COMPARE) {
-        const normalizedOptions = normalizeOptions(mergedOptions);
+        const normalizedOptions = normalize(mergedOptions);
         const ast = parse(source, mergedOptions);
         const astMassaged = massageAST(ast, normalizedOptions);
         let ppastMassaged;
@@ -68,7 +68,7 @@ function run_spec(dirname, parsers, options) {
           pperr = e.stack;
         }
 
-        test(path + " parse", () => {
+        test(`${path} parse`, () => {
           expect(pperr).toBe(null);
           expect(ppastMassaged).toBeDefined();
           if (!ast.errors || ast.errors.length === 0) {

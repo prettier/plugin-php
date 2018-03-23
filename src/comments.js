@@ -1,13 +1,7 @@
 "use strict";
 
-const utils = require("prettier").util;
-const docBuilders = require("prettier").doc.builders;
-
-const addDanglingComment = utils.addDanglingComment;
-const concat = docBuilders.concat;
-const join = docBuilders.join;
-const indent = docBuilders.indent;
-const hardline = docBuilders.hardline;
+const { addDanglingComment } = require("prettier").util;
+const { concat, join, indent, hardline } = require("prettier").doc.builders;
 
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
@@ -26,7 +20,7 @@ args:
   isLastComment
 */
 
-const handleOwnLineComment = function(comment) {
+const handleOwnLineComment = comment => {
   return (
     handleClass(comment) ||
     handleFunction(comment) ||
@@ -35,7 +29,7 @@ const handleOwnLineComment = function(comment) {
   );
 };
 
-const handleEndOfLineComment = function(comment) {
+const handleEndOfLineComment = comment => {
   return (
     handleClass(comment) ||
     handleFunction(comment) ||
@@ -44,7 +38,7 @@ const handleEndOfLineComment = function(comment) {
   );
 };
 
-const handleRemainingComment = function(comment) {
+const handleRemainingComment = comment => {
   return (
     handleClass(comment) ||
     handleFunction(comment) ||
@@ -53,8 +47,8 @@ const handleRemainingComment = function(comment) {
   );
 };
 
-const handleForLoop = function(comment) {
-  const enclosingNode = comment.enclosingNode;
+const handleForLoop = comment => {
+  const { enclosingNode } = comment;
   if (
     enclosingNode &&
     (enclosingNode.kind === "for" || enclosingNode.kind === "foreach")
@@ -69,8 +63,8 @@ const handleForLoop = function(comment) {
   return false;
 };
 
-const handleClass = function(comment) {
-  const enclosingNode = comment.enclosingNode;
+const handleClass = comment => {
+  const { enclosingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "class") {
     // for an empty class where the body is only made up of comments, we
     // need to attach this as a dangling comment on the class node itself
@@ -82,9 +76,8 @@ const handleClass = function(comment) {
   return false;
 };
 
-const handleFunction = function(comment) {
-  const enclosingNode = comment.enclosingNode;
-  const followingNode = comment.followingNode;
+const handleFunction = comment => {
+  const { enclosingNode, followingNode } = comment;
   if (
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method")
@@ -102,8 +95,8 @@ const handleFunction = function(comment) {
   return false;
 };
 
-const handleTryCatch = function(comment) {
-  const enclosingNode = comment.enclosingNode;
+const handleTryCatch = comment => {
+  const { enclosingNode } = comment;
   if (
     enclosingNode &&
     (enclosingNode.kind === "try" || enclosingNode.kind === "catch")
