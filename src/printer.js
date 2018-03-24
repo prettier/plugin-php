@@ -499,11 +499,18 @@ function printExpression(path, options, print) {
           node.type === "heredoc" ? "\n" : "",
           concat(
             path.map(valuePath => {
-              // might need to figure out better way to do this. don't want
-              // to send through printNode() because value is a string and
-              // we don't want the quotes
               const node = valuePath.getValue();
-              return node.kind === "string" ? node.value : print(valuePath);
+              if (node.kind === "string") {
+                return node.value;
+              } else if (node.kind === "variable") {
+                if (typeof node.name === "object") {
+                  return concat(["${", path.call(print, "name"), "}"]);
+                } else if (node.curly) {
+                  return "{$" + node.name + "}";
+                }
+                return print(valuePath);
+              }
+              return concat(["{", print(valuePath), "}"]);
             }, "value")
           ),
           getEncapsedQuotes(node, { opening: false })

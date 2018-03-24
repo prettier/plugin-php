@@ -8,6 +8,10 @@ $encapsHereDoc2 = <<<STR
 Hello foo $a bar
 new line
 STR;
+$encapsHereDoc3 = <<<STR
+encapsed variable ${name}
+encapsed variable {$value}
+STR;
 echo <<<"FOOBAR"
 Hello World!
 FOOBAR;
