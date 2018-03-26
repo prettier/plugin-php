@@ -57,6 +57,9 @@ const printers = {
     massageAstNode: clean,
     // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {
+      if (node.kind === "array") {
+        return node.items;
+      }
       if (node.kind === "assign") {
         return [node.left, node.right];
       }
