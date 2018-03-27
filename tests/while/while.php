@@ -18,3 +18,9 @@ while (true)
 while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
 
 while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
+
+while ($i <= 5):
+endwhile;
+
+while ($i <= 5) {
+}

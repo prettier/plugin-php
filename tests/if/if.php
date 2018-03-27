@@ -75,3 +75,14 @@ $test ? doSomething() : doSomethingElse();
 return $test ? doSomething() : doSomethingElse();
 $test ?: doSomething();
 return $test ?: doSomething();
+
+if (true):
+elseif (false):
+else:
+endif;
+
+if (true) {
+} elseif (false) {
+} else if (null) {
+} else {
+}

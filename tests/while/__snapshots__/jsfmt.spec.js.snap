@@ -21,6 +21,12 @@ while (true)
 while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
 
 while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable) {}
+
+while ($i <= 5):
+endwhile;
+
+while ($i <= 5) {
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $i = 1;
@@ -43,14 +49,18 @@ while (true) {
 while (
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
 ) {
-
 }
 
 while (
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable &&
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
 ) {
+}
 
+while ($i <= 5):
+endwhile;
+
+while ($i <= 5) {
 }
 
 `;
