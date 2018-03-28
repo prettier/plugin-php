@@ -1,41 +1,43 @@
 "use strict";
 
-const docBuilders = require("prettier").doc.builders;
-const docUtils = require("prettier").doc.utils;
-const sharedUtil = require("prettier").util;
+const {
+  concat,
+  join,
+  line,
+  lineSuffix,
+  lineSuffixBoundary,
+  group,
+  conditionalGroup,
+  indent,
+  dedent,
+  ifBreak,
+  hardline,
+  softline
+} = require("prettier").doc.builders;
+const { willBreak } = require("prettier").doc.utils;
+const { makeString, isNextLineEmpty } = require("prettier").util;
 const comments = require("./comments");
 
-const util = require("./util");
-
-const concat = docBuilders.concat;
-const join = docBuilders.join;
-const line = docBuilders.line;
-const group = docBuilders.group;
-const conditionalGroup = docBuilders.conditionalGroup;
-const indent = docBuilders.indent;
-const dedent = docBuilders.dedent;
-const ifBreak = docBuilders.ifBreak;
-const hardline = docBuilders.hardline;
-const softline = docBuilders.softline;
-const willBreak = docUtils.willBreak;
-
-const includes = util.includes;
-const getNodeListProperty = util.getNodeListProperty;
-const getLast = util.getLast;
-const isFirstNodeInParentProgramNode = util.isFirstNodeInParentProgramNode;
-const isFirstNodeInParentNode = util.isFirstNodeInParentNode;
-const isPrevNodeInline = util.isPrevNodeInline;
-const isNextNodeInline = util.isNextNodeInline;
-const lineShouldHaveStartPHPTag = util.lineShouldHaveStartPHPTag;
-const lineShouldEndWithSemicolon = util.lineShouldEndWithSemicolon;
-const lineShouldEndWithHardline = util.lineShouldEndWithHardline;
-const fileShouldEndWithHardline = util.fileShouldEndWithHardline;
-const lineShouldHaveEndPHPTag = util.lineShouldHaveEndPHPTag;
-const shouldRemoveLines = util.shouldRemoveLines;
-const removeNewlines = util.removeNewlines;
-const maybeStripLeadingSlashFromUse = util.maybeStripLeadingSlashFromUse;
-
-const makeString = sharedUtil.makeString;
+const {
+  getNodeListProperty,
+  getLast,
+  isControlStructureNode,
+  isFirstNodeInParentProgramNode,
+  isFirstNodeInParentNode,
+  isPrevNodeInline,
+  isNextNodeInline,
+  lineShouldHaveStartPHPTag,
+  lineShouldEndWithSemicolon,
+  lineShouldEndWithHardline,
+  fileShouldEndWithHardline,
+  lineShouldHaveEndPHPTag,
+  printNumber,
+  shouldFlatten,
+  shouldRemoveLines,
+  stringEscape,
+  removeNewlines,
+  maybeStripLeadingSlashFromUse
+} = require("./util");
 
 function shouldPrintComma(options) {
   switch (options.trailingComma) {
@@ -86,7 +88,7 @@ function genericPrint(path, options, print) {
       ? concat([
           "<?php",
           isFirstNodeInParentProgramNode(path) ||
-          (!isNextNodeInline(path) && !util.isControlStructureNode(node))
+          (!isNextNodeInline(path) && !isControlStructureNode(node))
             ? hardline
             : " "
         ])
@@ -95,9 +97,7 @@ function genericPrint(path, options, print) {
     lineShouldEndWithSemicolon(path) ? ";" : "",
     lineShouldEndWithHardline(path)
       ? concat([
-          sharedUtil.isNextLineEmpty(options.originalText, node, options)
-            ? hardline
-            : "",
+          isNextLineEmpty(options.originalText, node, options) ? hardline : "",
           hardline
         ])
       : "",
@@ -139,13 +139,13 @@ function printMemberChain(path, options, print) {
     const node = path.getValue();
     if (node.kind === "call") {
       printedNodes.unshift({
-        node: node,
+        node,
         printed: concat([printArgumentsList(path, options, print)])
       });
       path.call(what => traverse(what), "what");
     } else if (node.kind === "propertylookup") {
       printedNodes.unshift({
-        node: node,
+        node,
         printed: concat([
           "->",
           wrapPropertyLookup(node, path.call(print, "offset"))
@@ -154,7 +154,7 @@ function printMemberChain(path, options, print) {
       path.call(what => traverse(what), "what");
     } else {
       printedNodes.unshift({
-        node: node,
+        node,
         printed: path.call(print)
       });
     }
@@ -356,10 +356,10 @@ function printExpression(path, options, print) {
         );
       }
       default:
-        return "Have not implemented lookup kind " + node.kind + " yet.";
+        return `Have not implemented lookup kind ${node.kind} yet.`;
     }
   }
-  if (includes(lookupKinds, node.kind)) {
+  if (lookupKinds.includes(node.kind)) {
     return printLookup(node);
   }
 
@@ -386,8 +386,7 @@ function printExpression(path, options, print) {
           }
 
           const shouldGroupLeft = !(
-            node.left.kind === "bin" &&
-            util.shouldFlatten(node.type, node.left.type)
+            node.left.kind === "bin" && shouldFlatten(node.type, node.left.type)
           );
           const printedLeft = path.call(
             left => printBinaryExpression(left, print, options, true),
@@ -396,7 +395,7 @@ function printExpression(path, options, print) {
 
           const shouldGroupRight = !(
             node.right.kind === "bin" &&
-            util.shouldFlatten(node.type, node.right.type)
+            shouldFlatten(node.type, node.right.type)
           );
           const printedRight = path.call(
             right => printBinaryExpression(right, print, options, true),
@@ -444,10 +443,10 @@ function printExpression(path, options, print) {
       case "cast":
         return concat(["(", node.type, ") ", path.call(print, "what")]);
       default:
-        return "Have not implemented operation kind " + node.kind + " yet.";
+        return `Have not implemented operation kind ${node.kind} yet.`;
     }
   }
-  if (includes(operationKinds, node.kind)) {
+  if (operationKinds.includes(node.kind)) {
     return printOperation(node);
   }
 
@@ -463,7 +462,7 @@ function printExpression(path, options, print) {
   function printLiteral(node) {
     function getEncapsedQuotes(node, { opening = true } = {}) {
       if (node.type === "heredoc") {
-        return opening ? "<<<" + node.label : node.label;
+        return opening ? `<<<${node.label}` : node.label;
       }
       const quotes = {
         string: '"',
@@ -472,7 +471,7 @@ function printExpression(path, options, print) {
       if (quotes[node.type]) {
         return quotes[node.type];
       }
-      return "Unimplemented encapsed type " + node.type;
+      return `Unimplemented encapsed type ${node.type}`;
     }
 
     switch (node.kind) {
@@ -486,10 +485,10 @@ function printExpression(path, options, print) {
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
-        return makeString(util.stringEscape(node.value), quote, false);
+        return makeString(stringEscape(node.value), quote, false);
       }
       case "number":
-        return util.printNumber(node.value);
+        return printNumber(node.value);
       case "encapsed":
         if (node.type === "offset") {
           return group(concat(path.map(print, "value")));
@@ -526,10 +525,10 @@ function printExpression(path, options, print) {
           node.label
         ]);
       default:
-        return "Have not implemented literal kind " + node.kind + " yet.";
+        return `Have not implemented literal kind ${node.kind} yet.`;
     }
   }
-  if (includes(literalKinds, node.kind)) {
+  if (literalKinds.includes(node.kind)) {
     return printLiteral(node);
   }
 
@@ -573,7 +572,7 @@ function printExpression(path, options, print) {
     case "variadic":
       return concat(["...", path.call(print, "what")]);
     default:
-      return "Have not implemented expression kind " + node.kind + " yet.";
+      return `Have not implemented expression kind ${node.kind} yet.`;
   }
 }
 
@@ -653,10 +652,10 @@ function printStatement(path, options, print) {
         ]);
       }
       default:
-        return "Have not implemented block kind " + node.kind + " yet.";
+        return `Have not implemented block kind ${node.kind} yet.`;
     }
   }
-  if (includes(blockKinds, node.kind)) {
+  if (blockKinds.includes(node.kind)) {
     return printBlock(path, options, print);
   }
 
@@ -707,10 +706,10 @@ function printStatement(path, options, print) {
           ])
         );
       default:
-        return "Have not implemented sys kind " + node.kind + " yet.";
+        return `Have not implemented sys kind ${node.kind} yet.`;
     }
   }
-  if (includes(sysKinds, node.kind)) {
+  if (sysKinds.includes(node.kind)) {
     return printSys(node);
   }
 
@@ -775,13 +774,7 @@ function printStatement(path, options, print) {
             // Hack, we need `invertLine` command here, as `line`, but have versa vice logic
             bodyContents
               ? node.kind === "method"
-                ? ifBreak(
-                    " ",
-                    concat([
-                      docBuilders.lineSuffix(""),
-                      docBuilders.lineSuffixBoundary
-                    ])
-                  )
+                ? ifBreak(" ", concat([lineSuffix(""), lineSuffixBoundary]))
                 : hardline
               : ""
           ])
@@ -939,10 +932,10 @@ function printStatement(path, options, print) {
           path.call(print, "value")
         ]);
       default:
-        return "Have not implmented declaration kind " + node.kind + " yet.";
+        return `Have not implmented declaration kind ${node.kind} yet.`;
     }
   }
-  if (includes(declarationKinds, node.kind)) {
+  if (declarationKinds.includes(node.kind)) {
     return printDeclaration(node);
   }
 
@@ -963,11 +956,7 @@ function printStatement(path, options, print) {
                 casePath.call(print),
                 node[bodyProperty].children.indexOf(caseNode) !==
                   node[bodyProperty].children.length - 1 &&
-                sharedUtil.isNextLineEmpty(
-                  options.originalText,
-                  caseNode,
-                  options
-                )
+                isNextLineEmpty(options.originalText, caseNode, options)
                   ? hardline
                   : ""
               ]);
@@ -1246,8 +1235,8 @@ function printStatement(path, options, print) {
     case "clone":
       return concat(["clone ", path.call(print, "what")]);
     case "declare": {
-      const printDeclareArguments = function(path) {
-        const directive = Object.keys(path.getValue().what)[0];
+      const printDeclareArguments = path => {
+        const [directive] = Object.keys(path.getValue().what);
         return concat([directive, "=", path.call(print, "what", directive)]);
       };
       if (node.mode === "short") {
@@ -1394,16 +1383,16 @@ function printStatement(path, options, print) {
         ])
       );
     default:
-      return "Have not implemented statement kind " + node.kind + " yet.";
+      return `Have not implemented statement kind ${node.kind} yet.`;
   }
 }
 
 function printNode(path, options, print) {
   const node = path.getValue();
-  if (includes(expressionKinds, node.kind)) {
+  if (expressionKinds.includes(node.kind)) {
     return printExpression(path, options, print);
   }
-  if (includes(statementKinds, node.kind)) {
+  if (statementKinds.includes(node.kind)) {
     return printStatement(path, options, print);
   }
   switch (node.kind) {
@@ -1528,7 +1517,7 @@ function printNode(path, options, print) {
       return concat([node.name, ":"]);
     case "error":
     default:
-      return "Have not implemented kind " + node.kind + " yet.";
+      return `Have not implemented kind ${node.kind} yet.`;
   }
 }
 
