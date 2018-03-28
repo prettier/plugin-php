@@ -43,19 +43,16 @@ $array = [
     // comment
     1,
     // comment
-    2
-    // comment
+    2 // comment
     // comment
 ];
 $array = [
     /* comment */
     /* comment */
     /* comment */
-    1
-    /* comment */, /* comment */
+    1, /* comment */ /* comment */
     /* comment */
-    2
-    /* comment */
+    2 /* comment */
     /* comment */
     /* comment */
 ];
@@ -69,8 +66,7 @@ $array = [
     /* comment */
     "bar" => "foo"
     /* comment */
-    /* comment */
-    /* comment */
+    /* comment */ /* comment */
     /* comment */
     /* comment */
 ];
@@ -89,8 +85,7 @@ $array = [
     3,
     4,
     5,
-    6
-    // test
+    6 // test
 ];
 
 `;
