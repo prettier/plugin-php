@@ -506,7 +506,7 @@ function printExpression(path, options, print) {
                 if (typeof node.name === "object") {
                   return concat(["${", path.call(print, "name"), "}"]);
                 } else if (node.curly) {
-                  return "{$" + node.name + "}";
+                  return `{$${node.name}}`;
                 }
                 return print(valuePath);
               }
