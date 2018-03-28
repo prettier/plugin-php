@@ -559,11 +559,12 @@ function printExpression(path, options, print) {
           node.shortForm ? "[" : "array(",
           indent(
             concat([
-              softline,
+              node.comments && node.comments.length > 0 ? hardline : softline,
               join(concat([",", line]), path.map(print, "items"))
             ])
           ),
           ifBreak(shouldPrintComma(options) ? "," : ""),
+          comments.printDanglingComments(path, options, /* sameIndent */ true),
           softline,
           node.shortForm ? "]" : ")"
         ])
@@ -1483,11 +1484,20 @@ function printNode(path, options, print) {
       }
       return concat(parts);
     }
-    case "entry":
+    case "entry": {
+      const dangling = comments.printDanglingComments(
+        path,
+        options,
+        /* sameLine */ true
+      );
+      const printedComments = dangling ? concat([hardline, dangling]) : "";
+
       return concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
-        path.call(print, "value")
+        path.call(print, "value"),
+        printedComments
       ]);
+    }
     case "traituse":
       return group(
         concat([
