@@ -18,7 +18,7 @@ function clean(node, newObj) {
 
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
-  if (node.kind === "continue" || node.kind === "break") {
+  if ((node.kind === "continue" || node.kind === "break") && node.level) {
     let { level } = newObj;
     if (level.kind === "parenthesis") {
       level = level.inner;
@@ -80,7 +80,7 @@ function clean(node, newObj) {
   }
 
   // Ignore `parenthesis` for `return`
-  if (node.kind === "return" && node.expr.kind === "parenthesis") {
+  if (node.kind === "return" && node.expr && node.expr.kind === "parenthesis") {
     newObj.expr = newObj.expr.inner;
   }
 
