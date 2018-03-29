@@ -26,17 +26,17 @@ const {
   isFirstNodeInParentNode,
   isPrevNodeInline,
   isNextNodeInline,
+  isLastStatement,
   lineShouldHaveStartPHPTag,
   lineShouldEndWithSemicolon,
-  lineShouldEndWithHardline,
-  fileShouldEndWithHardline,
   lineShouldHaveEndPHPTag,
   printNumber,
   shouldFlatten,
   shouldRemoveLines,
   stringEscape,
   removeNewlines,
-  maybeStripLeadingSlashFromUse
+  maybeStripLeadingSlashFromUse,
+  fileShouldEndWithHardline
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -95,12 +95,6 @@ function genericPrint(path, options, print) {
       : "",
     shouldRemoveLines(path) ? removeNewlines(printed) : printed,
     lineShouldEndWithSemicolon(path) ? ";" : "",
-    lineShouldEndWithHardline(path)
-      ? concat([
-          isNextLineEmpty(options.originalText, node, options) ? hardline : "",
-          hardline
-        ])
-      : "",
     lineShouldHaveEndPHPTag(path)
       ? concat([
           isFirstNodeInParentNode(path) || !isPrevNodeInline(path)
@@ -108,8 +102,7 @@ function genericPrint(path, options, print) {
             : " ",
           "?>"
         ])
-      : "",
-    fileShouldEndWithHardline(path) ? hardline : ""
+      : ""
   ]);
 }
 
@@ -631,6 +624,24 @@ const statementKinds = [
   "parameter",
   "property"
 ];
+function printLines(path, options, print, childrenAttribute = "children") {
+  return concat(
+    path.map(childPath => {
+      const canPrintBlankLine =
+        !isLastStatement(childPath) &&
+        childPath.getValue().kind !== "inline" &&
+        !isNextNodeInline(childPath);
+      return concat([
+        print(childPath),
+        canPrintBlankLine ? hardline : "",
+        canPrintBlankLine &&
+        isNextLineEmpty(options.originalText, childPath.getValue(), options)
+          ? hardline
+          : ""
+      ]);
+    }, childrenAttribute)
+  );
+}
 function printStatement(path, options, print) {
   const node = path.getValue();
   const blockKinds = ["block", "program", "namespace"];
@@ -638,14 +649,17 @@ function printStatement(path, options, print) {
     switch (node.kind) {
       case "block":
         return concat([
-          concat(path.map(print, "children")),
+          printLines(path, options, print),
           comments.printDanglingComments(path, options, true)
         ]);
       case "program": {
-        return concat(path.map(print, "children"));
+        return concat([
+          printLines(path, options, print),
+          fileShouldEndWithHardline(path) ? hardline : ""
+        ]);
       }
       case "namespace": {
-        const printed = concat(path.map(print, "children"));
+        const printed = printLines(path, options, print);
         const hasName = node.name && typeof node.name === "string";
         return concat([
           "namespace ",
@@ -831,7 +845,7 @@ function printStatement(path, options, print) {
               )
             )
           ]),
-          bodyContents: concat(path.map(print, "body"))
+          bodyContents: printLines(path, options, print, "body")
         });
       }
       case "function":
@@ -909,7 +923,7 @@ function printStatement(path, options, print) {
                 )
               : ""
           ]),
-          bodyContents: concat(path.map(print, "body"))
+          bodyContents: printLines(path, options, print, "body")
         });
       case "trait":
         return printDeclarationBlock({
@@ -928,7 +942,7 @@ function printStatement(path, options, print) {
                 )
               : ""
           ]),
-          bodyContents: concat(path.map(print, "body"))
+          bodyContents: printLines(path, options, print, "body")
         });
       case "constant":
       case "classconstant":
@@ -952,35 +966,7 @@ function printStatement(path, options, print) {
     if (!node[bodyProperty]) {
       return ";";
     }
-    let printedBody = null;
-    if (node.kind === "switch") {
-      printedBody = concat([
-        join(
-          hardline,
-          path.map(
-            casePath => {
-              const caseNode = casePath.getValue();
-              return concat([
-                casePath.call(print),
-                node[bodyProperty].children.indexOf(caseNode) !==
-                  node[bodyProperty].children.length - 1 &&
-                isNextLineEmpty(options.originalText, caseNode, options)
-                  ? hardline
-                  : ""
-              ]);
-            },
-            "body",
-            "children"
-          )
-        )
-      ]);
-    } else {
-      printedBody = concat([
-        path.call(print, bodyProperty),
-        node[bodyProperty].kind === "block" ? "" : ";"
-      ]);
-    }
-
+    const printedBody = path.call(print, bodyProperty);
     return concat([
       node.shortForm ? ":" : " {",
       indent(
@@ -1506,7 +1492,12 @@ function printNode(path, options, print) {
           node.adaptations
             ? concat([
                 " {",
-                indent(concat([line, concat(path.map(print, "adaptations"))])),
+                indent(
+                  concat([
+                    line,
+                    printLines(path, options, print, "adaptations")
+                  ])
+                ),
                 line,
                 "}"
               ])

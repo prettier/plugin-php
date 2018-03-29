@@ -78,17 +78,17 @@ echo "Escaping characters is done \\"Like this\\".";
 $foo = "foobar";
 $bar = "barbaz";
 
-echo "foo is $foo";
+echo "foo is $foo"; // foo is foobar
 
-// Using single quotes will print the variable name, not the value // foo is foobar
-echo 'foo is $foo';
+// Using single quotes will print the variable name, not the value
+echo 'foo is $foo'; // foo is $foo
 
-// If you are not using any other characters, you can just echo variables // foo is $foo
+// If you are not using any other characters, you can just echo variables
 echo $foo;
 // foobar
-echo $foo, $bar;
+echo $foo, $bar; // foobarbarbaz
 
-// Strings can either be passed individually as multiple arguments or // foobarbarbaz
+// Strings can either be passed individually as multiple arguments or
 // concatenated together and passed as a single argument
 echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
 echo 'This ',
@@ -173,9 +173,9 @@ echo 1, 1;
 
 echo "The sum is " . 1 | 2;
 // output: "2". Parentheses needed.
-echo "The sum is ", 1 | 2;
+echo "The sum is ", 1 | 2; // output: "The sum is 3". Fine.
 
-echo "Foo" . f("bar") . "Foo"; // output: "The sum is 3". Fine.
+echo "Foo" . f("bar") . "Foo";
 echo "\\n\\n";
 echo "Foo", f("bar"), "Foo";
 
