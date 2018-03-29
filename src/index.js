@@ -76,6 +76,15 @@ const printers = {
           ...(node.catches || [])
         ];
       }
+      if (node.kind === "call") {
+        return [...(node.what ? [node.what] : []), ...(node.arguments || [])];
+      }
+      if (["offsetlookup", "staticlookup"].includes(node.kind)) {
+        return [
+          ...(node.what ? [node.what] : []),
+          ...(node.offset ? [node.offset] : [])
+        ];
+      }
       if (node.kind === "catch") {
         return [
           ...(node.what || []),
