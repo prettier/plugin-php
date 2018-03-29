@@ -477,7 +477,10 @@ function printExpression(path, options, print) {
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
-        const quote = node.isDoubleQuote ? '"' : "'";
+        let quote = node.isDoubleQuote ? '"' : "'";
+        if (path.getParentNode().kind === "encapsed") {
+          quote = "";
+        }
         return makeString(stringEscape(node.value), quote, false);
       }
       case "number":
@@ -494,7 +497,9 @@ function printExpression(path, options, print) {
             path.map(valuePath => {
               const node = valuePath.getValue();
               if (node.kind === "string") {
-                return node.value;
+                return valuePath.getParentNode().type === "heredoc"
+                  ? node.value
+                  : print(valuePath);
               } else if (node.kind === "variable") {
                 if (typeof node.name === "object") {
                   return concat(["${", path.call(print, "name"), "}"]);

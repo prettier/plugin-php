@@ -57,3 +57,8 @@ $string = "I'd like an {${beers::softdrink}}\n";
 $string = "I'd like an {${beers::$ale}}\n";
 $test = "\\";
 $test = '\\';
+printf("Query run in $queryTimeTaken seconds.\n");
+$query =
+    'SELECT *
+     FROM users
+     WHERE u.id IS NULL';

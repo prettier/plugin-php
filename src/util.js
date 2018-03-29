@@ -20,6 +20,7 @@ function printNumber(rawNumber) {
 }
 
 function stringEscape(str) {
+  debugger;
   return str.replace(/[\n\r\t\v\f\u001b\\]/g, (character, index) => {
     switch (character) {
       case "\n":
