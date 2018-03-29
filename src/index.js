@@ -80,8 +80,8 @@ const printers = {
           ...(node.body.children || [])
         ];
       }
-      if (node.kind === "for") {
-        return [node.body.children];
+      if (["for", "while", "do"].includes(node.kind)) {
+        return Array.isArray(node.body.children) ? node.body.children : [];
       }
       if (node.kind === "class") {
         return [
@@ -149,7 +149,9 @@ const printers = {
             } else if (lineContainsRealText) {
               linesToPrint.push(
                 line
-                  .replace("/", "")
+                  .replace("//", "")
+                  .replace("/*", "")
+                  .replace("*/", "")
                   .replace("*", "")
                   .trim()
               );
