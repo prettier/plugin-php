@@ -49,7 +49,7 @@ const printers = {
     massageAstNode: clean,
     // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {
-      if (["constant", "property"].includes(node.kind)) {
+      if (["constant", "property", "classconstant"].includes(node.kind)) {
         return [node.value];
       }
       if (node.kind === "array") {
