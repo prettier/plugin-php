@@ -34,13 +34,11 @@ $info = array('coffee', 'brown', 'caffeine');
 
 // Listing all the variables
 list($drink, $color, $power) = $info;
-echo "$drink is $color and $power makes it special.
-";
+echo "$drink is $color and $power makes it special.\\n";
 
 // Listing some of them
 list($drink, , $power) = $info;
-echo "$drink has $power.
-";
+echo "$drink has $power.\\n";
 
 // TODO: unncoment after resolve https://github.com/glayzzle/php-parser/issues/137
 // Or let's skip to only the third one
