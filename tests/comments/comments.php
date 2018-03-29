@@ -12,6 +12,14 @@ $int++;
 $hi = 1;
 
 /**
+ * test fwd slash 12/3 comment
+ */
+
+/**
+ * test backwards slash 1\2 comment
+ */
+
+/**
  * Multi line
 * test with wrong indentation
 */
@@ -59,3 +67,23 @@ lines
 */
 
 # This is a one-line shell-style comment
+
+
+for ($i = 0; $i < 10; $i++) {
+    // some comment
+    $a = 1;
+    $b = 2;
+
+    while (true) {
+        // Some comment
+        $test = 1;
+    }
+}
+
+while (true) {
+  // some comment
+}
+
+do {
+  // some comment
+} while (true);

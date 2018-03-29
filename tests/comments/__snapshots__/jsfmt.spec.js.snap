@@ -153,6 +153,14 @@ $int++;
 $hi = 1;
 
 /**
+ * test fwd slash 12/3 comment
+ */
+
+/**
+ * test backwards slash 1\\2 comment
+ */
+
+/**
  * Multi line
 * test with wrong indentation
 */
@@ -213,6 +221,14 @@ $int++;
 // comment
 // test
 $hi = 1;
+
+/**
+ * test fwd slash 12/3 comment
+ */
+
+/**
+ * test backwards slash 1\\2 comment
+ */
 
 /**
  * Multi line
