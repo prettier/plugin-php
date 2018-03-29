@@ -334,3 +334,4 @@ $this->long->expression->before->array->statesArray[
 ] = $state->getName();
 $arr[ ] = 1;
 $arr{"x"} = 42;
+[ $a, $b ] = [ 1, 2 ];
