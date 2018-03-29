@@ -260,14 +260,26 @@ function lineShouldHaveStartPHPTag(path) {
 }
 
 function lineShouldEndWithSemicolon(path) {
+  const node = path.getValue();
   const parentNode = path.getParentNode();
   if (!parentNode) {
     return false;
   }
+  // for single line control structures written in a shortform (ie without a block),
+  // we need to make sure the single body node gets a semicolon
+  if (
+    ["for", "foreach", "while", "do", "if", "switch"].includes(
+      parentNode.kind
+    ) &&
+    node.kind !== "block" &&
+    node.kind !== "if" &&
+    (parentNode.body === node || parentNode.alternate === node)
+  ) {
+    return true;
+  }
   if (!nodeHasStatement(parentNode)) {
     return false;
   }
-  const node = path.getValue();
   const semiColonWhitelist = [
     "assign",
     "return",
@@ -316,17 +328,6 @@ function lineShouldEndWithSemicolon(path) {
     }
   }
   return semiColonWhitelist.includes(node.kind);
-}
-
-function lineShouldEndWithHardline(path) {
-  const node = path.getValue();
-  const nodeIndex = getNodeIndex(path);
-  return (
-    nodeIndex !== -1 &&
-    !isLastStatement(path) &&
-    node.kind !== "case" &&
-    !isNextNodeInline(path)
-  );
 }
 
 function lineShouldHaveEndPHPTag(path) {
@@ -380,7 +381,6 @@ module.exports = {
   isNextNodeInline,
   lineShouldHaveStartPHPTag,
   lineShouldEndWithSemicolon,
-  lineShouldEndWithHardline,
   lineShouldHaveEndPHPTag,
   fileShouldEndWithHardline,
   shouldRemoveLines,
