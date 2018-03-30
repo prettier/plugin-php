@@ -49,6 +49,9 @@ const printers = {
     massageAstNode: clean,
     // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {
+      if (["constant", "property", "classconstant"].includes(node.kind)) {
+        return [node.value];
+      }
       if (node.kind === "array") {
         return node.items;
       }
@@ -71,6 +74,15 @@ const printers = {
           ...((node.always && node.always.children) || []),
           ...((node.body && node.body.children) || []),
           ...(node.catches || [])
+        ];
+      }
+      if (node.kind === "call") {
+        return [...(node.what ? [node.what] : []), ...(node.arguments || [])];
+      }
+      if (["offsetlookup", "staticlookup"].includes(node.kind)) {
+        return [
+          ...(node.what ? [node.what] : []),
+          ...(node.offset ? [node.offset] : [])
         ];
       }
       if (node.kind === "catch") {
