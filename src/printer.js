@@ -33,7 +33,6 @@ const {
   printNumber,
   shouldFlatten,
   shouldRemoveLines,
-  stringEscape,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline
@@ -478,10 +477,19 @@ function printExpression(path, options, print) {
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         let quote = node.isDoubleQuote ? '"' : "'";
+        let stringValue = node.raw;
         if (path.getParentNode().kind === "encapsed") {
           quote = "";
+        } else {
+          // if this is not part of an encapsed node, we need to strip out the quotes from the raw value
+          if (['"', "'"].includes(stringValue[0])) {
+            stringValue = stringValue.substr(1);
+          }
+          if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
+            stringValue = stringValue.substr(0, stringValue.length - 1);
+          }
         }
-        return makeString(stringEscape(node.value), quote, false);
+        return makeString(stringValue, quote, false);
       }
       case "number":
         return printNumber(node.value);

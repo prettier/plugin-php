@@ -19,6 +19,7 @@ function printNumber(rawNumber) {
   );
 }
 
+// @TODO: if we're using the "raw" value from the parser, do we need this?
 function stringEscape(str) {
   return str.replace(/[\n\r\t\v\f\u001b\\]/g, (character, index) => {
     switch (character) {
