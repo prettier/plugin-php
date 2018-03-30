@@ -31,3 +31,8 @@ const FOO = [
   //testing
   1
 ];
+
+return [
+  // foo
+  "bar"
+];

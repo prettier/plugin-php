@@ -52,6 +52,9 @@ const printers = {
       if (["constant", "property", "classconstant"].includes(node.kind)) {
         return [node.value];
       }
+      if (node.kind === "return") {
+        return [node.expr];
+      }
       if (node.kind === "array") {
         return node.items;
       }
