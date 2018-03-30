@@ -68,7 +68,9 @@ echo "Loop start!\\n", sleep(1);
 <?php
 echo "Hello World";
 
-echo "This spans\\nmultiple lines. The newlines will be\\noutput as well";
+echo "This spans
+multiple lines. The newlines will be
+output as well";
 
 echo "This spans\\nmultiple lines. The newlines will be\\noutput as well.";
 
