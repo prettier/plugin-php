@@ -49,71 +49,101 @@ const printers = {
     massageAstNode: clean,
     // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {
-      if (["constant", "property", "classconstant"].includes(node.kind)) {
-        return [node.value];
-      }
-      if (node.kind === "return") {
-        return [node.expr];
-      }
-      if (node.kind === "array") {
-        return node.items;
-      }
-      if (node.kind === "assign") {
-        return [node.left, node.right];
-      }
-      if (node.kind === "if") {
-        return [node.body, node.alternate, node.test];
-      }
-      if (node.kind === "foreach") {
-        return [
-          ...(node.body.children || []),
-          node.key,
-          node.source,
-          node.value
-        ];
-      }
-      if (node.kind === "try") {
-        return [
-          ...((node.always && node.always.children) || []),
-          ...((node.body && node.body.children) || []),
-          ...(node.catches || [])
-        ];
-      }
-      if (node.kind === "call") {
-        return [...(node.what ? [node.what] : []), ...(node.arguments || [])];
-      }
-      if (["offsetlookup", "staticlookup"].includes(node.kind)) {
-        return [
-          ...(node.what ? [node.what] : []),
-          ...(node.offset ? [node.offset] : [])
-        ];
-      }
-      if (node.kind === "catch") {
-        return [
-          ...(node.what || []),
-          ...(node.variable ? [node.variable] : []),
-          ...(node.body.children || [])
-        ];
-      }
-      if (["for", "while", "do"].includes(node.kind)) {
-        return Array.isArray(node.body.children) ? node.body.children : [];
-      }
-      if (node.kind === "class") {
-        return [
-          ...(node.body || []),
-          ...(node.implements || []),
-          ...(node.extends ? [node.extends] : [])
-        ];
-      }
-      if (node.kind === "function" || node.kind === "method") {
-        return [...(node.body.children || []), ...(node.arguments || [])];
-      }
-      if (node.body) {
-        // for some nodes body is array, others its a block node
-        return Array.isArray(node.body) ? node.body : [node.body];
-      }
-      const children = node.children || node.traits || node.arguments;
-      return children ? children : [];
+      const nodeMap = [
+        {
+          kinds: ["constant", "property", "classconstant"],
+          children: { listNodes: [], nodes: ["value"] }
+        },
+        {
+          kinds: ["return"],
+          children: { listNodes: [], nodes: ["expr"] }
+        },
+        {
+          kinds: ["array"],
+          children: { listNodes: ["items"], nodes: [] }
+        },
+        {
+          kinds: ["entry"],
+          children: { listNodes: [], nodes: ["key", "value"] }
+        },
+        {
+          kinds: ["assign"],
+          children: { listNodes: [], nodes: ["left", "right"] }
+        },
+        {
+          kinds: ["if"],
+          children: { listNodes: [], nodes: ["body", "alternate", "test"] }
+        },
+        {
+          kinds: ["block", "program", "namespace", "declare"],
+          children: { listNodes: ["children"], nodes: [] }
+        },
+        {
+          kinds: ["usegroup"],
+          children: { listNodes: ["items"], nodes: [] }
+        },
+        {
+          kinds: ["foreach"],
+          children: {
+            listNodes: ["children"],
+            nodes: ["key", "source", "value"]
+          }
+        },
+        {
+          kinds: ["try"],
+          children: {
+            listNodes: ["catches"],
+            nodes: ["always", "body"]
+          }
+        },
+        {
+          kinds: ["call"],
+          children: { listNodes: ["arguments"], nodes: ["what"] }
+        },
+        {
+          kinds: ["offsetlookup", "staticlookup"],
+          children: { listNodes: [], nodes: ["what", "offset"] }
+        },
+        {
+          kinds: ["catch"],
+          children: {
+            listNodes: ["what"],
+            nodes: ["variable", "body"]
+          }
+        },
+        {
+          kinds: ["for", "while", "do"],
+          children: { listNodes: [], nodes: ["body"] }
+        },
+        {
+          kinds: ["trait", "class"],
+          children: { listNodes: ["implements", "body"], nodes: ["extends"] }
+        },
+        {
+          kinds: ["function", "method", "closure"],
+          children: { listNodes: ["arguments", "uses"], nodes: ["body"] }
+        },
+        {
+          kinds: ["switch", "case"],
+          children: { listNodes: [], nodes: ["test", "body"] }
+        }
+      ];
+      const children = nodeMap.reduce((currentChildren, map) => {
+        if (map.kinds.includes(node.kind)) {
+          return [
+            ...map.children.listNodes.reduce((accumulator, listNode) => {
+              const childValue = node[listNode];
+              return childValue ? [...accumulator, ...childValue] : accumulator;
+            }, []),
+            ...map.children.nodes.reduce((accumulator, childNode) => {
+              const childValue = node[childNode];
+              return childValue ? [...accumulator, childValue] : accumulator;
+            }, [])
+          ];
+        }
+        return currentChildren;
+      }, false);
+      return children !== false ? children : [];
     },
     canAttachComment(node) {
       return (
