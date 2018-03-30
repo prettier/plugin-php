@@ -58,7 +58,11 @@ function genericPrint(path, options, print) {
   }
   const isProgramNode = node.kind === "program";
   if (isProgramNode && node.children.length === 0) {
-    return concat(["<?php", hardline]);
+    return concat([
+      "<?php",
+      hardline,
+      comments.printDanglingComments(path, options, /* sameIndent */ true)
+    ]);
   }
   const printed = printNode(path, options, print);
   if (node.kind === "inline") {
