@@ -134,6 +134,10 @@ const printers = {
         {
           kinds: ["parameter"],
           children: { listNodes: [], nodes: ["value"] }
+        },
+        {
+          kinds: ["retif"],
+          children: { listNodes: [], nodes: ["trueExpr", "falseExpr", "test"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {

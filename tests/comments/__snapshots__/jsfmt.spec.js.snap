@@ -299,6 +299,11 @@ while (true) {
 do {
   // some comment
 } while (true);
+
+$test = foo ?: bar(function () {
+    $foo = "bar";
+    // test
+});
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 /** @var int $int This is a counter. */
@@ -390,6 +395,11 @@ while (true) {
 do {
     // some comment
 } while (true);
+
+$test = foo ?: bar(function () {
+        $foo = "bar";
+        // test
+    });
 
 `;
 
