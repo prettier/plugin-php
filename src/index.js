@@ -126,6 +126,10 @@ const printers = {
         {
           kinds: ["switch", "case"],
           children: { listNodes: [], nodes: ["test", "body"] }
+        },
+        {
+          kinds: ["bin"],
+          children: { listNodes: [], nodes: ["left", "right"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {
