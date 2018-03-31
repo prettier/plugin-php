@@ -304,6 +304,11 @@ $test = foo ?: bar(function () {
     $foo = "bar";
     // test
 });
+
+$constraint = new UniqueEntity(array(
+    'message' => 'myMessage'
+    // no "em" option set
+));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 /** @var int $int This is a counter. */
@@ -400,6 +405,11 @@ $test = foo ?: bar(function () {
         $foo = "bar";
         // test
     });
+
+$constraint = new UniqueEntity(array(
+    'message' => 'myMessage'
+    // no "em" option set
+));
 
 `;
 

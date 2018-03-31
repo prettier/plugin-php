@@ -92,3 +92,8 @@ $test = foo ?: bar(function () {
     $foo = "bar";
     // test
 });
+
+$constraint = new UniqueEntity(array(
+    'message' => 'myMessage'
+    // no "em" option set
+));
