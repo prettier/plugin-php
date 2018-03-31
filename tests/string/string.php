@@ -61,3 +61,4 @@ printf("Query run in $queryTimeTaken seconds.\n");
 $test = "You can also have embedded\n newlines in
 strings this way as it is
 okay to do";
+$test = '/(<a\b[^><]*)>/i';
