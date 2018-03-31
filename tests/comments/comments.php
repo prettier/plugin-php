@@ -87,3 +87,8 @@ while (true) {
 do {
   // some comment
 } while (true);
+
+$test = foo ?: bar(function () {
+    $foo = "bar";
+    // test
+});
