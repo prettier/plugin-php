@@ -468,6 +468,50 @@ function testFunction(
 
 `;
 
+exports[`functions.php 1`] = `
+<?php
+
+function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function foo(
+    /* comment */
+    $a
+        = /* comment */
+        /* comment */
+        1 /* comment */ /* comment */
+): ?string
+{
+    /* comment */
+
+}
+
+`;
+
+exports[`method.php 1`] = `
+<?php
+
+class Foo {
+    public function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+class Foo
+{
+    public function foo(
+        /* comment */
+        $a
+            = /* comment */
+            /* comment */
+            1 /* comment */ /* comment */
+    ): ?string {
+        /* comment */
+
+    }
+}
+
+`;
+
 exports[`no_code.php 1`] = `
 <?php
 /**
