@@ -39,7 +39,15 @@ return [
   // foo
   "bar"
 ];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+$array = [
+    'type'      => [],
+    'config'    => [
+        // comments in nested arrays break things
+        'key' => 1,
+    ],
+    'accepted'  => [],
+];~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $array = [
     /* comment */
@@ -69,13 +77,11 @@ $array = [
     /* comment */
     /* comment */
     /* comment */
-    "foo" => "bar"
+    "foo" => /* comment */ /* comment */
+    "bar", /* comment */
     /* comment */
-    /* comment */, /* comment */
-    /* comment */
-    "bar" => "foo"
-    /* comment */
-    /* comment */ /* comment */
+    "bar" => /* comment */ /* comment */
+    "foo" /* comment */
     /* comment */
     /* comment */
 ];
@@ -104,6 +110,15 @@ const FOO = [
 return [
     // foo
     "bar"
+];
+
+$array = [
+    'type' => [],
+    'config' => [
+        // comments in nested arrays break things
+        'key' => 1
+    ],
+    'accepted' => []
 ];
 
 `;

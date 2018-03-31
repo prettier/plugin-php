@@ -36,3 +36,12 @@ return [
   // foo
   "bar"
 ];
+
+$array = [
+    'type'      => [],
+    'config'    => [
+        // comments in nested arrays break things
+        'key' => 1,
+    ],
+    'accepted'  => [],
+];
