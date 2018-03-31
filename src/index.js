@@ -97,7 +97,7 @@ const printers = {
           }
         },
         {
-          kinds: ["call"],
+          kinds: ["call", "new"],
           children: { listNodes: ["arguments"], nodes: ["what"] }
         },
         {
