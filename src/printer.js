@@ -1532,11 +1532,13 @@ function printNode(path, options, print) {
     case "traitalias":
       return concat([
         path.call(print, "trait"),
-        "::",
-        node.method,
+        node.trait ? "::" : "",
+        node.method || "",
         " as ",
-        node.visibility ? concat([node.visibility, " "]) : "",
-        node.as
+        join(" ", [
+          ...(node.visibility ? [node.visibility] : []),
+          ...(node.as ? [node.as] : [])
+        ])
       ]);
     case "label":
       return concat([node.name, ":"]);
