@@ -523,7 +523,10 @@ function printExpression(path, options, print) {
               return concat(["{", print(valuePath), "}"]);
             }, "value")
           ),
-          getEncapsedQuotes(node, { opening: false })
+          getEncapsedQuotes(node, { opening: false }),
+          node.type === "heredoc" && path.getParentNode().kind === "call"
+            ? hardline
+            : ""
         ]);
       case "inline":
         return node.raw;
@@ -539,7 +542,8 @@ function printExpression(path, options, print) {
           "\n",
           node.value,
           "\n",
-          node.label
+          node.label,
+          path.getParentNode().kind === "call" ? "\n" : ""
         ]);
       default:
         return `Have not implemented literal kind ${node.kind} yet.`;
