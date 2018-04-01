@@ -510,7 +510,7 @@ function printExpression(path, options, print) {
               const node = valuePath.getValue();
               if (node.kind === "string") {
                 return valuePath.getParentNode().type === "heredoc"
-                  ? node.value
+                  ? node.raw
                   : print(valuePath);
               } else if (node.kind === "variable") {
                 if (typeof node.name === "object") {

@@ -12,6 +12,11 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
+$code = <<<EOF
+<?php
+\\$kernel = unserialize('$kernel');
+\\$request = unserialize('$request');
+EOF;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $boolean_test_true = true;
@@ -23,5 +28,10 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
+$code = <<<EOF
+<?php
+\\$kernel = unserialize('$kernel');
+\\$request = unserialize('$request');
+EOF;
 
 `;

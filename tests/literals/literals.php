@@ -9,3 +9,8 @@ $silent = @$foo;
 $nowdoc = <<<'EOL'
 "test" foo
 EOL;
+$code = <<<EOF
+<?php
+\$kernel = unserialize('$kernel');
+\$request = unserialize('$request');
+EOF;
