@@ -30,3 +30,4 @@ $result = (new Pipeline(new \Illuminate\Container\Container))
     ->then(function ($piped) {
         return $piped;
     });
+(new Translator('foo', 'bar'));
