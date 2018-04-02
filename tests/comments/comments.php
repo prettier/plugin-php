@@ -103,3 +103,19 @@ return (
    // some comment
    $test
 );
+
+/***
+ * Configures the tasks tabs (sub_menu)
+ */
+
+class Test {
+  /******************************************
+   * ORIGINAL SHIPPING DATA
+   *****************************************/
+   public $test;
+}
+
+/*
+      some test
+
+  */

@@ -315,6 +315,22 @@ return (
    // some comment
    $test
 );
+
+/***
+ * Configures the tasks tabs (sub_menu)
+ */
+
+class Test {
+  /******************************************
+   * ORIGINAL SHIPPING DATA
+   *****************************************/
+   public $test;
+}
+
+/*
+      some test
+
+  */
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 /** @var int $int This is a counter. */
@@ -374,16 +390,14 @@ class Foo
  *********************/
 
 // This is a one-line c++ style comment
-/**
- * This is a multi line comment
- * yet another line of comment
- */
+/* This is a multi line comment
+ yet another line of comment */
 
-/**
- * This is a multiple-lines comment block
- * that spans over multiple
- * lines
- */
+/*
+This is a multiple-lines comment block
+that spans over multiple
+lines
+*/
 
 # This is a one-line shell-style comment
 
@@ -421,6 +435,23 @@ return (
     // some comment
     $test
 );
+
+/***
+ * Configures the tasks tabs (sub_menu)
+ */
+
+class Test
+{
+    /******************************************
+     * ORIGINAL SHIPPING DATA
+     *****************************************/
+    public $test;
+}
+
+/*
+      some test
+
+  */
 
 `;
 
