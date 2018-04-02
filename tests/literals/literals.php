@@ -14,3 +14,11 @@ $code = <<<EOF
 \$kernel = unserialize('$kernel');
 \$request = unserialize('$request');
 EOF;
+$content = sprintf(<<<EOF
+foo
+EOF
+);
+$content = sprintf(<<<'EOF'
+foo
+EOF
+);
