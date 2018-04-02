@@ -432,6 +432,24 @@ do {
 
 `;
 
+exports[`echo.php 1`] = `
+<?php
+
+// Comment
+echo // Comment
+    $foo, // Comment
+    $bar // Comment
+; // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+echo // Comment
+$foo,
+    // Comment
+$bar; // Comment // Comment
+
+`;
+
 exports[`edge_cases.php 1`] = `
 <?php
 class Test{
