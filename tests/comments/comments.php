@@ -97,3 +97,9 @@ $constraint = new UniqueEntity(array(
     'message' => 'myMessage'
     // no "em" option set
 ));
+
+return (
+   // parens test
+   // some comment
+   $test
+);

@@ -420,8 +420,10 @@ function printExpression(path, options, print) {
           parentNode.kind !== "include";
         const shouldBeInlined =
           node.inner.kind === "new" || node.inner.kind === "clone";
+        const dangling = comments.printDanglingComments(path, options, true);
         const printedInner = concat([
           shouldBeInlined || !shouldPrintParenthesis ? "" : softline,
+          dangling ? concat([dangling, hardline]) : "",
           path.call(print, "inner")
         ]);
         return group(
