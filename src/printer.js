@@ -988,7 +988,6 @@ function printStatement(path, options, print) {
       node.shortForm ? ":" : " {",
       indent(
         concat([
-          node.comments && node.comments.length > 0 ? hardline : "",
           comments.printDanglingComments(path, options, true),
           node[bodyProperty].kind !== "block" ||
           (node[bodyProperty].children &&
