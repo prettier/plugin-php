@@ -25,3 +25,11 @@ class ImplementingClass {
 class ShortImplementingClass {
   use testTrait { A::testFunction insteadof C; }
 }
+
+class Partial {
+    use AbstractTrait {
+        deleteItems as private;
+        AbstractTrait::deleteItem as delete;
+        AbstractTrait::hasItem as has;
+    }
+}
