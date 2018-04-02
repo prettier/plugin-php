@@ -12,9 +12,11 @@ exports[`declare.php 1`] = `
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 declare(strict_types=1);
-?><html>
+?>
+<html>
     <body>
-        <?php $a = 1; ?>    </body>
+        <?php $a = 1; ?>
+    </body>
 </html>
 
 `;
@@ -71,7 +73,8 @@ function inlineMultipleStatements() {
 <?php
 function inline()
 {
-    ?>    <span>Hello World!</span>
+    ?>
+    <span>Hello World!</span>
     <?php
 }
 
@@ -83,7 +86,8 @@ function inline1()
 
 function inline2()
 {
-    ?>    <span>Hello World!</span><?php
+    ?>
+    <span>Hello World!</span><?php
 }
 
 function inlineInOneLine()
@@ -93,7 +97,8 @@ function inlineInOneLine()
 
 function inlineNested()
 {
-    ?>    <div>
+    ?>
+    <div>
       <span>Hello World!</span>
     </div>
     <?php
@@ -109,8 +114,10 @@ function inlineNested1()
 function inlineMultipleStatements()
 {
     $a = 1;
-    ?>    <span>Hello World!</span>
-    <?php $b = 1; ?>    <span>Hello World!</span>
+    ?>
+    <span>Hello World!</span>
+    <?php $b = 1; ?>
+    <span>Hello World!</span>
     <?php
     $c = 1;
 }
@@ -204,65 +211,99 @@ echo 'bar';
 </div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <p>Test.</p>
-<?php echo 'String.'; ?><p>Test.</p>
-<?php if ($expression == true): ?>  <p>Test.</p>
-<?php else: ?>  <p>Test.</p>
+<?php echo 'String.'; ?>
+<p>Test.</p>
+<?php if ($expression == true): ?>
+  <p>Test.</p>
+<?php else: ?>
+  <p>Test.</p>
 <?php endif;
 echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />';
-?><div></div>
+?>
+<div></div>
 <?php
 echo 'foo';
 echo 'bar';
-?><div class="<?php echo $class; ?>"></div>
+?>
+<div class="<?php echo $class; ?>"></div>
 <div>
   <h1>
-    <?php print_welcome_message(); ?>  </h1>
+    <?php print_welcome_message(); ?>
+  </h1>
 </div>
 <div id="results">
   <table class="sortable">
     <?php $results = $statement->fetchAll(
     PDO::FETCH_ASSOC
-); ?>    <?php do { ?>      <tr>
+); ?>
+    <?php do { ?>
+      <tr>
         <?php for ($i = 0; $i < count(
             $columns
-        ); $i++): ?>          <td><?php echo $row[$i]; ?></td>
-        <?php endfor; ?>      </tr>
+        ); $i++): ?>
+          <td><?php echo $row[$i]; ?></td>
+        <?php endfor; ?>
+      </tr>
     <?php } while (($row = next(
             $results
-        )) != false); ?>  </table>
+        )) != false); ?>
+  </table>
 </div>
 <div id="results">
   <table class="sortable">
     <?php foreach ($statement->fetchAll(
         PDO::FETCH_ASSOC
-    ) as $row): ?>      <tr>
-        <?php foreach ($row as $element): ?>          <td><?php echo $element; ?></td>
-        <?php endforeach; ?>      </tr>
-    <?php endforeach; ?>  </table>
+    ) as $row): ?>
+      <tr>
+        <?php foreach ($row as $element): ?>
+          <td><?php echo $element; ?></td>
+        <?php endforeach; ?>
+      </tr>
+    <?php endforeach; ?>
+  </table>
 </div>
 <div>
-  <?php switch ($variable): case 1: ?>      <div>Newspage</div>
-      <?php break; ?>  <?php case 2: ?>      </div>Forum<div>
-  <?php break; ?>  <?php endswitch; ?></div>
+  <?php switch ($variable): case 1: ?>
+      <div>Newspage</div>
+      <?php break; ?>
+  <?php case 2: ?>
+      </div>Forum<div>
+  <?php break; ?>
+  <?php endswitch; ?>
+</div>
 <ul>
-  <?php for ($i = 1; $i <= 5; $i++) { ?>      <li>Menu Item <?php echo $i; ?></li>
-  <?php } ?></ul>
-<?php while (true): ?>  <span>Text</span>
-<?php endwhile; ?><h1>Head</h1>
+  <?php for ($i = 1; $i <= 5; $i++) { ?>
+      <li>Menu Item <?php echo $i; ?></li>
+  <?php } ?>
+</ul>
+<?php while (true): ?>
+  <span>Text</span>
+<?php endwhile; ?>
+<h1>Head</h1>
 <?php
 $var = 1;
-if ($expression == true): ?>  <p>Test.</p>
-<?php else: ?>  <p>Test.</p>
+if ($expression == true): ?>
+  <p>Test.</p>
+<?php else: ?>
+  <p>Test.</p>
 <?php endif;
 $var = 1;
-?><div>
-  <?php while ($i <= 10): ?>    <span><?php echo $i; ?></span>
-    <?php $i++; ?>  <?php endwhile; ?></div>
+?>
 <div>
-  <?php if ($a > $b): ?>    <span><?php echo $a . " > " . $b; ?></span>
-  <?php elseif ($a == $b): ?>    <span><?php echo $a . " == " . $b; ?></span>
-  <?php else: ?>    <span><?php echo $a . " < " . $b; ?></span>
-  <?php endif; ?></div>
+  <?php while ($i <= 10): ?>
+    <span><?php echo $i; ?></span>
+    <?php $i++; ?>
+  <?php endwhile; ?>
+</div>
+<div>
+  <?php if ($a > $b): ?>
+    <span><?php echo $a . " > " . $b; ?></span>
+  <?php elseif ($a == $b): ?>
+    <span><?php echo $a . " == " . $b; ?></span>
+  <?php else: ?>
+    <span><?php echo $a . " < " . $b; ?></span>
+  <?php endif; ?>
+</div>
 
 `;
 
@@ -274,7 +315,8 @@ $a = 1;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $a = 1;
-?><div>Foo</div>
+?>
+<div>Foo</div>
 
 `;
 
@@ -299,10 +341,13 @@ exports[`mixed-3.php 1`] = `
 <div>Hello world</div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-if ($expression == true): ?>    <p>Test.</p>
-<?php else: ?>    <p>Test.</p>
+if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
 <?php endif;
-?><div>Hello world</div>
+?>
+<div>Hello world</div>
 
 `;
 
@@ -315,8 +360,10 @@ exports[`mixed-4.php 1`] = `
 <?php endif; ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <div>Hello world</div>
-<?php if ($expression == true): ?>    <p>Test.</p>
-<?php else: ?>    <p>Test.</p>
+<?php if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
 <?php endif;
 
 `;
