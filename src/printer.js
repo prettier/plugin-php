@@ -526,7 +526,7 @@ function printExpression(path, options, print) {
           getEncapsedQuotes(node, { opening: false })
         ]);
       case "inline":
-        return node.value;
+        return node.raw;
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
