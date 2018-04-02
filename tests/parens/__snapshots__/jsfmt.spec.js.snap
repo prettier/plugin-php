@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new.php 1`] = `
+<?php
+(new Translator(
+    $container,
+    new MessageFormatter(),
+    'en',
+    array(),
+    array('foo' => 'bar')
+))
+?>
+<?php
+(((new Translator(
+    $container,
+    new MessageFormatter(),
+    'en',
+    array(),
+    array('foo' => 'bar')
+))))
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+(new Translator($container, new MessageFormatter(), 'en', array(), array(
+    'foo' => 'bar'
+)));
+(new Translator($container, new MessageFormatter(), 'en', array(), array(
+        'foo' => 'bar'
+    )));
+
+`;

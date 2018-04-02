@@ -261,7 +261,10 @@ function lineShouldHaveStartPHPTag(path) {
 }
 
 function lineShouldEndWithSemicolon(path) {
-  const node = path.getValue();
+  let node = path.getValue();
+  while (node.kind === "parenthesis") {
+    node = node.inner;
+  }
   const parentNode = path.getParentNode();
   if (!parentNode) {
     return false;
