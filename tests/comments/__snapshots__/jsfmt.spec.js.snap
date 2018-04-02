@@ -618,6 +618,36 @@ if (1) {
 
 `;
 
+exports[`include.php 1`] = `
+<?php
+// Comment
+include // Comment
+    // Comment
+    "test.php" // Comment
+    // Comment
+; // Comment
+
+// Comment
+include (// Comment
+    // Comment
+"test.php" // Comment
+    // Comment
+); // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+include // Comment
+// Comment
+"test.php"; // Comment // Comment
+// Comment
+// Comment
+include // Comment
+    // Comment
+    "test.php"; // Comment
+    // Comment // Comment
+
+`;
+
 exports[`method.php 1`] = `
 <?php
 

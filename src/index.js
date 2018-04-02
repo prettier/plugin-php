@@ -142,6 +142,14 @@ const printers = {
         {
           kinds: ["echo"],
           children: { listNodes: ["arguments"], nodes: [] }
+        },
+        {
+          kinds: ["parenthesis"],
+          children: { listNodes: [], nodes: ["inner"] }
+        },
+        {
+          kinds: ["include"],
+          children: { listNodes: [], nodes: ["target"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {
