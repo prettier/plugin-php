@@ -382,7 +382,6 @@ class Foo
 # This is a one-line shell-style comment
 
 for ($i = 0; $i < 10; $i++) {
-
     // some comment
     $a = 1;
     $b = 2;
@@ -413,19 +412,23 @@ $constraint = new UniqueEntity(array(
 
 `;
 
-exports[`dangling_for.php 1`] = `
+exports[`do.php 1`] = `
 <?php
-for // comment
-(;;);
-
-for /* comment */(;;);
+// Comment
+do { // Comment
+    // Comment
+    echo $i; // Comment
+    // Comment
+} while ($i > 0); // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-// comment
-for (;;);
-
-/* comment */
-for (;;);
+// Comment
+do {
+    // Comment
+    // Comment
+    echo $i; // Comment
+    // Comment
+} while ($i > 0); // Comment
 
 `;
 
@@ -488,6 +491,57 @@ function testFunction(
 
 `;
 
+exports[`for.php 1`] = `
+<?php
+for // Comment
+(;;);
+
+for /* Comment */(;;);
+
+// Comment
+for ($i = 1; $i <= 10; $i++) { // Comment
+    // Comment
+    echo $i; // Comment
+    // Comment
+} // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+for (;;);
+
+/* Comment */
+for (;;);
+
+// Comment
+for ($i = 1; $i <= 10; $i++) {
+    // Comment
+    // Comment
+    echo $i; // Comment
+    // Comment
+} // Comment
+
+`;
+
+exports[`foreach.php 1`] = `
+<?php
+// Comment
+foreach ($iterable as $value) { // Comment
+    // Comment
+    echo 'Foo'; // Comment
+    // Comment
+} // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+foreach ($iterable as $value) {
+    // Comment
+    // Comment
+    echo 'Foo'; // Comment
+    // Comment
+} // Comment
+
+`;
+
 exports[`functions.php 1`] = `
 <?php
 
@@ -505,6 +559,44 @@ function foo(
     /* comment */
 
 }
+
+`;
+
+exports[`if.php 1`] = `
+<?php
+// Comment
+if (1) { // Comment
+    // Comment
+    echo "Foo"; // Comment
+    // Comment
+} elseif (2) { // Comment
+    // Comment
+    echo "Bar";
+    // Comment
+} else { // Comment
+    // Comment
+    echo "FooBar";
+    // Comment
+} // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+if (1) {
+    // Comment
+    // Comment
+    echo "Foo"; // Comment
+    // Comment
+} elseif (2) {
+    // Comment
+    // Comment
+    echo "Bar";
+    // Comment
+} else {
+    // Comment
+    // Comment
+    echo "FooBar";
+    // Comment
+} // Comment
 
 `;
 
@@ -551,4 +643,63 @@ exports[`no_code.php 1`] = `
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
+`;
+
+exports[`switch.php 1`] = `
+<?php
+// Comment
+switch ($i) { // Comment
+    // Comment
+    case 0: // Comment
+        // Comment
+        echo "i equals 0"; // Comment
+        // Comment
+        break; // Comment
+        // Comment
+    case 1: // Comment
+        // Comment
+        echo "i equals 1"; // Comment
+        break; // Comment
+        // Comment
+} // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+switch ($i) {
+    // Comment
+    // Comment
+    case 0: // Comment
+        // Comment
+        echo "i equals 0"; // Comment
+        // Comment
+        break; // Comment
+    // Comment
+    case 1: // Comment
+        // Comment
+        echo "i equals 1";
+        // Comment
+        break; // Comment
+    // Comment
+} // Comment
+
+`;
+
+exports[`while.php 1`] = `
+<?php
+// Comment 1
+while (true) { // Comment 2
+    // Comment 3
+    echo 'Foo'; // Comment 4
+    // Comment 5
+} // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment 1
+while (true) {
+    // Comment 2
+    // Comment 3
+    echo 'Foo'; // Comment 4
+    // Comment 5
+} // Comment
+
 `;

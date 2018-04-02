@@ -85,8 +85,8 @@ const printers = {
         {
           kinds: ["foreach"],
           children: {
-            listNodes: ["children"],
-            nodes: ["key", "source", "value"]
+            listNodes: [],
+            nodes: ["key", "source", "value", "body"]
           }
         },
         {
