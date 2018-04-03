@@ -206,7 +206,7 @@ const printers = {
             );
           }
 
-          // otherwise we can't be sure about indentationt, so just print as is
+          // otherwise we can't be sure about indentation, so just print as is
           return comment.value;
         }
         case "commentline": {
