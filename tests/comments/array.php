@@ -45,3 +45,11 @@ $array = [
     ],
     'accepted'  => [],
 ];
+
+// Comment
+$array = []; // Comment
+// Comment
+
+/* Comment */
+$array /* Comment */ = /* Comment */ []; /* Comment */
+/* Comment */

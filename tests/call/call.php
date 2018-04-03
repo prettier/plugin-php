@@ -100,3 +100,8 @@ $foo->bar(
     },
     $arg3
 );
+
+$packages = array_merge(
+    idx($composer, 'require', []),
+    idx($composer, 'require-dev', [])
+);
