@@ -744,6 +744,38 @@ switch ($i) {
 
 `;
 
+exports[`throw.php 1`] = `
+<?php
+
+// Comment
+throw new ClassName( // Comment
+    1, // Comment
+    // Comment
+    2 // Comment
+); // Comment
+
+/* Comment */
+throw new ClassName( /* Comment */
+    /* Comment */ 1, /* Comment */
+    /* Comment */
+    /* Comment */ 2 /* Comment */
+    /* Comment */); /* Comment */
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+throw new ClassName(// Comment
+1, // Comment // Comment
+2); // Comment // Comment
+
+/* Comment */
+throw new ClassName(/* Comment */ /* Comment */
+1, /* Comment */ /* Comment */
+/* Comment */
+2); /* Comment */
+/* Comment */ /* Comment */
+
+`;
+
 exports[`while.php 1`] = `
 <?php
 // Comment 1

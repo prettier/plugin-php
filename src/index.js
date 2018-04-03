@@ -150,6 +150,10 @@ const printers = {
         {
           kinds: ["include"],
           children: { listNodes: [], nodes: ["target"] }
+        },
+        {
+          kinds: ["throw"],
+          children: { listNodes: [], nodes: ["what"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {
