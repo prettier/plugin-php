@@ -119,3 +119,21 @@ class Test {
       some test
 
   */
+
+  /*
+  <a href="#"
+      class="btn btn-info ladda-button"
+      data-ui-component="unified-modal-opener"
+      data-style="zoom-in"
+      data-title="Title modal"
+      data-size="md"
+      data-header="true"
+      data-footer="false"
+      data-render="contact-form"
+      data-view="Title"
+      >
+      <span class="ladda-label">Modal</span>
+  </a>
+
+  Options: data-render - contact-form, render, template-part
+  */
