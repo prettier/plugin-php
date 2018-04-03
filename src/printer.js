@@ -331,22 +331,23 @@ function printExpression(path, options, print) {
         ]);
       case "offsetlookup": {
         const isOffsetNumberNode = node.offset && node.offset.kind === "number";
-
         return group(
           concat([
             path.call(print, "what"),
             "[",
-            group(
-              concat([
-                indent(
+            node.offset
+              ? group(
                   concat([
-                    isOffsetNumberNode ? "" : softline,
-                    path.call(print, "offset")
+                    indent(
+                      concat([
+                        isOffsetNumberNode ? "" : softline,
+                        path.call(print, "offset")
+                      ])
+                    ),
+                    isOffsetNumberNode ? "" : softline
                   ])
-                ),
-                isOffsetNumberNode ? "" : softline
-              ])
-            ),
+                )
+              : "",
             "]"
           ])
         );
