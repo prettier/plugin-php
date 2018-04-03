@@ -315,6 +315,40 @@ return (
    // some comment
    $test
 );
+
+/***
+ * Configures the tasks tabs (sub_menu)
+ */
+
+class Test {
+  /******************************************
+   * ORIGINAL SHIPPING DATA
+   *****************************************/
+   public $test;
+}
+
+/*
+      some test
+
+  */
+
+  /*
+  <a href="#"
+      class="btn btn-info ladda-button"
+      data-ui-component="unified-modal-opener"
+      data-style="zoom-in"
+      data-title="Title modal"
+      data-size="md"
+      data-header="true"
+      data-footer="false"
+      data-render="contact-form"
+      data-view="Title"
+      >
+      <span class="ladda-label">Modal</span>
+  </a>
+
+  Options: data-render - contact-form, render, template-part
+  */
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 /** @var int $int This is a counter. */
@@ -374,16 +408,14 @@ class Foo
  *********************/
 
 // This is a one-line c++ style comment
-/**
- * This is a multi line comment
- * yet another line of comment
- */
+/* This is a multi line comment
+ yet another line of comment */
 
-/**
- * This is a multiple-lines comment block
- * that spans over multiple
- * lines
- */
+/*
+This is a multiple-lines comment block
+that spans over multiple
+lines
+*/
 
 # This is a one-line shell-style comment
 
@@ -421,6 +453,41 @@ return (
     // some comment
     $test
 );
+
+/***
+ * Configures the tasks tabs (sub_menu)
+ */
+
+class Test
+{
+    /******************************************
+     * ORIGINAL SHIPPING DATA
+     *****************************************/
+    public $test;
+}
+
+/*
+      some test
+
+  */
+
+/*
+  <a href="#"
+      class="btn btn-info ladda-button"
+      data-ui-component="unified-modal-opener"
+      data-style="zoom-in"
+      data-title="Title modal"
+      data-size="md"
+      data-header="true"
+      data-footer="false"
+      data-render="contact-form"
+      data-view="Title"
+      >
+      <span class="ladda-label">Modal</span>
+  </a>
+
+  Options: data-render - contact-form, render, template-part
+  */
 
 `;
 

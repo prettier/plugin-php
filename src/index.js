@@ -5,7 +5,7 @@ const print = require("./printer");
 const clean = require("./clean");
 const options = require("./options");
 const comments = require("./comments");
-const { concat, join, hardline } = require("prettier").doc.builders;
+const { join, hardline } = require("prettier").doc.builders;
 
 const languages = [
   {
@@ -193,56 +193,25 @@ const printers = {
             return comment.value;
           }
 
-          // if this is not a doc comment, just print as is, replacing new lines
+          const lines = comment.value.split("\n");
+          // if this is a block comment, handle indentation
           if (
-            !(
-              comment.value.startsWith("/* ") ||
-              comment.value.startsWith("/** ") ||
-              comment.value.startsWith("/*\n") ||
-              comment.value.startsWith("/**\n")
-            )
+            lines
+              .slice(1, lines.length - 1)
+              .every(line => line.trim()[0] === "*")
           ) {
-            return join(hardline, comment.value.split("\n"));
+            return join(
+              hardline,
+              lines.map(
+                (line, index) =>
+                  (index > 0 ? " " : "") +
+                  (index < lines.length - 1 ? line.trim() : line.trimLeft())
+              )
+            );
           }
 
-          // if this is a doc comment, lets try to make it a little pretty
-          const lines = comment.value.split("\n");
-
-          const linesToPrint = [];
-          let canPrintBlankLine = false;
-          lines.forEach((line, index) => {
-            const lineContainsRealText = /[^(*|/|\s)]/.test(line);
-            if (
-              !lineContainsRealText &&
-              canPrintBlankLine &&
-              index < lines.length - 1
-            ) {
-              linesToPrint.push("");
-              canPrintBlankLine = false;
-            } else if (lineContainsRealText) {
-              linesToPrint.push(
-                line
-                  .replace("//", "")
-                  .replace("/*", "")
-                  .replace("*/", "")
-                  .replace("*", "")
-                  .trim()
-              );
-              canPrintBlankLine = true;
-            }
-          });
-          return concat([
-            "/**",
-            hardline,
-            join(
-              hardline,
-              linesToPrint.map(line => {
-                return ` *${line.length > 0 ? ` ${line}` : ""}`;
-              })
-            ),
-            hardline,
-            " */"
-          ]);
+          // otherwise we can't be sure about indentation, so just print as is
+          return comment.value;
         }
         case "commentline": {
           return comment.value.trimRight();
