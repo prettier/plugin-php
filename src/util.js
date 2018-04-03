@@ -366,6 +366,13 @@ function maybeStripLeadingSlashFromUse(name) {
   return name;
 }
 
+function hasDanglingComments(node) {
+  return (
+    node.comments &&
+    node.comments.some(comment => !comment.leading && !comment.trailing)
+  );
+}
+
 module.exports = {
   printNumber,
   stringEscape,
@@ -390,5 +397,6 @@ module.exports = {
   fileShouldEndWithHardline,
   shouldRemoveLines,
   removeNewlines,
-  maybeStripLeadingSlashFromUse
+  maybeStripLeadingSlashFromUse,
+  hasDanglingComments
 };

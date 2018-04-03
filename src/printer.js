@@ -35,7 +35,8 @@ const {
   shouldRemoveLines,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
-  fileShouldEndWithHardline
+  fileShouldEndWithHardline,
+  hasDanglingComments
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -569,22 +570,38 @@ function printExpression(path, options, print) {
         return path.call(print, "name");
       }
       return node.name;
-    case "array":
+    case "array": {
+      const open = node.shortForm ? "[" : "array(";
+      const close = node.shortForm ? "]" : ")";
+      if (node.items.length === 0) {
+        if (!hasDanglingComments(node)) {
+          return concat([open, close]);
+        }
+        return group(
+          concat([
+            open,
+            comments.printDanglingComments(path, options),
+            softline,
+            close
+          ])
+        );
+      }
       return group(
         concat([
-          node.shortForm ? "[" : "array(",
+          open,
           indent(
             concat([
-              node.comments && node.comments.length > 0 ? hardline : softline,
+              softline,
               join(concat([",", line]), path.map(print, "items"))
             ])
           ),
           ifBreak(shouldPrintComma(options) ? "," : ""),
-          comments.printDanglingComments(path, options, /* sameIndent */ true),
+          comments.printDanglingComments(path, options, true),
           softline,
-          node.shortForm ? "]" : ")"
+          close
         ])
       );
+    }
     case "yield":
       return concat([
         "yield ",

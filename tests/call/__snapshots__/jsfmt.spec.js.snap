@@ -103,6 +103,11 @@ $foo->bar(
     },
     $arg3
 );
+
+$packages = array_merge(
+    idx($composer, 'require', []),
+    idx($composer, 'require-dev', [])
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 func();
@@ -208,6 +213,11 @@ $foo->bar(
         // body
     },
     $arg3
+);
+
+$packages = array_merge(
+    idx($composer, 'require', []),
+    idx($composer, 'require-dev', [])
 );
 
 `;
