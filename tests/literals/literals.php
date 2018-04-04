@@ -22,3 +22,13 @@ $content = sprintf(<<<'EOF'
 foo
 EOF
 );
+$content = array(<<<EOF
+foo
+EOF
+, "bar"
+);
+$content = array(<<<'EOF'
+foo
+EOF
+, "bar"
+);

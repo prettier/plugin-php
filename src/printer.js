@@ -36,7 +36,8 @@ const {
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
-  hasDanglingComments
+  hasDanglingComments,
+  docShouldHaveTrailingNewline
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -528,7 +529,7 @@ function printExpression(path, options, print) {
             }, "value")
           ),
           getEncapsedQuotes(node, { opening: false }),
-          node.type === "heredoc" && path.getParentNode().kind === "call"
+          node.type === "heredoc" && docShouldHaveTrailingNewline(path)
             ? hardline
             : ""
         ]);
@@ -547,7 +548,7 @@ function printExpression(path, options, print) {
           node.value,
           "\n",
           node.label,
-          path.getParentNode().kind === "call" ? "\n" : ""
+          docShouldHaveTrailingNewline(path) ? "\n" : ""
         ]);
       default:
         return `Have not implemented literal kind ${node.kind} yet.`;

@@ -260,6 +260,14 @@ function lineShouldHaveStartPHPTag(path) {
   );
 }
 
+/**
+ * Heredoc/Nowdoc nodes need a trailing linebreak if they
+ * appear as function arguments or array elements
+ */
+function docShouldHaveTrailingNewline(path) {
+  return ["entry", "call"].includes(path.getParentNode().kind);
+}
+
 function lineShouldEndWithSemicolon(path) {
   let node = path.getValue();
   while (node.kind === "parenthesis") {
@@ -398,5 +406,6 @@ module.exports = {
   shouldRemoveLines,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
-  hasDanglingComments
+  hasDanglingComments,
+  docShouldHaveTrailingNewline
 };
