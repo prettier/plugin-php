@@ -495,18 +495,14 @@ function printExpression(path, options, print) {
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
-        let quote = node.isDoubleQuote ? '"' : "'";
+        const quote = node.isDoubleQuote ? '"' : "'";
         let stringValue = node.raw;
-        if (path.getParentNode().kind === "encapsed") {
-          quote = "";
-        } else {
-          // if this is not part of an encapsed node, we need to strip out the quotes from the raw value
-          if (['"', "'"].includes(stringValue[0])) {
-            stringValue = stringValue.substr(1);
-          }
-          if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
-            stringValue = stringValue.substr(0, stringValue.length - 1);
-          }
+        // we need to strip out the quotes from the raw value
+        if (['"', "'"].includes(stringValue[0])) {
+          stringValue = stringValue.substr(1);
+        }
+        if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
+          stringValue = stringValue.substr(0, stringValue.length - 1);
         }
         return makeString(stringValue, quote, false);
       }
@@ -524,9 +520,7 @@ function printExpression(path, options, print) {
             path.map(valuePath => {
               const node = valuePath.getValue();
               if (node.kind === "string") {
-                return valuePath.getParentNode().type === "heredoc"
-                  ? node.raw
-                  : print(valuePath);
+                return node.raw;
               } else if (node.kind === "variable") {
                 if (typeof node.name === "object") {
                   return concat(["${", path.call(print, "name"), "}"]);

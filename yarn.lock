@@ -2606,9 +2606,9 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-php-parser@glayzzle/php-parser#ca9f957690f723bc314b0267d59e15a803af223b:
+php-parser@glayzzle/php-parser#a8f10d8c9aacf8e90b283229f8bed76363b99fcf:
   version "2.2.0"
-  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/ca9f957690f723bc314b0267d59e15a803af223b"
+  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/a8f10d8c9aacf8e90b283229f8bed76363b99fcf"
 
 pify@3.0.0, pify@^3.0.0:
   version "3.0.0"
