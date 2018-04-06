@@ -950,15 +950,37 @@ exports[`no_code.php 1`] = `
  */
 `;
 
-exports[`static.php 1`] = `
+exports[`offsetlookup.php 1`] = `
 <?php
-static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+
+echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-static /* Comment */
-    $a, /* Comment */
-    /* Comment */
-    $b; /* Comment */
+echo /*Comment*/
+/*Comment*/
+$a[/*Comment*/
+    1]; /*Comment*/ /*Comment*/
+
+`;
+
+exports[`post.php 1`] = `
+<?php
+
+$a/* Comment */++;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a++; /* Comment */
+
+`;
+
+exports[`pre.php 1`] = `
+<?php
+
+++/*Comment */$a;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+++/*Comment */
+$a;
 
 `;
 
@@ -981,19 +1003,6 @@ $foo; /* Comment */
 
 `;
 
-exports[`offsetlookup.php 1`] = `
-<?php
-
-echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-echo /*Comment*/
-/*Comment*/
-$a[/*Comment*/
-    1]; /*Comment*/ /*Comment*/
-
-`;
-
 exports[`propertylookup.php 1`] = `
 <?php
 
@@ -1006,6 +1015,18 @@ $a->bar();
 
 `;
 
+exports[`static.php 1`] = `
+<?php
+static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+static /* Comment */
+    $a, /* Comment */
+    /* Comment */
+    $b; /* Comment */
+
+`;
+
 exports[`staticlookup.php 1`] = `
 <?php
 
@@ -1015,27 +1036,6 @@ echo Foo/*Comment*/::/*Comment*/bar();
 echo /*Comment*/
 /*Comment*/
 Foo::bar();
-
-`;
-
-exports[`post.php 1`] = `
-<?php
-
-$a/* Comment */++;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$a++; /* Comment */
-
-`;
-
-exports[`pre.php 1`] = `
-<?php
-
-++/*Comment */$a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-++/*Comment */
-$a;
 
 `;
 
@@ -1110,16 +1110,39 @@ throw new ClassName(/* Comment */ /* Comment */
 
 `;
 
-exports[`unset.php 1`] = `
+exports[`traits.php 1`] = `
 <?php
 
-unset(/* Comment */ $foo /* Comment */);
+class ImplementingClass {
+    /* Comment */
+    /* Comment */ use /* Comment */ testTrait /* Comment */, /* Comment */ otherTrait /* Comment */;
+    /* Comment */ use /* Comment */ testTrait /* Comment */, /* Comment */ implementingTrait /* Comment */ { /* Comment */
+        /* Comment */ A/* Comment */::/* Comment */ testFunction /* Comment */ insteadof /* Comment */ C /* Comment */ ; /* Comment */
+        /* Comment */ B/* Comment */::/* Comment */ someOtherTestFunction /* Comment */ as /* Comment */ aliasedFunctionName /* Comment */; /* Comment */
+        /* Comment */ C/* Comment */::/* Comment */ testFunction /* Comment */ as  /* Comment */ private /* Comment */ testVisibility /* Comment */;
+    }
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-unset(
+class ImplementingClass
+{
     /* Comment */
-    $foo /* Comment */
-);
+    /* Comment */
+    /* Comment */
+    use testTrait, /* Comment */ /* Comment */
+    otherTrait; /* Comment */
+    /* Comment */
+    /* Comment */
+    use testTrait, /* Comment */ /* Comment */
+    implementingTrait { /* Comment */ /* Comment */
+        /* Comment */
+        A::testFunction insteadof C; /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */
+        /* Comment */
+        B::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */
+        /* Comment */
+        C::testFunction as private testVisibility; /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */
+    }
+}
 
 `;
 
@@ -1131,6 +1154,19 @@ exports[`unary.php 1`] = `
 <?php
 +/* Comment */
 $a;
+
+`;
+
+exports[`unset.php 1`] = `
+<?php
+
+unset(/* Comment */ $foo /* Comment */);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+unset(
+    /* Comment */
+    $foo /* Comment */
+);
 
 `;
 
