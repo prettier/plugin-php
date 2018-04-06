@@ -721,6 +721,19 @@ function foo(
 
 `;
 
+exports[`global.php 1`] = `
+<?php
+
+global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+global /* Comment */
+    $a, /* Comment */
+    /* Comment */
+    $b; /* Comment */
+
+`;
+
 exports[`if.php 1`] = `
 <?php
 // Comment
