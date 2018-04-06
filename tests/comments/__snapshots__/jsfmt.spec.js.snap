@@ -914,6 +914,43 @@ $foo; /* Comment */
 
 `;
 
+exports[`offsetlookup.php 1`] = `
+<?php
+
+echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+echo /*Comment*/
+/*Comment*/
+$a[/*Comment*/
+    1]; /*Comment*/ /*Comment*/
+
+`;
+
+exports[`propertylookup.php 1`] = `
+<?php
+
+echo $a/*Comment*/->/*Comment*/bar();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+echo /*Comment*/
+/*Comment*/
+$a->bar();
+
+`;
+
+exports[`staticlookup.php 1`] = `
+<?php
+
+echo Foo/*Comment*/::/*Comment*/bar();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+echo /*Comment*/
+/*Comment*/
+Foo::bar();
+
+`;
+
 exports[`switch.php 1`] = `
 <?php
 // Comment
