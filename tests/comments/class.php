@@ -35,3 +35,22 @@ $test = new class($arg1) extends Test {
 $test = new class {
   //some comment
 };
+
+
+namespace Tribe\Project\Twig;
+
+interface Template_Interface {
+	/**
+	 * Build the data that will be available to the template
+	 *
+	 * @return array
+	 */
+	public function get_data(): array;
+
+	/**
+	 * Render the template and return it as a string
+	 *
+	 * @return string The rendered template
+	 */
+	public function render(): string;
+}
