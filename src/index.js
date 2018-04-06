@@ -206,6 +206,18 @@ const printers = {
         {
           kinds: ["yield"],
           children: { listNodes: [], nodes: ["key", "value"] }
+        },
+        {
+          kinds: ["traituse"],
+          children: { listNodes: ["traits", "adaptations"], nodes: [] }
+        },
+        {
+          kinds: ["traitprecedence"],
+          children: { listNodes: [], nodes: ["trait", "instead"] }
+        },
+        {
+          kinds: ["traitalias"],
+          children: { listNodes: [], nodes: ["trait"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {
