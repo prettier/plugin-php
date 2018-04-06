@@ -621,6 +621,25 @@ function testFunction(
 
 `;
 
+exports[`empty.php 1`] = `
+<?php
+
+if (empty(/* Comment */ [] /* Comment */)) {
+    echo "Foo";
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+if (
+    empty(
+        /* Comment */
+        [] /* Comment */
+    )
+) {
+    echo "Foo";
+}
+
+`;
+
 exports[`for.php 1`] = `
 <?php
 for // Comment
@@ -759,6 +778,42 @@ include // Comment
 
 `;
 
+exports[`isset.php 1`] = `
+<?php
+
+if (isset(/* Comment */ $a[1]/* Comment */)) {
+    echo "Foo";
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+if (
+    isset(
+        /* Comment */
+        $a[1] /* Comment */
+    )
+) {
+    echo "Foo";
+}
+
+`;
+
+exports[`list.php 1`] = `
+<?php
+
+list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /* Comment */ $power /* Comment */) = $info;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+list(
+    /* Comment */
+    $drink, /* Comment */
+    /* Comment */
+    $color, /* Comment */
+    /* Comment */
+    $power /* Comment */
+) = $info;
+
+`;
+
 exports[`method.php 1`] = `
 <?php
 
@@ -872,6 +927,19 @@ throw new ClassName(/* Comment */ /* Comment */
 /* Comment */
 2); /* Comment */
 /* Comment */ /* Comment */
+
+`;
+
+exports[`unset.php 1`] = `
+<?php
+
+unset(/* Comment */ $foo /* Comment */);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+unset(
+    /* Comment */
+    $foo /* Comment */
+);
 
 `;
 
