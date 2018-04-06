@@ -837,7 +837,7 @@ function printStatement(path, options, print) {
             // options.openingBraceNewLine ? hardline : " ",
             // Hack, we need `invertLine` command here, as `line`, but have versa vice logic
             bodyContents
-              ? node.kind === "method"
+              ? node.kind === "function" || node.kind === "method"
                 ? ifBreak(" ", concat([lineSuffix(""), lineSuffixBoundary]))
                 : hardline
               : ""
