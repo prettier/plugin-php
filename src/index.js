@@ -148,7 +148,7 @@ const printers = {
           children: { listNodes: [], nodes: ["target"] }
         },
         {
-          kinds: ["throw", "clone"],
+          kinds: ["throw", "clone", "pre", "post", "unary", "cast"],
           children: { listNodes: [], nodes: ["what"] }
         },
         {
