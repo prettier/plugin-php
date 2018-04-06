@@ -589,8 +589,7 @@ class Test
 function testFunction(
     /* inline */
     $arg
-)
-{
+) {
     // body
 }
 
@@ -598,8 +597,7 @@ function testFunction(
     $arg1,
     /* inline */
     $arg2
-)
-{
+) {
 
 }
 
@@ -668,8 +666,7 @@ function foo(
         = /* comment */
         /* comment */
         1 /* comment */ /* comment */
-): ?string
-{
+): ?string {
     /* comment */
 
 }
