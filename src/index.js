@@ -152,6 +152,10 @@ const printers = {
           children: { listNodes: ["implements", "body"], nodes: ["extends"] }
         },
         {
+          kinds: ["interface"],
+          children: { listNodes: ["extends", "body"], nodes: [] }
+        },
+        {
           kinds: ["function", "method", "closure"],
           children: { listNodes: ["arguments", "uses"], nodes: ["body"] }
         },
