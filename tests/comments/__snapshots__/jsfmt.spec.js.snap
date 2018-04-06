@@ -895,6 +895,25 @@ static /* Comment */
 
 `;
 
+exports[`print.php 1`] = `
+<?php
+
+print // Comment
+    $foo
+    /* Comment */
+    ;
+
+print /* Comment */ $foo /* Comment */;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+print // Comment
+$foo;
+/* Comment */
+print /* Comment */
+$foo; /* Comment */
+
+`;
+
 exports[`switch.php 1`] = `
 <?php
 // Comment
