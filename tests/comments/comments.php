@@ -137,3 +137,12 @@ class Test {
 
   Options: data-render - contact-form, render, template-part
   */
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * ```php
+ * $hello = 'world'; // This is a comment in a comment
+ * ```
+ */
