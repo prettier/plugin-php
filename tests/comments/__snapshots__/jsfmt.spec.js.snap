@@ -1116,3 +1116,43 @@ while (true) {
 } // Comment
 
 `;
+
+exports[`yield.php 1`] = `
+<?php
+
+function gen_one_to_three() {
+    yield /* Comment */ $i  /* Comment */;
+    yield  /* Comment */ $id  /* Comment */ =>  /* Comment */ $fields  /* Comment */;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function gen_one_to_three()
+{
+    yield /* Comment */
+    $i; /* Comment */
+    yield /* Comment */
+    $id => /* Comment */ /* Comment */
+    $fields; /* Comment */
+}
+
+`;
+
+exports[`yieldfrom.php 1`] = `
+<?php
+
+function gen() {
+    yield 0;
+    yield from /* Comment */ from();
+    yield 4;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function gen()
+{
+    yield 0;
+    yield from /* Comment */
+    from();
+    yield 4;
+}
+
+`;
