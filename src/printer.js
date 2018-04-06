@@ -280,6 +280,16 @@ function isPropertyLookupChain(node) {
   return isPropertyLookupChain(node.what);
 }
 
+// so this is a bit hacky, but for anonymous classes, there's a chance that an
+// assumption core to prettier will break - that child nodes will not overlap. In
+// this case, if we have something like this:
+//   $test = new class($arg1, $arg2) extends TestClass {};
+// we end up with a parent "new" node, which has children "arguments", and "what"
+// the "what" is a "class" node, but it overlaps with the "arguments". To solve this,
+// we use this variable to store off the printed arguments when the "new" node is printing,
+// so that the "class" node can then access them later
+let anonymousClassesNewArguments = null;
+
 const expressionKinds = [
   "array",
   "variable",
@@ -853,11 +863,25 @@ function printStatement(path, options, print) {
           ...(node.isFinal ? ["final"] : []),
           ...(node.isAbstract ? ["abstract"] : [])
         ];
+        const parentNode = path.getParentNode();
+        // if this is an anonymous class, we need to check if the parent was a
+        // "new" node. if it was, we need to get the arguments from that node
+        // ex: $test = new class($arg1, $arg2) extends TestClass {};
+        const anonumousArguments =
+          node.isAnonymous &&
+          parentNode.kind === "new" &&
+          parentNode.arguments.length > 0
+            ? anonymousClassesNewArguments
+            : "";
         return printDeclarationBlock({
           declaration: concat([
             classPrefixes.join(" "),
             classPrefixes.length > 0 ? " " : "",
-            concat(["class", node.name ? concat([" ", node.name]) : ""]),
+            concat([
+              "class",
+              anonumousArguments,
+              node.name ? concat([" ", node.name]) : ""
+            ]),
             group(
               indent(
                 concat([
@@ -1347,8 +1371,13 @@ function printStatement(path, options, print) {
     case "goto":
       return concat(["goto ", node.label]);
     case "new": {
+      // if the child node is an anonymous class, we need to store the arguments
+      // so the child class node can access them later
       const isAnonymousClassNode =
         node.what && node.what.kind === "class" && node.what.isAnonymous;
+      if (isAnonymousClassNode && node.arguments.length > 0) {
+        anonymousClassesNewArguments = printArgumentsList(path, options, print);
+      }
       return group(
         concat([
           "new ",
