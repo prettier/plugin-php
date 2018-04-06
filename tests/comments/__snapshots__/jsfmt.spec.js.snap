@@ -178,6 +178,18 @@ if (
 
 `;
 
+exports[`cast.php 1`] = `
+<?php
+
+$var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$var = /* Comment */
+(int) /* Comment */
+'1'; /* Comment */
+
+`;
+
 exports[`class.php 1`] = `
 <?php
 namespace Test\\test\\test;
@@ -951,6 +963,27 @@ Foo::bar();
 
 `;
 
+exports[`post.php 1`] = `
+<?php
+
+$a/* Comment */++;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a++; /* Comment */
+
+`;
+
+exports[`pre.php 1`] = `
+<?php
+
+++/*Comment */$a;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+++/*Comment */
+$a;
+
+`;
+
 exports[`switch.php 1`] = `
 <?php
 // Comment
@@ -1032,6 +1065,17 @@ unset(
     /* Comment */
     $foo /* Comment */
 );
+
+`;
+
+exports[`unary.php 1`] = `
+<?php
+
++/* Comment */$a;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
++/* Comment */
+$a;
 
 `;
 
