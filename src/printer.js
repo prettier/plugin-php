@@ -867,7 +867,7 @@ function printStatement(path, options, print) {
         // if this is an anonymous class, we need to check if the parent was a
         // "new" node. if it was, we need to get the arguments from that node
         // ex: $test = new class($arg1, $arg2) extends TestClass {};
-        const anonumousArguments =
+        const anonymousArguments =
           node.isAnonymous &&
           parentNode.kind === "new" &&
           parentNode.arguments.length > 0
@@ -879,7 +879,7 @@ function printStatement(path, options, print) {
             classPrefixes.length > 0 ? " " : "",
             concat([
               "class",
-              anonumousArguments,
+              anonymousArguments,
               node.name ? concat([" ", node.name]) : ""
             ]),
             group(
