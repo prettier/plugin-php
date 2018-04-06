@@ -663,6 +663,24 @@ if (
 
 `;
 
+exports[`eval.php 1`] = `
+<?php
+
+eval(
+    /* Comment */
+    "echo 'test';"
+    /* Comment */
+);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+eval(
+    /* Comment */
+    "echo 'test';"
+    /* Comment */
+);
+
+`;
+
 exports[`for.php 1`] = `
 <?php
 for // Comment
