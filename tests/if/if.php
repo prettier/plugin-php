@@ -66,16 +66,6 @@ if (($this || $that) && $theOtherThing < $someReallyReallyReallyLongBooleanVaria
   return true;
 }
 
-return true ? 1 : 2;
-return ($testReallyReallyLong >= 1) ? $someOtherReallyReallyLongVariable : $thisOtherVariable;
-return true ?: 2;
-return ($testReallyReallyLong === $someOtherReallyReallyLongVariable && $otherTest != $someOtherTest) ? 1 : 0;
-
-$test ? doSomething() : doSomethingElse();
-return $test ? doSomething() : doSomethingElse();
-$test ?: doSomething();
-return $test ?: doSomething();
-
 if (true):
 elseif (false):
 else:
