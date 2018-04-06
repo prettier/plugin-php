@@ -943,9 +943,9 @@ function printStatement(path, options, print) {
       case "property":
         return group(
           concat([
-            node.visibility,
-            node.isStatic ? " static" : "",
-            " $",
+            node.visibility ? concat([node.visibility, " "]) : "",
+            node.isStatic ? "static " : "",
+            "$",
             node.name,
             node.value ? concat([" = ", path.call(print, "value")]) : "",
             ";"
