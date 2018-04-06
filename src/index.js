@@ -59,7 +59,7 @@ const printers = {
           children: { listNodes: [], nodes: ["expr"] }
         },
         {
-          kinds: ["array"],
+          kinds: ["static", "array", "usegroup"],
           children: { listNodes: ["items"], nodes: [] }
         },
         {
@@ -77,10 +77,6 @@ const printers = {
         {
           kinds: ["block", "program", "namespace", "declare"],
           children: { listNodes: ["children"], nodes: [] }
-        },
-        {
-          kinds: ["usegroup"],
-          children: { listNodes: ["items"], nodes: [] }
         },
         {
           kinds: ["foreach"],

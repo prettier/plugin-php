@@ -870,6 +870,18 @@ exports[`no_code.php 1`] = `
  */
 `;
 
+exports[`static.php 1`] = `
+<?php
+static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+static /* Comment */
+    $a, /* Comment */
+    /* Comment */
+    $b; /* Comment */
+
+`;
+
 exports[`switch.php 1`] = `
 <?php
 // Comment
