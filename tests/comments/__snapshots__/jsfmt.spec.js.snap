@@ -1053,6 +1053,17 @@ $a->bar();
 
 `;
 
+exports[`silent.php 1`] = `
+<?php
+
+@/*comment*/test();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+@/*comment*/
+test();
+
+`;
+
 exports[`static.php 1`] = `
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
