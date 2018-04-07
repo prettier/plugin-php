@@ -756,6 +756,19 @@ eval(
 
 `;
 
+exports[`exit.php 1`] = `
+<?php
+
+exit(/* Comment */1/* Comment */);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+exit(
+    /* Comment */
+    1 /* Comment */
+);
+
+`;
+
 exports[`for.php 1`] = `
 <?php
 for // Comment
