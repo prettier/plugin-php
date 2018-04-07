@@ -1,6 +1,6 @@
 "use strict";
 
-const { addDanglingComment } = require("prettier").util;
+const { addDanglingComment, addTrailingComment } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
 
 /*
@@ -39,11 +39,13 @@ const handleEndOfLineComment = comment => {
 };
 
 const handleRemainingComment = comment => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunction(comment) ||
     handleForLoop(comment) ||
-    handleTryCatch(comment)
+    handleTryCatch(comment) ||
+    handleBreakAndContinueStatementComments(enclosingNode, comment)
   );
 };
 
@@ -147,6 +149,18 @@ function printDanglingComments(path, options, sameIndent, filter) {
     return join(hardline, parts);
   }
   return indent(concat([hardline, join(hardline, parts)]));
+}
+
+function handleBreakAndContinueStatementComments(enclosingNode, comment) {
+  if (
+    enclosingNode &&
+    (enclosingNode.kind === "continue" || enclosingNode.kind === "break") &&
+    !enclosingNode.label
+  ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
 }
 
 module.exports = {

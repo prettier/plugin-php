@@ -178,6 +178,31 @@ if (
 
 `;
 
+exports[`break.php 1`] = `
+<?php
+
+for (;;) {
+    break /* Comment */;
+}
+
+loop: for (;;) {
+    break /* Comment */ 1;
+    break 1 /* Comment */;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+for (;;) {
+    break; /* Comment */
+}
+
+loop:
+for (;;) {
+    break; /* Comment */
+    break; /* Comment */
+}
+
+`;
+
 exports[`cast.php 1`] = `
 <?php
 
@@ -621,6 +646,31 @@ class Test
  * $hello = 'world'; // This is a comment in a comment
  * \`\`\`
  */
+
+`;
+
+exports[`continue.php 1`] = `
+<?php
+
+for (;;) {
+    continue /* comment */;
+}
+
+loop: for (;;) {
+    continue /* comment */ 1;
+    continue 1 /* comment */;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+for (;;) {
+    continue; /* comment */
+}
+
+loop:
+for (;;) {
+    continue; /* comment */
+    continue; /* comment */
+}
 
 `;
 
