@@ -222,6 +222,10 @@ const printers = {
         {
           kinds: ["traitalias"],
           children: { listNodes: [], nodes: ["trait"] }
+        },
+        {
+          kinds: ["silent"],
+          children: { listNodes: [], nodes: ["expr"] }
         }
       ];
       const children = nodeMap.reduce((currentChildren, map) => {
