@@ -1,12 +1,14 @@
 {
   "name": "@prettier/plugin-php",
-  "version": "0.0.0-development",
+  "version": "0.1.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
   "main": "src",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "dependencies": {
     "php-parser": "glayzzle/php-parser#a8f10d8c9aacf8e90b283229f8bed76363b99fcf"
   },
@@ -28,6 +30,8 @@
     "prettier": "prettier --plugin=. --parser=php"
   },
   "jest": {
-    "projects": ["<rootDir>/jest.*.config.js"]
+    "projects": [
+      "<rootDir>/jest.*.config.js"
+    ]
   }
 }
