@@ -34,7 +34,49 @@
 
 ## WORK IN PROGRESS
 
-Please note that this plugin is under active development, and might not be ready to run on production code yet.
+Please note that this plugin is currently in alpha stage and still under active development. We encourage everyone to try it and give feedback, but we don't recommend it for production use yet.
+
+## Install
+
+yarn:
+
+```bash
+yarn add --dev prettier @prettier/plugin-php
+# or globally
+yarn global add prettier @prettier/plugin-php
+```
+
+npm:
+
+```bash
+npm install --save-dev prettier @prettier/plugin-php
+# or globally
+npm install --global prettier @prettier/plugin-php
+```
+
+## Use
+
+If you installed prettier as a local dependency, you can add prettier as a script in your `package.json`,
+
+```json
+scripts: {
+  "prettier":"prettier"
+}
+```
+
+and then run it via
+
+```bash
+yarn run prettier path/to/file.php --write
+# or
+npm run prettier path/to/file.php --write
+```
+
+If you installed globally, run
+
+```bash
+prettier path/to/file.php --write
+```
 
 ## Contributing
 
@@ -46,24 +88,6 @@ To test it out on a PHP file:
 * Run `yarn`.
 * Create a file called `test.php`.
 * Run `yarn prettier test.php` to check the output.
-
-## Install
-
-yarn:
-```bash
-yarn add --dev prettier/prettier prettier/plugin-php
-```
-
-npm:
-```bash
-npm install --save-dev prettier/prettier prettier/plugin-php
-```
-
-## Use
-
-```bash
-prettier --write "**/*.php"
-```
 
 ## Maintainers
 
