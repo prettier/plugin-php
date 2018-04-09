@@ -39,13 +39,13 @@ const handleEndOfLineComment = comment => {
 };
 
 const handleRemainingComment = comment => {
-  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunction(comment) ||
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
-    handleBreakAndContinueStatementComments(enclosingNode, comment)
+    handleBreakAndContinueStatementComments(comment) ||
+    handleGoto(comment)
   );
 };
 
@@ -113,6 +113,28 @@ const handleTryCatch = comment => {
   return false;
 };
 
+function handleBreakAndContinueStatementComments(comment) {
+  const { enclosingNode } = comment;
+  if (
+    enclosingNode &&
+    (enclosingNode.kind === "continue" || enclosingNode.kind === "break") &&
+    !enclosingNode.label
+  ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+}
+
+const handleGoto = comment => {
+  const { enclosingNode } = comment;
+  if (enclosingNode && enclosingNode.kind === "goto") {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+};
+
 // https://github.com/prettier/prettier/blob/master/src/main/comments.js#L335
 function printComment(commentPath, options) {
   const comment = commentPath.getValue();
@@ -149,18 +171,6 @@ function printDanglingComments(path, options, sameIndent, filter) {
     return join(hardline, parts);
   }
   return indent(concat([hardline, join(hardline, parts)]));
-}
-
-function handleBreakAndContinueStatementComments(enclosingNode, comment) {
-  if (
-    enclosingNode &&
-    (enclosingNode.kind === "continue" || enclosingNode.kind === "break") &&
-    !enclosingNode.label
-  ) {
-    addTrailingComment(enclosingNode, comment);
-    return true;
-  }
-  return false;
 }
 
 module.exports = {
