@@ -939,6 +939,16 @@ echo 'Bar';
 
 `;
 
+exports[`halt.php 1`] = `
+<?php
+
+/*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/*Comment*/
+__halt_compiler(); /*Comment*/ /*Comment*/ /*Comment*/
+
+`;
+
 exports[`if.php 1`] = `
 <?php
 // Comment
