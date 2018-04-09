@@ -1281,8 +1281,12 @@ function printStatement(path, options, print) {
         concat([
           node.useDie ? "die" : "exit",
           "(",
-          indent(concat([softline, path.call(print, "status")])),
-          softline,
+          node.status
+            ? concat([
+                indent(concat([softline, path.call(print, "status")])),
+                softline
+              ])
+            : comments.printDanglingComments(path, options),
           ")"
         ])
       );
