@@ -489,14 +489,17 @@ function printExpression(path, options, print) {
       case "boolean":
         return node.value ? "true" : "false";
       case "string": {
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/123
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/124
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
+        let prefix = "";
         let stringValue = node.raw;
+        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/147
+        if (stringValue[0] === "b") {
+          prefix = "b";
+          stringValue = stringValue.slice(1);
+        }
         // we need to strip out the quotes from the raw value
         if (['"', "'"].includes(stringValue[0])) {
           stringValue = stringValue.substr(1);
@@ -504,7 +507,7 @@ function printExpression(path, options, print) {
         if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
           stringValue = stringValue.substr(0, stringValue.length - 1);
         }
-        return makeString(stringValue, quote, false);
+        return concat([prefix, makeString(stringValue, quote, false)]);
       }
       case "number":
         return printNumber(node.value);
