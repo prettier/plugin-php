@@ -13,3 +13,7 @@ if (1) { // Comment
     echo "FooBar";
     // Comment
 } // Comment
+
+if (/* Comments */ true /* Comments */) {
+} elseif (/* Comments */ false /* Comments */) {
+} else {}

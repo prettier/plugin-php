@@ -9,3 +9,5 @@ $variable = FormUtil::isEmpty($this->modelData) ||
 if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
     mb_internal_encoding('ASCII');
 }
+
+$bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;

@@ -14,3 +14,5 @@ switch ($i) { // Comment
         break; // Comment
         // Comment
 } // Comment
+
+switch (/* Comment */ 1 /* Comment */) {}

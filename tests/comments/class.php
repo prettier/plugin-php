@@ -54,3 +54,8 @@ interface Template_Interface {
 	 */
 	public function render(): string;
 }
+
+
+class Foo {/* Comment */}
+interface FooI {/* Comment */}
+trait FooT {/* Comment */}
