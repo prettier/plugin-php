@@ -10,3 +10,12 @@ function gen() {
   yield from from();
   yield 4;
 }
+
+
+function gen_one_to_three() {
+    for ($i = 1; $i <= 3; $i++) {
+        yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValues;
+        yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+        yield from $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+    }
+}
