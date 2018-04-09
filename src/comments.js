@@ -45,7 +45,8 @@ const handleRemainingComment = comment => {
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleBreakAndContinueStatementComments(comment) ||
-    handleGoto(comment)
+    handleGoto(comment) ||
+    handleHalt(comment)
   );
 };
 
@@ -129,6 +130,15 @@ function handleBreakAndContinueStatementComments(comment) {
 const handleGoto = comment => {
   const { enclosingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "goto") {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+};
+
+const handleHalt = comment => {
+  const { enclosingNode } = comment;
+  if (enclosingNode && enclosingNode.kind === "halt") {
     addTrailingComment(enclosingNode, comment);
     return true;
   }
