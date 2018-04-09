@@ -144,8 +144,15 @@ const printers = {
           }
         },
         {
-          kinds: ["for", "while", "do"],
-          children: { listNodes: [], nodes: ["body"] }
+          kinds: ["while", "do"],
+          children: { listNodes: [], nodes: ["test", "body"] }
+        },
+        {
+          kinds: ["for"],
+          children: {
+            listNodes: [],
+            nodes: ["init", "test", "increment", "body"]
+          }
         },
         {
           kinds: ["trait", "class"],
@@ -168,7 +175,11 @@ const printers = {
           children: { listNodes: [], nodes: ["left", "right"] }
         },
         {
-          kinds: ["parameter", "yieldfrom"],
+          kinds: ["parameter"],
+          children: { listNodes: [], nodes: ["type", "value"] }
+        },
+        {
+          kinds: ["yieldfrom"],
           children: { listNodes: [], nodes: ["value"] }
         },
         {
@@ -188,7 +199,7 @@ const printers = {
           children: { listNodes: [], nodes: ["target"] }
         },
         {
-          kinds: ["throw", "clone", "pre", "post", "unary", "cast"],
+          kinds: ["throw", "clone", "pre", "post", "unary", "cast", "variadic"],
           children: { listNodes: [], nodes: ["what"] }
         },
         {

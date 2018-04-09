@@ -1240,6 +1240,9 @@ function printStatement(path, options, print) {
       return concat([
         node.type ? concat([node.type, " "]) : "",
         maybeStripLeadingSlashFromUse(node.name),
+        hasDanglingComments(node)
+          ? concat([" ", comments.printDanglingComments(path, options, true)])
+          : "",
         node.alias ? concat([" as ", node.alias]) : ""
       ]);
     case "closure":

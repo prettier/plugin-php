@@ -152,6 +152,8 @@ $variable = FormUtil::isEmpty($this->modelData) ||
 if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
     mb_internal_encoding('ASCII');
 }
+
+$bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $variable =
@@ -175,6 +177,12 @@ if (
 ) {
     mb_internal_encoding('ASCII');
 }
+
+$bool =
+    /*Comment */
+    true || /*Comment */
+    /*Comment */
+    false; /*Comment */
 
 `;
 
@@ -200,6 +208,19 @@ for (;;) {
     break; /* Comment */
     break; /* Comment */
 }
+
+`;
+
+exports[`call.php 1`] = `
+<?php
+
+foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+foo(/* Comment */
+$a, /* Comment */ /* Comment */
+[], /* Comment */ /* Comment */
+($a + 2)); /* Comment */
 
 `;
 
@@ -272,6 +293,11 @@ interface Template_Interface {
 	 */
 	public function render(): string;
 }
+
+
+class Foo {/* Comment */}
+interface FooI {/* Comment */}
+trait FooT {/* Comment */}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Test\\test\\test;
@@ -334,6 +360,19 @@ interface Template_Interface
      * @return string The rendered template
      */
     public function render(): string;
+}
+
+class Foo
+{
+    /* Comment */
+}
+interface FooI
+{
+    /* Comment */
+}
+trait FooT
+{
+    /* Comment */
 }
 
 `;
@@ -682,6 +721,9 @@ do { // Comment
     echo $i; // Comment
     // Comment
 } while ($i > 0); // Comment
+
+do {
+} while (/* Comments */ true /* Comments */);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -691,6 +733,12 @@ do {
     echo $i; // Comment
     // Comment
 } while ($i > 0); // Comment
+
+do {
+} while (
+    /* Comments */
+    true /* Comments */
+);
 
 `;
 
@@ -702,13 +750,20 @@ echo // Comment
     $foo, // Comment
     $bar // Comment
 ; // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/* Comment */echo/* Comment */$foo/* Comment */,/* Comment */$bar/* Comment */;/* Comment */~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
 echo // Comment
 $foo,
     // Comment
 $bar; // Comment // Comment
+
+/* Comment */
+echo /* Comment */
+$foo, /* Comment */
+    /* Comment */
+$bar; /* Comment */ /* Comment */
 
 `;
 
@@ -849,6 +904,11 @@ for ($i = 1; $i <= 10; $i++) { // Comment
     echo $i; // Comment
     // Comment
 } // Comment
+
+
+for (/* Comments */ $i /* Comments */ = /* Comments */ 1 /* Comments */; /* Comments */ $i /* Comments */ <= /* Comments */ 10 /* Comments */; /* Comments */ $i++ /* Comments */) {
+    echo $i;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -865,6 +925,20 @@ for ($i = 1; $i <= 10; $i++) {
     // Comment
 } // Comment
 
+for ($i = 1; $i <= 10; $i++) {
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    echo $i;
+}
+
 `;
 
 exports[`foreach.php 1`] = `
@@ -875,6 +949,11 @@ foreach ($iterable as $value) { // Comment
     echo 'Foo'; // Comment
     // Comment
 } // Comment
+
+
+foreach (/* Comments */ $iterable /* Comments */ as /* Comments */ $value /* Comments */) {}
+
+foreach (/* Comments */ $iterable /* Comments */ as /* Comments */ $key /* Comments */ => /* Comments */ $value /* Comments */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -885,12 +964,28 @@ foreach ($iterable as $value) {
     // Comment
 } // Comment
 
+foreach ($iterable as $value) {/* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+}
+
+foreach ($iterable as $key => $value) {/* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+    /* Comments */
+}
+
 `;
 
 exports[`functions.php 1`] = `
 <?php
 
 function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
+
+function emptyFn(/*Comment */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 function foo(
@@ -901,6 +996,12 @@ function foo(
         1 /* comment */ /* comment */
 ): ?string {
     /* comment */
+
+}
+
+function emptyFn()
+{
+    /*Comment */
 
 }
 
@@ -949,6 +1050,29 @@ __halt_compiler(); /*Comment*/ /*Comment*/ /*Comment*/
 
 `;
 
+exports[`heredoc.php 1`] = `
+<?php
+$str = /* Comment */<<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+/* Comment */
+
+echo $str;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$str = <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD; /* Comment */
+/* Comment */
+
+echo $str;
+
+`;
+
 exports[`if.php 1`] = `
 <?php
 // Comment
@@ -965,6 +1089,10 @@ if (1) { // Comment
     echo "FooBar";
     // Comment
 } // Comment
+
+if (/* Comments */ true /* Comments */) {
+} elseif (/* Comments */ false /* Comments */) {
+} else {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -984,6 +1112,17 @@ if (1) {
     echo "FooBar";
     // Comment
 } // Comment
+
+if (
+    /* Comments */
+    true /* Comments */
+) {
+} elseif (
+    /* Comments */
+    false /* Comments */
+) {
+} else {
+}
 
 `;
 
@@ -1058,6 +1197,10 @@ exports[`method.php 1`] = `
 
 class Foo {
     public function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
+
+    public function emptyMethod(/* comments */) {}
+
+    /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
@@ -1073,6 +1216,16 @@ class Foo
         /* comment */
 
     }
+
+    public function emptyMethod()
+    {
+        /* comments */
+
+    } /* comment */
+
+    /* comment */
+    /* comment */
+    protected static $foo; /* comment */
 }
 
 `;
@@ -1098,6 +1251,30 @@ exports[`no_code.php 1`] = `
  */
 `;
 
+exports[`nowdoc.php 1`] = `
+<?php
+$str = /* Comment */<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+/* Comment */
+
+echo $str;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$str = /* Comment */
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+/* Comment */
+
+echo $str;
+
+`;
+
 exports[`offsetlookup.php 1`] = `
 <?php
 
@@ -1108,6 +1285,34 @@ echo /*Comment*/
 /*Comment*/
 $a[/*Comment*/
     1]; /*Comment*/ /*Comment*/
+
+`;
+
+exports[`parameter.php 1`] = `
+<?php
+
+function foo(/* Comment */ $a, /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */) {};
+
+function bar(/* Comment */ &$a /* Comment */) {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+function foo(
+    /* Comment */
+    $a,
+    /* Comment */
+    array $b /* Comment */ /* Comment */
+        = /* Comment */
+        [] /* Comment */
+) {
+
+}
+
+function bar(
+    /* Comment */
+    &$a /* Comment */
+) {
+
+}
 
 `;
 
@@ -1215,6 +1420,8 @@ switch ($i) { // Comment
         break; // Comment
         // Comment
 } // Comment
+
+switch (/* Comment */ 1 /* Comment */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -1234,6 +1441,12 @@ switch ($i) {
         break; // Comment
     // Comment
 } // Comment
+
+switch (
+    /* Comment */
+    1 /* Comment */
+) {
+}
 
 `;
 
@@ -1329,6 +1542,41 @@ unset(
 
 `;
 
+exports[`usegroup.php 1`] = `
+<?php
+
+use /* Comment */ some\\namespaces\\/* Comment */{
+    /* Comment */ClassA/* Comment */,
+    /* Comment */ ClassB/* Comment */,
+    /* Comment */ ClassC /* Comment */ as /* Comment */ C
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+use some\\namespaces\\{
+    /* Comment */
+    /* Comment */
+    /* Comment */
+    ClassA, /* Comment */
+    /* Comment */
+    ClassB, /* Comment */
+    /* Comment */
+    ClassC /* Comment */
+    /* Comment */ as C
+};
+
+`;
+
+exports[`variadic.php 1`] = `
+<?php
+
+foo(.../*Comment*/$foo);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+foo(.../*Comment*/
+$foo);
+
+`;
+
 exports[`while.php 1`] = `
 <?php
 // Comment 1
@@ -1337,6 +1585,8 @@ while (true) { // Comment 2
     echo 'Foo'; // Comment 4
     // Comment 5
 } // Comment
+
+while (/* Comments */ true /* Comments */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment 1
@@ -1346,6 +1596,12 @@ while (true) {
     echo 'Foo'; // Comment 4
     // Comment 5
 } // Comment
+
+while (
+    /* Comments */
+    true /* Comments */
+) {
+}
 
 `;
 
