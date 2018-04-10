@@ -326,7 +326,9 @@ function lineShouldEndWithSemicolon(path) {
     "eval",
     "propertylookup",
     "offsetlookup",
-    "silent"
+    "silent",
+    "usegroup",
+    "property"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
