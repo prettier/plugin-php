@@ -884,9 +884,9 @@ function printStatement(path, options, print) {
                         concat([line, "extends ", path.call(print, "extends")])
                       )
                     : "",
-                  line,
                   node.implements
                     ? concat([
+                        line,
                         "implements",
                         group(
                           indent(

@@ -259,6 +259,8 @@ class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
+
+class Custom_Plugin_NotificationPlaceholderSource extends Notification_Manager_DefaultPlaceholderSource {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz
@@ -562,6 +564,12 @@ class ClassName
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
     implements InterfaceClass
+{
+
+}
+
+class Custom_Plugin_NotificationPlaceholderSource
+    extends Notification_Manager_DefaultPlaceholderSource
 {
 
 }
