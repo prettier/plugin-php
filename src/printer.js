@@ -965,8 +965,7 @@ function printStatement(path, options, print) {
             node.isStatic ? "static " : "",
             "$",
             node.name,
-            node.value ? concat([" = ", path.call(print, "value")]) : "",
-            ";"
+            node.value ? concat([" = ", path.call(print, "value")]) : ""
           ])
         );
       case "interface":
@@ -1232,8 +1231,7 @@ function printStatement(path, options, print) {
               )
             ])
           ),
-          node.name ? concat([softline, "}"]) : "",
-          ";"
+          node.name ? concat([softline, "}"]) : ""
         ])
       );
     case "useitem":
