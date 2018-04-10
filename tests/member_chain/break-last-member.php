@@ -1,0 +1,7 @@
+<?php
+
+$SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()->some_very_long_member_expression;
+$weNeedToReachTheEightyCharacterLimitXXXXXXXXXXXXXXXXX->someNode
+->childrenInAnArray[0];
+$superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
+$superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered[0];

@@ -74,7 +74,8 @@ $class = new static(
 $response = new \\Illuminate\\Http\\JsonResponse(
     new JsonResponseTestJsonSerializeObject()
 );
-$result = (new Pipeline(new \\Illuminate\\Container\\Container()))->send('foo')
+$result = (new Pipeline(new \\Illuminate\\Container\\Container()))
+    ->send('foo')
     ->through([new PipelineTestPipeOne()])
     ->then(function ($piped) {
         return $piped;

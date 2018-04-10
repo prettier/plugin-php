@@ -79,8 +79,7 @@ return (
 return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
     ? true
     : false;
-return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->
-    veryVeryVeryVeryVeryVeryLongProperty;
+return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 return ($true ? ('foo' . ('foo' . 'bar')) : "foobarfoo");
 
 `;

@@ -1,6 +1,7 @@
 "use strict";
 
 const {
+  breakParent,
   concat,
   join,
   line,
@@ -15,7 +16,12 @@ const {
   softline
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
-const { makeString, isNextLineEmpty } = require("prettier").util;
+const {
+  makeString,
+  isNextLineEmpty,
+  isNextLineEmptyAfterIndex,
+  getNextNonSpaceNonCommentCharacterIndex
+} = require("prettier").util;
 const comments = require("./comments");
 
 const {
@@ -37,7 +43,8 @@ const {
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
   hasDanglingComments,
-  docShouldHaveTrailingNewline
+  docShouldHaveTrailingNewline,
+  isMemberish
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -111,43 +118,130 @@ function genericPrint(path, options, print) {
   ]);
 }
 
-// special layout for "chained" function calls, i.e.
-// $foo = a()
-//     ->b()
-//     ->c();
+function printPropertyLookup(path, options, print) {
+  const node = path.getValue();
+  return group(
+    concat(["->", wrapPropertyLookup(node, path.call(print, "offset"))])
+  );
+}
+
+function printStaticLookup(path, options, print) {
+  return concat(["::", path.call(print, "offset")]);
+}
+
+function printOffsetLookup(path, options, print) {
+  const node = path.getValue();
+  const isOffsetNumberNode = node.offset && node.offset.kind === "number";
+  return concat([
+    "[",
+    node.offset
+      ? group(
+          concat([
+            indent(
+              concat([
+                isOffsetNumberNode ? "" : softline,
+                path.call(print, "offset")
+              ])
+            ),
+            isOffsetNumberNode ? "" : softline
+          ])
+        )
+      : "",
+    "]"
+  ]);
+}
+
+// We detect calls on member expressions specially to format a
+// common pattern better. The pattern we are looking for is this:
+//
+// $arr
+//   ->map(function(x) { return $x + 1; })
+//   ->filter(function(x) { return $x > 10; })
+//   ->some(function(x) { return $x % 2; });
+//
+// The way it is structured in the AST is via a nested sequence of
+// propertylookup, staticlookup, offsetlookup and call.
+// We need to traverse the AST and make groups out of it
+// to print it in the desired way.
 function printMemberChain(path, options, print) {
-  // First step: Linearize and reorder the AST.
+  // The first phase is to linearize the AST by traversing it down.
   //
   // Example:
-  //   a()->b->c()->d()
+  //   a()->b->c()->d();
   // has the AST structure
-  //   Call (PropertyLookup d (
-  //     Call (PropertyLookup c (
-  //       PropertyLookup b (
-  //         Call (Identifier a)
+  //   call (propertylookup d (
+  //     call (propertylookup c (
+  //       propertylookup b (
+  //         call (identifier a)
   //       )
   //     ))
   //   ))
   // and we transform it into (notice the reversed order)
-  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
-  //    PropertyLookup d, Call]
+  //   [identifier a, call, propertylookup b, propertylookup c, call,
+  //    propertylookup d, call]
   const printedNodes = [];
+
+  // Here we try to retain one typed empty line after each call expression or
+  // the first group whether it is in parentheses or not
+  //
+  // Example:
+  //   $a
+  //     ->call()
+  //
+  //     ->otherCall();
+  //
+  //   ($foo ? $a : $b)
+  //     ->call()
+  //     ->otherCall();
+  function shouldInsertEmptyLineAfter(node) {
+    const { originalText } = options;
+    const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+      originalText,
+      node,
+      options
+    );
+    const nextChar = originalText.charAt(nextCharIndex);
+
+    // if it is cut off by a parenthesis, we only account for one typed empty
+    // line after that parenthesis
+    if (nextChar === ")") {
+      return isNextLineEmptyAfterIndex(
+        originalText,
+        nextCharIndex + 1,
+        options
+      );
+    }
+
+    return isNextLineEmpty(originalText, node, options);
+  }
 
   function traverse(path) {
     const node = path.getValue();
-    if (node.kind === "call") {
-      printedNodes.unshift({
-        node,
-        printed: concat([printArgumentsList(path, options, print)])
-      });
-      path.call(what => traverse(what), "what");
-    } else if (node.kind === "propertylookup") {
+    if (
+      node.kind === "call" &&
+      (isMemberish(node.what) || node.what.type === "call")
+    ) {
       printedNodes.unshift({
         node,
         printed: concat([
-          "->",
-          wrapPropertyLookup(node, path.call(print, "offset"))
+          printArgumentsList(path, options, print),
+          shouldInsertEmptyLineAfter(node) ? hardline : ""
         ])
+      });
+      path.call(what => traverse(what), "what");
+    } else if (isMemberish(node)) {
+      // Print *lookup nodes as we standard print them outside member chain
+      let printedMemberish = null;
+      if (node.kind === "propertylookup") {
+        printedMemberish = printPropertyLookup(path, options, print);
+      } else if (node.kind === "staticlookup") {
+        printedMemberish = printStaticLookup(path, options, print);
+      } else {
+        printedMemberish = printOffsetLookup(path, options, print);
+      }
+      printedNodes.unshift({
+        node,
+        printed: printedMemberish
       });
       path.call(what => traverse(what), "what");
     } else {
@@ -157,42 +251,125 @@ function printMemberChain(path, options, print) {
       });
     }
   }
-  traverse(path);
+  const node = path.getValue();
+  printedNodes.unshift({
+    node,
+    printed: printArgumentsList(path, options, print)
+  });
+  path.call(what => traverse(what), "what");
 
   // create groups from list of nodes, i.e.
-  //   [Identifier a, Call, PropertyLookup b, PropertyLookup c, Call,
-  //    PropertyLookup d, Call]
+  //   [identifier a, call, propertylookup b, propertylookup c, call,
+  //    propertylookup d, call]
   // will be grouped as
   //   [
-  //     [Identifier a, Call],
-  //     [PropertyLookup b, PropertyLookup c, Call],
-  //     [PropertyLookup d, Call]
+  //     [identifier a, Call],
+  //     [propertylookup b, propertylookup c, call],
+  //     [propertylookup d, call]
   //   ]
   // so that we can print it as
   //   a()
   //     ->b->c()
-  //     ->d()
+  //     ->d();
   const groups = [];
-  let currentGroup = [];
-  let hasSeenCall = false;
-  printedNodes.forEach(printedNode => {
-    if (hasSeenCall && printedNode.node.kind === "propertylookup") {
-      groups.push(currentGroup);
-      currentGroup = [printedNode];
-      hasSeenCall = false;
+  let currentGroup = [printedNodes[0]];
+  let i = 1;
+  for (; i < printedNodes.length; ++i) {
+    if (
+      printedNodes[i].node.kind === "call" ||
+      (printedNodes[i].node.kind === "offsetlookup" &&
+        printedNodes[i].node.offset &&
+        printedNodes[i].node.offset.kind === "number")
+    ) {
+      currentGroup.push(printedNodes[i]);
     } else {
-      currentGroup.push(printedNode);
+      break;
+    }
+  }
+  if (printedNodes[0].node.kind !== "call") {
+    for (; i + 1 < printedNodes.length; ++i) {
+      if (
+        isMemberish(printedNodes[i].node) &&
+        isMemberish(printedNodes[i + 1].node)
+      ) {
+        currentGroup.push(printedNodes[i]);
+      } else {
+        break;
+      }
+    }
+  }
+  groups.push(currentGroup);
+  currentGroup = [];
+
+  // Then, each following group is a sequence of propertylookup followed by
+  // a sequence of call. To compute it, we keep adding things to the
+  // group until we have seen a call in the past and reach a
+  // propertylookup
+  let hasSeenCallExpression = false;
+  for (; i < printedNodes.length; ++i) {
+    if (hasSeenCallExpression && isMemberish(printedNodes[i].node)) {
+      // [0] should be appended at the end of the group instead of the
+      // beginning of the next one
+      if (
+        printedNodes[i].node.kind === "offsetlookup" &&
+        printedNodes[i].node.offset &&
+        printedNodes[i].node.offset.kind === "number"
+      ) {
+        currentGroup.push(printedNodes[i]);
+        continue;
+      }
+
+      groups.push(currentGroup);
+      currentGroup = [];
+      hasSeenCallExpression = false;
     }
 
-    if (printedNode.node.kind === "call") {
-      hasSeenCall = true;
+    if (printedNodes[i].node.kind === "call") {
+      hasSeenCallExpression = true;
     }
-  });
-  groups.push(currentGroup);
+    currentGroup.push(printedNodes[i]);
+
+    if (
+      printedNodes[i].node.comments &&
+      comments.hasTrailingComment(printedNodes[i].node)
+    ) {
+      groups.push(currentGroup);
+      currentGroup = [];
+      hasSeenCallExpression = false;
+    }
+  }
+  if (currentGroup.length > 0) {
+    groups.push(currentGroup);
+  }
+
+  // Merge next nodes when:
+  //
+  // 1. We have `$this` variable before
+  //
+  // Example:
+  //     $this->method()->property;
+  //
+  // 2. When we have offsetlookup after *lookup node
+  //
+  // Example:
+  //    $foo->Data['key']("foo")
+  //      ->method();
+  //
+  const shouldMerge =
+    groups.length >= 2 &&
+    !groups[1][0].node.comments &&
+    ((groups[0].length === 1 &&
+      (groups[0][0].node.kind === "variable" &&
+        groups[0][0].node.name === "this")) ||
+      (groups[0].length > 1 &&
+        (isMemberish(groups[0][groups[0].length - 1].node) &&
+          groups[0][groups[0].length - 1].node.what.kind === "variable" &&
+          (groups[1].length && groups[1][0].node.kind === "offsetlookup"))));
 
   function printGroup(printedGroup) {
     return concat(printedGroup.map(tuple => tuple.printed));
   }
+
   function printIndentedGroup(groups) {
     if (groups.length === 0) {
       return "";
@@ -203,15 +380,79 @@ function printMemberChain(path, options, print) {
   }
 
   const printedGroups = groups.map(printGroup);
-  if (groups.length <= 2) {
-    return group(concat(printedGroups));
+  const oneLine = concat(printedGroups);
+
+  // Indicates how many we should merge
+  //
+  // Example (true):
+  //   $this->method()->otherMethod(
+  //     'argument'
+  //   );
+  //
+  // Example (false):
+  //   $foo
+  //     ->method()
+  //     ->otherMethod();
+  const cutoff = shouldMerge ? 3 : 2;
+  const flatGroups = groups
+    .slice(0, cutoff)
+    .reduce((res, group) => res.concat(group), []);
+
+  const hasComment =
+    flatGroups
+      .slice(1, -1)
+      .some(node => comments.hasLeadingComment(node.node)) ||
+    flatGroups
+      .slice(0, -1)
+      .some(node => comments.hasTrailingComment(node.node)) ||
+    (groups[cutoff] && comments.hasLeadingComment(groups[cutoff][0].node));
+
+  // If we only have a single `->`, we shouldn't do anything fancy and just
+  // render everything concatenated together.
+  if (groups.length <= cutoff && !hasComment) {
+    return group(oneLine);
   }
+
+  // Find out the last node in the first group and check if it has an
+  // empty line after
+  const lastNodeBeforeIndent = getLast(
+    shouldMerge ? groups.slice(1, 2)[0] : groups[0]
+  ).node;
+  const shouldHaveEmptyLineBeforeIndent =
+    lastNodeBeforeIndent.kind !== "call" &&
+    shouldInsertEmptyLineAfter(lastNodeBeforeIndent);
 
   const expanded = concat([
     printGroup(groups[0]),
-    printIndentedGroup(groups.slice(1))
+    shouldMerge ? concat(groups.slice(1, 2).map(printGroup)) : "",
+    shouldHaveEmptyLineBeforeIndent ? hardline : "",
+    printIndentedGroup(groups.slice(shouldMerge ? 2 : 1))
   ]);
-  return expanded;
+
+  const callExpressionCount = printedNodes.filter(
+    tuple => tuple.node.kind === "call"
+  ).length;
+
+  // We don't want to print in one line if there's:
+  //  * A comment.
+  //  * 3 or more chained calls.
+  //  * Any group but the last one has a hard line.
+  // If the last group is a function it's okay to inline if it fits.
+  if (
+    hasComment ||
+    callExpressionCount >= 3 ||
+    printedGroups.slice(0, -1).some(willBreak)
+  ) {
+    return group(expanded);
+  }
+
+  return concat([
+    // We only need to check `oneLine` because if `expanded` is chosen
+    // that means that the parent group has already been broken
+    // naturally
+    willBreak(oneLine) || shouldHaveEmptyLineBeforeIndent ? breakParent : "",
+    conditionalGroup([oneLine, expanded])
+  ]);
 }
 
 function printArgumentsList(path, options, print, argumentsKey = "arguments") {
@@ -320,50 +561,25 @@ function printExpression(path, options, print) {
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
     switch (node.kind) {
-      case "propertylookup": {
-        const canBreak = path.stack.indexOf("left") === -1;
+      case "propertylookup":
         return group(
           concat([
             path.call(print, "what"),
-            "->",
-            indent(
-              concat([
-                canBreak ? softline : "",
-                wrapPropertyLookup(node, path.call(print, "offset"))
-              ])
-            )
+            printPropertyLookup(path, options, print)
           ])
         );
-      }
       case "staticlookup":
         return concat([
           path.call(print, "what"),
-          "::",
-          path.call(print, "offset")
+          printStaticLookup(path, options, print)
         ]);
-      case "offsetlookup": {
-        const isOffsetNumberNode = node.offset && node.offset.kind === "number";
+      case "offsetlookup":
         return group(
           concat([
             path.call(print, "what"),
-            "[",
-            node.offset
-              ? group(
-                  concat([
-                    indent(
-                      concat([
-                        isOffsetNumberNode ? "" : softline,
-                        path.call(print, "offset")
-                      ])
-                    ),
-                    isOffsetNumberNode ? "" : softline
-                  ])
-                )
-              : "",
-            "]"
+            printOffsetLookup(path, options, print)
           ])
         );
-      }
       default:
         return `Have not implemented lookup kind ${node.kind} yet.`;
     }

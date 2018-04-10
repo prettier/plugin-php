@@ -122,8 +122,7 @@ print 1000000000 +
     1000000000 +
     1000000000;
 print 'foo' . ($bar ? 2 : 1);
-print $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->
-    veryVeryVeryVeryVeryVeryLongProperty;
+print $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 
 print str_replace('test', 'test', 'test');
 print str_replace('test', 'test', 'test');
