@@ -318,6 +318,18 @@ const expressionKinds = [
 function printExpression(path, options, print) {
   const node = path.getValue();
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
+  function printWhat(path) {
+    return path.call(childPath => {
+      const node = childPath.getValue();
+      if (node.kind === "identifier") {
+        const lowerCasedName = node.name.toLowerCase();
+        if (["self", "parent"].includes(lowerCasedName)) {
+          return lowerCasedName;
+        }
+      }
+      return print(childPath);
+    }, "what");
+  }
   function printLookup(node) {
     switch (node.kind) {
       case "propertylookup": {
@@ -336,11 +348,7 @@ function printExpression(path, options, print) {
         );
       }
       case "staticlookup":
-        return concat([
-          path.call(print, "what"),
-          "::",
-          path.call(print, "offset")
-        ]);
+        return concat([printWhat(path), "::", path.call(print, "offset")]);
       case "offsetlookup": {
         const isOffsetNumberNode = node.offset && node.offset.kind === "number";
         return group(
@@ -851,6 +859,32 @@ function printStatement(path, options, print) {
       ]);
     }
 
+    function printType(path) {
+      return path.call(childPath => {
+        const node = childPath.getValue();
+        if (node.kind === "identifier") {
+          const lowerCasedName = node.name.toLowerCase();
+          if (
+            [
+              "\\array",
+              "\\callable",
+              "int",
+              "float",
+              "bool",
+              "string",
+              "void",
+              "iterable",
+              "object",
+              "self"
+            ].includes(lowerCasedName)
+          ) {
+            return lowerCasedName.replace("\\", "");
+          }
+        }
+        return print(childPath);
+      }, "type");
+    }
+
     switch (node.kind) {
       case "class": {
         const classPrefixes = [
@@ -913,7 +947,7 @@ function printStatement(path, options, print) {
           declaration: concat(["function ", node.byref ? "&" : "", node.name]),
           argumentsList: path.map(print, "arguments"),
           returnTypeContents: node.type
-            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            ? concat([node.nullable ? "?" : "", printType(path)])
             : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
@@ -934,7 +968,7 @@ function printStatement(path, options, print) {
           ]),
           argumentsList: path.map(print, "arguments"),
           returnTypeContents: node.type
-            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            ? concat([node.nullable ? "?" : "", printType(path)])
             : "",
           bodyContents: node.body ? concat([path.call(print, "body")]) : ""
         });
@@ -942,7 +976,7 @@ function printStatement(path, options, print) {
       case "parameter": {
         const name = concat([
           node.nullable ? "?" : "",
-          node.type ? concat([path.call(print, "type"), " "]) : "",
+          node.type ? concat([printType(path), " "]) : "",
           node.variadic ? "..." : "",
           node.byref ? "&" : "",
           "$",
@@ -1461,29 +1495,10 @@ function printNode(path, options, print) {
   }
   switch (node.kind) {
     case "identifier": {
-      // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
-      // for reserved words we prefer lowercase case
-      if (node.name === "\\array") {
-        return "array";
-      } else if (node.name === "\\callable") {
-        return "callable";
+      if (node.name.toLowerCase() === "null") {
+        return "null";
       }
-
-      const lowerCasedName = node.name.toLowerCase();
-      const isLowerCase =
-        [
-          "int",
-          "float",
-          "bool",
-          "string",
-          "null",
-          "void",
-          "iterable",
-          "object",
-          "self"
-        ].indexOf(lowerCasedName) !== -1;
-
-      return isLowerCase ? lowerCasedName : node.name;
+      return node.name;
     }
     case "case":
       return concat([

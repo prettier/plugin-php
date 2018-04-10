@@ -39,22 +39,54 @@ function clean(node, newObj) {
   }
 
   // All reserved words should be lowercase case
-  if (node.kind === "identifier" && typeof node.name === "string") {
-    const lowerCasedName = node.name.toLowerCase();
-    const isLowerCase =
+  if (node.kind === "identifier" && node.name.toLowerCase() === "null") {
+    return "null";
+  }
+  if (node.kind === "staticlookup" && node.what.kind === "identifier") {
+    const lowerCasedName = node.what.name.toLowerCase();
+    const isLowerCase = ["self", "parent"].includes(lowerCasedName);
+    newObj.what.name = isLowerCase ? lowerCasedName : node.what.name;
+  }
+  if (node.kind === "parameter" && node.type.kind === "identifier") {
+    const lowerCasedName = node.type.name.toLowerCase();
+    if (
       [
+        "\\array",
+        "\\callable",
         "int",
         "float",
         "bool",
         "string",
-        "null",
         "void",
         "iterable",
         "object",
         "self"
-      ].indexOf(lowerCasedName) !== -1;
-
-    newObj.name = isLowerCase ? lowerCasedName : node.name;
+      ].includes(lowerCasedName)
+    ) {
+      newObj.type.name = lowerCasedName.replace("\\", "");
+    }
+  }
+  if (
+    (node.kind === "method" || node.kind === "function") &&
+    node.type.kind === "identifier"
+  ) {
+    const lowerCasedName = node.type.name.toLowerCase();
+    if (
+      [
+        "\\array",
+        "\\callable",
+        "int",
+        "float",
+        "bool",
+        "string",
+        "void",
+        "iterable",
+        "object",
+        "self"
+      ].includes(lowerCasedName)
+    ) {
+      newObj.type.name = lowerCasedName.replace("\\", "");
+    }
   }
 
   if (["Location", "Position"].includes(node.constructor.name)) {

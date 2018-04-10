@@ -231,6 +231,21 @@ FINAL CLASS MyClass EXTENDS Bar IMPLEMENTS iTemplate
     {
         // Nothing
     }
+
+    public function parentTest()
+    {
+        $array = [];
+        echo $array[iNt];
+        echo $array[sElF];
+        echo $array[pArEnT];
+        echo $array[aRaRay];
+        echo $array[oBjEcT];
+
+        SELF::who();
+        STATIC $a = 'test';
+
+        return PARENT::who();
+    }
 }
 
 __HALT_COMPILER();
