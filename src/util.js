@@ -328,7 +328,8 @@ function lineShouldEndWithSemicolon(path) {
     "offsetlookup",
     "silent",
     "usegroup",
-    "property"
+    "property",
+    "string"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
