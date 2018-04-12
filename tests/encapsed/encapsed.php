@@ -44,3 +44,18 @@ EOJS;
         return $string;
     }
 }
+
+$code = <<<EOF
+<?php
+\$kernel = unserialize('$kernel');
+\$request = unserialize('$request');
+EOF;
+$content = sprintf(<<<EOF
+foo
+EOF
+);
+$content = array(<<<EOF
+foo
+EOF
+, "bar"
+);
