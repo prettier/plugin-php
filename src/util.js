@@ -330,7 +330,8 @@ function lineShouldEndWithSemicolon(path) {
     "usegroup",
     "property",
     "string",
-    "boolean"
+    "boolean",
+    "number"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
