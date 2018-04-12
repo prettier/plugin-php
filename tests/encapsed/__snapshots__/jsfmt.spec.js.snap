@@ -98,3 +98,29 @@ EOJS;
 }
 
 `;
+
+exports[`single.php 1`] = `
+<?php
+"one $b";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+"one $b";
+
+`;
+
+exports[`single-heredoc.php 1`] = `
+<?php
+<<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+<<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+`;
