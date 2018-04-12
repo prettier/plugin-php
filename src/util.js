@@ -388,6 +388,14 @@ function hasDanglingComments(node) {
   );
 }
 
+function isMemberish(node) {
+  return (
+    node.kind === "propertylookup" ||
+    node.kind === "staticlookup" ||
+    node.kind === "offsetlookup"
+  );
+}
+
 module.exports = {
   printNumber,
   stringEscape,
@@ -414,5 +422,6 @@ module.exports = {
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   hasDanglingComments,
-  docShouldHaveTrailingNewline
+  docShouldHaveTrailingNewline,
+  isMemberish
 };

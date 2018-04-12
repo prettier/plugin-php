@@ -183,9 +183,19 @@ function printDanglingComments(path, options, sameIndent, filter) {
   return indent(concat([hardline, join(hardline, parts)]));
 }
 
+function hasLeadingComment(node) {
+  return node.comments && node.comments.some(comment => comment.leading);
+}
+
+function hasTrailingComment(node) {
+  return node.comments && node.comments.some(comment => comment.trailing);
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
-  printDanglingComments
+  printDanglingComments,
+  hasLeadingComment,
+  hasTrailingComment
 };

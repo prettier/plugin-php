@@ -165,8 +165,7 @@ echo 1000000000 . 'String',
     method((method('string'))),
     $foo ? ($bar . 'foo') + 'test' : false;
 
-echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->
-    veryVeryVeryVeryVeryVeryLongProperty;
+echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 
 echo 1;
 echo 1;
