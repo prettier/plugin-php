@@ -28,6 +28,22 @@ list($a, list($b, $c)) = array(1, array(2, 3));
 
 $info = array('coffee', 'brown', 'caffeine');
 list($a[0], $a[1], $a[2]) = $info;
+
+list("id" => $id1, "name" => $name1) = $data[0];
+list("veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue, "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue) = $data[0];
+list("veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue, "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue) = $data[0];
+
+foreach ($data as list("id" => $id, "name" => $name)) {
+    // logic here with $id and $name
+}
+
+foreach ($data as list("veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue, "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue)) {
+    // logic here with $id and $name
+}
+
+foreach ($data as list("veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue, "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue)) {
+    // logic here with $id and $name
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $info = array('coffee', 'brown', 'caffeine');
@@ -55,5 +71,43 @@ list($a, list($b, $c)) = array(1, array(2, 3));
 
 $info = array('coffee', 'brown', 'caffeine');
 list($a[0], $a[1], $a[2]) = $info;
+
+list("id" => $id1, "name" => $name1) = $data[0];
+list(
+    "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
+    "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue
+) = $data[0];
+list(
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+) = $data[0];
+
+foreach ($data as list("id" => $id, "name" => $name)) {
+    // logic here with $id and $name
+}
+
+foreach (
+    $data
+    as list(
+        "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
+        "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue
+    )
+) {
+    // logic here with $id and $name
+}
+
+foreach (
+    $data
+    as list(
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
+            $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
+            $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+    )
+) {
+    // logic here with $id and $name
+}
 
 `;
