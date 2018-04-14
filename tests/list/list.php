@@ -41,3 +41,6 @@ foreach ($data as list("veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLon
 foreach ($data as list("veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue, "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue)) {
     // logic here with $id and $name
 }
+
+list(, $b) = ['a', 'b'];
+list(, , $c) = ['a', 'b', 'c'];
