@@ -982,7 +982,25 @@ function printStatement(path, options, print) {
             indent(
               concat([
                 softline,
-                join(concat([",", line]), path.map(print, "arguments"))
+                join(
+                  concat([",", line]),
+                  path.map(argument => {
+                    let node = argument.getValue();
+                    if (Array.isArray(node)) {
+                      node = node.shift();
+                      return join(
+                        " =>",
+                        argument.map((item, index) => {
+                          return index === 1
+                            ? indent(group(concat([line, print(item)])))
+                            : print(item);
+                        })
+                      );
+                    }
+
+                    return print(argument);
+                  }, "arguments")
+                )
               ])
             ),
             softline,
