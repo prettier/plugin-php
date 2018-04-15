@@ -38,27 +38,23 @@ Please note that this plugin is currently in alpha stage and still under active 
 
 ## Install
 
-You'll need a current development version of prettier, because the plugin depends on currently unreleased features.
+Currently, the plugin can only be installed locally, due to an [issue in Prettier's plugin system](https://github.com/prettier/prettier/issues/4000).
 
 yarn:
 
 ```bash
-yarn add --dev prettier/prettier @prettier/plugin-php
-# or globally
-yarn global add prettier/prettier @prettier/plugin-php
+yarn add --dev prettier/prettier prettier/plugin-php
 ```
 
 npm:
 
 ```bash
-npm install --save-dev prettier/prettier @prettier/plugin-php
-# or globally
-npm install --global prettier/prettier @prettier/plugin-php
+npm install --save-dev prettier/prettier prettier/plugin-php
 ```
 
 ## Use
 
-If you installed prettier as a local dependency, you can add prettier as a script in your `package.json`,
+You can add Prettier as a script in your `package.json`,
 
 ```json
 "scripts": {
@@ -72,12 +68,6 @@ and then run it via
 yarn run prettier path/to/file.php --write
 # or
 npm run prettier path/to/file.php --write
-```
-
-If you installed globally, run
-
-```bash
-prettier path/to/file.php --write
 ```
 
 ## Contributing
