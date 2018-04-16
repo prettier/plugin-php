@@ -8,13 +8,13 @@
 ))
 ?>
 <?php
-(new Translator(
+(((new Translator(
     $container,
     new MessageFormatter(),
     'en',
     $someOtherVar,
     array('foo' => 'bar')
-))
+))))
 ?>
 <?php
 (new Translator(
