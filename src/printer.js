@@ -603,11 +603,16 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     ]);
   }
 
+  const lastArgument = getLast(args);
   return group(
     concat([
       "(",
       indent(concat([softline, concat(printedArguments)])),
-      softline,
+      // for heredocs, we alredy print an extra hardline (to ensure code is valid),
+      // so we dont need to print one here
+      lastArgument.kind === "encapsed" && lastArgument.type === "heredoc"
+        ? ""
+        : softline,
       ")"
     ]),
     { shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine }
