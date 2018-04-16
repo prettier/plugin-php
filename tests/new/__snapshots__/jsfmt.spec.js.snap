@@ -57,9 +57,9 @@ $class = (new Foo())->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVe
 $class = (new Foo([
     'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue'
 ]))->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
-$class = (new PendingDispatch(
-    new $this->class(...func_get_args())
-))->chain($this->chain);
+$class = (new PendingDispatch(new $this->class(...func_get_args())))->chain(
+    $this->chain
+);
 $dumper = in_array(PHP_SAPI, ['cli', 'phpdbg'])
     ? new CliDumper()
     : new HtmlDumper();

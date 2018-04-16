@@ -209,6 +209,13 @@ function getLast(arr) {
   return null;
 }
 
+function getPenultimate(arr) {
+  if (arr.length > 1) {
+    return arr[arr.length - 2];
+  }
+  return null;
+}
+
 function isLastStatement(path) {
   const body = getParentNodeListProperty(path);
   if (!body) {
@@ -388,6 +395,14 @@ function hasDanglingComments(node) {
   );
 }
 
+function hasLeadingComment(node) {
+  return node.comments && node.comments.some(comment => comment.leading);
+}
+
+function hasTrailingComment(node) {
+  return node.comments && node.comments.some(comment => comment.trailing);
+}
+
 function isMemberish(node) {
   return (
     node.kind === "propertylookup" ||
@@ -406,6 +421,7 @@ module.exports = {
   getParentNodeListProperty,
   getNodeIndex,
   getLast,
+  getPenultimate,
   isLastStatement,
   getBodyFirstChild,
   isControlStructureNode,
@@ -422,6 +438,8 @@ module.exports = {
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   hasDanglingComments,
+  hasLeadingComment,
+  hasTrailingComment,
   docShouldHaveTrailingNewline,
   isMemberish
 };

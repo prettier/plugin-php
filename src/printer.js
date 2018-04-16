@@ -27,6 +27,7 @@ const comments = require("./comments");
 const {
   getNodeListProperty,
   getLast,
+  getPenultimate,
   isControlStructureNode,
   isFirstNodeInParentProgramNode,
   isFirstNodeInParentNode,
@@ -43,6 +44,8 @@ const {
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
   hasDanglingComments,
+  hasLeadingComment,
+  hasTrailingComment,
   docShouldHaveTrailingNewline,
   isMemberish
 } = require("./util");
@@ -455,52 +458,160 @@ function printMemberChain(path, options, print) {
   ]);
 }
 
+function couldGroupArg(arg) {
+  return (
+    (arg.kind === "array" && (arg.items.length > 0 || arg.comments)) ||
+    arg.kind === "function" ||
+    arg.kind === "method" ||
+    arg.kind === "closure"
+  );
+}
+
+function shouldGroupLastArg(args) {
+  const lastArg = getLast(args);
+  const penultimateArg = getPenultimate(args);
+  return (
+    !hasLeadingComment(lastArg) &&
+    !hasTrailingComment(lastArg) &&
+    couldGroupArg(lastArg) &&
+    // If the last two arguments are of the same type,
+    // disable last element expansion.
+    (!penultimateArg || penultimateArg.kind !== lastArg.kind)
+  );
+}
+
+function shouldGroupFirstArg(args) {
+  if (args.length !== 2) {
+    return false;
+  }
+
+  const [firstArg, secondArg] = args;
+  return (
+    (!firstArg.comments || !firstArg.comments.length) &&
+    (firstArg.kind === "function" ||
+      firstArg.kind === "method" ||
+      firstArg.kind === "closure") &&
+    !couldGroupArg(secondArg)
+  );
+}
+
 function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const args = path.getValue()[argumentsKey];
-  const printed = path
-    .map(print, argumentsKey)
-    .map(argument => group(argument));
-  if (printed.length === 0) {
-    return "()";
-  }
-  const breakingIndex = printed.findIndex(willBreak);
-  const breakingInTheMiddle =
-    printed.length > 2 &&
-    breakingIndex !== 0 &&
-    breakingIndex !== printed.length - 1;
 
-  const shouldGroupLast = getLast(args).kind === "array";
-  const shouldGroupFirst = !shouldGroupLast && args[0].kind === "array";
-  const shortForm = concat(["(", join(", ", printed), ")"]);
-  const mediumForm = shouldGroupFirst
-    ? concat([
-        "(",
-        group(printed[0], { shouldBreak: true }),
-        printed.length > 1 ? ", " : "",
-        join(concat([",", line]), printed.slice(1)),
-        ")"
-      ])
-    : concat([
-        "(",
-        join(concat([",", line]), printed.slice(0, -1)),
-        printed.length > 1 ? ", " : "",
-        group(getLast(printed), { shouldBreak: true }),
-        ")"
-      ]);
-  const longForm = group(
+  if (args.length === 0) {
+    return concat([
+      "(",
+      comments.printDanglingComments(path, options, /* sameIndent */ true),
+      ")"
+    ]);
+  }
+
+  let anyArgEmptyLine = false;
+  let hasEmptyLineFollowingFirstArg = false;
+  const lastArgIndex = args.length - 1;
+  const printedArguments = path.map((argPath, index) => {
+    const arg = argPath.getNode();
+    const parts = [print(argPath)];
+
+    if (index === lastArgIndex) {
+      // do nothing
+    } else if (isNextLineEmpty(options.originalText, arg, options)) {
+      if (index === 0) {
+        hasEmptyLineFollowingFirstArg = true;
+      }
+
+      anyArgEmptyLine = true;
+      parts.push(",", hardline, hardline);
+    } else {
+      parts.push(",", line);
+    }
+
+    return concat(parts);
+  }, argumentsKey);
+
+  const shouldGroupFirst = shouldGroupFirstArg(args);
+  const shouldGroupLast = shouldGroupLastArg(args);
+  if (shouldGroupFirst || shouldGroupLast) {
+    const shouldBreak =
+      (shouldGroupFirst
+        ? printedArguments.slice(1).some(willBreak)
+        : printedArguments.slice(0, -1).some(willBreak)) || anyArgEmptyLine;
+
+    // We want to print the last argument with a special flag
+    let printedExpanded;
+    let i = 0;
+    path.each(argPath => {
+      if (shouldGroupFirst && i === 0) {
+        printedExpanded = [
+          concat([
+            argPath.call(p => print(p, { expandFirstArg: true })),
+            printedArguments.length > 1 ? "," : "",
+            hasEmptyLineFollowingFirstArg ? hardline : line,
+            hasEmptyLineFollowingFirstArg ? hardline : ""
+          ])
+        ].concat(printedArguments.slice(1));
+      }
+      if (shouldGroupLast && i === args.length - 1) {
+        printedExpanded = printedArguments
+          .slice(0, -1)
+          .concat(argPath.call(p => print(p, { expandLastArg: true })));
+      }
+      i++;
+    }, argumentsKey);
+
+    const somePrintedArgumentsWillBreak = printedArguments.some(willBreak);
+
+    return concat([
+      somePrintedArgumentsWillBreak ? breakParent : "",
+      conditionalGroup(
+        [
+          concat([
+            ifBreak(
+              indent(concat(["(", softline, concat(printedExpanded)])),
+              concat(["(", concat(printedExpanded)])
+            ),
+            somePrintedArgumentsWillBreak ? softline : "",
+            ")"
+          ]),
+          shouldGroupFirst
+            ? concat([
+                "(",
+                group(printedExpanded[0], { shouldBreak: true }),
+                concat(printedExpanded.slice(1)),
+                ")"
+              ])
+            : concat([
+                "(",
+                concat(printedArguments.slice(0, -1)),
+                group(getLast(printedExpanded), {
+                  shouldBreak: true
+                }),
+                ")"
+              ]),
+          group(
+            concat([
+              "(",
+              indent(concat([line, concat(printedArguments)])),
+              line,
+              ")"
+            ]),
+            { shouldBreak: true }
+          )
+        ],
+        { shouldBreak }
+      )
+    ]);
+  }
+
+  return group(
     concat([
       "(",
-      indent(concat([softline, join(concat([",", line]), printed)])),
+      indent(concat([softline, concat(printedArguments)])),
       softline,
       ")"
-    ])
+    ]),
+    { shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine }
   );
-  const formsToConsider = [
-    !breakingInTheMiddle ? shortForm : null,
-    shouldGroupFirst || shouldGroupLast ? mediumForm : null,
-    longForm
-  ];
-  return conditionalGroup(formsToConsider.filter(Boolean));
 }
 
 function wrapPropertyLookup(node, doc) {

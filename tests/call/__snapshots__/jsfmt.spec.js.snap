@@ -108,6 +108,20 @@ $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
+
+if ($parity != array_reduce($r,function ($acc, $tmp) {return $acc ^ $tmp;},0)) {
+    return [];
+}
+
+implode(
+    ', ',
+    array_map(
+        function ($f) {
+            return $f;
+        },
+        array_merge($arr1, $arr2, $arr3)
+    )
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 func();
@@ -128,14 +142,17 @@ $db->Execute($sql, [
     $somewhatLongParameterXYZ
 ]);
 
-$db->Execute([
-    $foo,
-    $bar,
-    $foobar,
-    $somewhatLongParameter,
-    $somewhatLongParameterX,
-    $somewhatLongParameterXYZ
-], $sql);
+$db->Execute(
+    [
+        $foo,
+        $bar,
+        $foobar,
+        $somewhatLongParameter,
+        $somewhatLongParameterX,
+        $somewhatLongParameterXYZ
+    ],
+    $sql
+);
 
 $app->get('/hello/{name}', function ($name) use ($app) {
     return 'Hello ' . $app->escape($name);
@@ -178,15 +195,10 @@ $this->filter([
     new MergeValue(['Abigail', 'Lydia'])
 ]);
 
-$this->assertEquals([
-    'First',
-    'Second',
-    'Taylor',
-    'Mohamed',
-    'Jeffrey',
-    'Abigail',
-    'Lydia'
-], $results);
+$this->assertEquals(
+    ['First', 'Second', 'Taylor', 'Mohamed', 'Jeffrey', 'Abigail', 'Lydia'],
+    $results
+);
 
 $this->assertEquals(['First'], $results);
 
@@ -218,6 +230,26 @@ $foo->bar(
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
+);
+
+if (
+    $parity !=
+    array_reduce(
+        $r,
+        function ($acc, $tmp) {
+            return $acc ^ $tmp;
+        },
+        0
+    )
+) {
+    return [];
+}
+
+implode(
+    ', ',
+    array_map(function ($f) {
+        return $f;
+    }, array_merge($arr1, $arr2, $arr3))
 );
 
 `;

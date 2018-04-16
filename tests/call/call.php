@@ -105,3 +105,17 @@ $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
+
+if ($parity != array_reduce($r,function ($acc, $tmp) {return $acc ^ $tmp;},0)) {
+    return [];
+}
+
+implode(
+    ', ',
+    array_map(
+        function ($f) {
+            return $f;
+        },
+        array_merge($arr1, $arr2, $arr3)
+    )
+);
