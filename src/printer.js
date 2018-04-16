@@ -1398,7 +1398,6 @@ function printStatement(path, options, print) {
     case "assign": {
       const canBreak =
         ["bin", "number", "string"].includes(node.right.kind) ||
-        (node.right.kind === "retif" && node.right.trueExpr === null) ||
         isPropertyLookupChain(node.right);
       return group(
         concat([
@@ -1605,9 +1604,6 @@ function printStatement(path, options, print) {
         concat([hardline, "}"])
       ]);
     case "retif": {
-      const parent = path.getParentNode();
-      const canBreak = !node.trueExpr;
-      const forceNoIndent = parent.kind === "retif" || canBreak;
       const printedExpr = concat([
         line,
         "?",
@@ -1615,12 +1611,7 @@ function printStatement(path, options, print) {
         ": ",
         path.call(print, "falseExpr")
       ]);
-      return group(
-        concat([
-          path.call(print, "test"),
-          forceNoIndent ? printedExpr : indent(printedExpr)
-        ])
-      );
+      return group(concat([path.call(print, "test"), indent(printedExpr)]));
     }
     case "exit":
       return group(
