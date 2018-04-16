@@ -121,7 +121,7 @@ $content = sprintf(
     <<<EOF
 foo
 EOF
-    );
+);
 $content = array(
     <<<EOF
 foo

@@ -608,14 +608,16 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     concat([
       "(",
       indent(concat([softline, concat(printedArguments)])),
-      // for heredocs, we alredy print an extra hardline (to ensure code is valid),
-      // so we dont need to print one here
-      lastArgument.kind === "encapsed" && lastArgument.type === "heredoc"
-        ? ""
-        : softline,
+      softline,
       ")"
     ]),
-    { shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine }
+    {
+      shouldBreak:
+        printedArguments.some(willBreak) ||
+        anyArgEmptyLine ||
+        (lastArgument.kind === "encapsed" && lastArgument.type === "heredoc") ||
+        lastArgument.kind === "nowdoc"
+    }
   );
 }
 

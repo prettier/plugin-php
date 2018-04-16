@@ -272,7 +272,7 @@ function lineShouldHaveStartPHPTag(path) {
  * appear as function arguments or array elements
  */
 function docShouldHaveTrailingNewline(path) {
-  return ["entry", "call"].includes(path.getParentNode().kind);
+  return ["entry"].includes(path.getParentNode().kind);
 }
 
 function lineShouldEndWithSemicolon(path) {
