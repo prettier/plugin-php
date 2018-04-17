@@ -640,10 +640,7 @@ function isPropertyLookupChain(node) {
 }
 
 function shouldInlineLogicalExpression(node) {
-  if (node.right.kind === "array" && node.right.items.length !== 0) {
-    return true;
-  }
-  return false;
+  return node.right.kind === "array" && node.right.items.length !== 0;
 }
 
 // For binary expressions to be consistent, we need to group
