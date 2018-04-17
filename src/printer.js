@@ -829,7 +829,7 @@ function printExpression(path, options, print) {
         //     b &&
         //     c
         //   ).call()
-        if (parent.type === "unary") {
+        if (parent.kind === "unary") {
           return group(
             concat([indent(concat([softline, concat(parts)])), softline])
           );
