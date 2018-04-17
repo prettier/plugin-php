@@ -13,6 +13,7 @@ return $test ?: doSomething();
 $category_color = get_field( Category_Meta::COLOR, 'category_' . $term_id ) ?: 'gold';
 
 $var = $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+$var = $someOtherReallyReallyLongVariable ? ($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable) : ($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
 $test = $foo ?: bar($someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable);
 $test = ($testReallyReallyReallyReallyReallyReallyLong >= 1) ?: $someOtherReallyReallyReallyReallyReallyReallyLongVariable;
 $test = $foo ?: bar([ 'foo' => 'bar' , 'bar' => 'foo']);
