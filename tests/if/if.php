@@ -76,3 +76,11 @@ if (true) {
 } else if (null) {
 } else {
 }
+
+if (
+    $showNoticeValue === '1' &&
+    !is_null($currentService) &&
+    $currentService->getServiceId() === $activation->getServiceId()
+) {
+  $test = 1;
+}

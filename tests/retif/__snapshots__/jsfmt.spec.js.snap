@@ -30,7 +30,7 @@ return ($testReallyReallyLong >= 1)
 return true ?: 2;
 return (
     $testReallyReallyLong === $someOtherReallyReallyLongVariable &&
-    $otherTest != $someOtherTest
+        $otherTest != $someOtherTest
 )
     ? 1
     : 0;

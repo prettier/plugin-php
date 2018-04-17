@@ -65,11 +65,11 @@ $dumper = in_array(PHP_SAPI, ['cli', 'phpdbg'])
     : new HtmlDumper();
 $class = new static(
     'Error encoding model [' .
-    get_class($model) .
-    '] with ID [' .
-    $model->getKey() .
-    '] to JSON: ' .
-    $message
+        get_class($model) .
+        '] with ID [' .
+        $model->getKey() .
+        '] to JSON: ' .
+        $message
 );
 $response = new \\Illuminate\\Http\\JsonResponse(
     new JsonResponseTestJsonSerializeObject()
