@@ -84,3 +84,11 @@ if (
 ) {
   $test = 1;
 }
+
+if (
+    $showNoticeValue === '1' &&
+    !is_null($currentService) &&
+    $currentService->getServiceIdWithReallyReallyReallyLongName() === $activation->getServiceId()
+) {
+  $test = 1;
+}
