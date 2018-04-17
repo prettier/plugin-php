@@ -47,13 +47,15 @@ class Application
 }
 
 $app = new Application();
-$app->setLogger(new class implements Logger
-{
-    public function log(string $msg)
+$app->setLogger(
+    new class implements Logger
     {
-        echo $msg;
+        public function log(string $msg)
+        {
+            echo $msg;
+        }
     }
-});
+);
 
 `;
 
@@ -317,8 +319,8 @@ abstract class ReallyReallyReallyLongClassName
     {
         parent::__construct($test_int ?: 1);
         $this->other = $test_string;
-        $this->current_version =
-            $current_version ?: new Content_Version_Model();
+        $this->current_version = $current_version
+            ?: new Content_Version_Model();
         self::$staticTest = $test_int;
     }
 

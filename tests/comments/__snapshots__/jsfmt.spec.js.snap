@@ -217,10 +217,14 @@ exports[`call.php 1`] = `
 foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-foo(/* Comment */
-$a, /* Comment */ /* Comment */
-[], /* Comment */ /* Comment */
-($a + 2)); /* Comment */
+foo(
+    /* Comment */
+    $a, /* Comment */
+    /* Comment */
+    [], /* Comment */
+    /* Comment */
+    ($a + 2) /* Comment */
+);
 
 `;
 
@@ -484,6 +488,11 @@ $test = foo ?: bar(function () {
     // test
 });
 
+$test = foo ? true : bar(function () {
+    $foo = "bar";
+    // test
+});
+
 $constraint = new UniqueEntity(array(
     'message' => 'myMessage'
     // no "em" option set
@@ -626,7 +635,15 @@ do {
     // some comment
 } while (true);
 
-$test = foo ?: bar(function () {
+$test = foo
+    ?: bar(function () {
+        $foo = "bar";
+        // test
+    });
+
+$test = foo
+    ? true
+    : bar(function () {
         $foo = "bar";
         // test
     });
@@ -1469,16 +1486,22 @@ throw new ClassName( /* Comment */
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
-throw new ClassName(// Comment
-1, // Comment // Comment
-2); // Comment // Comment
+throw new ClassName(
+    // Comment
+    1, // Comment
+    // Comment
+    2 // Comment
+); // Comment
 
 /* Comment */
-throw new ClassName(/* Comment */ /* Comment */
-1, /* Comment */ /* Comment */
-/* Comment */
-2); /* Comment */
-/* Comment */ /* Comment */
+throw new ClassName( /* Comment */
+    /* Comment */
+    1, /* Comment */
+    /* Comment */
+    /* Comment */
+    2 /* Comment */
+    /* Comment */
+); /* Comment */
 
 `;
 
@@ -1572,8 +1595,10 @@ exports[`variadic.php 1`] = `
 foo(.../*Comment*/$foo);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-foo(.../*Comment*/
-$foo);
+foo(
+    .../*Comment*/
+    $foo
+);
 
 `;
 

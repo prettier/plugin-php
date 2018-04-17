@@ -233,27 +233,19 @@ echo 'bar';
 </div>
 <div id="results">
   <table class="sortable">
-    <?php $results = $statement->fetchAll(
-    PDO::FETCH_ASSOC
-); ?>
+    <?php $results = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
     <?php do { ?>
       <tr>
-        <?php for ($i = 0; $i < count(
-            $columns
-        ); $i++): ?>
+        <?php for ($i = 0; $i < count($columns); $i++): ?>
           <td><?php echo $row[$i]; ?></td>
         <?php endfor; ?>
       </tr>
-    <?php } while (($row = next(
-            $results
-        )) != false); ?>
+    <?php } while (($row = next($results)) != false); ?>
   </table>
 </div>
 <div id="results">
   <table class="sortable">
-    <?php foreach ($statement->fetchAll(
-        PDO::FETCH_ASSOC
-    ) as $row): ?>
+    <?php foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $row): ?>
       <tr>
         <?php foreach ($row as $element): ?>
           <td><?php echo $element; ?></td>
