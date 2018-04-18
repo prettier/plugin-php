@@ -60,3 +60,19 @@ $b = &$a;
 $a ?? $b;
 
 $this->reallyLong->testPropertyName = 'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
+
+'tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst' . 'test';
+
+$someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable;
+$someReallyReallyReallyLongBooleanVariable . $someReallyReallyReallyLongBooleanVariable;
+$someReallyReallyReallyLongBooleanVariable .= $someReallyReallyReallyLongBooleanVariable;
+++$someReallyReallyReallyLongBooleanVariableWithReallyReallyReallyReallyReallyReallyLongName;
+--$someReallyReallyReallyLongBooleanVariableWithReallyReallyReallyReallyReallyReallyLongName;
+$someReallyReallyReallyLongBooleanVariableWithReallyReallyReallyReallyReallyReallyLongName++;
+$someReallyReallyReallyLongBooleanVariableWithReallyReallyReallyReallyReallyReallyLongName--;
+$someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable - $someReallyReallyReallyLongBooleanVariable;
+
+$value = isset($_POST['menu-item-dropdown']) &&
+isset($_POST['menu-item-dropdown'][$menuItemDbId])
+    ? 'enabled'
+    : 'disabled';

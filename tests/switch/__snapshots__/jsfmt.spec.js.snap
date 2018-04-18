@@ -311,7 +311,7 @@ switch (
 
 switch (
     $longLongLongLongLongLongLongVariable &&
-    $longLongLongLongLongLongLongVariable
+        $longLongLongLongLongLongLongVariable
 ) {
 }
 

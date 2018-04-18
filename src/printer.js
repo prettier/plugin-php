@@ -639,6 +639,81 @@ function isPropertyLookupChain(node) {
   return isPropertyLookupChain(node.what);
 }
 
+function shouldInlineLogicalExpression(node) {
+  return node.right.kind === "array" && node.right.items.length !== 0;
+}
+
+// For binary expressions to be consistent, we need to group
+// subsequent operators with the same precedence level under a single
+// group. Otherwise they will be nested such that some of them break
+// onto new lines but not all. Operators with the same precedence
+// level should either all break or not. Because we group them by
+// precedence level and the AST is structured based on precedence
+// level, things are naturally broken up correctly, i.e. `&&` is
+// broken before `+`.
+function printBinaryExpression(
+  path,
+  print,
+  options,
+  isNested,
+  isInsideParenthesis
+) {
+  let parts = [];
+  const node = path.getValue();
+
+  if (node.kind === "bin") {
+    // Put all operators with the same precedence level in the same
+    // group. The reason we only need to do this with the `left`
+    // expression is because given an expression like `1 + 2 - 3`, it
+    // is always parsed like `((1 + 2) - 3)`, meaning the `left` side
+    // is where the rest of the expression will exist. Binary
+    // expressions on the right side mean they have a difference
+    // precedence level and should be treated as a separate group, so
+    // print them normally. (This doesn't hold for the `**` operator,
+    // which is unique in that it is right-associative.)
+    if (shouldFlatten(node.type, node.left.type)) {
+      // Flatten them out by recursively calling this function.
+      parts = parts.concat(
+        path.call(
+          left =>
+            printBinaryExpression(
+              left,
+              print,
+              options,
+              /* isNested */ true,
+              isInsideParenthesis
+            ),
+          "left"
+        )
+      );
+    } else {
+      parts.push(path.call(print, "left"));
+    }
+
+    const shouldInline = shouldInlineLogicalExpression(node);
+
+    const right = shouldInline
+      ? concat([node.type, " ", path.call(print, "right")])
+      : concat([node.type, line, path.call(print, "right")]);
+
+    // If there's only a single binary expression, we want to create a group
+    // in order to avoid having a small right part like -1 be on its own line.
+    const parent = path.getParentNode();
+    const shouldGroup =
+      !(isInsideParenthesis && ["||", "&&"].includes(node.type)) &&
+      parent.kind !== "bin" &&
+      node.left.kind !== "bin" &&
+      node.right.kind !== "bin";
+
+    parts.push(" ", shouldGroup ? group(right) : right);
+  } else {
+    // Our stopping case. Simply print the node normally.
+    parts.push(path.call(print));
+  }
+
+  return parts;
+}
+
 // so this is a bit hacky, but for anonymous classes, there's a chance that an
 // assumption core to prettier will break - that child nodes will not overlap. In
 // this case, if we have something like this:
@@ -714,47 +789,98 @@ function printExpression(path, options, print) {
       case "post":
         return concat([path.call(print, "what"), node.type + node.type]);
       case "bin": {
-        // general idea here is that we are continually checking nested
-        // binary expressions to see if we should be starting a new group
-        // or not (based on operator precedence)
-        const printBinaryExpression = (
+        const parent = path.getParentNode();
+        const parentParent = path.getParentNode(1);
+        const isInsideParenthesis =
+          node !== parent.body &&
+          (parent.kind === "if" ||
+            parent.kind === "while" ||
+            parent.kind === "do");
+
+        const parts = printBinaryExpression(
           path,
           print,
           options,
-          isNested = false
-        ) => {
-          const node = path.getValue();
-          if (node.kind !== "bin") {
-            return path.call(print);
-          }
+          /* isNested */ false,
+          isInsideParenthesis
+        );
 
-          const shouldGroupLeft = !(
-            node.left.kind === "bin" && shouldFlatten(node.type, node.left.type)
-          );
-          const printedLeft = path.call(
-            left => printBinaryExpression(left, print, options, true),
-            "left"
-          );
+        //   if (
+        //     this.hasPlugin("dynamicImports") && this.lookahead().type === tt.parenLeft
+        //   ) {
+        //
+        // looks super weird, we want to break the children if the parent breaks
+        //
+        //   if (
+        //     this.hasPlugin("dynamicImports") &&
+        //     this.lookahead().type === tt.parenLeft
+        //   ) {
+        if (isInsideParenthesis) {
+          return concat(parts);
+        }
 
-          const shouldGroupRight = !(
-            node.right.kind === "bin" &&
-            shouldFlatten(node.type, node.right.type)
+        // Break between the parens in unaries or in a member expression, i.e.
+        //
+        //   (
+        //     a &&
+        //     b &&
+        //     c
+        //   ).call()
+        if (parent.kind === "unary") {
+          return group(
+            concat([indent(concat([softline, concat(parts)])), softline])
           );
-          const printedRight = path.call(
-            right => printBinaryExpression(right, print, options, true),
-            "right"
-          );
+        }
 
-          const printedExpression = concat([
-            shouldGroupLeft ? group(printedLeft) : printedLeft,
-            " ",
-            node.type,
-            line,
-            shouldGroupRight ? group(printedRight) : printedRight
-          ]);
-          return isNested ? printedExpression : group(printedExpression);
-        };
-        return printBinaryExpression(path, print, options);
+        // Avoid indenting sub-expressions in some cases where the first sub-expression is already
+        // indented accordingly. We should indent sub-expressions where the first case isn't indented.
+        const shouldNotIndent =
+          parent.kind === "return" ||
+          parent.kind === "echo" ||
+          parent.kind === "print" ||
+          parent.kind === "retif" ||
+          // return (
+          //   $someCondition ||
+          //   $someOtherCondition
+          // );
+          (parentParent &&
+            ["echo", "return", "print"].includes(parentParent.kind) &&
+            parent.kind === "parenthesis") ||
+          // (
+          //   $someObject ||
+          //   $someOtherObject
+          // )->someFunction();
+          (parentParent &&
+            parentParent.kind === "propertylookup" &&
+            parent.kind === "parenthesis") ||
+          (node !== parent.body && parent.kind === "for");
+
+        const shouldIndentIfInlining =
+          parent.kind === "assign" || parent.kind === "property";
+
+        const samePrecedenceSubExpression =
+          node.left.kind === "bin" && shouldFlatten(node.type, node.left.type);
+
+        if (
+          shouldNotIndent ||
+          (shouldInlineLogicalExpression(node) &&
+            !samePrecedenceSubExpression) ||
+          (!shouldInlineLogicalExpression(node) && shouldIndentIfInlining)
+        ) {
+          return group(concat(parts));
+        }
+
+        const rest = concat(parts.slice(1));
+
+        return group(
+          concat([
+            // Don't include the initial expression in the indentation
+            // level. The first item is guaranteed to be the first
+            // left-most expression.
+            parts.length > 0 ? parts[0] : "",
+            indent(rest)
+          ])
+        );
       }
       case "parenthesis": {
         const parentNode = path.getParentNode();
@@ -1405,6 +1531,13 @@ function printStatement(path, options, print) {
     case "assign": {
       const canBreak =
         ["bin", "number", "string"].includes(node.right.kind) ||
+        // for retif's that have complex test cases, we allow a break. ie
+        // $test =
+        //   $someReallyLongCondition ||
+        //   $someOtherLongCondition
+        //     ? true
+        //     : false;
+        (node.right.kind === "retif" && node.right.test.kind === "bin") ||
         isPropertyLookupChain(node.right);
       return group(
         concat([
