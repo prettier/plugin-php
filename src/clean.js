@@ -111,6 +111,13 @@ function clean(node, newObj) {
   if (node.kind === "useitem") {
     newObj.name = newObj.name.replace(/^\\/, "");
   }
+  if (
+    node.kind === "string" &&
+    node.value &&
+    (node.value[0] === "'" || node.value[0] === '"')
+  ) {
+    newObj.value = node.value.replace('"', "'");
+  }
 }
 
 module.exports = clean;
