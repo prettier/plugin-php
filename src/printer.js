@@ -838,6 +838,7 @@ function printExpression(path, options, print) {
           parent.kind === "return" ||
           parent.kind === "echo" ||
           parent.kind === "print" ||
+          parent.kind === "retif" ||
           // return (
           //   $someCondition ||
           //   $someOtherCondition
@@ -1530,6 +1531,13 @@ function printStatement(path, options, print) {
     case "assign": {
       const canBreak =
         ["bin", "number", "string"].includes(node.right.kind) ||
+        // for retif's that have complex test cases, we allow a break. ie
+        // $test =
+        //   $someReallyLongCondition ||
+        //   $someOtherLongCondition
+        //     ? true
+        //     : false;
+        (node.right.kind === "retif" && node.right.test.kind === "bin") ||
         isPropertyLookupChain(node.right);
       return group(
         concat([

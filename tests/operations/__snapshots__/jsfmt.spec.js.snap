@@ -160,9 +160,10 @@ $someReallyReallyReallyLongBooleanVariable +
     $someReallyReallyReallyLongBooleanVariable -
     $someReallyReallyReallyLongBooleanVariable;
 
-$value = isset($_POST['menu-item-dropdown']) &&
+$value =
+    isset($_POST['menu-item-dropdown']) &&
     isset($_POST['menu-item-dropdown'][$menuItemDbId])
-    ? 'enabled'
-    : 'disabled';
+        ? 'enabled'
+        : 'disabled';
 
 `;
