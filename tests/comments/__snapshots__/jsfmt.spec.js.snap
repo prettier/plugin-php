@@ -1036,7 +1036,11 @@ if (1) { // Comment
 if (/* Comments */ true /* Comments */) {
 } elseif (/* Comments */ false /* Comments */) {
 } else {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+  if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
+      mb_internal_encoding('ASCII');
+  }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
 if (1) {
@@ -1059,6 +1063,10 @@ if (1) {
 if (/* Comments */ true /* Comments */) {
 } elseif (/* Comments */ false /* Comments */) {
 } else {
+}
+
+if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
+    mb_internal_encoding('ASCII');
 }
 
 `;
