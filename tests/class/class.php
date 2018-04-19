@@ -201,3 +201,20 @@ class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
 
 class Custom_Plugin_NotificationPlaceholderSource extends Notification_Manager_DefaultPlaceholderSource {}
+
+class field extends \models\base
+{
+    protected function pre_save( $input, $fields ) {
+        $input['configs'] = json_encode( array_merge( $configs, $field_type->process_field_config_from_user( $input['definition'] ) ) );
+        unset( $input['definition'] );
+    }
+}
+
+class test {
+    public function test_method() {
+        $customer = (object) [ 'name' => 'Bob' ];
+        $job = (object) [ 'customer' => $customer ];
+
+        return "The customer for that job, {$job->customer->name} has an error that shows up after the line gets waaaaay toooo long.";
+    }
+}
