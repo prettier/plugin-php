@@ -92,3 +92,8 @@ if (
 ) {
   $test = 1;
 }
+
+if ( true ) {{
+    return 1;
+}} else
+    return 3;
