@@ -1410,7 +1410,24 @@ function printStatement(path, options, print) {
           declaration: concat(["function ", node.byref ? "&" : "", node.name]),
           argumentsList: path.map(print, "arguments"),
           returnTypeContents: node.type
-            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            ? concat([
+                hasDanglingComments(node.type)
+                  ? concat([
+                      path.call(
+                        typePath =>
+                          comments.printDanglingComments(
+                            typePath,
+                            options,
+                            true
+                          ),
+                        "type"
+                      ),
+                      " "
+                    ])
+                  : "",
+                node.nullable ? "?" : "",
+                path.call(print, "type")
+              ])
             : "",
           bodyContents: node.body ? path.call(print, "body") : ""
         });
@@ -1431,7 +1448,24 @@ function printStatement(path, options, print) {
           ]),
           argumentsList: path.map(print, "arguments"),
           returnTypeContents: node.type
-            ? concat([node.nullable ? "?" : "", path.call(print, "type")])
+            ? concat([
+                hasDanglingComments(node.type)
+                  ? concat([
+                      path.call(
+                        typePath =>
+                          comments.printDanglingComments(
+                            typePath,
+                            options,
+                            true
+                          ),
+                        "type"
+                      ),
+                      " "
+                    ])
+                  : "",
+                node.nullable ? "?" : "",
+                path.call(print, "type")
+              ])
             : "",
           bodyContents: node.body ? concat([path.call(print, "body")]) : ""
         });
@@ -1449,6 +1483,11 @@ function printStatement(path, options, print) {
           return group(
             concat([
               name,
+              // see handleFunctionParameter() in ./comments.js - since there's
+              // no node to attach comments that fall in between the parameter name
+              // and value, we store them as dangling comments
+              hasDanglingComments(node) ? " " : "",
+              comments.printDanglingComments(path, options, true),
               indent(concat([line, "= ", path.call(print, "value")]))
             ])
           );

@@ -1,6 +1,10 @@
 "use strict";
 
-const { addDanglingComment, addTrailingComment } = require("prettier").util;
+const {
+  addDanglingComment,
+  addTrailingComment,
+  getNextNonSpaceNonCommentCharacterIndex
+} = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
 
 /*
@@ -20,28 +24,31 @@ args:
   isLastComment
 */
 
-const handleOwnLineComment = comment => {
+const handleOwnLineComment = (comment, text, options) => {
   return (
     handleClass(comment) ||
-    handleFunction(comment) ||
+    handleFunctionParameter(comment, text, options) ||
+    handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
     handleTryCatch(comment)
   );
 };
 
-const handleEndOfLineComment = comment => {
+const handleEndOfLineComment = (comment, text, options) => {
   return (
     handleClass(comment) ||
-    handleFunction(comment) ||
+    handleFunctionParameter(comment, text, options) ||
+    handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
     handleTryCatch(comment)
   );
 };
 
-const handleRemainingComment = comment => {
+const handleRemainingComment = (comment, text, options) => {
   return (
     handleClass(comment) ||
-    handleFunction(comment) ||
+    handleFunctionParameter(comment, text, options) ||
+    handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleBreakAndContinueStatementComments(comment) ||
@@ -79,12 +86,48 @@ const handleClass = comment => {
   return false;
 };
 
-const handleFunction = comment => {
+const handleFunction = (comment, text, options) => {
   const { enclosingNode, followingNode } = comment;
   if (
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method")
   ) {
+    // we need to figure out if there are any comments that should be assigned
+    // to the function return type. To do this we check if the comment location
+    // is between the last argument end location and the return type start location.
+    let argumentsLocEnd = 0;
+    for (let i = 0; i < enclosingNode.arguments.length; i++) {
+      argumentsLocEnd =
+        options.locEnd(enclosingNode.arguments[i]) > argumentsLocEnd
+          ? options.locEnd(enclosingNode.arguments[i])
+          : argumentsLocEnd;
+    }
+    const commentIsBetweenArgumentsAndBody =
+      options.locStart(comment) > argumentsLocEnd &&
+      options.locEnd(comment) < options.locStart(enclosingNode.body);
+    const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+      text,
+      comment,
+      options
+    );
+    // we additionally need to check if this isn't a trailing argument comment,
+    // by checking the next character isn't ")"
+    if (
+      enclosingNode.type &&
+      commentIsBetweenArgumentsAndBody &&
+      text.charAt(nextCharIndex) !== ")"
+    ) {
+      if (options.locEnd(comment) < options.locStart(enclosingNode.type)) {
+        // we need to store this as a dangling comment in case the type is nullable
+        // ie function(): ?string {} - the "nullable" attribute is part of the
+        // function node, not the type.
+        addDanglingComment(enclosingNode.type, comment);
+        return true;
+      }
+      addTrailingComment(enclosingNode.type, comment);
+      return true;
+    }
+
     // for empty functions where the body is only made up of comments, we need
     // to attach this as a dangling comment on the function node itself
     if (
@@ -94,6 +137,30 @@ const handleFunction = comment => {
       addDanglingComment(enclosingNode, comment);
       return true;
     }
+  }
+  return false;
+};
+
+const handleFunctionParameter = (comment, text, options) => {
+  const { enclosingNode } = comment;
+  if (
+    !enclosingNode ||
+    !["function", "method", "parameter"].includes(enclosingNode.kind)
+  ) {
+    return false;
+  }
+  // for function parameters that are assignments, we have no node to assign comments
+  // that fall in between the var being assigned and the "=" character. To get around this,
+  // we'll store any comments falling here as dangling comments on the parameter node,
+  // and let the printer handle them accordingly
+  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    comment,
+    options
+  );
+  if (text.charAt(nextCharIndex) + text.charAt(nextCharIndex + 1) === "= ") {
+    addDanglingComment(enclosingNode, comment);
+    return true;
   }
   return false;
 };

@@ -939,17 +939,24 @@ foreach ($iterable as $key => $value) {/* Comments */
 exports[`functions.php 1`] = `
 <?php
 
-function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
-
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
+function foo($a): /* 5 */ ?string /* 6 */ {}
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
 function emptyFn(/*Comment */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-function foo(
-    /* comment */ $a = /* comment */ /* comment */ 1 /* comment */ /* comment */
-): ?string {
-    /* comment */
-}
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */)
+{
 
+}
+function foo($a): /* 5 */ ?string /* 6 */
+{
+
+}
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
+{
+
+}
 function emptyFn()
 {
     /*Comment */
@@ -1133,7 +1140,7 @@ exports[`method.php 1`] = `
 <?php
 
 class Foo {
-    public function foo(/* comment */ $a /* comment */ = /* comment */ 1 /* comment */): /* comment */ ?string /* comment */ {}
+    public function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
 
     public function emptyMethod(/* comments */) {}
 
@@ -1144,10 +1151,9 @@ class Foo {
 class Foo
 {
     public function foo(
-        /* comment */ $a
-            = /* comment */ /* comment */ 1 /* comment */ /* comment */
-    ): ?string {
-        /* comment */
+        /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
+    ): /* 5 */ ?string /* 6 */ {
+
     }
 
     public function emptyMethod()
@@ -1224,7 +1230,7 @@ function bar(/* Comment */ &$a /* Comment */) {}
 <?php
 function foo(
     /* Comment */ $a,
-    /* Comment */ array /* Comment */ /* Comment */ $b
+    /* Comment */ array /* Comment */ $b /* Comment */
         = /* Comment */ [] /* Comment */
 ) {
 
