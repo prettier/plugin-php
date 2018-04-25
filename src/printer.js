@@ -893,18 +893,37 @@ function printExpression(path, options, print) {
           parentNode.kind !== "include";
         const shouldBeInlined =
           node.inner.kind === "new" || node.inner.kind === "clone";
+        // don't break if this is a property lookup - ie
+        // ($someThing
+        //    ? $someOtherThing
+        //    : $someOtherOtherThing
+        //  )
+        //    ->hi()
+        //    ->other();
+        // however, make sure to break for bin, since its reliant on the parens indentation
+        // (
+        //    $someThing &&
+        //    $someOtherThing
+        //  )->map();
+        const shouldAddBeginningBreak =
+          !shouldBeInlined &&
+          !(parentNode.kind === "propertylookup" && node.inner.kind !== "bin");
+        const printedContents = path.call(print, "inner");
+        const shouldAddEndBreak =
+          !shouldBeInlined &&
+          (shouldAddBeginningBreak || willBreak(printedContents));
         const dangling = comments.printDanglingComments(path, options, true);
         const printedInner = concat([
-          shouldBeInlined || !shouldPrintParenthesis ? "" : softline,
+          shouldAddBeginningBreak && shouldPrintParenthesis ? softline : "",
           dangling ? concat([dangling, hardline]) : "",
-          path.call(print, "inner")
+          printedContents
         ]);
         return group(
           concat([
             shouldPrintParenthesis ? "(" : "",
-            shouldBeInlined ? printedInner : indent(printedInner),
+            shouldAddBeginningBreak ? indent(printedInner) : printedInner,
             shouldPrintParenthesis
-              ? concat([shouldBeInlined ? "" : softline, ")"])
+              ? concat([shouldAddEndBreak ? softline : "", ")"])
               : ""
           ])
         );
