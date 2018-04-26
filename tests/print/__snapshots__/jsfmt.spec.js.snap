@@ -92,6 +92,7 @@ END;
 // print is also a construct, but
 // it behaves like a function, so
 // it may be used in this context.
+
 print $some_var ? 'true' : 'false';
 print $some_var
     ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'

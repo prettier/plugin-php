@@ -67,8 +67,7 @@ $array = [
 $array = [
     // comment
     // comment
-    1,
-    // comment
+    1, // comment
     2 // comment
     // comment
 ];
@@ -127,6 +126,7 @@ $array = [
 // Comment
 $array = []; // Comment
 // Comment
+
 /* Comment */
 $array /* Comment */ = /* Comment */ []; /* Comment */
 /* Comment */
@@ -585,6 +585,7 @@ class Foo
  *********************/
 
 // This is a one-line c++ style comment
+
 /* This is a multi line comment
  yet another line of comment */
 
@@ -749,9 +750,8 @@ echo // Comment
 <?php
 // Comment
 echo // Comment
-$foo,
-    // Comment
-$bar; // Comment // Comment
+$foo, // Comment
+    $bar; // Comment // Comment
 
 /* Comment */ echo /* Comment */ $foo /* Comment */,
     /* Comment */ $bar /* Comment */; /* Comment */
@@ -1146,6 +1146,22 @@ class Foo {
 
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
 }
+
+
+class add_vendor extends request{
+    protected function request(){
+        $qb_vendor->setVendorAddress(
+            $vendor->address_1, // address 1
+            $vendor->address_2, // address 2
+            '', // address 3 mike testing
+            '', // address 4
+            '', // address 5
+            $vendor->city, // city
+            $vendor->state, // state
+            $vendor->zip // state
+        );
+    }
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo
@@ -1162,6 +1178,23 @@ class Foo
     } /* comment */
 
     /* comment */ /* comment */ protected static $foo; /* comment */
+}
+
+class add_vendor extends request
+{
+    protected function request()
+    {
+        $qb_vendor->setVendorAddress(
+            $vendor->address_1, // address 1
+            $vendor->address_2, // address 2
+            '', // address 3 mike testing
+            '', // address 4
+            '', // address 5
+            $vendor->city, // city
+            $vendor->state, // state
+            $vendor->zip // state
+        );
+    }
 }
 
 `;
@@ -1353,8 +1386,7 @@ switch ($i) {
     // Comment
     case 1: // Comment
         // Comment
-        echo "i equals 1";
-        // Comment
+        echo "i equals 1"; // Comment
         break; // Comment
     // Comment
 } // Comment
@@ -1383,8 +1415,7 @@ throw new ClassName( /* Comment */
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
-throw new ClassName(
-    // Comment
+throw new ClassName( // Comment
     1, // Comment
     // Comment
     2 // Comment
