@@ -164,7 +164,10 @@ const printers = {
         },
         {
           kinds: ["function", "method", "closure"],
-          children: { listNodes: ["arguments", "uses"], nodes: ["body"] }
+          children: {
+            listNodes: ["arguments", "uses"],
+            nodes: ["body", "type"]
+          }
         },
         {
           kinds: ["switch", "case"],
