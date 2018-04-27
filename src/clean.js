@@ -119,6 +119,11 @@ function clean(node, newObj) {
     });
   }
 
+  // for inline code, we always use the long form <?php
+  if (node.kind === "echo") {
+    newObj.shortForm = false;
+  }
+
   // Ignore `parenthesis` for `include`
   if (node.kind === "include" && node.target.kind === "parenthesis") {
     newObj.target = newObj.target.inner;
