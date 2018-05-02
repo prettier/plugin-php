@@ -82,10 +82,8 @@ list(
     "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue
 ) = $data[0];
 list(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
 ) = $data[0];
 
 foreach ($data as list("id" => $id, "name" => $name)) {
@@ -105,10 +103,8 @@ foreach (
 foreach (
     $data
     as list(
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
-            $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
-            $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
     )
 ) {
     // logic here with $id and $name

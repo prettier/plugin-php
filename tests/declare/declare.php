@@ -15,3 +15,7 @@ enddeclare;
 
 declare(ticks=1);
 $test = 1;
+
+if ($var) {
+    declare(ticks=1);
+}

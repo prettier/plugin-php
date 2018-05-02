@@ -1245,25 +1245,7 @@ function printStatement(path, options, print) {
             indent(
               concat([
                 softline,
-                join(
-                  concat([",", line]),
-                  path.map(argument => {
-                    let node = argument.getValue();
-                    if (Array.isArray(node)) {
-                      node = node.shift();
-                      return join(
-                        " =>",
-                        argument.map((item, index) => {
-                          return index === 1
-                            ? indent(group(concat([line, print(item)])))
-                            : print(item);
-                        })
-                      );
-                    }
-
-                    return print(argument);
-                  }, "arguments")
-                )
+                join(concat([",", line]), path.map(print, "arguments"))
               ])
             ),
             softline,
@@ -1852,13 +1834,7 @@ function printStatement(path, options, print) {
           "}"
         ]);
       }
-      return concat([
-        "declare(",
-        printDeclareArguments(path),
-        ");",
-        hardline,
-        concat(path.map(print, "children"))
-      ]);
+      return concat(["declare(", printDeclareArguments(path), ");"]);
     }
     case "global":
       return group(

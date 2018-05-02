@@ -240,6 +240,7 @@ __HALT_COMPILER();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 declare(ticks=1);
+
 namespace Vendor\\Package;
 
 use FooClass;
