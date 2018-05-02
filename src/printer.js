@@ -2058,11 +2058,16 @@ function printNode(path, options, print) {
       );
       const printedComments = dangling ? concat([hardline, dangling]) : "";
 
-      return concat([
-        node.key ? concat([path.call(print, "key"), " => "]) : "",
-        path.call(print, "value"),
-        printedComments
-      ]);
+      if (node.key) {
+        return group(
+          concat([
+            path.call(print, "key"),
+            " =>",
+            indent(concat([line, path.call(print, "value"), printedComments]))
+          ])
+        );
+      }
+      return concat([path.call(print, "value"), printedComments]);
     }
     case "traituse":
       return group(

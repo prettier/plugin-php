@@ -33,8 +33,10 @@ return;
 return $name;
 return [1, 2, 3];
 return [
-    $veryVeryVeryVeryVeryVeryLongKey => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-    $veryVeryVeryVeryVeryVeryLongKey => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+    $veryVeryVeryVeryVeryVeryLongKey =>
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+    $veryVeryVeryVeryVeryVeryLongKey =>
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
     3
 ];
 return ($a + $b);

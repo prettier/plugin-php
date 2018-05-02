@@ -116,10 +116,11 @@ return [
 
 $array = [
     'type' => [],
-    'config' => [
-        // comments in nested arrays break things
-        'key' => 1
-    ],
+    'config' =>
+        [
+            // comments in nested arrays break things
+            'key' => 1
+        ],
     'accepted' => []
 ];
 
