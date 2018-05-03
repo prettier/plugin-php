@@ -1245,25 +1245,7 @@ function printStatement(path, options, print) {
             indent(
               concat([
                 softline,
-                join(
-                  concat([",", line]),
-                  path.map(argument => {
-                    let node = argument.getValue();
-                    if (Array.isArray(node)) {
-                      node = node.shift();
-                      return join(
-                        " =>",
-                        argument.map((item, index) => {
-                          return index === 1
-                            ? indent(group(concat([line, print(item)])))
-                            : print(item);
-                        })
-                      );
-                    }
-
-                    return print(argument);
-                  }, "arguments")
-                )
+                join(concat([",", line]), path.map(print, "arguments"))
               ])
             ),
             softline,
@@ -1852,13 +1834,7 @@ function printStatement(path, options, print) {
           "}"
         ]);
       }
-      return concat([
-        "declare(",
-        printDeclareArguments(path),
-        ");",
-        hardline,
-        concat(path.map(print, "children"))
-      ]);
+      return concat(["declare(", printDeclareArguments(path), ");"]);
     }
     case "global":
       return group(
@@ -2082,11 +2058,16 @@ function printNode(path, options, print) {
       );
       const printedComments = dangling ? concat([hardline, dangling]) : "";
 
-      return concat([
-        node.key ? concat([path.call(print, "key"), " => "]) : "",
-        path.call(print, "value"),
-        printedComments
-      ]);
+      if (node.key) {
+        return group(
+          concat([
+            path.call(print, "key"),
+            " =>",
+            indent(concat([line, path.call(print, "value"), printedComments]))
+          ])
+        );
+      }
+      return concat([path.call(print, "value"), printedComments]);
     }
     case "traituse":
       return group(
