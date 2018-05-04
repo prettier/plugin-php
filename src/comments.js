@@ -30,7 +30,8 @@ const handleOwnLineComment = (comment, text, options) => {
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
-    handleTryCatch(comment)
+    handleTryCatch(comment) ||
+    handleAlternate(comment)
   );
 };
 
@@ -207,6 +208,20 @@ const handleHalt = comment => {
   const { enclosingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "halt") {
     addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+};
+
+const handleAlternate = comment => {
+  const { enclosingNode, followingNode } = comment;
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "if" &&
+    followingNode &&
+    followingNode.kind == "if"
+  ) {
+    addDanglingComment(followingNode, comment);
     return true;
   }
   return false;
