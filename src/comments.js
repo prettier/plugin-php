@@ -1,6 +1,7 @@
 "use strict";
 
 const {
+  addLeadingComment,
   addDanglingComment,
   addTrailingComment,
   getNextNonSpaceNonCommentCharacterIndex
@@ -221,7 +222,7 @@ const handleAlternate = comment => {
     followingNode &&
     followingNode.kind == "if"
   ) {
-    addDanglingComment(followingNode, comment);
+    addLeadingComment(followingNode.body, comment);
     return true;
   }
   return false;
