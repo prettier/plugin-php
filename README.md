@@ -36,6 +36,37 @@
 
 Please note that this plugin is currently in alpha stage and still under active development. We encourage everyone to try it and give feedback, but we don't recommend it for production use yet.
 
+## Intro
+
+Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+
+This plugin adds support for the PHP language to Prettier.
+
+### Input
+
+```php
+array_map(function($arg1,$arg2) use ( $var1, $var2 ) {
+    return $arg1+$arg2/($var+$var2);
+}, array("complex"=>"code","with"=>"inconsistent","formatting"=>"is", "hard" => "to", "maintain"=>true));
+```
+
+### Output
+
+```php
+array_map(
+    function ($arg1, $arg2) use ($var1, $var2) {
+        return $arg1 + $arg2 / ($var + $var2);
+    },
+    array(
+        "complex" => "code",
+        "with" => "inconsistent",
+        "formatting" => "is",
+        "hard" => "to",
+        "maintain" => true
+    )
+);
+```
+
 ## Install
 
 Currently, the plugin can only be installed locally, due to an [issue in Prettier's plugin system](https://github.com/prettier/prettier/issues/4000).
