@@ -98,7 +98,7 @@ and then run it via
 ```bash
 yarn run prettier path/to/file.php --write
 # or
-npm run prettier path/to/file.php --write
+npm run prettier -- path/to/file.php --write
 ```
 
 ## Contributing
