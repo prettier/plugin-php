@@ -69,23 +69,27 @@ array_map(
 
 ## Install
 
-Currently, the plugin can only be installed locally, due to an [issue in Prettier's plugin system](https://github.com/prettier/prettier/issues/4000).
+You'll need a current development version of prettier, because the plugin depends on currently unreleased features.
 
 yarn:
 
 ```bash
 yarn add --dev prettier/prettier prettier/plugin-php
+# or globally
+yarn global add prettier/prettier prettier/plugin-php
 ```
 
 npm:
 
 ```bash
 npm install --save-dev prettier/prettier prettier/plugin-php
+# or globally
+npm install --global prettier/prettier prettier/plugin-php
 ```
 
 ## Use
 
-You can add Prettier as a script in your `package.json`,
+If you installed prettier as a local dependency, you can add prettier as a script in your `package.json`,
 
 ```json
 "scripts": {
@@ -101,16 +105,22 @@ yarn run prettier path/to/file.php --write
 npm run prettier path/to/file.php --write
 ```
 
+If you installed globally, run
+
+```bash
+prettier path/to/file.php --write
+```
+
 ## Contributing
 
 If you're interested in contributing to the development of Prettier for PHP, you can follow the [CONTRIBUTING guide from Prettier](https://github.com/prettier/prettier/blob/master/CONTRIBUTING.md), as it all applies to this repository too.
 
 To test it out on a PHP file:
 
-* Clone this repository.
-* Run `yarn`.
-* Create a file called `test.php`.
-* Run `yarn prettier test.php` to check the output.
+- Clone this repository.
+- Run `yarn`.
+- Create a file called `test.php`.
+- Run `yarn prettier test.php` to check the output.
 
 ## Maintainers
 
