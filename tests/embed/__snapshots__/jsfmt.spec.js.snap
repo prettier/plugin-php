@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test.md 1`] = `
+# PHP in Markdown
+
+\`\`\`php
+<?php
+if($foo) {
+echo "bar";
+}
+\`\`\`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# PHP in Markdown
+
+\`\`\`php
+<?php
+if ($foo) {
+  echo "bar";
+}
+\`\`\`
+
+`;
