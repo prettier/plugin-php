@@ -52,7 +52,8 @@ function run_spec(dirname, parsers, options) {
         });
       });
 
-      if (AST_COMPARE) {
+      // this will only work for php tests (since we're in the php repo)
+      if (AST_COMPARE && parsers.slice(1) === "php") {
         const normalizedOptions = normalize(mergedOptions);
         const ast = parse(source, mergedOptions);
         const astMassaged = massageAST(ast, normalizedOptions);
