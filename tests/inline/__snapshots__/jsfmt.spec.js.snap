@@ -362,6 +362,84 @@ exports[`mixed-4.php 1`] = `
 
 `;
 
+exports[`mixed-5.php 1`] = `
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
+    <?php
+
+      echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary',
+      ]);
+
+    ?>
+  </header>
+</section>
+
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
+    <?php
+
+      echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary',
+      ]);
+
+    ?>
+  </header> <?= $someOtherVar()->element('collection/item-title', [
+    'class' => $itemTitleClass,
+    'small_title' => $item->small_title,
+    'title' => $item->title,
+    'url' => $url,
+    'color' => $item->title_color ?: 'primary',
+  ]); ?>
+</section>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<section class="<?php echo $sectionClass; ?>">
+  <header class="<?php echo $headerClass; ?>">
+    <?php echo $this->element(
+        'collection/item-title',
+        [
+            'class' => $itemTitleClass,
+            'small_title' => $item->small_title,
+            'title' => $item->title,
+            'url' => $url,
+            'color' => $item->title_color ?: 'primary'
+        ]
+    ); ?>
+  </header>
+</section>
+
+<section class="<?php echo $sectionClass; ?>">
+  <header class="<?php echo $headerClass; ?>">
+    <?php echo $this->element(
+        'collection/item-title',
+        [
+            'class' => $itemTitleClass,
+            'small_title' => $item->small_title,
+            'title' => $item->title,
+            'url' => $url,
+            'color' => $item->title_color ?: 'primary'
+        ]
+    ); ?>
+  </header> <?php echo $someOtherVar()->element(
+                'collection/item-title',
+                [
+                    'class' => $itemTitleClass,
+                    'small_title' => $item->small_title,
+                    'title' => $item->title,
+                    'url' => $url,
+                    'color' => $item->title_color ?: 'primary'
+                ]
+            ); ?>
+</section>
+`;
+
 exports[`only-html.php 1`] = `
 <!DOCTYPE html>
 <html>

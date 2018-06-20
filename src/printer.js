@@ -13,7 +13,8 @@ const {
   dedent,
   ifBreak,
   hardline,
-  softline
+  softline,
+  align
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
@@ -76,7 +77,29 @@ function genericPrint(path, options, print) {
       comments.printDanglingComments(path, options, /* sameIndent */ true)
     ]);
   }
-  const printed = printNode(path, options, print);
+  // if this is embedded code, lets try to match the indentation of the open <?php tag
+  let printed;
+  if (isPrevNodeInline(path)) {
+    const tagOpenIndex = options.originalText.lastIndexOf(
+      "<",
+      options.locStart(node)
+    );
+    let alignment = options.originalText.substring(0, tagOpenIndex);
+    if (options.originalText.lastIndexOf("\n", tagOpenIndex) > -1) {
+      alignment = options.originalText.substring(
+        options.originalText.lastIndexOf("\n", tagOpenIndex) + 1,
+        tagOpenIndex
+      );
+    }
+    printed = printNode(path, options, print);
+    printed = willBreak(printed) ? concat([hardline, printed]) : printed;
+    printed = align(
+      new Array(alignment.length + 1).join(" "),
+      printNode(path, options, print)
+    );
+  } else {
+    printed = printNode(path, options, print);
+  }
   if (node.kind === "inline") {
     const parentNode = path.getParentNode();
     return concat([
