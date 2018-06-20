@@ -60,14 +60,21 @@ const handleRemainingComment = (comment, text, options) => {
 };
 
 const handleForLoop = comment => {
-  const { enclosingNode } = comment;
+  const { enclosingNode, followingNode } = comment;
   if (
     enclosingNode &&
     (enclosingNode.kind === "for" || enclosingNode.kind === "foreach")
   ) {
-    // for an empty for loop where the body is only made up of comments, we
-    // need to attach this as a dangling comment on the for loop itself
-    if (!(enclosingNode.body && enclosingNode.body.children.length > 0)) {
+    if (enclosingNode.body && enclosingNode.body.kind !== "block") {
+      // for a shortform for loop (where the body is just one node), add
+      // this as a leading comment to the body
+      addLeadingComment(followingNode, comment);
+      return true;
+    } else if (
+      // for an empty for loop where the body is only made up of comments, we
+      // need to attach this as a dangling comment on the for loop itself
+      !(enclosingNode.body && enclosingNode.body.children.length > 0)
+    ) {
       addDanglingComment(enclosingNode, comment);
       return true;
     }
