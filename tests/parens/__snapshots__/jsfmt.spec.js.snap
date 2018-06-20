@@ -49,5 +49,6 @@ exports[`new.php 1`] = `
 (new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
 ]));
+?>
 
 `;

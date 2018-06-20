@@ -321,6 +321,7 @@ $a = 1;
 <div>Foo</div>
 <?php
 $a = 1;
+?>
 
 `;
 
@@ -357,6 +358,7 @@ exports[`mixed-4.php 1`] = `
 <?php else: ?>
     <p>Test.</p>
 <?php endif;
+?>
 
 `;
 
