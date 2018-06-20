@@ -13,7 +13,8 @@ const {
   dedent,
   ifBreak,
   hardline,
-  softline
+  softline,
+  align
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
@@ -25,21 +26,14 @@ const {
 const comments = require("./comments");
 
 const {
-  getNodeListProperty,
   getLast,
   getPenultimate,
-  isControlStructureNode,
-  isFirstNodeInParentProgramNode,
-  isFirstNodeInParentNode,
-  isPrevNodeInline,
   isNextNodeInline,
   isLastStatement,
-  lineShouldHaveStartPHPTag,
   lineShouldEndWithSemicolon,
-  lineShouldHaveEndPHPTag,
   printNumber,
   shouldFlatten,
-  shouldRemoveLines,
+  getNodeIndex,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
@@ -47,7 +41,12 @@ const {
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish
+  isMemberish,
+  isPrevNodeInline,
+  getPreviousNodeInParentListProperty,
+  getSecondPreviousNodeInParentListProperty,
+  getNextNodeInParentListProperty,
+  getSecondNextNodeInParentListProperty
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -68,56 +67,105 @@ function genericPrint(path, options, print) {
   } else if (typeof node === "string") {
     return node;
   }
+  // there are 2 mixed php/html cases we need to account for here
+  // 1) a full php node nested within html (handled below)
+  // 2) inline html mixed within a php node (handled in the nodes themselves)
+
   const isProgramNode = node.kind === "program";
-  if (isProgramNode && node.children.length === 0) {
-    return concat([
-      "<?php",
-      hardline,
-      comments.printDanglingComments(path, options, /* sameIndent */ true)
-    ]);
-  }
+  // case 1, which can be treated the same as the top-level program node
+  const isFullNestedNode =
+    isPrevNodeInline(path) &&
+    isNextNodeInline(path) &&
+    !node.loc.source.includes("?>");
+  const shouldHaveOpenTag =
+    isFullNestedNode ||
+    (isProgramNode && !node.children[0]) ||
+    (isProgramNode && node.children[0] && node.children[0].kind !== "inline");
+
   const printed = printNode(path, options, print);
-  if (node.kind === "inline") {
-    const parentNode = path.getParentNode();
-    return concat([
-      parentNode &&
-      parentNode.kind === "declare" &&
-      parentNode.children.indexOf(node) === 0
-        ? "?>"
-        : "",
-      printed
-    ]);
-  }
-  if (node.kind === "block") {
-    const nodeBody = getNodeListProperty(node);
-    if (nodeBody.length !== 0) {
+  if (shouldHaveOpenTag) {
+    const shouldHaveCloseTag =
+      isFullNestedNode ||
+      (isProgramNode && node.loc.source.trim().endsWith("?>"));
+
+    if (isFullNestedNode) {
+      const tagOpenIndex = options.originalText.lastIndexOf(
+        "<",
+        options.locStart(node)
+      );
+      let alignment = options.originalText.substring(0, tagOpenIndex);
+      if (options.originalText.lastIndexOf("\n", tagOpenIndex) > -1) {
+        alignment = options.originalText.substring(
+          options.originalText.lastIndexOf("\n", tagOpenIndex) + 1,
+          tagOpenIndex
+        );
+      }
       return concat([
-        nodeBody[0].kind === "inline" ? "?>" : "",
-        printed,
-        nodeBody[nodeBody.length - 1].kind === "inline" ? "<?php" : ""
+        "<?php",
+        align(
+          new Array(alignment.length + 1).join(" "),
+          concat([
+            willBreak(printed) ? hardline : line,
+            printNode(path, options, print),
+            lineShouldEndWithSemicolon(path) ? ";" : "",
+            shouldHaveCloseTag ? concat([line, "?>"]) : ""
+          ])
+        )
       ]);
     }
+
+    return group(
+      concat([
+        "<?php",
+        line,
+        printed,
+        lineShouldEndWithSemicolon(path) ? ";" : "",
+        shouldHaveCloseTag ? concat([line, "?>"]) : "",
+        fileShouldEndWithHardline(path) ? hardline : ""
+      ])
+    );
   }
+
+  if (node.kind === "inline") {
+    const parentNode = path.getParentNode();
+    const isParentProgramNode = parentNode && parentNode.kind === "program";
+    const nodeIndex = getNodeIndex(path);
+    const previousNode = getPreviousNodeInParentListProperty(path);
+    const secondPreviousNode = getSecondPreviousNodeInParentListProperty(path);
+    const nextNode = getNextNodeInParentListProperty(path);
+    const secondNextNode = getSecondNextNodeInParentListProperty(path);
+    // case 2 (closing tag to start inline html)
+    return concat([
+      !(isParentProgramNode && nodeIndex === 0) &&
+      !(
+        previousNode &&
+        secondPreviousNode &&
+        secondPreviousNode.kind === "inline" &&
+        !previousNode.loc.source.includes("?>")
+      )
+        ? previousNode
+          ? " ?>"
+          : "?>"
+        : "",
+      printed,
+      !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
+      !(
+        nextNode &&
+        secondNextNode &&
+        secondNextNode.kind === "inline" &&
+        !nextNode.loc.source.includes("?>")
+      )
+        ? nextNode
+          ? "<?php "
+          : "<?php"
+        : ""
+    ]);
+  }
+  const shouldRemoveNewLines = isPrevNodeInline(path) || isNextNodeInline(path);
   return concat([
-    lineShouldHaveStartPHPTag(path)
-      ? concat([
-          "<?php",
-          isFirstNodeInParentProgramNode(path) ||
-          (!isNextNodeInline(path) && !isControlStructureNode(node))
-            ? hardline
-            : " "
-        ])
-      : "",
-    shouldRemoveLines(path) ? removeNewlines(printed) : printed,
+    // case 2 (opening tag to close inline html)
+    shouldRemoveNewLines ? removeNewlines(printed) : printed,
     lineShouldEndWithSemicolon(path) ? ";" : "",
-    lineShouldHaveEndPHPTag(path)
-      ? concat([
-          isFirstNodeInParentNode(path) || !isPrevNodeInline(path)
-            ? hardline
-            : " ",
-          "?>"
-        ])
-      : "",
     fileShouldEndWithHardline(path) ? hardline : ""
   ]);
 }
@@ -1179,7 +1227,12 @@ function printStatement(path, options, print) {
           comments.printDanglingComments(path, options, true)
         ]);
       case "program": {
-        return concat([printLines(path, options, print)]);
+        return group(
+          concat([
+            printLines(path, options, print),
+            comments.printDanglingComments(path, options, /* sameIndent */ true)
+          ])
+        );
       }
       case "namespace": {
         const printed = printLines(path, options, print);

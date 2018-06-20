@@ -11,11 +11,12 @@ exports[`declare.php 1`] = `
 </html>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-declare(strict_types=1);
-?>
+declare(strict_types=1); ?>
 <html>
     <body>
-        <?php $a = 1; ?>
+        <?php
+        $a = 1;
+        ?>
     </body>
 </html>
 
@@ -113,13 +114,13 @@ function inlineNested1()
 
 function inlineMultipleStatements()
 {
-    $a = 1;
-    ?>
-    <span>Hello World!</span>
-    <?php $b = 1; ?>
+    $a = 1; ?>
     <span>Hello World!</span>
     <?php
-    $c = 1;
+        $b = 1;
+        ?>
+    <span>Hello World!</span>
+    <?php $c = 1;
 }
 
 `;
@@ -211,29 +212,34 @@ echo 'bar';
 </div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <p>Test.</p>
-<?php echo 'String.'; ?>
+<?php
+echo 'String.';
+?>
 <p>Test.</p>
 <?php if ($expression == true): ?>
   <p>Test.</p>
 <?php else: ?>
   <p>Test.</p>
 <?php endif;
-echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />';
-?>
+echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
 <div></div>
-<?php
-echo 'foo';
-echo 'bar';
-?>
-<div class="<?php echo $class; ?>"></div>
+<?php echo 'foo';
+echo 'bar'; ?>
+<div class="<?php
+            echo $class;
+            ?>"></div>
 <div>
   <h1>
-    <?php print_welcome_message(); ?>
+    <?php
+    print_welcome_message();
+    ?>
   </h1>
 </div>
 <div id="results">
   <table class="sortable">
-    <?php $results = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
+    <?php
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    ?>
     <?php do { ?>
       <tr>
         <?php for ($i = 0; $i < count($columns); $i++): ?>
@@ -272,15 +278,17 @@ echo 'bar';
   <span>Text</span>
 <?php endwhile; ?>
 <h1>Head</h1>
+<?php $var = 1;
+if ($expression == true):
+    ?>
+  <p>Test.</p>
 <?php
-$var = 1;
-if ($expression == true): ?>
+else:
+    ?>
   <p>Test.</p>
-<?php else: ?>
-  <p>Test.</p>
-<?php endif;
-$var = 1;
-?>
+<?php
+endif;
+$var = 1; ?>
 <div>
   <?php while ($i <= 10): ?>
     <span><?php echo $i; ?></span>
@@ -305,9 +313,7 @@ $a = 1;
 ?>
 <div>Foo</div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$a = 1;
-?>
+<?php $a = 1; ?>
 <div>Foo</div>
 
 `;
@@ -319,9 +325,7 @@ $a = 1;
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <div>Foo</div>
-<?php
-$a = 1;
-?>
+<?php $a = 1;
 
 `;
 
@@ -338,8 +342,7 @@ if ($expression == true): ?>
     <p>Test.</p>
 <?php else: ?>
     <p>Test.</p>
-<?php endif;
-?>
+<?php endif; ?>
 <div>Hello world</div>
 
 `;
@@ -358,7 +361,114 @@ exports[`mixed-4.php 1`] = `
 <?php else: ?>
     <p>Test.</p>
 <?php endif;
+
+`;
+
+exports[`mixed-5.php 1`] = `
+text
+<?php
+if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
+    foreach ($dataXXXXXXXXXXXXXXXXXXXX as $key => $value) {
+        if ((!is_string($value) && !is_numeric($value)) || !is_string($key)) {
+            continue;
+        }
+        if (get_magic_quotes_gpc()) {
+            $value = htmlspecialchars(stripslashes((string) $value));
+        } else {
+            $value = htmlspecialchars((string) $value);
+        }
+    }
+}
 ?>
+text~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+text
+<?php
+if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
+    foreach ($dataXXXXXXXXXXXXXXXXXXXX as $key => $value) {
+        if ((!is_string($value) && !is_numeric($value)) || !is_string($key)) {
+            continue;
+        }
+        if (get_magic_quotes_gpc()) {
+            $value = htmlspecialchars(stripslashes((string) $value));
+        } else {
+            $value = htmlspecialchars((string) $value);
+        }
+    }
+}
+?>
+text
+
+`;
+
+exports[`mixed-6.php 1`] = `
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
+    <?php
+      echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary',
+      ]);
+    ?>
+  </header>
+</section>
+
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
+    <?php
+      echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary',
+      ]);
+    ?>
+  </header> <?= $someOtherVar()->element('collection/item-title', [
+    'class' => $itemTitleClass,
+    'small_title' => $item->small_title,
+    'title' => $item->title,
+    'url' => $url,
+    'color' => $item->title_color ?: 'primary',
+  ]); ?>
+</section>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<section class="<?php echo $sectionClass; ?>">
+  <header class="<?php echo $headerClass; ?>">
+    <?php
+    echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary'
+    ]);
+    ?>
+  </header>
+</section>
+
+<section class="<?php echo $sectionClass; ?>">
+  <header class="<?php echo $headerClass; ?>">
+    <?php
+    echo $this->element('collection/item-title', [
+        'class' => $itemTitleClass,
+        'small_title' => $item->small_title,
+        'title' => $item->title,
+        'url' => $url,
+        'color' => $item->title_color ?: 'primary'
+    ]);
+    ?>
+  </header> <?php
+            echo $someOtherVar()->element('collection/item-title', [
+                'class' => $itemTitleClass,
+                'small_title' => $item->small_title,
+                'title' => $item->title,
+                'url' => $url,
+                'color' => $item->title_color ?: 'primary'
+            ]);
+            ?>
+</section>
 
 `;
 

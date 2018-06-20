@@ -6,7 +6,6 @@ exports[`shebang.php 1`] = `
 var_dump($argv);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #!/usr/bin/php
-<?php
-var_dump($argv);
+<?php var_dump($argv);
 
 `;

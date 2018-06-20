@@ -146,10 +146,6 @@ function nodeHasStatement(node) {
   ].includes(node.kind);
 }
 
-function isControlStructureNode(node) {
-  return ["if", "while", "do", "for", "foreach"].includes(node.kind);
-}
-
 function getBodyFirstChild({ body }) {
   if (!body) {
     return null;
@@ -158,16 +154,6 @@ function getBodyFirstChild({ body }) {
     body = body.children;
   }
   return body[0];
-}
-
-function shouldRemoveLines(path) {
-  const node = path.getValue();
-  const firstChild = getBodyFirstChild(node);
-
-  return (
-    (isPrevNodeInline(path) && isNextNodeInline(path)) ||
-    (isControlStructureNode(node) && firstChild && firstChild.kind === "inline")
-  );
 }
 
 function removeNewlines(doc) {
@@ -225,28 +211,42 @@ function isLastStatement(path) {
   return body[body.length - 1] === node;
 }
 
-function isFirstNodeInParentProgramNode(path) {
-  const parentNode = path.getParentNode();
-  const nodeIndex = getNodeIndex(path);
-  const isParentProgramNode = parentNode && parentNode.kind === "program";
-  return isParentProgramNode && nodeIndex === 0;
-}
-
-function isFirstNodeInParentNode(path) {
-  const nodeIndex = getNodeIndex(path);
-  return nodeIndex === 0;
-}
-
 function isLastNodeInParentNode(path) {
   const parentNodeBody = getParentNodeListProperty(path);
   const nodeIndex = getNodeIndex(path);
   return parentNodeBody && nodeIndex === parentNodeBody.length - 1;
 }
 
-function isPrevNodeInline(path) {
+function getPreviousNodeInParentListProperty(path) {
   const nodeIndex = getNodeIndex(path);
   const parentNodeBody = getParentNodeListProperty(path);
   const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
+  return prevNode;
+}
+
+function getSecondPreviousNodeInParentListProperty(path) {
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 2];
+  return prevNode;
+}
+
+function getNextNodeInParentListProperty(path) {
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  return prevNode;
+}
+
+function getSecondNextNodeInParentListProperty(path) {
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 2];
+  return prevNode;
+}
+
+function isPrevNodeInline(path) {
+  const prevNode = getPreviousNodeInParentListProperty(path);
   return prevNode && prevNode.kind === "inline";
 }
 
@@ -255,16 +255,6 @@ function isNextNodeInline(path) {
   const nodeIndex = getNodeIndex(path);
   const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
   return nextNode && nextNode.kind === "inline";
-}
-
-function lineShouldHaveStartPHPTag(path) {
-  const node = path.getValue();
-  return (
-    (node.kind === "program" &&
-      node.children[0] &&
-      node.children[0].kind !== "inline") ||
-    isPrevNodeInline(path)
-  );
 }
 
 /**
@@ -357,15 +347,6 @@ function lineShouldEndWithSemicolon(path) {
   return semiColonWhitelist.includes(node.kind);
 }
 
-function lineShouldHaveEndPHPTag(path) {
-  const node = path.getValue();
-  const isProgramNode = node.kind === "program";
-  return (
-    isNextNodeInline(path) ||
-    (isProgramNode && node.loc.source.trim().endsWith("?>"))
-  );
-}
-
 function fileShouldEndWithHardline(path) {
   const node = path.getValue();
   const isProgramNode = node.kind === "program";
@@ -380,7 +361,7 @@ function fileShouldEndWithHardline(path) {
   ) {
     return false;
   }
-  if (lastNode.kind === "declare") {
+  if (lastNode && lastNode.kind === "declare") {
     const lastNestedNode = lastNode.children && getLast(lastNode.children);
     if (
       lastNestedNode &&
@@ -437,22 +418,20 @@ module.exports = {
   getPenultimate,
   isLastStatement,
   getBodyFirstChild,
-  isControlStructureNode,
-  isFirstNodeInParentProgramNode,
-  isFirstNodeInParentNode,
   isLastNodeInParentNode,
-  isPrevNodeInline,
   isNextNodeInline,
-  lineShouldHaveStartPHPTag,
   lineShouldEndWithSemicolon,
-  lineShouldHaveEndPHPTag,
   fileShouldEndWithHardline,
-  shouldRemoveLines,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   hasDanglingComments,
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish
+  isMemberish,
+  isPrevNodeInline,
+  getPreviousNodeInParentListProperty,
+  getSecondPreviousNodeInParentListProperty,
+  getNextNodeInParentListProperty,
+  getSecondNextNodeInParentListProperty
 };

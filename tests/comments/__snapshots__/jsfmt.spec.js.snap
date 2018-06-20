@@ -1260,6 +1260,8 @@ exports[`no_code.php 1`] = `
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
+?>
+
 `;
 
 exports[`nowdoc.php 1`] = `
