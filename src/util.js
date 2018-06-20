@@ -358,7 +358,12 @@ function lineShouldEndWithSemicolon(path) {
 }
 
 function lineShouldHaveEndPHPTag(path) {
-  return isNextNodeInline(path);
+  const node = path.getValue();
+  const isProgramNode = node.kind === "program";
+  return (
+    isNextNodeInline(path) ||
+    (isProgramNode && node.loc.source.trim().endsWith("?>"))
+  );
 }
 
 function fileShouldEndWithHardline(path) {

@@ -117,7 +117,8 @@ function genericPrint(path, options, print) {
             : " ",
           "?>"
         ])
-      : ""
+      : "",
+    fileShouldEndWithHardline(path) ? hardline : ""
   ]);
 }
 
@@ -1178,10 +1179,7 @@ function printStatement(path, options, print) {
           comments.printDanglingComments(path, options, true)
         ]);
       case "program": {
-        return concat([
-          printLines(path, options, print),
-          fileShouldEndWithHardline(path) ? hardline : ""
-        ]);
+        return concat([printLines(path, options, print)]);
       }
       case "namespace": {
         const printed = printLines(path, options, print);

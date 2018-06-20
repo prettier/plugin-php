@@ -9,7 +9,8 @@ function parse(text) {
       extractDoc: true
     },
     ast: {
-      withPositions: true
+      withPositions: true,
+      withSource: true
     }
   });
 
