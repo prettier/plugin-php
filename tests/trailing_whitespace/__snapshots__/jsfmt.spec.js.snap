@@ -12,3 +12,27 @@ $test = 'string';
 $test1 = 'string';
 
 `;
+
+exports[`trailing_whitespace_after_tag.php 1`] = `
+<?php
+$code = true;
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$code = true;
+
+`;
+
+exports[`trailing_whitespace_comment.php 1`] = `
+<?php
+class test{
+} // some comment
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+class test
+{
+
+} // some comment
+
+`;

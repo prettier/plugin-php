@@ -368,12 +368,20 @@ function fileShouldEndWithHardline(path) {
   if (!isProgramNode) {
     return false;
   }
-  if (lastNode && lastNode.kind === "inline") {
+  if (
+    lastNode &&
+    lastNode.kind === "inline" &&
+    lastNode.raw[lastNode.raw.length - 1] === "\n"
+  ) {
     return false;
   }
   if (lastNode.kind === "declare") {
     const lastNestedNode = lastNode.children && getLast(lastNode.children);
-    if (lastNestedNode && lastNestedNode.kind === "inline") {
+    if (
+      lastNestedNode &&
+      lastNestedNode.kind === "inline" &&
+      lastNode.raw[lastNode.raw.length - 1] === "\n"
+    ) {
       return false;
     }
   }
