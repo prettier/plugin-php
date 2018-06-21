@@ -117,8 +117,8 @@ function inlineMultipleStatements()
      ?>
     <span>Hello World!</span>
     <?php
-        $b = 1;
-        ?>
+    $b = 1;
+    ?>
     <span>Hello World!</span>
     <?php $c = 1;
 }

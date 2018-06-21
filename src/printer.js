@@ -14,7 +14,8 @@ const {
   ifBreak,
   hardline,
   softline,
-  align
+  align,
+  dedentToRoot
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
@@ -107,16 +108,20 @@ function genericPrint(path, options, print) {
           tagOpenIndex
         );
       }
-      return align(
-        new Array(alignment.length + 1).join(" "),
+      return dedentToRoot(
         group(
           concat([
             "<?php",
-            line,
-            printed,
-            lineShouldEndWithSemicolon(path) ? ";" : "",
-            line,
-            "?>"
+            align(
+              new Array(alignment.length + 1).join(" "),
+              concat([
+                line,
+                printed,
+                lineShouldEndWithSemicolon(path) ? ";" : "",
+                line,
+                "?>"
+              ])
+            )
           ])
         )
       );
@@ -1062,6 +1067,10 @@ function printExpression(path, options, print) {
             : ""
         ]);
       case "inline":
+        // @TODO: to get line breaks to fully work for mixed html/php
+        // we would need to do this, but it adds an entire other layer of
+        // complexity because of the removeNewlines() logic above
+        // return join(hardline, node.raw.split("\n"));
         return node.raw;
       case "magic":
         // for magic constant we prefer upper case
