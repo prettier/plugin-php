@@ -98,19 +98,18 @@ function genericPrint(path, options, print) {
           tagOpenIndex
         );
       }
-      return group(
-        concat([
-          "<?php",
-          align(
-            new Array(alignment.length + 1).join(" "),
-            concat([
-              willBreak(printed) ? hardline : line,
-              printNode(path, options, print),
-              lineShouldEndWithSemicolon(path) ? ";" : "",
-              shouldHaveCloseTag ? concat([line, "?>"]) : ""
-            ])
-          )
-        ])
+      return align(
+        new Array(alignment.length + 1).join(" "),
+        group(
+          concat([
+            "<?php",
+            line,
+            printed,
+            lineShouldEndWithSemicolon(path) ? ";" : "",
+            line,
+            "?>"
+          ])
+        )
       );
     }
 
@@ -1192,6 +1191,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
       let canPrintBlankLine =
         !isLastStatement(childPath) &&
         childPath.getValue().kind !== "inline" &&
+        // fully nested nodes handle their own linebreaks
         !isNodeFullyNestedInline(childPath);
       if (canPrintBlankLine && isNextNodeInline(childPath)) {
         // check if inline is on a new line, if no set to false
