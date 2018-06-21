@@ -224,25 +224,11 @@ function getPreviousNodeInParentListProperty(path) {
   return prevNode;
 }
 
-function getSecondPreviousNodeInParentListProperty(path) {
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 2];
-  return prevNode;
-}
-
 function getNextNodeInParentListProperty(path) {
   const nodeIndex = getNodeIndex(path);
   const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
-  return prevNode;
-}
-
-function getSecondNextNodeInParentListProperty(path) {
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 2];
-  return prevNode;
+  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  return nextNode;
 }
 
 function isPrevNodeInline(path) {
@@ -251,10 +237,53 @@ function isPrevNodeInline(path) {
 }
 
 function isNextNodeInline(path) {
-  const parentNodeBody = getParentNodeListProperty(path);
-  const nodeIndex = getNodeIndex(path);
-  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  const nextNode = getNextNodeInParentListProperty(path);
   return nextNode && nextNode.kind === "inline";
+}
+
+function isNodeFullyNestedInline(path) {
+  const node = path.getValue();
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
+  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  return (
+    nextNode &&
+    prevNode &&
+    nextNode.kind === "inline" &&
+    prevNode.kind === "inline" &&
+    !node.loc.source.includes("?>")
+  );
+}
+
+function isNextNodeFullyNestedInline(path) {
+  const node = path.getValue();
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  const nextNextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 2];
+  return (
+    node &&
+    nextNextNode &&
+    node.kind === "inline" &&
+    nextNextNode.kind === "inline" &&
+    !nextNode.loc.source.includes("?>")
+  );
+}
+
+function isPreviousNodeFullyNestedInline(path) {
+  const node = path.getValue();
+  const nodeIndex = getNodeIndex(path);
+  const parentNodeBody = getParentNodeListProperty(path);
+  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
+  const prevPrevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 2];
+  return (
+    node &&
+    prevPrevNode &&
+    node.kind === "inline" &&
+    prevPrevNode.kind === "inline" &&
+    !prevNode.loc.source.includes("?>")
+  );
 }
 
 /**
@@ -431,7 +460,8 @@ module.exports = {
   isMemberish,
   isPrevNodeInline,
   getPreviousNodeInParentListProperty,
-  getSecondPreviousNodeInParentListProperty,
   getNextNodeInParentListProperty,
-  getSecondNextNodeInParentListProperty
+  isNodeFullyNestedInline,
+  isNextNodeFullyNestedInline,
+  isPreviousNodeFullyNestedInline
 };

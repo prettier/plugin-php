@@ -44,9 +44,10 @@ const {
   isMemberish,
   isPrevNodeInline,
   getPreviousNodeInParentListProperty,
-  getSecondPreviousNodeInParentListProperty,
   getNextNodeInParentListProperty,
-  getSecondNextNodeInParentListProperty
+  isNodeFullyNestedInline,
+  isNextNodeFullyNestedInline,
+  isPreviousNodeFullyNestedInline
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -73,10 +74,7 @@ function genericPrint(path, options, print) {
 
   const isProgramNode = node.kind === "program";
   // case 1, which can be treated the same as the top-level program node
-  const isFullNestedNode =
-    isPrevNodeInline(path) &&
-    isNextNodeInline(path) &&
-    !node.loc.source.includes("?>");
+  const isFullNestedNode = isNodeFullyNestedInline(path);
   const shouldHaveOpenTag =
     isFullNestedNode ||
     (isProgramNode && !node.children[0]) ||
@@ -100,18 +98,20 @@ function genericPrint(path, options, print) {
           tagOpenIndex
         );
       }
-      return concat([
-        "<?php",
-        align(
-          new Array(alignment.length + 1).join(" "),
-          concat([
-            willBreak(printed) ? hardline : line,
-            printNode(path, options, print),
-            lineShouldEndWithSemicolon(path) ? ";" : "",
-            shouldHaveCloseTag ? concat([line, "?>"]) : ""
-          ])
-        )
-      ]);
+      return group(
+        concat([
+          "<?php",
+          align(
+            new Array(alignment.length + 1).join(" "),
+            concat([
+              willBreak(printed) ? hardline : line,
+              printNode(path, options, print),
+              lineShouldEndWithSemicolon(path) ? ";" : "",
+              shouldHaveCloseTag ? concat([line, "?>"]) : ""
+            ])
+          )
+        ])
+      );
     }
 
     return group(
@@ -131,30 +131,18 @@ function genericPrint(path, options, print) {
     const isParentProgramNode = parentNode && parentNode.kind === "program";
     const nodeIndex = getNodeIndex(path);
     const previousNode = getPreviousNodeInParentListProperty(path);
-    const secondPreviousNode = getSecondPreviousNodeInParentListProperty(path);
     const nextNode = getNextNodeInParentListProperty(path);
-    const secondNextNode = getSecondNextNodeInParentListProperty(path);
     // case 2 (closing tag to start inline html)
     return concat([
       !(isParentProgramNode && nodeIndex === 0) &&
-      !(
-        previousNode &&
-        secondPreviousNode &&
-        secondPreviousNode.kind === "inline" &&
-        !previousNode.loc.source.includes("?>")
-      )
+      !isPreviousNodeFullyNestedInline(path)
         ? previousNode
           ? " ?>"
           : "?>"
         : "",
       printed,
       !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
-      !(
-        nextNode &&
-        secondNextNode &&
-        secondNextNode.kind === "inline" &&
-        !nextNode.loc.source.includes("?>")
-      )
+      !isNextNodeFullyNestedInline(path)
         ? nextNode
           ? "<?php "
           : "<?php"
@@ -1201,10 +1189,25 @@ const statementKinds = [
 function printLines(path, options, print, childrenAttribute = "children") {
   return concat(
     path.map(childPath => {
-      const canPrintBlankLine =
-        !isLastStatement(childPath) &&
-        childPath.getValue().kind !== "inline" &&
-        !isNextNodeInline(childPath);
+      let canPrintBlankLine =
+        !isLastStatement(childPath) && childPath.getValue().kind !== "inline";
+      if (canPrintBlankLine && isNextNodeInline(childPath)) {
+        // check if inline is on a new line, if no set to false
+        const inlineNode = getNextNodeInParentListProperty(path);
+        const tagCloseIndex = options.originalText.lastIndexOf(
+          "?>",
+          options.locStart(inlineNode)
+        );
+        const lastNewLine = options.originalText.lastIndexOf(
+          "\n",
+          tagCloseIndex
+        );
+        const inlineStartLineText = options.originalText.substring(
+          lastNewLine + 1,
+          tagCloseIndex
+        );
+        canPrintBlankLine = !inlineStartLineText.trim();
+      }
       return concat([
         print(childPath),
         canPrintBlankLine ? hardline : "",

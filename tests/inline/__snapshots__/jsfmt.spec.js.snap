@@ -14,9 +14,8 @@ exports[`declare.php 1`] = `
 declare(strict_types=1); ?>
 <html>
     <body>
-        <?php
-        $a = 1;
-        ?>
+        <?php $a = 1; ?>
+
     </body>
 </html>
 
@@ -114,11 +113,11 @@ function inlineNested1()
 
 function inlineMultipleStatements()
 {
-    $a = 1; ?>
+    $a = 1;
+     ?>
     <span>Hello World!</span>
-    <?php
-        $b = 1;
-        ?>
+    <?php $b = 1; ?>
+    
     <span>Hello World!</span>
     <?php $c = 1;
 }
@@ -224,10 +223,9 @@ echo 'String.';
 echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
 <div></div>
 <?php echo 'foo';
-echo 'bar'; ?>
-<div class="<?php
-            echo $class;
-            ?>"></div>
+echo 'bar';
+ ?>
+<div class="<?php echo $class; ?>"></div>
 <div>
   <h1>
     <?php
@@ -313,7 +311,9 @@ $a = 1;
 ?>
 <div>Foo</div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php $a = 1; ?>
+<?php
+$a = 1;
+ ?>
 <div>Foo</div>
 
 `;
@@ -396,6 +396,7 @@ if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
     }
 }
 ?>
+
 text
 
 `;
@@ -445,6 +446,7 @@ exports[`mixed-6.php 1`] = `
         'color' => $item->title_color ?: 'primary'
     ]);
     ?>
+
   </header>
 </section>
 
@@ -459,6 +461,7 @@ exports[`mixed-6.php 1`] = `
         'color' => $item->title_color ?: 'primary'
     ]);
     ?>
+
   </header> <?php
             echo $someOtherVar()->element('collection/item-title', [
                 'class' => $itemTitleClass,
