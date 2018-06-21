@@ -75,10 +75,19 @@ function genericPrint(path, options, print) {
   const isProgramNode = node.kind === "program";
   // case 1, which can be treated the same as the top-level program node
   const isFullNestedNode = isNodeFullyNestedInline(path);
-  const shouldHaveOpenTag =
+  let shouldHaveOpenTag =
     isFullNestedNode ||
     (isProgramNode && !node.children[0]) ||
     (isProgramNode && node.children[0] && node.children[0].kind !== "inline");
+
+  // if the first node is fully nested inline, it will handle its own tags
+  if (isProgramNode) {
+    path.map((childPath, index) => {
+      if (index === 0 && isNodeFullyNestedInline(childPath)) {
+        shouldHaveOpenTag = false;
+      }
+    }, "children");
+  }
 
   const printed = printNode(path, options, print);
   if (shouldHaveOpenTag) {

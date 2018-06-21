@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`inline.php 1`] = `
+#!/usr/bin/php
+<?php var_dump($argv);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/usr/bin/php
+<?php var_dump($argv);
+
+`;
+
 exports[`shebang.php 1`] = `
 #!/usr/bin/php
 <?php

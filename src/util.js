@@ -247,6 +247,12 @@ function isNodeFullyNestedInline(path) {
   const parentNodeBody = getParentNodeListProperty(path);
   const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
   const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
+  const parentNode = path.getParentNode();
+  if (nodeIndex === 0 && parentNode && parentNode.kind === "program") {
+    return (
+      nextNode && nextNode.kind === "inline" && !node.loc.source.includes("?>")
+    );
+  }
   return (
     nextNode &&
     prevNode &&
@@ -277,6 +283,12 @@ function isPreviousNodeFullyNestedInline(path) {
   const parentNodeBody = getParentNodeListProperty(path);
   const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
   const prevPrevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 2];
+  const parentNode = path.getParentNode();
+  if (nodeIndex === 1 && parentNode && parentNode.kind === "program") {
+    return (
+      node && node.kind === "inline" && !prevNode.loc.source.includes("?>")
+    );
+  }
   return (
     node &&
     prevPrevNode &&

@@ -7,3 +7,12 @@ exports[`single-open-php-tag.php 1`] = `
 
 
 `;
+
+exports[`single-open-php-tag-extra-space.php 1`] = `
+<?php
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+
+`;
