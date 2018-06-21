@@ -1190,7 +1190,9 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(
     path.map(childPath => {
       let canPrintBlankLine =
-        !isLastStatement(childPath) && childPath.getValue().kind !== "inline";
+        !isLastStatement(childPath) &&
+        childPath.getValue().kind !== "inline" &&
+        !isNodeFullyNestedInline(childPath);
       if (canPrintBlankLine && isNextNodeInline(childPath)) {
         // check if inline is on a new line, if no set to false
         const inlineNode = getNextNodeInParentListProperty(path);
