@@ -363,6 +363,7 @@ function lineShouldEndWithSemicolon(path) {
     "new",
     "eval",
     "propertylookup",
+    "staticlookup",
     "offsetlookup",
     "silent",
     "usegroup",

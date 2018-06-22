@@ -9,6 +9,15 @@ Foo::bar();
 
 `;
 
+exports[`single-variable.php 1`] = `
+<?php
+MyClass::$aStaticProp;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+MyClass::$aStaticProp;
+
+`;
+
 exports[`staticlookup.php 1`] = `
 <?php
 Foo::aStaticMethod();
@@ -21,6 +30,9 @@ Foo::method([
     'foobar' => 'barfoo',
     'barfoo' => 'foobar'
 ]);
+MyClass::$aStaticProp;
+MyClass::$aStaticProp = 1;
+$classname::$aStaticProp;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 Foo::aStaticMethod();
@@ -33,5 +45,8 @@ Foo::method([
     'foobar' => 'barfoo',
     'barfoo' => 'foobar'
 ]);
+MyClass::$aStaticProp;
+MyClass::$aStaticProp = 1;
+$classname::$aStaticProp;
 
 `;
