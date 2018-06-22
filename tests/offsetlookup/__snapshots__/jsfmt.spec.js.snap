@@ -33,9 +33,8 @@ $variable[
 ] = $variable->registered[
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
 ];
-$variable = get_taxonomy_function(
-    get_queried_object_function()->taxonomy
-)->object_type[0];
+$variable = get_taxonomy_function(get_queried_object_function()->taxonomy)
+    ->object_type[0];
 $someArray[] = $this->something->long->that->not->makes->it->break->onto->two->break->lines();
 
 `;

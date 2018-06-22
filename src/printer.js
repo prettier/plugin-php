@@ -804,13 +804,38 @@ function printExpression(path, options, print) {
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
     switch (node.kind) {
-      case "propertylookup":
+      case "propertylookup": {
+        const parent = path.getParentNode();
+        let firstNonMemberParent;
+        let i = 0;
+        do {
+          firstNonMemberParent = path.getParentNode(i);
+          i++;
+        } while (firstNonMemberParent && isMemberish(firstNonMemberParent));
+
+        const shouldInline =
+          (firstNonMemberParent && firstNonMemberParent.kind === "new") ||
+          (node.what.kind === "variable" &&
+            (node.offset.kind === "constref" ||
+              node.offset.kind === "variable") &&
+            !isMemberish(parent));
+
         return group(
           concat([
             path.call(print, "what"),
-            printPropertyLookup(path, options, print)
+            shouldInline
+              ? printPropertyLookup(path, options, print)
+              : group(
+                  indent(
+                    concat([
+                      softline,
+                      printPropertyLookup(path, options, print)
+                    ])
+                  )
+                )
           ])
         );
+      }
       case "staticlookup":
         return concat([
           path.call(print, "what"),
