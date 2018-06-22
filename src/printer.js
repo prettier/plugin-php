@@ -13,7 +13,9 @@ const {
   dedent,
   ifBreak,
   hardline,
-  softline
+  softline,
+  align,
+  dedentToRoot
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
@@ -25,21 +27,14 @@ const {
 const comments = require("./comments");
 
 const {
-  getNodeListProperty,
   getLast,
   getPenultimate,
-  isControlStructureNode,
-  isFirstNodeInParentProgramNode,
-  isFirstNodeInParentNode,
-  isPrevNodeInline,
   isNextNodeInline,
   isLastStatement,
-  lineShouldHaveStartPHPTag,
   lineShouldEndWithSemicolon,
-  lineShouldHaveEndPHPTag,
   printNumber,
   shouldFlatten,
-  shouldRemoveLines,
+  getNodeIndex,
   removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
@@ -47,7 +42,13 @@ const {
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish
+  isMemberish,
+  isPrevNodeInline,
+  getPreviousNodeInParentListProperty,
+  getNextNodeInParentListProperty,
+  isNodeFullyNestedInline,
+  isNextNodeFullyNestedInline,
+  isPreviousNodeFullyNestedInline
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -68,56 +69,104 @@ function genericPrint(path, options, print) {
   } else if (typeof node === "string") {
     return node;
   }
+  // there are 2 mixed php/html cases we need to account for here
+  // 1) a full php node nested within html (handled below)
+  // 2) inline html mixed within a php node (handled in the nodes themselves)
+
   const isProgramNode = node.kind === "program";
-  if (isProgramNode && node.children.length === 0) {
-    return concat([
-      "<?php",
-      hardline,
-      comments.printDanglingComments(path, options, /* sameIndent */ true)
-    ]);
+  // case 1, which can be treated the same as the top-level program node
+  const isFullNestedNode = isNodeFullyNestedInline(path);
+  let shouldHaveOpenTag =
+    isFullNestedNode ||
+    (isProgramNode && !node.children[0]) ||
+    (isProgramNode && node.children[0] && node.children[0].kind !== "inline");
+
+  // if the first node is fully nested inline, it will handle its own tags
+  if (isProgramNode) {
+    path.map((childPath, index) => {
+      if (index === 0 && isNodeFullyNestedInline(childPath)) {
+        shouldHaveOpenTag = false;
+      }
+    }, "children");
   }
+
   const printed = printNode(path, options, print);
+  if (shouldHaveOpenTag) {
+    const shouldHaveCloseTag =
+      isFullNestedNode ||
+      (isProgramNode && node.loc.source.trim().endsWith("?>"));
+
+    if (isFullNestedNode) {
+      const tagOpenIndex = options.originalText.lastIndexOf(
+        "<",
+        options.locStart(node)
+      );
+      let alignment = options.originalText.substring(0, tagOpenIndex);
+      if (options.originalText.lastIndexOf("\n", tagOpenIndex) > -1) {
+        alignment = options.originalText.substring(
+          options.originalText.lastIndexOf("\n", tagOpenIndex) + 1,
+          tagOpenIndex
+        );
+      }
+      return dedentToRoot(
+        group(
+          concat([
+            "<?php",
+            align(
+              new Array(alignment.length + 1).join(" "),
+              concat([
+                line,
+                printed,
+                lineShouldEndWithSemicolon(path) ? ";" : "",
+                line,
+                "?>"
+              ])
+            )
+          ])
+        )
+      );
+    }
+
+    return group(
+      concat([
+        "<?php",
+        line,
+        printed,
+        lineShouldEndWithSemicolon(path) ? ";" : "",
+        shouldHaveCloseTag ? concat([line, "?>"]) : "",
+        fileShouldEndWithHardline(path) ? hardline : ""
+      ])
+    );
+  }
+
   if (node.kind === "inline") {
     const parentNode = path.getParentNode();
+    const isParentProgramNode = parentNode && parentNode.kind === "program";
+    const nodeIndex = getNodeIndex(path);
+    const previousNode = getPreviousNodeInParentListProperty(path);
+    const nextNode = getNextNodeInParentListProperty(path);
+    // case 2 (closing tag to start inline html)
     return concat([
-      parentNode &&
-      parentNode.kind === "declare" &&
-      parentNode.children.indexOf(node) === 0
-        ? "?>"
+      !(isParentProgramNode && nodeIndex === 0) &&
+      !isPreviousNodeFullyNestedInline(path)
+        ? previousNode
+          ? " ?>"
+          : "?>"
         : "",
-      printed
+      printed,
+      !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
+      !isNextNodeFullyNestedInline(path)
+        ? nextNode
+          ? "<?php "
+          : "<?php"
+        : ""
     ]);
   }
-  if (node.kind === "block") {
-    const nodeBody = getNodeListProperty(node);
-    if (nodeBody.length !== 0) {
-      return concat([
-        nodeBody[0].kind === "inline" ? "?>" : "",
-        printed,
-        nodeBody[nodeBody.length - 1].kind === "inline" ? "<?php" : ""
-      ]);
-    }
-  }
+  const shouldRemoveNewLines = isPrevNodeInline(path) || isNextNodeInline(path);
   return concat([
-    lineShouldHaveStartPHPTag(path)
-      ? concat([
-          "<?php",
-          isFirstNodeInParentProgramNode(path) ||
-          (!isNextNodeInline(path) && !isControlStructureNode(node))
-            ? hardline
-            : " "
-        ])
-      : "",
-    shouldRemoveLines(path) ? removeNewlines(printed) : printed,
+    // case 2 (opening tag to close inline html)
+    shouldRemoveNewLines ? removeNewlines(printed) : printed,
     lineShouldEndWithSemicolon(path) ? ";" : "",
-    lineShouldHaveEndPHPTag(path)
-      ? concat([
-          isFirstNodeInParentNode(path) || !isPrevNodeInline(path)
-            ? hardline
-            : " ",
-          "?>"
-        ])
-      : "",
     fileShouldEndWithHardline(path) ? hardline : ""
   ]);
 }
@@ -1018,6 +1067,10 @@ function printExpression(path, options, print) {
             : ""
         ]);
       case "inline":
+        // @TODO: to get line breaks to fully work for mixed html/php
+        // we would need to do this, but it adds an entire other layer of
+        // complexity because of the removeNewlines() logic above
+        // return join(hardline, node.raw.split("\n"));
         return node.raw;
       case "magic":
         // for magic constant we prefer upper case
@@ -1153,10 +1206,28 @@ const statementKinds = [
 function printLines(path, options, print, childrenAttribute = "children") {
   return concat(
     path.map(childPath => {
-      const canPrintBlankLine =
+      let canPrintBlankLine =
         !isLastStatement(childPath) &&
         childPath.getValue().kind !== "inline" &&
-        !isNextNodeInline(childPath);
+        // fully nested nodes handle their own linebreaks
+        !isNodeFullyNestedInline(childPath);
+      if (canPrintBlankLine && isNextNodeInline(childPath)) {
+        // check if inline is on a new line, if no set to false
+        const inlineNode = getNextNodeInParentListProperty(path);
+        const tagCloseIndex = options.originalText.lastIndexOf(
+          "?>",
+          options.locStart(inlineNode)
+        );
+        const lastNewLine = options.originalText.lastIndexOf(
+          "\n",
+          tagCloseIndex
+        );
+        const inlineStartLineText = options.originalText.substring(
+          lastNewLine + 1,
+          tagCloseIndex
+        );
+        canPrintBlankLine = !inlineStartLineText.trim();
+      }
       return concat([
         print(childPath),
         canPrintBlankLine ? hardline : "",
@@ -1179,7 +1250,12 @@ function printStatement(path, options, print) {
           comments.printDanglingComments(path, options, true)
         ]);
       case "program": {
-        return concat([printLines(path, options, print)]);
+        return group(
+          concat([
+            printLines(path, options, print),
+            comments.printDanglingComments(path, options, /* sameIndent */ true)
+          ])
+        );
       }
       case "namespace": {
         const printed = printLines(path, options, print);
