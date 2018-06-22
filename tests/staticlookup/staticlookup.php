@@ -9,3 +9,6 @@ Foo::method([
     'foobar' => 'barfoo',
     'barfoo' => 'foobar'
 ]);
+MyClass::$aStaticProp;
+MyClass::$aStaticProp = 1;
+$classname::$aStaticProp;

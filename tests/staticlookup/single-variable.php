@@ -1,0 +1,2 @@
+<?php
+MyClass::$aStaticProp;
