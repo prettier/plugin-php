@@ -335,3 +335,16 @@ $this->long->expression->before->array->statesArray[
 $arr[ ] = 1;
 $arr{"x"} = 42;
 [ $a, $b ] = [ 1, 2 ];
+$helpers = [
+    'Lazy',
+    'Form' =>
+        [
+            'templates' => 'app_form',
+            'widgets' =>
+                [
+                    'select' => ['App\View\Widget\SelectBoxWidget'],
+                    'nestingLabel' => ['App\View\Widget\NestingLabelWidget']
+                ]
+        ],
+    'MagicMenu.MagicMenu'
+];
