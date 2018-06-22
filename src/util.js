@@ -340,7 +340,8 @@ function lineShouldEndWithSemicolon(path) {
     "boolean",
     "number",
     "nowdoc",
-    "encapsed"
+    "encapsed",
+    "variable"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
