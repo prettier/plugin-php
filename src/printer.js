@@ -2131,17 +2131,20 @@ function printNode(path, options, print) {
         /* sameLine */ true
       );
       const printedComments = dangling ? concat([hardline, dangling]) : "";
+      const printed = concat([path.call(print, "value"), printedComments]);
 
       if (node.key) {
         return group(
           concat([
             path.call(print, "key"),
             " =>",
-            indent(concat([line, path.call(print, "value"), printedComments]))
+            node.value.kind === "array"
+              ? concat([" ", printed])
+              : indent(concat([line, printed]))
           ])
         );
       }
-      return concat([path.call(print, "value"), printedComments]);
+      return printed;
     }
     case "traituse":
       return group(
