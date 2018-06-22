@@ -1150,6 +1150,22 @@ include // Comment
 
 `;
 
+exports[`inline.php 1`] = `
+some text
+/**
+* A comment
+*/
+<?php
+$thing = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+some text
+/**
+* A comment
+*/
+<?php $thing = 1;
+
+`;
+
 exports[`isset.php 1`] = `
 <?php
 
