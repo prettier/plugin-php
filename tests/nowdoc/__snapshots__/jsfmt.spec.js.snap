@@ -47,10 +47,13 @@ $str = <<<'EOL'
 "test" foo 'test'
 EOL;
 
-$str = array(<<<'EOF'
+$str = array(
+    <<<'EOF'
 foo
 EOF
-, "bar");
+    ,
+    "bar"
+);
 
 $str = sprintf(
     <<<'EOF'

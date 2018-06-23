@@ -14,6 +14,7 @@ const {
   ifBreak,
   hardline,
   softline,
+  literalline,
   align,
   dedentToRoot
 } = require("prettier").doc.builders;
@@ -1078,14 +1079,15 @@ function printExpression(path, options, print) {
       case "nowdoc":
         // Respect `indent` for `nowdoc` nodes
         return concat([
+          breakParent,
           "<<<'",
           node.label,
           "'",
-          "\n",
+          literalline,
           node.value,
-          "\n",
+          literalline,
           node.label,
-          docShouldHaveTrailingNewline(path) ? "\n" : ""
+          docShouldHaveTrailingNewline(path) ? hardline : ""
         ]);
       default:
         return `Have not implemented literal kind ${node.kind} yet.`;
