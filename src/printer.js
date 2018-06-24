@@ -564,6 +564,14 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     const arg = argPath.getNode();
     const parts = [print(argPath)];
 
+    if (
+      index !== lastArgIndex &&
+      ((arg.kind === "encapsed" && arg.type === "heredoc") ||
+        arg.kind === "nowdoc")
+    ) {
+      parts.push(hardline);
+    }
+
     if (index === lastArgIndex) {
       // do nothing
     } else if (isNextLineEmpty(options.originalText, arg, options)) {
@@ -1043,9 +1051,10 @@ function printExpression(path, options, print) {
           return group(concat(path.map(print, "value")));
         }
         return concat([
+          node.type === "heredoc" ? breakParent : "",
           getEncapsedQuotes(node),
           // Respect `indent` for `heredoc` nodes
-          node.type === "heredoc" ? "\n" : "",
+          node.type === "heredoc" ? literalline : "",
           concat(
             path.map(valuePath => {
               const node = valuePath.getValue();
