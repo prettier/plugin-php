@@ -29,6 +29,16 @@ $str = sprintf(<<<'EOF'
 foo
 EOF
 );
+
+$str = sprintf(<<<'EOF'
+foo
+EOF
+, true);
+
+$str = sprintf(<<<EOD
+foo
+EOD
+, true);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $str = <<<'EOD'
@@ -47,15 +57,34 @@ $str = <<<'EOL'
 "test" foo 'test'
 EOL;
 
-$str = array(<<<'EOF'
+$str = array(
+    <<<'EOF'
 foo
 EOF
-, "bar");
+    ,
+    "bar"
+);
 
 $str = sprintf(
     <<<'EOF'
 foo
 EOF
+);
+
+$str = sprintf(
+    <<<'EOF'
+foo
+EOF
+    ,
+    true
+);
+
+$str = sprintf(
+    <<<EOD
+foo
+EOD
+    ,
+    true
 );
 
 `;

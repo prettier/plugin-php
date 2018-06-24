@@ -26,3 +26,13 @@ $str = sprintf(<<<'EOF'
 foo
 EOF
 );
+
+$str = sprintf(<<<'EOF'
+foo
+EOF
+, true);
+
+$str = sprintf(<<<EOD
+foo
+EOD
+, true);
