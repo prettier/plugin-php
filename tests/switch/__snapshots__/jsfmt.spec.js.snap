@@ -316,7 +316,8 @@ switch (
 }
 
 switch (1) {
-    case $exception->veryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryVeryVeryLongProperty:
+    case $exception->veryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod()
+        ->veryVeryVeryVeryVeryVeryVeryLongProperty:
         break;
 }
 
