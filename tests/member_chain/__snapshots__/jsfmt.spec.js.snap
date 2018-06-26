@@ -346,8 +346,7 @@ one()
     ->two->three()
     ->four->five();
 
-Route
-    ::prefix('api')
+Route::prefix('api')
     ->middleware('api')
     ->namespace($this->namespace)
     ->group(base_path('routes/api.php'));

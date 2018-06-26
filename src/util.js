@@ -441,11 +441,7 @@ function hasTrailingComment(node) {
 }
 
 function isMemberish(node) {
-  return (
-    node.kind === "propertylookup" ||
-    node.kind === "staticlookup" ||
-    node.kind === "offsetlookup"
-  );
+  return node.kind === "propertylookup" || node.kind === "offsetlookup";
 }
 
 module.exports = {
