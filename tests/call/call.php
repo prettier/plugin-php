@@ -125,7 +125,7 @@ DB::table('identity')->insertReallyReallyReallyLongName([
 	'handle' => $handle
 ]);
 
-DBwithlongname::table('identity').insertReallyReallyReallyLongName().someOtherReallyReallyLong();
+DBwithlongname::table('identity')->insertReallyReallyReallyLongName()->someOtherReallyReallyLong();
 
 $page = TableRegistry
   ::get('Pages')
