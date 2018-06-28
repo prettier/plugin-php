@@ -83,8 +83,28 @@ const handleForLoop = comment => {
 };
 
 const handleClass = comment => {
-  const { enclosingNode } = comment;
+  const { enclosingNode, followingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "class") {
+    // for extends nodes that have leading comments, we can store them as
+    // dangling comments so we can handle them in the printer
+    if (followingNode === enclosingNode.extends) {
+      addDanglingComment(followingNode, comment);
+      return true;
+    }
+    // check each implements node - if any of them have comments we can store
+    // them as dangling comments and handle them in the printer
+    if (followingNode && enclosingNode.implements) {
+      if (
+        enclosingNode.implements.some(implementsNode => {
+          if (followingNode && followingNode === implementsNode) {
+            addDanglingComment(followingNode, comment);
+            return true;
+          }
+        })
+      ) {
+        return true;
+      }
+    }
     // for an empty class where the body is only made up of comments, we
     // need to attach this as a dangling comment on the class node itself
     if (!(enclosingNode.body && enclosingNode.body.length > 0)) {
