@@ -1470,7 +1470,26 @@ function printStatement(path, options, print) {
                 concat([
                   node.extends
                     ? group(
-                        concat([line, "extends ", path.call(print, "extends")])
+                        concat([
+                          // check if the extends node has a comment
+                          hasDanglingComments(node.extends)
+                            ? concat([
+                                hardline,
+                                path.call(
+                                  extendsPath =>
+                                    comments.printDanglingComments(
+                                      extendsPath,
+                                      options,
+                                      true
+                                    ),
+                                  "extends"
+                                ),
+                                hardline
+                              ])
+                            : line,
+                          "extends ",
+                          path.call(print, "extends")
+                        ])
                       )
                     : "",
                   node.implements
@@ -1480,10 +1499,25 @@ function printStatement(path, options, print) {
                         group(
                           indent(
                             concat([
-                              line,
                               join(
-                                concat([",", line]),
-                                path.map(print, "implements")
+                                ",",
+                                path.map(implementsPath => {
+                                  // check if any of the implements nodes have comments
+                                  return hasDanglingComments(
+                                    implementsPath.getValue()
+                                  )
+                                    ? concat([
+                                        hardline,
+                                        comments.printDanglingComments(
+                                          implementsPath,
+                                          options,
+                                          true
+                                        ),
+                                        hardline,
+                                        print(implementsPath)
+                                      ])
+                                    : concat([line, print(implementsPath)]);
+                                }, "implements")
                               )
                             ])
                           )

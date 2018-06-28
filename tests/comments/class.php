@@ -59,3 +59,16 @@ interface Template_Interface {
 class Foo {/* Comment */}
 interface FooI {/* Comment */}
 trait FooT {/* Comment */}
+
+// 424 : Method failure
+class ResponseMethodFailure 
+  // behaves as an error
+  extends ResponseNotAcceptable
+  implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
+{
+
+}
