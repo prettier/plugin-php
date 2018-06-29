@@ -111,6 +111,52 @@ If you installed globally, run
 prettier path/to/file.php --write
 ```
 
+## Editor integration
+
+Integration in the prettier plugin for your favorite editor might not be working yet, see see the related issues for [VS Code](https://github.com/prettier/prettier-vscode/issues/395), [Atom](https://github.com/prettier/prettier-atom/issues/395) and [Vim](https://github.com/prettier/vim-prettier/issues/119).
+
+For the moment, you can set up prettier to run on save like this:
+
+### Atom
+
+Install [save-autorun](https://atom.io/packages/save-autorun) and create a `.save.cson` file in your project with the following content:
+
+```cson
+"**/*.php": "prettier ${path} --write"
+```
+
+### VScode
+
+Install [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) and add the following section to your settings:
+
+```json
+"emeraldwalk.runonsave": {
+  "commands": [
+    {
+      "match": "\\.php$",
+        "cmd": "prettier ${file} --write"
+    }
+  ]
+}
+```
+
+### Vim
+
+Adding the following to `.vimrc` will define a custom command `:PrettierPhp` that runs the plugin while preserving the cursor position and run it on save.
+
+```vim
+" Prettier for PHP
+function PrettierPhpCursor()
+  let save_pos = getpos(".")
+  %! prettier --stdin --parser=php
+  call setpos('.', save_pos)
+endfunction
+" define custom command
+command PrettierPhp call PrettierPhpCursor()
+" format on save
+autocmd BufwritePre *.php PrettierPhp
+```
+
 ## Contributing
 
 If you're interested in contributing to the development of Prettier for PHP, you can follow the [CONTRIBUTING guide from Prettier](https://github.com/prettier/prettier/blob/master/CONTRIBUTING.md), as it all applies to this repository too.
