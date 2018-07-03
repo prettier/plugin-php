@@ -273,7 +273,7 @@ function printMemberChain(path, options, print) {
     const node = path.getValue();
     if (
       node.kind === "call" &&
-      (isMemberish(node.what) || node.what.type === "call")
+      (isMemberish(node.what) || node.what.kind === "call")
     ) {
       printedNodes.unshift({
         node,
@@ -409,16 +409,24 @@ function printMemberChain(path, options, print) {
   //    $foo->Data['key']("foo")
   //      ->method();
   //
+
+  function shouldNotWrap(groups) {
+    if (groups[0].length === 1) {
+      const firstNode = groups[0][0].node;
+
+      return (
+        (firstNode.kind === "variable" && firstNode.name === "this") ||
+        firstNode.kind === "identifier"
+      );
+    }
+
+    const lastNode = getLast(groups[0]).node;
+
+    return isMemberish(lastNode) && lastNode.offset.kind === "constref";
+  }
+
   const shouldMerge =
-    groups.length >= 2 &&
-    !groups[1][0].node.comments &&
-    ((groups[0].length === 1 &&
-      (groups[0][0].node.kind === "variable" &&
-        groups[0][0].node.name === "this")) ||
-      (groups[0].length > 1 &&
-        (isMemberish(groups[0][groups[0].length - 1].node) &&
-          groups[0][groups[0].length - 1].node.what.kind === "variable" &&
-          (groups[1].length && groups[1][0].node.kind === "offsetlookup"))));
+    groups.length >= 2 && !groups[1][0].node.comments && shouldNotWrap(groups);
 
   function printGroup(printedGroup) {
     return concat(printedGroup.map(tuple => tuple.printed));
@@ -1871,7 +1879,10 @@ function printStatement(path, options, print) {
       ]);
     case "call": {
       // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
-      if (node.what.kind === "propertylookup") {
+      if (
+        node.what.kind === "propertylookup" ||
+        node.what.kind === "staticlookup"
+      ) {
         return printMemberChain(path, options, print);
       }
       return concat([
