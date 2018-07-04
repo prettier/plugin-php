@@ -471,6 +471,43 @@ exports[`mixed-6.php 1`] = `
 
 `;
 
+exports[`mixed-7.php 1`] = `
+<?php declare(strict_types=1); ?>
+<html>
+    <body>
+        <?php
+          $a = 1;
+        ?>
+    </body>
+</html>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1); ?>
+<html>
+    <body>
+        <?php $a = 1; ?>
+    </body>
+</html>
+
+`;
+
+exports[`mixed-8.php 1`] = `
+<?php declare(strict_types=1); ?>
+<html>
+    <body>
+        <?php $a = 1; $b = 1; ?>
+    </body>
+</html>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1); ?>
+<html>
+    <body>
+        <?php
+        $a = 1;
+        $b = 1;
+        ?>
+    </body>
+</html>
+
+`;
+
 exports[`only-html.php 1`] = `
 <!DOCTYPE html>
 <html>

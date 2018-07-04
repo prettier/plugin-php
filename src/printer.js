@@ -70,6 +70,7 @@ function genericPrint(path, options, print) {
   } else if (typeof node === "string") {
     return node;
   }
+
   // there are 2 mixed php/html cases we need to account for here
   // 1) a full php node nested within html (handled below)
   // 2) inline html mixed within a php node (handled in the nodes themselves)
