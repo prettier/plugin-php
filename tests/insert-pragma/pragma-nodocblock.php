@@ -1,8 +1,4 @@
-<div>
-  inline stuff up top
-</div>
-
-<?php
+<?php echo "Hello World";
 
 echo "Hello World";
 

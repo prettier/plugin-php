@@ -45,15 +45,19 @@ const insertPragma = text => {
     return `${before}${injectPragma(firstDocBlock.value)}${after}`;
   }
   const openTag = "<?php";
-  const firstPhpTagIdx = text.indexOf(openTag);
-  if (firstPhpTagIdx === -1) {
-    // bail
+  if (!text.startsWith(openTag)) {
+    // bail out
     return text;
   }
-  const splitAt = firstPhpTagIdx + openTag.length + 1;
-  const before = text.substring(0, splitAt);
+
+  const splitAt = openTag.length;
+  const phpTag = text.substring(0, splitAt);
   const after = text.substring(splitAt);
-  return `${before}/** @format */${after}`;
+  return `${phpTag}
+/** 
+ * @format 
+ */
+${after}`;
 };
 
 module.exports = {
