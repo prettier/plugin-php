@@ -6,6 +6,7 @@ const clean = require("./clean");
 const options = require("./options");
 const comments = require("./comments");
 const { join, hardline } = require("prettier").doc.builders;
+const { hasPragma, insertPragma } = require("./pragma");
 
 const languages = [
   {
@@ -75,13 +76,15 @@ const parsers = {
     parse,
     astFormat: "php",
     locStart: loc("start"),
-    locEnd: loc("end")
+    locEnd: loc("end"),
+    hasPragma
   }
 };
 
 const printers = {
   php: {
     print,
+    insertPragma,
     massageAstNode: clean,
     // @TODO: determine if it makes sense to abstract this into a "getChildNodes" util function
     getCommentChildNodes(node) {

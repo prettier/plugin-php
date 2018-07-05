@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pragma-nodocblock.php 1`] = `
+<div>
+  inline stuff up top
+</div>
+
+<?php
+
+echo "Hello World";
+
+// non-docblock comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+  inline stuff up top
+</div>
+
+<?php /** @format */
+echo "Hello World";
+
+// non-docblock comment
+
+`;
+
+exports[`pragma-withdocblock.php 1`] = `
+<?php
+/**
+ * This is a preexisting docblock which will receive a "format" pragma
+ *
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This is a preexisting docblock which will receive a "format" pragma
+ *
+ * @format
+ * @author Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+
+`;

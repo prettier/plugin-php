@@ -10,6 +10,7 @@
     "src"
   ],
   "dependencies": {
+    "jest-docblock": "^23.2.0",
     "php-parser": "3.0.0-alpha2"
   },
   "devDependencies": {
