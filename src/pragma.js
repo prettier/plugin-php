@@ -29,9 +29,7 @@ const insertPragma = text => {
     } = firstDocBlock.loc;
     before = text.substring(0, startOffset);
     after = text.substring(endOffset);
-    parsedDocblock = docblock.parseWithComments(
-      docblock.extract(firstDocBlock.value)
-    );
+    parsedDocblock = docblock.parseWithComments(firstDocBlock.value);
   } else {
     const openTag = "<?php";
     const firstPhpTagIdx = text.indexOf(openTag);
