@@ -2,17 +2,24 @@
 
 const parse = require("./parser");
 const { EOL } = require("os");
+const memoize = require("mem");
 
-const extractDocBlocks = text => {
+const reHasPragma = /@prettier|@format/;
+
+const extractDocBlocks = memoize(text => {
   const parsed = parse(text);
   return parsed.comments.filter(el => el.kind === "commentblock");
-};
+});
 
 const hasPragma = text => {
+  // fast path optimization - check if the pragma shows up in the file at all
+  if (!reHasPragma.test(text)) {
+    return false;
+  }
   const [firstDocBlock] = extractDocBlocks(text);
   if (firstDocBlock) {
     const { value } = firstDocBlock;
-    return value.indexOf("@prettier") !== -1 || value.indexOf("@format") !== -1;
+    return reHasPragma.test(value);
   }
   return false;
 };
