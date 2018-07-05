@@ -22,11 +22,12 @@ const injectPragma = docblock => {
   if (lines.length === 1) {
     // normalize to multiline for simplicity
     const [, line] = /\/*\*\*(.*)\*\//.exec(lines[0]);
-    lines = ["/**", ` * ${line.trim()}`, " *", " */"];
+    lines = ["/**", ` * ${line.trim()}`, " */"];
   }
   // find the first @pragma
-  const pragmaIndex = lines.findIndex(line => /@\S/.test(line));
-  // if none is found, pragmaIndex is -1, which conveniently will splice 1 from the end.
+  // if there happens to be one on the opening line, just put it on the next line.
+  const pragmaIndex = lines.findIndex(line => /@\S/.test(line)) || 1;
+  // not found => index == -1, which conveniently will splice 1 from the end.
   lines.splice(pragmaIndex, 0, " * @format");
 
   return lines.join(EOL);

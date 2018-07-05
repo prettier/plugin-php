@@ -49,9 +49,24 @@ echo "Hello World";
 <?php
 /**
  * edge case docblock
- *
  * @format
  */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-weirddocblock-alt.php 1`] = `
+<?php
+/** @edge 
+ * case */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/** @edge
+ * @format
+ * case */
 
 echo "Hello World";
 
