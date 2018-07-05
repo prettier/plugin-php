@@ -1,7 +1,7 @@
 "use strict";
 
-const docblock = require("jest-docblock");
 const parse = require("./parser");
+const { EOL } = require("os");
 
 const extractDocBlocks = text => {
   const parsed = parse(text);
@@ -17,37 +17,42 @@ const hasPragma = text => {
   return false;
 };
 
+const injectPragma = docblock => {
+  // find the first @pragma
+  let lines = docblock.split(EOL);
+  if (lines.length === 1) {
+    // normalize to multiline for simplicity
+    const [, line] = /\/*\*\*(.*)\*\//.exec(lines[0]);
+    lines = ["/**", ` * ${line.trim()}`, " *", " */"];
+  }
+  const pragmaIndex = lines.findIndex(line => /@\S/.test(line));
+  // if none is found, pragmaIndex is -1, which conveniently will splice 1 from the end.
+  lines.splice(pragmaIndex, 0, " * @format");
+
+  return lines.join(EOL);
+};
+
 const insertPragma = text => {
   const [firstDocBlock] = extractDocBlocks(text);
-  let before;
-  let after;
-  let parsedDocblock;
   if (firstDocBlock) {
     const {
       start: { offset: startOffset },
       end: { offset: endOffset }
     } = firstDocBlock.loc;
-    before = text.substring(0, startOffset);
-    after = text.substring(endOffset);
-    parsedDocblock = docblock.parseWithComments(firstDocBlock.value);
-  } else {
-    const openTag = "<?php";
-    const firstPhpTagIdx = text.indexOf(openTag);
-    if (firstPhpTagIdx === -1) {
-      // bail
-      return text;
-    }
-    const splitAt = firstPhpTagIdx + openTag.length + 1;
-    before = text.substring(0, splitAt);
-    after = text.substring(splitAt);
-    parsedDocblock = { comments: "", pragmas: {} };
+    const before = text.substring(0, startOffset);
+    const after = text.substring(endOffset);
+    return `${before}${injectPragma(firstDocBlock.value)}${after}`;
   }
-  const pragmas = Object.assign({ format: "" }, parsedDocblock.pragmas);
-  const newDocblock = docblock.print({
-    pragmas,
-    comments: parsedDocblock.comments
-  });
-  return before + newDocblock + after;
+  const openTag = "<?php";
+  const firstPhpTagIdx = text.indexOf(openTag);
+  if (firstPhpTagIdx === -1) {
+    // bail
+    return text;
+  }
+  const splitAt = firstPhpTagIdx + openTag.length + 1;
+  const before = text.substring(0, splitAt);
+  const after = text.substring(splitAt);
+  return `${before}/** @format */${after}`;
 };
 
 module.exports = {

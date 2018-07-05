@@ -22,6 +22,41 @@ echo "Hello World";
 
 `;
 
+exports[`pragma-sparsedocblock.php 1`] = `
+<?php
+/**
+ * This docblock doesn't have any pragma in it yet.
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This docblock doesn't have any pragma in it yet.
+ * @format
+ */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-weirddocblock.php 1`] = `
+<?php
+/** edge case docblock */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * edge case docblock
+ *
+ * @format
+ */
+
+echo "Hello World";
+
+`;
+
 exports[`pragma-withdocblock.php 1`] = `
 <?php
 /**
@@ -38,7 +73,7 @@ echo "Hello World";
  * This is a preexisting docblock which will receive a "format" pragma
  *
  * @format
- * @author Bob Bobberson
+ * @author    Bob Bobberson
  * @copyright Doge Inc. 2018 - All Rights Reserved
  */
 
