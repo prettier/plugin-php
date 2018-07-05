@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`pragma-alreadyinserted.php 1`] = `
+<?php
+/**
+ * This already has the pragma, it shouldn't get another.
+ *
+ * @format
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This already has the pragma, it shouldn't get another.
+ *
+ * @format
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+
+`;
+
 exports[`pragma-nodocblock.php 1`] = `
 <div>
   inline stuff up top
