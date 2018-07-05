@@ -18,13 +18,13 @@ const hasPragma = text => {
 };
 
 const injectPragma = docblock => {
-  // find the first @pragma
   let lines = docblock.split(EOL);
   if (lines.length === 1) {
     // normalize to multiline for simplicity
     const [, line] = /\/*\*\*(.*)\*\//.exec(lines[0]);
     lines = ["/**", ` * ${line.trim()}`, " *", " */"];
   }
+  // find the first @pragma
   const pragmaIndex = lines.findIndex(line => /@\S/.test(line));
   // if none is found, pragmaIndex is -1, which conveniently will splice 1 from the end.
   lines.splice(pragmaIndex, 0, " * @format");
