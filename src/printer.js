@@ -1731,13 +1731,16 @@ function printStatement(path, options, print) {
         //     : false;
         (node.right.kind === "retif" && node.right.test.kind === "bin") ||
         isPropertyLookupChain(node.right);
+      const isNumberNode = node.right.kind === "number";
       return group(
         concat([
           path.call(print, "left"),
           " ",
           node.operator,
           canBreak
-            ? indent(concat([line, path.call(print, "right")]))
+            ? indent(
+                concat([isNumberNode ? " " : line, path.call(print, "right")])
+              )
             : concat([" ", path.call(print, "right")])
         ])
       );
