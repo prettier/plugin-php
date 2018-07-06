@@ -1745,6 +1745,8 @@ function printStatement(path, options, print) {
         (node.right.kind === "retif" && node.right.test.kind === "bin") ||
         isPropertyLookupChain(node.right);
       const isNumberNode = node.right.kind === "number";
+      const isMultiLineString =
+        node.right.kind === "string" && node.right.raw.includes("\n");
       return group(
         concat([
           path.call(print, "left"),
@@ -1752,7 +1754,10 @@ function printStatement(path, options, print) {
           node.operator,
           canBreak
             ? indent(
-                concat([isNumberNode ? " " : line, path.call(print, "right")])
+                concat([
+                  isNumberNode || isMultiLineString ? " " : line,
+                  path.call(print, "right")
+                ])
               )
             : concat([" ", path.call(print, "right")])
         ])

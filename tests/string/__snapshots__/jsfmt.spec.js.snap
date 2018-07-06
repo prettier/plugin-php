@@ -11,17 +11,29 @@ $chart = '
   }
 }';
 
+$chart = "
+{
+  'chart': {
+    'caption': 'Worlds Top 10 largest companies in 2017'
+  }
+}";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $string = 'foo
 bar';
-$chart =
-    '
+$chart = '
 {
   "chart": {
     "caption": "Worlds Top 10 largest companies in 2017"
   }
 }';
+
+$chart = "
+{
+  'chart': {
+    'caption': 'Worlds Top 10 largest companies in 2017'
+  }
+}";
 
 `;
 
@@ -100,6 +112,10 @@ strings this way as it is
 okay to do";
 $test = '/(<a\\b[^><]*)>/i';
 $string = "\\"encapsed $escaping\\"";
+$string = 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+$string = "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
+$string = "ShortString\\n";
+$string = 'ShortString\\n';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $string = 'this is a simple string';
@@ -165,11 +181,16 @@ $string = "I'd like an \${beers::$ale}\\n";
 $test = "\\\\";
 $test = '\\\\';
 printf("Query run in $queryTimeTaken seconds.\\n");
-$test =
-    "You can also have embedded\\n newlines in
+$test = "You can also have embedded\\n newlines in
 strings this way as it is
 okay to do";
 $test = '/(<a\\b[^><]*)>/i';
 $string = "\\"encapsed $escaping\\"";
+$string =
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+$string =
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
+$string = "ShortString\\n";
+$string = 'ShortString\\n';
 
 `;
