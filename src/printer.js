@@ -325,76 +325,95 @@ function printMemberChain(path, options, print) {
   //   a()
   //     ->b->c()
   //     ->d();
-  const groups = [];
-  let currentGroup = [printedNodes[0]];
-  let i = 1;
-  for (; i < printedNodes.length; ++i) {
-    if (
-      printedNodes[i].node.kind === "call" ||
-      (printedNodes[i].node.kind === "offsetlookup" &&
-        printedNodes[i].node.offset &&
-        printedNodes[i].node.offset.kind === "number")
-    ) {
-      currentGroup.push(printedNodes[i]);
-    } else {
-      break;
-    }
-  }
-  if (printedNodes[0].node.kind !== "call") {
-    for (; i + 1 < printedNodes.length; ++i) {
-      if (
-        isMemberish(printedNodes[i].node) &&
-        isMemberish(printedNodes[i + 1].node)
-      ) {
-        currentGroup.push(printedNodes[i]);
-      } else {
-        break;
-      }
-    }
-  }
-  groups.push(currentGroup);
-  currentGroup = [];
+  const { groups } = printedNodes.reduce(
+    (acc, currentNode, index) => {
+      // shouldStartNewGroup dictates if a new group should start after the
+      // current node. typically we'll just check if this is a call node or
+      // not to know if we should break into a new group
+      let shouldStartNewGroup = currentNode.node.kind === "call";
+      let delayedNewGroup = false;
 
-  // Then, each following group is a sequence of propertylookup followed by
-  // a sequence of call. To compute it, we keep adding things to the
-  // group until we have seen a call in the past and reach a
-  // propertylookup
-  let hasSeenCallExpression = false;
-  for (; i < printedNodes.length; ++i) {
-    if (hasSeenCallExpression && isMemberish(printedNodes[i].node)) {
-      // [0] should be appended at the end of the group instead of the
-      // beginning of the next one
+      // To account for shorthand arrays as the result of a call being grouped
+      // together, ie
+      // $this->someFunction()[0]
+      //   ->somethingElse;
+      // rather than
+      // $this->someFunction()
+      //   [0]->somethingElse;
       if (
-        printedNodes[i].node.kind === "offsetlookup" &&
-        printedNodes[i].node.offset &&
-        printedNodes[i].node.offset.kind === "number"
+        shouldStartNewGroup &&
+        printedNodes[index + 1] &&
+        printedNodes[index + 1].node.kind === "offsetlookup" &&
+        printedNodes[index + 1].node.offset &&
+        printedNodes[index + 1].node.offset.kind === "number"
       ) {
-        currentGroup.push(printedNodes[i]);
-        continue;
+        shouldStartNewGroup = false;
+        delayedNewGroup = true;
+      } else if (!shouldStartNewGroup && acc.delayedNewGroup) {
+        shouldStartNewGroup = true;
       }
 
-      groups.push(currentGroup);
-      currentGroup = [];
-      hasSeenCallExpression = false;
-    }
+      // for the first node, we have some special cases to dictate whether to
+      // group following nodes or put it on its own line.
+      //
+      // group static lookups
+      // SomeClass::staticFunction()
+      //   ->someOtherThing;
+      //
+      // group member lookups, if there are 2 in a row
+      // $this->something->someOtherThing()
+      //   ->someOtherThing;
+      if (
+        index === 0 &&
+        printedNodes[index + 1] &&
+        printedNodes[index + 1].node.kind !== "call" &&
+        printedNodes[index + 1].node.kind !== "staticlookup" &&
+        !(
+          isMemberish(printedNodes[index + 1].node) &&
+          printedNodes[index + 2] &&
+          isMemberish(printedNodes[index + 2].node)
+        )
+      ) {
+        shouldStartNewGroup = true;
+      }
 
-    if (printedNodes[i].node.kind === "call") {
-      hasSeenCallExpression = true;
+      // if this is the first node, create the first group
+      if (index === 0) {
+        return {
+          currentGroupIndex: 0,
+          shouldStartNewGroup,
+          delayedNewGroup,
+          groups: [[currentNode]]
+        };
+      }
+      // the previous iteration dictates if we should be starting a new group
+      // or appending to the current one
+      if (acc.shouldStartNewGroup) {
+        return {
+          currentGroupIndex: acc.currentGroupIndex + 1,
+          shouldStartNewGroup,
+          delayedNewGroup,
+          groups: [...acc.groups, [currentNode]]
+        };
+      }
+      return {
+        currentGroupIndex: acc.currentGroupIndex,
+        shouldStartNewGroup,
+        delayedNewGroup,
+        groups: [
+          ...acc.groups.slice(0, acc.currentGroupIndex),
+          [...acc.groups[acc.currentGroupIndex], currentNode],
+          ...acc.groups.slice(acc.currentGroupIndex + 1)
+        ]
+      };
+    },
+    {
+      currentGroupIndex: 0,
+      shouldStartNewGroup: true,
+      delayedNewGroup: false,
+      groups: []
     }
-    currentGroup.push(printedNodes[i]);
-
-    if (
-      printedNodes[i].node.comments &&
-      comments.hasTrailingComment(printedNodes[i].node)
-    ) {
-      groups.push(currentGroup);
-      currentGroup = [];
-      hasSeenCallExpression = false;
-    }
-  }
-  if (currentGroup.length > 0) {
-    groups.push(currentGroup);
-  }
+  );
 
   // Merge next nodes when:
   //

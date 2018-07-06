@@ -119,3 +119,20 @@ implode(
         array_merge($arr1, $arr2, $arr3)
     )
 );
+
+DB::table('identity')->insertReallyReallyReallyLongName([
+	'ref' => $ref,
+	'handle' => $handle
+]);
+
+DBwithlongname::table('identity')->insertReallyReallyReallyLongName()->someOtherReallyReallyLong();
+
+$DBwithlongname->table('identity')::insertReallyReallyReallyLongName()->someOtherReallyReallyLong();
+
+$page = TableRegistry
+  ::get('Pages')
+  ->findByPath($path)
+  ->find('published')
+  ->find('frontend')
+  ->find('somethingElse')
+  ->first();

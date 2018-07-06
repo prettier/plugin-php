@@ -579,8 +579,7 @@ $window->Data['key']("foo")
         return $b;
     });
 
-$window->Data['key']
-    ['foo']("foo")
+$window->Data['key']['foo']("foo")
     ->then(function () {
         return $a;
     })
