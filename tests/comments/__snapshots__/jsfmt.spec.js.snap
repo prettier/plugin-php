@@ -815,7 +815,6 @@ class Test
 
     function testFunction($arg1, /* inline */ $arg2)
     {
-
     }
 }
 
@@ -826,7 +825,6 @@ function testFunction(/* inline */ $arg)
 
 function testFunction($arg1, /* inline */ $arg2)
 {
-
 }
 
 `;
@@ -991,15 +989,12 @@ function emptyFn(/*Comment */) {}
 <?php
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */)
 {
-
 }
 function foo($a): /* 5 */ ?string /* 6 */
 {
-
 }
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
 {
-
 }
 function emptyFn()
 {
@@ -1252,7 +1247,6 @@ class Foo
     public function foo(
         /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
     ): /* 5 */ ?string /* 6 */ {
-
     }
 
     public function emptyMethod()
@@ -1351,12 +1345,10 @@ function foo(
     /* Comment */ array /* Comment */ $b /* Comment */
         = /* Comment */ [] /* Comment */
 ) {
-
 }
 
 function bar(/* Comment */ &$a /* Comment */)
 {
-
 }
 
 `;

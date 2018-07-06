@@ -59,3 +59,7 @@ $foo->bar(
     },
     $longLongLongLongLongLongLongLongLongLongArg3
 );
+
+$emptyFunc = function(){};
+
+$emptyFuncWithComment = function(){ /* Comment */ };

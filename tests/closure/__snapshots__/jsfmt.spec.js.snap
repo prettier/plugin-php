@@ -62,6 +62,10 @@ $foo->bar(
     },
     $longLongLongLongLongLongLongLongLongLongArg3
 );
+
+$emptyFunc = function(){};
+
+$emptyFuncWithComment = function(){ /* Comment */ };
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $closureWithArgs = function ($arg1, $arg2) {
@@ -123,5 +127,12 @@ $foo->bar(
     },
     $longLongLongLongLongLongLongLongLongLongArg3
 );
+
+$emptyFunc = function () {
+};
+
+$emptyFuncWithComment = function () {
+    /* Comment */
+};
 
 `;
