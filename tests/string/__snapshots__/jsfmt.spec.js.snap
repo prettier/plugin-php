@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`multiline.php 1`] = `
+<?php
+$string = 'foo
+bar';
+$chart = '
+{
+  "chart": {
+    "caption": "Worlds Top 10 largest companies in 2017"
+  }
+}';
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$string = 'foo
+bar';
+$chart =
+    '
+{
+  "chart": {
+    "caption": "Worlds Top 10 largest companies in 2017"
+  }
+}';
+
+`;
+
 exports[`single.php 1`] = `
 <?php
 'string';
