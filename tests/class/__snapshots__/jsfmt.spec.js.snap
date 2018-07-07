@@ -280,6 +280,10 @@ class test {
         return "The customer for that job, {$job->customer->name} has an error that shows up after the line gets waaaaay toooo long.";
     }
 }
+
+class EmptyClass {}
+
+class EmptyClassWithComments { /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 class Foo extends Bar implements Baz, Buzz
@@ -474,7 +478,6 @@ $this->something->method(
 
 class A
 {
-
 }
 
 $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
@@ -490,11 +493,9 @@ class FooBar
     public $property2;
     public function method()
     {
-
     }
     public function method2()
     {
-
     }
 }
 
@@ -508,40 +509,34 @@ class FooBarFoo
 
 class ClassName extends ParentClass implements InterfaceClass
 {
-
 }
 
 class ClassName extends ParentClass
     implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends ParentClass
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
-
 }
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
-
 }
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName
@@ -549,7 +544,6 @@ class ClassName
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends ParentClass
@@ -558,7 +552,6 @@ class ClassName extends ParentClass
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
@@ -567,7 +560,6 @@ class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class ClassName
@@ -577,20 +569,17 @@ class ClassName
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
     implements InterfaceClass
 {
-
 }
 
 class Custom_Plugin_NotificationPlaceholderSource
     extends Notification_Manager_DefaultPlaceholderSource
 {
-
 }
 
 class field extends \\models\\base
@@ -619,6 +608,15 @@ class test
         return "The customer for that job, {$job->customer
             ->name} has an error that shows up after the line gets waaaaay toooo long.";
     }
+}
+
+class EmptyClass
+{
+}
+
+class EmptyClassWithComments
+{
+    /* Comment */
 }
 
 `;

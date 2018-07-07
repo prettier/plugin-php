@@ -248,7 +248,6 @@ use BarClass as Bar;
 
 interface iTemplate
 {
-
 }
 
 abstract class AbstractClass

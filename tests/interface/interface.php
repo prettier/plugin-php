@@ -8,3 +8,7 @@ interface testInterface {
 interface test2 extends testInterface {
   public function other($hi);
 }
+
+interface EmptyInterface {}
+
+interface EmptyInterfaceWithComments { /* Comment */ }

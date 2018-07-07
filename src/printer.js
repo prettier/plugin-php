@@ -1420,15 +1420,28 @@ function printStatement(path, options, print) {
             ])
           )
         : "";
+
+      const hasEmptyBody =
+        ((node.kind === "function" || node.kind === "method") &&
+          node.body &&
+          node.body.children &&
+          node.body.children.length === 0 &&
+          !node.body.comments) ||
+        (isClassLikeNode &&
+          node.body &&
+          node.body.length === 0 &&
+          !node.comments);
+
       const printedBody = bodyContents
         ? concat([
             "{",
-            indent(concat([hardline, bodyContents])),
+            indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
             comments.printDanglingComments(path, options, true),
             hardline,
             "}"
           ])
         : "";
+
       return concat([
         group(
           concat([
@@ -1922,7 +1935,13 @@ function printStatement(path, options, print) {
           : "",
         node.alias ? concat([" as ", node.alias]) : ""
       ]);
-    case "closure":
+    case "closure": {
+      const hasEmptyBody =
+        node.body &&
+        node.body.children &&
+        node.body.children.length === 0 &&
+        !node.body.comments;
+
       return concat([
         "function ",
         printArgumentsList(path, options, print),
@@ -1935,9 +1954,12 @@ function printStatement(path, options, print) {
             )
           : "",
         " {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
+        ),
         concat([hardline, "}"])
       ]);
+    }
     case "retif": {
       const printedExpr = concat([
         line,

@@ -160,3 +160,6 @@ $shortArgs_longVars = function ($arg) use (
 ) {
     // body
 };
+
+function emptyFunction(){}
+function emptyFunctionWithComment(){ /* Comment */ }

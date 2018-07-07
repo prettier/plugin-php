@@ -163,6 +163,9 @@ $shortArgs_longVars = function ($arg) use (
 ) {
     // body
 };
+
+function emptyFunction(){}
+function emptyFunctionWithComment(){ /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 function hello()
@@ -249,7 +252,6 @@ function &passByReferenceTest()
 
 function foo(iterable $iterable = [])
 {
-
 }
 
 function bar(): iterable
@@ -345,5 +347,13 @@ $shortArgs_longVars = function ($arg) use (
 ) {
     // body
 };
+
+function emptyFunction()
+{
+}
+function emptyFunctionWithComment()
+{
+    /* Comment */
+}
 
 `;
