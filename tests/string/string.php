@@ -63,3 +63,7 @@ strings this way as it is
 okay to do";
 $test = '/(<a\b[^><]*)>/i';
 $string = "\"encapsed $escaping\"";
+$string = 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+$string = "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\n";
+$string = "ShortString\n";
+$string = 'ShortString\n';
