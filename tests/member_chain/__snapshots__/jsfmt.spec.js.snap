@@ -68,7 +68,8 @@ $superSupersuperSupersuperSupersuperSupersuperSuperLong
     ->exampleOfOrderOfGetterAndSetterReordered[0];
 $superSupersuperSupersuperSupersuperSupersuperSuperLong->{$exampleOfOrderOfGetterAndSetterReordered};
 $superSupersuperSupersuperSupersuperSupersuperSuperLong::$exampleOfOrderOfGetterAndSetterReordered;
-$superSupersuperSupersuperSupersuperSupersuperSuperLong::$exampleOfOrderOfGetterAndSetterReordered[0];
+$superSupersuperSupersuperSupersuperSupersuperSuperLong
+    ::$exampleOfOrderOfGetterAndSetterReordered[0];
 $superSupersuperSupersuperSupersuperSupersuperSuperLong = (new SuperSuperSuperSuperSuperSuperLongClassName())
     ->some_very_long_member_expression;
 new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong();
@@ -723,12 +724,15 @@ $page = TableRegistry::insertReallyReallyReallyLongName('Pages')
     ::insertReallyReallyReallyLongName();
 
 $page = TableRegistry::insertReallyReallyReallyLongName[0];
-$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
-$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
     ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
     ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
-    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
 $page = TableRegistry::insertReallyReallyReallyLongName('Pages')[0];
 $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName(
@@ -745,6 +749,7 @@ $component = Foo::test([
     'foobar' => 'barfoo',
     'barfoo' => 'foobar'
 ]);
-$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$component = Foo
+    ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
 `;
