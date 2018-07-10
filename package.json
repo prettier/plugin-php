@@ -10,7 +10,7 @@
     "src"
   ],
   "dependencies": {
-    "php-parser": "3.0.0-alpha2"
+    "php-parser": "glayzzle/php-parser#34ed26f07a0336a7f54a405fcd844dc713675876"
   },
   "devDependencies": {
     "eslint": "4.1.1",

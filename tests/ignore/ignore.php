@@ -1,5 +1,4 @@
 <?php
-
 // prettier-ignore
 $var1   =   1;
 

@@ -2,7 +2,6 @@
 
 exports[`ignore.php 1`] = `
 <?php
-
 // prettier-ignore
 $var1   =   1;
 
@@ -31,7 +30,6 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
 ];}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-
 // prettier-ignore
 $var1   =   1;
 
@@ -58,4 +56,5 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
                 "php"
                        ]
 ];}
+
 `;
