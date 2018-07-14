@@ -112,7 +112,7 @@ function genericPrint(path, options, print) {
       return dedentToRoot(
         group(
           concat([
-            "<?php",
+            node.kind === "echo" && node.shortForm ? "<?=" : "<?php",
             align(
               new Array(alignment.length + 1).join(" "),
               concat([
@@ -130,7 +130,7 @@ function genericPrint(path, options, print) {
 
     return group(
       concat([
-        "<?php",
+        node.kind === "echo" && node.shortForm ? "<?=" : "<?php",
         line,
         printed,
         lineShouldEndWithSemicolon(path) ? ";" : "",
@@ -146,6 +146,7 @@ function genericPrint(path, options, print) {
     const nodeIndex = getNodeIndex(path);
     const previousNode = getPreviousNodeInParentListProperty(path);
     const nextNode = getNextNodeInParentListProperty(path);
+    const openTag = nextNode && nextNode.kind === "echo" && nextNode.shortForm ? "<?=" : "<?php";
     // case 2 (closing tag to start inline html)
     return concat([
       !(isParentProgramNode && nodeIndex === 0) &&
@@ -157,9 +158,7 @@ function genericPrint(path, options, print) {
       printed,
       !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
       !isNextNodeFullyNestedInline(path)
-        ? nextNode
-          ? "<?php "
-          : "<?php"
+        ? openTag + (nextNode ? " " : "")
         : ""
     ]);
   }
@@ -1344,7 +1343,7 @@ function printStatement(path, options, print) {
         return indent(
           group(
             concat([
-              "echo ",
+              node.shortForm ? "" : "echo ",
               group(join(concat([",", line]), printedArguments))
             ])
           )
