@@ -433,8 +433,8 @@ exports[`mixed-6.php 1`] = `
     'color' => $item->title_color ?: 'primary',
   ]); ?>
 </section>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<section class="<?php echo $sectionClass; ?>">
-  <header class="<?php echo $headerClass; ?>">
+<section class="<?= $sectionClass; ?>">
+  <header class="<?= $headerClass; ?>">
     <?php
     echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
@@ -447,8 +447,8 @@ exports[`mixed-6.php 1`] = `
   </header>
 </section>
 
-<section class="<?php echo $sectionClass; ?>">
-  <header class="<?php echo $headerClass; ?>">
+<section class="<?= $sectionClass; ?>">
+  <header class="<?= $headerClass; ?>">
     <?php
     echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
@@ -458,8 +458,8 @@ exports[`mixed-6.php 1`] = `
         'color' => $item->title_color ?: 'primary'
     ]);
     ?>
-  </header> <?php
-            echo $someOtherVar()->element('collection/item-title', [
+  </header> <?=
+            $someOtherVar()->element('collection/item-title', [
                 'class' => $itemTitleClass,
                 'small_title' => $item->small_title,
                 'title' => $item->title,
@@ -468,6 +468,17 @@ exports[`mixed-6.php 1`] = `
             ]);
             ?>
 </section>
+
+`;
+
+exports[`mixed-7.php 1`] = `
+There are <?= $variable; ?> examples
+
+There are <?php echo $variable; ?> examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are <?= $variable; ?> examples
+
+There are <?php echo $variable; ?> examples
 
 `;
 
