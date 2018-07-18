@@ -351,6 +351,20 @@ $helpers = [
         ],
     'MagicMenu.MagicMenu'
 ];
+
+$data = [
+
+
+    'value',
+    'value',
+
+
+    // a comment
+    'value',
+    'value'
+
+
+];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = array(1, 2, 3, 4, "test");
@@ -449,6 +463,15 @@ $helpers = [
         ]
     ],
     'MagicMenu.MagicMenu'
+];
+
+$data = [
+    'value',
+    'value',
+
+    // a comment
+    'value',
+    'value'
 ];
 
 `;

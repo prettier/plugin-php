@@ -1148,6 +1148,26 @@ function printExpression(path, options, print) {
     return printLiteral(node);
   }
 
+  function printArrayItems(path, options, printPath, print) {
+    const printedElements = [];
+    let separatorParts = [];
+
+    path.each(childPath => {
+      printedElements.push(concat(separatorParts));
+      printedElements.push(group(print(childPath)));
+
+      separatorParts = [",", line];
+      if (
+        childPath.getValue() &&
+        isNextLineEmpty(options.originalText, childPath.getValue(), options)
+      ) {
+        separatorParts.push(softline);
+      }
+    }, printPath);
+
+    return concat(printedElements);
+  }
+
   switch (node.kind) {
     case "variable":
       return concat([
@@ -1182,10 +1202,7 @@ function printExpression(path, options, print) {
         concat([
           open,
           indent(
-            concat([
-              softline,
-              join(concat([",", line]), path.map(print, "items"))
-            ])
+            concat([softline, printArrayItems(path, options, "items", print)])
           ),
           ifBreak(shouldPrintComma(options) ? "," : ""),
           comments.printDanglingComments(path, options, true),

@@ -348,3 +348,17 @@ $helpers = [
         ],
     'MagicMenu.MagicMenu'
 ];
+
+$data = [
+
+
+    'value',
+    'value',
+
+
+    // a comment
+    'value',
+    'value'
+
+
+];
