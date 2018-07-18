@@ -1987,6 +1987,23 @@ function printStatement(path, options, print) {
               ])
             )
           : "",
+        node.type
+          ? concat([
+              ": ",
+              hasDanglingComments(node.type)
+                ? concat([
+                    path.call(
+                      typePath =>
+                        comments.printDanglingComments(typePath, options, true),
+                      "type"
+                    ),
+                    " "
+                  ])
+                : "",
+              node.nullable ? "?" : "",
+              path.call(print, "type")
+            ])
+          : "",
         " {",
         indent(
           concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
