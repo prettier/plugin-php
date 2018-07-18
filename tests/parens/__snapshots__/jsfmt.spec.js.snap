@@ -36,8 +36,8 @@ exports[`new.php 1`] = `
     'en',
     array(),
     array('foo' => 'bar')
-));
-(
+)); ?>
+<?php (
     new Translator(
         $container,
         new MessageFormatter(),
@@ -45,8 +45,8 @@ exports[`new.php 1`] = `
         $someOtherVar,
         array('foo' => 'bar')
     )
-);
-(new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
+); ?>
+<?php (new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
 ]));
 ?>
