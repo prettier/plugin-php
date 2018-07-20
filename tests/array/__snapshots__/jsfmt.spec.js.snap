@@ -365,6 +365,18 @@ $data = [
 
 
 ];
+
+$arr = [
+    'niveisFederativos' =>
+        app(NiveisFederativosRepository::class)
+            ->allOrderBy('nome')
+            ->pluck('nome', 'id'),
+
+    'tiposLeis' =>
+        app(TiposLeisRepository::class)
+            ->allOrderBy('nome')
+            ->pluck('nome', 'id')
+];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = array(1, 2, 3, 4, "test");
@@ -472,6 +484,16 @@ $data = [
     // a comment
     'value',
     'value'
+];
+
+$arr = [
+    'niveisFederativos' => app(NiveisFederativosRepository::class)
+        ->allOrderBy('nome')
+        ->pluck('nome', 'id'),
+
+    'tiposLeis' => app(TiposLeisRepository::class)
+        ->allOrderBy('nome')
+        ->pluck('nome', 'id')
 ];
 
 `;
