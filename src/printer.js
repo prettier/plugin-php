@@ -2275,7 +2275,7 @@ function printNode(path, options, print) {
           concat([
             path.call(print, "key"),
             " =>",
-            node.value.kind === "array"
+            ["array", "call"].includes(node.value.kind)
               ? concat([" ", printed])
               : indent(concat([line, printed]))
           ])
