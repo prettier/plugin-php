@@ -31,3 +31,5 @@ include $filename;
 (isset($_GET['p']) && $_GET['p'] === 'home') ? include 'pages/home.php' : '';
 include Kohana::find_file('views', 'admin/system/errors');
 include((("test.php")));
+include('foo.php') . ' MORE OUTPUT';
+include 'foo.php' . ' MORE OUTPUT';
