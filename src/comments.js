@@ -25,28 +25,33 @@ args:
   isLastComment
 */
 
-const handleOwnLineComment = (comment, text, options) => {
+const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
-    handleAlternate(comment)
+    handleAlternate(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
-const handleEndOfLineComment = (comment, text, options) => {
+const handleEndOfLineComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
-    handleTryCatch(comment)
+    handleTryCatch(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
-const handleRemainingComment = (comment, text, options) => {
+const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
@@ -55,7 +60,8 @@ const handleRemainingComment = (comment, text, options) => {
     handleTryCatch(comment) ||
     handleBreakAndContinueStatementComments(comment) ||
     handleGoto(comment) ||
-    handleHalt(comment)
+    handleHalt(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
@@ -254,6 +260,30 @@ const handleAlternate = comment => {
   }
   return false;
 };
+
+function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
+  // With Flow the enclosingNode is undefined so use the AST instead.
+  if (ast && ast.children && ast.children.length === 0) {
+    if (isLastComment) {
+      addDanglingComment(ast, comment);
+    } else {
+      addLeadingComment(ast, comment);
+    }
+    return true;
+  } else if (
+    enclosingNode &&
+    enclosingNode.kind === "program" &&
+    enclosingNode.children.length === 0
+  ) {
+    if (isLastComment) {
+      addDanglingComment(enclosingNode, comment);
+    } else {
+      addLeadingComment(enclosingNode, comment);
+    }
+    return true;
+  }
+  return false;
+}
 
 // https://github.com/prettier/prettier/blob/master/src/main/comments.js#L335
 function printComment(commentPath, options) {

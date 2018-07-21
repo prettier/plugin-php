@@ -172,6 +172,27 @@ $bool = /*Comment */ true /*Comment */ || /*Comment */ false; /*Comment */
 
 `;
 
+exports[`blank_lines.php 1`] = `
+<?php
+
+// The first line of a comment
+// The second line of a comment
+
+// A third line which has a blank line before it
+
+
+// Other comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// The first line of a comment
+// The second line of a comment
+
+// A third line which has a blank line before it
+
+<?php
+// Other comment
+
+`;
+
 exports[`break.php 1`] = `
 <?php
 
