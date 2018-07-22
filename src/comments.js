@@ -61,6 +61,7 @@ const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
     handleBreakAndContinueStatementComments(comment) ||
     handleGoto(comment) ||
     handleHalt(comment) ||
+    handleCall(comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
@@ -242,6 +243,19 @@ const handleHalt = comment => {
   const { enclosingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "halt") {
     addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+};
+
+const handleCall = comment => {
+  const { enclosingNode } = comment;
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "call" &&
+    enclosingNode.arguments.length === 0
+  ) {
+    addDanglingComment(enclosingNode, comment);
     return true;
   }
   return false;

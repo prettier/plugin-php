@@ -222,6 +222,8 @@ exports[`call.php 1`] = `
 <?php
 
 foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
+foo(/* A */);
+$foo->bar(/* B */);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 foo(
@@ -229,6 +231,8 @@ foo(
     /* Comment */ [] /* Comment */,
     /* Comment */ ($a + 2) /* Comment */
 );
+foo(/* A */);
+$foo->bar(/* B */);
 
 `;
 
