@@ -19,3 +19,9 @@ $test = 1;
 if ($var) {
     declare(ticks=1);
 }
+
+declare(ticks=1) {
+}
+
+declare(ticks=1):
+enddeclare;

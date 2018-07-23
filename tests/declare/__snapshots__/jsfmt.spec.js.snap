@@ -22,6 +22,12 @@ $test = 1;
 if ($var) {
     declare(ticks=1);
 }
+
+declare(ticks=1) {
+}
+
+declare(ticks=1):
+enddeclare;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 declare(ticks=1):
@@ -44,5 +50,11 @@ $test = 1;
 if ($var) {
     declare(ticks=1);
 }
+
+declare(ticks=1) {
+}
+
+declare(ticks=1):
+enddeclare;
 
 `;

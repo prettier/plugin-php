@@ -2047,8 +2047,9 @@ function printStatement(path, options, print) {
           "declare(",
           printDeclareArguments(path),
           "):",
-          hardline,
-          concat(path.map(print, "children")),
+          node.children.length > 0
+            ? concat([hardline, concat(path.map(print, "children"))])
+            : "",
           hardline,
           "enddeclare;"
         ]);
@@ -2057,7 +2058,9 @@ function printStatement(path, options, print) {
           "declare(",
           printDeclareArguments(path),
           ") {",
-          indent(concat([hardline, concat(path.map(print, "children"))])),
+          node.children.length > 0
+            ? indent(concat([hardline, concat(path.map(print, "children"))]))
+            : "",
           hardline,
           "}"
         ]);
