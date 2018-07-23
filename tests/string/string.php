@@ -67,3 +67,6 @@ $string = 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $string = "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\n";
 $string = "ShortString\n";
 $string = 'ShortString\n';
+$string = "\u{aa}";
+$string = "\u{0000aa}";
+$string = "\u{9999}";
