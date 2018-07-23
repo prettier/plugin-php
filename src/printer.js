@@ -1331,12 +1331,18 @@ function printStatement(path, options, print) {
         return concat([
           "namespace ",
           hasName ? node.name : "",
-          node.withBrackets ? concat([" ", "{"]) : ";",
-          // don't know why we need 2 line breaks here, but 1 doesn't work
-          node.children.length > 0 && !node.withBrackets
-            ? concat([hardline, hardline])
+          node.withBrackets
+            ? " {"
+            : concat([
+                ";",
+                // Second hardline for newline between `namespace` and first child node
+                node.children.length > 0 ? concat([hardline, hardline]) : ""
+              ]),
+          node.children.length > 0
+            ? node.withBrackets
+              ? indent(concat([hardline, printed]))
+              : printed
             : "",
-          node.withBrackets ? indent(concat([hardline, printed])) : printed,
           node.withBrackets ? concat([hardline, "}"]) : ""
         ]);
       }
