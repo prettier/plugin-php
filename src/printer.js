@@ -1463,7 +1463,7 @@ function printStatement(path, options, print) {
             "{",
             indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
             comments.printDanglingComments(path, options, true),
-            hardline,
+            node.isAnonymous && hasEmptyBody ? "" : hardline,
             "}"
           ])
         : "";
@@ -1479,7 +1479,9 @@ function printStatement(path, options, print) {
             bodyContents
               ? node.kind === "function" || node.kind === "method"
                 ? ifBreak(" ", concat([lineSuffix(""), lineSuffixBoundary]))
-                : hardline
+                : node.kind === "class" && node.isAnonymous
+                  ? line
+                  : hardline
               : ""
           ])
         ),
