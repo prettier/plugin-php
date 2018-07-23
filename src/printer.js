@@ -1070,8 +1070,6 @@ function printExpression(path, options, print) {
         return node.value ? "true" : "false";
       case "string": {
         // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/123
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/124
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
