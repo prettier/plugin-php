@@ -374,3 +374,9 @@ $arr = [
             ->allOrderBy('nome')
             ->pluck('nome', 'id')
 ];
+[[$id1, $name1]] = $data;
+[[$id1], [$id2], [$id]] = $data;
+[[$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue]] = $data;
+["id" => $id1, "name" => $name1] = $data;
+[["id" => $id1, "name" => $name1]] = $data;
+[["veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue, "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue]] = $data;
