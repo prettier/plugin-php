@@ -116,6 +116,9 @@ $string = 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $string = "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
 $string = "ShortString\\n";
 $string = 'ShortString\\n';
+$string = "\\u{aa}";
+$string = "\\u{0000aa}";
+$string = "\\u{9999}";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $string = 'this is a simple string';
@@ -192,5 +195,8 @@ $string =
     "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
 $string = "ShortString\\n";
 $string = 'ShortString\\n';
+$string = "\\u{aa}";
+$string = "\\u{0000aa}";
+$string = "\\u{9999}";
 
 `;
