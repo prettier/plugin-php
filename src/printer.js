@@ -1032,6 +1032,7 @@ function printExpression(path, options, print) {
       case "unary":
         return concat([node.type, path.call(print, "what")]);
       case "cast":
+        // @TODO: binary type cast is broken https://github.com/glayzzle/php-parser/issues/166
         return concat(["(", node.type, ") ", path.call(print, "what")]);
       default:
         return `Have not implemented operation kind ${node.kind} yet.`;
@@ -1075,6 +1076,11 @@ function printExpression(path, options, print) {
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
         let stringValue = node.raw;
+
+        if (node.raw[0] === "b") {
+          stringValue = stringValue.slice(1);
+        }
+
         // we need to strip out the quotes from the raw value
         if (['"', "'"].includes(stringValue[0])) {
           stringValue = stringValue.substr(1);
@@ -1082,7 +1088,10 @@ function printExpression(path, options, print) {
         if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
           stringValue = stringValue.substr(0, stringValue.length - 1);
         }
-        return makeString(stringValue, quote, false);
+        return concat([
+          node.raw[0] === "b" ? "b" : "",
+          makeString(stringValue, quote, false)
+        ]);
       }
       case "number":
         return printNumber(node.value);

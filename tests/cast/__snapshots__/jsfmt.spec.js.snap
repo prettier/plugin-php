@@ -16,6 +16,12 @@ $bar = (unset) $foo;
 
 $bar = ( int ) $foo;
 $bar = (  int  )  $foo;
+
+$binary = (binary) $string;
+$binary = b"binary string";
+$binary = b'binary string';
+$binary = "b'binary string'";
+$binary = 'b"binary string"';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $bar = (int) $foo;
@@ -31,5 +37,11 @@ $bar = (unset) $foo;
 
 $bar = (int) $foo;
 $bar = (int) $foo;
+
+$binary = (string) $string;
+$binary = b"binary string";
+$binary = b'binary string';
+$binary = "b'binary string'";
+$binary = 'b"binary string"';
 
 `;
