@@ -691,9 +691,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 }
 
 function wrapPropertyLookup(node, doc) {
-  const addCurly =
-    node.kind === "propertylookup" &&
-    (node.offset.kind !== "constref" || typeof node.offset.name !== "string");
+  const addCurly = !["variable", "constref"].includes(node.offset.kind);
 
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
@@ -1107,16 +1105,27 @@ function printExpression(path, options, print) {
           concat(
             path.map(valuePath => {
               const node = valuePath.getValue();
+
               if (node.kind === "string") {
                 return node.raw;
-              } else if (node.kind === "variable") {
+              }
+
+              if (node.kind === "variable") {
                 if (typeof node.name === "object") {
-                  return concat(["${", path.call(print, "name"), "}"]);
-                } else if (node.curly) {
-                  return `{$${node.name}}`;
+                  return concat([
+                    node.curly ? "${" : "",
+                    path.call(print, "name"),
+                    node.curly ? "}" : ""
+                  ]);
                 }
+
+                if (node.curly) {
+                  return concat(["{$", node.name, "}"]);
+                }
+
                 return print(valuePath);
               }
+
               return concat(["{", print(valuePath), "}"]);
             }, "value")
           ),
