@@ -188,8 +188,7 @@ exports[`blank_lines.php 1`] = `
 
 // A third line which has a blank line before it
 
-<?php
-// Other comment
+<?php // Other comment
 
 `;
 
@@ -1310,14 +1309,14 @@ exports[`no_code.php 1`] = `
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-/**
+
+?>/**
  * Product Loop Start
  *
  * @author  WooThemes
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
-?>
 
 `;
 

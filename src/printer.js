@@ -30,13 +30,10 @@ const comments = require("./comments");
 const {
   getLast,
   getPenultimate,
-  isNextNodeInline,
   isLastStatement,
   lineShouldEndWithSemicolon,
   printNumber,
   shouldFlatten,
-  getNodeIndex,
-  removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
   hasDanglingComments,
@@ -44,12 +41,12 @@ const {
   hasTrailingComment,
   docShouldHaveTrailingNewline,
   isMemberish,
-  isPrevNodeInline,
-  getPreviousNodeInParentListProperty,
-  getNextNodeInParentListProperty,
-  isNodeFullyNestedInline,
-  isNextNodeFullyNestedInline,
-  isPreviousNodeFullyNestedInline
+  isFirstChildrenInlineNode,
+  shouldPrintHardLineBeforeEndInControlStructure,
+  getAlignment,
+  getFirstNestedChildNode,
+  getLastNestedChildNode,
+  isProgramLikeNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -65,110 +62,29 @@ function shouldPrintComma(options) {
 
 function genericPrint(path, options, print) {
   const node = path.getValue();
+
   if (!node) {
     return "";
   } else if (typeof node === "string") {
     return node;
   }
-  // there are 2 mixed php/html cases we need to account for here
-  // 1) a full php node nested within html (handled below)
-  // 2) inline html mixed within a php node (handled in the nodes themselves)
-
-  const isProgramNode = node.kind === "program";
-  // case 1, which can be treated the same as the top-level program node
-  const isFullNestedNode = isNodeFullyNestedInline(path);
-  let shouldHaveOpenTag =
-    isFullNestedNode ||
-    (isProgramNode && !node.children[0]) ||
-    (isProgramNode && node.children[0] && node.children[0].kind !== "inline");
-
-  // if the first node is fully nested inline, it will handle its own tags
-  if (isProgramNode) {
-    path.map((childPath, index) => {
-      if (index === 0 && isNodeFullyNestedInline(childPath)) {
-        shouldHaveOpenTag = false;
-      }
-    }, "children");
-  }
 
   const printed = printNode(path, options, print);
-  if (shouldHaveOpenTag) {
-    const shouldHaveCloseTag =
-      isFullNestedNode ||
-      (isProgramNode && node.loc.source.trim().endsWith("?>"));
 
-    if (isFullNestedNode) {
-      const tagOpenIndex = options.originalText.lastIndexOf(
-        "<",
-        options.locStart(node)
-      );
-      let alignment = options.originalText.substring(0, tagOpenIndex);
-      if (options.originalText.lastIndexOf("\n", tagOpenIndex) > -1) {
-        alignment = options.originalText.substring(
-          options.originalText.lastIndexOf("\n", tagOpenIndex) + 1,
-          tagOpenIndex
-        );
-      }
-      return dedentToRoot(
-        group(
-          concat([
-            node.kind === "echo" && node.shortForm ? "<?=" : "<?php",
-            align(
-              new Array(alignment.length + 1).join(" "),
-              concat([
-                line,
-                printed,
-                lineShouldEndWithSemicolon(path) ? ";" : "",
-                line,
-                "?>"
-              ])
-            )
-          ])
-        )
-      );
-    }
-
-    return group(
-      concat([
-        node.kind === "echo" && node.shortForm ? "<?=" : "<?php",
-        line,
-        printed,
-        lineShouldEndWithSemicolon(path) ? ";" : "",
-        shouldHaveCloseTag ? concat([line, "?>"]) : "",
-        fileShouldEndWithHardline(path) ? hardline : ""
-      ])
-    );
+  if (
+    node.kind === "program" &&
+    node.children.length === 0 &&
+    node.comments === 0
+  ) {
+    return concat(["<?php", hardline]);
   }
 
   if (node.kind === "inline") {
-    const parentNode = path.getParentNode();
-    const isParentProgramNode = parentNode && parentNode.kind === "program";
-    const nodeIndex = getNodeIndex(path);
-    const previousNode = getPreviousNodeInParentListProperty(path);
-    const nextNode = getNextNodeInParentListProperty(path);
-    const openTag =
-      nextNode && nextNode.kind === "echo" && nextNode.shortForm
-        ? "<?="
-        : "<?php";
-    // case 2 (closing tag to start inline html)
-    return concat([
-      !(isParentProgramNode && nodeIndex === 0) &&
-      !isPreviousNodeFullyNestedInline(path)
-        ? previousNode
-          ? " ?>"
-          : "?>"
-        : "",
-      printed,
-      !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
-      !isNextNodeFullyNestedInline(path)
-        ? openTag + (nextNode ? " " : "")
-        : ""
-    ]);
+    return printed;
   }
-  const shouldRemoveNewLines = isPrevNodeInline(path) || isNextNodeInline(path);
+
   return concat([
-    // case 2 (opening tag to close inline html)
-    shouldRemoveNewLines ? removeNewlines(printed) : printed,
+    printed,
     lineShouldEndWithSemicolon(path) ? ";" : "",
     fileShouldEndWithHardline(path) ? hardline : ""
   ]);
@@ -1135,11 +1051,10 @@ function printExpression(path, options, print) {
             : ""
         ]);
       case "inline":
-        // @TODO: to get line breaks to fully work for mixed html/php
-        // we would need to do this, but it adds an entire other layer of
-        // complexity because of the removeNewlines() logic above
-        // return join(hardline, node.raw.split("\n"));
-        return node.raw;
+        return join(
+          literalline,
+          node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
+        );
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
@@ -1289,42 +1204,188 @@ const statementKinds = [
   "parameter",
   "property"
 ];
-function printLines(path, options, print, childrenAttribute = "children") {
-  return concat(
-    path.map(childPath => {
-      let canPrintBlankLine =
-        !isLastStatement(childPath) &&
-        childPath.getValue().kind !== "inline" &&
-        // fully nested nodes handle their own linebreaks
-        !isNodeFullyNestedInline(childPath);
-      if (canPrintBlankLine && isNextNodeInline(childPath)) {
-        // check if inline is on a new line, if no set to false
-        const inlineNode = getNextNodeInParentListProperty(path);
-        const tagCloseIndex = options.originalText.lastIndexOf(
-          "?>",
-          options.locStart(inlineNode)
-        );
-        const lastNewLine = options.originalText.lastIndexOf(
-          "\n",
-          tagCloseIndex
-        );
-        const inlineStartLineText = options.originalText.substring(
-          lastNewLine + 1,
-          tagCloseIndex
-        );
-        canPrintBlankLine = !inlineStartLineText.trim();
-      }
-      return concat([
-        print(childPath),
-        canPrintBlankLine ? hardline : "",
-        canPrintBlankLine &&
-        isNextLineEmpty(options.originalText, childPath.getValue(), options)
-          ? hardline
-          : ""
-      ]);
-    }, childrenAttribute)
-  );
+
+// Wrap parts into groups by indexes.
+// It is require to have same indent on lines for all parts into group.
+// The value of `alignment` option indicates how many spaces must be before each part.
+//
+// Example:
+// <div>
+//     <?php
+//     echo '1';
+//     echo '2';
+//     echo '3';
+//     ?>
+// </div>
+function wrapPartsIntoGroups(parts, indexes) {
+  if (indexes.length === 0) {
+    return parts;
+  }
+
+  let lastEnd = 0;
+
+  return indexes.reduce((accumulator, index) => {
+    const { start, end, alignment, before, after } = index;
+
+    const newArray = accumulator.concat(
+      parts.slice(lastEnd, start),
+      dedentToRoot(
+        group(
+          concat([
+            align(
+              new Array(alignment).join(" "),
+              concat([
+                before ? before : "",
+                concat(parts.slice(start, end)),
+                after ? after : ""
+              ])
+            )
+          ])
+        )
+      ),
+      end === parts.length - 1 ? parts.slice(end) : ""
+    );
+
+    lastEnd = end;
+
+    return newArray;
+  }, []);
 }
+
+function printLines(path, options, print, childrenAttribute = "children") {
+  const node = path.getValue();
+  const parentNode = path.getParentNode();
+  let lastInlineIndex = -1;
+
+  const parts = [];
+  const groupIndexes = [];
+
+  path.map((childPath, index) => {
+    const childNode = childPath.getValue();
+    const isInlineNode = childNode.kind === "inline";
+    const printedPath = print(childPath);
+    const children = node[childrenAttribute];
+    const nextNode = children[index + 1];
+    const canPrintBlankLine =
+      !isLastStatement(childPath) &&
+      !isInlineNode &&
+      (nextNode && nextNode.kind === "case"
+        ? !isFirstChildrenInlineNode(path)
+        : nextNode && nextNode.kind !== "inline");
+
+    let printed = concat([
+      printedPath,
+      canPrintBlankLine ? hardline : "",
+      canPrintBlankLine &&
+      isNextLineEmpty(options.originalText, childNode, options)
+        ? hardline
+        : ""
+    ]);
+
+    const isFirstNode = index === 0;
+    const isLastNode = children.length - 1 === index;
+    const isBlockNestedNode =
+      node.kind === "block" &&
+      parentNode &&
+      ["function", "closure", "method", "try", "catch"].includes(
+        parentNode.kind
+      );
+
+    let beforeCloseTagInlineNode = isBlockNestedNode && isFirstNode ? "" : " ";
+
+    if (isInlineNode || (!isInlineNode && isLastNode && lastInlineIndex >= 0)) {
+      const prevLastInlineIndex = lastInlineIndex;
+
+      if (isInlineNode) {
+        lastInlineIndex = index;
+      }
+
+      const shouldCreateGroup =
+        (isInlineNode && !isFirstNode) || (!isInlineNode && isLastNode);
+
+      if (shouldCreateGroup) {
+        const start =
+          (isInlineNode ? prevLastInlineIndex : lastInlineIndex) + 1;
+        const end = isLastNode && !isInlineNode ? index + 1 : index;
+        const prevInlineNode =
+          children[isInlineNode ? prevLastInlineIndex : lastInlineIndex];
+        const alignment = prevInlineNode
+          ? getAlignment(prevInlineNode.raw)
+          : "";
+        const shouldBreak = end - start > 1;
+        const before = shouldBreak ? hardline : "";
+        const after = shouldBreak
+          ? isBlockNestedNode && isLastNode
+            ? ""
+            : hardline
+          : "";
+
+        if (shouldBreak) {
+          beforeCloseTagInlineNode = "";
+        }
+
+        groupIndexes.push({ start, end, alignment, before, after });
+      }
+    }
+
+    if (isInlineNode) {
+      const openTag =
+        nextNode && nextNode.kind === "echo" && nextNode.shortForm
+          ? "<?="
+          : "<?php";
+      const beforeInline =
+        isProgramLikeNode(node) && isFirstNode
+          ? ""
+          : concat([beforeCloseTagInlineNode, "?>"]);
+      const afterInline =
+        isProgramLikeNode(node) && isLastNode ? "" : concat([openTag, " "]);
+
+      printed = concat([beforeInline, printed, afterInline]);
+    }
+
+    parts.push(printed);
+  }, childrenAttribute);
+
+  const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
+
+  if (node.kind === "program") {
+    const originalText = node.loc.source;
+    const firstNestedChildNode = getFirstNestedChildNode(node);
+    const lastNestedChildNode = getLastNestedChildNode(node);
+    const hasStartTag =
+      firstNestedChildNode && firstNestedChildNode.kind !== "inline";
+    const hasEndTag =
+      lastNestedChildNode &&
+      lastNestedChildNode.kind !== "inline" &&
+      originalText.trim().endsWith("?>");
+
+    let afterOpenTag = " ";
+    let beforeCloseTag = " ";
+
+    if (hasStartTag) {
+      const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
+
+      afterOpenTag =
+        between && between[2] && between[2].includes("\n") ? hardline : " ";
+    }
+
+    if (hasEndTag) {
+      const between = originalText.trim().match(/\S(\s*)?\?>$/);
+
+      beforeCloseTag =
+        between && between[1] && between[1].includes("\n") ? hardline : " ";
+    }
+
+    return concat([
+      hasStartTag ? concat(["<?php", afterOpenTag]) : "",
+      concat(wrappedParts),
+      hasEndTag ? concat([beforeCloseTag, "?>"]) : ""
+    ]);
+  }
+
+  return concat(wrappedParts);
+}
+
 function printStatement(path, options, print) {
   const node = path.getValue();
   const blockKinds = ["block", "program", "namespace"];
@@ -1769,14 +1830,23 @@ function printStatement(path, options, print) {
             node[bodyProperty].children.length > 0) ||
           (node[bodyProperty].comments &&
             node[bodyProperty].comments.length > 0)
-            ? concat([hardline, printedBody])
+            ? concat([
+                isFirstChildrenInlineNode(path)
+                  ? node.kind === "switch"
+                    ? " "
+                    : ""
+                  : hardline,
+                printedBody
+              ])
             : ""
         ])
       ),
       node.kind === "if" && bodyProperty === "body"
         ? ""
         : concat([
-            hardline,
+            shouldPrintHardLineBeforeEndInControlStructure(path)
+              ? hardline
+              : "",
             node.shortForm ? concat(["end", node.kind, ";"]) : "}"
           ])
     ]);
@@ -1816,7 +1886,7 @@ function printStatement(path, options, print) {
     case "if": {
       const handleIfAlternate = alternate => {
         if (!alternate) {
-          return node.shortForm ? "endif;" : "}";
+          return node.body ? (node.shortForm ? "endif;" : "}") : "";
         }
         if (alternate.kind === "if") {
           return concat([
@@ -1845,7 +1915,7 @@ function printStatement(path, options, print) {
             printBodyControlStructure(path)
           ])
         ),
-        hardline,
+        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline,
         handleIfAlternate(node.alternate)
       ]);
     }
@@ -2257,7 +2327,12 @@ function printNode(path, options, print) {
           : "default:",
         node.body
           ? node.body.children && node.body.children.length
-            ? indent(concat([hardline, path.call(print, "body")]))
+            ? indent(
+                concat([
+                  isFirstChildrenInlineNode(path) ? "" : hardline,
+                  path.call(print, "body")
+                ])
+              )
             : ";"
           : ""
       ]);

@@ -1,7 +1,5 @@
 "use strict";
 
-const docUtils = require("prettier").doc.utils;
-
 function printNumber(rawNumber) {
   return (
     rawNumber
@@ -17,30 +15,6 @@ function printNumber(rawNumber) {
       // Remove trailing dot.
       .replace(/\.(?=e|$)/, "")
   );
-}
-
-// @TODO: if we're using the "raw" value from the parser, do we need this?
-function stringEscape(str) {
-  return str.replace(/[\n\r\t\v\f\u001b\\]/g, (character, index) => {
-    switch (character) {
-      case "\n":
-        return "\\n";
-      case "\r":
-        return "\\r";
-      case "\t":
-        return "\\t";
-      case "\v":
-        return "\\v";
-      case "\f":
-        return "\\f";
-      case "\u001b":
-        return "\\e";
-      case "\\": {
-        const nextCharacter = str[index + 1];
-        return !nextCharacter || !/[ux0-7]/.test(nextCharacter) ? "\\\\" : "\\";
-      }
-    }
-  });
 }
 
 // http://php.net/manual/en/language.operators.precedence.php
@@ -156,17 +130,6 @@ function getBodyFirstChild({ body }) {
   return body[0];
 }
 
-function removeNewlines(doc) {
-  return docUtils.mapDoc(doc, d => {
-    if (d.type === "line") {
-      return d.soft ? "" : " ";
-    } else if (d.type === "if-break") {
-      return d.flatContents || "";
-    }
-    return d;
-  });
-}
-
 function getNodeListProperty(node) {
   const body = node.children || node.body || node.adaptations;
   return Array.isArray(body) ? body : null;
@@ -178,14 +141,6 @@ function getParentNodeListProperty(path) {
     return null;
   }
   return getNodeListProperty(parent);
-}
-
-function getNodeIndex(path) {
-  const body = getParentNodeListProperty(path);
-  if (!body) {
-    return -1;
-  }
-  return body.indexOf(path.getValue());
 }
 
 function getLast(arr) {
@@ -211,91 +166,52 @@ function isLastStatement(path) {
   return body[body.length - 1] === node;
 }
 
-function isLastNodeInParentNode(path) {
-  const parentNodeBody = getParentNodeListProperty(path);
-  const nodeIndex = getNodeIndex(path);
-  return parentNodeBody && nodeIndex === parentNodeBody.length - 1;
-}
-
-function getPreviousNodeInParentListProperty(path) {
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
-  return prevNode;
-}
-
-function getNextNodeInParentListProperty(path) {
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
-  return nextNode;
-}
-
-function isPrevNodeInline(path) {
-  const prevNode = getPreviousNodeInParentListProperty(path);
-  return prevNode && prevNode.kind === "inline";
-}
-
-function isNextNodeInline(path) {
-  const nextNode = getNextNodeInParentListProperty(path);
-  return nextNode && nextNode.kind === "inline";
-}
-
-function isNodeFullyNestedInline(path) {
+function isFirstChildrenInlineNode(path) {
   const node = path.getValue();
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
-  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
-  const parentNode = path.getParentNode();
-  if (nodeIndex === 0 && parentNode && parentNode.kind === "program") {
-    return (
-      nextNode && nextNode.kind === "inline" && !node.loc.source.includes("?>")
-    );
+
+  if (node.kind === "program") {
+    const children = getNodeListProperty(node);
+
+    if (!children || children.length === 0) {
+      return false;
+    }
+
+    return children[0].kind === "inline";
   }
-  return (
-    nextNode &&
-    prevNode &&
-    nextNode.kind === "inline" &&
-    prevNode.kind === "inline" &&
-    !node.loc.source.includes("?>")
-  );
-}
 
-function isNextNodeFullyNestedInline(path) {
-  const node = path.getValue();
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const nextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 1];
-  const nextNextNode = nodeIndex !== -1 && parentNodeBody[nodeIndex + 2];
-  return (
-    node &&
-    nextNextNode &&
-    node.kind === "inline" &&
-    nextNextNode.kind === "inline" &&
-    !nextNode.loc.source.includes("?>")
-  );
-}
+  if (node.kind === "switch") {
+    if (!node.body) {
+      return false;
+    }
 
-function isPreviousNodeFullyNestedInline(path) {
-  const node = path.getValue();
-  const nodeIndex = getNodeIndex(path);
-  const parentNodeBody = getParentNodeListProperty(path);
-  const prevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 1];
-  const prevPrevNode = nodeIndex !== -1 && parentNodeBody[nodeIndex - 2];
-  const parentNode = path.getParentNode();
-  if (nodeIndex === 1 && parentNode && parentNode.kind === "program") {
-    return (
-      node && node.kind === "inline" && !prevNode.loc.source.includes("?>")
-    );
+    const children = getNodeListProperty(node.body);
+
+    if (children.length === 0) {
+      return false;
+    }
+
+    const [firstCase] = children;
+
+    if (!firstCase.body) {
+      return false;
+    }
+
+    const firstCaseChildren = getNodeListProperty(firstCase.body);
+
+    if (firstCaseChildren.length === 0) {
+      return false;
+    }
+
+    return firstCaseChildren[0].kind === "inline";
   }
-  return (
-    node &&
-    prevPrevNode &&
-    node.kind === "inline" &&
-    prevPrevNode.kind === "inline" &&
-    !prevNode.loc.source.includes("?>")
-  );
+
+  const firstChild = getBodyFirstChild(node);
+
+  if (!firstChild) {
+    return false;
+  }
+
+  return firstChild.kind === "inline";
 }
 
 /**
@@ -404,12 +320,16 @@ function fileShouldEndWithHardline(path) {
   ) {
     return false;
   }
-  if (lastNode && lastNode.kind === "declare") {
-    const lastNestedNode = lastNode.children && getLast(lastNode.children);
+  if (
+    lastNode &&
+    (lastNode.kind === "declare" || lastNode.kind === "namespace")
+  ) {
+    const lastNestedNode =
+      lastNode.children.length > 0 && getLast(lastNode.children);
     if (
       lastNestedNode &&
       lastNestedNode.kind === "inline" &&
-      lastNode.raw[lastNode.raw.length - 1] === "\n"
+      lastNestedNode.raw[lastNestedNode.raw.length - 1] === "\n"
     ) {
       return false;
     }
@@ -448,34 +368,90 @@ function isMemberish(node) {
   );
 }
 
+function shouldPrintHardLineBeforeEndInControlStructure(path) {
+  const node = path.getValue();
+
+  if (node.kind === "switch") {
+    const children = getNodeListProperty(node.body);
+
+    if (children.length === 0) {
+      return true;
+    }
+
+    const lastCase = getLast(children);
+
+    if (!lastCase.body) {
+      return true;
+    }
+
+    const childrenInCase = getNodeListProperty(lastCase.body);
+
+    if (childrenInCase.length === 0) {
+      return true;
+    }
+
+    return childrenInCase[0].kind !== "inline";
+  }
+
+  return !isFirstChildrenInlineNode(path);
+}
+
+function getAlignment(text) {
+  const lines = text.split("\n");
+  const lastLine = lines.pop();
+
+  let alignment = lastLine.length + 1;
+
+  if (lastLine.trim().length !== 0) {
+    alignment = lastLine.replace(/\S/g, "").length;
+  }
+
+  return alignment;
+}
+
+function getFirstNestedChildNode(node) {
+  if (node.children && node.children.length > 0) {
+    return getFirstNestedChildNode(node.children[0]);
+  }
+
+  return node;
+}
+
+function getLastNestedChildNode(node) {
+  if (node.children && node.children.length > 0) {
+    return getFirstNestedChildNode(node.children[node.children.length - 1]);
+  }
+
+  return node;
+}
+
+function isProgramLikeNode(node) {
+  return ["program", "declare", "namespace"].includes(node.kind);
+}
+
 module.exports = {
   printNumber,
-  stringEscape,
   getPrecedence,
   shouldFlatten,
   nodeHasStatement,
   getNodeListProperty,
   getParentNodeListProperty,
-  getNodeIndex,
   getLast,
   getPenultimate,
   isLastStatement,
   getBodyFirstChild,
-  isLastNodeInParentNode,
-  isNextNodeInline,
   lineShouldEndWithSemicolon,
   fileShouldEndWithHardline,
-  removeNewlines,
   maybeStripLeadingSlashFromUse,
   hasDanglingComments,
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
   isMemberish,
-  isPrevNodeInline,
-  getPreviousNodeInParentListProperty,
-  getNextNodeInParentListProperty,
-  isNodeFullyNestedInline,
-  isNextNodeFullyNestedInline,
-  isPreviousNodeFullyNestedInline
+  isFirstChildrenInlineNode,
+  shouldPrintHardLineBeforeEndInControlStructure,
+  getAlignment,
+  getFirstNestedChildNode,
+  getLastNestedChildNode,
+  isProgramLikeNode
 };

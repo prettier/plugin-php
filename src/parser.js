@@ -2,6 +2,10 @@
 const engine = require("php-parser");
 
 function parse(text) {
+  // By default php parser don't create `inline` node between `?>\n<?`, we recreate their
+  // Need add option to parser to avoid this behaviour
+  text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
+
   // initialize a new parser instance
   const parser = new engine({
     // some options :
