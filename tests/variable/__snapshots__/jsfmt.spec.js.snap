@@ -18,6 +18,38 @@ $_4site = 'not yet';
 $täyte = 'mansikka';
 $bar = &$foo;
 $bar = "My name is $bar";
+$id = $element->{$id_field};
+$id = $element[$id_field];
+$var = <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should print a capital 'A': \\x41
+EOT;
+$var = "He drank some $juice juice.".PHP_EOL;
+$var = "He drank some $juices[0] juice.".PHP_EOL;
+$var = "He drank some $juices[koolaid1] juice.".PHP_EOL;
+$var = "$people->john then said hello to $people->jane.".PHP_EOL;
+$var = "{$foo->{$baz[1]}}\\n";
+$var = $var->{$var->property};
+$var = $var->$var->property;
+$var = $var->{'😀'};
+
+// http://php.net/manual/ru/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
+
+$var = $$foo['bar']['baz'];
+$var = $foo->$bar['baz'];
+$var = $foo->$bar['baz']();
+$var = Foo::$bar['baz']();
+
+$var = \${$foo['bar']['baz']};
+$var = $foo->{$bar['baz']};
+$var = $foo->{$bar['baz']}();
+// $var = Foo::{$bar['baz']}();
+
+$var = ($$foo)['bar']['baz'];
+$var = ($foo->$bar)['baz'];
+$var = ($foo->$bar)['baz']();
+$var = (Foo::$bar)['baz']();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $var = 'Bob';
@@ -26,5 +58,38 @@ $_4site = 'not yet';
 $täyte = 'mansikka';
 $bar = &$foo;
 $bar = "My name is $bar";
+$id = $element->$id_field;
+$id = $element[$id_field];
+$var = <<<EOT
+My name is "$name". I am printing some {$foo->foo}.
+Now, I am printing some {$foo
+    ->bar[1]}.
+This should print a capital 'A': \\x41
+EOT;
+$var = "He drank some $juice juice." . PHP_EOL;
+$var = "He drank some {$juices[0]} juice." . PHP_EOL;
+$var = "He drank some {$juices[koolaid1]} juice." . PHP_EOL;
+$var = "{$people->john} then said hello to {$people->jane}." . PHP_EOL;
+$var = "{$foo->{$baz[1]}}\\n";
+$var = $var->{$var->property};
+$var = $var->$var->property;
+$var = $var->{'😀'};
+
+// http://php.net/manual/ru/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
+
+$var = $$foo['bar']['baz'];
+$var = $foo->$bar['baz'];
+$var = $foo->$bar['baz']();
+$var = Foo::$bar['baz']();
+
+$var = \${$foo['bar']['baz']};
+$var = $foo->{$bar['baz']};
+$var = $foo->{$bar['baz']}();
+// $var = Foo::{$bar['baz']}();
+
+$var = ($$foo)['bar']['baz'];
+$var = ($foo->$bar)['baz'];
+$var = ($foo->$bar)['baz']();
+$var = (Foo::$bar)['baz']();
 
 `;
