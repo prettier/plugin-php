@@ -18,3 +18,9 @@ $test = $foo ?: bar($someOtherReallyReallyLongVariable, $someOtherReallyReallyLo
 $test = ($testReallyReallyReallyReallyReallyReallyLong >= 1) ?: $someOtherReallyReallyReallyReallyReallyReallyLongVariable;
 $test = $foo ?: bar([ 'foo' => 'bar' , 'bar' => 'foo']);
 $test = $foo ?: bar([ 'foo' => $someOtherReallyReallyLongVariable , 'bar' => $someOtherReallyReallyLongVariable]);
+$var = ($this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database') .
+    ($path ? DIRECTORY_SEPARATOR . $path : $path);
+$var = ($this->databasePath ? $this->basePath . DIRECTORY_SEPARATOR . 'other' : $this->basePath . DIRECTORY_SEPARATOR . 'database') .
+    ($path ? DIRECTORY_SEPARATOR . $path : $path);
+return ($this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database') .
+    ($path ? DIRECTORY_SEPARATOR . $path : $path);
