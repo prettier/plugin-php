@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`block.php 1`] = `
+<?php
+
+function test() {{{
+    return "1";
+}}}
+
+if (true) {{
+    echo "1";
+}} else {{{
+    echo "2";
+}}}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+function test()
+{
+    return "1";
+}
+
+if (true) {
+    echo "1";
+} else {
+    echo "2";
+}
+
+`;
