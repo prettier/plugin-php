@@ -14,6 +14,7 @@ $someArray[] = $this->something->long->that->not->makes->it->break->onto->two->b
 $variable = "abcdef"[-2];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $variable['data']['title'] = html_entity_decode(wp_get_document_title());
 $variable[
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'

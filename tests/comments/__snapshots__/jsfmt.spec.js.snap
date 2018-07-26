@@ -149,6 +149,7 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $variable =
     // arrays, countables
     FormUtil::isEmpty($this->modelData) ||
@@ -205,6 +206,7 @@ loop: for (;;) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 for (;;) {
     break; /* Comment */
 }
@@ -225,6 +227,7 @@ foo(/* A */);
 $foo->bar(/* B */);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 foo(
     /* Comment */ $a /* Comment */,
     /* Comment */ [] /* Comment */,
@@ -241,6 +244,7 @@ exports[`cast.php 1`] = `
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $var = /* Comment */ (int) /* Comment */ '1'; /* Comment */
 
 `;
@@ -415,6 +419,7 @@ exports[`clone.php 1`] = `
 $obj2 = clone /* Comments */ $obj /* Comments */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $obj2 = clone /* Comments */ $obj; /* Comments */
 
 `;
@@ -746,6 +751,7 @@ loop: for (;;) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 for (;;) {
     continue; /* comment */
 }
@@ -795,6 +801,7 @@ echo // Comment
 
 /* Comment */echo/* Comment */$foo/* Comment */,/* Comment */$bar/* Comment */;/* Comment */~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 // Comment
 echo // Comment
 $foo, // Comment
@@ -858,6 +865,7 @@ if (empty(/* Comment */ [] /* Comment */)) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 if (empty(/* Comment */ [] /* Comment */)) {
     echo "Foo";
 }
@@ -874,6 +882,7 @@ eval(
 );
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 eval(
     /* Comment */
     "echo 'test';"
@@ -892,6 +901,7 @@ exit(/* Comment */1/* Comment */);
 exit()/* Comment */;
 /* Comment */exit/* Comment */()/* Comment */;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 exit(
     /* Comment */);
 exit(/* Comment */ 1);
@@ -1008,6 +1018,7 @@ function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
 function emptyFn(/*Comment */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */)
 {
 }
@@ -1030,6 +1041,7 @@ exports[`global.php 1`] = `
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 `;
@@ -1043,6 +1055,7 @@ echo 'Foo';
 /* Comment */a/* Comment */:/* Comment */
 echo 'Bar';~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 /* Comment */ goto a; /* Comment */ /* Comment */
 echo 'Foo';
 
@@ -1056,6 +1069,7 @@ exports[`halt.php 1`] = `
 
 /*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 /*Comment*/ __halt_compiler(); /*Comment*/ /*Comment*/ /*Comment*/
 
 `;
@@ -1215,6 +1229,7 @@ if (isset(/* Comment */ $a[1]/* Comment */)) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 if (isset(/* Comment */ $a[1] /* Comment */)) {
     echo "Foo";
 }
@@ -1227,6 +1242,7 @@ exports[`list.php 1`] = `
 list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /* Comment */ $power /* Comment */) = $info;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 list(
     /* Comment */ $drink /* Comment */,
     /* Comment */ $color /* Comment */,
@@ -1263,6 +1279,7 @@ class add_vendor extends request{
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 class Foo
 {
     public function foo(
@@ -1349,6 +1366,7 @@ exports[`offsetlookup.php 1`] = `
 echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
 `;
@@ -1361,6 +1379,7 @@ function foo(/* Comment */ $a, /* Comment */ array /* Comment */ $b /* Comment *
 function bar(/* Comment */ &$a /* Comment */) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function foo(
     /* Comment */ $a,
     /* Comment */ array /* Comment */ $b /* Comment */
@@ -1380,6 +1399,7 @@ exports[`post.php 1`] = `
 $a/* Comment */++;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $a /* Comment */++;
 
 `;
@@ -1390,6 +1410,7 @@ exports[`pre.php 1`] = `
 ++/*Comment */$a;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 ++/*Comment */ $a;
 
 `;
@@ -1405,6 +1426,7 @@ print // Comment
 print /* Comment */ $foo /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 print // Comment
 $foo;
 /* Comment */
@@ -1418,6 +1440,7 @@ exports[`propertylookup.php 1`] = `
 echo $a/*Comment*/->/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 echo /*Comment*/ /*Comment*/ $a->bar();
 
 `;
@@ -1428,6 +1451,7 @@ exports[`silent.php 1`] = `
 @/*comment*/test();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 @/*comment*/ test();
 
 `;
@@ -1447,6 +1471,7 @@ exports[`staticlookup.php 1`] = `
 echo Foo/*Comment*/::/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 echo /*Comment*/ /*Comment*/ Foo::bar();
 
 `;
@@ -1512,6 +1537,7 @@ throw new ClassName( /* Comment */
     /* Comment */); /* Comment */
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 // Comment
 throw new ClassName( // Comment
     1, // Comment
@@ -1543,6 +1569,7 @@ class ImplementingClass {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 class ImplementingClass
 {
     /* Comment */
@@ -1562,6 +1589,7 @@ exports[`unary.php 1`] = `
 +/* Comment */$a;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 +/* Comment */ $a;
 
 `;
@@ -1572,6 +1600,7 @@ exports[`unset.php 1`] = `
 unset(/* Comment */ $foo /* Comment */);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 unset(/* Comment */ $foo /* Comment */);
 
 `;
@@ -1586,6 +1615,7 @@ use /* Comment */ some\\namespaces\\/* Comment */{
 };
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 use some\\namespaces\\{
     /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
     /* Comment */ ClassB /* Comment */,
@@ -1601,6 +1631,7 @@ exports[`variadic.php 1`] = `
 foo(.../*Comment*/$foo);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 foo(.../*Comment*/ $foo);
 
 `;
@@ -1639,6 +1670,7 @@ function gen_one_to_three() {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function gen_one_to_three()
 {
     yield /* Comment */ $i; /* Comment */
@@ -1657,6 +1689,7 @@ function gen() {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function gen()
 {
     yield 0;

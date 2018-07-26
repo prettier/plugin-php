@@ -124,6 +124,7 @@ function emptyFunction(){}
 function emptyFunctionWithComment(){ /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function hello()
 {
     return "hello";

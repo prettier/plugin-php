@@ -129,6 +129,7 @@ $rTDWLU = function(array $array) use ($longLongLongLongLongLongLongVar1, $longer
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $closureWithArgs = function ($arg1, $arg2) {
     // body
 };

@@ -66,6 +66,7 @@ echo "Foo", f("bar"), "Foo";
 echo "Loop start!\\n", sleep(1);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 echo "Hello World";
 
 echo "This spans

@@ -1365,8 +1365,14 @@ function printLines(path, options, print, childrenAttribute = "children") {
     if (hasStartTag) {
       const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
 
-      afterOpenTag =
-        between && between[2] && between[2].includes("\n") ? hardline : " ";
+      if (between && between[2]) {
+        afterOpenTag = between[2].includes("\n")
+          ? concat([
+              hardline,
+              between[2].split("\n").length > 2 ? hardline : ""
+            ])
+          : " ";
+      }
     }
 
     if (hasEndTag) {
