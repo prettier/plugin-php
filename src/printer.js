@@ -1229,22 +1229,22 @@ function wrapPartsIntoGroups(parts, indexes) {
   return indexes.reduce((accumulator, index) => {
     const { start, end, alignment, before, after } = index;
 
+    const printedPartsForGrouping = concat([
+      before || "",
+      concat(parts.slice(start, end)),
+      after || ""
+    ]);
     const newArray = accumulator.concat(
       parts.slice(lastEnd, start),
-      dedentToRoot(
-        group(
-          concat([
-            align(
-              new Array(alignment).join(" "),
+      alignment
+        ? dedentToRoot(
+            group(
               concat([
-                before ? before : "",
-                concat(parts.slice(start, end)),
-                after ? after : ""
+                align(new Array(alignment).join(" "), printedPartsForGrouping)
               ])
             )
-          ])
-        )
-      ),
+          )
+        : group(printedPartsForGrouping),
       end === parts.length - 1 ? parts.slice(end) : ""
     );
 
@@ -1315,7 +1315,11 @@ function printLines(path, options, print, childrenAttribute = "children") {
           ? getAlignment(prevInlineNode.raw)
           : "";
         const shouldBreak = end - start > 1;
-        const before = shouldBreak ? hardline : "";
+        const before = shouldBreak
+          ? isBlockNestedNode && !prevInlineNode
+            ? ""
+            : hardline
+          : "";
         const after = shouldBreak
           ? isBlockNestedNode && isLastNode
             ? ""

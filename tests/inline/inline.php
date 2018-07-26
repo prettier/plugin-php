@@ -98,3 +98,80 @@ function fff()
     </div>
     <?php
 }
+
+function ffff()
+{
+  echo '1';
+  echo '2';
+  echo '3';
+  echo '4';
+  ?>
+  <div>foo</div>
+  <?php
+  echo '5';
+  echo '6';
+  echo '7';
+  echo '8';
+}
+
+function fffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+    <div>
+      <div>
+        <div>
+          <?php
+          echo 'nested';
+          echo 'nested';
+          echo 'nested';
+          ?>
+        </div>
+      </div>
+    </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
+}
+
+function ffffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+      <div>
+        <div>
+          <div>
+            <div>
+                <?php
+                function ffffff() {
+                    echo '1';
+                    echo '2';
+                    echo '3';
+                    echo '4';
+                    ?>
+                    <div>FooBar</div>
+                    <?php
+                    echo '5';
+                    echo '6';
+                    echo '7';
+                    echo '8';
+                }
+                ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
+}
