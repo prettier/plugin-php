@@ -907,7 +907,9 @@ function printExpression(path, options, print) {
           parentNode.kind !== "echo" &&
           parentNode.kind !== "include";
         const shouldBeInlined =
-          node.inner.kind === "new" || node.inner.kind === "clone";
+          node.inner.kind === "new" ||
+          node.inner.kind === "clone" ||
+          node.inner.kind === "retif";
         // don't break if this is a property lookup - ie
         // ($someThing
         //    ? $someOtherThing
