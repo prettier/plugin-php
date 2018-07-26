@@ -380,3 +380,14 @@ $arr = [
 ["id" => $id1, "name" => $name1] = $data;
 [["id" => $id1, "name" => $name1]] = $data;
 [["veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue, "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue]] = $data;
+$arr = [
+    'niveisFederativos' =>
+        function () {
+            return "value";
+        },
+
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' =>
+        function () {
+            return "other-value";
+        }
+];
