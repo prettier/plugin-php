@@ -385,6 +385,7 @@ $arr = [
 [["veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue, "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue]] = $data;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $test = array(1, 2, 3, 4, "test");
 $test = array(1, 2, 3, 4, "test");
 $test = array(1, 2, 3, 4, "test");

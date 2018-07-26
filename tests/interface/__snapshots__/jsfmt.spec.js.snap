@@ -17,6 +17,7 @@ interface EmptyInterface {}
 interface EmptyInterfaceWithComments { /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 interface testInterface
 {
     public function setVariable($test);

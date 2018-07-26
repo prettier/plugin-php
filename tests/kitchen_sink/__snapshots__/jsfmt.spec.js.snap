@@ -47,6 +47,7 @@ $this->test(function ($a, $b) {
 });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function hello($input)
 {
     return "hello" + $input;

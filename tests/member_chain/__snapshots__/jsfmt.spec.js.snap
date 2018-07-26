@@ -59,6 +59,7 @@ $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderO
 $test = $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()
     ->some_very_long_member_expression;
 $weNeedToReachTheEightyCharacterLimitXXXXXXXXXXXXXXXXX->someNode
@@ -92,6 +93,7 @@ foo()->bar()->baz();
 foo()->bar->baz();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $object
     ->foo()
     ->bar()
@@ -154,6 +156,7 @@ $object[$valid
 ->map()->filter();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 ($a ? $b : $c)->d();
 
 ($a ? $b : $c)->d()->e();
@@ -246,6 +249,7 @@ $someLongVariableName = (idx(
 })->filter(function ($obj) { return !!$obj; });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $someLongVariableName = (
     idx($prop, ['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoor']) || []
 )->map(function ($edge) {
@@ -352,6 +356,7 @@ $foo->bar()('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVer
 $foo->bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')()()()()();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 one()->two();
 one()
     ->two()
@@ -462,6 +467,7 @@ $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(funct
 });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $wrapper
     ->find('SomewhatLongNodeName')
     ->prop('longPropFunctionName')
@@ -535,6 +541,7 @@ $window->Data['key']['foo']("foo")
     ->catch(function () { return $b; });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $version = $someLongString
     ->split('jest version =')
     ->pop()
