@@ -18,4 +18,4 @@ Here's what you need to know about the tests:
 
 Run `yarn lint --fix` to automatically format files.
 
-If you can, take look at [commands.md](commands.md) and check out [Wadler's paper](http://homepages.inf.ed.ac.uk/wadler/papers/prettier/prettier.pdf) to understand how Prettier works.
+If you can, take look at [commands.md](https://github.com/prettier/prettier/blob/master/commands.md) and check out [Wadler's paper](http://homepages.inf.ed.ac.uk/wadler/papers/prettier/prettier.pdf) to understand how Prettier works.
