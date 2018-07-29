@@ -24,6 +24,7 @@ return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVe
 return ((($true ? ('foo' . ('foo'. 'bar')) : "foobarfoo")));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function sum($a, $b)
 {
     return ($a + $b);

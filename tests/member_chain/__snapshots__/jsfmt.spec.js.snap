@@ -59,6 +59,7 @@ $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderO
 $test = $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()
     ->some_very_long_member_expression;
 $weNeedToReachTheEightyCharacterLimitXXXXXXXXXXXXXXXXX->someNode
@@ -66,9 +67,10 @@ $weNeedToReachTheEightyCharacterLimitXXXXXXXXXXXXXXXXX->someNode
 $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
 $superSupersuperSupersuperSupersuperSupersuperSuperLong
     ->exampleOfOrderOfGetterAndSetterReordered[0];
-$superSupersuperSupersuperSupersuperSupersuperSuperLong->{$exampleOfOrderOfGetterAndSetterReordered};
+$superSupersuperSupersuperSupersuperSupersuperSuperLong->$exampleOfOrderOfGetterAndSetterReordered;
 $superSupersuperSupersuperSupersuperSupersuperSuperLong::$exampleOfOrderOfGetterAndSetterReordered;
-$superSupersuperSupersuperSupersuperSupersuperSuperLong::$exampleOfOrderOfGetterAndSetterReordered[0];
+$superSupersuperSupersuperSupersuperSupersuperSuperLong
+    ::$exampleOfOrderOfGetterAndSetterReordered[0];
 $superSupersuperSupersuperSupersuperSupersuperSuperLong = (new SuperSuperSuperSuperSuperSuperLongClassName())
     ->some_very_long_member_expression;
 new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong();
@@ -91,6 +93,7 @@ foo()->bar()->baz();
 foo()->bar->baz();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $object
     ->foo()
     ->bar()
@@ -153,6 +156,7 @@ $object[$valid
 ->map()->filter();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 ($a ? $b : $c)->d();
 
 ($a ? $b : $c)->d()->e();
@@ -245,6 +249,7 @@ $someLongVariableName = (idx(
 })->filter(function ($obj) { return !!$obj; });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $someLongVariableName = (
     idx($prop, ['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoor']) || []
 )->map(function ($edge) {
@@ -336,8 +341,22 @@ $aVariable = $theThing
 $anotherVariables = $theOtherThing
     ->aLongFunction(1, 2, 3, 4, 5, 6, 7)
     ->anotherReallyLongFunciton('a', 'b', 'c');
+
+$aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVery;
+$aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVery();
+
+bar()();
+bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')();
+bar()('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong');
+bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')()()()()();
+
+$foo->bar()();
+$foo->bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')();
+$foo->bar()('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong');
+$foo->bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')()()()()();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 one()->two();
 one()
     ->two()
@@ -346,8 +365,7 @@ one()
     ->two->three()
     ->four->five();
 
-Route
-    ::prefix('api')
+Route::prefix('api')
     ->middleware('api')
     ->namespace($this->namespace)
     ->group(base_path('routes/api.php'));
@@ -399,6 +417,34 @@ $anotherVariables = $theOtherThing
     ->aLongFunction(1, 2, 3, 4, 5, 6, 7)
     ->anotherReallyLongFunciton('a', 'b', 'c');
 
+$aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()
+    ->veryVeryVeryVeryVeryVeryVeryVery;
+$aVariable = $theThing
+    ->veryVeryVeryVeryVeryVeryVeryVeryLongCall()
+    ->veryVeryVeryVeryVeryVeryVeryVery();
+
+bar()();
+bar(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+)();
+bar()(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+);
+bar(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+)()()()()();
+
+$foo->bar()();
+$foo->bar(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+)();
+$foo->bar()(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+);
+$foo->bar(
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+)()()()()();
+
 `;
 
 exports[`multiple-members.php 1`] = `
@@ -421,6 +467,7 @@ $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(funct
 });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $wrapper
     ->find('SomewhatLongNodeName')
     ->prop('longPropFunctionName')
@@ -494,6 +541,7 @@ $window->Data['key']['foo']("foo")
     ->catch(function () { return $b; });
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $version = $someLongString
     ->split('jest version =')
     ->pop()
@@ -547,5 +595,168 @@ $window->Data['key']
     ->catch(function () {
         return $b;
     });
+
+`;
+
+exports[`staticlookup.php 1`] = `
+<?php
+DB::table('identity')->insert([
+    'ref' => $ref,
+    'handle' => $handle
+]);
+
+DB::table('identity')->insert([
+    'ref' => $ref,
+    'handle' => $handle,
+    'foo' => $bar,
+    'bar' => $foo
+]);
+
+DB::table('identity')->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName([
+    'ref' => $ref,
+    'handle' => $handle,
+    'foo' => $bar,
+    'bar' => $foo
+]);
+
+$page = TableRegistry
+    ::get('Pages')
+    ->findByPath($path)
+    ->find('published')
+    ->find('frontend')
+    ->find('somethingElse')
+    ->first();
+
+Logger
+    ::use_logger('albus')
+    ->info('Albus: failed to find active version for albus object', [
+        'uuid' => $uuid,
+        'requested_date' => $date
+    ]);
+
+DBwithlongname::table('identity')->insertReallyReallyReallyLongName()->someOtherReallyReallyLong();
+
+$DBwithlongname->table('identity')::insertReallyReallyReallyLongName()->someOtherReallyReallyLong();
+
+$page = TableRegistry
+    ::get('Pages')
+    ::findByPath($path)
+    ::find('published')
+    ::find('frontend')
+    ::find('somethingElse')
+    ::first();
+
+$page = TableRegistry
+    ::insertReallyReallyReallyLongName('Pages')
+    ::insertReallyReallyReallyLongName($path)
+    ::insertReallyReallyReallyLongName('published')
+    ::insertReallyReallyReallyLongName('frontend')
+    ::insertReallyReallyReallyLongName('somethingElse')
+    ::insertReallyReallyReallyLongName();
+
+$page = TableRegistry::insertReallyReallyReallyLongName[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+$page = TableRegistry::insertReallyReallyReallyLongName('Pages')[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName('Pages')[0];
+
+$component = find('.org-lclp-edit-copy-url-banner__link')[0]
+    ::getAttribute('href')
+    ::indexOf($this->landingPageLink);
+
+$component = Foo::test(['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoo', 'barfoo' => 'foobar']);
+$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+DB::table('identity')->insert(['ref' => $ref, 'handle' => $handle]);
+
+DB::table('identity')->insert([
+    'ref' => $ref,
+    'handle' => $handle,
+    'foo' => $bar,
+    'bar' => $foo
+]);
+
+DB::table(
+    'identity'
+)->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName([
+    'ref' => $ref,
+    'handle' => $handle,
+    'foo' => $bar,
+    'bar' => $foo
+]);
+
+$page = TableRegistry::get('Pages')
+    ->findByPath($path)
+    ->find('published')
+    ->find('frontend')
+    ->find('somethingElse')
+    ->first();
+
+Logger::use_logger('albus')->info(
+    'Albus: failed to find active version for albus object',
+    ['uuid' => $uuid, 'requested_date' => $date]
+);
+
+DBwithlongname::table('identity')
+    ->insertReallyReallyReallyLongName()
+    ->someOtherReallyReallyLong();
+
+$DBwithlongname
+    ->table('identity')
+    ::insertReallyReallyReallyLongName()
+    ->someOtherReallyReallyLong();
+
+$page = TableRegistry::get('Pages')
+    ::findByPath($path)
+    ::find('published')
+    ::find('frontend')
+    ::find('somethingElse')
+    ::first();
+
+$page = TableRegistry::insertReallyReallyReallyLongName('Pages')
+    ::insertReallyReallyReallyLongName($path)
+    ::insertReallyReallyReallyLongName('published')
+    ::insertReallyReallyReallyLongName('frontend')
+    ::insertReallyReallyReallyLongName('somethingElse')
+    ::insertReallyReallyReallyLongName();
+
+$page = TableRegistry::insertReallyReallyReallyLongName[0];
+$page = TableRegistry
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
+    ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+$page = TableRegistry::insertReallyReallyReallyLongName('Pages')[0];
+$page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName(
+    'Pages'
+)[0];
+
+$component = find('.org-lclp-edit-copy-url-banner__link')[0]
+    ::getAttribute('href')
+    ::indexOf($this->landingPageLink);
+
+$component = Foo::test([
+    'foo' => 'bar',
+    'bar' => 'foo',
+    'foobar' => 'barfoo',
+    'barfoo' => 'foobar'
+]);
+$component = Foo
+    ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
 `;

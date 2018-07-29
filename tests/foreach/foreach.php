@@ -28,3 +28,19 @@ endforeach;
 
 foreach ($test as $i) {
 }
+
+foreach ($points as ["x" => $x, "y" => $y]) {
+    var_dump($x, $y);
+}
+
+foreach ($points as ["veryVeryVeryVeryVeryVeryVeryLongKey" => $x, "veryVeryVeryVeryVeryVeryVeryLongKey" => $y]) {
+    var_dump($x, $y);
+}
+
+foreach ($points as ["x" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue, "y" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue]) {
+    var_dump($x, $y);
+}
+
+foreach ($points as ["veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongX, "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongY]) {
+    var_dump($x, $y);
+}

@@ -24,6 +24,68 @@ $app->setLogger(new class implements Logger {
         echo $msg;
     }
 });
+$app->setLogger(new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+
+var_dump(new class(10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+});
+
+class Outer
+{
+    private $prop = 1;
+    protected $prop2 = 2;
+
+    protected function func1()
+    {
+        return 3;
+    }
+
+    public function func2()
+    {
+        return new class($this->prop) extends Outer {
+            private $prop3;
+
+            public function __construct($prop)
+            {
+                $this->prop3 = $prop;
+            }
+
+            public function func3()
+            {
+                return $this->prop2 + $this->prop3 + $this->func1();
+            }
+        };
+    }
+}
+
+echo get_class(new class {});
+$class = new class {};
+$class = new class extends Outer {};
+// Parenthesis on the same line
+$instance = new class extends \\Foo implements \\HandleableInterface {
+    // Class content
+};
+
+// Parenthesis on the next line
+$instance = new class extends \\Foo implements
+    \\ArrayAccess,
+    \\Countable,
+    \\Serializable
+{
+    // Class content
+};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 interface Logger
@@ -48,14 +110,77 @@ class Application
 
 $app = new Application();
 $app->setLogger(
-    new class implements Logger
-    {
+    new class implements Logger {
         public function log(string $msg)
         {
             echo $msg;
         }
     }
 );
+$app->setLogger(
+    new class {
+        public function log($msg)
+        {
+            echo $msg;
+        }
+    }
+);
+
+var_dump(
+    new class(10) extends SomeClass implements SomeInterface {
+        private $num;
+
+        public function __construct($num)
+        {
+            $this->num = $num;
+        }
+
+        use SomeTrait;
+    }
+);
+
+class Outer
+{
+    private $prop = 1;
+    protected $prop2 = 2;
+
+    protected function func1()
+    {
+        return 3;
+    }
+
+    public function func2()
+    {
+        return new class($this->prop) extends Outer {
+            private $prop3;
+
+            public function __construct($prop)
+            {
+                $this->prop3 = $prop;
+            }
+
+            public function func3()
+            {
+                return $this->prop2 + $this->prop3 + $this->func1();
+            }
+        };
+    }
+}
+
+echo get_class(new class {});
+$class = new class {};
+$class = new class extends Outer {};
+// Parenthesis on the same line
+$instance = new class extends \\Foo implements \\HandleableInterface {
+    // Class content
+};
+
+// Parenthesis on the next line
+$instance = new class extends \\Foo
+    implements \\ArrayAccess, \\Countable, \\Serializable
+{
+    // Class content
+};
 
 `;
 
@@ -280,8 +405,13 @@ class test {
         return "The customer for that job, {$job->customer->name} has an error that shows up after the line gets waaaaay toooo long.";
     }
 }
+
+class EmptyClass {}
+
+class EmptyClassWithComments { /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 class Foo extends Bar implements Baz, Buzz
 {
     public $test;
@@ -474,7 +604,6 @@ $this->something->method(
 
 class A
 {
-
 }
 
 $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
@@ -490,11 +619,9 @@ class FooBar
     public $property2;
     public function method()
     {
-
     }
     public function method2()
     {
-
     }
 }
 
@@ -508,40 +635,34 @@ class FooBarFoo
 
 class ClassName extends ParentClass implements InterfaceClass
 {
-
 }
 
 class ClassName extends ParentClass
     implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends ParentClass
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
-
 }
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
-
 }
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName
@@ -549,7 +670,6 @@ class ClassName
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
-
 }
 
 class ClassName extends ParentClass
@@ -558,7 +678,6 @@ class ClassName extends ParentClass
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
@@ -567,7 +686,6 @@ class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class ClassName
@@ -577,20 +695,17 @@ class ClassName
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
-
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
     implements InterfaceClass
 {
-
 }
 
 class Custom_Plugin_NotificationPlaceholderSource
     extends Notification_Manager_DefaultPlaceholderSource
 {
-
 }
 
 class field extends \\models\\base
@@ -619,6 +734,15 @@ class test
         return "The customer for that job, {$job->customer
             ->name} has an error that shows up after the line gets waaaaay toooo long.";
     }
+}
+
+class EmptyClass
+{
+}
+
+class EmptyClassWithComments
+{
+    /* Comment */
 }
 
 `;

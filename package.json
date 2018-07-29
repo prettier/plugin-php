@@ -1,6 +1,6 @@
 {
   "name": "@prettier/plugin-php",
-  "version": "0.2.2",
+  "version": "0.4.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
@@ -10,6 +10,7 @@
     "src"
   ],
   "dependencies": {
+    "mem": "^3.0.1",
     "php-parser": "glayzzle/php-parser#a6fe467a24dd98aff3102234107dab2fa2986743"
   },
   "devDependencies": {
@@ -20,7 +21,7 @@
     "eslint-plugin-prettier": "2.4.0",
     "jest": "21.1.0",
     "jest-runner-eslint": "0.3.0",
-    "prettier": "prettier/prettier#4c464133ac37a966c792cacc660853d74c776841"
+    "prettier": "prettier/prettier"
   },
   "peerDependencies": {
     "prettier": "^1.12.0"

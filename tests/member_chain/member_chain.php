@@ -48,3 +48,16 @@ $aVariable = $theThing
 $anotherVariables = $theOtherThing
     ->aLongFunction(1, 2, 3, 4, 5, 6, 7)
     ->anotherReallyLongFunciton('a', 'b', 'c');
+
+$aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVery;
+$aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVery();
+
+bar()();
+bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')();
+bar()('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong');
+bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')()()()()();
+
+$foo->bar()();
+$foo->bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')();
+$foo->bar()('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong');
+$foo->bar('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong')()()()()();

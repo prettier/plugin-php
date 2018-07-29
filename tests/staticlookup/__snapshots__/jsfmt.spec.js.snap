@@ -160,7 +160,6 @@ abstract class Singleton
      */
     final private function __construct()
     {
-
     }
 
     /**
@@ -168,7 +167,6 @@ abstract class Singleton
      */
     final private function __clone()
     {
-
     }
 
     /**

@@ -89,6 +89,7 @@ use NamespaceB\\ClassC,
     NamespaceB\\ClassC;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 use NamespaceA\\ClassA;
 use NamespaceA\\ClassB;
 use NamespaceA\\ClassC;

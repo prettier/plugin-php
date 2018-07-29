@@ -33,3 +33,7 @@ class Partial {
         AbstractTrait::hasItem as has;
     }
 }
+
+trait emptyTrait {}
+
+trait EmptyTraitWithComment { /* Comment */ }

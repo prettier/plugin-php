@@ -11,8 +11,13 @@ interface testInterface {
 interface test2 extends testInterface {
   public function other($hi);
 }
+
+interface EmptyInterface {}
+
+interface EmptyInterfaceWithComments { /* Comment */ }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 interface testInterface
 {
     public function setVariable($test);
@@ -22,6 +27,15 @@ interface testInterface
 interface test2 extends testInterface
 {
     public function other($hi);
+}
+
+interface EmptyInterface
+{
+}
+
+interface EmptyInterfaceWithComments
+{
+    /* Comment */
 }
 
 `;

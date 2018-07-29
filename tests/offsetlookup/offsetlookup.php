@@ -8,3 +8,4 @@ $variable[1111111111111111111111111111111111111111111111111111111111111111111111
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'] = $variable->registered['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
 $variable = get_taxonomy_function(get_queried_object_function()->taxonomy)->object_type[0];
 $someArray[] = $this->something->long->that->not->makes->it->break->onto->two->break->lines();
+$variable = "abcdef"[-2];

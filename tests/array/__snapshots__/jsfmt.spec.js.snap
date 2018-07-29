@@ -351,8 +351,52 @@ $helpers = [
         ],
     'MagicMenu.MagicMenu'
 ];
+
+$data = [
+
+
+    'value',
+    'value',
+
+
+    // a comment
+    'value',
+    'value'
+
+
+];
+
+$arr = [
+    'niveisFederativos' =>
+        app(NiveisFederativosRepository::class)
+            ->allOrderBy('nome')
+            ->pluck('nome', 'id'),
+
+    'tiposLeis' =>
+        app(TiposLeisRepository::class)
+            ->allOrderBy('nome')
+            ->pluck('nome', 'id')
+];
+[[$id1, $name1]] = $data;
+[[$id1], [$id2], [$id]] = $data;
+[[$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue]] = $data;
+["id" => $id1, "name" => $name1] = $data;
+[["id" => $id1, "name" => $name1]] = $data;
+[["veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue, "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue]] = $data;
+$arr = [
+    'niveisFederativos' =>
+        function () {
+            return "value";
+        },
+
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' =>
+        function () {
+            return "other-value";
+        }
+];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $test = array(1, 2, 3, 4, "test");
 $test = array(1, 2, 3, 4, "test");
 $test = array(1, 2, 3, 4, "test");
@@ -449,6 +493,50 @@ $helpers = [
         ]
     ],
     'MagicMenu.MagicMenu'
+];
+
+$data = [
+    'value',
+    'value',
+
+    // a comment
+    'value',
+    'value'
+];
+
+$arr = [
+    'niveisFederativos' => app(NiveisFederativosRepository::class)
+        ->allOrderBy('nome')
+        ->pluck('nome', 'id'),
+
+    'tiposLeis' => app(TiposLeisRepository::class)
+        ->allOrderBy('nome')
+        ->pluck('nome', 'id')
+];
+[[$id1, $name1]] = $data;
+[[$id1], [$id2], [$id]] = $data;
+[
+    [
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue
+    ]
+] = $data;
+["id" => $id1, "name" => $name1] = $data;
+[["id" => $id1, "name" => $name1]] = $data;
+[
+    [
+        "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
+        "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue
+    ]
+] = $data;
+$arr = [
+    'niveisFederativos' => function () {
+        return "value";
+    },
+
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
+        return "other-value";
+    }
 ];
 
 `;

@@ -218,3 +218,7 @@ class test {
         return "The customer for that job, {$job->customer->name} has an error that shows up after the line gets waaaaay toooo long.";
     }
 }
+
+class EmptyClass {}
+
+class EmptyClassWithComments { /* Comment */ }

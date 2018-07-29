@@ -13,9 +13,7 @@ exports[`declare.php 1`] = `
 <?php declare(strict_types=1); ?>
 <html>
     <body>
-        <?php
-        $a = 1;
-        ?>
+        <?php $a = 1; ?>
     </body>
 </html>
 
@@ -69,8 +67,139 @@ function inlineMultipleStatements() {
     <?php
     $c = 1;
 }
+
+function test() {
+  ?>
+  <span>Hello World!</span>
+  <?php
+  $a = 1;
+  $b = 1;
+  $c = 1;
+}
+
+function otherTest()
+{
+    echo '1';
+    ?>
+      <div>
+        <div>
+          <div>
+            <?php echo '2'; ?>
+            <div>
+            <?php
+            echo '3';
+            echo '4';
+            echo '5';
+            ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    echo '6';
+}
+
+function fff()
+{
+    ?>
+    <div>
+      <div>
+      <?php
+      function ffff()
+      {
+          ?>
+          <div>
+            <div>
+              <?php echo 'test'; ?>
+            </div>
+          </div>
+          <?php
+      }
+      ?>
+      </div>
+    </div>
+    <?php
+}
+
+function ffff()
+{
+  echo '1';
+  echo '2';
+  echo '3';
+  echo '4';
+  ?>
+  <div>foo</div>
+  <?php
+  echo '5';
+  echo '6';
+  echo '7';
+  echo '8';
+}
+
+function fffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+    <div>
+      <div>
+        <div>
+          <?php
+          echo 'nested';
+          echo 'nested';
+          echo 'nested';
+          ?>
+        </div>
+      </div>
+    </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
+}
+
+function ffffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+      <div>
+        <div>
+          <div>
+            <div>
+                <?php
+                function ffffff() {
+                    echo '1';
+                    echo '2';
+                    echo '3';
+                    echo '4';
+                    ?>
+                    <div>FooBar</div>
+                    <?php
+                    echo '5';
+                    echo '6';
+                    echo '7';
+                    echo '8';
+                }
+                ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 function inline()
 {
     ?>
@@ -113,14 +242,137 @@ function inlineNested1()
 
 function inlineMultipleStatements()
 {
-    $a = 1;
-     ?>
+    $a = 1; ?>
     <span>Hello World!</span>
-    <?php
-    $b = 1;
-    ?>
+    <?php $b = 1; ?>
     <span>Hello World!</span>
     <?php $c = 1;
+}
+
+function test()
+{
+    ?>
+  <span>Hello World!</span>
+  <?php
+  $a = 1;
+  $b = 1;
+  $c = 1;
+}
+
+function otherTest()
+{
+    echo '1'; ?>
+      <div>
+        <div>
+          <div>
+            <?php echo '2'; ?>
+            <div>
+            <?php
+            echo '3';
+            echo '4';
+            echo '5';
+            ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php echo '6';
+}
+
+function fff()
+{
+    ?>
+    <div>
+      <div>
+      <?php function ffff()
+      {
+          ?>
+          <div>
+            <div>
+              <?php echo 'test'; ?>
+            </div>
+          </div>
+          <?php
+      } ?>
+      </div>
+    </div>
+    <?php
+}
+
+function ffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+  <div>foo</div>
+  <?php
+  echo '5';
+  echo '6';
+  echo '7';
+  echo '8';
+}
+
+function fffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+    <div>
+      <div>
+        <div>
+          <?php
+          echo 'nested';
+          echo 'nested';
+          echo 'nested';
+          ?>
+        </div>
+      </div>
+    </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
+}
+
+function ffffff()
+{
+    echo '1';
+    echo '2';
+    echo '3';
+    echo '4';
+    ?>
+      <div>
+        <div>
+          <div>
+            <div>
+                <?php function ffffff()
+                {
+                    echo '1';
+                    echo '2';
+                    echo '3';
+                    echo '4';
+                    ?>
+                    <div>FooBar</div>
+                    <?php
+                    echo '5';
+                    echo '6';
+                    echo '7';
+                    echo '8';
+                } ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    echo '5';
+    echo '6';
+    echo '7';
+    echo '8';
 }
 
 `;
@@ -212,33 +464,28 @@ echo 'bar';
 </div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <p>Test.</p>
-<?php
-echo 'String.';
-?>
+<?php echo 'String.'; ?>
 <p>Test.</p>
 <?php if ($expression == true): ?>
   <p>Test.</p>
 <?php else: ?>
   <p>Test.</p>
-<?php endif;
-echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
+<?php endif; ?>
+<?php echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
 <div></div>
-<?php echo 'foo';
+<?php
+echo 'foo';
 echo 'bar';
- ?>
+?>
 <div class="<?php echo $class; ?>"></div>
 <div>
   <h1>
-    <?php
-    print_welcome_message();
-    ?>
+    <?php print_welcome_message(); ?>
   </h1>
 </div>
 <div id="results">
   <table class="sortable">
-    <?php
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    ?>
+    <?php $results = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
     <?php do { ?>
       <tr>
         <?php for ($i = 0; $i < count($columns); $i++): ?>
@@ -277,17 +524,13 @@ echo 'bar';
   <span>Text</span>
 <?php endwhile; ?>
 <h1>Head</h1>
-<?php $var = 1;
-if ($expression == true):
-    ?>
+<?php $var = 1; ?>
+<?php if ($expression == true): ?>
   <p>Test.</p>
-<?php
-else:
-    ?>
+<?php else: ?>
   <p>Test.</p>
-<?php
-endif;
-$var = 1; ?>
+<?php endif; ?>
+<?php $var = 1; ?>
 <div>
   <?php while ($i <= 10): ?>
     <span><?php echo $i; ?></span>
@@ -312,7 +555,8 @@ $a = 1;
 ?>
 <div>Foo</div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php $a = 1; ?>
+<?php
+$a = 1; ?>
 <div>Foo</div>
 
 `;
@@ -325,6 +569,7 @@ $a = 1;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <div>Foo</div>
 <?php $a = 1;
+?>
 
 `;
 
@@ -336,8 +581,7 @@ exports[`mixed-3.php 1`] = `
 <?php endif; ?>
 <div>Hello world</div>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-if ($expression == true): ?>
+<?php if ($expression == true): ?>
     <p>Test.</p>
 <?php else: ?>
     <p>Test.</p>
@@ -359,7 +603,7 @@ exports[`mixed-4.php 1`] = `
     <p>Test.</p>
 <?php else: ?>
     <p>Test.</p>
-<?php endif;
+<?php endif; ?>
 
 `;
 
@@ -381,8 +625,7 @@ if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
 ?>
 text~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 text
-<?php
-if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
+<?php if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
     foreach ($dataXXXXXXXXXXXXXXXXXXXX as $key => $value) {
         if ((!is_string($value) && !is_numeric($value)) || !is_string($key)) {
             continue;
@@ -393,8 +636,7 @@ if (!empty($dataXXXXXXXXXXXXXXXXXXXX)) {
             $value = htmlspecialchars((string) $value);
         }
     }
-}
-?>
+} ?>
 text
 
 `;
@@ -432,79 +674,685 @@ exports[`mixed-6.php 1`] = `
     'url' => $url,
     'color' => $item->title_color ?: 'primary',
   ]); ?>
-</section>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<section class="<?php echo $sectionClass; ?>">
-  <header class="<?php echo $headerClass; ?>">
-    <?php
-    echo $this->element('collection/item-title', [
+</section>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<section class="<?= $sectionClass; ?>">
+  <header class="<?= $headerClass; ?>">
+    <?php echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
         'small_title' => $item->small_title,
         'title' => $item->title,
         'url' => $url,
         'color' => $item->title_color ?: 'primary'
-    ]);
-    ?>
+    ]); ?>
   </header>
 </section>
 
-<section class="<?php echo $sectionClass; ?>">
-  <header class="<?php echo $headerClass; ?>">
-    <?php
-    echo $this->element('collection/item-title', [
+<section class="<?= $sectionClass; ?>">
+  <header class="<?= $headerClass; ?>">
+    <?php echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
         'small_title' => $item->small_title,
         'title' => $item->title,
         'url' => $url,
         'color' => $item->title_color ?: 'primary'
-    ]);
-    ?>
-  </header> <?php
-            echo $someOtherVar()->element('collection/item-title', [
-                'class' => $itemTitleClass,
-                'small_title' => $item->small_title,
-                'title' => $item->title,
-                'url' => $url,
-                'color' => $item->title_color ?: 'primary'
-            ]);
-            ?>
+    ]); ?>
+  </header> <?= $someOtherVar()->element('collection/item-title', [
+      'class' => $itemTitleClass,
+      'small_title' => $item->small_title,
+      'title' => $item->title,
+      'url' => $url,
+      'color' => $item->title_color ?: 'primary'
+  ]); ?>
 </section>
 
 `;
 
 exports[`mixed-7.php 1`] = `
-<?php declare(strict_types=1); ?>
-<html>
-    <body>
-        <?php
-          $a = 1;
-        ?>
-    </body>
-</html>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php declare(strict_types=1); ?>
-<html>
-    <body>
-        <?php $a = 1; ?>
-    </body>
-</html>
+There are <?= $variable; ?> examples
+
+There are <?php echo $variable; ?> examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are <?= $variable; ?> examples
+
+There are <?php echo $variable; ?> examples
 
 `;
 
 exports[`mixed-8.php 1`] = `
-<?php declare(strict_types=1); ?>
-<html>
-    <body>
-        <?php $a = 1; $b = 1; ?>
-    </body>
-</html>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php declare(strict_types=1); ?>
-<html>
-    <body>
-        <?php
-        $a = 1;
-        $b = 1;
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    ?>
+</div>
+
+<div>
+    <?php echo "1"; echo "2"; ?>
+</div>
+
+<div>
+  <?php echo "1"; ?>
+  <?php echo "2"; ?>
+</div>
+
+<div>
+    <?php function func($x){
+        return $x;
+    }
+    function other_func($x){
+        return $x;
+    } ?>
+</div>
+
+<div>
+    <?php function func($x){
+        return $x;
+    } ?>
+    <?php function other_func($x){
+        return $x;
+    } ?>
+</div>
+
+<div>
+    <?php echo "1"; ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    echo "3";
+    ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
+    echo "5";
+    ?>
+</div>
+<div>
+  <div>
+    <div>
+      <div>
+          <?php echo "1"; ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div>
+    <div>
+      <div>
+          <?php
+          echo "1";
+          echo "2";
+          ?>
+      </div>
+    </div>
+  </div>
+</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    ?>
+</div>
+
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    ?>
+</div>
+
+<div>
+  <?php echo "1"; ?>
+  <?php echo "2"; ?>
+</div>
+
+<div>
+    <?php
+    function func($x)
+    {
+        return $x;
+    }
+    function other_func($x)
+    {
+        return $x;
+    }
+    ?>
+</div>
+
+<div>
+    <?php function func($x)
+    {
+        return $x;
+    } ?>
+    <?php function other_func($x)
+    {
+        return $x;
+    } ?>
+</div>
+
+<div>
+    <?php echo "1"; ?>
+</div>
+<div>
+    <?php echo "1"; ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    echo "3";
+    ?>
+</div>
+<div>
+    <?php
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
+    echo "5";
+    ?>
+</div>
+<div>
+  <div>
+    <div>
+      <div>
+          <?php echo "1"; ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div>
+    <div>
+      <div>
+          <?php
+          echo "1";
+          echo "2";
+          ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+`;
+
+exports[`mixed-9.php 1`] = `
+<?php echo '1'; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+
+`;
+
+exports[`mixed-10.php 1`] = `
+<?php echo '1';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1';
+
+`;
+
+exports[`mixed-11.php 1`] = `
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+
+`;
+
+exports[`mixed-12.php 1`] = `
+<?php echo '1'; ?>
+<?php echo '2';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+<?php echo '2';
+
+`;
+
+exports[`mixed-13.php 1`] = `
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+<?php echo '3'; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+<?php echo '3'; ?>
+
+`;
+
+exports[`mixed-14.php 1`] = `
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+<?php echo '3';
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+<?php echo '2'; ?>
+<?php echo '3';
+
+`;
+
+exports[`mixed-15.php 1`] = `
+<?php
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+`;
+
+exports[`mixed-16.php 1`] = `
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
+  <?php echo $someOtherVar()->element('collection/item-title', [
+      'class' => $itemTitleClass,
+      'small_title' => $item->small_title,
+      'title' => $item->title,
+      'url' => $url,
+      'color' => $item->title_color ?: 'primary',
+  ], [
+      'foo' => 'bar',
+      'bar' => 'foo',
+      'barfoo' => 'foobar',
+      'foobar' => 'barfoo'
+  ]); ?>
+  </header>
+  <div> <?php echo $someOtherVar()->element('collection/item-title', [
+      'class' => $itemTitleClass,
+      'small_title' => $item->small_title,
+      'title' => $item->title,
+      'url' => $url,
+      'color' => $item->title_color ?: 'primary',
+  ], [
+      'foo' => 'bar',
+      'bar' => 'foo',
+      'barfoo' => 'foobar',
+      'foobar' => 'barfoo'
+  ]); ?>
+  </div>
+</section>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<section class="<?= $sectionClass; ?>">
+  <header class="<?= $headerClass; ?>">
+  <?php echo $someOtherVar()->element(
+      'collection/item-title',
+      [
+          'class' => $itemTitleClass,
+          'small_title' => $item->small_title,
+          'title' => $item->title,
+          'url' => $url,
+          'color' => $item->title_color ?: 'primary'
+      ],
+      [
+          'foo' => 'bar',
+          'bar' => 'foo',
+          'barfoo' => 'foobar',
+          'foobar' => 'barfoo'
+      ]
+  ); ?>
+  </header>
+  <div> <?php echo $someOtherVar()->element(
+      'collection/item-title',
+      [
+          'class' => $itemTitleClass,
+          'small_title' => $item->small_title,
+          'title' => $item->title,
+          'url' => $url,
+          'color' => $item->title_color ?: 'primary'
+      ],
+      [
+          'foo' => 'bar',
+          'bar' => 'foo',
+          'barfoo' => 'foobar',
+          'foobar' => 'barfoo'
+      ]
+  ); ?>
+  </div>
+</section>
+
+`;
+
+exports[`mixed-17.php 1`] = `
+<div>
+    <?php switch($variable) {
+    case 1: ?>
+        <div>Newspage</div>
+        <?php break; ?>
+    <?php case 2: ?>
+    <div>Forum</div>
+    <?php break; ?>
+    <?php } ?>
+</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+    <?php switch ($variable) { case 1: ?>
+        <div>Newspage</div>
+        <?php break; ?>
+    <?php case 2: ?>
+    <div>Forum</div>
+    <?php break; ?>
+    <?php } ?>
+</div>
+
+`;
+
+exports[`mixed-18.php 1`] = `
+<div>
+    <?php
+
+    echo '1';
+    echo '2';
+
+    ?>
+</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+    <?php
+    echo '1';
+    echo '2';
+    ?>
+</div>
+
+`;
+
+exports[`mixed-19.php 1`] = `
+<?php
+$greet = function($name) {
+    ?>
+    FooBar
+    <?php
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$greet = function ($name) {
+    ?>
+    FooBar
+    <?php
+};
+
+`;
+
+exports[`mixed-20.php 1`] = `
+<?php
+try {
+    ?>
+    Foo bar
+    <?php
+} catch (Exception $e) {
+    ?>
+    Foo bar
+    <?php
+} finally {
+    ?>
+    Foo bar
+    <?php
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+try {
+    ?>
+    Foo bar
+    <?php
+} catch (Exception $e) {
+    ?>
+    Foo bar
+    <?php
+} finally {
+    ?>
+    Foo bar
+    <?php
+}
+
+`;
+
+exports[`mixed-21.php 1`] = `
+<?php
+
+class Foo
+{
+    public function html() {
         ?>
-    </body>
-</html>
+        Foo Bar
+        <?php
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+class Foo
+{
+    public function html()
+    {
+        ?>
+        Foo Bar
+        <?php
+    }
+}
+
+`;
+
+exports[`mixed-22.php 1`] = `
+<?php if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
+<?php endif; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php if ($expression == true): ?>
+    <p>Test.</p>
+<?php else: ?>
+    <p>Test.</p>
+<?php endif; ?>
+
+`;
+
+exports[`mixed-23.php 1`] = `
+<div>Foo</div>
+<?php for ($really_really_long_variable_name = 0; $really_really_long_variable_name <= 5; $really_really_long_variable_name++) { ?>
+    <div>
+        <?php echo $really_really_long_variable_name; ?>
+    </div>
+<?php } ?>
+<div>Bar</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>Foo</div>
+<?php for (
+    $really_really_long_variable_name = 0;
+    $really_really_long_variable_name <= 5;
+    $really_really_long_variable_name++
+) { ?>
+    <div>
+        <?php echo $really_really_long_variable_name; ?>
+    </div>
+<?php } ?>
+<div>Bar</div>
+
+`;
+
+exports[`mixed-24.php 1`] = `
+<?php
+declare(ticks=1) {
+    echo '1';
+}
+?>
+<div>FooBar</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+declare(ticks=1) {
+    echo '1';
+} ?>
+<div>FooBar</div>
+
+`;
+
+exports[`mixed-25.php 1`] = `
+<?php
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$a = 1;
+
+`;
+
+exports[`mixed-26.php 1`] = `
+<?php
+
+namespace Foo;
+
+echo 'test';
+?>
+<div>Test</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Foo;
+
+echo 'test'; ?>
+<div>Test</div>
+
+`;
+
+exports[`mixed-27.php 1`] = `
+<?php
+
+declare(strict_types=1);
+
+namespace Foo;
+
+echo 'test';
+?>
+<div>Test</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+namespace Foo;
+
+echo 'test'; ?>
+<div>Test</div>
+
+`;
+
+exports[`mixed-28.php 1`] = `
+<?php
+echo '1';
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+echo '1';
+?>
+
+`;
+
+exports[`mixed-29.php 1`] = `
+<?php echo '1'; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+
+`;
+
+exports[`mixed-30.php 1`] = `
+<?php echo '1'; ?>
+<div> Foo Bar </div>
+<?php
+echo 'test';
+echo 'foo';
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo '1'; ?>
+<div> Foo Bar </div>
+<?php
+echo 'test';
+echo 'foo';
+
+?>
+
+`;
+
+exports[`mixed-31.php 1`] = `
+
+
+<?php echo '1'; ?>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+<?php echo '1'; ?>
+
+
+`;
+
+exports[`mixed-32.php 1`] = `
+<div></div>
+<?php if (true) ?>
+    <?php echo 'test'; ?>
+<div></div>
+<div></div>
+<?php if (true) ?>
+<?php echo 'test'; ?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div></div>
+<?php if (true); ?>
+    <?php echo 'test'; ?>
+<div></div>
+<div></div>
+<?php if (true); ?>
+<?php echo 'test'; ?>
+<div></div>
+
+`;
+
+exports[`mixed-33.php 1`] = `
+<div></div>
+<?php
+if (true)
+    echo 'test';
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div></div>
+<?php if (true) {
+    echo 'test';
+} ?>
+<div></div>
+
+`;
+
+exports[`mixed-34.php 1`] = `
+<div></div>
+<?php if (true) echo 'test' ?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div></div>
+<?php if (true) {
+    echo 'test';
+} ?>
+<div></div>
 
 `;
 

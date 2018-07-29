@@ -36,8 +36,8 @@ exports[`new.php 1`] = `
     'en',
     array(),
     array('foo' => 'bar')
-));
-(
+)); ?>
+<?php (
     new Translator(
         $container,
         new MessageFormatter(),
@@ -45,10 +45,25 @@ exports[`new.php 1`] = `
         $someOtherVar,
         array('foo' => 'bar')
     )
-);
-(new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
+); ?>
+<?php (new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
 ]));
 ?>
+
+`;
+
+exports[`unnecessary.php 1`] = `
+<?php
+$test = 1;
+$test = (1);
+$test = ((1));
+$test = (((1)));
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$test = 1;
+$test = (1);
+$test = (1);
+$test = (1);
 
 `;

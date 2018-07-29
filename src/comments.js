@@ -25,28 +25,33 @@ args:
   isLastComment
 */
 
-const handleOwnLineComment = (comment, text, options) => {
+const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
-    handleAlternate(comment)
+    handleAlternate(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
-const handleEndOfLineComment = (comment, text, options) => {
+const handleEndOfLineComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleForLoop(comment) ||
-    handleTryCatch(comment)
+    handleTryCatch(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
-const handleRemainingComment = (comment, text, options) => {
+const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
+  const { enclosingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
@@ -55,7 +60,9 @@ const handleRemainingComment = (comment, text, options) => {
     handleTryCatch(comment) ||
     handleBreakAndContinueStatementComments(comment) ||
     handleGoto(comment) ||
-    handleHalt(comment)
+    handleHalt(comment) ||
+    handleCall(comment) ||
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
 };
 
@@ -83,8 +90,28 @@ const handleForLoop = comment => {
 };
 
 const handleClass = comment => {
-  const { enclosingNode } = comment;
+  const { enclosingNode, followingNode } = comment;
   if (enclosingNode && enclosingNode.kind === "class") {
+    // for extends nodes that have leading comments, we can store them as
+    // dangling comments so we can handle them in the printer
+    if (followingNode === enclosingNode.extends) {
+      addDanglingComment(followingNode, comment);
+      return true;
+    }
+    // check each implements node - if any of them have comments we can store
+    // them as dangling comments and handle them in the printer
+    if (followingNode && enclosingNode.implements) {
+      if (
+        enclosingNode.implements.some(implementsNode => {
+          if (followingNode && followingNode === implementsNode) {
+            addDanglingComment(followingNode, comment);
+            return true;
+          }
+        })
+      ) {
+        return true;
+      }
+    }
     // for an empty class where the body is only made up of comments, we
     // need to attach this as a dangling comment on the class node itself
     if (!(enclosingNode.body && enclosingNode.body.length > 0)) {
@@ -221,6 +248,19 @@ const handleHalt = comment => {
   return false;
 };
 
+const handleCall = comment => {
+  const { enclosingNode } = comment;
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "call" &&
+    enclosingNode.arguments.length === 0
+  ) {
+    addDanglingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+};
+
 const handleAlternate = comment => {
   const { enclosingNode, followingNode } = comment;
   if (
@@ -234,6 +274,30 @@ const handleAlternate = comment => {
   }
   return false;
 };
+
+function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
+  // With Flow the enclosingNode is undefined so use the AST instead.
+  if (ast && ast.children && ast.children.length === 0) {
+    if (isLastComment) {
+      addDanglingComment(ast, comment);
+    } else {
+      addLeadingComment(ast, comment);
+    }
+    return true;
+  } else if (
+    enclosingNode &&
+    enclosingNode.kind === "program" &&
+    enclosingNode.children.length === 0
+  ) {
+    if (isLastComment) {
+      addDanglingComment(enclosingNode, comment);
+    } else {
+      addLeadingComment(enclosingNode, comment);
+    }
+    return true;
+  }
+  return false;
+}
 
 // https://github.com/prettier/prettier/blob/master/src/main/comments.js#L335
 function printComment(commentPath, options) {

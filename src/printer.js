@@ -30,13 +30,10 @@ const comments = require("./comments");
 const {
   getLast,
   getPenultimate,
-  isNextNodeInline,
   isLastStatement,
   lineShouldEndWithSemicolon,
   printNumber,
   shouldFlatten,
-  getNodeIndex,
-  removeNewlines,
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
   hasDanglingComments,
@@ -44,12 +41,12 @@ const {
   hasTrailingComment,
   docShouldHaveTrailingNewline,
   isMemberish,
-  isPrevNodeInline,
-  getPreviousNodeInParentListProperty,
-  getNextNodeInParentListProperty,
-  isNodeFullyNestedInline,
-  isNextNodeFullyNestedInline,
-  isPreviousNodeFullyNestedInline
+  isFirstChildrenInlineNode,
+  shouldPrintHardLineBeforeEndInControlStructure,
+  getAlignment,
+  getFirstNestedChildNode,
+  getLastNestedChildNode,
+  isProgramLikeNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -65,108 +62,29 @@ function shouldPrintComma(options) {
 
 function genericPrint(path, options, print) {
   const node = path.getValue();
+
   if (!node) {
     return "";
   } else if (typeof node === "string") {
     return node;
   }
-  // there are 2 mixed php/html cases we need to account for here
-  // 1) a full php node nested within html (handled below)
-  // 2) inline html mixed within a php node (handled in the nodes themselves)
-
-  const isProgramNode = node.kind === "program";
-  // case 1, which can be treated the same as the top-level program node
-  const isFullNestedNode = isNodeFullyNestedInline(path);
-  let shouldHaveOpenTag =
-    isFullNestedNode ||
-    (isProgramNode && !node.children[0]) ||
-    (isProgramNode && node.children[0] && node.children[0].kind !== "inline");
-
-  // if the first node is fully nested inline, it will handle its own tags
-  if (isProgramNode) {
-    path.map((childPath, index) => {
-      if (index === 0 && isNodeFullyNestedInline(childPath)) {
-        shouldHaveOpenTag = false;
-      }
-    }, "children");
-  }
 
   const printed = printNode(path, options, print);
-  if (shouldHaveOpenTag) {
-    const shouldHaveCloseTag =
-      isFullNestedNode ||
-      (isProgramNode && node.loc.source.trim().endsWith("?>"));
 
-    if (isFullNestedNode) {
-      const tagOpenIndex = options.originalText.lastIndexOf(
-        "<",
-        options.locStart(node)
-      );
-      let alignment = options.originalText.substring(0, tagOpenIndex);
-      if (options.originalText.lastIndexOf("\n", tagOpenIndex) > -1) {
-        alignment = options.originalText.substring(
-          options.originalText.lastIndexOf("\n", tagOpenIndex) + 1,
-          tagOpenIndex
-        );
-      }
-      return dedentToRoot(
-        group(
-          concat([
-            "<?php",
-            align(
-              new Array(alignment.length + 1).join(" "),
-              concat([
-                line,
-                printed,
-                lineShouldEndWithSemicolon(path) ? ";" : "",
-                line,
-                "?>"
-              ])
-            )
-          ])
-        )
-      );
-    }
-
-    return group(
-      concat([
-        "<?php",
-        line,
-        printed,
-        lineShouldEndWithSemicolon(path) ? ";" : "",
-        shouldHaveCloseTag ? concat([line, "?>"]) : "",
-        fileShouldEndWithHardline(path) ? hardline : ""
-      ])
-    );
+  if (
+    node.kind === "program" &&
+    node.children.length === 0 &&
+    node.comments === 0
+  ) {
+    return concat(["<?php", hardline]);
   }
 
   if (node.kind === "inline") {
-    const parentNode = path.getParentNode();
-    const isParentProgramNode = parentNode && parentNode.kind === "program";
-    const nodeIndex = getNodeIndex(path);
-    const previousNode = getPreviousNodeInParentListProperty(path);
-    const nextNode = getNextNodeInParentListProperty(path);
-    // case 2 (closing tag to start inline html)
-    return concat([
-      !(isParentProgramNode && nodeIndex === 0) &&
-      !isPreviousNodeFullyNestedInline(path)
-        ? previousNode
-          ? " ?>"
-          : "?>"
-        : "",
-      printed,
-      !(isParentProgramNode && nodeIndex === parentNode.children.length - 1) &&
-      !isNextNodeFullyNestedInline(path)
-        ? nextNode
-          ? "<?php "
-          : "<?php"
-        : ""
-    ]);
+    return printed;
   }
-  const shouldRemoveNewLines = isPrevNodeInline(path) || isNextNodeInline(path);
+
   return concat([
-    // case 2 (opening tag to close inline html)
-    shouldRemoveNewLines ? removeNewlines(printed) : printed,
+    printed,
     lineShouldEndWithSemicolon(path) ? ";" : "",
     fileShouldEndWithHardline(path) ? hardline : ""
   ]);
@@ -273,7 +191,7 @@ function printMemberChain(path, options, print) {
     const node = path.getValue();
     if (
       node.kind === "call" &&
-      (isMemberish(node.what) || node.what.type === "call")
+      (isMemberish(node.what) || node.what.kind === "call")
     ) {
       printedNodes.unshift({
         node,
@@ -409,16 +327,24 @@ function printMemberChain(path, options, print) {
   //    $foo->Data['key']("foo")
   //      ->method();
   //
+
+  function shouldNotWrap(groups) {
+    if (groups[0].length === 1) {
+      const firstNode = groups[0][0].node;
+
+      return (
+        (firstNode.kind === "variable" && firstNode.name === "this") ||
+        firstNode.kind === "identifier"
+      );
+    }
+
+    const lastNode = getLast(groups[0]).node;
+
+    return isMemberish(lastNode) && lastNode.offset.kind === "constref";
+  }
+
   const shouldMerge =
-    groups.length >= 2 &&
-    !groups[1][0].node.comments &&
-    ((groups[0].length === 1 &&
-      (groups[0][0].node.kind === "variable" &&
-        groups[0][0].node.name === "this")) ||
-      (groups[0].length > 1 &&
-        (isMemberish(groups[0][groups[0].length - 1].node) &&
-          groups[0][groups[0].length - 1].node.what.kind === "variable" &&
-          (groups[1].length && groups[1][0].node.kind === "offsetlookup"))));
+    groups.length >= 2 && !groups[1][0].node.comments && shouldNotWrap(groups);
 
   function printGroup(printedGroup) {
     return concat(printedGroup.map(tuple => tuple.printed));
@@ -681,9 +607,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 }
 
 function wrapPropertyLookup(node, doc) {
-  const addCurly =
-    node.kind === "propertylookup" &&
-    (node.offset.kind !== "constref" || typeof node.offset.name !== "string");
+  const addCurly = !["variable", "constref"].includes(node.offset.kind);
 
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
@@ -812,23 +736,24 @@ function printExpression(path, options, print) {
   const node = path.getValue();
   const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
   function printLookup(node) {
+    const parent = path.getParentNode();
+    let firstNonMemberParent;
+    let i = 0;
+    do {
+      firstNonMemberParent = path.getParentNode(i);
+      i++;
+    } while (firstNonMemberParent && isMemberish(firstNonMemberParent));
+
+    const shouldInline =
+      (firstNonMemberParent && firstNonMemberParent.kind === "new") ||
+      (node.what.kind === "variable" &&
+        (node.offset &&
+          (node.offset.kind === "constref" ||
+            node.offset.kind === "variable")) &&
+        (parent && !isMemberish(parent)));
+
     switch (node.kind) {
       case "propertylookup": {
-        const parent = path.getParentNode();
-        let firstNonMemberParent;
-        let i = 0;
-        do {
-          firstNonMemberParent = path.getParentNode(i);
-          i++;
-        } while (firstNonMemberParent && isMemberish(firstNonMemberParent));
-
-        const shouldInline =
-          (firstNonMemberParent && firstNonMemberParent.kind === "new") ||
-          (node.what.kind === "variable" &&
-            (node.offset.kind === "constref" ||
-              node.offset.kind === "variable") &&
-            !isMemberish(parent));
-
         return group(
           concat([
             path.call(print, "what"),
@@ -848,7 +773,13 @@ function printExpression(path, options, print) {
       case "staticlookup":
         return concat([
           path.call(print, "what"),
-          printStaticLookup(path, options, print)
+          shouldInline
+            ? printStaticLookup(path, options, print)
+            : group(
+                indent(
+                  concat([softline, printStaticLookup(path, options, print)])
+                )
+              )
         ]);
       case "offsetlookup":
         return group(
@@ -976,7 +907,9 @@ function printExpression(path, options, print) {
           parentNode.kind !== "echo" &&
           parentNode.kind !== "include";
         const shouldBeInlined =
-          node.inner.kind === "new" || node.inner.kind === "clone";
+          node.inner.kind === "new" ||
+          node.inner.kind === "clone" ||
+          node.inner.kind === "retif";
         // don't break if this is a property lookup - ie
         // ($someThing
         //    ? $someOtherThing
@@ -1015,6 +948,7 @@ function printExpression(path, options, print) {
       case "unary":
         return concat([node.type, path.call(print, "what")]);
       case "cast":
+        // @TODO: binary type cast is broken https://github.com/glayzzle/php-parser/issues/166
         return concat(["(", node.type, ") ", path.call(print, "what")]);
       default:
         return `Have not implemented operation kind ${node.kind} yet.`;
@@ -1053,13 +987,16 @@ function printExpression(path, options, print) {
         return node.value ? "true" : "false";
       case "string": {
         // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/123
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/124
         // @TODO: for now just reusing double/single quote preference from doc. could eventually
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
         let stringValue = node.raw;
+
+        if (node.raw[0] === "b") {
+          stringValue = stringValue.slice(1);
+        }
+
         // we need to strip out the quotes from the raw value
         if (['"', "'"].includes(stringValue[0])) {
           stringValue = stringValue.substr(1);
@@ -1067,7 +1004,10 @@ function printExpression(path, options, print) {
         if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
           stringValue = stringValue.substr(0, stringValue.length - 1);
         }
-        return makeString(stringValue, quote, false);
+        return concat([
+          node.raw[0] === "b" ? "b" : "",
+          makeString(stringValue, quote, false)
+        ]);
       }
       case "number":
         return printNumber(node.value);
@@ -1083,16 +1023,27 @@ function printExpression(path, options, print) {
           concat(
             path.map(valuePath => {
               const node = valuePath.getValue();
+
               if (node.kind === "string") {
                 return node.raw;
-              } else if (node.kind === "variable") {
+              }
+
+              if (node.kind === "variable") {
                 if (typeof node.name === "object") {
-                  return concat(["${", path.call(print, "name"), "}"]);
-                } else if (node.curly) {
-                  return `{$${node.name}}`;
+                  return concat([
+                    node.curly ? "${" : "",
+                    path.call(print, "name"),
+                    node.curly ? "}" : ""
+                  ]);
                 }
+
+                if (node.curly) {
+                  return concat(["{$", node.name, "}"]);
+                }
+
                 return print(valuePath);
               }
+
               return concat(["{", print(valuePath), "}"]);
             }, "value")
           ),
@@ -1102,11 +1053,10 @@ function printExpression(path, options, print) {
             : ""
         ]);
       case "inline":
-        // @TODO: to get line breaks to fully work for mixed html/php
-        // we would need to do this, but it adds an entire other layer of
-        // complexity because of the removeNewlines() logic above
-        // return join(hardline, node.raw.split("\n"));
-        return node.raw;
+        return join(
+          literalline,
+          node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
+        );
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
@@ -1129,6 +1079,26 @@ function printExpression(path, options, print) {
   }
   if (literalKinds.includes(node.kind)) {
     return printLiteral(node);
+  }
+
+  function printArrayItems(path, options, printPath, print) {
+    const printedElements = [];
+    let separatorParts = [];
+
+    path.each(childPath => {
+      printedElements.push(concat(separatorParts));
+      printedElements.push(group(print(childPath)));
+
+      separatorParts = [",", line];
+      if (
+        childPath.getValue() &&
+        isNextLineEmpty(options.originalText, childPath.getValue(), options)
+      ) {
+        separatorParts.push(softline);
+      }
+    }, printPath);
+
+    return concat(printedElements);
   }
 
   switch (node.kind) {
@@ -1165,10 +1135,7 @@ function printExpression(path, options, print) {
         concat([
           open,
           indent(
-            concat([
-              softline,
-              join(concat([",", line]), path.map(print, "items"))
-            ])
+            concat([softline, printArrayItems(path, options, "items", print)])
           ),
           ifBreak(shouldPrintComma(options) ? "," : ""),
           comments.printDanglingComments(path, options, true),
@@ -1239,42 +1206,198 @@ const statementKinds = [
   "parameter",
   "property"
 ];
-function printLines(path, options, print, childrenAttribute = "children") {
-  return concat(
-    path.map(childPath => {
-      let canPrintBlankLine =
-        !isLastStatement(childPath) &&
-        childPath.getValue().kind !== "inline" &&
-        // fully nested nodes handle their own linebreaks
-        !isNodeFullyNestedInline(childPath);
-      if (canPrintBlankLine && isNextNodeInline(childPath)) {
-        // check if inline is on a new line, if no set to false
-        const inlineNode = getNextNodeInParentListProperty(path);
-        const tagCloseIndex = options.originalText.lastIndexOf(
-          "?>",
-          options.locStart(inlineNode)
-        );
-        const lastNewLine = options.originalText.lastIndexOf(
-          "\n",
-          tagCloseIndex
-        );
-        const inlineStartLineText = options.originalText.substring(
-          lastNewLine + 1,
-          tagCloseIndex
-        );
-        canPrintBlankLine = !inlineStartLineText.trim();
-      }
-      return concat([
-        print(childPath),
-        canPrintBlankLine ? hardline : "",
-        canPrintBlankLine &&
-        isNextLineEmpty(options.originalText, childPath.getValue(), options)
-          ? hardline
-          : ""
-      ]);
-    }, childrenAttribute)
-  );
+
+// Wrap parts into groups by indexes.
+// It is require to have same indent on lines for all parts into group.
+// The value of `alignment` option indicates how many spaces must be before each part.
+//
+// Example:
+// <div>
+//     <?php
+//     echo '1';
+//     echo '2';
+//     echo '3';
+//     ?>
+// </div>
+function wrapPartsIntoGroups(parts, indexes) {
+  if (indexes.length === 0) {
+    return parts;
+  }
+
+  let lastEnd = 0;
+
+  return indexes.reduce((accumulator, index) => {
+    const { start, end, alignment, before, after } = index;
+
+    const printedPartsForGrouping = concat([
+      before || "",
+      concat(parts.slice(start, end)),
+      after || ""
+    ]);
+    const newArray = accumulator.concat(
+      parts.slice(lastEnd, start),
+      alignment
+        ? dedentToRoot(
+            group(
+              concat([
+                align(new Array(alignment).join(" "), printedPartsForGrouping)
+              ])
+            )
+          )
+        : group(printedPartsForGrouping),
+      end === parts.length - 1 ? parts.slice(end) : ""
+    );
+
+    lastEnd = end;
+
+    return newArray;
+  }, []);
 }
+
+function printLines(path, options, print, childrenAttribute = "children") {
+  const node = path.getValue();
+  const parentNode = path.getParentNode();
+  let lastInlineIndex = -1;
+
+  const parts = [];
+  const groupIndexes = [];
+
+  path.map((childPath, index) => {
+    const childNode = childPath.getValue();
+    const isInlineNode = childNode.kind === "inline";
+    const printedPath = print(childPath);
+    const children = node[childrenAttribute];
+    const nextNode = children[index + 1];
+    const canPrintBlankLine =
+      !isLastStatement(childPath) &&
+      !isInlineNode &&
+      (nextNode && nextNode.kind === "case"
+        ? !isFirstChildrenInlineNode(path)
+        : nextNode && nextNode.kind !== "inline");
+
+    let printed = concat([
+      printedPath,
+      canPrintBlankLine ? hardline : "",
+      canPrintBlankLine &&
+      isNextLineEmpty(options.originalText, childNode, options)
+        ? hardline
+        : ""
+    ]);
+
+    const isFirstNode = index === 0;
+    const isLastNode = children.length - 1 === index;
+    const isBlockNestedNode =
+      node.kind === "block" &&
+      parentNode &&
+      ["function", "closure", "method", "try", "catch"].includes(
+        parentNode.kind
+      );
+
+    let beforeCloseTagInlineNode = isBlockNestedNode && isFirstNode ? "" : " ";
+
+    if (isInlineNode || (!isInlineNode && isLastNode && lastInlineIndex >= 0)) {
+      const prevLastInlineIndex = lastInlineIndex;
+
+      if (isInlineNode) {
+        lastInlineIndex = index;
+      }
+
+      const shouldCreateGroup =
+        (isInlineNode && !isFirstNode) || (!isInlineNode && isLastNode);
+
+      if (shouldCreateGroup) {
+        const start =
+          (isInlineNode ? prevLastInlineIndex : lastInlineIndex) + 1;
+        const end = isLastNode && !isInlineNode ? index + 1 : index;
+        const prevInlineNode =
+          children[isInlineNode ? prevLastInlineIndex : lastInlineIndex];
+        const alignment = prevInlineNode
+          ? getAlignment(prevInlineNode.raw)
+          : "";
+        const shouldBreak = end - start > 1;
+        const before = shouldBreak
+          ? isBlockNestedNode && !prevInlineNode
+            ? ""
+            : hardline
+          : "";
+        const after = shouldBreak
+          ? isBlockNestedNode && isLastNode
+            ? ""
+            : hardline
+          : "";
+
+        if (shouldBreak) {
+          beforeCloseTagInlineNode = "";
+        }
+
+        groupIndexes.push({ start, end, alignment, before, after });
+      }
+    }
+
+    if (isInlineNode) {
+      const openTag =
+        nextNode && nextNode.kind === "echo" && nextNode.shortForm
+          ? "<?="
+          : "<?php";
+      const beforeInline =
+        isProgramLikeNode(node) && isFirstNode
+          ? ""
+          : concat([beforeCloseTagInlineNode, "?>"]);
+      const afterInline =
+        isProgramLikeNode(node) && isLastNode ? "" : concat([openTag, " "]);
+
+      printed = concat([beforeInline, printed, afterInline]);
+    }
+
+    parts.push(printed);
+  }, childrenAttribute);
+
+  const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
+
+  if (node.kind === "program") {
+    const originalText = node.loc.source;
+    const firstNestedChildNode = getFirstNestedChildNode(node);
+    const lastNestedChildNode = getLastNestedChildNode(node);
+    const hasStartTag =
+      firstNestedChildNode && firstNestedChildNode.kind !== "inline";
+    const hasEndTag =
+      lastNestedChildNode &&
+      lastNestedChildNode.kind !== "inline" &&
+      originalText.trim().endsWith("?>");
+
+    let afterOpenTag = " ";
+    let beforeCloseTag = " ";
+
+    if (hasStartTag) {
+      const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
+
+      if (between && between[2]) {
+        afterOpenTag = between[2].includes("\n")
+          ? concat([
+              hardline,
+              between[2].split("\n").length > 2 ? hardline : ""
+            ])
+          : " ";
+      }
+    }
+
+    if (hasEndTag) {
+      const between = originalText.trim().match(/\S(\s*)?\?>$/);
+
+      beforeCloseTag =
+        between && between[1] && between[1].includes("\n") ? hardline : " ";
+    }
+
+    return concat([
+      hasStartTag ? concat(["<?php", afterOpenTag]) : "",
+      concat(wrappedParts),
+      hasEndTag ? concat([beforeCloseTag, "?>"]) : ""
+    ]);
+  }
+
+  return concat(wrappedParts);
+}
+
 function printStatement(path, options, print) {
   const node = path.getValue();
   const blockKinds = ["block", "program", "namespace"];
@@ -1299,12 +1422,18 @@ function printStatement(path, options, print) {
         return concat([
           "namespace ",
           hasName ? node.name : "",
-          node.withBrackets ? concat([" ", "{"]) : ";",
-          // don't know why we need 2 line breaks here, but 1 doesn't work
-          node.children.length > 0 && !node.withBrackets
-            ? concat([hardline, hardline])
+          node.withBrackets
+            ? " {"
+            : concat([
+                ";",
+                // Second hardline for newline between `namespace` and first child node
+                node.children.length > 0 ? concat([hardline, hardline]) : ""
+              ]),
+          node.children.length > 0
+            ? node.withBrackets
+              ? indent(concat([hardline, printed]))
+              : printed
             : "",
-          node.withBrackets ? indent(concat([hardline, printed])) : printed,
           node.withBrackets ? concat([hardline, "}"]) : ""
         ]);
       }
@@ -1329,7 +1458,7 @@ function printStatement(path, options, print) {
         return indent(
           group(
             concat([
-              "echo ",
+              node.shortForm ? "" : "echo ",
               group(join(concat([",", line]), printedArguments))
             ])
           )
@@ -1412,15 +1541,28 @@ function printStatement(path, options, print) {
             ])
           )
         : "";
+
+      const hasEmptyBody =
+        ((node.kind === "function" || node.kind === "method") &&
+          node.body &&
+          node.body.children &&
+          node.body.children.length === 0 &&
+          !node.body.comments) ||
+        (isClassLikeNode &&
+          node.body &&
+          node.body.length === 0 &&
+          !node.comments);
+
       const printedBody = bodyContents
         ? concat([
             "{",
-            indent(concat([hardline, bodyContents])),
+            indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
             comments.printDanglingComments(path, options, true),
-            hardline,
+            node.isAnonymous && hasEmptyBody ? "" : hardline,
             "}"
           ])
         : "";
+
       return concat([
         group(
           concat([
@@ -1432,7 +1574,9 @@ function printStatement(path, options, print) {
             bodyContents
               ? node.kind === "function" || node.kind === "method"
                 ? ifBreak(" ", concat([lineSuffix(""), lineSuffixBoundary]))
-                : hardline
+                : node.kind === "class" && node.isAnonymous
+                  ? line
+                  : hardline
               : ""
           ])
         ),
@@ -1470,7 +1614,26 @@ function printStatement(path, options, print) {
                 concat([
                   node.extends
                     ? group(
-                        concat([line, "extends ", path.call(print, "extends")])
+                        concat([
+                          // check if the extends node has a comment
+                          hasDanglingComments(node.extends)
+                            ? concat([
+                                hardline,
+                                path.call(
+                                  extendsPath =>
+                                    comments.printDanglingComments(
+                                      extendsPath,
+                                      options,
+                                      true
+                                    ),
+                                  "extends"
+                                ),
+                                hardline
+                              ])
+                            : line,
+                          "extends ",
+                          path.call(print, "extends")
+                        ])
                       )
                     : "",
                   node.implements
@@ -1480,10 +1643,25 @@ function printStatement(path, options, print) {
                         group(
                           indent(
                             concat([
-                              line,
                               join(
-                                concat([",", line]),
-                                path.map(print, "implements")
+                                ",",
+                                path.map(implementsPath => {
+                                  // check if any of the implements nodes have comments
+                                  return hasDanglingComments(
+                                    implementsPath.getValue()
+                                  )
+                                    ? concat([
+                                        hardline,
+                                        comments.printDanglingComments(
+                                          implementsPath,
+                                          options,
+                                          true
+                                        ),
+                                        hardline,
+                                        print(implementsPath)
+                                      ])
+                                    : concat([line, print(implementsPath)]);
+                                }, "implements")
                               )
                             ])
                           )
@@ -1664,14 +1842,23 @@ function printStatement(path, options, print) {
             node[bodyProperty].children.length > 0) ||
           (node[bodyProperty].comments &&
             node[bodyProperty].comments.length > 0)
-            ? concat([hardline, printedBody])
+            ? concat([
+                isFirstChildrenInlineNode(path)
+                  ? node.kind === "switch"
+                    ? " "
+                    : ""
+                  : hardline,
+                printedBody
+              ])
             : ""
         ])
       ),
       node.kind === "if" && bodyProperty === "body"
         ? ""
         : concat([
-            hardline,
+            shouldPrintHardLineBeforeEndInControlStructure(path)
+              ? hardline
+              : "",
             node.shortForm ? concat(["end", node.kind, ";"]) : "}"
           ])
     ]);
@@ -1689,13 +1876,21 @@ function printStatement(path, options, print) {
         //     : false;
         (node.right.kind === "retif" && node.right.test.kind === "bin") ||
         isPropertyLookupChain(node.right);
+      const isNumberNode = node.right.kind === "number";
+      const isMultiLineString =
+        node.right.kind === "string" && node.right.raw.includes("\n");
       return group(
         concat([
           path.call(print, "left"),
           " ",
           node.operator,
           canBreak
-            ? indent(concat([line, path.call(print, "right")]))
+            ? indent(
+                concat([
+                  isNumberNode || isMultiLineString ? " " : line,
+                  path.call(print, "right")
+                ])
+              )
             : concat([" ", path.call(print, "right")])
         ])
       );
@@ -1703,7 +1898,7 @@ function printStatement(path, options, print) {
     case "if": {
       const handleIfAlternate = alternate => {
         if (!alternate) {
-          return node.shortForm ? "endif;" : "}";
+          return node.body ? (node.shortForm ? "endif;" : "}") : "";
         }
         if (alternate.kind === "if") {
           return concat([
@@ -1732,7 +1927,7 @@ function printStatement(path, options, print) {
             printBodyControlStructure(path)
           ])
         ),
-        hardline,
+        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline,
         handleIfAlternate(node.alternate)
       ]);
     }
@@ -1837,7 +2032,10 @@ function printStatement(path, options, print) {
       ]);
     case "call": {
       // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
-      if (node.what.kind === "propertylookup") {
+      if (
+        node.what.kind === "propertylookup" ||
+        node.what.kind === "staticlookup"
+      ) {
         return printMemberChain(path, options, print);
       }
       return concat([
@@ -1877,7 +2075,13 @@ function printStatement(path, options, print) {
           : "",
         node.alias ? concat([" as ", node.alias]) : ""
       ]);
-    case "closure":
+    case "closure": {
+      const hasEmptyBody =
+        node.body &&
+        node.body.children &&
+        node.body.children.length === 0 &&
+        !node.body.comments;
+
       return concat([
         "function ",
         printArgumentsList(path, options, print),
@@ -1889,10 +2093,30 @@ function printStatement(path, options, print) {
               ])
             )
           : "",
+        node.type
+          ? concat([
+              ": ",
+              hasDanglingComments(node.type)
+                ? concat([
+                    path.call(
+                      typePath =>
+                        comments.printDanglingComments(typePath, options, true),
+                      "type"
+                    ),
+                    " "
+                  ])
+                : "",
+              node.nullable ? "?" : "",
+              path.call(print, "type")
+            ])
+          : "",
         " {",
-        indent(concat([hardline, path.call(print, "body")])),
+        indent(
+          concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
+        ),
         concat([hardline, "}"])
       ]);
+    }
     case "retif": {
       const printedExpr = concat([
         line,
@@ -1929,8 +2153,9 @@ function printStatement(path, options, print) {
           "declare(",
           printDeclareArguments(path),
           "):",
-          hardline,
-          concat(path.map(print, "children")),
+          node.children.length > 0
+            ? concat([hardline, concat(path.map(print, "children"))])
+            : "",
           hardline,
           "enddeclare;"
         ]);
@@ -1939,7 +2164,9 @@ function printStatement(path, options, print) {
           "declare(",
           printDeclareArguments(path),
           ") {",
-          indent(concat([hardline, concat(path.map(print, "children"))])),
+          node.children.length > 0
+            ? indent(concat([hardline, concat(path.map(print, "children"))]))
+            : "",
           hardline,
           "}"
         ]);
@@ -2112,7 +2339,12 @@ function printNode(path, options, print) {
           : "default:",
         node.body
           ? node.body.children && node.body.children.length
-            ? indent(concat([hardline, path.call(print, "body")]))
+            ? indent(
+                concat([
+                  isFirstChildrenInlineNode(path) ? "" : hardline,
+                  path.call(print, "body")
+                ])
+              )
             : ";"
           : ""
       ]);
@@ -2174,7 +2406,7 @@ function printNode(path, options, print) {
           concat([
             path.call(print, "key"),
             " =>",
-            node.value.kind === "array"
+            ["array", "call", "closure"].includes(node.value.kind)
               ? concat([" ", printed])
               : indent(concat([line, printed]))
           ])

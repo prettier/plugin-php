@@ -41,6 +41,7 @@ EOD
 , true);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
 $str = <<<'EOD'
 Example of string
 spanning multiple lines

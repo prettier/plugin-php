@@ -4,7 +4,7 @@ const fs = require("fs");
 const { extname } = require("path");
 const prettier = require("prettier");
 const plugin = require("../src");
-const { massageAST } = require("prettier/src/common/clean-ast");
+const massageAST = require("prettier/src/main/massage-ast");
 const { normalize } = require("prettier/src/main/options");
 
 const { AST_COMPARE } = process.env;
