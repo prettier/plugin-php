@@ -391,3 +391,42 @@ $arr = [
             return "other-value";
         }
 ];
+
+$singleLine = [ 'do' => [ 'collapse' => 'this' ]];
+$singleLine = array('do' => array('collapse' => 'this'));
+
+$multiline = [
+  'do' => [
+    'not' => 'collapse'
+  ]
+];
+$multiline = ['don\'t' => 'collapse'
+];
+$multiline = array('don\'t' => 'collapse'
+);
+
+$mixed = [
+  'only' => [ 'partly' => 'collapsed' ]
+];
+$mixed = [ 'only' => [
+  'partly' => ['coll', 'apsed']
+]];
+
+$arr = array($var
+);
+$arr = array(
+$var);
+$arr = [$var
+];
+$arr = [
+$var];
+$arr = [$foo => $bar];
+$arr = [$foo =>
+$bar];
+
+$collapse = [
+  "not",
+  "associative"
+];
+$collapse = ["not", "associative"
+];

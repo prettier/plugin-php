@@ -25,7 +25,10 @@ function call($store)
     return callApi($endpoint, $schema)->then(
         function ($response) {
             return next(
-                actionWith(['response' => $response, 'type' => $successType])
+                actionWith([
+                    'response' => $response,
+                    'type' => $successType
+                ])
             );
         },
         function ($error) {
@@ -555,7 +558,9 @@ $component = find('.org-lclp-edit-copy-url-banner__link')[0]
 nock('test')
     ->matchHeader('Accept', 'application/json')
     ['string']('/foo')
-    ->reply(200, ['foo' => 'bar']);
+    ->reply(200, [
+        'foo' => 'bar'
+    ]);
 
 $data->forEach(function ($key) {
     $data
@@ -677,7 +682,10 @@ $component = Foo::test(['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoo', 'b
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-DB::table('identity')->insert(['ref' => $ref, 'handle' => $handle]);
+DB::table('identity')->insert([
+    'ref' => $ref,
+    'handle' => $handle
+]);
 
 DB::table('identity')->insert([
     'ref' => $ref,
@@ -704,7 +712,10 @@ $page = TableRegistry::get('Pages')
 
 Logger::use_logger('albus')->info(
     'Albus: failed to find active version for albus object',
-    ['uuid' => $uuid, 'requested_date' => $date]
+    [
+        'uuid' => $uuid,
+        'requested_date' => $date
+    ]
 );
 
 DBwithlongname::table('identity')

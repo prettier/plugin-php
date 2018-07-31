@@ -1131,6 +1131,8 @@ function printExpression(path, options, print) {
           ])
         );
       }
+      const isAssociative = !!node.items[0].key;
+      const shouldBreak = isAssociative && node.loc.source.includes("\n");
       return group(
         concat([
           open,
@@ -1141,7 +1143,8 @@ function printExpression(path, options, print) {
           comments.printDanglingComments(path, options, true),
           softline,
           close
-        ])
+        ]),
+        { shouldBreak }
       );
     }
     case "yield":

@@ -394,6 +394,45 @@ $arr = [
             return "other-value";
         }
 ];
+
+$singleLine = [ 'do' => [ 'collapse' => 'this' ]];
+$singleLine = array('do' => array('collapse' => 'this'));
+
+$multiline = [
+  'do' => [
+    'not' => 'collapse'
+  ]
+];
+$multiline = ['don\\'t' => 'collapse'
+];
+$multiline = array('don\\'t' => 'collapse'
+);
+
+$mixed = [
+  'only' => [ 'partly' => 'collapsed' ]
+];
+$mixed = [ 'only' => [
+  'partly' => ['coll', 'apsed']
+]];
+
+$arr = array($var
+);
+$arr = array(
+$var);
+$arr = [$var
+];
+$arr = [
+$var];
+$arr = [$foo => $bar];
+$arr = [$foo =>
+$bar];
+
+$collapse = [
+  "not",
+  "associative"
+];
+$collapse = ["not", "associative"
+];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -419,18 +458,44 @@ $other_test = [1, 2, 123.4324, $hi];
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
-$keyed_test = array('one' => 123, 'two' => $other);
-$keyed_test = array('one' => 123, 'two' => $other);
-$keyed_test = array('one' => 123, 'two' => $other);
-$keyed_test = array('one' => 123, 'two' => $other);
+$keyed_test = array(
+    'one' => 123,
+    'two' => $other
+);
+$keyed_test = array(
+    'one' => 123,
+    'two' => $other
+);
+$keyed_test = array(
+    'one' => 123,
+    'two' => $other
+);
+$keyed_test = array(
+    'one' => 123,
+
+    'two' => $other
+);
 
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
-$keyed_test = ['one' => 123, 'two' => $other];
-$keyed_test = ['one' => 123, 'two' => $other];
-$keyed_test = ['one' => 123, 'two' => $other];
-$keyed_test = ['one' => 123, 'two' => $other];
+$keyed_test = [
+    'one' => 123,
+    'two' => $other
+];
+$keyed_test = [
+    'one' => 123,
+    'two' => $other
+];
+$keyed_test = [
+    'one' => 123,
+    'two' => $other
+];
+$keyed_test = [
+    'one' => 123,
+
+    'two' => $other
+];
 
 $short_keyed_test = array(
     'reallyreallyreallyreallylongkey' => 1248,
@@ -448,12 +513,21 @@ $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 
-$array = array(1 => "a", "1" => "b", 1.5 => "c", true => "d");
+$array = array(
+    1 => "a",
+    "1" => "b",
+    1.5 => "c",
+    true => "d"
+);
 $array = array("a", "b", 6 => "c", "d");
 $array = array(
     "foo" => "bar",
     42 => 24,
-    "multi" => array("dimensional" => array("array" => "foo"))
+    "multi" => array(
+        "dimensional" => array(
+            "array" => "foo"
+        )
+    )
 );
 $secondElement = getArray()[1];
 $arr[] = 56;
@@ -538,5 +612,41 @@ $arr = [
         return "other-value";
     }
 ];
+
+$singleLine = ['do' => ['collapse' => 'this']];
+$singleLine = array('do' => array('collapse' => 'this'));
+
+$multiline = [
+    'do' => [
+        'not' => 'collapse'
+    ]
+];
+$multiline = [
+    'don\\'t' => 'collapse'
+];
+$multiline = array(
+    'don\\'t' => 'collapse'
+);
+
+$mixed = [
+    'only' => ['partly' => 'collapsed']
+];
+$mixed = [
+    'only' => [
+        'partly' => ['coll', 'apsed']
+    ]
+];
+
+$arr = array($var);
+$arr = array($var);
+$arr = [$var];
+$arr = [$var];
+$arr = [$foo => $bar];
+$arr = [
+    $foo => $bar
+];
+
+$collapse = ["not", "associative"];
+$collapse = ["not", "associative"];
 
 `;
