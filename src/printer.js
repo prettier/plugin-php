@@ -1052,23 +1052,8 @@ function printExpression(path, options, print) {
             ? hardline
             : ""
         ]);
-      case "inline": {
-        const printComments = comments =>
-          comments && comments.length
-            ? concat([
-                "<?php",
-                hardline,
-                join(hardline, comments.map(c => c.value)),
-                hardline,
-                "?>"
-              ])
-            : "";
-        return concat([
-          printComments(node.leadingComments),
-          join(literalline, node.raw.split("\n")),
-          printComments(node.comments)
-        ]);
-      }
+      case "inline":
+        return join(literalline, node.raw.split("\n"));
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
@@ -1354,12 +1339,30 @@ function printLines(path, options, print, childrenAttribute = "children") {
         nextNode && nextNode.kind === "echo" && nextNode.shortForm
           ? "<?="
           : "<?php";
-      const beforeInline =
+      let beforeInline =
         isProgramLikeNode(node) && isFirstNode
           ? ""
           : concat([beforeCloseTagInlineNode, "?>"]);
-      const afterInline =
+      if (childNode.leadingComments && childNode.leadingComments.length) {
+        beforeInline = concat([
+          isFirstNode ? openTag : "",
+          hardline,
+          join(hardline, childNode.leadingComments.map(c => c.value)),
+          hardline,
+          "?>"
+        ]);
+      }
+      let afterInline =
         isProgramLikeNode(node) && isLastNode ? "" : concat([openTag, " "]);
+      if (childNode.comments && childNode.comments.length) {
+        afterInline = concat([
+          openTag,
+          hardline,
+          join(hardline, childNode.comments.map(c => c.value)),
+          hardline,
+          "?>"
+        ]);
+      }
 
       printed = concat([beforeInline, printed, afterInline]);
     }

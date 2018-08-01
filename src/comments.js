@@ -293,7 +293,7 @@ const handleInlineComments = comment => {
     precedingNode &&
     precedingNode.kind === "inline"
   ) {
-    addTrailingComment(precedingNode, comment);
+    addDanglingComment(precedingNode, comment);
     comment.printed = true;
     return true;
   } else if (
