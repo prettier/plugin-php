@@ -1337,11 +1337,14 @@ function printLines(path, options, print, childrenAttribute = "children") {
     if (isInlineNode) {
       const printComments = comments => {
         const parts = [];
-        comments.forEach(comment => {
+        comments.forEach((comment, index, comments) => {
           comment.printed = true;
           parts.push(comment.value);
           parts.push(hardline);
-          if (isNextLineEmpty(options.originalText, comment, options)) {
+          if (
+            isNextLineEmpty(options.originalText, comment, options) &&
+            comments.length > index + 1
+          ) {
             parts.push(hardline);
           }
         });
