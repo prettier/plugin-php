@@ -1339,30 +1339,28 @@ function printLines(path, options, print, childrenAttribute = "children") {
         nextNode && nextNode.kind === "echo" && nextNode.shortForm
           ? "<?="
           : "<?php";
-      let beforeInline =
-        isProgramLikeNode(node) && isFirstNode
-          ? ""
-          : concat([beforeCloseTagInlineNode, "?>"]);
-      if (childNode.leadingComments && childNode.leadingComments.length) {
-        beforeInline = concat([
-          isFirstNode ? openTag : "",
-          hardline,
-          join(hardline, childNode.leadingComments.map(c => c.value)),
-          hardline,
-          "?>"
-        ]);
-      }
-      let afterInline =
-        isProgramLikeNode(node) && isLastNode ? "" : concat([openTag, " "]);
-      if (childNode.comments && childNode.comments.length) {
-        afterInline = concat([
-          openTag,
-          hardline,
-          join(hardline, childNode.comments.map(c => c.value)),
-          hardline,
-          "?>"
-        ]);
-      }
+      const beforeInline =
+        childNode.leadingComments && childNode.leadingComments.length
+          ? concat([
+              isFirstNode ? openTag : "",
+              hardline,
+              comments.printComments(childNode.leadingComments, options),
+              "?>"
+            ])
+          : isProgramLikeNode(node) && isFirstNode
+            ? ""
+            : concat([beforeCloseTagInlineNode, "?>"]);
+      const afterInline =
+        childNode.comments && childNode.comments.length
+          ? concat([
+              openTag,
+              hardline,
+              comments.printComments(childNode.comments, options),
+              "?>"
+            ])
+          : isProgramLikeNode(node) && isLastNode
+            ? ""
+            : concat([openTag, " "]);
 
       printed = concat([beforeInline, printed, afterInline]);
     }
