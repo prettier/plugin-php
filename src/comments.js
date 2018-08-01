@@ -4,7 +4,8 @@ const {
   addLeadingComment,
   addDanglingComment,
   addTrailingComment,
-  getNextNonSpaceNonCommentCharacterIndex
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty
 } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
 
@@ -362,11 +363,28 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some(comment => comment.trailing);
 }
 
+function printComments(comments, options) {
+  const parts = [];
+  comments.forEach((comment, index, comments) => {
+    comment.printed = true;
+    parts.push(comment.value);
+    parts.push(hardline);
+    if (
+      isNextLineEmpty(options.originalText, comment, options) &&
+      comments.length > index + 1
+    ) {
+      parts.push(hardline);
+    }
+  });
+  return concat(parts);
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
   printDanglingComments,
   hasLeadingComment,
-  hasTrailingComment
+  hasTrailingComment,
+  printComments
 };

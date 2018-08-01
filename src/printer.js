@@ -1335,47 +1335,32 @@ function printLines(path, options, print, childrenAttribute = "children") {
     }
 
     if (isInlineNode) {
-      const printComments = comments => {
-        const parts = [];
-        comments.forEach((comment, index, comments) => {
-          comment.printed = true;
-          parts.push(comment.value);
-          parts.push(hardline);
-          if (
-            isNextLineEmpty(options.originalText, comment, options) &&
-            comments.length > index + 1
-          ) {
-            parts.push(hardline);
-          }
-        });
-        return concat(parts);
-      };
       const openTag =
         nextNode && nextNode.kind === "echo" && nextNode.shortForm
           ? "<?="
           : "<?php";
-      let beforeInline =
-        isProgramLikeNode(node) && isFirstNode
-          ? ""
-          : concat([beforeCloseTagInlineNode, "?>"]);
-      if (childNode.leadingComments && childNode.leadingComments.length) {
-        beforeInline = concat([
-          isFirstNode ? openTag : "",
-          hardline,
-          printComments(childNode.leadingComments),
-          "?>"
-        ]);
-      }
-      let afterInline =
-        isProgramLikeNode(node) && isLastNode ? "" : concat([openTag, " "]);
-      if (childNode.comments && childNode.comments.length) {
-        afterInline = concat([
-          openTag,
-          hardline,
-          printComments(childNode.comments),
-          "?>"
-        ]);
-      }
+      const beforeInline =
+        childNode.leadingComments && childNode.leadingComments.length
+          ? concat([
+              isFirstNode ? openTag : "",
+              hardline,
+              comments.printComments(childNode.leadingComments, options),
+              "?>"
+            ])
+          : isProgramLikeNode(node) && isFirstNode
+            ? ""
+            : concat([beforeCloseTagInlineNode, "?>"]);
+      const afterInline =
+        childNode.comments && childNode.comments.length
+          ? concat([
+              openTag,
+              hardline,
+              comments.printComments(childNode.comments, options),
+              "?>"
+            ])
+          : isProgramLikeNode(node) && isLastNode
+            ? ""
+            : concat([openTag, " "]);
 
       printed = concat([beforeInline, printed, afterInline]);
     }
