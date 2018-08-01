@@ -278,14 +278,7 @@ const handleAlternate = comment => {
 
 const handleInlineComments = comment => {
   const { precedingNode, enclosingNode, followingNode } = comment;
-  if (
-    !enclosingNode &&
-    followingNode &&
-    !precedingNode &&
-    followingNode.kind === "inline"
-  ) {
-    // addLeadingComment(followingNode, comment);
-    comment.printed = true;
+  if (!enclosingNode && followingNode && followingNode.kind === "inline") {
     return true;
   } else if (
     !enclosingNode &&
@@ -294,16 +287,6 @@ const handleInlineComments = comment => {
     precedingNode.kind === "inline"
   ) {
     addDanglingComment(precedingNode, comment);
-    comment.printed = true;
-    return true;
-  } else if (
-    !enclosingNode &&
-    followingNode &&
-    precedingNode &&
-    followingNode.kind === "inline" &&
-    precedingNode.kind === "inline"
-  ) {
-    comment.printed = true;
     return true;
   }
   return false;

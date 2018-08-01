@@ -1338,6 +1338,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const printComments = comments => {
         const parts = [];
         comments.forEach(comment => {
+          comment.printed = true;
           parts.push(comment.value);
           parts.push(hardline);
           if (isNextLineEmpty(options.originalText, comment, options)) {
