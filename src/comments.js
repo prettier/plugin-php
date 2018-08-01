@@ -34,7 +34,8 @@ const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleAlternate(comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
+    handleInlineComments(comment)
   );
 };
 
@@ -270,6 +271,39 @@ const handleAlternate = comment => {
     followingNode.kind == "if"
   ) {
     addLeadingComment(followingNode.body, comment);
+    return true;
+  }
+  return false;
+};
+
+const handleInlineComments = comment => {
+  const { precedingNode, enclosingNode, followingNode } = comment;
+  if (
+    !enclosingNode &&
+    followingNode &&
+    !precedingNode &&
+    followingNode.kind === "inline"
+  ) {
+    // addLeadingComment(followingNode, comment);
+    comment.printed = true;
+    return true;
+  } else if (
+    !enclosingNode &&
+    !followingNode &&
+    precedingNode &&
+    precedingNode.kind === "inline"
+  ) {
+    addDanglingComment(precedingNode, comment);
+    comment.printed = true;
+    return true;
+  } else if (
+    !enclosingNode &&
+    followingNode &&
+    precedingNode &&
+    followingNode.kind === "inline" &&
+    precedingNode.kind === "inline"
+  ) {
+    comment.printed = true;
     return true;
   }
   return false;
