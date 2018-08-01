@@ -1371,6 +1371,12 @@ function printLines(path, options, print, childrenAttribute = "children") {
   const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
 
   if (node.kind === "program") {
+    if (!wrappedParts.length && node.comments) {
+      wrappedParts.push(
+        hardline,
+        comments.printComments(node.comments, options)
+      );
+    }
     const originalText = node.loc.source;
     const firstNestedChildNode = getFirstNestedChildNode(node);
     const lastNestedChildNode = getLastNestedChildNode(node);
@@ -1407,7 +1413,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
     return concat([
       hasStartTag ? concat(["<?php", afterOpenTag]) : "",
       concat(wrappedParts),
-      hasEndTag ? concat([beforeCloseTag, "?>"]) : ""
+      hasEndTag ? lineSuffix(concat([beforeCloseTag, "?>"])) : ""
     ]);
   }
 
@@ -1428,7 +1434,12 @@ function printStatement(path, options, print) {
         return group(
           concat([
             printLines(path, options, print),
-            comments.printDanglingComments(path, options, /* sameIndent */ true)
+            comments.printDanglingComments(
+              path,
+              options,
+              /* sameIndent */ true,
+              c => !c.printed
+            )
           ])
         );
       }
