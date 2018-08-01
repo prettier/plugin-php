@@ -1053,10 +1053,7 @@ function printExpression(path, options, print) {
             : ""
         ]);
       case "inline":
-        return join(
-          literalline,
-          node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
-        );
+        return join(literalline, node.raw.split("\n"));
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
