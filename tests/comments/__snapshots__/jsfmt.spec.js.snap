@@ -184,12 +184,14 @@ exports[`blank_lines.php 1`] = `
 
 // Other comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
 // The first line of a comment
 // The second line of a comment
 
 // A third line which has a blank line before it
 
-<?php // Other comment
+// Other comment
+
 
 `;
 
@@ -1314,7 +1316,7 @@ exports[`inline6.php 1`] = `
 exports[`inline7.php 1`] = `
 <?php echo 1; // comment ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php echo 1; ?> // comment
+<?php echo 1; // comment ?>
 
 `;
 
@@ -1424,13 +1426,15 @@ exports[`no_code.php 1`] = `
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-?>/**
+/**
  * Product Loop Start
  *
  * @author  WooThemes
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
+
+?>
 
 `;
 

@@ -294,15 +294,7 @@ const handleInlineComments = comment => {
 };
 
 function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
-  // With Flow the enclosingNode is undefined so use the AST instead.
-  if (ast && ast.children && ast.children.length === 0) {
-    if (isLastComment) {
-      addDanglingComment(ast, comment);
-    } else {
-      addLeadingComment(ast, comment);
-    }
-    return true;
-  } else if (
+  if (
     enclosingNode &&
     enclosingNode.kind === "program" &&
     enclosingNode.children.length === 0
