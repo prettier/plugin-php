@@ -1264,7 +1264,9 @@ exports[`inline4.php 1`] = `
 /**
  * A
  */
+
 // B
+
 /**
  * C
  */
@@ -1304,6 +1306,7 @@ exports[`inline6.php 1`] = `
 /**
  * test
  */
+
 ?>
 <h1>Test</h1>
 

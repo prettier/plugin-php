@@ -1335,6 +1335,17 @@ function printLines(path, options, print, childrenAttribute = "children") {
     }
 
     if (isInlineNode) {
+      const printComments = comments => {
+        const parts = [];
+        comments.forEach(comment => {
+          parts.push(comment.value);
+          parts.push(hardline);
+          if (isNextLineEmpty(options.originalText, comment, options)) {
+            parts.push(hardline);
+          }
+        });
+        return concat(parts);
+      };
       const openTag =
         nextNode && nextNode.kind === "echo" && nextNode.shortForm
           ? "<?="
@@ -1347,8 +1358,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
         beforeInline = concat([
           isFirstNode ? openTag : "",
           hardline,
-          join(hardline, childNode.leadingComments.map(c => c.value)),
-          hardline,
+          printComments(childNode.leadingComments),
           "?>"
         ]);
       }
@@ -1358,8 +1368,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
         afterInline = concat([
           openTag,
           hardline,
-          join(hardline, childNode.comments.map(c => c.value)),
-          hardline,
+          printComments(childNode.comments),
           "?>"
         ]);
       }
