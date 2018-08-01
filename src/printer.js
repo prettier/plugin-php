@@ -1052,8 +1052,23 @@ function printExpression(path, options, print) {
             ? hardline
             : ""
         ]);
-      case "inline":
-        return join(literalline, node.raw.split("\n"));
+      case "inline": {
+        const printComments = comments =>
+          comments && comments.length
+            ? concat([
+                "<?php",
+                hardline,
+                join(hardline, comments.map(c => c.value)),
+                hardline,
+                "?>"
+              ])
+            : "";
+        return concat([
+          printComments(node.leadingComments),
+          join(literalline, node.raw.split("\n")),
+          printComments(node.comments)
+        ]);
+      }
       case "magic":
         // for magic constant we prefer upper case
         return node.value.toUpperCase();
