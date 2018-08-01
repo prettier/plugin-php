@@ -1321,8 +1321,10 @@ exports[`mixed-32.php 1`] = `
     <?php echo 'test'; ?>
 <div></div>
 <div></div>
-<?php if (true); ?>
-<?php echo 'test'; ?>
+<?php
+if (true);
+echo 'test';
+?>
 <div></div>
 
 `;
