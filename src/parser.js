@@ -73,36 +73,40 @@ function parse(text) {
       });
     };
 
-    const [firstLonelyTokens] = lonelyCommentBlocks;
-    if (
-      firstLonelyTokens &&
-      ast.children.length > 0 &&
-      ast.children[0].loc.start.line >=
-        firstLonelyTokens[firstLonelyTokens.length - 1][2]
-    ) {
-      pushTokens(firstLonelyTokens, 0, astIndices);
-    }
-
-    const lastLonelyTokens =
-      lonelyCommentBlocks[lonelyCommentBlocks.length - 1];
-    if (
-      lastLonelyTokens &&
-      ast.children.length > 0 &&
-      ast.children[ast.children.length - 1].loc.end.line <
-        lastLonelyTokens[lastLonelyTokens.length - 1][2]
-    ) {
-      pushTokens(lastLonelyTokens, ast.children.length, astIndices);
-    }
-
-    astIndices = ast.children.reduce((acc, child, index, children) => {
-      const fittingTokens = lonelyCommentBlocks.find(tokens =>
-        inBetweenLines(tokens[0][2], child, children[index + 1])
-      );
-      if (fittingTokens) {
-        pushTokens(fittingTokens, index + 1, acc);
+    if (!ast.children.length) {
+      lonelyCommentBlocks.forEach(tokens => pushTokens(tokens, 0, astIndices));
+    } else {
+      const [firstLonelyTokens] = lonelyCommentBlocks;
+      if (
+        firstLonelyTokens &&
+        ast.children.length > 0 &&
+        ast.children[0].loc.start.line >=
+          firstLonelyTokens[firstLonelyTokens.length - 1][2]
+      ) {
+        pushTokens(firstLonelyTokens, 0, astIndices);
       }
-      return acc;
-    }, astIndices);
+
+      const lastLonelyTokens =
+        lonelyCommentBlocks[lonelyCommentBlocks.length - 1];
+      if (
+        lastLonelyTokens &&
+        ast.children.length > 0 &&
+        ast.children[ast.children.length - 1].loc.end.line <=
+          lastLonelyTokens[lastLonelyTokens.length - 1][2]
+      ) {
+        pushTokens(lastLonelyTokens, ast.children.length, astIndices);
+      }
+
+      astIndices = ast.children.reduce((acc, child, index, children) => {
+        const fittingTokens = lonelyCommentBlocks.find(tokens =>
+          inBetweenLines(tokens[0][2], child, children[index + 1])
+        );
+        if (fittingTokens) {
+          pushTokens(fittingTokens, index + 1, acc);
+        }
+        return acc;
+      }, astIndices);
+    }
 
     astIndices.forEach(({ index, loc }, j) => {
       ast.children.splice(index + j, 0, {

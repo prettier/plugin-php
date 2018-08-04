@@ -1355,12 +1355,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
   const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
 
   if (node.kind === "program") {
-    if (!wrappedParts.length && node.comments) {
-      wrappedParts.push(
-        hardline,
-        comments.printComments(node.comments, options)
-      );
-    }
     const originalText = node.loc.source;
     const firstNestedChildNode = getFirstNestedChildNode(node);
     const lastNestedChildNode = getLastNestedChildNode(node);
@@ -1378,12 +1372,14 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
 
       if (between && between[2]) {
-        afterOpenTag = between[2].includes("\n")
-          ? concat([
-              hardline,
-              between[2].split("\n").length > 2 ? hardline : ""
-            ])
-          : " ";
+        afterOpenTag =
+          between[2].includes("\n") &&
+          firstNestedChildNode.kind !== "lonelyComment"
+            ? concat([
+                hardline,
+                between[2].split("\n").length > 2 ? hardline : ""
+              ])
+            : " ";
       }
     }
 
@@ -1391,7 +1387,11 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const between = originalText.trim().match(/\S(\s*)?\?>$/);
 
       beforeCloseTag =
-        between && between[1] && between[1].includes("\n") ? hardline : " ";
+        lastNestedChildNode.kind === "lonelyComment"
+          ? ""
+          : between && between[1] && between[1].includes("\n")
+            ? hardline
+            : " ";
     }
 
     return concat([
@@ -2466,8 +2466,14 @@ function printNode(path, options, print) {
       ]);
     case "label":
       return concat([node.name, ":"]);
-    case "lonelyComment":
-      return comments.printComments(node.comments, options);
+    case "lonelyComment": {
+      const isMultiline = node.loc.start.line < node.loc.end.line;
+      return concat([
+        isMultiline ? hardline : "",
+        comments.printComments(node.comments, options),
+        isMultiline ? hardline : ""
+      ]);
+    }
     case "error":
     default:
       return `Have not implemented kind ${node.kind} yet.`;

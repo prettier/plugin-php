@@ -184,14 +184,10 @@ exports[`blank_lines.php 1`] = `
 
 // Other comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-// The first line of a comment
+<?php // The first line of a comment
 // The second line of a comment
-
 // A third line which has a blank line before it
-
 // Other comment
-
 
 `;
 
@@ -1243,8 +1239,8 @@ exports[`inline3.php 1`] = `
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <h1>Test</h1>
-<?php // test
-
+<?php
+// test
 ?>
 
 `;
@@ -1286,7 +1282,8 @@ exports[`inline5.php 1`] = `
 <h1>Test</h1>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <h1>Test</h1>
-<?php // test
+<?php
+// test
  ?>
 <h1>Test</h1>
 
@@ -1304,7 +1301,8 @@ exports[`inline6.php 1`] = `
 <h1>Test</h1>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <h1>Test</h1>
-<?php /**
+<?php
+/**
  * test
  */
  ?>
@@ -1323,8 +1321,7 @@ exports[`inline8.php 1`] = `
 <?php //test ?>
 <?php echo 1; ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php //test
- ?>
+<?php //test  ?>
 <?php echo 1; ?>
 
 `;
@@ -1334,8 +1331,7 @@ exports[`inline9.php 1`] = `
 <?php echo 1; ?>
 <?php echo 2; ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php //test
- ?>
+<?php //test  ?>
 <?php echo 1; ?>
 <?php echo 2; ?>
 
@@ -1446,7 +1442,6 @@ exports[`no_code.php 1`] = `
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-
 /**
  * Product Loop Start
  *
@@ -1454,7 +1449,6 @@ exports[`no_code.php 1`] = `
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
-
 ?>
 
 `;

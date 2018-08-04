@@ -351,8 +351,10 @@ function printComments(comments, options) {
   const parts = [];
   comments.forEach((comment, index, comments) => {
     comment.printed = true;
+    if (index > 0) {
+      parts.push(hardline);
+    }
     parts.push(comment.value);
-    parts.push(hardline);
     if (
       isNextLineEmpty(options.originalText, comment, options) &&
       comments.length > index + 1
