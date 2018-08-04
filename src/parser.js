@@ -22,6 +22,100 @@ function parse(text) {
 
   const ast = parser.parseCode(text);
 
+  function addLonelyCommentsToAst() {
+    const codeBlocks = [];
+    let start;
+    ast.tokens.forEach((token, index) => {
+      if (token[0] === "T_OPEN_TAG") {
+        start = index;
+      } else if (token[0] === "T_CLOSE_TAG") {
+        codeBlocks.push({ start, end: index });
+      }
+    });
+
+    const lonelyCommentBlocks = codeBlocks
+      .map(({ start, end }) => {
+        return ast.tokens.slice(start, end + 1);
+      })
+      .filter(tokens => {
+        return (
+          tokens.filter(
+            token =>
+              ![
+                "T_COMMENT",
+                "T_DOC_COMMENT",
+                "T_WHITESPACE",
+                "T_OPEN_TAG",
+                "T_CLOSE_TAG"
+              ].includes(token[0])
+          ).length === 0
+        );
+      });
+
+    let astIndices = [];
+
+    if (!lonelyCommentBlocks) {
+      return;
+    }
+    const pushTokens = (tokens, index, arr) => {
+      arr.push({
+        index,
+        loc: {
+          start: {
+            line: tokens[0][2],
+            offset: tokens[0][3]
+          },
+          end: {
+            line: tokens[tokens.length - 1][2],
+            offset: tokens[tokens.length - 1][4]
+          }
+        }
+      });
+    };
+
+    const [firstLonelyTokens] = lonelyCommentBlocks;
+    if (
+      firstLonelyTokens &&
+      ast.children.length > 0 &&
+      ast.children[0].loc.start.line >=
+        firstLonelyTokens[firstLonelyTokens.length - 1][2]
+    ) {
+      pushTokens(firstLonelyTokens, 0, astIndices);
+    }
+
+    const lastLonelyTokens =
+      lonelyCommentBlocks[lonelyCommentBlocks.length - 1];
+    if (
+      lastLonelyTokens &&
+      ast.children.length > 0 &&
+      ast.children[ast.children.length - 1].loc.end.line <
+        lastLonelyTokens[lastLonelyTokens.length - 1][2]
+    ) {
+      pushTokens(lastLonelyTokens, ast.children.length, astIndices);
+    }
+
+    astIndices = ast.children.reduce((acc, child, index, children) => {
+      const fittingTokens = lonelyCommentBlocks.find(tokens =>
+        inBetweenLines(tokens[0][2], child, children[index + 1])
+      );
+      if (fittingTokens) {
+        pushTokens(fittingTokens, index + 1, acc);
+      }
+      return acc;
+    }, astIndices);
+
+    astIndices.forEach(({ index, loc }, j) => {
+      ast.children.splice(index + j, 0, {
+        kind: "lonelyComment",
+        raw: "",
+        value: "",
+        loc
+      });
+    });
+  }
+
+  addLonelyCommentsToAst();
+
   // parser doesn't create `inline` node between `?>\n<?`, so we add them manually
   const missingLinebreaks = ast.tokens.filter((token, index, tokens) => {
     return (

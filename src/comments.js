@@ -293,17 +293,9 @@ const handleInlineComments = comment => {
   return false;
 };
 
-function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
-  if (
-    enclosingNode &&
-    enclosingNode.kind === "program" &&
-    enclosingNode.children.length === 0
-  ) {
-    if (isLastComment) {
-      addDanglingComment(enclosingNode, comment);
-    } else {
-      addLeadingComment(enclosingNode, comment);
-    }
+function handleOnlyComments(enclosingNode, ast, comment) {
+  if (enclosingNode && enclosingNode.kind === "lonelyComment") {
+    addDanglingComment(enclosingNode, comment);
     return true;
   }
   return false;
