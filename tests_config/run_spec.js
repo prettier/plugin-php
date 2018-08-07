@@ -64,20 +64,23 @@ function run_spec(dirname, parsers, options) {
         const output = prettier.format(source, compareOptions);
 
         let outputAST;
-        let outputASTErr = null;
+        let reoutput;
+        let secondPassErr = null;
         try {
           outputAST = stripLocation(
             prettier.__debug.parse(output, compareOptions, true)
           );
+          reoutput = prettier.format(output, compareOptions);
         } catch (e) {
-          outputASTErr = e.stack;
+          secondPassErr = e.stack;
         }
 
         test(`${path} parse`, () => {
-          expect(outputASTErr).toBe(null);
+          expect(secondPassErr).toBe(null);
           expect(outputAST).toBeDefined();
           if (!originalAST.errors || originalAST.errors.length === 0) {
             expect(outputAST.ast.children).toEqual(originalAST.ast.children);
+            expect(output).toEqual(reoutput);
           }
         });
       }
