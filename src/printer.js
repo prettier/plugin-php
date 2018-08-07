@@ -20,7 +20,6 @@ const {
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
-  makeString,
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
   getNextNonSpaceNonCommentCharacterIndex
@@ -991,22 +990,27 @@ function printExpression(path, options, print) {
         // use setting from options. need to figure out how this works w/ complex strings and interpolation
         // also need to figure out splitting long strings
         const quote = node.isDoubleQuote ? '"' : "'";
+
         let stringValue = node.raw;
 
         if (node.raw[0] === "b") {
           stringValue = stringValue.slice(1);
         }
 
-        // we need to strip out the quotes from the raw value
+        // We need to strip out the quotes from the raw value
         if (['"', "'"].includes(stringValue[0])) {
           stringValue = stringValue.substr(1);
         }
+
         if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
           stringValue = stringValue.substr(0, stringValue.length - 1);
         }
+
         return concat([
           node.raw[0] === "b" ? "b" : "",
-          makeString(stringValue, quote, false)
+          quote,
+          stringValue,
+          quote
         ]);
       }
       case "number":
