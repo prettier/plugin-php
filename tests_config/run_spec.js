@@ -58,7 +58,7 @@ function run_spec(dirname, parsers, options) {
           mergedOptions
         );
 
-        const originalAST = stripLocation(
+        const originalAST = cleanForComparison(
           prettier.__debug.parse(source, compareOptions, true)
         );
         const output = prettier.format(source, compareOptions);
@@ -67,7 +67,7 @@ function run_spec(dirname, parsers, options) {
         let reoutput;
         let secondPassErr = null;
         try {
-          outputAST = stripLocation(
+          outputAST = cleanForComparison(
             prettier.__debug.parse(output, compareOptions, true)
           );
           reoutput = prettier.format(output, compareOptions);
@@ -89,12 +89,16 @@ function run_spec(dirname, parsers, options) {
 }
 global.run_spec = run_spec;
 
-function stripLocation(ast) {
+function cleanForComparison(ast) {
   if (Array.isArray(ast)) {
-    return ast.map(e => stripLocation(e));
+    return ast.map(e => cleanForComparison(e));
   }
   if (typeof ast === "object") {
     const newObj = {};
+    // prevent indentation changes in multiline comment blocks from causing AST changes
+    if (ast && ast.kind === "commentblock") {
+      ast.value = ast.value.replace(/^ +/gm, "");
+    }
     for (const key in ast) {
       if (
         key === "loc" ||
@@ -102,11 +106,13 @@ function stripLocation(ast) {
         key === "raw" ||
         key === "comments" ||
         key === "parent" ||
-        key === "prev"
+        key === "prev" ||
+        key === "start" ||
+        key === "end"
       ) {
         continue;
       }
-      newObj[key] = stripLocation(ast[key]);
+      newObj[key] = cleanForComparison(ast[key]);
     }
     return newObj;
   }
