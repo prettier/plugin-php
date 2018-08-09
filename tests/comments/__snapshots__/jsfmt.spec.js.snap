@@ -1546,6 +1546,22 @@ echo /*Comment*/ /*Comment*/ $a->bar();
 
 `;
 
+exports[`return.php 1`] = `
+<?php
+
+function f() {
+    return /* a */;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+function f()
+{
+    return /* a */;
+}
+
+`;
+
 exports[`silent.php 1`] = `
 <?php
 

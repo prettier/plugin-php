@@ -2412,9 +2412,12 @@ function printNode(path, options, print) {
       return "continue";
     case "return": {
       const parts = [];
+
       parts.push("return");
+
       if (node.expr) {
         const printedExpr = path.call(print, "expr");
+
         if (node.expr.kind === "bin") {
           parts.push(
             group(
@@ -2430,6 +2433,14 @@ function printNode(path, options, print) {
           parts.push(" ", printedExpr);
         }
       }
+
+      if (hasDanglingComments(node)) {
+        parts.push(
+          " ",
+          comments.printDanglingComments(path, options, /* sameIndent */ true)
+        );
+      }
+
       return concat(parts);
     }
     case "entry": {
