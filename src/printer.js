@@ -606,7 +606,16 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 }
 
 function wrapPropertyLookup(node, doc) {
-  const addCurly = !["variable", "constref"].includes(node.offset.kind);
+  let addCurly = true;
+
+  if (node.offset.kind === "variable") {
+    addCurly = false;
+  } else if (
+    node.offset.kind === "constref" &&
+    typeof node.offset.name === "string"
+  ) {
+    addCurly = false;
+  }
 
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
