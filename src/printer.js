@@ -2042,14 +2042,16 @@ function printStatement(path, options, print) {
                 path.call(print, "source"),
                 line,
                 "as ",
-                node.key
-                  ? indent(
-                      join(concat([" =>", line]), [
-                        path.call(print, "key"),
-                        path.call(print, "value")
-                      ])
-                    )
-                  : path.call(print, "value")
+                group(
+                  node.key
+                    ? indent(
+                        join(concat([" =>", line]), [
+                          path.call(print, "key"),
+                          path.call(print, "value")
+                        ])
+                      )
+                    : path.call(print, "value")
+                )
               ])
             ),
             softline
