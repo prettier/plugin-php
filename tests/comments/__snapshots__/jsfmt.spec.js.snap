@@ -1337,6 +1337,19 @@ exports[`inline9.php 1`] = `
 
 `;
 
+exports[`inline10.php 1`] = `
+<?php
+if (true) {
+    ?>inline<?php
+    // comment
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+if (true) { ?>inline<?php }
+    // comment
+
+`;
+
 exports[`isset.php 1`] = `
 <?php
 

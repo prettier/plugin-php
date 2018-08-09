@@ -22,6 +22,12 @@ function parse(text) {
 
   const ast = parser.parseCode(text);
 
+  /**
+   * Manually add "comment-only" nodes to AST.
+   *
+   * This might be part of the parser in the future:
+   * https://github.com/glayzzle/php-parser/issues/170
+   */
   function addLonelyCommentsToAst() {
     const codeBlocks = [];
     let start;
@@ -120,7 +126,11 @@ function parse(text) {
 
   addLonelyCommentsToAst();
 
-  // parser doesn't create `inline` node between `?>\n<?`, so we add them manually
+  /**
+   * Manually add `inline` nodes between `?>\n<?` to AST
+   * Possible future parser feature:
+   * https://github.com/glayzzle/php-parser/issues/170
+   */
   const missingLinebreaks = ast.tokens.filter((token, index, tokens) => {
     return (
       token[0] === "T_CLOSE_TAG" &&
