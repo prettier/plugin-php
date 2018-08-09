@@ -44,3 +44,18 @@ foreach ($points as ["x" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue, "y" => $
 foreach ($points as ["veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongX, "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongY]) {
     var_dump($x, $y);
 }
+
+foreach (
+    [
+        'one' => [
+            'string',
+            'other-string'
+        ],
+        'two' => [
+            'string',
+            'other-string'
+        ],
+    ]
+    as $key => $aliases
+) {
+}
