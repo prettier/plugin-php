@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`operations.php 1`] = `
+exports[`bin.php 1`] = `
 <?php
 $a++;
 ++$a;
@@ -165,5 +165,14 @@ $value =
     isset($_POST['menu-item-dropdown'][$menuItemDbId])
         ? 'enabled'
         : 'disabled';
+
+`;
+
+exports[`single.php 1`] = `
+<?php
+$a++;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a++;
 
 `;
