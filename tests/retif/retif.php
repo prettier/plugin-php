@@ -24,3 +24,30 @@ $var = ($this->databasePath ? $this->basePath . DIRECTORY_SEPARATOR . 'other' : 
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
 return ($this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database') .
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
+
+$test = $foo
+    ? foo([ 'foo' => $someOtherReallyReallyLongVariable , 'bar' => $someOtherReallyReallyLongVariable])
+    : bar([ 'foo' => $someOtherReallyReallyLongVariable , 'bar' => $someOtherReallyReallyLongVariable]);
+
+$var = 'string' . $someOtherReallyReallyLongVariable . $someOtherReallyReallyLongVariable ? 1 : 2;
+$var = 1 ? 'string' . $someOtherReallyReallyLongVariable . $someOtherReallyReallyLongVariable : 2;
+$var = 1 ? 2 : 'string' . $someOtherReallyReallyLongVariable . $someOtherReallyReallyLongVariable;
+
+($someOtherReallyReallyLongVariable
+  ? $someOtherReallyReallyLongVariable
+  : $someOtherReallyReallyLongVariable
+)->call();
+$var = $test ?: (true ? 1 : 2);
+$var = $test ?: ($someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable ? 1 : 2);
+$var = $test ?: (true ? $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable : 2);
+$var = $test ?: (true ? 1 : $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable);
+$var = $test
+    ? 'string'
+    : ($someOtherReallyReallyLongVariable
+        ? $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable);
+$var = $test
+    ? ($someOtherReallyReallyLongVariable
+        ? $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable)
+    : 'string';

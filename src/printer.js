@@ -2160,14 +2160,65 @@ function printStatement(path, options, print) {
       ]);
     }
     case "retif": {
-      const printedExpr = concat([
+      const parts = [];
+      const parent = path.getParentNode();
+      const parentParentNode = path.getParentNode(1);
+
+      // Find the outermost non-retif parent, and the outermost retif parent.
+      let currentParent;
+
+      let i = 0;
+      do {
+        currentParent = path.getParentNode(i);
+        i++;
+      } while (currentParent && currentParent.kind === "retif");
+      const firstNonRetifParent = currentParent || parent;
+
+      const printedTrueExpr = path.call(print, "trueExpr");
+      const printedFalseExpr = path.call(print, "falseExpr");
+      const part = concat([
         line,
         "?",
-        node.trueExpr ? concat([" ", path.call(print, "trueExpr"), line]) : "",
+        node.trueExpr
+          ? concat([
+              " ",
+              node.trueExpr.kind === "bin"
+                ? indent(printedTrueExpr)
+                : printedTrueExpr,
+              line
+            ])
+          : "",
         ": ",
-        path.call(print, "falseExpr")
+        node.falseExpr.kind === "bin"
+          ? indent(printedFalseExpr)
+          : printedFalseExpr
       ]);
-      return group(concat([path.call(print, "test"), indent(printedExpr)]));
+
+      parts.push(part);
+
+      // We want a whole chain of retif to all break if any of them break.
+      const maybeGroup = doc =>
+        parent === firstNonRetifParent ? group(doc) : doc;
+
+      // Break the closing parens to keep the chain right after it:
+      // ($a
+      //   ? $b
+      //   : $c
+      // )->call()
+      const breakLookupNodes = ["propertylookup", "staticlookup"];
+      const breakClosingParens =
+        breakLookupNodes.includes(parent.kind) ||
+        (parent.kind === "parenthesis" &&
+          parentParentNode &&
+          breakLookupNodes.includes(parentParentNode.kind));
+
+      return maybeGroup(
+        concat([
+          path.call(print, "test"),
+          indent(concat(parts)),
+          breakClosingParens ? softline : ""
+        ])
+      );
     }
     case "exit":
       return group(
