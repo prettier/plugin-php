@@ -1,0 +1,2 @@
+<?php //test ?>
+<?php echo 1; ?>

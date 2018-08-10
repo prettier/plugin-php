@@ -184,14 +184,10 @@ exports[`blank_lines.php 1`] = `
 
 // Other comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-// The first line of a comment
+<?php // The first line of a comment
 // The second line of a comment
-
 // A third line which has a blank line before it
-
 // Other comment
-
 
 `;
 
@@ -1231,7 +1227,7 @@ exports[`inline2.php 1`] = `
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // test
-?>
+ ?>
 <h1>Test</h1>
 
 `;
@@ -1246,6 +1242,7 @@ exports[`inline3.php 1`] = `
 <?php
 // test
 ?>
+
 `;
 
 exports[`inline4.php 1`] = `
@@ -1272,7 +1269,7 @@ exports[`inline4.php 1`] = `
 /**
  * C
  */
-?>
+ ?>
 <h1>Test</h1>
 
 `;
@@ -1287,7 +1284,7 @@ exports[`inline5.php 1`] = `
 <h1>Test</h1>
 <?php
 // test
-?>
+ ?>
 <h1>Test</h1>
 
 `;
@@ -1308,7 +1305,7 @@ exports[`inline6.php 1`] = `
 /**
  * test
  */
-?>
+ ?>
 <h1>Test</h1>
 
 `;
@@ -1317,6 +1314,39 @@ exports[`inline7.php 1`] = `
 <?php echo 1; // comment ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php echo 1; // comment ?>
+
+`;
+
+exports[`inline8.php 1`] = `
+<?php //test ?>
+<?php echo 1; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php //test  ?>
+<?php echo 1; ?>
+
+`;
+
+exports[`inline9.php 1`] = `
+<?php //test ?>
+<?php echo 1; ?>
+<?php echo 2; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php //test  ?>
+<?php echo 1; ?>
+<?php echo 2; ?>
+
+`;
+
+exports[`inline10.php 1`] = `
+<?php
+if (true) {
+    ?>inline<?php
+    // comment
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+if (true) { ?>inline<?php }
+    // comment
 
 `;
 
@@ -1425,7 +1455,6 @@ exports[`no_code.php 1`] = `
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-
 /**
  * Product Loop Start
  *
@@ -1433,7 +1462,6 @@ exports[`no_code.php 1`] = `
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
-
 ?>
 
 `;
