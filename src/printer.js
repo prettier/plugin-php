@@ -2212,9 +2212,14 @@ function printStatement(path, options, print) {
           parentParentNode &&
           breakLookupNodes.includes(parentParentNode.kind));
 
+      const printedTest = path.call(print, "test");
+
       return maybeGroup(
         concat([
-          path.call(print, "test"),
+          node.test.kind === "retif" ||
+          (node.test.kind === "parenthesis" && node.test.inner.kind === "retif")
+            ? indent(printedTest)
+            : printedTest,
           indent(concat(parts)),
           breakClosingParens ? softline : ""
         ])
