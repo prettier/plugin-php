@@ -51,3 +51,14 @@ print(str_replace('test', 'test', 'test'));
 print(1);
 print (1);
 print (((1)));
+
+print esc_html(
+    sprintf(
+        __(
+            'Hi there. Your recent order on %s has been completed. ' .
+            'Your order details are shown below for your reference:',
+            'woocommerce'
+        ),
+        get_option('blogname')
+    )
+);
