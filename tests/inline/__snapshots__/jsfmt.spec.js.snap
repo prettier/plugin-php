@@ -1321,10 +1321,8 @@ exports[`mixed-32.php 1`] = `
     <?php echo 'test'; ?>
 <div></div>
 <div></div>
-<?php
-if (true);
-echo 'test';
-?>
+<?php if (true); ?>
+<?php echo 'test'; ?>
 <div></div>
 
 `;
@@ -1355,6 +1353,128 @@ exports[`mixed-34.php 1`] = `
     echo 'test';
 } ?>
 <div></div>
+
+`;
+
+exports[`mixed-35.php 1`] = `
+<?php if (!is_ajax()) { ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php
+
+function test()
+{
+    ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php
+}
+
+function testTwo()
+{
+    ?>
+    <?php if (!is_ajax()) { ?>
+        <?php if (!is_ajax()) { ?>
+            <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php } ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php if (!is_ajax()) { ?>
+            <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php } ?>
+    <?php } ?>
+    <?php
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php if (!is_ajax()) { ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php if (!is_ajax()) { ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+<?php } ?>
+
+<?php
+function test()
+{
+    ?>
+    <?php if (!is_ajax()) { ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php } ?>
+    <?php
+}
+function testTwo()
+{
+    ?>
+    <?php if (!is_ajax()) { ?>
+        <?php if (!is_ajax()) { ?>
+            <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php } ?>
+        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php if (!is_ajax()) { ?>
+            <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php } ?>
+    <?php } ?>
+    <?php
+}
+
 
 `;
 
