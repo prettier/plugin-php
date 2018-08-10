@@ -859,8 +859,6 @@ function printExpression(path, options, print) {
         // indented accordingly. We should indent sub-expressions where the first case isn't indented.
         const shouldNotIndent =
           parent.kind === "return" ||
-          parent.kind === "echo" ||
-          parent.kind === "print" ||
           parent.kind === "retif" ||
           // return (
           //   $someCondition ||
@@ -1492,12 +1490,16 @@ function printStatement(path, options, print) {
   function printSys(node) {
     switch (node.kind) {
       case "echo": {
-        const printedArguments = path.map(argumentPath => {
-          const node = argumentPath.getValue();
-          return node.kind === "bin"
-            ? print(argumentPath)
-            : dedent(print(argumentPath));
+        const printedArguments = path.map((argumentPath, index) => {
+          let printed = print(argumentPath);
+
+          if (index === 0) {
+            printed = dedent(printed);
+          }
+
+          return printed;
         }, "arguments");
+
         return indent(
           group(
             concat([
@@ -1508,13 +1510,7 @@ function printStatement(path, options, print) {
         );
       }
       case "print": {
-        const printedArguments = path.call(print, "arguments");
-        return concat([
-          "print ",
-          node.arguments.kind === "bin"
-            ? indent(printedArguments)
-            : printedArguments
-        ]);
+        return concat(["print ", path.call(print, "arguments")]);
       }
       case "list":
       case "isset":
