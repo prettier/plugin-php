@@ -1408,12 +1408,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
 
       if (between && between[2]) {
-        afterOpenTag = between[2].includes("\n")
-          ? concat([
-              hardline,
-              between[2].split("\n").length > 2 ? hardline : ""
-            ])
-          : " ";
+        afterOpenTag =
+          between[2].includes("\n") && wrappedParts.length > 0
+            ? concat([
+                hardline,
+                between[2].split("\n").length > 2 ? hardline : ""
+              ])
+            : " ";
       }
     }
 
@@ -1421,7 +1422,11 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const between = originalText.trim().match(/\S(\s*)?\?>$/);
 
       beforeCloseTag =
-        between && between[1] && between[1].includes("\n") ? hardline : " ";
+        between && between[1] && between[1].includes("\n")
+          ? hardline
+          : wrappedParts.length > 0
+            ? " "
+            : "";
     }
 
     return concat([
