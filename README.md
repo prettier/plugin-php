@@ -111,7 +111,7 @@ prettier path/to/file.php --write
 
 ## Editor integration
 
-Integration in the prettier plugin for your favorite editor might not be working yet, see see the related issues for [VS Code](https://github.com/prettier/prettier-vscode/issues/395), [Atom](https://github.com/prettier/prettier-atom/issues/395) and [Vim](https://github.com/prettier/vim-prettier/issues/119).
+Integration in the prettier plugin for your favorite editor might not be working yet, see the related issues for [VS Code](https://github.com/prettier/prettier-vscode/issues/395), [Atom](https://github.com/prettier/prettier-atom/issues/395) and [Vim](https://github.com/prettier/vim-prettier/issues/119).
 
 For the moment, you can set up prettier to run on save like this:
 
