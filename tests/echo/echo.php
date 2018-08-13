@@ -153,3 +153,15 @@ echo esc_html(
             get_option('blogname')
         )
     );
+
+echo <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+echo <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
