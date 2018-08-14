@@ -6,7 +6,6 @@ const {
   join,
   line,
   lineSuffix,
-  lineSuffixBoundary,
   group,
   conditionalGroup,
   indent,
@@ -1602,29 +1601,41 @@ function printStatement(path, options, print) {
             "{",
             indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
             comments.printDanglingComments(path, options, true),
-            node.isAnonymous && hasEmptyBody ? "" : hardline,
+            node.kind === "class" && node.isAnonymous && hasEmptyBody
+              ? ""
+              : hardline,
             "}"
           ])
         : "";
 
-      return concat([
-        group(
-          concat([
-            printedDeclaration,
-            printedSignature,
-            // see https://github.com/prettier/plugin-php/issues/107
-            // options.openingBraceNewLine ? hardline : " ",
-            // Hack, we need `invertLine` command here, as `line`, but have versa vice logic
-            bodyContents
-              ? node.kind === "function" || node.kind === "method"
-                ? ifBreak(" ", concat([lineSuffix(""), lineSuffixBoundary]))
-                : node.kind === "class" && node.isAnonymous
-                  ? line
-                  : hardline
-              : ""
-          ])
-        ),
-        printedBody
+      if (isClassLikeNode) {
+        return concat([
+          group(
+            concat([
+              printedDeclaration,
+              printedSignature,
+              bodyContents && node.kind === "class" && node.isAnonymous
+                ? line
+                : hardline
+            ])
+          ),
+          printedBody
+        ]);
+      }
+
+      return conditionalGroup([
+        concat([
+          printedDeclaration,
+          printedSignature,
+          bodyContents ? hardline : "",
+          printedBody
+        ]),
+        concat([
+          printedDeclaration,
+          printedSignature,
+          bodyContents ? (argumentsList.length === 0 ? hardline : " ") : "",
+          printedBody
+        ])
       ]);
     }
 
