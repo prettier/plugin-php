@@ -38,7 +38,7 @@ const {
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish,
+  isLookupNode,
   isFirstChildrenInlineNode,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
@@ -102,6 +102,7 @@ function printStaticLookup(path, options, print) {
 function printOffsetLookup(path, options, print) {
   const node = path.getValue();
   const isOffsetNumberNode = node.offset && node.offset.kind === "number";
+
   return concat([
     "[",
     node.offset
@@ -139,16 +140,16 @@ function printMemberChain(path, options, print) {
   // Example:
   //   a()->b->c()->d();
   // has the AST structure
-  //   call (propertylookup d (
-  //     call (propertylookup c (
-  //       propertylookup b (
-  //         call (identifier a)
+  //   call (isLookupNode d (
+  //     call (isLookupNode c (
+  //       isLookupNode b (
+  //         call (variable a)
   //       )
   //     ))
   //   ))
   // and we transform it into (notice the reversed order)
-  //   [identifier a, call, propertylookup b, propertylookup c, call,
-  //    propertylookup d, call]
+  //   [identifier a, call, isLookupNode b, isLookupNode c, call,
+  //    isLookupNode d, call]
   const printedNodes = [];
 
   // Here we try to retain one typed empty line after each call expression or
@@ -189,7 +190,7 @@ function printMemberChain(path, options, print) {
     const node = path.getValue();
     if (
       node.kind === "call" &&
-      (isMemberish(node.what) || node.what.kind === "call")
+      (isLookupNode(node.what) || node.what.kind === "call")
     ) {
       printedNodes.unshift({
         node,
@@ -199,7 +200,7 @@ function printMemberChain(path, options, print) {
         ])
       });
       path.call(what => traverse(what), "what");
-    } else if (isMemberish(node)) {
+    } else if (isLookupNode(node)) {
       // Print *lookup nodes as we standard print them outside member chain
       let printedMemberish = null;
       if (node.kind === "propertylookup") {
@@ -229,13 +230,13 @@ function printMemberChain(path, options, print) {
   path.call(what => traverse(what), "what");
 
   // create groups from list of nodes, i.e.
-  //   [identifier a, call, propertylookup b, propertylookup c, call,
-  //    propertylookup d, call]
+  //   [identifier a, call, isLookupNode b, isLookupNode c, call,
+  //    isLookupNode d, call]
   // will be grouped as
   //   [
   //     [identifier a, Call],
-  //     [propertylookup b, propertylookup c, call],
-  //     [propertylookup d, call]
+  //     [isLookupNode b, isLookupNode c, call],
+  //     [isLookupNode d, call]
   //   ]
   // so that we can print it as
   //   a()
@@ -247,7 +248,7 @@ function printMemberChain(path, options, print) {
   for (; i < printedNodes.length; ++i) {
     if (
       printedNodes[i].node.kind === "call" ||
-      (printedNodes[i].node.kind === "offsetlookup" &&
+      (isLookupNode(printedNodes[i].node) &&
         printedNodes[i].node.offset &&
         printedNodes[i].node.offset.kind === "number")
     ) {
@@ -259,8 +260,8 @@ function printMemberChain(path, options, print) {
   if (printedNodes[0].node.kind !== "call") {
     for (; i + 1 < printedNodes.length; ++i) {
       if (
-        isMemberish(printedNodes[i].node) &&
-        isMemberish(printedNodes[i + 1].node)
+        isLookupNode(printedNodes[i].node) &&
+        isLookupNode(printedNodes[i + 1].node)
       ) {
         currentGroup.push(printedNodes[i]);
       } else {
@@ -277,7 +278,7 @@ function printMemberChain(path, options, print) {
   // propertylookup
   let hasSeenCallExpression = false;
   for (; i < printedNodes.length; ++i) {
-    if (hasSeenCallExpression && isMemberish(printedNodes[i].node)) {
+    if (hasSeenCallExpression && isLookupNode(printedNodes[i].node)) {
       // [0] should be appended at the end of the group instead of the
       // beginning of the next one
       if (
@@ -338,7 +339,11 @@ function printMemberChain(path, options, print) {
 
     const lastNode = getLast(groups[0]).node;
 
-    return isMemberish(lastNode) && lastNode.offset.kind === "constref";
+    return (
+      isLookupNode(lastNode) &&
+      (lastNode.offset.kind === "constref" ||
+        lastNode.offset.kind === "variable")
+    );
   }
 
   const shouldMerge =
@@ -619,16 +624,6 @@ function wrapPropertyLookup(node, doc) {
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
 
-function isPropertyLookupChain(node) {
-  if (node.kind !== "propertylookup") {
-    return false;
-  }
-  if (node.what.kind === "variable") {
-    return true;
-  }
-  return isPropertyLookupChain(node.what);
-}
-
 function shouldInlineLogicalExpression(node) {
   return node.right.kind === "array" && node.right.items.length !== 0;
 }
@@ -739,67 +734,69 @@ const expressionKinds = [
   "encapsed",
   "variadic"
 ];
+
+function printLookupNodes(path, options, print) {
+  const node = path.getValue();
+
+  switch (node.kind) {
+    case "propertylookup":
+      return printPropertyLookup(path, options, print);
+    case "staticlookup":
+      return printStaticLookup(path, options, print);
+    case "offsetlookup":
+      return printOffsetLookup(path, options, print);
+    default:
+      return `Have not implemented lookup kind ${node.kind} yet.`;
+  }
+}
+
 function printExpression(path, options, print) {
   const node = path.getValue();
-  const lookupKinds = ["propertylookup", "staticlookup", "offsetlookup"];
+
   function printLookup(node) {
-    const parent = path.getParentNode();
-    let firstNonMemberParent;
-    let i = 0;
-    do {
-      firstNonMemberParent = path.getParentNode(i);
-      i++;
-    } while (firstNonMemberParent && isMemberish(firstNonMemberParent));
-
-    const shouldInline =
-      (firstNonMemberParent && firstNonMemberParent.kind === "new") ||
-      (node.what.kind === "variable" &&
-        (node.offset &&
-          (node.offset.kind === "constref" ||
-            node.offset.kind === "variable")) &&
-        (parent && !isMemberish(parent)));
-
     switch (node.kind) {
-      case "propertylookup": {
-        return group(
-          concat([
-            path.call(print, "what"),
-            shouldInline
-              ? printPropertyLookup(path, options, print)
-              : group(
-                  indent(
-                    concat([
-                      softline,
-                      printPropertyLookup(path, options, print)
-                    ])
-                  )
-                )
-          ])
-        );
-      }
+      case "propertylookup":
       case "staticlookup":
+      case "offsetlookup": {
+        const parent = path.getParentNode();
+
+        let firstNonMemberParent;
+        let i = 0;
+
+        do {
+          firstNonMemberParent = path.getParentNode(i);
+          i++;
+        } while (firstNonMemberParent && isLookupNode(firstNonMemberParent));
+
+        const shouldInline =
+          (firstNonMemberParent &&
+            (firstNonMemberParent.kind === "new" ||
+              (firstNonMemberParent.kind === "assign" &&
+                firstNonMemberParent.left.kind !== "variable"))) ||
+          node.kind === "offsetlookup" ||
+          (node.what.kind === "variable" &&
+            (node.offset &&
+              (node.offset.kind === "constref" ||
+                node.offset.kind === "variable")) &&
+            (parent && !isLookupNode(parent)));
+
         return concat([
           path.call(print, "what"),
           shouldInline
-            ? printStaticLookup(path, options, print)
+            ? printLookupNodes(path, options, print)
             : group(
                 indent(
-                  concat([softline, printStaticLookup(path, options, print)])
+                  concat([softline, printLookupNodes(path, options, print)])
                 )
               )
         ]);
-      case "offsetlookup":
-        return group(
-          concat([
-            path.call(print, "what"),
-            printOffsetLookup(path, options, print)
-          ])
-        );
+      }
       default:
         return `Have not implemented lookup kind ${node.kind} yet.`;
     }
   }
-  if (lookupKinds.includes(node.kind)) {
+
+  if (isLookupNode(node)) {
     return printLookup(node);
   }
 
@@ -1919,35 +1916,65 @@ function printStatement(path, options, print) {
     ]);
   }
 
+  function printAssignment(
+    leftNode,
+    printedLeft,
+    operator,
+    rightNode,
+    printedRight,
+    options
+  ) {
+    if (!rightNode) {
+      return printedLeft;
+    }
+
+    const printed = printAssignmentRight(
+      leftNode,
+      rightNode,
+      printedRight,
+      options
+    );
+
+    return group(concat([printedLeft, operator, printed]));
+  }
+
+  function isLookupNodeChain(node) {
+    if (!isLookupNode(node)) {
+      return false;
+    }
+
+    if (node.what.kind === "variable") {
+      return true;
+    }
+
+    return isLookupNodeChain(node.what);
+  }
+
+  function printAssignmentRight(leftNode, rightNode, printedRight) {
+    const canBreak =
+      (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
+      (rightNode.kind === "retif" &&
+        rightNode.test.kind === "bin" &&
+        !shouldInlineLogicalExpression(rightNode.test)) ||
+      ((leftNode.kind === "variable" || isLookupNode(leftNode)) &&
+        ((rightNode.kind === "string" && !node.right.raw.includes("\n")) ||
+          isLookupNodeChain(rightNode)));
+
+    if (canBreak) {
+      return group(indent(concat([line, printedRight])));
+    }
+
+    return concat([" ", printedRight]);
+  }
+
   switch (node.kind) {
     case "assign": {
-      const canBreak =
-        ["bin", "number", "string"].includes(node.right.kind) ||
-        // for retif's that have complex test cases, we allow a break. ie
-        // $test =
-        //   $someReallyLongCondition ||
-        //   $someOtherLongCondition
-        //     ? true
-        //     : false;
-        (node.right.kind === "retif" && node.right.test.kind === "bin") ||
-        isPropertyLookupChain(node.right);
-      const isNumberNode = node.right.kind === "number";
-      const isMultiLineString =
-        node.right.kind === "string" && node.right.raw.includes("\n");
-      return group(
-        concat([
-          path.call(print, "left"),
-          " ",
-          node.operator,
-          canBreak
-            ? indent(
-                concat([
-                  isNumberNode || isMultiLineString ? " " : line,
-                  path.call(print, "right")
-                ])
-              )
-            : concat([" ", path.call(print, "right")])
-        ])
+      return printAssignment(
+        node.left,
+        path.call(print, "left"),
+        concat([" ", node.operator]),
+        node.right,
+        path.call(print, "right")
       );
     }
     case "if": {
@@ -2088,13 +2115,11 @@ function printStatement(path, options, print) {
         printBodyControlStructure(path)
       ]);
     case "call": {
-      // chain: Call (PropertyLookup (Call (PropertyLookup (...))))
-      if (
-        node.what.kind === "propertylookup" ||
-        node.what.kind === "staticlookup"
-      ) {
+      // chain: Call (*LookupNode (Call (*LookupNode (...))))
+      if (isLookupNode(node.what)) {
         return printMemberChain(path, options, print);
       }
+
       return concat([
         path.call(print, "what"),
         printArgumentsList(path, options, print)

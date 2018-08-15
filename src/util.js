@@ -360,7 +360,7 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some(comment => comment.trailing);
 }
 
-function isMemberish(node) {
+function isLookupNode(node) {
   return (
     node.kind === "propertylookup" ||
     node.kind === "staticlookup" ||
@@ -447,7 +447,7 @@ module.exports = {
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish,
+  isLookupNode,
   isFirstChildrenInlineNode,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
