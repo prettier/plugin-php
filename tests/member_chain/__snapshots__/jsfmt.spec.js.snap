@@ -389,13 +389,16 @@ return collect(parent::jsonSerialize())
     })
     ->toArray();
 
-method()->then(function ($x) {
-    return $x;
-})["abc"](function ($x) {
-    return $x;
-})[$abc](function ($x) {
-    return $x;
-});
+method()
+    ->then(function ($x) {
+        return $x;
+    })
+    ["abc"](function ($x) {
+        return $x;
+    })
+    [$abc](function ($x) {
+        return $x;
+    });
 
 ($a->a()->b());
 ($a)->a()->b();
