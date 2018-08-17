@@ -66,11 +66,17 @@ function getPrecedence(op) {
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
+const additiveOperators = ["+", "-"];
 const multiplicativeOperators = ["*", "/", "%"];
 const bitshiftOperators = [">>", "<<"];
 
 function shouldFlatten(parentOp, nodeOp) {
   if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
+    // x + y % z --> (x + y) % z
+    if (nodeOp === "%" && !additiveOperators.includes(parentOp)) {
+      return true;
+    }
+
     return false;
   }
 
@@ -92,6 +98,16 @@ function shouldFlatten(parentOp, nodeOp) {
   if (
     (nodeOp === "%" && multiplicativeOperators.includes(parentOp)) ||
     (parentOp === "%" && multiplicativeOperators.includes(nodeOp))
+  ) {
+    return false;
+  }
+
+  // x * y / z --> (x * y) / z
+  // x / y * z --> (x / y) * z
+  if (
+    nodeOp !== parentOp &&
+    multiplicativeOperators.includes(nodeOp) &&
+    multiplicativeOperators.includes(parentOp)
   ) {
     return false;
   }
@@ -429,6 +445,14 @@ function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
 
+function getNodeKindIncludeLogical(node) {
+  if (node.kind === "bin" && ["||", "&&"].includes(node.type)) {
+    return "logical";
+  }
+
+  return node.kind;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -453,5 +477,6 @@ module.exports = {
   getAlignment,
   getFirstNestedChildNode,
   getLastNestedChildNode,
-  isProgramLikeNode
+  isProgramLikeNode,
+  getNodeKindIncludeLogical
 };

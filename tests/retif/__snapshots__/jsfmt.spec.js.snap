@@ -63,10 +63,8 @@ return ($testReallyReallyLong >= 1)
     ? $someOtherReallyReallyLongVariable
     : $thisOtherVariable;
 return true ?: 2;
-return (
-    $testReallyReallyLong === $someOtherReallyReallyLongVariable &&
-        $otherTest != $someOtherTest
-)
+return ($testReallyReallyLong === $someOtherReallyReallyLongVariable &&
+    $otherTest != $someOtherTest)
     ? 1
     : 0;
 

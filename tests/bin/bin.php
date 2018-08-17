@@ -78,6 +78,8 @@ isset($_POST['menu-item-dropdown'][$menuItemDbId])
     : 'disabled';
 
 ($var && $var && $var)->call();
+-($var && $var && $var);
+-($veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable);
 ($veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable)->call();
 ($veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable)['key'];
 
@@ -97,3 +99,58 @@ function f()
         $a = 1;
     }
 }
+
+$accelerator =
+    (extension_loaded('eaccelerator') && ini_get('eaccelerator.enable')) ||
+    (extension_loaded('apc') && ini_get('apc.enabled')) ||
+    (extension_loaded('Zend Optimizer+') && ini_get('zend_optimizerplus.enable')) ||
+    (extension_loaded('Zend OPcache') && ini_get('opcache.enable')) ||
+    (extension_loaded('xcache') && ini_get('xcache.cacher')) ||
+    (extension_loaded('wincache') && ini_get('wincache.ocenabled'));
+
+while ($a < 10) $a + 1;
+
+$a =  'string' . 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery' ? 1 : 2;
+return 'string' . 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery' ? 1 : 2;
+call('string' . 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery' ? 1 : 2, 'arg');
+
+$var = $someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable / 100;
+$var = ($someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable) / 100;
+$var = $someReallyReallyReallyLongBooleanVariable * ($someReallyReallyReallyLongBooleanVariable / 100);
+$var = $someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable % 100;
+$var = $someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable % 100;
+$var = $someReallyReallyReallyLongBooleanVariable << $someReallyReallyReallyLongBooleanVariable << 100;
+$var = $someReallyReallyReallyLongBooleanVariable ** $someReallyReallyReallyLongBooleanVariable ** 100;
+$var = $someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable * 100;
+$var = ($someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable) * 100;
+$var = $someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable % 100;
+$var = $someReallyReallyReallyLongBooleanVariable % $someReallyReallyReallyLongBooleanVariable + 100;
+
+if ($someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable / 100) {}
+if (($someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable) / 100) {}
+if ($someReallyReallyReallyLongBooleanVariable * ($someReallyReallyReallyLongBooleanVariable / 100)) {}
+if ($someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable % 100) {}
+if ($someReallyReallyReallyLongBooleanVariable * $someReallyReallyReallyLongBooleanVariable % 100) {}
+if ($someReallyReallyReallyLongBooleanVariable << $someReallyReallyReallyLongBooleanVariable << 100) {}
+if ($someReallyReallyReallyLongBooleanVariable ** $someReallyReallyReallyLongBooleanVariable ** 100) {}
+if ($someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable * 100) {}
+if (($someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable) * 100) {}
+if ($someReallyReallyReallyLongBooleanVariable + $someReallyReallyReallyLongBooleanVariable % 100) {}
+if ($someReallyReallyReallyLongBooleanVariable % $someReallyReallyReallyLongBooleanVariable + 100) {}
+
+echo 'This ' .
+    'string' .
+    'string' .
+    ('string') .
+    'string' .
+    (100 + 100) .
+    'string ' .
+    (100 - 100) .
+    'was ' .
+    (100 * 100) .
+    'made ' .
+    (100 / 100) .
+    'with concatenation.';
+
+if ($someReallyReallyReallyLongBooleanVariableWithRddllyReallyLongName || []) {}
+if ($someReallyReallyReallyLongBooleanVariableWithReallyReallyReallyReallyReallyReallyLongName || []) {}
