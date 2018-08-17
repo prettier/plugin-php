@@ -44,7 +44,8 @@ const {
   getAlignment,
   getFirstNestedChildNode,
   getLastNestedChildNode,
-  isProgramLikeNode
+  isProgramLikeNode,
+  getNodeKindIncludingLogical
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -668,6 +669,10 @@ function printBinaryExpression(
   const node = path.getValue();
 
   if (node.kind === "bin") {
+    const rightNode =
+      node.right.kind === "parenthesis" ? node.right.inner : node.right;
+    const leftNode =
+      node.left.kind === "parenthesis" ? node.left.inner : node.left;
     // Put all operators with the same precedence level in the same
     // group. The reason we only need to do this with the `left`
     // expression is because given an expression like `1 + 2 - 3`, it
@@ -677,7 +682,7 @@ function printBinaryExpression(
     // precedence level and should be treated as a separate group, so
     // print them normally. (This doesn't hold for the `**` operator,
     // which is unique in that it is right-associative.)
-    if (shouldFlatten(node.type, node.left.type)) {
+    if (shouldFlatten(node.type, leftNode.type)) {
       // Flatten them out by recursively calling this function.
       parts = parts.concat(
         path.call(
@@ -705,11 +710,15 @@ function printBinaryExpression(
     // If there's only a single binary expression, we want to create a group
     // in order to avoid having a small right part like -1 be on its own line.
     const parent = path.getParentNode();
+    const pureParent = parent.kind === "parenthesis" ? parent.inner : parent;
     const shouldGroup =
       !(isInsideParenthesis && ["||", "&&"].includes(node.type)) &&
-      parent.kind !== "bin" &&
-      node.left.kind !== "bin" &&
-      node.right.kind !== "bin";
+      getNodeKindIncludingLogical(pureParent) !==
+        getNodeKindIncludingLogical(node) &&
+      getNodeKindIncludingLogical(leftNode) !==
+        getNodeKindIncludingLogical(node) &&
+      getNodeKindIncludingLogical(rightNode) !==
+        getNodeKindIncludingLogical(node);
 
     parts.push(" ", shouldGroup ? group(right) : right);
   } else {
@@ -2111,7 +2120,14 @@ function printNode(path, options, print) {
       //     b &&
       //     c
       //   ).call()
-      if (parent.kind === "unary") {
+      if (
+        parent.kind === "parenthesis" &&
+        parentParent &&
+        (parentParent.kind === "unary" ||
+          (parentParent &&
+            isLookupNode(parentParent) &&
+            parentParent.kind !== "offsetlookup"))
+      ) {
         return group(
           concat([indent(concat([softline, concat(parts)])), softline])
         );
@@ -2121,22 +2137,12 @@ function printNode(path, options, print) {
       // indented accordingly. We should indent sub-expressions where the first case isn't indented.
       const shouldNotIndent =
         parent.kind === "return" ||
-        parent.kind === "retif" ||
-        // return (
-        //   $someCondition ||
-        //   $someOtherCondition
-        // );
-        (parentParent &&
-          ["echo", "return", "print"].includes(parentParent.kind) &&
-          parent.kind === "parenthesis") ||
-        // (
-        //   $someObject ||
-        //   $someOtherObject
-        // )->someFunction();
-        (parentParent &&
-          parentParent.kind === "propertylookup" &&
-          parent.kind === "parenthesis") ||
-        (node !== parent.body && parent.kind === "for");
+        (parent.kind === "parenthesis" &&
+          parentParent &&
+          parentParent.kind === "return") ||
+        (node !== parent.body && parent.kind === "for") ||
+        (parent.kind === "retif" &&
+          (parentParent && parentParent.kind !== "return"));
 
       const shouldIndentIfInlining =
         parent.kind === "assign" || parent.kind === "property";
@@ -2178,7 +2184,8 @@ function printNode(path, options, print) {
       const shouldBeInlined =
         node.inner.kind === "new" ||
         node.inner.kind === "clone" ||
-        node.inner.kind === "retif";
+        node.inner.kind === "retif" ||
+        parentNode.kind !== "return";
       // don't break if this is a property lookup - ie
       // ($someThing
       //    ? $someOtherThing
@@ -2191,27 +2198,27 @@ function printNode(path, options, print) {
       //    $someThing &&
       //    $someOtherThing
       //  )->map();
-      const shouldAddBeginningBreak =
-        !shouldBeInlined &&
-        !(parentNode.kind === "propertylookup" && node.inner.kind !== "bin");
       const printedContents = path.call(print, "inner");
-      const shouldAddEndBreak =
-        !shouldBeInlined &&
-        (shouldAddBeginningBreak || willBreak(printedContents));
+      const shouldAddEndBreak = !shouldBeInlined || willBreak(printedContents);
       const dangling = comments.printDanglingComments(path, options, true);
+
+      const printedBefore = shouldPrintParenthesis
+        ? concat(["(", shouldAddEndBreak ? softline : ""])
+        : "";
       const printedInner = concat([
-        shouldAddBeginningBreak && shouldPrintParenthesis ? softline : "",
         dangling ? concat([dangling, hardline]) : "",
         printedContents
       ]);
+      const printedAfter = shouldPrintParenthesis
+        ? concat([shouldAddEndBreak ? softline : "", ")"])
+        : "";
 
       return group(
         concat([
-          shouldPrintParenthesis ? "(" : "",
-          shouldAddBeginningBreak ? indent(printedInner) : printedInner,
-          shouldPrintParenthesis
-            ? concat([shouldAddEndBreak ? softline : "", ")"])
-            : ""
+          shouldAddEndBreak
+            ? indent(concat([printedBefore, printedInner]))
+            : concat([printedBefore, printedInner]),
+          printedAfter
         ])
       );
     }

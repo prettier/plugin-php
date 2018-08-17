@@ -257,7 +257,8 @@ $someLongVariableName = (idx(
 <?php
 
 $someLongVariableName = (
-    idx($prop, ['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoor']) || []
+    idx($prop, ['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoor']) ||
+    []
 )->map(function ($edge) {
     return $edge->node;
 });
