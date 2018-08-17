@@ -76,3 +76,24 @@ $value = isset($_POST['menu-item-dropdown']) &&
 isset($_POST['menu-item-dropdown'][$menuItemDbId])
     ? 'enabled'
     : 'disabled';
+
+($var && $var && $var)->call();
+($veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable)->call();
+($veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryLongVariable)['key'];
+
+if (
+    get_option('woocommerce_product_cart_actions_notification_more_cart') === 'yes' &&
+    count($cartItems) > 0
+) {
+    $a = 1;
+}
+
+function f()
+{
+    if (
+        get_option('woocommerce_product_cart_actions_notification_more_cart') === 'yes'
+        && count($cartItems) > 0
+    ) {
+        $a = 1;
+    }
+}
