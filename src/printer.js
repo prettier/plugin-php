@@ -45,7 +45,7 @@ const {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
-  getNodeKindIncludeLogical
+  getNodeKindIncludingLogical
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -713,10 +713,12 @@ function printBinaryExpression(
     const pureParent = parent.kind === "parenthesis" ? parent.inner : parent;
     const shouldGroup =
       !(isInsideParenthesis && ["||", "&&"].includes(node.type)) &&
-      getNodeKindIncludeLogical(pureParent) !==
-        getNodeKindIncludeLogical(node) &&
-      getNodeKindIncludeLogical(leftNode) !== getNodeKindIncludeLogical(node) &&
-      getNodeKindIncludeLogical(rightNode) !== getNodeKindIncludeLogical(node);
+      getNodeKindIncludingLogical(pureParent) !==
+        getNodeKindIncludingLogical(node) &&
+      getNodeKindIncludingLogical(leftNode) !==
+        getNodeKindIncludingLogical(node) &&
+      getNodeKindIncludingLogical(rightNode) !==
+        getNodeKindIncludingLogical(node);
 
     parts.push(" ", shouldGroup ? group(right) : right);
   } else {

@@ -445,7 +445,9 @@ function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
 
-function getNodeKindIncludeLogical(node) {
+// Return `logical` value for `bin` node containing `||` or `&&` type otherwise return kind of node.
+// Require for grouping logical and binary nodes in right way.
+function getNodeKindIncludingLogical(node) {
   if (node.kind === "bin" && ["||", "&&"].includes(node.type)) {
     return "logical";
   }
@@ -478,5 +480,5 @@ module.exports = {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
-  getNodeKindIncludeLogical
+  getNodeKindIncludingLogical
 };
