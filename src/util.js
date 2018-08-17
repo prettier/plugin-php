@@ -400,13 +400,7 @@ function getAlignment(text) {
   const lines = text.split("\n");
   const lastLine = lines.pop();
 
-  let alignment = lastLine.length + 1;
-
-  if (lastLine.trim().length !== 0) {
-    alignment = lastLine.replace(/\S/g, "").length;
-  }
-
-  return alignment;
+  return lastLine.length - lastLine.trimLeft().length + 1;
 }
 
 function getFirstNestedChildNode(node) {
