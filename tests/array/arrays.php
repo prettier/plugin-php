@@ -443,3 +443,17 @@ $array = [
         : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
             'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 ];
+
+$array = [
+    'key' => 1,
+    'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
+    'key' => 'string',
+    'key' => __LINE__,
+    'key' => "string ${var} {$var}",
+    'key' => 'string
+string
+              string',
+    'key' => 'string' . 'other-string',
+    'key' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+];
