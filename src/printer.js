@@ -90,6 +90,7 @@ function genericPrint(path, options, print) {
 
 function printPropertyLookup(path, options, print) {
   const node = path.getValue();
+
   return group(
     concat(["->", wrapPropertyLookup(node, path.call(print, "offset"))])
   );
@@ -188,6 +189,7 @@ function printMemberChain(path, options, print) {
 
   function traverse(path) {
     const node = path.getValue();
+
     if (
       node.kind === "call" &&
       (isLookupNode(node.what) || node.what.kind === "call")
@@ -203,6 +205,7 @@ function printMemberChain(path, options, print) {
     } else if (isLookupNode(node)) {
       // Print *lookup nodes as we standard print them outside member chain
       let printedMemberish = null;
+
       if (node.kind === "propertylookup") {
         printedMemberish = printPropertyLookup(path, options, print);
       } else if (node.kind === "staticlookup") {
@@ -210,6 +213,7 @@ function printMemberChain(path, options, print) {
       } else {
         printedMemberish = printOffsetLookup(path, options, print);
       }
+
       printedNodes.unshift({
         node,
         printed: printedMemberish
@@ -222,7 +226,9 @@ function printMemberChain(path, options, print) {
       });
     }
   }
+
   const node = path.getValue();
+
   printedNodes.unshift({
     node,
     printed: printArgumentsList(path, options, print)
@@ -243,8 +249,10 @@ function printMemberChain(path, options, print) {
   //     ->b->c()
   //     ->d();
   const groups = [];
+
   let currentGroup = [printedNodes[0]];
   let i = 1;
+
   for (; i < printedNodes.length; ++i) {
     if (
       printedNodes[i].node.kind === "call" ||
@@ -257,6 +265,7 @@ function printMemberChain(path, options, print) {
       break;
     }
   }
+
   if (printedNodes[0].node.kind !== "call") {
     for (; i + 1 < printedNodes.length; ++i) {
       if (
@@ -269,6 +278,7 @@ function printMemberChain(path, options, print) {
       }
     }
   }
+
   groups.push(currentGroup);
   currentGroup = [];
 
@@ -277,6 +287,7 @@ function printMemberChain(path, options, print) {
   // group until we have seen a call in the past and reach a
   // propertylookup
   let hasSeenCallExpression = false;
+
   for (; i < printedNodes.length; ++i) {
     if (hasSeenCallExpression && isLookupNode(printedNodes[i].node)) {
       // [0] should be appended at the end of the group instead of the
@@ -309,6 +320,7 @@ function printMemberChain(path, options, print) {
       hasSeenCallExpression = false;
     }
   }
+
   if (currentGroup.length > 0) {
     groups.push(currentGroup);
   }
@@ -357,6 +369,7 @@ function printMemberChain(path, options, print) {
     if (groups.length === 0) {
       return "";
     }
+
     return indent(
       group(concat([hardline, join(hardline, groups.map(printGroup))]))
     );
@@ -450,6 +463,7 @@ function couldGroupArg(arg) {
 function shouldGroupLastArg(args) {
   const lastArg = getLast(args);
   const penultimateArg = getPenultimate(args);
+
   return (
     !hasLeadingComment(lastArg) &&
     !hasTrailingComment(lastArg) &&
@@ -466,6 +480,7 @@ function shouldGroupFirstArg(args) {
   }
 
   const [firstArg, secondArg] = args;
+
   return (
     (!firstArg.comments || !firstArg.comments.length) &&
     (firstArg.kind === "function" ||
@@ -488,6 +503,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
   let anyArgEmptyLine = false;
   let hasEmptyLineFollowingFirstArg = false;
+
   const lastArgIndex = args.length - 1;
   const printedArguments = path.map((argPath, index) => {
     const arg = argPath.getNode();
@@ -519,6 +535,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
   const shouldGroupFirst = shouldGroupFirstArg(args);
   const shouldGroupLast = shouldGroupLastArg(args);
+
   if (shouldGroupFirst || shouldGroupLast) {
     const shouldBreak =
       (shouldGroupFirst
@@ -528,6 +545,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     // We want to print the last argument with a special flag
     let printedExpanded;
     let i = 0;
+
     path.each(argPath => {
       if (shouldGroupFirst && i === 0) {
         printedExpanded = [
@@ -539,11 +557,13 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
           ])
         ].concat(printedArguments.slice(1));
       }
+
       if (shouldGroupLast && i === args.length - 1) {
         printedExpanded = printedArguments
           .slice(0, -1)
           .concat(argPath.call(p => print(p, { expandLastArg: true })));
       }
+
       i++;
     }, argumentsKey);
 
@@ -592,6 +612,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   }
 
   const lastArgument = getLast(args);
+
   return group(
     concat([
       "(",
@@ -709,32 +730,6 @@ function printBinaryExpression(
 // so that the "class" node can then access them later
 let anonymousClassesNewArguments = null;
 
-const expressionKinds = [
-  "array",
-  "variable",
-  "constref",
-  "yield",
-  "yieldfrom",
-  "variable",
-  "propertylookup",
-  "staticlookup",
-  "offsetlookup",
-  "pre",
-  "post",
-  "bin",
-  "parenthesis",
-  "unary",
-  "cast",
-  "boolean",
-  "string",
-  "number",
-  "inline",
-  "magic",
-  "nowdoc",
-  "encapsed",
-  "variadic"
-];
-
 function printLookupNodes(path, options, print) {
   const node = path.getValue();
 
@@ -750,472 +745,42 @@ function printLookupNodes(path, options, print) {
   }
 }
 
-function printExpression(path, options, print) {
-  const node = path.getValue();
-
-  function printLookup(node) {
-    switch (node.kind) {
-      case "propertylookup":
-      case "staticlookup":
-      case "offsetlookup": {
-        const parent = path.getParentNode();
-
-        let firstNonMemberParent;
-        let i = 0;
-
-        do {
-          firstNonMemberParent = path.getParentNode(i);
-          i++;
-        } while (firstNonMemberParent && isLookupNode(firstNonMemberParent));
-
-        const shouldInline =
-          (firstNonMemberParent &&
-            (firstNonMemberParent.kind === "new" ||
-              (firstNonMemberParent.kind === "assign" &&
-                firstNonMemberParent.left.kind !== "variable"))) ||
-          node.kind === "offsetlookup" ||
-          (node.what.kind === "variable" &&
-            (node.offset &&
-              (node.offset.kind === "constref" ||
-                node.offset.kind === "variable")) &&
-            (parent && !isLookupNode(parent)));
-
-        return concat([
-          path.call(print, "what"),
-          shouldInline
-            ? printLookupNodes(path, options, print)
-            : group(
-                indent(
-                  concat([softline, printLookupNodes(path, options, print)])
-                )
-              )
-        ]);
-      }
-      default:
-        return `Have not implemented lookup kind ${node.kind} yet.`;
-    }
+function getEncapsedQuotes(node, { opening = true } = {}) {
+  if (node.type === "heredoc") {
+    return opening ? `<<<${node.label}` : node.label;
   }
 
-  if (isLookupNode(node)) {
-    return printLookup(node);
+  const quotes = {
+    string: '"',
+    shell: "`"
+  };
+
+  if (quotes[node.type]) {
+    return quotes[node.type];
   }
 
-  const operationKinds = ["pre", "post", "bin", "parenthesis", "unary", "cast"];
-  function printOperation(node) {
-    switch (node.kind) {
-      case "pre":
-        return concat([node.type + node.type, path.call(print, "what")]);
-      case "post":
-        return concat([path.call(print, "what"), node.type + node.type]);
-      case "bin": {
-        const parent = path.getParentNode();
-        const parentParent = path.getParentNode(1);
-        const isInsideParenthesis =
-          node !== parent.body &&
-          (parent.kind === "if" ||
-            parent.kind === "while" ||
-            parent.kind === "do");
-
-        const parts = printBinaryExpression(
-          path,
-          print,
-          options,
-          /* isNested */ false,
-          isInsideParenthesis
-        );
-
-        //   if (
-        //     this.hasPlugin("dynamicImports") && this.lookahead().type === tt.parenLeft
-        //   ) {
-        //
-        // looks super weird, we want to break the children if the parent breaks
-        //
-        //   if (
-        //     this.hasPlugin("dynamicImports") &&
-        //     this.lookahead().type === tt.parenLeft
-        //   ) {
-        if (isInsideParenthesis) {
-          return concat(parts);
-        }
-
-        // Break between the parens in unaries or in a member expression, i.e.
-        //
-        //   (
-        //     a &&
-        //     b &&
-        //     c
-        //   ).call()
-        if (parent.kind === "unary") {
-          return group(
-            concat([indent(concat([softline, concat(parts)])), softline])
-          );
-        }
-
-        // Avoid indenting sub-expressions in some cases where the first sub-expression is already
-        // indented accordingly. We should indent sub-expressions where the first case isn't indented.
-        const shouldNotIndent =
-          parent.kind === "return" ||
-          parent.kind === "retif" ||
-          // return (
-          //   $someCondition ||
-          //   $someOtherCondition
-          // );
-          (parentParent &&
-            ["echo", "return", "print"].includes(parentParent.kind) &&
-            parent.kind === "parenthesis") ||
-          // (
-          //   $someObject ||
-          //   $someOtherObject
-          // )->someFunction();
-          (parentParent &&
-            parentParent.kind === "propertylookup" &&
-            parent.kind === "parenthesis") ||
-          (node !== parent.body && parent.kind === "for");
-
-        const shouldIndentIfInlining =
-          parent.kind === "assign" || parent.kind === "property";
-
-        const samePrecedenceSubExpression =
-          node.left.kind === "bin" && shouldFlatten(node.type, node.left.type);
-
-        if (
-          shouldNotIndent ||
-          (shouldInlineLogicalExpression(node) &&
-            !samePrecedenceSubExpression) ||
-          (!shouldInlineLogicalExpression(node) && shouldIndentIfInlining)
-        ) {
-          return group(concat(parts));
-        }
-
-        const rest = concat(parts.slice(1));
-
-        return group(
-          concat([
-            // Don't include the initial expression in the indentation
-            // level. The first item is guaranteed to be the first
-            // left-most expression.
-            parts.length > 0 ? parts[0] : "",
-            indent(rest)
-          ])
-        );
-      }
-      case "parenthesis": {
-        const parentNode = path.getParentNode();
-        if (parentNode && parentNode.kind === "parenthesis") {
-          return path.call(print, "inner");
-        }
-        const shouldPrintParenthesis =
-          parentNode.kind !== "print" &&
-          parentNode.kind !== "echo" &&
-          parentNode.kind !== "include";
-        const shouldBeInlined =
-          node.inner.kind === "new" ||
-          node.inner.kind === "clone" ||
-          node.inner.kind === "retif";
-        // don't break if this is a property lookup - ie
-        // ($someThing
-        //    ? $someOtherThing
-        //    : $someOtherOtherThing
-        //  )
-        //    ->hi()
-        //    ->other();
-        // however, make sure to break for bin, since its reliant on the parens indentation
-        // (
-        //    $someThing &&
-        //    $someOtherThing
-        //  )->map();
-        const shouldAddBeginningBreak =
-          !shouldBeInlined &&
-          !(parentNode.kind === "propertylookup" && node.inner.kind !== "bin");
-        const printedContents = path.call(print, "inner");
-        const shouldAddEndBreak =
-          !shouldBeInlined &&
-          (shouldAddBeginningBreak || willBreak(printedContents));
-        const dangling = comments.printDanglingComments(path, options, true);
-        const printedInner = concat([
-          shouldAddBeginningBreak && shouldPrintParenthesis ? softline : "",
-          dangling ? concat([dangling, hardline]) : "",
-          printedContents
-        ]);
-        return group(
-          concat([
-            shouldPrintParenthesis ? "(" : "",
-            shouldAddBeginningBreak ? indent(printedInner) : printedInner,
-            shouldPrintParenthesis
-              ? concat([shouldAddEndBreak ? softline : "", ")"])
-              : ""
-          ])
-        );
-      }
-      case "unary":
-        return concat([node.type, path.call(print, "what")]);
-      case "cast":
-        // @TODO: binary type cast is broken https://github.com/glayzzle/php-parser/issues/166
-        return concat(["(", node.type, ") ", path.call(print, "what")]);
-      default:
-        return `Have not implemented operation kind ${node.kind} yet.`;
-    }
-  }
-  if (operationKinds.includes(node.kind)) {
-    return printOperation(node);
-  }
-
-  const literalKinds = [
-    "boolean",
-    "string",
-    "number",
-    "inline",
-    "magic",
-    "nowdoc",
-    "encapsed"
-  ];
-  function printLiteral(node) {
-    function getEncapsedQuotes(node, { opening = true } = {}) {
-      if (node.type === "heredoc") {
-        return opening ? `<<<${node.label}` : node.label;
-      }
-      const quotes = {
-        string: '"',
-        shell: "`"
-      };
-      if (quotes[node.type]) {
-        return quotes[node.type];
-      }
-      return `Unimplemented encapsed type ${node.type}`;
-    }
-
-    switch (node.kind) {
-      case "boolean":
-        return node.value ? "true" : "false";
-      case "string": {
-        // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
-        // @TODO: for now just reusing double/single quote preference from doc. could eventually
-        // use setting from options. need to figure out how this works w/ complex strings and interpolation
-        // also need to figure out splitting long strings
-        const quote = node.isDoubleQuote ? '"' : "'";
-
-        let stringValue = node.raw;
-
-        if (node.raw[0] === "b") {
-          stringValue = stringValue.slice(1);
-        }
-
-        // We need to strip out the quotes from the raw value
-        if (['"', "'"].includes(stringValue[0])) {
-          stringValue = stringValue.substr(1);
-        }
-
-        if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
-          stringValue = stringValue.substr(0, stringValue.length - 1);
-        }
-
-        return concat([
-          node.raw[0] === "b" ? "b" : "",
-          quote,
-          stringValue,
-          quote
-        ]);
-      }
-      case "number":
-        return printNumber(node.value);
-      case "encapsed":
-        if (node.type === "offset") {
-          return group(concat(path.map(print, "value")));
-        }
-        return concat([
-          node.type === "heredoc" ? breakParent : "",
-          getEncapsedQuotes(node),
-          // Respect `indent` for `heredoc` nodes
-          node.type === "heredoc" ? literalline : "",
-          concat(
-            path.map(valuePath => {
-              const node = valuePath.getValue();
-
-              if (node.kind === "string") {
-                return node.raw;
-              }
-
-              if (node.kind === "variable") {
-                if (typeof node.name === "object") {
-                  return concat([
-                    node.curly ? "${" : "",
-                    path.call(print, "name"),
-                    node.curly ? "}" : ""
-                  ]);
-                }
-
-                if (node.curly) {
-                  return concat(["{$", node.name, "}"]);
-                }
-
-                return print(valuePath);
-              }
-
-              return concat(["{", print(valuePath), "}"]);
-            }, "value")
-          ),
-          getEncapsedQuotes(node, { opening: false }),
-          node.type === "heredoc" && docShouldHaveTrailingNewline(path)
-            ? hardline
-            : ""
-        ]);
-      case "inline":
-        return join(
-          literalline,
-          node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
-        );
-      case "magic":
-        // for magic constant we prefer upper case
-        return node.value.toUpperCase();
-      case "nowdoc":
-        // Respect `indent` for `nowdoc` nodes
-        return concat([
-          breakParent,
-          "<<<'",
-          node.label,
-          "'",
-          literalline,
-          node.value,
-          literalline,
-          node.label,
-          docShouldHaveTrailingNewline(path) ? hardline : ""
-        ]);
-      default:
-        return `Have not implemented literal kind ${node.kind} yet.`;
-    }
-  }
-  if (literalKinds.includes(node.kind)) {
-    return printLiteral(node);
-  }
-
-  function printArrayItems(path, options, printPath, print) {
-    const printedElements = [];
-    let separatorParts = [];
-
-    path.each(childPath => {
-      printedElements.push(concat(separatorParts));
-      printedElements.push(group(print(childPath)));
-
-      separatorParts = [",", line];
-      if (
-        childPath.getValue() &&
-        isNextLineEmpty(options.originalText, childPath.getValue(), options)
-      ) {
-        separatorParts.push(softline);
-      }
-    }, printPath);
-
-    return concat(printedElements);
-  }
-
-  switch (node.kind) {
-    case "variable":
-      return concat([
-        node.byref ? "&" : "",
-        "$",
-        node.curly ? "{" : "",
-        path.call(print, "name"),
-        node.curly ? "}" : ""
-      ]);
-    case "constref":
-      if (typeof node.name === "object") {
-        return path.call(print, "name");
-      }
-      return node.name;
-    case "array": {
-      const open = node.shortForm ? "[" : "array(";
-      const close = node.shortForm ? "]" : ")";
-      if (node.items.length === 0) {
-        if (!hasDanglingComments(node)) {
-          return concat([open, close]);
-        }
-        return group(
-          concat([
-            open,
-            comments.printDanglingComments(path, options),
-            softline,
-            close
-          ])
-        );
-      }
-      const isAssociative = !!node.items[0].key;
-      const shouldBreak = isAssociative && node.loc.source.includes("\n");
-      return group(
-        concat([
-          open,
-          indent(
-            concat([softline, printArrayItems(path, options, "items", print)])
-          ),
-          ifBreak(shouldPrintComma(options) ? "," : ""),
-          comments.printDanglingComments(path, options, true),
-          softline,
-          close
-        ]),
-        { shouldBreak }
-      );
-    }
-    case "yield":
-      return concat([
-        "yield ",
-        node.key ? concat([path.call(print, "key"), " => "]) : "",
-        path.call(print, "value")
-      ]);
-    case "yieldfrom":
-      return concat(["yield from ", path.call(print, "value")]);
-    case "variadic":
-      return concat(["...", path.call(print, "what")]);
-    default:
-      return `Have not implemented expression kind ${node.kind} yet.`;
-  }
+  return `Unimplemented encapsed type ${node.type}`;
 }
 
-const statementKinds = [
-  "eval",
-  "exit",
-  "halt",
-  "clone",
-  "declare",
-  "global",
-  "static",
-  "include",
-  "assign",
-  "retif",
-  "if",
-  "do",
-  "while",
-  "for",
-  "foreach",
-  "switch",
-  "goto",
-  "silent",
-  "try",
-  "catch",
-  "throw",
-  "call",
-  "closure",
-  "new",
-  "usegroup",
-  "useitem",
-  "block",
-  "program",
-  "namespace",
-  "echo",
-  "list",
-  "print",
-  "isset",
-  "unset",
-  "empty",
-  "declaration",
-  "class",
-  "interface",
-  "trait",
-  "constant",
-  "classconstant",
-  "function",
-  "method",
-  "parameter",
-  "property"
-];
+function printArrayItems(path, options, printPath, print) {
+  const printedElements = [];
+  let separatorParts = [];
+
+  path.each(childPath => {
+    printedElements.push(concat(separatorParts));
+    printedElements.push(group(print(childPath)));
+
+    separatorParts = [",", line];
+    if (
+      childPath.getValue() &&
+      isNextLineEmpty(options.originalText, childPath.getValue(), options)
+    ) {
+      separatorParts.push(softline);
+    }
+  }, printPath);
+
+  return concat(printedElements);
+}
 
 // Wrap parts into groups by indexes.
 // It is require to have same indent on lines for all parts into group.
@@ -1238,7 +803,6 @@ function wrapPartsIntoGroups(parts, indexes) {
 
   return indexes.reduce((accumulator, index) => {
     const { start, end, alignment, before, after } = index;
-
     const printedPartsForGrouping = concat([
       before || "",
       concat(parts.slice(start, end)),
@@ -1267,6 +831,7 @@ function wrapPartsIntoGroups(parts, indexes) {
 function printLines(path, options, print, childrenAttribute = "children") {
   const node = path.getValue();
   const parentNode = path.getParentNode();
+
   let lastInlineIndex = -1;
 
   const parts = [];
@@ -1387,6 +952,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
         comments.printComments(node.comments, options)
       );
     }
+
     const originalText = node.loc.source;
     const firstNestedChildNode = getFirstNestedChildNode(node);
     const lastNestedChildNode = getLastNestedChildNode(node);
@@ -1435,539 +1001,468 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(wrappedParts);
 }
 
-function printStatement(path, options, print) {
-  const node = path.getValue();
-  const blockKinds = ["block", "program", "namespace"];
-  function printBlock(path, options, print) {
-    switch (node.kind) {
-      case "block":
-        return concat([
-          printLines(path, options, print),
-          comments.printDanglingComments(path, options, true)
-        ]);
-      case "program": {
-        return group(
-          concat([
-            printLines(path, options, print),
-            comments.printDanglingComments(
-              path,
-              options,
-              /* sameIndent */ true,
-              c => !c.printed
-            )
-          ])
-        );
-      }
-      case "namespace": {
-        const printed = printLines(path, options, print);
-        const hasName = node.name && typeof node.name === "string";
-        return concat([
-          "namespace ",
-          hasName ? node.name : "",
-          node.withBrackets
-            ? " {"
-            : concat([
-                ";",
-                // Second hardline for newline between `namespace` and first child node
-                node.children.length > 0 ? concat([hardline, hardline]) : ""
-              ]),
-          node.children.length > 0
-            ? node.withBrackets
-              ? indent(concat([hardline, printed]))
-              : printed
-            : "",
-          node.withBrackets ? concat([hardline, "}"]) : ""
-        ]);
-      }
-      default:
-        return `Have not implemented block kind ${node.kind} yet.`;
-    }
-  }
-  if (blockKinds.includes(node.kind)) {
-    return printBlock(path, options, print);
-  }
-
-  const sysKinds = ["echo", "list", "print", "isset", "unset", "empty"];
-  function printSys(node) {
-    switch (node.kind) {
-      case "echo": {
-        const printedArguments = path.map((argumentPath, index) => {
-          let printed = print(argumentPath);
-
-          if (index === 0) {
-            printed = dedent(printed);
-          }
-
-          return printed;
-        }, "arguments");
-
-        return indent(
-          group(
-            concat([
-              node.shortForm ? "" : "echo ",
-              group(join(concat([",", line]), printedArguments))
-            ])
-          )
-        );
-      }
-      case "print": {
-        return concat(["print ", path.call(print, "arguments")]);
-      }
-      case "list":
-      case "isset":
-      case "unset":
-      case "empty":
-        return group(
-          concat([
-            node.kind,
-            "(",
-            indent(
-              concat([
-                softline,
-                join(concat([",", line]), path.map(print, "arguments"))
+function printDeclarationBlock({
+  declaration,
+  argumentsList = [],
+  returnTypeContents = "",
+  bodyContents = "",
+  node,
+  path,
+  options
+}) {
+  const isClassLikeNode = ["class", "interface", "trait"].includes(node.kind);
+  const printedDeclaration = group(declaration);
+  const printedSignature = !isClassLikeNode
+    ? group(
+        concat([
+          "(",
+          argumentsList.length
+            ? concat([
+                indent(
+                  concat([softline, join(concat([",", line]), argumentsList)])
+                ),
+                softline
               ])
-            ),
-            softline,
-            ")"
-          ])
-        );
-      default:
-        return `Have not implemented sys kind ${node.kind} yet.`;
-    }
-  }
-  if (sysKinds.includes(node.kind)) {
-    return printSys(node);
-  }
-
-  const declarationKinds = [
-    "class",
-    "interface",
-    "trait",
-    "constant",
-    "classconstant",
-    "function",
-    "method",
-    "parameter",
-    "property"
-  ];
-  function printDeclaration(node) {
-    function printDeclarationBlock({
-      declaration,
-      argumentsList = [],
-      returnTypeContents = "",
-      bodyContents = ""
-    }) {
-      const isClassLikeNode = ["class", "interface", "trait"].includes(
-        node.kind
-      );
-      const printedDeclaration = group(declaration);
-      const printedSignature = !isClassLikeNode
-        ? group(
-            concat([
-              "(",
-              argumentsList.length
-                ? concat([
-                    indent(
-                      concat([
-                        softline,
-                        join(concat([",", line]), argumentsList)
-                      ])
-                    ),
-                    softline
-                  ])
-                : "",
-              ")",
-              returnTypeContents ? concat([": ", returnTypeContents]) : ""
-            ])
-          )
-        : "";
-
-      const hasEmptyBody =
-        ((node.kind === "function" || node.kind === "method") &&
-          node.body &&
-          node.body.children &&
-          node.body.children.length === 0 &&
-          !node.body.comments) ||
-        (isClassLikeNode &&
-          node.body &&
-          node.body.length === 0 &&
-          !node.comments);
-
-      const printedBody = bodyContents
-        ? concat([
-            "{",
-            indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
-            comments.printDanglingComments(path, options, true),
-            node.kind === "class" && node.isAnonymous && hasEmptyBody
-              ? ""
-              : hardline,
-            "}"
-          ])
-        : "";
-
-      if (isClassLikeNode) {
-        return concat([
-          group(
-            concat([
-              printedDeclaration,
-              printedSignature,
-              bodyContents && node.kind === "class" && node.isAnonymous
-                ? line
-                : hardline
-            ])
-          ),
-          printedBody
-        ]);
-      }
-
-      return conditionalGroup([
-        concat([
-          printedDeclaration,
-          printedSignature,
-          bodyContents ? hardline : "",
-          printedBody
-        ]),
-        concat([
-          printedDeclaration,
-          printedSignature,
-          bodyContents ? (argumentsList.length === 0 ? hardline : " ") : "",
-          printedBody
+            : "",
+          ")",
+          returnTypeContents ? concat([": ", returnTypeContents]) : ""
         ])
-      ]);
-    }
+      )
+    : "";
 
-    switch (node.kind) {
-      case "class": {
-        const classPrefixes = [
-          ...(node.isFinal ? ["final"] : []),
-          ...(node.isAbstract ? ["abstract"] : [])
-        ];
-        const parentNode = path.getParentNode();
-        // if this is an anonymous class, we need to check if the parent was a
-        // "new" node. if it was, we need to get the arguments from that node
-        // ex: $test = new class($arg1, $arg2) extends TestClass {};
-        const anonymousArguments =
-          node.isAnonymous &&
-          parentNode.kind === "new" &&
-          parentNode.arguments.length > 0
-            ? anonymousClassesNewArguments
-            : "";
-        return printDeclarationBlock({
-          declaration: concat([
-            classPrefixes.join(" "),
-            classPrefixes.length > 0 ? " " : "",
-            concat([
-              "class",
-              anonymousArguments,
-              node.name ? concat([" ", node.name]) : ""
-            ]),
-            group(
-              indent(
-                concat([
-                  node.extends
-                    ? group(
-                        concat([
-                          // check if the extends node has a comment
-                          hasDanglingComments(node.extends)
-                            ? concat([
-                                hardline,
-                                path.call(
-                                  extendsPath =>
-                                    comments.printDanglingComments(
-                                      extendsPath,
-                                      options,
-                                      true
-                                    ),
-                                  "extends"
-                                ),
-                                hardline
-                              ])
-                            : line,
-                          "extends ",
-                          path.call(print, "extends")
-                        ])
-                      )
-                    : "",
-                  node.implements
-                    ? concat([
-                        line,
-                        "implements",
-                        group(
-                          indent(
-                            concat([
-                              join(
-                                ",",
-                                path.map(implementsPath => {
-                                  // check if any of the implements nodes have comments
-                                  return hasDanglingComments(
-                                    implementsPath.getValue()
-                                  )
-                                    ? concat([
-                                        hardline,
-                                        comments.printDanglingComments(
-                                          implementsPath,
-                                          options,
-                                          true
-                                        ),
-                                        hardline,
-                                        print(implementsPath)
-                                      ])
-                                    : concat([line, print(implementsPath)]);
-                                }, "implements")
-                              )
-                            ])
-                          )
-                        )
-                      ])
-                    : ""
-                ])
-              )
-            )
-          ]),
-          bodyContents: printLines(path, options, print, "body")
-        });
-      }
-      case "function":
-        return printDeclarationBlock({
-          declaration: concat(["function ", node.byref ? "&" : "", node.name]),
-          argumentsList: path.map(print, "arguments"),
-          returnTypeContents: node.type
-            ? concat([
-                hasDanglingComments(node.type)
-                  ? concat([
-                      path.call(
-                        typePath =>
-                          comments.printDanglingComments(
-                            typePath,
-                            options,
-                            true
-                          ),
-                        "type"
-                      ),
-                      " "
-                    ])
-                  : "",
-                node.nullable ? "?" : "",
-                path.call(print, "type")
-              ])
-            : "",
-          bodyContents: node.body ? path.call(print, "body") : ""
-        });
-      case "method": {
-        const methodPrefixes = [
-          ...(node.isFinal ? ["final"] : []),
-          ...(node.isAbstract ? ["abstract"] : []),
-          ...(node.visibility ? [node.visibility] : []),
-          ...(node.isStatic ? ["static"] : [])
-        ];
-        return printDeclarationBlock({
-          declaration: concat([
-            methodPrefixes.join(" "),
-            methodPrefixes.length > 0 ? " " : "",
-            "function ",
-            node.byref ? "&" : "",
-            node.name
-          ]),
-          argumentsList: path.map(print, "arguments"),
-          returnTypeContents: node.type
-            ? concat([
-                hasDanglingComments(node.type)
-                  ? concat([
-                      path.call(
-                        typePath =>
-                          comments.printDanglingComments(
-                            typePath,
-                            options,
-                            true
-                          ),
-                        "type"
-                      ),
-                      " "
-                    ])
-                  : "",
-                node.nullable ? "?" : "",
-                path.call(print, "type")
-              ])
-            : "",
-          bodyContents: node.body ? concat([path.call(print, "body")]) : ""
-        });
-      }
-      case "parameter": {
-        const name = concat([
-          node.nullable ? "?" : "",
-          node.type ? concat([path.call(print, "type"), " "]) : "",
-          node.variadic ? "..." : "",
-          node.byref ? "&" : "",
-          "$",
-          node.name
-        ]);
-        if (node.value) {
-          return group(
-            concat([
-              name,
-              // see handleFunctionParameter() in ./comments.js - since there's
-              // no node to attach comments that fall in between the parameter name
-              // and value, we store them as dangling comments
-              hasDanglingComments(node) ? " " : "",
-              comments.printDanglingComments(path, options, true),
-              indent(concat([line, "= ", path.call(print, "value")]))
-            ])
-          );
-        }
-        return name;
-      }
-      case "property":
-        return group(
-          concat([
-            node.visibility ? concat([node.visibility, " "]) : "",
-            node.isStatic ? "static " : "",
-            "$",
-            node.name,
-            node.value ? concat([" = ", path.call(print, "value")]) : ""
-          ])
-        );
-      case "interface":
-        return printDeclarationBlock({
-          declaration: concat([
-            concat(["interface ", node.name]),
-            node.extends
-              ? indent(
-                  concat([
-                    line,
-                    "extends ",
-                    join(", ", path.map(print, "extends"))
-                  ])
-                )
-              : ""
-          ]),
-          bodyContents: printLines(path, options, print, "body")
-        });
-      case "trait":
-        return printDeclarationBlock({
-          declaration: concat([
-            concat(["trait ", node.name]),
-            node.extends
-              ? indent(concat([line, "extends ", path.call(print, "extends")]))
-              : "",
-            node.implements
-              ? indent(
-                  concat([
-                    line,
-                    "implements ",
-                    join(", ", path.map(print, "implements"))
-                  ])
-                )
-              : ""
-          ]),
-          bodyContents: printLines(path, options, print, "body")
-        });
-      case "constant":
-      case "classconstant":
-        return concat([
-          node.visibility ? concat([node.visibility, " "]) : "",
-          "const ",
-          node.name,
-          " = ",
-          path.call(print, "value")
-        ]);
-      default:
-        return `Have not implmented declaration kind ${node.kind} yet.`;
-    }
-  }
-  if (declarationKinds.includes(node.kind)) {
-    return printDeclaration(node);
-  }
+  const hasEmptyBody =
+    ((node.kind === "function" || node.kind === "method") &&
+      node.body &&
+      node.body.children &&
+      node.body.children.length === 0 &&
+      !node.body.comments) ||
+    (isClassLikeNode && node.body && node.body.length === 0 && !node.comments);
 
-  function printBodyControlStructure(path, bodyProperty = "body") {
-    const node = path.getValue();
-    if (!node[bodyProperty]) {
-      return ";";
-    }
-    const printedBody = path.call(print, bodyProperty);
+  const printedBody = bodyContents
+    ? concat([
+        "{",
+        indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
+        comments.printDanglingComments(path, options, true),
+        node.kind === "class" && node.isAnonymous && hasEmptyBody
+          ? ""
+          : hardline,
+        "}"
+      ])
+    : "";
+
+  if (isClassLikeNode) {
     return concat([
-      node.shortForm ? ":" : " {",
-      indent(
+      group(
         concat([
-          comments.printDanglingComments(path, options, true),
-          node[bodyProperty].kind !== "block" ||
-          (node[bodyProperty].children &&
-            node[bodyProperty].children.length > 0) ||
-          (node[bodyProperty].comments &&
-            node[bodyProperty].comments.length > 0)
-            ? concat([
-                isFirstChildrenInlineNode(path)
-                  ? node.kind === "switch"
-                    ? " "
-                    : ""
-                  : hardline,
-                printedBody
-              ])
-            : ""
+          printedDeclaration,
+          printedSignature,
+          bodyContents && node.kind === "class" && node.isAnonymous
+            ? line
+            : hardline
         ])
       ),
-      node.kind === "if" && bodyProperty === "body"
-        ? ""
-        : concat([
-            shouldPrintHardLineBeforeEndInControlStructure(path)
-              ? hardline
-              : "",
-            node.shortForm ? concat(["end", node.kind, ";"]) : "}"
-          ])
+      printedBody
     ]);
   }
 
-  function printAssignment(
+  return conditionalGroup([
+    concat([
+      printedDeclaration,
+      printedSignature,
+      bodyContents ? hardline : "",
+      printedBody
+    ]),
+    concat([
+      printedDeclaration,
+      printedSignature,
+      bodyContents ? (argumentsList.length === 0 ? hardline : " ") : "",
+      printedBody
+    ])
+  ]);
+}
+
+function printBodyControlStructure(
+  path,
+  print,
+  bodyProperty = "body",
+  options = {}
+) {
+  const node = path.getValue();
+
+  if (!node[bodyProperty]) {
+    return ";";
+  }
+
+  const printedBody = path.call(print, bodyProperty);
+
+  return concat([
+    node.shortForm ? ":" : " {",
+    indent(
+      concat([
+        comments.printDanglingComments(path, options, true),
+        node[bodyProperty].kind !== "block" ||
+        (node[bodyProperty].children &&
+          node[bodyProperty].children.length > 0) ||
+        (node[bodyProperty].comments && node[bodyProperty].comments.length > 0)
+          ? concat([
+              isFirstChildrenInlineNode(path)
+                ? node.kind === "switch"
+                  ? " "
+                  : ""
+                : hardline,
+              printedBody
+            ])
+          : ""
+      ])
+    ),
+    node.kind === "if" && bodyProperty === "body"
+      ? ""
+      : concat([
+          shouldPrintHardLineBeforeEndInControlStructure(path) ? hardline : "",
+          node.shortForm ? concat(["end", node.kind, ";"]) : "}"
+        ])
+  ]);
+}
+
+function printAssignment(
+  leftNode,
+  printedLeft,
+  operator,
+  rightNode,
+  printedRight,
+  options
+) {
+  if (!rightNode) {
+    return printedLeft;
+  }
+
+  const printed = printAssignmentRight(
     leftNode,
-    printedLeft,
-    operator,
     rightNode,
     printedRight,
     options
-  ) {
-    if (!rightNode) {
-      return printedLeft;
-    }
+  );
 
-    const printed = printAssignmentRight(
-      leftNode,
-      rightNode,
-      printedRight,
-      options
-    );
+  return group(concat([printedLeft, operator, printed]));
+}
 
-    return group(concat([printedLeft, operator, printed]));
+function isLookupNodeChain(node) {
+  if (!isLookupNode(node)) {
+    return false;
   }
 
-  function isLookupNodeChain(node) {
-    if (!isLookupNode(node)) {
-      return false;
-    }
-
-    if (node.what.kind === "variable") {
-      return true;
-    }
-
-    return isLookupNodeChain(node.what);
+  if (node.what.kind === "variable") {
+    return true;
   }
 
-  function printAssignmentRight(leftNode, rightNode, printedRight) {
-    const canBreak =
-      (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
-      (rightNode.kind === "retif" &&
-        rightNode.test.kind === "bin" &&
-        !shouldInlineLogicalExpression(rightNode.test)) ||
-      ((leftNode.kind === "variable" || isLookupNode(leftNode)) &&
-        ((rightNode.kind === "string" && !node.right.raw.includes("\n")) ||
-          isLookupNodeChain(rightNode)));
+  return isLookupNodeChain(node.what);
+}
 
-    if (canBreak) {
-      return group(indent(concat([line, printedRight])));
-    }
+function printAssignmentRight(leftNode, rightNode, printedRight) {
+  const canBreak =
+    (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
+    (rightNode.kind === "retif" &&
+      rightNode.test.kind === "bin" &&
+      !shouldInlineLogicalExpression(rightNode.test)) ||
+    ((leftNode.kind === "variable" || isLookupNode(leftNode)) &&
+      ((rightNode.kind === "string" && !rightNode.raw.includes("\n")) ||
+        isLookupNodeChain(rightNode)));
 
-    return concat([" ", printedRight]);
+  if (canBreak) {
+    return group(indent(concat([line, printedRight])));
   }
+
+  return concat([" ", printedRight]);
+}
+
+function printNode(path, options, print) {
+  const node = path.getValue();
 
   switch (node.kind) {
+    case "block":
+      return concat([
+        printLines(path, options, print),
+        comments.printDanglingComments(path, options, true)
+      ]);
+    case "program": {
+      return group(
+        concat([
+          printLines(path, options, print),
+          comments.printDanglingComments(
+            path,
+            options,
+            /* sameIndent */ true,
+            c => !c.printed
+          )
+        ])
+      );
+    }
+    case "namespace": {
+      const printed = printLines(path, options, print);
+      const hasName = node.name && typeof node.name === "string";
+
+      return concat([
+        "namespace ",
+        hasName ? node.name : "",
+        node.withBrackets
+          ? " {"
+          : concat([
+              ";",
+              // Second hardline for newline between `namespace` and first child node
+              node.children.length > 0 ? concat([hardline, hardline]) : ""
+            ]),
+        node.children.length > 0
+          ? node.withBrackets
+            ? indent(concat([hardline, printed]))
+            : printed
+          : "",
+        node.withBrackets ? concat([hardline, "}"]) : ""
+      ]);
+    }
+    case "class": {
+      const classPrefixes = [
+        ...(node.isFinal ? ["final"] : []),
+        ...(node.isAbstract ? ["abstract"] : [])
+      ];
+      const parentNode = path.getParentNode();
+      // if this is an anonymous class, we need to check if the parent was a
+      // "new" node. if it was, we need to get the arguments from that node
+      // ex: $test = new class($arg1, $arg2) extends TestClass {};
+      const anonymousArguments =
+        node.isAnonymous &&
+        parentNode.kind === "new" &&
+        parentNode.arguments.length > 0
+          ? anonymousClassesNewArguments
+          : "";
+
+      return printDeclarationBlock({
+        declaration: concat([
+          classPrefixes.join(" "),
+          classPrefixes.length > 0 ? " " : "",
+          concat([
+            "class",
+            anonymousArguments,
+            node.name ? concat([" ", node.name]) : ""
+          ]),
+          group(
+            indent(
+              concat([
+                node.extends
+                  ? group(
+                      concat([
+                        // check if the extends node has a comment
+                        hasDanglingComments(node.extends)
+                          ? concat([
+                              hardline,
+                              path.call(
+                                extendsPath =>
+                                  comments.printDanglingComments(
+                                    extendsPath,
+                                    options,
+                                    true
+                                  ),
+                                "extends"
+                              ),
+                              hardline
+                            ])
+                          : line,
+                        "extends ",
+                        path.call(print, "extends")
+                      ])
+                    )
+                  : "",
+                node.implements
+                  ? concat([
+                      line,
+                      "implements",
+                      group(
+                        indent(
+                          concat([
+                            join(
+                              ",",
+                              path.map(implementsPath => {
+                                // check if any of the implements nodes have comments
+                                return hasDanglingComments(
+                                  implementsPath.getValue()
+                                )
+                                  ? concat([
+                                      hardline,
+                                      comments.printDanglingComments(
+                                        implementsPath,
+                                        options,
+                                        true
+                                      ),
+                                      hardline,
+                                      print(implementsPath)
+                                    ])
+                                  : concat([line, print(implementsPath)]);
+                              }, "implements")
+                            )
+                          ])
+                        )
+                      )
+                    ])
+                  : ""
+              ])
+            )
+          )
+        ]),
+        bodyContents: printLines(path, options, print, "body"),
+        node,
+        path,
+        options
+      });
+    }
+    case "function":
+      return printDeclarationBlock({
+        declaration: concat(["function ", node.byref ? "&" : "", node.name]),
+        argumentsList: path.map(print, "arguments"),
+        returnTypeContents: node.type
+          ? concat([
+              hasDanglingComments(node.type)
+                ? concat([
+                    path.call(
+                      typePath =>
+                        comments.printDanglingComments(typePath, options, true),
+                      "type"
+                    ),
+                    " "
+                  ])
+                : "",
+              node.nullable ? "?" : "",
+              path.call(print, "type")
+            ])
+          : "",
+        bodyContents: node.body ? path.call(print, "body") : "",
+        node,
+        path,
+        options
+      });
+    case "method": {
+      const methodPrefixes = [
+        ...(node.isFinal ? ["final"] : []),
+        ...(node.isAbstract ? ["abstract"] : []),
+        ...(node.visibility ? [node.visibility] : []),
+        ...(node.isStatic ? ["static"] : [])
+      ];
+
+      return printDeclarationBlock({
+        declaration: concat([
+          methodPrefixes.join(" "),
+          methodPrefixes.length > 0 ? " " : "",
+          "function ",
+          node.byref ? "&" : "",
+          node.name
+        ]),
+        argumentsList: path.map(print, "arguments"),
+        returnTypeContents: node.type
+          ? concat([
+              hasDanglingComments(node.type)
+                ? concat([
+                    path.call(
+                      typePath =>
+                        comments.printDanglingComments(typePath, options, true),
+                      "type"
+                    ),
+                    " "
+                  ])
+                : "",
+              node.nullable ? "?" : "",
+              path.call(print, "type")
+            ])
+          : "",
+        bodyContents: node.body ? concat([path.call(print, "body")]) : "",
+        node,
+        path,
+        options
+      });
+    }
+    case "parameter": {
+      const name = concat([
+        node.nullable ? "?" : "",
+        node.type ? concat([path.call(print, "type"), " "]) : "",
+        node.variadic ? "..." : "",
+        node.byref ? "&" : "",
+        "$",
+        node.name
+      ]);
+
+      if (node.value) {
+        return group(
+          concat([
+            name,
+            // see handleFunctionParameter() in ./comments.js - since there's
+            // no node to attach comments that fall in between the parameter name
+            // and value, we store them as dangling comments
+            hasDanglingComments(node) ? " " : "",
+            comments.printDanglingComments(path, options, true),
+            indent(concat([line, "= ", path.call(print, "value")]))
+          ])
+        );
+      }
+
+      return name;
+    }
+    case "property":
+      return group(
+        concat([
+          node.visibility ? concat([node.visibility, " "]) : "",
+          node.isStatic ? "static " : "",
+          "$",
+          node.name,
+          node.value ? concat([" = ", path.call(print, "value")]) : ""
+        ])
+      );
+    case "interface":
+      return printDeclarationBlock({
+        declaration: concat([
+          concat(["interface ", node.name]),
+          node.extends
+            ? indent(
+                concat([
+                  line,
+                  "extends ",
+                  join(", ", path.map(print, "extends"))
+                ])
+              )
+            : ""
+        ]),
+        bodyContents: printLines(path, options, print, "body"),
+        node,
+        path,
+        options
+      });
+    case "trait":
+      return printDeclarationBlock({
+        declaration: concat([
+          concat(["trait ", node.name]),
+          node.extends
+            ? indent(concat([line, "extends ", path.call(print, "extends")]))
+            : "",
+          node.implements
+            ? indent(
+                concat([
+                  line,
+                  "implements ",
+                  join(", ", path.map(print, "implements"))
+                ])
+              )
+            : ""
+        ]),
+        bodyContents: printLines(path, options, print, "body"),
+        node,
+        path,
+        options
+      });
+    case "constant":
+    case "classconstant":
+      return concat([
+        node.visibility ? concat([node.visibility, " "]) : "",
+        "const ",
+        node.name,
+        " = ",
+        path.call(print, "value")
+      ]);
     case "assign": {
       return printAssignment(
         node.left,
@@ -1982,6 +1477,7 @@ function printStatement(path, options, print) {
         if (!alternate) {
           return node.body ? (node.shortForm ? "endif;" : "}") : "";
         }
+
         if (alternate.kind === "if") {
           return concat([
             node.shortForm ? "" : "} ",
@@ -1989,12 +1485,14 @@ function printStatement(path, options, print) {
             path.call(print, "alternate")
           ]);
         }
+
         return concat([
           node.shortForm ? "" : "} ",
           "else",
-          printBodyControlStructure(path, "alternate")
+          printBodyControlStructure(path, print, "alternate", options)
         ]);
       };
+
       return concat([
         group(
           concat([
@@ -2006,7 +1504,7 @@ function printStatement(path, options, print) {
               ])
             ),
             ")",
-            printBodyControlStructure(path)
+            printBodyControlStructure(path, print, "body", options)
           ])
         ),
         isFirstChildrenInlineNode(path) || !node.body ? "" : hardline,
@@ -2016,7 +1514,7 @@ function printStatement(path, options, print) {
     case "do":
       return concat([
         "do",
-        printBodyControlStructure(path),
+        printBodyControlStructure(path, print, "body", options),
         " while (",
         group(
           concat([
@@ -2037,11 +1535,12 @@ function printStatement(path, options, print) {
             ])
           ),
           ")",
-          printBodyControlStructure(path)
+          printBodyControlStructure(path, print, "body", options)
         ])
       );
     case "for": {
-      const body = printBodyControlStructure(path);
+      const body = printBodyControlStructure(path, print, "body", options);
+
       if (!node.init.length && !node.test.length && !node.increment.length) {
         return concat([group(concat(["for (;;)", body]))]);
       }
@@ -2100,7 +1599,7 @@ function printStatement(path, options, print) {
           ])
         ),
         ")",
-        printBodyControlStructure(path)
+        printBodyControlStructure(path, print, "body", options)
       ]);
     case "switch":
       return concat([
@@ -2112,7 +1611,7 @@ function printStatement(path, options, print) {
             ")"
           ])
         ),
-        printBodyControlStructure(path)
+        printBodyControlStructure(path, print, "body", options)
       ]);
     case "call": {
       // chain: Call (*LookupNode (Call (*LookupNode (...))))
@@ -2206,8 +1705,8 @@ function printStatement(path, options, print) {
 
       // Find the outermost non-retif parent, and the outermost retif parent.
       let currentParent;
-
       let i = 0;
+
       do {
         currentParent = path.getParentNode(i);
         i++;
@@ -2286,6 +1785,7 @@ function printStatement(path, options, print) {
         const [directive] = Object.keys(path.getValue().what);
         return concat([directive, "=", path.call(print, "what", directive)]);
       };
+
       if (node.mode === "short") {
         return concat([
           "declare(",
@@ -2309,6 +1809,7 @@ function printStatement(path, options, print) {
           "}"
         ]);
       }
+
       return concat(["declare(", printDeclareArguments(path), ");"]);
     }
     case "global":
@@ -2360,9 +1861,11 @@ function printStatement(path, options, print) {
       // so the child class node can access them later
       const isAnonymousClassNode =
         node.what && node.what.kind === "class" && node.what.isAnonymous;
+
       if (isAnonymousClassNode && node.arguments.length > 0) {
         anonymousClassesNewArguments = printArgumentsList(path, options, print);
       }
+
       return group(
         concat([
           "new ",
@@ -2431,20 +1934,388 @@ function printStatement(path, options, print) {
           ")"
         ])
       );
-    default:
-      return `Have not implemented statement kind ${node.kind} yet.`;
-  }
-}
+    case "echo": {
+      const printedArguments = path.map((argumentPath, index) => {
+        let printed = print(argumentPath);
 
-function printNode(path, options, print) {
-  const node = path.getValue();
-  if (expressionKinds.includes(node.kind)) {
-    return printExpression(path, options, print);
-  }
-  if (statementKinds.includes(node.kind)) {
-    return printStatement(path, options, print);
-  }
-  switch (node.kind) {
+        if (index === 0) {
+          printed = dedent(printed);
+        }
+
+        return printed;
+      }, "arguments");
+
+      return indent(
+        group(
+          concat([
+            node.shortForm ? "" : "echo ",
+            group(join(concat([",", line]), printedArguments))
+          ])
+        )
+      );
+    }
+    case "print": {
+      return concat(["print ", path.call(print, "arguments")]);
+    }
+    case "list":
+    case "isset":
+    case "unset":
+    case "empty":
+      return group(
+        concat([
+          node.kind,
+          "(",
+          indent(
+            concat([
+              softline,
+              join(concat([",", line]), path.map(print, "arguments"))
+            ])
+          ),
+          softline,
+          ")"
+        ])
+      );
+    case "variable":
+      return concat([
+        node.byref ? "&" : "",
+        "$",
+        node.curly ? "{" : "",
+        path.call(print, "name"),
+        node.curly ? "}" : ""
+      ]);
+    case "constref":
+      if (typeof node.name === "object") {
+        return path.call(print, "name");
+      }
+
+      return node.name;
+    case "array": {
+      const open = node.shortForm ? "[" : "array(";
+      const close = node.shortForm ? "]" : ")";
+
+      if (node.items.length === 0) {
+        if (!hasDanglingComments(node)) {
+          return concat([open, close]);
+        }
+
+        return group(
+          concat([
+            open,
+            comments.printDanglingComments(path, options),
+            softline,
+            close
+          ])
+        );
+      }
+
+      const isAssociative = !!node.items[0].key;
+      const shouldBreak = isAssociative && node.loc.source.includes("\n");
+
+      return group(
+        concat([
+          open,
+          indent(
+            concat([softline, printArrayItems(path, options, "items", print)])
+          ),
+          ifBreak(shouldPrintComma(options) ? "," : ""),
+          comments.printDanglingComments(path, options, true),
+          softline,
+          close
+        ]),
+        { shouldBreak }
+      );
+    }
+    case "yield":
+      return concat([
+        "yield ",
+        node.key ? concat([path.call(print, "key"), " => "]) : "",
+        path.call(print, "value")
+      ]);
+    case "yieldfrom":
+      return concat(["yield from ", path.call(print, "value")]);
+    case "variadic":
+      return concat(["...", path.call(print, "what")]);
+    case "propertylookup":
+    case "staticlookup":
+    case "offsetlookup": {
+      const parent = path.getParentNode();
+
+      let firstNonMemberParent;
+      let i = 0;
+
+      do {
+        firstNonMemberParent = path.getParentNode(i);
+        i++;
+      } while (firstNonMemberParent && isLookupNode(firstNonMemberParent));
+
+      const shouldInline =
+        (firstNonMemberParent &&
+          (firstNonMemberParent.kind === "new" ||
+            (firstNonMemberParent.kind === "assign" &&
+              firstNonMemberParent.left.kind !== "variable"))) ||
+        node.kind === "offsetlookup" ||
+        (node.what.kind === "variable" &&
+          (node.offset &&
+            (node.offset.kind === "constref" ||
+              node.offset.kind === "variable")) &&
+          (parent && !isLookupNode(parent)));
+
+      return concat([
+        path.call(print, "what"),
+        shouldInline
+          ? printLookupNodes(path, options, print)
+          : group(
+              indent(concat([softline, printLookupNodes(path, options, print)]))
+            )
+      ]);
+    }
+    case "pre":
+      return concat([node.type + node.type, path.call(print, "what")]);
+    case "post":
+      return concat([path.call(print, "what"), node.type + node.type]);
+    case "bin": {
+      const parent = path.getParentNode();
+      const parentParent = path.getParentNode(1);
+      const isInsideParenthesis =
+        node !== parent.body &&
+        (parent.kind === "if" ||
+          parent.kind === "while" ||
+          parent.kind === "do");
+
+      const parts = printBinaryExpression(
+        path,
+        print,
+        options,
+        /* isNested */ false,
+        isInsideParenthesis
+      );
+
+      //   if (
+      //     this.hasPlugin("dynamicImports") && this.lookahead().type === tt.parenLeft
+      //   ) {
+      //
+      // looks super weird, we want to break the children if the parent breaks
+      //
+      //   if (
+      //     this.hasPlugin("dynamicImports") &&
+      //     this.lookahead().type === tt.parenLeft
+      //   ) {
+      if (isInsideParenthesis) {
+        return concat(parts);
+      }
+
+      // Break between the parens in unaries or in a member expression, i.e.
+      //
+      //   (
+      //     a &&
+      //     b &&
+      //     c
+      //   ).call()
+      if (parent.kind === "unary") {
+        return group(
+          concat([indent(concat([softline, concat(parts)])), softline])
+        );
+      }
+
+      // Avoid indenting sub-expressions in some cases where the first sub-expression is already
+      // indented accordingly. We should indent sub-expressions where the first case isn't indented.
+      const shouldNotIndent =
+        parent.kind === "return" ||
+        parent.kind === "retif" ||
+        // return (
+        //   $someCondition ||
+        //   $someOtherCondition
+        // );
+        (parentParent &&
+          ["echo", "return", "print"].includes(parentParent.kind) &&
+          parent.kind === "parenthesis") ||
+        // (
+        //   $someObject ||
+        //   $someOtherObject
+        // )->someFunction();
+        (parentParent &&
+          parentParent.kind === "propertylookup" &&
+          parent.kind === "parenthesis") ||
+        (node !== parent.body && parent.kind === "for");
+
+      const shouldIndentIfInlining =
+        parent.kind === "assign" || parent.kind === "property";
+
+      const samePrecedenceSubExpression =
+        node.left.kind === "bin" && shouldFlatten(node.type, node.left.type);
+
+      if (
+        shouldNotIndent ||
+        (shouldInlineLogicalExpression(node) && !samePrecedenceSubExpression) ||
+        (!shouldInlineLogicalExpression(node) && shouldIndentIfInlining)
+      ) {
+        return group(concat(parts));
+      }
+
+      const rest = concat(parts.slice(1));
+
+      return group(
+        concat([
+          // Don't include the initial expression in the indentation
+          // level. The first item is guaranteed to be the first
+          // left-most expression.
+          parts.length > 0 ? parts[0] : "",
+          indent(rest)
+        ])
+      );
+    }
+    case "parenthesis": {
+      const parentNode = path.getParentNode();
+
+      if (parentNode && parentNode.kind === "parenthesis") {
+        return path.call(print, "inner");
+      }
+
+      const shouldPrintParenthesis =
+        parentNode.kind !== "print" &&
+        parentNode.kind !== "echo" &&
+        parentNode.kind !== "include";
+      const shouldBeInlined =
+        node.inner.kind === "new" ||
+        node.inner.kind === "clone" ||
+        node.inner.kind === "retif";
+      // don't break if this is a property lookup - ie
+      // ($someThing
+      //    ? $someOtherThing
+      //    : $someOtherOtherThing
+      //  )
+      //    ->hi()
+      //    ->other();
+      // however, make sure to break for bin, since its reliant on the parens indentation
+      // (
+      //    $someThing &&
+      //    $someOtherThing
+      //  )->map();
+      const shouldAddBeginningBreak =
+        !shouldBeInlined &&
+        !(parentNode.kind === "propertylookup" && node.inner.kind !== "bin");
+      const printedContents = path.call(print, "inner");
+      const shouldAddEndBreak =
+        !shouldBeInlined &&
+        (shouldAddBeginningBreak || willBreak(printedContents));
+      const dangling = comments.printDanglingComments(path, options, true);
+      const printedInner = concat([
+        shouldAddBeginningBreak && shouldPrintParenthesis ? softline : "",
+        dangling ? concat([dangling, hardline]) : "",
+        printedContents
+      ]);
+
+      return group(
+        concat([
+          shouldPrintParenthesis ? "(" : "",
+          shouldAddBeginningBreak ? indent(printedInner) : printedInner,
+          shouldPrintParenthesis
+            ? concat([shouldAddEndBreak ? softline : "", ")"])
+            : ""
+        ])
+      );
+    }
+    case "unary":
+      return concat([node.type, path.call(print, "what")]);
+    case "cast":
+      // @TODO: binary type cast is broken https://github.com/glayzzle/php-parser/issues/166
+      return concat(["(", node.type, ") ", path.call(print, "what")]);
+    case "boolean":
+      return node.value ? "true" : "false";
+    case "string": {
+      // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
+      // @TODO: for now just reusing double/single quote preference from doc. could eventually
+      // use setting from options. need to figure out how this works w/ complex strings and interpolation
+      // also need to figure out splitting long strings
+      const quote = node.isDoubleQuote ? '"' : "'";
+
+      let stringValue = node.raw;
+
+      if (node.raw[0] === "b") {
+        stringValue = stringValue.slice(1);
+      }
+
+      // We need to strip out the quotes from the raw value
+      if (['"', "'"].includes(stringValue[0])) {
+        stringValue = stringValue.substr(1);
+      }
+
+      if (['"', "'"].includes(stringValue[stringValue.length - 1])) {
+        stringValue = stringValue.substr(0, stringValue.length - 1);
+      }
+
+      return concat([
+        node.raw[0] === "b" ? "b" : "",
+        quote,
+        stringValue,
+        quote
+      ]);
+    }
+    case "number":
+      return printNumber(node.value);
+    case "encapsed":
+      if (node.type === "offset") {
+        return group(concat(path.map(print, "value")));
+      }
+
+      return concat([
+        node.type === "heredoc" ? breakParent : "",
+        getEncapsedQuotes(node),
+        // Respect `indent` for `heredoc` nodes
+        node.type === "heredoc" ? literalline : "",
+        concat(
+          path.map(valuePath => {
+            const node = valuePath.getValue();
+
+            if (node.kind === "string") {
+              return node.raw;
+            }
+
+            if (node.kind === "variable") {
+              if (typeof node.name === "object") {
+                return concat([
+                  node.curly ? "${" : "",
+                  path.call(print, "name"),
+                  node.curly ? "}" : ""
+                ]);
+              }
+
+              if (node.curly) {
+                return concat(["{$", node.name, "}"]);
+              }
+
+              return print(valuePath);
+            }
+
+            return concat(["{", print(valuePath), "}"]);
+          }, "value")
+        ),
+        getEncapsedQuotes(node, { opening: false }),
+        node.type === "heredoc" && docShouldHaveTrailingNewline(path)
+          ? hardline
+          : ""
+      ]);
+    case "inline":
+      return join(
+        literalline,
+        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
+      );
+    case "magic":
+      // for magic constant we prefer upper case
+      return node.value.toUpperCase();
+    case "nowdoc":
+      // Respect `indent` for `nowdoc` nodes
+      return concat([
+        breakParent,
+        "<<<'",
+        node.label,
+        "'",
+        literalline,
+        node.value,
+        literalline,
+        node.label,
+        docShouldHaveTrailingNewline(path) ? hardline : ""
+      ]);
     case "identifier": {
       // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
       // for reserved words we prefer lowercase case
@@ -2491,22 +2362,28 @@ function printNode(path, options, print) {
         while (node.level.kind == "parenthesis") {
           node.level = node.level.inner;
         }
+
         if (node.level.kind == "number" && node.level.value != 1) {
           return concat(["break ", path.call(print, "level")]);
         }
+
         return "break";
       }
+
       return "break";
     case "continue":
       if (node.level) {
         while (node.level.kind == "parenthesis") {
           node.level = node.level.inner;
         }
+
         if (node.level.kind == "number" && node.level.value != 1) {
           return concat(["continue ", path.call(print, "level")]);
         }
+
         return "continue";
       }
+
       return "continue";
     case "return": {
       const parts = [];
@@ -2561,6 +2438,7 @@ function printNode(path, options, print) {
           ])
         );
       }
+
       return printed;
     }
     case "traituse":
