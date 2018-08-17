@@ -1478,6 +1478,152 @@ function testTwo()
 
 `;
 
+exports[`mixed-36.php 1`] = `
+<div>
+    <div>
+        <div>
+            <div>
+                <input id="payment_method_<?php echo esc_attr($gateway->id); ?>"
+                    type="radio"
+                    class="input-radio"
+                    name="payment_method"
+                    value="<?php echo esc_attr($gateway->id); ?>"
+                    <?php checked($gateway->chosen, true); ?>
+                    data-text="<?php echo esc_attr($gateway->order_button_text); ?>"
+            </div>
+        </div>
+    </div>
+</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+    <div>
+        <div>
+            <div>
+                <input id="payment_method_<?php echo esc_attr($gateway->id); ?>"
+                    type="radio"
+                    class="input-radio"
+                    name="payment_method"
+                    value="<?php echo esc_attr($gateway->id); ?>"
+                    <?php checked($gateway->chosen, true); ?>
+                    data-text="<?php echo esc_attr(
+                        $gateway->order_button_text
+                    ); ?>"
+            </div>
+        </div>
+    </div>
+</div>
+
+`;
+
+exports[`mixed-37.php 1`] = `
+<div>
+<?php
+func('verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg');
+?>
+</div>
+
+<div>
+<?php func('verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg'); ?>
+</div>
+
+<div>
+<?php
+func(
+  'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+  'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+  'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+);
+?>
+</div>
+
+<div>
+  <?php
+  func(
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+  );
+  ?>
+</div>
+
+<div>
+    <?php func('verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg'); ?>
+</div>
+
+<div>
+    <?php
+    func('verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg', 'verVeryVeryVeryVeryVeryVeryVeryLongArg');
+    ?>
+</div>
+
+<div>
+    <?php
+    func(
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    );
+    ?>
+</div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div>
+<?php func(
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+); ?>
+</div>
+
+<div>
+<?php func(
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+); ?>
+</div>
+
+<div>
+<?php func(
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+); ?>
+</div>
+
+<div>
+  <?php func(
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+      'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+  ); ?>
+</div>
+
+<div>
+    <?php func(
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    ); ?>
+</div>
+
+<div>
+    <?php func(
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    ); ?>
+</div>
+
+<div>
+    <?php func(
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
+        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    ); ?>
+</div>
+
+`;
+
 exports[`only-html.php 1`] = `
 <!DOCTYPE html>
 <html>
