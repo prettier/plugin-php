@@ -111,21 +111,15 @@ prettier path/to/file.php --write
 
 ## Editor integration
 
-Integration in the prettier plugin for your favorite editor might not be working yet, see the related issues for [VS Code](https://github.com/prettier/prettier-vscode/issues/395), [Atom](https://github.com/prettier/prettier-atom/issues/395) and [Vim](https://github.com/prettier/vim-prettier/issues/119).
-
-For the moment, you can set up prettier to run on save like this:
-
 ### Atom
 
-Install [save-autorun](https://atom.io/packages/save-autorun) and create a `.save.cson` file in your project with the following content:
-
-```cson
-"**/*.php": "prettier ${path} --write"
-```
+The official [prettier plugin for atom](https://github.com/prettier/prettier-atom) supports plugins.
 
 ### VScode
 
-Install [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) and add the following section to your settings:
+Regarding plugin support in the official plugin prettier-vscode see [this issue](https://github.com/prettier/prettier-vscode/issues/395).
+
+Alternatively, install [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) and add the following section to your settings:
 
 ```json
 "emeraldwalk.runonsave": {
@@ -140,7 +134,9 @@ Install [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeral
 
 ### Vim
 
-Adding the following to `.vimrc` will define a custom command `:PrettierPhp` that runs the plugin while preserving the cursor position and run it on save.
+Regarding plugin support in the official plugin vim-prettier see [this issue](https://github.com/prettier/vim-prettier/issues/119).
+
+Alternatively, adding the following to `.vimrc` will define a custom command `:PrettierPhp` that runs the plugin while preserving the cursor position and run it on save.
 
 ```vim
 " Prettier for PHP
