@@ -136,6 +136,18 @@ Alternatively, install [Run on Save](https://marketplace.visualstudio.com/items?
 
 Regarding plugin support in the official plugin vim-prettier see [this issue](https://github.com/prettier/vim-prettier/issues/119).
 
+#### ALE
+The linting plugin ALE has built-in support for prettier and its plugins. Just add prettier to your [list of fixers](https://github.com/w0rp/ale#2ii-fixing). For example:
+
+```vim
+let g:ale_fixers={
+  \'javascript': ['prettier'],
+  \'json': ['prettier'],
+  \'php': ['prettier'],
+\}
+```
+
+#### Custom
 Alternatively, adding the following to `.vimrc` will define a custom command `:PrettierPhp` that runs the plugin while preserving the cursor position and run it on save.
 
 ```vim
