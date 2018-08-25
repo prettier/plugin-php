@@ -28,6 +28,15 @@ function clean(node, newObj) {
     }
   }
 
+  // if () {{ }} -> if () {}
+  if (node.kind === "block") {
+    if (node.children.length === 1 && node.children[0].kind === "block") {
+      while (newObj.children[0].kind === "block") {
+        newObj.children = newObj.children[0].children;
+      }
+    }
+  }
+
   // Normalize numbers
   if (node.kind === "number") {
     newObj.value = util.printNumber(node.value);
