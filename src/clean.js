@@ -9,6 +9,10 @@ const util = require("./util");
  * changed by the printer, etc.)
  */
 function clean(node, newObj) {
+  ["comments", "leadingComments", "trailingComments"].forEach(name => {
+    delete newObj[name];
+  });
+  
   // Ignore `parenthesis` inside `parenthesis`
   if (node.kind === "parenthesis" && node.inner.kind === "parenthesis") {
     while (newObj.inner.kind === "parenthesis") {
@@ -25,6 +29,15 @@ function clean(node, newObj) {
     }
     if (level.kind === "number") {
       newObj.level = level.value == 1 ? {} : level;
+    }
+  }
+
+  // if () {{ }} -> if () {}
+  if (node.kind === "block") {
+    if (node.children.length === 1 && node.children[0].kind === "block") {
+      while (newObj.children[0].kind === "block") {
+        newObj.children = newObj.children[0].children;
+      }
     }
   }
 

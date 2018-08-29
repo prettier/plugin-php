@@ -3,9 +3,6 @@
 const fs = require("fs");
 const { extname } = require("path");
 const prettier = require("prettier");
-const plugin = require("../src");
-const massageAST = require("prettier/src/main/massage-ast");
-const { normalize } = require("prettier/src/main/options");
 
 const { AST_COMPARE } = process.env;
 
@@ -53,27 +50,37 @@ function run_spec(dirname, parsers, options) {
       });
 
       // this will only work for php tests (since we're in the php repo)
-      if (AST_COMPARE && parsers.slice(1) === "php") {
-        const normalizedOptions = normalize(mergedOptions);
-        const ast = parse(source, mergedOptions);
-        const astMassaged = massageAST(ast, normalizedOptions);
-        let ppastMassaged;
-        let pperr = null;
+      if (AST_COMPARE && parsers[0] === "php") {
+        const compareOptions = Object.assign(
+          {
+            filepath: filename
+          },
+          mergedOptions
+        );
+
+        const originalAST = cleanForComparison(
+          prettier.__debug.parse(source, compareOptions, true)
+        );
+        const output = prettier.format(source, compareOptions);
+
+        let outputAST;
+        let reoutput;
+        let secondPassErr = null;
         try {
-          const ppast = parse(
-            prettyprint(source, path, mergedOptions),
-            mergedOptions
+          outputAST = cleanForComparison(
+            prettier.__debug.parse(output, compareOptions, true)
           );
-          ppastMassaged = massageAST(ppast, normalizedOptions);
+          reoutput = prettier.format(output, compareOptions);
         } catch (e) {
-          pperr = e.stack;
+          secondPassErr = e.stack;
         }
 
         test(`${path} parse`, () => {
-          expect(pperr).toBe(null);
-          expect(ppastMassaged).toBeDefined();
-          if (!ast.errors || ast.errors.length === 0) {
-            expect(astMassaged).toEqual(ppastMassaged);
+          expect(secondPassErr).toBe(null);
+          expect(outputAST).toBeDefined();
+          if (!originalAST.errors || originalAST.errors.length === 0) {
+            expect(outputAST.ast.children).toEqual(originalAST.ast.children);
+            expect(output).toEqual(reoutput);
           }
         });
       }
@@ -82,12 +89,16 @@ function run_spec(dirname, parsers, options) {
 }
 global.run_spec = run_spec;
 
-function stripLocation(ast) {
+function cleanForComparison(ast) {
   if (Array.isArray(ast)) {
-    return ast.map(e => stripLocation(e));
+    return ast.map(e => cleanForComparison(e));
   }
   if (typeof ast === "object") {
     const newObj = {};
+    // prevent indentation changes in multiline comment blocks from causing AST changes
+    if (ast && ast.kind === "commentblock") {
+      ast.value = ast.value.replace(/^ +/gm, "");
+    }
     for (const key in ast) {
       if (
         key === "loc" ||
@@ -95,19 +106,17 @@ function stripLocation(ast) {
         key === "raw" ||
         key === "comments" ||
         key === "parent" ||
-        key === "prev"
+        key === "prev" ||
+        key === "start" ||
+        key === "end"
       ) {
         continue;
       }
-      newObj[key] = stripLocation(ast[key]);
+      newObj[key] = cleanForComparison(ast[key]);
     }
     return newObj;
   }
   return ast;
-}
-
-function parse(string, opts) {
-  return stripLocation(plugin.parsers.php.parse(string, {}, opts));
 }
 
 function prettyprint(src, filename, options) {
