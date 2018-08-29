@@ -369,7 +369,7 @@ function fileShouldEndWithHardline(path) {
     return false;
   }
 
-  if (lastNode && lastNode.kind === "inline") {
+  if (lastNode && ["halt", "inline"].includes(lastNode.kind)) {
     return false;
   }
 
@@ -380,7 +380,7 @@ function fileShouldEndWithHardline(path) {
     const lastNestedNode =
       lastNode.children.length > 0 && getLast(lastNode.children);
 
-    if (lastNestedNode && lastNestedNode.kind === "inline") {
+    if (lastNestedNode && ["halt", "inline"].includes(lastNestedNode.kind)) {
       return false;
     }
   }

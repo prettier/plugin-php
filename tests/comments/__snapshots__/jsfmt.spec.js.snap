@@ -1226,8 +1226,7 @@ exports[`halt.php 1`] = `
 /*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-/*Comment*/ __halt_compiler(); /*Comment*/ /*Comment*/ /*Comment*/
-
+/*Comment*/ /*Comment*/ /*Comment*/ /*Comment*/ __halt_compiler();
 `;
 
 exports[`heredoc.php 1`] = `

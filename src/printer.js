@@ -937,11 +937,12 @@ function printLines(path, options, print, childrenAttribute = "children") {
             ? ""
             : hardline
           : "";
-        const after = shouldBreak
-          ? isBlockNestedNode && isLastNode
-            ? ""
-            : hardline
-          : "";
+        const after =
+          shouldBreak && childNode.kind !== "halt"
+            ? isBlockNestedNode && isLastNode
+              ? ""
+              : hardline
+            : "";
 
         if (shouldBreak) {
           beforeCloseTagInlineNode = "";
@@ -2029,7 +2030,7 @@ function printNode(path, options, print) {
     case "silent":
       return concat(["@", path.call(print, "expr")]);
     case "halt":
-      return concat(["__halt_compiler();", node.after.replace(/\n$/, "")]);
+      return concat(["__halt_compiler();", node.after]);
     case "eval":
       return group(
         concat([

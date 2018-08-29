@@ -37,7 +37,8 @@ const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
     handleTryCatch(comment) ||
     handleAlternate(comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleInlineComments(comment)
+    handleInlineComments(comment) ||
+    handleHalt(comment)
   );
 };
 
@@ -48,7 +49,8 @@ const handleEndOfLineComment = (comment, text, options, ast, isLastComment) => {
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
     handleTryCatch(comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
+    handleHalt(comment)
   );
 };
 
@@ -241,11 +243,18 @@ const handleGoto = comment => {
 };
 
 const handleHalt = comment => {
-  const { enclosingNode } = comment;
+  const { precedingNode, enclosingNode } = comment;
+
   if (enclosingNode && enclosingNode.kind === "halt") {
-    addTrailingComment(enclosingNode, comment);
+    addLeadingComment(enclosingNode, comment);
     return true;
   }
+
+  if (precedingNode && precedingNode.kind === "halt") {
+    addLeadingComment(precedingNode, comment);
+    return true;
+  }
+
   return false;
 };
 
