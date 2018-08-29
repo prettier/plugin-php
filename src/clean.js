@@ -9,6 +9,10 @@ const util = require("./util");
  * changed by the printer, etc.)
  */
 function clean(node, newObj) {
+  ["comments", "leadingComments", "trailingComments"].forEach(name => {
+    delete newObj[name];
+  });
+  
   // Ignore `parenthesis` inside `parenthesis`
   if (node.kind === "parenthesis" && node.inner.kind === "parenthesis") {
     while (newObj.inner.kind === "parenthesis") {
