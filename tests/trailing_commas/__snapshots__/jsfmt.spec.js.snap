@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`trailing_commas.php 1`] = `
+exports[`array.php 1`] = `
 <?php
 
 $foo = ['foo', 'bar'];
@@ -65,7 +65,7 @@ $packages = array_merge(
 
 `;
 
-exports[`trailing_commas.php 2`] = `
+exports[`array.php 2`] = `
 <?php
 
 $foo = ['foo', 'bar'];
@@ -127,5 +127,187 @@ $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
+
+`;
+
+exports[`list.php 1`] = `
+<?php
+
+list($first, $second, $three, $fourth) = $arr;
+list(,$first, $second, $three, $fourth,) = $arr;
+list(,,$first, $second, $three, $fourth,,) = $arr;
+list(,,$first,, $second,, $three,, $fourth,,) = $arr;
+list(,,,$first, $second, $three, $fourth,,,) = $arr;
+list(,,,$first,,, $second,,, $three,,, $fourth,,,) = $arr;
+
+list(0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong) = $arr;
+list(,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,) = $arr;
+list(,,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,,) = $arr;
+list(,,0 => $firstVeryVeryVeryVeryLong,, 1 => $secondVeryVeryVeryVeryLong,, 2 => $threeVeryVeryVeryVeryLong,, 3 => $fourthVeryVeryVeryVeryLong,,) = $arr;
+list(,,,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,,,) = $arr;
+list(,,,0 => $firstVeryVeryVeryVeryLong,,, 1 => $secondVeryVeryVeryVeryLong,,, 2 => $threeVeryVeryVeryVeryLong,,, 3 => $fourthVeryVeryVeryVeryLong,,,) = $arr;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+list($first, $second, $three, $fourth) = $arr;
+list(, $first, $second, $three, $fourth) = $arr;
+list(, , $first, $second, $three, $fourth, ,) = $arr;
+list(, , $first, , $second, , $three, , $fourth, ,) = $arr;
+list(, , , $first, $second, $three, $fourth, , ,) = $arr;
+list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
+
+list(
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong
+) = $arr;
+list(
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong
+) = $arr;
+list(
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+) = $arr;
+
+`;
+
+exports[`list.php 2`] = `
+<?php
+
+list($first, $second, $three, $fourth) = $arr;
+list(,$first, $second, $three, $fourth,) = $arr;
+list(,,$first, $second, $three, $fourth,,) = $arr;
+list(,,$first,, $second,, $three,, $fourth,,) = $arr;
+list(,,,$first, $second, $three, $fourth,,,) = $arr;
+list(,,,$first,,, $second,,, $three,,, $fourth,,,) = $arr;
+
+list(0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong) = $arr;
+list(,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,) = $arr;
+list(,,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,,) = $arr;
+list(,,0 => $firstVeryVeryVeryVeryLong,, 1 => $secondVeryVeryVeryVeryLong,, 2 => $threeVeryVeryVeryVeryLong,, 3 => $fourthVeryVeryVeryVeryLong,,) = $arr;
+list(,,,0 => $firstVeryVeryVeryVeryLong, 1 => $secondVeryVeryVeryVeryLong, 2 => $threeVeryVeryVeryVeryLong, 3 => $fourthVeryVeryVeryVeryLong,,,) = $arr;
+list(,,,0 => $firstVeryVeryVeryVeryLong,,, 1 => $secondVeryVeryVeryVeryLong,,, 2 => $threeVeryVeryVeryVeryLong,,, 3 => $fourthVeryVeryVeryVeryLong,,,) = $arr;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+list($first, $second, $three, $fourth) = $arr;
+list(, $first, $second, $three, $fourth) = $arr;
+list(, , $first, $second, $three, $fourth, ,) = $arr;
+list(, , $first, , $second, , $three, , $fourth, ,) = $arr;
+list(, , , $first, $second, $three, $fourth, , ,) = $arr;
+list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
+
+list(
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+) = $arr;
+list(
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+) = $arr;
+list(
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+) = $arr;
+list(
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+) = $arr;
 
 `;

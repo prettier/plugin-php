@@ -780,6 +780,7 @@ function printArrayItems(path, options, printPath, print) {
     printedElements.push(group(print(childPath)));
 
     separatorParts = [",", line];
+
     if (
       childPath.getValue() &&
       isNextLineEmpty(options.originalText, childPath.getValue(), options)
@@ -1966,7 +1967,6 @@ function printNode(path, options, print) {
     case "print": {
       return concat(["print ", path.call(print, "arguments")]);
     }
-    case "list":
     case "isset":
     case "unset":
     case "empty":
@@ -1998,11 +1998,13 @@ function printNode(path, options, print) {
       }
 
       return node.name;
+    case "list":
     case "array": {
-      const open = node.shortForm ? "[" : "array(";
+      const open = node.shortForm ? "[" : concat([node.kind, "("]);
       const close = node.shortForm ? "]" : ")";
+      const index = node.kind === "array" ? "items" : "arguments";
 
-      if (node.items.length === 0) {
+      if (node[index].length === 0) {
         if (!hasDanglingComments(node)) {
           return concat([open, close]);
         }
@@ -2017,16 +2019,38 @@ function printNode(path, options, print) {
         );
       }
 
-      const isAssociative = !!node.items[0].key;
+      // Todo https://github.com/glayzzle/php-parser/issues/174
+      if (getLast(node[index]) === null) {
+        node[index].pop();
+      }
+
+      const lastElem = getLast(node[index]);
+
+      // PHP allows you to have empty elements in an array which
+      // changes its length based on the number of commas. The algorithm
+      // is that if the last argument is null, we need to force insert
+      // a comma to ensure PHP recognizes it.
+      //   [,] === $arr;
+      //   [1,] === $arr;
+      //   [1,,] === $arr;
+      //
+      // Note that getLast returns null if the array is empty, but
+      // we already check for an empty array just above so we are safe
+      const needsForcedTrailingComma = lastElem === null;
+
+      const isAssociative = !!(node[index][0] && node[index][0].key);
       const shouldBreak = isAssociative && node.loc.source.includes("\n");
 
       return group(
         concat([
           open,
           indent(
-            concat([softline, printArrayItems(path, options, "items", print)])
+            concat([softline, printArrayItems(path, options, index, print)])
           ),
-          ifBreak(shouldPrintComma(options) ? "," : ""),
+          needsForcedTrailingComma ? "," : "",
+          ifBreak(
+            !needsForcedTrailingComma && shouldPrintComma(options) ? "," : ""
+          ),
           comments.printDanglingComments(path, options, true),
           softline,
           close
