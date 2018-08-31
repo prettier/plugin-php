@@ -52,3 +52,16 @@ $var = $test
         ? $someOtherReallyReallyLongVariable
         : $someOtherReallyReallyLongVariable)
     : 'string';
+
+$arr = [
+    'step' => !empty($field['sliderStep']) && $field['sliderStep']
+        ? (int) $field['sliderStep']
+        : 1,
+    'step' => true ? (int) $field['sliderStep'] : 1,
+    'step' => true ? $someOtherReallyReallyLongVariable . $someOtherReallyReallyLongVariable : 1,
+    'step' => $someOtherReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
+    'step' => $someOtherReallyReallyLongVariable . 'string' ? (int) $field['sliderStep'] : 1,
+    'step' => $someOtherReallyReallyLongVariable . $someOtherReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
+    'step' => $someOtherReallyReallyReallyReallyLongVariable . $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
+    'step' => $someOtherReallyReallyReallyReallyLongVariable && $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
+];

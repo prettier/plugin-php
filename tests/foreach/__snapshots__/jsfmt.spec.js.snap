@@ -140,10 +140,8 @@ foreach (
 foreach (
     $points
     as [
-        "veryVeryVeryVeryVeryVeryVeryLongKey" =>
-            $veryVeryVeryVeryVeryVeryVeryVeryLongX,
-        "veryVeryVeryVeryVeryVeryVeryLongKey" =>
-            $veryVeryVeryVeryVeryVeryVeryVeryLongY
+        "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongX,
+        "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongY
     ]
 ) {
     var_dump($x, $y);
