@@ -158,7 +158,6 @@ if (true) {
 }
 echo 'bar';
 ?>
-test
-\`\`\`
+test\`\`\`
 
 `;
