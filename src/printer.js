@@ -955,7 +955,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
 
   const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
 
-  if (node.kind === "program") {
+  if (node.kind === "program" && !node.extra.parseAsEval) {
     if (!wrappedParts.length && node.comments) {
       wrappedParts.push(
         hardline,

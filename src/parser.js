@@ -23,7 +23,13 @@ function parse(text, parsers, opts) {
     }
   });
 
-  const ast = parser.parseCode(text);
+  const hasOpenPHPTag = text.indexOf("<?php") !== -1;
+  const parseAsEval = inMarkdown && !hasOpenPHPTag;
+  const ast = parseAsEval ? parser.parseEval(text) : parser.parseCode(text);
+
+  ast.extra = {
+    parseAsEval
+  };
 
   // Todo https://github.com/glayzzle/php-parser/issues/176
   ast.loc.source = text;
