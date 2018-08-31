@@ -1675,6 +1675,7 @@ function printNode(path, options, print) {
 
       return concat([
         "function ",
+        node.byref ? "&" : "",
         printArgumentsList(path, options, print),
         node.uses && node.uses.length > 0
           ? group(
