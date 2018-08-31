@@ -93,6 +93,20 @@ list(
 
     3 => $fourthVeryVeryVeryVeryLong
 ) = $arr;
+
+list("id" => $id1, "name" => $name1) = $data[0];
+["id" => $id1, "name" => $name1] = $data[0];
+
+foreach ($data as list("id" => $id, "name" => $name)) {
+    // logic here with $id and $name
+}
+
+foreach ($data as ["id" => $id, "name" => $name]) {
+    // logic here with $id and $name
+}
+
+function swap( &$a, &$b ): void
+{ [ $a, $b ] = [ $b, $a ]; }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -265,5 +279,21 @@ list(
 
     3 => $fourthVeryVeryVeryVeryLong
 ) = $arr;
+
+list("id" => $id1, "name" => $name1) = $data[0];
+["id" => $id1, "name" => $name1] = $data[0];
+
+foreach ($data as list("id" => $id, "name" => $name)) {
+    // logic here with $id and $name
+}
+
+foreach ($data as ["id" => $id, "name" => $name]) {
+    // logic here with $id and $name
+}
+
+function swap(&$a, &$b): void
+{
+    [$a, $b] = [$b, $a];
+}
 
 `;
