@@ -1,7 +1,13 @@
 "use strict";
 const engine = require("php-parser");
 
-function parse(text) {
+function parse(text, parsers, opts) {
+  const inMarkdown = opts && opts.parentParser === "markdown";
+
+  if (!text && inMarkdown) {
+    return "";
+  }
+
   // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
 
