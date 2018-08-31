@@ -326,30 +326,27 @@ function fileShouldEndWithHardline(path) {
   const node = path.getValue();
   const isProgramNode = node.kind === "program";
   const lastNode = node.children && getLast(node.children);
+
   if (!isProgramNode) {
     return false;
   }
-  if (
-    lastNode &&
-    lastNode.kind === "inline" &&
-    lastNode.raw[lastNode.raw.length - 1] === "\n"
-  ) {
+
+  if (lastNode && lastNode.kind === "inline") {
     return false;
   }
+
   if (
     lastNode &&
     (lastNode.kind === "declare" || lastNode.kind === "namespace")
   ) {
     const lastNestedNode =
       lastNode.children.length > 0 && getLast(lastNode.children);
-    if (
-      lastNestedNode &&
-      lastNestedNode.kind === "inline" &&
-      lastNestedNode.raw[lastNestedNode.raw.length - 1] === "\n"
-    ) {
+
+    if (lastNestedNode && lastNestedNode.kind === "inline") {
       return false;
     }
   }
+
   return true;
 }
 
