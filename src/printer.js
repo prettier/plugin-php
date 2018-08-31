@@ -1393,8 +1393,8 @@ function printNode(path, options, print) {
       const name = concat([
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
-        node.variadic ? "..." : "",
         node.byref ? "&" : "",
+        node.variadic ? "..." : "",
         "$",
         node.name
       ]);
@@ -2252,7 +2252,6 @@ function printNode(path, options, print) {
     case "unary":
       return concat([node.type, path.call(print, "what")]);
     case "cast":
-      // @TODO: binary type cast is broken https://github.com/glayzzle/php-parser/issues/166
       return concat(["(", node.type, ") ", path.call(print, "what")]);
     case "boolean":
       return node.value ? "true" : "false";
