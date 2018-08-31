@@ -150,6 +150,8 @@ FINAL CLASS MyClass EXTENDS Bar IMPLEMENTS iTemplate
 
         var_dump($a INSTANCEOF MyClass);
 
+        $bar = (INT) $foo;
+
         DIE();
         EXIT();
         EVAL('test');
