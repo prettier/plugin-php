@@ -2465,17 +2465,17 @@ function printNode(path, options, print) {
       return group(
         concat([
           "use ",
-          join(", ", path.map(print, "traits")),
+          indent(group(join(concat([",", line]), path.map(print, "traits")))),
           node.adaptations
             ? concat([
                 " {",
                 indent(
                   concat([
-                    line,
+                    hardline,
                     printLines(path, options, print, "adaptations")
                   ])
                 ),
-                line,
+                hardline,
                 "}"
               ])
             : ""

@@ -1690,8 +1690,10 @@ class ImplementingClass {
 class ImplementingClass
 {
     /* Comment */
-    /* Comment */ /* Comment */ use testTrait /* Comment */, /* Comment */ otherTrait /* Comment */;
-    /* Comment */ /* Comment */ use testTrait /* Comment */, /* Comment */ implementingTrait /* Comment */ /* Comment */ {
+    /* Comment */ /* Comment */ use testTrait /* Comment */,
+        /* Comment */ otherTrait /* Comment */;
+    /* Comment */ /* Comment */ use testTrait /* Comment */,
+        /* Comment */ implementingTrait /* Comment */ /* Comment */ {
         /* Comment */ A /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction insteadof C; /* Comment */ /* Comment */
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
         /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
