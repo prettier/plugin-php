@@ -163,7 +163,7 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
     mb_internal_encoding('ASCII');
 }
 
-$bool = /*Comment */ true /*Comment */ || /*Comment */ false; /*Comment */
+$bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
 `;
 
@@ -179,6 +179,8 @@ exports[`blank_lines.php 1`] = `
 // Other comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
+
 // The first line of a comment
 // The second line of a comment
 
@@ -241,7 +243,7 @@ $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-$var = /* Comment */ (int) /* Comment */ '1'; /* Comment */
+$var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 
 `;
 
@@ -416,7 +418,7 @@ $obj2 = clone /* Comments */ $obj /* Comments */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-$obj2 = clone /* Comments */ $obj; /* Comments */
+$obj2 = clone /* Comments */ $obj /* Comments */;
 
 `;
 
@@ -903,9 +905,11 @@ exit(
 exit(/* Comment */ 1);
 exit(1 /* Comment */);
 exit(/* Comment */ 1 /* Comment */);
-exit(); /* Comment */
+exit(
+    /* Comment */);
 /* Comment */ exit(
-    /* Comment */); /* Comment */
+    /* Comment */
+    /* Comment */);
 
 `;
 
@@ -1191,8 +1195,9 @@ include (// Comment
 // Comment
 include // Comment
 // Comment
-"test.php"; // Comment // Comment
-// Comment
+"test.php"; // Comment
+// Comment // Comment
+
 // Comment
 include // Comment
     // Comment
@@ -1525,7 +1530,8 @@ print /* Comment */ $foo /* Comment */;
 print // Comment
 $foo;
 /* Comment */
-print /* Comment */ $foo; /* Comment */
+
+print /* Comment */ $foo /* Comment */;
 
 `;
 
@@ -1784,8 +1790,8 @@ function gen_one_to_three() {
 
 function gen_one_to_three()
 {
-    yield /* Comment */ $i; /* Comment */
-    yield /* Comment */ $id /* Comment */ => /* Comment */ $fields; /* Comment */
+    yield /* Comment */ $i /* Comment */;
+    yield /* Comment */ $id /* Comment */ => /* Comment */ $fields /* Comment */;
 }
 
 `;

@@ -2,6 +2,7 @@
 const engine = require("php-parser");
 
 function parse(text) {
+  // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
 
   // initialize a new parser instance
@@ -17,6 +18,9 @@ function parse(text) {
   });
 
   const ast = parser.parseCode(text);
+
+  // Todo https://github.com/glayzzle/php-parser/issues/176
+  ast.loc.source = text;
 
   // https://github.com/glayzzle/php-parser/issues/155
   // currently inline comments include the line break at the end, we need to
