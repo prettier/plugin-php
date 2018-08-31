@@ -10,3 +10,4 @@ $variable = @foo(['veryVeryVeryVeryVeryVeryVeryLongKey' => 'veryVeryVeryVeryVery
 $variable = @foo()->veryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryLongMethod();
 $variable = @foo('VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument');
 @trigger_error($error, E_USER_DEPRECATED);
+$value = @     $cache[$key];
