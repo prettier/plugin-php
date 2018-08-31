@@ -2091,9 +2091,8 @@ function printNode(path, options, print) {
               firstNonMemberParent.left.kind !== "variable"))) ||
         node.kind === "offsetlookup" ||
         (node.what.kind === "variable" &&
-          (node.offset &&
-            (node.offset.kind === "constref" ||
-              node.offset.kind === "variable")) &&
+          (node.offset.kind === "constref" ||
+            node.offset.kind === "variable") &&
           (parent && !isLookupNode(parent)));
 
       return concat([
