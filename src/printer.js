@@ -1215,7 +1215,7 @@ function printNode(path, options, print) {
         "namespace ",
         hasName ? node.name : "",
         node.withBrackets
-          ? " {"
+          ? concat([hasName ? " " : "", "{"])
           : concat([
               ";",
               // Second hardline for newline between `namespace` and first child node
