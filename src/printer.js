@@ -1174,7 +1174,9 @@ function printAssignmentRight(leftNode, rightNode, printedRight) {
     (rightNode.kind === "retif" &&
       rightNode.test.kind === "bin" &&
       !shouldInlineLogicalExpression(rightNode.test)) ||
-    ((leftNode.kind === "variable" || isLookupNode(leftNode)) &&
+    ((leftNode.kind === "variable" ||
+      leftNode.kind === "string" ||
+      isLookupNode(leftNode)) &&
       ((rightNode.kind === "string" && !rightNode.raw.includes("\n")) ||
         isLookupNodeChain(rightNode)));
 
@@ -2450,31 +2452,15 @@ function printNode(path, options, print) {
 
       return concat(parts);
     }
-    case "entry": {
-      const dangling = comments.printDanglingComments(
-        path,
-        options,
-        /* sameLine */ true
+    case "entry":
+      return printAssignment(
+        node.key,
+        path.call(print, "key"),
+        " =>",
+        node.value,
+        path.call(print, "value"),
+        options
       );
-      const printedComments = dangling ? concat([hardline, dangling]) : "";
-      const printed = concat([path.call(print, "value"), printedComments]);
-
-      if (node.key) {
-        return group(
-          concat([
-            path.call(print, "key"),
-            " =>",
-            ["array", "call", "closure", "retif", "number"].includes(
-              node.value.kind
-            )
-              ? concat([" ", printed])
-              : indent(concat([line, printed]))
-          ])
-        );
-      }
-
-      return printed;
-    }
     case "traituse":
       return group(
         concat([
