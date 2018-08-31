@@ -64,7 +64,7 @@ exports[`without-name.php 1`] = `
 namespace {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-namespace  {
+namespace {
 }
 
 `;
