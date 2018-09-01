@@ -9,3 +9,9 @@ $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $variable = get_taxonomy_function(get_queried_object_function()->taxonomy)->object_type[0];
 $someArray[] = $this->something->long->that->not->makes->it->break->onto->two->break->lines();
 $variable = "abcdef"[-2];
+
+$variable[1];
+$variable[11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111];
+$variable['string'];
+$variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
+$variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
