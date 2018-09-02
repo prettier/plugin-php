@@ -1,8 +1,82 @@
+# PHP in Markdown
+
 ```php
-$foo = 'bar';
+$foo='bar';
 
 ```
 
 ```php
 $foo = 'bar';
+```
+
+```php
+```
+
+```php
+function test(){$a=1;}
+```
+
+```php
+<?php
+if($foo) {
+echo "bar";
+}
+```
+
+```php
+<?php
+include'./1.php';
+include'./i.php';
+require'./2.php';
+
+$files=get_included_files();
+var_dump(     $files_list     );
+var_dump(     get_required_files(     )     );
+```
+
+```php
+include'./1.php';
+include'./i.php';
+require'./2.php';
+
+$files=get_included_files(     );
+var_dump(     $files_list     );
+var_dump(     get_required_files(     )     );
+```
+
+```php
+<?php
+$foo=1;
+?>
+```
+
+```php
+
+
+
+
+<?php
+$foo=1;
+
+
+
+
+
+```
+
+```php
+test
+<?php
+$a=1;
+$b=2;
+$c=3;
+?>
+test
+<?php
+echo'foo';
+if(true){echo'test';}
+echo'bar';
+?>
+test
+
 ```

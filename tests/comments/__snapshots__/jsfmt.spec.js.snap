@@ -153,23 +153,17 @@ $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 $variable =
     // arrays, countables
     FormUtil::isEmpty($this->modelData) ||
-    (
-        (
-            is_array($this->modelData) || $this->modelData instanceof \\Countable
-        ) &&
-            0 === count($this->modelData)
-    ) ||
+    ((is_array($this->modelData) || $this->modelData instanceof \\Countable) &&
+        0 === count($this->modelData)) ||
     // traversables that are not countable
-    (
-        $this->modelData instanceof \\Traversable &&
-            0 === iterator_count($this->modelData)
-    );
+    ($this->modelData instanceof \\Traversable &&
+        0 === iterator_count($this->modelData));
 
 if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
     mb_internal_encoding('ASCII');
 }
 
-$bool = /*Comment */ true /*Comment */ || /*Comment */ false; /*Comment */
+$bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
 `;
 
@@ -184,12 +178,16 @@ exports[`blank_lines.php 1`] = `
 
 // Other comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+
 // The first line of a comment
 // The second line of a comment
 
 // A third line which has a blank line before it
 
-<?php // Other comment
+// Other comment
+
 
 `;
 
@@ -245,7 +243,7 @@ $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-$var = /* Comment */ (int) /* Comment */ '1'; /* Comment */
+$var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 
 `;
 
@@ -420,7 +418,7 @@ $obj2 = clone /* Comments */ $obj /* Comments */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-$obj2 = clone /* Comments */ $obj; /* Comments */
+$obj2 = clone /* Comments */ $obj /* Comments */;
 
 `;
 
@@ -907,9 +905,11 @@ exit(
 exit(/* Comment */ 1);
 exit(1 /* Comment */);
 exit(/* Comment */ 1 /* Comment */);
-exit(); /* Comment */
+exit(
+    /* Comment */);
 /* Comment */ exit(
-    /* Comment */); /* Comment */
+    /* Comment */
+    /* Comment */);
 
 `;
 
@@ -1195,8 +1195,9 @@ include (// Comment
 // Comment
 include // Comment
 // Comment
-"test.php"; // Comment // Comment
-// Comment
+"test.php"; // Comment
+// Comment // Comment
+
 // Comment
 include // Comment
     // Comment
@@ -1218,6 +1219,103 @@ some text
 * A comment
 */
 <?php $thing = 1;
+
+`;
+
+exports[`inline2.php 1`] = `
+<?php
+// test
+?>
+<h1>Test</h1>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// test
+?>
+<h1>Test</h1>
+
+`;
+
+exports[`inline3.php 1`] = `
+<h1>Test</h1>
+<?php
+// test
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<h1>Test</h1>
+<?php
+// test
+?>
+`;
+
+exports[`inline4.php 1`] = `
+<?php
+/**
+ * A
+ */
+
+// B
+
+/**
+ * C
+ */
+?>
+<h1>Test</h1>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * A
+ */
+
+// B
+
+/**
+ * C
+ */
+?>
+<h1>Test</h1>
+
+`;
+
+exports[`inline5.php 1`] = `
+<h1>Test</h1>
+<?php
+// test
+?>
+<h1>Test</h1>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<h1>Test</h1>
+<?php
+// test
+?>
+<h1>Test</h1>
+
+`;
+
+exports[`inline6.php 1`] = `
+<h1>Test</h1>
+<?php
+
+/**
+ * test
+ */
+
+?>
+<h1>Test</h1>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<h1>Test</h1>
+<?php
+/**
+ * test
+ */
+?>
+<h1>Test</h1>
+
+`;
+
+exports[`inline7.php 1`] = `
+<?php echo 1; // comment ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php echo 1; // comment ?>
 
 `;
 
@@ -1327,13 +1425,15 @@ exports[`no_code.php 1`] = `
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-?>/**
+/**
  * Product Loop Start
  *
  * @author  WooThemes
  * @package WooCommerce/Templates
  * @version 2.0.0
  */
+
+?>
 
 `;
 
@@ -1430,7 +1530,8 @@ print /* Comment */ $foo /* Comment */;
 print // Comment
 $foo;
 /* Comment */
-print /* Comment */ $foo; /* Comment */
+
+print /* Comment */ $foo /* Comment */;
 
 `;
 
@@ -1442,6 +1543,22 @@ echo $a/*Comment*/->/*Comment*/bar();
 <?php
 
 echo /*Comment*/ /*Comment*/ $a->bar();
+
+`;
+
+exports[`return.php 1`] = `
+<?php
+
+function f() {
+    return /* a */;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+function f()
+{
+    return /* a */;
+}
 
 `;
 
@@ -1573,8 +1690,10 @@ class ImplementingClass {
 class ImplementingClass
 {
     /* Comment */
-    /* Comment */ /* Comment */ use testTrait /* Comment */, /* Comment */ otherTrait /* Comment */;
-    /* Comment */ /* Comment */ use testTrait /* Comment */, /* Comment */ implementingTrait /* Comment */ /* Comment */ {
+    /* Comment */ /* Comment */ use testTrait /* Comment */,
+        /* Comment */ otherTrait /* Comment */;
+    /* Comment */ /* Comment */ use testTrait /* Comment */,
+        /* Comment */ implementingTrait /* Comment */ /* Comment */ {
         /* Comment */ A /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction insteadof C; /* Comment */ /* Comment */
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
         /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
@@ -1673,8 +1792,8 @@ function gen_one_to_three() {
 
 function gen_one_to_three()
 {
-    yield /* Comment */ $i; /* Comment */
-    yield /* Comment */ $id /* Comment */ => /* Comment */ $fields; /* Comment */
+    yield /* Comment */ $i /* Comment */;
+    yield /* Comment */ $id /* Comment */ => /* Comment */ $fields /* Comment */;
 }
 
 `;

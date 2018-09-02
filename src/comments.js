@@ -4,7 +4,8 @@ const {
   addLeadingComment,
   addDanglingComment,
   addTrailingComment,
-  getNextNonSpaceNonCommentCharacterIndex
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty
 } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
 
@@ -34,7 +35,8 @@ const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
     handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleAlternate(comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
+    handleInlineComments(comment)
   );
 };
 
@@ -275,16 +277,24 @@ const handleAlternate = comment => {
   return false;
 };
 
-function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
-  // With Flow the enclosingNode is undefined so use the AST instead.
-  if (ast && ast.children && ast.children.length === 0) {
-    if (isLastComment) {
-      addDanglingComment(ast, comment);
-    } else {
-      addLeadingComment(ast, comment);
-    }
+const handleInlineComments = comment => {
+  const { precedingNode, enclosingNode, followingNode } = comment;
+  if (!enclosingNode && followingNode && followingNode.kind === "inline") {
     return true;
   } else if (
+    !enclosingNode &&
+    !followingNode &&
+    precedingNode &&
+    precedingNode.kind === "inline"
+  ) {
+    addDanglingComment(precedingNode, comment);
+    return true;
+  }
+  return false;
+};
+
+function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
+  if (
     enclosingNode &&
     enclosingNode.kind === "program" &&
     enclosingNode.children.length === 0
@@ -345,11 +355,28 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some(comment => comment.trailing);
 }
 
+function printComments(comments, options) {
+  const parts = [];
+  comments.forEach((comment, index, comments) => {
+    comment.printed = true;
+    parts.push(comment.value);
+    parts.push(hardline);
+    if (
+      isNextLineEmpty(options.originalText, comment, options) &&
+      comments.length > index + 1
+    ) {
+      parts.push(hardline);
+    }
+  });
+  return concat(parts);
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
   printDanglingComments,
   hasLeadingComment,
-  hasTrailingComment
+  hasTrailingComment,
+  printComments
 };

@@ -119,3 +119,51 @@ function the_panel_title(
 
 function emptyFunction(){}
 function emptyFunctionWithComment(){ /* Comment */ }
+
+abstract class AbstractClass
+{
+    abstract public function shortName();
+    abstract public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName();
+    abstract public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
+        $title = null,
+        $classes = 'panel-title',
+        $data_name = null,
+        $data_livetext = false,
+        $depth = 0,
+        $index = 0
+    );
+}
+
+class Foo
+{
+    public function shortName() {}
+    public function floatShortName(): float {}
+    public function otherShortName()
+    {
+    }
+    public function otherOtherShortName($arg) {}
+    public function shortNameAndBreak(
+        $title = null,
+        $classes = 'panel-title',
+        $data_name = null,
+        $data_livetext = false,
+        $depth = 0,
+        $index = 0
+    ) {
+    }
+    public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
+    public function floatVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): float {}
+    public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+    }
+    public function otherOtherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName($arg) {}
+    public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
+        $title = null,
+        $classes = 'panel-title',
+        $data_name = null,
+        $data_livetext = false,
+        $depth = 0,
+        $index = 0
+    ) {
+    }
+}

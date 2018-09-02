@@ -1,16 +1,21 @@
 "use strict";
 const engine = require("php-parser");
 
-function parse(text) {
-  // By default php parser don't create `inline` node between `?>\n<?`, we recreate their
-  // Need add option to parser to avoid this behaviour
+function parse(text, parsers, opts) {
+  const inMarkdown = opts && opts.parentParser === "markdown";
+
+  if (!text && inMarkdown) {
+    return "";
+  }
+
+  // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
 
   // initialize a new parser instance
   const parser = new engine({
-    // some options :
     parser: {
-      extractDoc: true
+      extractDoc: true,
+      extractTokens: true
     },
     ast: {
       withPositions: true,
@@ -18,7 +23,17 @@ function parse(text) {
     }
   });
 
-  const ast = parser.parseCode(text);
+  const hasOpenPHPTag = text.indexOf("<?php") !== -1;
+  const parseAsEval = inMarkdown && !hasOpenPHPTag;
+  const ast = parseAsEval ? parser.parseEval(text) : parser.parseCode(text);
+
+  ast.extra = {
+    parseAsEval
+  };
+
+  // Todo https://github.com/glayzzle/php-parser/issues/176
+  ast.loc.source = text;
+
   // https://github.com/glayzzle/php-parser/issues/155
   // currently inline comments include the line break at the end, we need to
   // strip those out and update the end location for each comment manually
@@ -32,6 +47,7 @@ function parse(text) {
       comment.loc.end.offset = comment.loc.end.offset - 1;
     }
   });
+
   return ast;
 }
 

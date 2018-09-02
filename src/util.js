@@ -66,11 +66,17 @@ function getPrecedence(op) {
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
+const additiveOperators = ["+", "-"];
 const multiplicativeOperators = ["*", "/", "%"];
 const bitshiftOperators = [">>", "<<"];
 
 function shouldFlatten(parentOp, nodeOp) {
   if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
+    // x + y % z --> (x + y) % z
+    if (nodeOp === "%" && !additiveOperators.includes(parentOp)) {
+      return true;
+    }
+
     return false;
   }
 
@@ -92,6 +98,16 @@ function shouldFlatten(parentOp, nodeOp) {
   if (
     (nodeOp === "%" && multiplicativeOperators.includes(parentOp)) ||
     (parentOp === "%" && multiplicativeOperators.includes(nodeOp))
+  ) {
+    return false;
+  }
+
+  // x * y / z --> (x * y) / z
+  // x / y * z --> (x / y) * z
+  if (
+    nodeOp !== parentOp &&
+    multiplicativeOperators.includes(nodeOp) &&
+    multiplicativeOperators.includes(parentOp)
   ) {
     return false;
   }
@@ -219,7 +235,7 @@ function isFirstChildrenInlineNode(path) {
  * appear as function arguments or array elements
  */
 function docShouldHaveTrailingNewline(path) {
-  return ["entry"].includes(path.getParentNode().kind);
+  return ["array"].includes(path.getParentNode().kind);
 }
 
 function lineShouldEndWithSemicolon(path) {
@@ -310,30 +326,27 @@ function fileShouldEndWithHardline(path) {
   const node = path.getValue();
   const isProgramNode = node.kind === "program";
   const lastNode = node.children && getLast(node.children);
+
   if (!isProgramNode) {
     return false;
   }
-  if (
-    lastNode &&
-    lastNode.kind === "inline" &&
-    lastNode.raw[lastNode.raw.length - 1] === "\n"
-  ) {
+
+  if (lastNode && lastNode.kind === "inline") {
     return false;
   }
+
   if (
     lastNode &&
     (lastNode.kind === "declare" || lastNode.kind === "namespace")
   ) {
     const lastNestedNode =
       lastNode.children.length > 0 && getLast(lastNode.children);
-    if (
-      lastNestedNode &&
-      lastNestedNode.kind === "inline" &&
-      lastNestedNode.raw[lastNestedNode.raw.length - 1] === "\n"
-    ) {
+
+    if (lastNestedNode && lastNestedNode.kind === "inline") {
       return false;
     }
   }
+
   return true;
 }
 
@@ -360,7 +373,7 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some(comment => comment.trailing);
 }
 
-function isMemberish(node) {
+function isLookupNode(node) {
   return (
     node.kind === "propertylookup" ||
     node.kind === "staticlookup" ||
@@ -400,13 +413,7 @@ function getAlignment(text) {
   const lines = text.split("\n");
   const lastLine = lines.pop();
 
-  let alignment = lastLine.length + 1;
-
-  if (lastLine.trim().length !== 0) {
-    alignment = lastLine.replace(/\S/g, "").length;
-  }
-
-  return alignment;
+  return lastLine.length - lastLine.trimLeft().length + 1;
 }
 
 function getFirstNestedChildNode(node) {
@@ -429,6 +436,16 @@ function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
 
+// Return `logical` value for `bin` node containing `||` or `&&` type otherwise return kind of node.
+// Require for grouping logical and binary nodes in right way.
+function getNodeKindIncludingLogical(node) {
+  if (node.kind === "bin" && ["||", "&&"].includes(node.type)) {
+    return "logical";
+  }
+
+  return node.kind;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -447,11 +464,12 @@ module.exports = {
   hasLeadingComment,
   hasTrailingComment,
   docShouldHaveTrailingNewline,
-  isMemberish,
+  isLookupNode,
   isFirstChildrenInlineNode,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
   getFirstNestedChildNode,
   getLastNestedChildNode,
-  isProgramLikeNode
+  isProgramLikeNode,
+  getNodeKindIncludingLogical
 };

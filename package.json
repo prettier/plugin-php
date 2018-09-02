@@ -1,6 +1,6 @@
 {
   "name": "@prettier/plugin-php",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "mem": "^3.0.1",
-    "php-parser": "glayzzle/php-parser#a6fe467a24dd98aff3102234107dab2fa2986743"
+    "php-parser": "3.0.0-alpha.3"
   },
   "devDependencies": {
     "eslint": "4.1.1",

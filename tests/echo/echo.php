@@ -61,3 +61,107 @@ echo "\n\n";
 echo "Foo", f("bar"), "Foo";
 
 echo "Loop start!\n", sleep(1);
+
+echo esc_html(
+    sprintf(
+        __(
+            'Hi there. Your recent order on %s has been completed. ' .
+            'Your order details are shown below for your reference:',
+            'woocommerce'
+        ),
+        get_option('blogname')
+    )
+);
+echo esc_html(
+    sprintf(
+        __(
+            'Hi there. Your recent order on %s has been completed. ' .
+            'Your order details are shown below for your reference:',
+            'woocommerce'
+        ),
+        get_option('blogname')
+    )
+) . "\n\n";
+echo esc_html(
+    sprintf(
+        __(
+            'Hi there. Your recent order on %s has been completed. ' .
+            'Your order details are shown below for your reference:',
+            'woocommerce'
+        ),
+        get_option('blogname')
+    )
+) . "\n\n", "string";
+echo esc_html(
+        sprintf(
+            __(
+                'Hi there. Your recent order on %s has been completed. ' .
+                'Your order details are shown below for your reference:',
+                'woocommerce'
+            ),
+            get_option('blogname')
+        )
+    ) . "\n\n", "string" . "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+echo esc_html(
+        sprintf(
+            __(
+                'Hi there. Your recent order on %s has been completed. ' .
+                'Your order details are shown below for your reference:',
+                'woocommerce'
+            ),
+            get_option('blogname')
+        )
+    ), "string", "string";
+echo esc_html(
+    sprintf(
+        __(
+            'Hi there. Your recent order on %s has been completed. ' .
+            'Your order details are shown below for your reference:',
+            'woocommerce'
+        ),
+        get_option('blogname')
+    )
+),
+    esc_html(
+        sprintf(
+            __(
+                'Hi there. Your recent order on %s has been completed. ' .
+                'Your order details are shown below for your reference:',
+                'woocommerce'
+            ),
+            get_option('blogname')
+        )
+    );
+echo esc_html(
+        sprintf(
+            __(
+                'Hi there. Your recent order on %s has been completed. ' .
+                'Your order details are shown below for your reference:',
+                'woocommerce'
+            ),
+            get_option('blogname')
+        )
+    ),
+    "string",
+    esc_html(
+        sprintf(
+            __(
+                'Hi there. Your recent order on %s has been completed. ' .
+                'Your order details are shown below for your reference:',
+                'woocommerce'
+            ),
+            get_option('blogname')
+        )
+    );
+
+echo <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+echo <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;

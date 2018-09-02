@@ -86,7 +86,9 @@ class ImplementingClass
 
 class ShortImplementingClass
 {
-    use testTrait { A::testFunction insteadof C; }
+    use testTrait {
+        A::testFunction insteadof C;
+    }
 }
 
 class Partial

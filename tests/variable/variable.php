@@ -38,3 +38,5 @@ $var = ($$foo)['bar']['baz'];
 $var = ($foo->$bar)['baz'];
 $var = ($foo->$bar)['baz']();
 $var = (Foo::$bar)['baz']();
+
+$$$$$$$$$$var = "I like playing in the park";

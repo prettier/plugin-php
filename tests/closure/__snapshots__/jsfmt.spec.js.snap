@@ -127,6 +127,11 @@ $rTDWLU = function(array $array) use ($longLongLongLongLongLongLongVar1, $longer
     return array_sum($array);
 };
 
+$var = function &() {
+    static $collection = array();
+
+    return $collection;
+};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -251,6 +256,12 @@ $rTDWLU = function (array $array) use (
     $muchLongerVar3
 ): int {
     return array_sum($array);
+};
+
+$var = function &() {
+    static $collection = array();
+
+    return $collection;
 };
 
 `;

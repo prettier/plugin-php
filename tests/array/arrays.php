@@ -391,3 +391,69 @@ $arr = [
             return "other-value";
         }
 ];
+
+$singleLine = [ 'do' => [ 'collapse' => 'this' ]];
+$singleLine = array('do' => array('collapse' => 'this'));
+
+$multiline = [
+  'do' => [
+    'not' => 'collapse'
+  ]
+];
+$multiline = ['don\'t' => 'collapse'
+];
+$multiline = array('don\'t' => 'collapse'
+);
+
+$mixed = [
+  'only' => [ 'partly' => 'collapsed' ]
+];
+$mixed = [ 'only' => [
+  'partly' => ['coll', 'apsed']
+]];
+
+$arr = array($var
+);
+$arr = array(
+$var);
+$arr = [$var
+];
+$arr = [
+$var];
+$arr = [$foo => $bar];
+$arr = [$foo =>
+$bar];
+
+$collapse = [
+  "not",
+  "associative"
+];
+$collapse = ["not", "associative"
+];
+
+$array = [
+    'key-one' => true ? 1 : 2,
+    'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' ? 1 : 2,
+    'key-two' => true ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' : 2,
+    'key-two' => true ? 1 : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+    'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+            'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+            'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+];
+
+$array = [
+    'key' => 1,
+    'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
+    'key' => 'string',
+    'key' => __LINE__,
+    'key' => "string ${var} {$var}",
+    'key' => 'string
+string
+              string',
+    'key' => 'string' . 'other-string',
+    'key' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+];
