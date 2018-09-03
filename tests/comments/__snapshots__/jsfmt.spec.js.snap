@@ -1356,9 +1356,9 @@ include // Comment
 
 // Comment
 include // Comment
-    // Comment
-    "test.php"; // Comment
-    // Comment // Comment
+// Comment
+"test.php"; // Comment
+// Comment // Comment
 
 `;
 

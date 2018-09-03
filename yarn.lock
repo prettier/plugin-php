@@ -2958,9 +2958,9 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-php-parser@3.0.0-alpha.3:
-  version "3.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.0-alpha.3.tgz#584c32e8e48e88be95b9aab4670f898e36a0e1f1"
+php-parser@3.0.0-prerelease.1:
+  version "3.0.0-prerelease.1"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.0-prerelease.1.tgz#3d5e30fdae7510c7767b7463c898ec6ee39c32f0"
 
 pify@3.0.0, pify@^3.0.0:
   version "3.0.0"

@@ -24,6 +24,7 @@ const {
   getNextNonSpaceNonCommentCharacterIndex
 } = require("prettier").util;
 const comments = require("./comments");
+const pathNeedsParens = require("./needs-parens");
 
 const {
   getLast,
@@ -68,7 +69,7 @@ function genericPrint(path, options, print) {
     return node;
   }
 
-  const printed = printNode(path, options, print);
+  const printedWithoutParens = printNode(path, options, print);
 
   if (
     node.kind === "program" &&
@@ -79,14 +80,31 @@ function genericPrint(path, options, print) {
   }
 
   if (node.kind === "inline") {
-    return printed;
+    return printedWithoutParens;
   }
 
-  return concat([
-    printed,
-    lineShouldEndWithSemicolon(path) ? ";" : "",
-    fileShouldEndWithHardline(path) ? hardline : ""
-  ]);
+  const parts = [];
+  const needsParens = pathNeedsParens(path, options);
+
+  if (needsParens) {
+    parts.unshift("(");
+  }
+
+  parts.push(printedWithoutParens);
+
+  if (needsParens) {
+    parts.push(")");
+  }
+
+  if (lineShouldEndWithSemicolon(path)) {
+    parts.push(";");
+  }
+
+  if (fileShouldEndWithHardline(path)) {
+    parts.push(hardline);
+  }
+
+  return concat(parts);
 }
 
 function printPropertyLookup(path, options, print) {
@@ -217,6 +235,7 @@ function printMemberChain(path, options, print) {
 
       printedNodes.unshift({
         node,
+        needsParens: pathNeedsParens(path, options),
         printed: printedMemberish
       });
       path.call(what => traverse(what), "what");
@@ -363,7 +382,25 @@ function printMemberChain(path, options, print) {
     groups.length >= 2 && !groups[1][0].node.comments && shouldNotWrap(groups);
 
   function printGroup(printedGroup) {
-    return concat(printedGroup.map(tuple => tuple.printed));
+    const result = [];
+
+    for (let i = 0; i < printedGroup.length; i++) {
+      // Checks if the next node (i.e. the parent node) needs parens
+      // and print accordingl y
+      if (printedGroup[i + 1] && printedGroup[i + 1].needsParens) {
+        result.push(
+          "(",
+          printedGroup[i].printed,
+          printedGroup[i + 1].printed,
+          ")"
+        );
+        i++;
+      } else {
+        result.push(printedGroup[i].printed);
+      }
+    }
+
+    return concat(result);
   }
 
   function printIndentedGroup(groups) {
@@ -669,10 +706,6 @@ function printBinaryExpression(
   const node = path.getValue();
 
   if (node.kind === "bin") {
-    const rightNode =
-      node.right.kind === "parenthesis" ? node.right.inner : node.right;
-    const leftNode =
-      node.left.kind === "parenthesis" ? node.left.inner : node.left;
     // Put all operators with the same precedence level in the same
     // group. The reason we only need to do this with the `left`
     // expression is because given an expression like `1 + 2 - 3`, it
@@ -682,7 +715,7 @@ function printBinaryExpression(
     // precedence level and should be treated as a separate group, so
     // print them normally. (This doesn't hold for the `**` operator,
     // which is unique in that it is right-associative.)
-    if (shouldFlatten(node.type, leftNode.type)) {
+    if (shouldFlatten(node.type, node.left.type)) {
       // Flatten them out by recursively calling this function.
       parts = parts.concat(
         path.call(
@@ -710,14 +743,13 @@ function printBinaryExpression(
     // If there's only a single binary expression, we want to create a group
     // in order to avoid having a small right part like -1 be on its own line.
     const parent = path.getParentNode();
-    const pureParent = parent.kind === "parenthesis" ? parent.inner : parent;
     const shouldGroup =
       !(isInsideParenthesis && ["||", "&&"].includes(node.type)) &&
-      getNodeKindIncludingLogical(pureParent) !==
+      getNodeKindIncludingLogical(parent) !==
         getNodeKindIncludingLogical(node) &&
-      getNodeKindIncludingLogical(leftNode) !==
+      getNodeKindIncludingLogical(node.left) !==
         getNodeKindIncludingLogical(node) &&
-      getNodeKindIncludingLogical(rightNode) !==
+      getNodeKindIncludingLogical(node.right) !==
         getNodeKindIncludingLogical(node);
 
     parts.push(" ", shouldGroup ? group(right) : right);
@@ -1770,7 +1802,6 @@ function printNode(path, options, print) {
     case "retif": {
       const parts = [];
       const parent = path.getParentNode();
-      const parentParentNode = path.getParentNode(1);
 
       // Find the outermost non-retif parent, and the outermost retif parent.
       let currentParent;
@@ -1814,20 +1845,13 @@ function printNode(path, options, print) {
       //   : $c
       // )->call()
       const breakLookupNodes = ["propertylookup", "staticlookup"];
-      const breakClosingParens =
-        breakLookupNodes.includes(parent.kind) ||
-        (parent.kind === "parenthesis" &&
-          parentParentNode &&
-          breakLookupNodes.includes(parentParentNode.kind));
+      const breakClosingParens = breakLookupNodes.includes(parent.kind);
 
       const printedTest = path.call(print, "test");
 
       return maybeGroup(
         concat([
-          node.test.kind === "retif" ||
-          (node.test.kind === "parenthesis" && node.test.inner.kind === "retif")
-            ? indent(printedTest)
-            : printedTest,
+          node.test.kind === "retif" ? indent(printedTest) : printedTest,
           indent(concat(parts)),
           breakClosingParens ? softline : ""
         ])
@@ -2200,12 +2224,8 @@ function printNode(path, options, print) {
       //     c
       //   ).call()
       if (
-        parent.kind === "parenthesis" &&
-        parentParent &&
-        (parentParent.kind === "unary" ||
-          (parentParent &&
-            isLookupNode(parentParent) &&
-            parentParent.kind !== "offsetlookup"))
+        parent.kind === "unary" ||
+        (isLookupNode(parent) && parent.kind !== "offsetlookup")
       ) {
         return group(
           concat([indent(concat([softline, concat(parts)])), softline])
@@ -2216,9 +2236,6 @@ function printNode(path, options, print) {
       // indented accordingly. We should indent sub-expressions where the first case isn't indented.
       const shouldNotIndent =
         parent.kind === "return" ||
-        (parent.kind === "parenthesis" &&
-          parentParent &&
-          parentParent.kind === "return") ||
         (node !== parent.body && parent.kind === "for") ||
         (parent.kind === "retif" &&
           (parentParent && parentParent.kind !== "return"));
@@ -2246,58 +2263,6 @@ function printNode(path, options, print) {
           // left-most expression.
           parts.length > 0 ? parts[0] : "",
           indent(rest)
-        ])
-      );
-    }
-    case "parenthesis": {
-      const parentNode = path.getParentNode();
-
-      if (parentNode && parentNode.kind === "parenthesis") {
-        return path.call(print, "inner");
-      }
-
-      const shouldPrintParenthesis =
-        parentNode.kind !== "print" &&
-        parentNode.kind !== "echo" &&
-        parentNode.kind !== "include";
-      const shouldBeInlined =
-        node.inner.kind === "new" ||
-        node.inner.kind === "clone" ||
-        node.inner.kind === "retif" ||
-        parentNode.kind !== "return";
-      // don't break if this is a property lookup - ie
-      // ($someThing
-      //    ? $someOtherThing
-      //    : $someOtherOtherThing
-      //  )
-      //    ->hi()
-      //    ->other();
-      // however, make sure to break for bin, since its reliant on the parens indentation
-      // (
-      //    $someThing &&
-      //    $someOtherThing
-      //  )->map();
-      const printedContents = path.call(print, "inner");
-      const shouldAddEndBreak = !shouldBeInlined || willBreak(printedContents);
-      const dangling = comments.printDanglingComments(path, options, true);
-
-      const printedBefore = shouldPrintParenthesis
-        ? concat(["(", shouldAddEndBreak ? softline : ""])
-        : "";
-      const printedInner = concat([
-        dangling ? concat([dangling, hardline]) : "",
-        printedContents
-      ]);
-      const printedAfter = shouldPrintParenthesis
-        ? concat([shouldAddEndBreak ? softline : "", ")"])
-        : "";
-
-      return group(
-        concat([
-          shouldAddEndBreak
-            ? indent(concat([printedBefore, printedInner]))
-            : concat([printedBefore, printedInner]),
-          printedAfter
         ])
       );
     }
@@ -2444,10 +2409,6 @@ function printNode(path, options, print) {
       ]);
     case "break":
       if (node.level) {
-        while (node.level.kind == "parenthesis") {
-          node.level = node.level.inner;
-        }
-
         if (node.level.kind == "number" && node.level.value != 1) {
           return concat(["break ", path.call(print, "level")]);
         }
@@ -2458,10 +2419,6 @@ function printNode(path, options, print) {
       return "break";
     case "continue":
       if (node.level) {
-        while (node.level.kind == "parenthesis") {
-          node.level = node.level.inner;
-        }
-
         if (node.level.kind == "number" && node.level.value != 1) {
           return concat(["continue ", path.call(print, "level")]);
         }
@@ -2478,7 +2435,16 @@ function printNode(path, options, print) {
       if (node.expr) {
         const printedExpr = path.call(print, "expr");
 
-        if (node.expr.kind === "bin") {
+        if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
+          parts.push(
+            concat([
+              " (",
+              indent(concat([hardline, printedExpr])),
+              hardline,
+              ")"
+            ])
+          );
+        } else if (node.expr.kind === "bin") {
           parts.push(
             group(
               concat([

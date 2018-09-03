@@ -44,7 +44,7 @@ echo $some_var ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString
 echo 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000;
 echo (1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000 + 1000000000);
 echo (1000000000), ('String'), $object->property, $object->method(), method(), ($foo ? true : false);
-echo (1000000000 . 'String'), $object->property + $object->method(), method((method('string'))), ($foo ? ($bar . 'foo') + 'test' : false);
+echo (1000000000 . 'String'), $object->property + $object->method(), method((method('string'))), ($foo ? ($bar . 'foo') . 'test' : false);
 
 echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 

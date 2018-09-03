@@ -116,8 +116,9 @@ $test = $foo
         $someOtherReallyReallyLongVariable,
         $someOtherReallyReallyLongVariable
     );
-$test = ($testReallyReallyReallyReallyReallyReallyLong >= 1)
-    ?: $someOtherReallyReallyReallyReallyReallyReallyLongVariable;
+$test =
+    ($testReallyReallyReallyReallyReallyReallyLong >= 1)
+        ?: $someOtherReallyReallyReallyReallyReallyReallyLongVariable;
 $test = $foo ?: bar(['foo' => 'bar', 'bar' => 'foo']);
 $test = $foo
     ?: bar([

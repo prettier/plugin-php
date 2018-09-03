@@ -379,6 +379,17 @@ function printComments(comments, options) {
   return concat(parts);
 }
 
+// This recurses the return argument, looking for the first token
+// (the leftmost leaf node) and, if it (or its parents) has any
+// leadingComments, returns true (so it can be wrapped in parens).
+function returnArgumentHasLeadingComment(options, argument) {
+  if (hasLeadingOwnLineComment(options.originalText, argument, options)) {
+    return true;
+  }
+
+  return false;
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
@@ -387,5 +398,6 @@ module.exports = {
   hasLeadingComment,
   hasTrailingComment,
   hasLeadingOwnLineComment,
-  printComments
+  printComments,
+  returnArgumentHasLeadingComment
 };
