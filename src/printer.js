@@ -1838,19 +1838,16 @@ function printNode(path, options, print) {
     case "global":
       return group(
         concat([
-          "global",
-          indent(
-            concat([" ", join(concat([",", line]), path.map(print, "items"))])
-          )
+          "global ",
+          indent(concat([join(concat([",", line]), path.map(print, "items"))]))
         ])
       );
     case "static":
       return group(
         concat([
-          "static",
+          "static ",
           indent(
             concat([
-              " ",
               join(
                 concat([",", line]),
                 path.map(item => {
