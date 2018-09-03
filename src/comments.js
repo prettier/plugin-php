@@ -8,7 +8,8 @@ const {
   isNextLineEmpty
 } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
-
+// TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
+const { hasNewline } = require("./util");
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
 with information about where those comment nodes exist in the tree (ie enclosingNode,
@@ -355,6 +356,15 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some(comment => comment.trailing);
 }
 
+function hasLeadingOwnLineComment(text, node, options) {
+  return (
+    node.comments &&
+    node.comments.some(
+      comment => comment.leading && hasNewline(text, options.locEnd(comment))
+    )
+  );
+}
+
 function printComments(comments, options) {
   const parts = [];
   comments.forEach((comment, index, comments) => {
@@ -378,5 +388,6 @@ module.exports = {
   printDanglingComments,
   hasLeadingComment,
   hasTrailingComment,
+  hasLeadingOwnLineComment,
   printComments
 };
