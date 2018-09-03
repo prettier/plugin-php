@@ -939,6 +939,9 @@ foreach([1,2,3] as $i)
 for($i = 1; $i < 10; $i++)
     // this comment will screw things up
     echo $i;
+
+for (;;) { // Comment
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -968,6 +971,10 @@ for ($i = 1; $i < 10; $i++) {
     echo $i;
 }
 
+for (;;) {
+    // Comment
+}
+
 `;
 
 exports[`foreach.php 1`] = `
@@ -983,6 +990,25 @@ foreach ($iterable as $value) { // Comment
 foreach (/* Comments */ $iterable /* Comments */ as /* Comments */ $value /* Comments */) {}
 
 foreach (/* Comments */ $iterable /* Comments */ as /* Comments */ $key /* Comments */ => /* Comments */ $value /* Comments */) {}
+
+foreach ($x
+/*a*/
+as //b
+$y) //c
+{};
+
+foreach ($x as /*a*/ //b
+$y) {}; //c
+
+foreach ($x /*a*/ as $y) {}; //b //c
+
+foreach ($x
+//a
+as $y) {};
+
+foreach($x as
+//a
+$y) {};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -993,18 +1019,41 @@ foreach ($iterable as $value) {
     // Comment
 } // Comment
 
-foreach ($iterable as $value) {/* Comments */
-    /* Comments */
-    /* Comments */
-    /* Comments */
+foreach (
+    /* Comments */ $iterable /* Comments */
+    as /* Comments */ $value /* Comments */
+) {
 }
 
-foreach ($iterable as $key => $value) {/* Comments */
-    /* Comments */
-    /* Comments */
-    /* Comments */
-    /* Comments */
-    /* Comments */
+foreach (
+    /* Comments */ $iterable /* Comments */
+    as /* Comments */ $key /* Comments */ =>
+        /* Comments */ $value /* Comments */
+) {
+}
+
+/*a*/
+foreach (
+    $x //b
+    as $y //c
+) {
+}
+
+foreach (
+    $x /*a*/ //b
+    as $y
+) {
+} //c
+
+foreach ($x /*a*/ as $y) {
+} //b //c
+
+//a
+foreach ($x as $y) {
+}
+
+//a
+foreach ($x as $y) {
 }
 
 `;

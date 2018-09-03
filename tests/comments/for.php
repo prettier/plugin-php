@@ -23,3 +23,6 @@ foreach([1,2,3] as $i)
 for($i = 1; $i < 10; $i++)
     // this comment will screw things up
     echo $i;
+
+for (;;) { // Comment
+}

@@ -27,12 +27,12 @@ args:
 */
 
 const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
-  const { enclosingNode } = comment;
+  const { precedingNode, enclosingNode, followingNode } = comment;
   return (
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
-    handleForLoop(comment) ||
+    handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
     handleTryCatch(comment) ||
     handleAlternate(comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
@@ -46,7 +46,6 @@ const handleEndOfLineComment = (comment, text, options, ast, isLastComment) => {
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
-    handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
@@ -58,7 +57,6 @@ const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
     handleClass(comment) ||
     handleFunctionParameter(comment, text, options) ||
     handleFunction(comment, text, options) ||
-    handleForLoop(comment) ||
     handleTryCatch(comment) ||
     handleBreakAndContinueStatementComments(comment) ||
     handleGoto(comment) ||
@@ -68,26 +66,26 @@ const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
   );
 };
 
-const handleForLoop = comment => {
-  const { enclosingNode, followingNode } = comment;
+const handleForComments = (
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment
+) => {
   if (
     enclosingNode &&
     (enclosingNode.kind === "for" || enclosingNode.kind === "foreach")
   ) {
+    // For a shortform for loop (where the body is just one node), add
+    // this as a leading comment to the body
     if (enclosingNode.body && enclosingNode.body.kind !== "block") {
-      // for a shortform for loop (where the body is just one node), add
-      // this as a leading comment to the body
       addLeadingComment(followingNode, comment);
-      return true;
-    } else if (
-      // for an empty for loop where the body is only made up of comments, we
-      // need to attach this as a dangling comment on the for loop itself
-      !(enclosingNode.body && enclosingNode.body.children.length > 0)
-    ) {
-      addDanglingComment(enclosingNode, comment);
-      return true;
+    } else {
+      addLeadingComment(enclosingNode, comment);
     }
+    return true;
   }
+
   return false;
 };
 
