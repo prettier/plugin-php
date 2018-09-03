@@ -315,6 +315,15 @@ const printers = {
         default:
           throw new Error(`Not a comment: ${JSON.stringify(comment)}`);
       }
+    },
+    hasPrettierIgnore(path) {
+      const node = path.getNode();
+      return (
+        node &&
+        node.comments &&
+        node.comments.length > 0 &&
+        node.comments.some(comment => comment.value.includes("prettier-ignore"))
+      );
     }
   }
 };
