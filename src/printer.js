@@ -1422,7 +1422,17 @@ function printNode(path, options, print) {
           node.isStatic ? "static " : "",
           "$",
           node.name,
-          node.value ? concat([" = ", path.call(print, "value")]) : ""
+          node.value
+            ? concat([
+                " =",
+                printAssignmentRight(
+                  node.name,
+                  node.value,
+                  path.call(print, "value"),
+                  options
+                )
+              ])
+            : ""
         ])
       );
     case "interface":
