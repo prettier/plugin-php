@@ -1168,7 +1168,13 @@ function isLookupNodeChain(node) {
   return isLookupNodeChain(node.what);
 }
 
-function printAssignmentRight(leftNode, rightNode, printedRight) {
+function printAssignmentRight(leftNode, rightNode, printedRight, options) {
+  if (
+    comments.hasLeadingOwnLineComment(options.originalText, rightNode, options)
+  ) {
+    return indent(concat([hardline, printedRight]));
+  }
+
   const canBreak =
     (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
     (rightNode.kind === "retif" &&
@@ -1491,7 +1497,8 @@ function printNode(path, options, print) {
         path.call(print, "left"),
         concat([" ", node.operator]),
         node.right,
-        path.call(print, "right")
+        path.call(print, "right"),
+        options
       );
     }
     case "if": {
