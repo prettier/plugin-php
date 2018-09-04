@@ -1563,66 +1563,105 @@ function printNode(path, options, print) {
     case "for": {
       const body = printBodyControlStructure(path, print, "body", options);
 
+      // We want to keep dangling comments above the loop to stay consistent.
+      // Any comment positioned between the for statement and the parentheses
+      // is going to be printed before the statement.
+      const dangling = comments.printDanglingComments(
+        path,
+        options,
+        /* sameLine */ true
+      );
+      const printedComments = dangling ? concat([dangling, softline]) : "";
+
       if (!node.init.length && !node.test.length && !node.increment.length) {
-        return concat([group(concat(["for (;;)", body]))]);
+        return concat([printedComments, group(concat(["for (;;)", body]))]);
       }
 
       return concat([
-        "for (",
+        printedComments,
         group(
           concat([
-            indent(
+            "for (",
+            group(
               concat([
-                softline,
-                group(
-                  concat([join(concat([",", line]), path.map(print, "init"))])
+                indent(
+                  concat([
+                    softline,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "init"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      concat([
+                        join(concat([",", line]), path.map(print, "test"))
+                      ])
+                    ),
+                    ";",
+                    line,
+                    group(
+                      join(concat([",", line]), path.map(print, "increment"))
+                    )
+                  ])
                 ),
-                ";",
-                line,
-                group(
-                  concat([join(concat([",", line]), path.map(print, "test"))])
-                ),
-                ";",
-                line,
-                group(join(concat([",", line]), path.map(print, "increment")))
+                softline
               ])
             ),
-            softline
+            ")",
+            body
           ])
-        ),
-        ")",
-        body
+        )
       ]);
     }
-    case "foreach":
+    case "foreach": {
+      const body = printBodyControlStructure(path, print, "body", options);
+
+      // We want to keep dangling comments above the loop to stay consistent.
+      // Any comment positioned between the for statement and the parentheses
+      // is going to be printed before the statement.
+      const dangling = comments.printDanglingComments(
+        path,
+        options,
+        /* sameLine */ true
+      );
+      const printedComments = dangling ? concat([dangling, softline]) : "";
+
       return concat([
-        "foreach (",
+        printedComments,
         group(
           concat([
-            indent(
+            "foreach (",
+            group(
               concat([
-                softline,
-                path.call(print, "source"),
-                line,
-                "as ",
-                group(
-                  node.key
-                    ? indent(
-                        join(concat([" =>", line]), [
-                          path.call(print, "key"),
-                          path.call(print, "value")
-                        ])
-                      )
-                    : path.call(print, "value")
-                )
+                indent(
+                  concat([
+                    softline,
+                    path.call(print, "source"),
+                    line,
+                    "as ",
+                    group(
+                      node.key
+                        ? indent(
+                            join(concat([" =>", line]), [
+                              path.call(print, "key"),
+                              path.call(print, "value")
+                            ])
+                          )
+                        : path.call(print, "value")
+                    )
+                  ])
+                ),
+                softline
               ])
             ),
-            softline
+            ")",
+            body
           ])
-        ),
-        ")",
-        printBodyControlStructure(path, print, "body", options)
+        )
       ]);
+    }
     case "switch":
       return concat([
         group(
