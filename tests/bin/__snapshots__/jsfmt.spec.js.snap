@@ -449,7 +449,7 @@ if (
 echo 'This ' .
     'string' .
     'string' .
-    ('string') .
+    'string' .
     'string' .
     (100 + 100) .
     'string ' .

@@ -27,7 +27,7 @@ return ((($true ? ('foo' . ('foo'. 'bar')) : "foobarfoo")));
 
 function sum($a, $b)
 {
-    return ($a + $b);
+    return $a + $b;
 }
 
 return;
@@ -40,9 +40,9 @@ return [
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
     3
 ];
-return ($a + $b);
-return ($a / $b);
-return ($a && $b);
+return $a + $b;
+return $a / $b;
+return $a && $b;
 return new $VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName();
 return (
     "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
@@ -83,6 +83,6 @@ return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
     ? true
     : false;
 return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
-return ($true ? ('foo' . ('foo' . 'bar')) : "foobarfoo");
+return $true ? ('foo' . ('foo' . 'bar')) : "foobarfoo";
 
 `;

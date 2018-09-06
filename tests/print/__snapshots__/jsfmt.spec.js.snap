@@ -99,7 +99,7 @@ line with just a semicolon no extra whitespace!
 END;
 
 // However, the following examples will work:
-($some_var) ? print 'true' : print 'false';
+$some_var ? print 'true' : print 'false';
 // print is also a construct, but
 // it behaves like a function, so
 // it may be used in this context.
