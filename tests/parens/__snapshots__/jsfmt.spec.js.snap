@@ -187,6 +187,22 @@ $var = (true and false);
 
 `;
 
+exports[`block.php 1`] = `
+<?php
+
+function foo() {
+    ($a->c());
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+function foo()
+{
+    $a->c();
+}
+
+`;
+
 exports[`control-structures.php 1`] = `
 <?php
 
