@@ -25,3 +25,14 @@
     ['foo' => 'bar']
 ))
 ?>
+<?php
+
+$var = new Foo();
+$var = (new Foo());
+$var = (new Foo())->c();
+$var = (new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
