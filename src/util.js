@@ -38,8 +38,6 @@ const PRECEDENCE = {};
     "<<=",
     ">>="
   ],
-  ["?:"],
-  ["??"],
   ["||"],
   ["&&"],
   ["|"],
@@ -52,9 +50,7 @@ const PRECEDENCE = {};
   ["*", "/", "%"],
   ["!"],
   ["++", "--", "~"],
-  ["**"],
-  ["["],
-  ["clone", "new"]
+  ["**"]
 ].forEach((tier, i) => {
   tier.forEach(op => {
     PRECEDENCE[op] = i;
