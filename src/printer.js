@@ -2062,18 +2062,7 @@ function printNode(path, options, print) {
     case "unset":
     case "empty":
       return group(
-        concat([
-          node.kind,
-          "(",
-          indent(
-            concat([
-              softline,
-              join(concat([",", line]), path.map(print, "arguments"))
-            ])
-          ),
-          softline,
-          ")"
-        ])
+        concat([node.kind, printArgumentsList(path, options, print)])
       );
     case "variable":
       return concat([
