@@ -51,3 +51,8 @@ EOD
 
 $var = ($var);
 $var = ($$var);
+
+function foo($a = (1), $b = ('string'), $c = (true), $d = (__LINE__))
+{
+    echo "Example function.\n";
+}
