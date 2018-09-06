@@ -402,6 +402,17 @@ exports[`new.php 1`] = `
     ['foo' => 'bar']
 ))
 ?>
+<?php
+
+$var = new Foo();
+$var = (new Foo());
+$var = (new Foo())->c();
+$var = (new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Translator(
@@ -420,8 +431,18 @@ new Translator(
 ); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
-]);
-?>
+]); ?>
+<?php
+$var = new Foo();
+$var = new Foo();
+$var = (new Foo())->c();
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+
 
 `;
 

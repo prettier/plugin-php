@@ -1,5 +1,7 @@
 "use strict";
 
+const { isLookupNode } = require("./util");
+
 function needsParens(path) {
   const parent = path.getParentNode();
 
@@ -38,8 +40,16 @@ function needsParens(path) {
           );
         case "bin":
           return parent.type === "**" && name === "left";
+        default:
+          return false;
       }
-    // else fallthrough
+    case "new": {
+      if (isLookupNode(parent)) {
+        return true;
+      }
+
+      return false;
+    }
     case "boolean":
     case "string":
     case "number":
