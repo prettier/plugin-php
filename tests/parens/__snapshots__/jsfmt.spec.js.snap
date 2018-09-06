@@ -118,10 +118,10 @@ $var = --$var;
 $var = (--$var);
 
 $var = ~$var;
-$var = (~$var);
+$var = ~$var;
 
 $var = !$var;
-$var = (!$var);
+$var = !$var;
 
 $var = $var += 10;
 $var = ($var += 10);
@@ -387,6 +387,119 @@ include ($test ? 'foo' : 'bar');
 <?php
 include 'foo.php' . ($test ? 'foo' : 'bar');
 include $test ? 'foo' : 'bar';
+
+`;
+
+exports[`unary.php 1`] = `
+<?php
+
++$var;
++($var);
+(+$var);
+
+-$var;
+-($var);
+(-$var);
+
+~$var;
+~($var);
+(~$var);
+
+!$var;
+!($var);
+(!$var);
+
+!!$var;
+!(!$var);
+(!(!$var));
+(!!$var);
+
+$var = (+$var);
+$var = +(+$var);
+
+$var = (-$var);
+$var = -(-$var);
+
+$var = (~$var);
+$var = ~(~$var);
+
+$var = (!$var);
+$var = !(!$var);
+
+$a = +$a ** 1;
+$a = (+$a) ** 1;
+$a = 1 ** (+$a);
+
+$var = call(+$a);
+$var = call((+$a));
+
+$var = +($foo->bar);
+
+$var = +$var || +$var;
+$var = (+$var) || (+$var);
+$var = ((+$var) || (+$var));
+
+$var = -(+($var));
+
+$var = ~(+$var);
+
+$var = ~$var += 1;
+$var = ~($var += 1);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
++$var;
++$var;
++$var;
+
+-$var;
+-$var;
+-$var;
+
+~$var;
+~$var;
+~$var;
+
+!$var;
+!$var;
+!$var;
+
+!!$var;
+!!$var;
+!!$var;
+!!$var;
+
+$var = +$var;
+$var = +(+$var);
+
+$var = -$var;
+$var = -(-$var);
+
+$var = ~$var;
+$var = ~~$var;
+
+$var = !$var;
+$var = !!$var;
+
+$a = (+$a) ** 1;
+$a = (+$a) ** 1;
+$a = 1 ** +$a;
+
+$var = call(+$a);
+$var = call(+$a);
+
+$var = +($foo->bar);
+
+$var = +$var || +$var;
+$var = +$var || +$var;
+$var = (+$var || +$var);
+
+$var = -+$var;
+
+$var = ~+$var;
+
+$var = ~$var += 1;
+$var = ~($var += 1);
 
 `;
 

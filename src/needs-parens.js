@@ -7,6 +7,7 @@ function needsParens(path) {
     return false;
   }
 
+  const name = path.getName();
   const node = path.getNode();
 
   if (["include", "print", "return", "echo"].includes(parent.kind)) {
@@ -14,6 +15,17 @@ function needsParens(path) {
   }
 
   switch (node.kind) {
+    case "unary":
+      switch (parent.kind) {
+        case "unary":
+          return (
+            node.type === parent.type &&
+            (node.type === "+" || node.type === "-")
+          );
+        case "bin":
+          return parent.type === "**" && name === "left";
+      }
+    // else fallthrough
     case "boolean":
     case "string":
     case "number":
