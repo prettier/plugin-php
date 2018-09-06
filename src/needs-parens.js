@@ -16,6 +16,7 @@ function needsParens(path) {
       "program",
       "namespace",
       "declare",
+      "block",
 
       // No need parens
       "include",
