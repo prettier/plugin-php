@@ -23,6 +23,10 @@ function needsParens(path) {
     case "variable":
       return false;
     case "bin": {
+      if (["if", "while", "do", "switch", "case"].includes(parent.kind)) {
+        return false;
+      }
+
       // $var = false or true;
       // The constant false is assigned to $f before the "or" operation occurs
       // Acts like: (($var = false) or true)
