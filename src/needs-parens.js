@@ -13,19 +13,26 @@ function needsParens(path) {
     return false;
   }
 
-  if (
-    [
-      "boolean",
-      "string",
-      "number",
-      "inline",
-      "magic",
-      "nowdoc",
-      "encapsed",
-      "variable"
-    ].includes(node.kind)
-  ) {
-    return false;
+  switch (node.kind) {
+    case "boolean":
+    case "string":
+    case "number":
+    case "magic":
+    case "encapsed":
+    case "nowdoc":
+    case "variable":
+      return false;
+    case "bin": {
+      // $var = false or true;
+      // The constant false is assigned to $f before the "or" operation occurs
+      // Acts like: (($var = false) or true)
+      if (
+        node.right.kind === "bin" &&
+        ["and", "xor", "or"].includes(node.right.type)
+      ) {
+        return true;
+      }
+    }
   }
 
   return node.parenthesizedExpression;
