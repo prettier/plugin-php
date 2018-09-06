@@ -10,7 +10,20 @@ function needsParens(path) {
   const name = path.getName();
   const node = path.getNode();
 
-  if (["include", "print", "return", "echo"].includes(parent.kind)) {
+  if (
+    [
+      //  No need parens for top level children of this nodes
+      "program",
+      "namespace",
+      "declare",
+
+      // No need parens
+      "include",
+      "print",
+      "return",
+      "echo"
+    ].includes(parent.kind)
+  ) {
     return false;
   }
 

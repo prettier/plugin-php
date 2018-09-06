@@ -96,16 +96,16 @@ $var = (true and false);
 <?php
 
 $var = 1;
-($var = 1);
+$var = 1;
 $var = $var = 1;
 $var = ($var = 1);
-($var = $var = 1);
-($var = ($var = 1));
+$var = $var = 1;
+$var = ($var = 1);
 $var = $var = $var = $var;
 $var = $var = ($var = $var);
 $var = ($var = $var = $var);
 $var = ($var = ($var = $var));
-($var = ($var = ($var = $var)));
+$var = ($var = ($var = $var));
 
 $var = $var++;
 $var = ($var++);
@@ -328,6 +328,36 @@ while ($i++ < 5) {
 
 `;
 
+exports[`declare.php 1`] = `
+<?php
+
+declare(strict_types=1);
+
+($a->c());
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+$a->c();
+
+`;
+
+exports[`namespace.php 1`] = `
+<?php
+
+namespace Foo;
+
+($a->c());
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Foo;
+
+$a->c();
+
+`;
+
 exports[`new.php 1`] = `
 <?php
 (new Translator(
@@ -358,23 +388,23 @@ exports[`new.php 1`] = `
 ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-(new Translator(
+new Translator(
     $container,
     new MessageFormatter(),
     'en',
     array(),
     array('foo' => 'bar')
-)); ?>
-<?php (new Translator(
+); ?>
+<?php new Translator(
     $container,
     new MessageFormatter(),
     'en',
     $someOtherVar,
     array('foo' => 'bar')
-)); ?>
-<?php (new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
+); ?>
+<?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
-]));
+]);
 ?>
 
 `;
@@ -387,6 +417,17 @@ include ($test ? 'foo' : 'bar');
 <?php
 include 'foo.php' . ($test ? 'foo' : 'bar');
 include $test ? 'foo' : 'bar';
+
+`;
+
+exports[`program.php 1`] = `
+<?php
+
+($a->c());
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$a->c();
 
 `;
 
