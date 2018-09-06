@@ -1438,6 +1438,10 @@ function printNode(path, options, print) {
       ]);
 
       if (node.value) {
+        const isHeredocOrNowdocNode =
+          (node.value.kind === "encapsed" && node.value.type === "heredoc") ||
+          node.value.kind === "nowdoc";
+
         return group(
           concat([
             name,
@@ -1446,7 +1450,14 @@ function printNode(path, options, print) {
             // and value, we store them as dangling comments
             hasDanglingComments(node) ? " " : "",
             comments.printDanglingComments(path, options, true),
-            indent(concat([line, "= ", path.call(print, "value")]))
+            indent(
+              concat([
+                isHeredocOrNowdocNode ? " " : line,
+                "= ",
+                path.call(print, "value")
+              ])
+            ),
+            isHeredocOrNowdocNode ? hardline : ""
           ])
         );
       }
