@@ -47,6 +47,11 @@ function needsParens(path) {
             node.type === parent.type &&
             (node.type === "+" || node.type === "-")
           );
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return name === "what" && parent.what === node;
         case "bin":
           return parent.type === "**" && name === "left";
         default:
