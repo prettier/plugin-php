@@ -231,7 +231,7 @@ function isFirstChildrenInlineNode(path) {
  * appear as function arguments or array elements
  */
 function docShouldHaveTrailingNewline(path) {
-  return ["array"].includes(path.getParentNode().kind);
+  return ["array", "parameter"].includes(path.getParentNode().kind);
 }
 
 function lineShouldEndWithSemicolon(path) {

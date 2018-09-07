@@ -1638,8 +1638,7 @@ function bar(/* Comment */ &$a /* Comment */) {}
 
 function foo(
     /* Comment */ $a,
-    /* Comment */ array /* Comment */ $b /* Comment */
-        = /* Comment */ [] /* Comment */
+    /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */
 ) {
 }
 
