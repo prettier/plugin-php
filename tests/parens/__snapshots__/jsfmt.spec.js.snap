@@ -108,14 +108,14 @@ $var = ($var = ($var = $var));
 $var = ($var = ($var = $var));
 
 $var = $var++;
-$var = ($var++);
+$var = $var++;
 $var = ++$var;
-$var = (++$var);
+$var = ++$var;
 
 $var = $var--;
-$var = ($var--);
+$var = $var--;
 $var = --$var;
-$var = (--$var);
+$var = --$var;
 
 $var = ~$var;
 $var = ~$var;
@@ -454,6 +454,81 @@ include ($test ? 'foo' : 'bar');
 <?php
 include 'foo.php' . ($test ? 'foo' : 'bar');
 include $test ? 'foo' : 'bar';
+
+`;
+
+exports[`pre-post.php 1`] = `
+<?php
+
+++$var;
+(++$var);
+
+$var++;
+($var++);
+
+--$var;
+(--$var);
+
+$var--;
+($var--);
+
+$var = ++$var;
+$var = (++$var);
+
+$var = +(++$var);
+$var = -(++$var);
+$var = ~(++$var);
+
+$var = +($var++);
+$var = -($var++);
+$var = ~($var++);
+
+$var = ++$var ** 2;
+$var = (++$var) ** 2;
+
+$var = $var++ ** 2;
+$var = ($var++) ** 2;
+
+$var = +(+(++$var));
+$var = +(+($var++));
+$var = ~(-(++$var));
+$var = ~(-($var++));
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+++$var;
+++$var;
+
+$var++;
+$var++;
+
+--$var;
+--$var;
+
+$var--;
+$var--;
+
+$var = ++$var;
+$var = ++$var;
+
+$var = +(++$var);
+$var = -++$var;
+$var = ~++$var;
+
+$var = +($var++);
+$var = -$var++;
+$var = ~$var++;
+
+$var = (++$var) ** 2;
+$var = (++$var) ** 2;
+
+$var = ($var++) ** 2;
+$var = ($var++) ** 2;
+
+$var = +(+(++$var));
+$var = +(+($var++));
+$var = ~-++$var;
+$var = ~-$var++;
 
 `;
 

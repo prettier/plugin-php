@@ -31,6 +31,15 @@ function needsParens(path) {
   }
 
   switch (node.kind) {
+    case "pre":
+    case "post":
+      if (parent.kind === "unary") {
+        return (
+          (node.type === "+" && parent.type === "+") ||
+          (node.type === "-" && parent.type === "-")
+        );
+      }
+    // else fallthrough
     case "unary":
       switch (parent.kind) {
         case "unary":
@@ -59,6 +68,10 @@ function needsParens(path) {
     case "variable":
       return false;
     case "bin": {
+      if (["pre", "post"].includes(parent.kind)) {
+        return true;
+      }
+
       if (["if", "while", "do", "switch", "case"].includes(parent.kind)) {
         return false;
       }
