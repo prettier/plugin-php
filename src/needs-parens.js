@@ -73,6 +73,21 @@ function needsParens(path) {
 
       return false;
     }
+    case "yield": {
+      switch (parent.kind) {
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return name === "what" && parent.what === node;
+
+        case "retif":
+          return parent.test === node;
+
+        default:
+          return !!(node.key || node.value);
+      }
+    }
     case "assign": {
       if (
         parent.kind === "for" &&
