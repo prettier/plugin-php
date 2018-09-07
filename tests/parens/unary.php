@@ -52,3 +52,8 @@ $var = ~(+$var);
 
 $var = ~$var += 1;
 $var = ~($var += 1);
+
+(+$a->b)->call();
+(+$a->b)[1];
+(+$var)();
+$var = call(+$var->_uuidCounter);
