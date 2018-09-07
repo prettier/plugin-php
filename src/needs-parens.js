@@ -64,6 +64,23 @@ function needsParens(path) {
 
       return false;
     }
+    case "retif":
+      switch (parent.kind) {
+        case "unary":
+        case "bin":
+        case "cast":
+          return true;
+        case "retif":
+          return name === "test" && parent.test === node;
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return name === "what" && parent.what === node;
+
+        default:
+          return false;
+      }
     case "boolean":
     case "string":
     case "number":

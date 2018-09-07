@@ -89,27 +89,27 @@ return $test ?: doSomething();
 $category_color = get_field(Category_Meta::COLOR, 'category_' . $term_id)
     ?: 'gold';
 
-$var = $someOtherReallyReallyLongVariable
+$var = ($someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
             ? $someOtherReallyReallyLongVariable
             : $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable)
     ? $someOtherReallyReallyLongVariable
     : $someOtherReallyReallyLongVariable;
 $var = ($someOtherReallyReallyLongVariable
-        ? ($someOtherReallyReallyLongVariable
+        ? $someOtherReallyReallyLongVariable
             ? $someOtherReallyReallyLongVariable
-            : $someOtherReallyReallyLongVariable)
+            : $someOtherReallyReallyLongVariable
         : $someOtherReallyReallyLongVariable)
     ? $someOtherReallyReallyLongVariable
     : $someOtherReallyReallyLongVariable;
 $var = $someOtherReallyReallyLongVariable
-    ? ($someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable)
-    : ($someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable);
+        : $someOtherReallyReallyLongVariable;
 $test = $foo
     ?: bar(
         $someOtherReallyReallyLongVariable,
@@ -171,28 +171,28 @@ $var = 1
     ? $someOtherReallyReallyLongVariable
     : $someOtherReallyReallyLongVariable
 )->call();
-$var = $test ?: (true ? 1 : 2);
+$var = $test ?: true ? 1 : 2;
 $var = $test
-    ?: ($someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable
+    ?: $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable
         ? 1
-        : 2);
+        : 2;
 $var = $test
-    ?: (true
+    ?: true
         ? $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable
-        : 2);
+        : 2;
 $var = $test
-    ?: (true
+    ?: true
         ? 1
-        : $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable);
+        : $someOtherReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongVariable;
 $var = $test
     ? 'string'
-    : ($someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable);
+        : $someOtherReallyReallyLongVariable;
 $var = $test
-    ? ($someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable)
+        : $someOtherReallyReallyLongVariable
     : 'string';
 
 $arr = [
