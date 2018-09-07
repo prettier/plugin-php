@@ -219,7 +219,7 @@ $object[
 
 (
     $testThingWithReallyLongName &&
-    $test = new SomeObjectWithReallyReallyReallyLongName()
+    ($test = new SomeObjectWithReallyReallyReallyLongName())
 )
     ->map()
     ->filter();

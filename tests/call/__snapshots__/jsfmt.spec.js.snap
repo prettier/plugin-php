@@ -181,7 +181,7 @@ tap(((int) $raw['data']) + $value, function ($newValue) use ($key, $raw) {
     $this->put($key, $newValue, $raw['time']);
 });
 
-$expire = substr($contents = $this->files->get($path, true), 0, 10);
+$expire = substr(($contents = $this->files->get($path, true)), 0, 10);
 $this->app->singleton('session', function ($app) {
     return new SessionManager($app);
 });

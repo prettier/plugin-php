@@ -187,7 +187,7 @@ $computedDescriptionLines =
     'otherKey' => 'otherValue'
 ];
 
-for (($i = 0), ($len = $arr->length); $i < $len; $i++) {
+for ($i = 0, $len = $arr->length; $i < $len; $i++) {
     call($arr[$i]);
 }
 
