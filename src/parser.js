@@ -31,9 +31,6 @@ function parse(text, parsers, opts) {
     parseAsEval
   };
 
-  // Todo https://github.com/glayzzle/php-parser/issues/176
-  ast.loc.source = text;
-
   // https://github.com/glayzzle/php-parser/issues/155
   // currently inline comments include the line break at the end, we need to
   // strip those out and update the end location for each comment manually
