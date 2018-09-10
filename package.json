@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "mem": "^3.0.1",
-    "php-parser": "3.0.0-prerelease.1"
+    "php-parser": "3.0.0-prerelease.4"
   },
   "devDependencies": {
     "eslint": "4.1.1",
