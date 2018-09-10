@@ -1752,7 +1752,13 @@ function printNode(path, options, print) {
               )
             ])
           ),
-          node.name ? concat([softline, "}"]) : ""
+          node.name
+            ? concat([
+                ifBreak(shouldPrintComma(options) ? "," : ""),
+                softline,
+                "}"
+              ])
+            : ""
         ])
       );
     case "useitem":
