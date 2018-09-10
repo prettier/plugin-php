@@ -489,6 +489,33 @@ function foo()
 
 `;
 
+exports[`break.php 1`] = `
+<?php
+
+break;
+break 1;
+break (1);
+break ((1));
+break (((1)));
+break 2;
+break (2);
+break ((2));
+break (((2)));
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+break;
+break;
+break;
+break;
+break;
+break 2;
+break 2;
+break 2;
+break 2;
+
+`;
+
 exports[`call.php 1`] = `
 <?php
 
@@ -577,6 +604,33 @@ $var = (array(new Foo(), "baz"))();
 $var = ((string) 1234)();
 $var = ("Foo::bar")();
 $var = ("Foo::bar")();
+
+`;
+
+exports[`continue.php 1`] = `
+<?php
+
+continue;
+continue 1;
+continue (1);
+continue ((1));
+continue (((1)));
+continue 2;
+continue (2);
+continue ((2));
+continue (((2)));
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+continue;
+continue;
+continue;
+continue;
+continue;
+continue 2;
+continue 2;
+continue 2;
+continue 2;
 
 `;
 
