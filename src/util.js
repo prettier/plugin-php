@@ -259,6 +259,7 @@ function lineShouldEndWithSemicolon(path) {
     return false;
   }
   const semiColonWhitelist = [
+    "array",
     "assign",
     "return",
     "break",
