@@ -410,6 +410,97 @@ function foo()
 
 `;
 
+exports[`call.php 1`] = `
+<?php
+
+call();
+(call());
+
+$var = call();
+$var = (call());
+$var = call()();
+$var = (call())();
+$var = (call()());
+$var = ((call())());
+
+$var = $foo->call();
+$var = ($foo)->call();
+$var = ($foo->call());
+$var = $foo->call()->call();
+$var = ($foo)->call()->call();
+$var = (($foo)->call())->call();
+$var = ((($foo)->call())->call());
+
+$var = call((call()));
+$var = call(...(call()));
+$var = (call((call())));
+$var = (call((call()), (call())));
+
+$var = $func();
+$var = ($func)();
+$var = ($func());
+$var = (($func)());
+
+$var = $this->$name();
+$var = ($this)->$name();
+$var = ($this->$name());
+$var = (($this)->$name());
+
+$var = Foo::call();
+$var = (Foo::call());
+
+$var = (array("Foo", "bar"))();
+$var = (array(new Foo, "baz"))();
+$var = ((string) 1234)();
+$var = "Foo::bar"();
+$var = ("Foo::bar")();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+call();
+call();
+
+$var = call();
+$var = call();
+$var = call()();
+$var = call()();
+$var = call()();
+$var = call()();
+
+$var = $foo->call();
+$var = $foo->call();
+$var = $foo->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+
+$var = call(call());
+$var = call(...call());
+$var = call(call());
+$var = call(call(), call());
+
+$var = $func();
+$var = $func();
+$var = $func();
+$var = $func();
+
+$var = $this->$name();
+$var = $this->$name();
+$var = $this->$name();
+$var = $this->$name();
+
+$var = Foo::call();
+$var = Foo::call();
+
+$var = (array("Foo", "bar"))();
+$var = (array(new Foo(), "baz"))();
+$var = ((string) 1234)();
+$var = ("Foo::bar")();
+$var = ("Foo::bar")();
+
+`;
+
 exports[`control-structures.php 1`] = `
 <?php
 
@@ -620,6 +711,17 @@ $var = (new class {
         echo $msg;
     }
 });
+$var = (new foo())->bar();
+$var = (new foo())->bar()->foo();
+$var = ((new foo())->bar())->foo();
+$var = (((new foo())->bar())->foo());
+$var = (((new foo())->bar())->foo())[0];
+$var = ((((new foo())->bar())->foo())[0])[1];
+$var = (((new foo())->bar())->foo())->baz();
+$var = (new $foo())->bar;
+$var = (new $bar->y)->x;
+$var = (new foo)[0];
+$var = (new foo)[0]['string'];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Translator(
@@ -649,6 +751,20 @@ $var = new class {
         echo $msg;
     }
 };
+$var = (new foo())->bar();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo()[0];
+$var = ((new foo())->bar()->foo()[0])[1];
+$var = (new foo())
+    ->bar()
+    ->foo()
+    ->baz();
+$var = (new $foo())->bar;
+$var = (new $bar->y())->x;
+$var = (new foo())[0];
+$var = (new foo())[0]['string'];
 
 
 `;

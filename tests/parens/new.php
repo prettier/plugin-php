@@ -36,3 +36,14 @@ $var = (new class {
         echo $msg;
     }
 });
+$var = (new foo())->bar();
+$var = (new foo())->bar()->foo();
+$var = ((new foo())->bar())->foo();
+$var = (((new foo())->bar())->foo());
+$var = (((new foo())->bar())->foo())[0];
+$var = ((((new foo())->bar())->foo())[0])[1];
+$var = (((new foo())->bar())->foo())->baz();
+$var = (new $foo())->bar;
+$var = (new $bar->y)->x;
+$var = (new foo)[0];
+$var = (new foo)[0]['string'];
