@@ -32,9 +32,8 @@ function needsParens(path) {
 
   // Avoid parens in short control structures like `if (expr) statement`
   if (
-    (["if", "while", "for", "foreach"].includes(parent.kind) &&
-      parent.body === node) ||
-    parent.alternate === node
+    ["if", "while", "for", "foreach"].includes(parent.kind) &&
+    (parent.body === node || parent.alternate === node)
   ) {
     return false;
   }
