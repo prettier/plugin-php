@@ -40,6 +40,8 @@ function needsParens(path) {
   }
 
   switch (node.kind) {
+    case "call":
+      return false;
     case "pre":
     case "post":
       if (parent.kind === "unary") {
@@ -128,6 +130,11 @@ function needsParens(path) {
     case "magic":
     case "encapsed":
     case "nowdoc":
+      if (parent.kind === "call" && name === "what" && parent.what === node) {
+        return true;
+      }
+
+      return false;
     case "variable":
       return false;
     case "bin": {

@@ -266,7 +266,7 @@ echo 1000000000,
     $foo ? true : false;
 echo 1000000000 . 'String',
     $object->property + $object->method(),
-    method((method('string'))),
+    method(method('string')),
     $foo ? $bar . 'foo' . 'test' : false;
 
 echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
