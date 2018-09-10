@@ -129,6 +129,7 @@ function needsParens(path) {
     case "magic":
     case "encapsed":
     case "nowdoc":
+    case "array":
       if (parent.kind === "call" && name === "what" && parent.what === node) {
         return true;
       }
