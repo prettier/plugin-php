@@ -2137,7 +2137,8 @@ function printNode(path, options, print) {
     }
     case "yield":
       return concat([
-        "yield ",
+        "yield",
+        node.key || node.value ? " " : "",
         node.key ? concat([path.call(print, "key"), " => "]) : "",
         path.call(print, "value")
       ]);
