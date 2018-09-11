@@ -1551,6 +1551,25 @@ return 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
 
 `;
 
+exports[`silent.php 1`] = `
+<?php
+
+@foo();
+(@foo());
+
+$var = @foo();
+$var = (@foo());
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+@foo();
+@foo();
+
+$var = @foo();
+$var = @foo();
+
+`;
+
 exports[`unary.php 1`] = `
 <?php
 
