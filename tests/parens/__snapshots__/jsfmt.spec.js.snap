@@ -983,6 +983,58 @@ $a->c();
 
 `;
 
+exports[`empty.php 1`] = `
+<?php
+
+empty($var);
+(empty($var));
+
+$var = empty($var);
+$var = (empty($var));
+
+if ((empty($var))) {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+empty($var);
+empty($var);
+
+$var = empty($var);
+$var = empty($var);
+
+if (empty($var)) {
+}
+
+`;
+
+exports[`isset.php 1`] = `
+<?php
+
+isset($var);
+(isset($var));
+
+$var = isset($var);
+$var = (isset($var));
+$var = isset($var, $var, $var);
+$var = (isset($var, $var, $var));
+
+if ((isset($var))) {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+isset($var);
+isset($var);
+
+$var = isset($var);
+$var = isset($var);
+$var = isset($var, $var, $var);
+$var = isset($var, $var, $var);
+
+if (isset($var)) {
+}
+
+`;
+
 exports[`lookups.php 1`] = `
 <?php
 
