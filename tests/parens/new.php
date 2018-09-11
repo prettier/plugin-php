@@ -47,3 +47,8 @@ $var = (new $foo())->bar;
 $var = (new $bar->y)->x;
 $var = (new foo)[0];
 $var = (new foo)[0]['string'];
+
+$var = new $a->b;
+$var = new $a->b();
+$var = (new $a)->b();
+$var = ((new $a)->b());

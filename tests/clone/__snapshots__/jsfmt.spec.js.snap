@@ -21,3 +21,14 @@ $OneSecAgo = (clone $Now)->veryVeryVeryVeryVeryVeryVeryVeryLongMethod(
 );
 
 `;
+
+exports[`single.php 1`] = `
+<?php
+
+clone $a;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+clone $a;
+
+`;
