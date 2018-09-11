@@ -150,6 +150,10 @@ function needsParens(path) {
       }
 
       return false;
+    case "propertylookup":
+    case "staticlookup":
+    case "offsetlookup":
+      return false;
     case "bin": {
       if (["pre", "post"].includes(parent.kind)) {
         return true;

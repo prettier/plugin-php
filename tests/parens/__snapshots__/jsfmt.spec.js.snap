@@ -682,7 +682,7 @@ $var = (object) array('1' => 'foo');
 $var = (object) ['1' => 'foo'];
 $var = ((object) 'ciao')->scalar;
 $var = ((object) array('test'))->{'0'};
-$var = (((object) array('test'))->{'0'});
+$var = ((object) array('test'))->{'0'};
 $var = (array) new B();
 $var = (array) new B();
 $var = (array) new B();
@@ -913,6 +913,149 @@ $a->c();
 
 `;
 
+exports[`lookups.php 1`] = `
+<?php
+
+$var->bar;
+($var->bar);
+
+$var->bar();
+($var->bar());
+
+$var::bar();
+($var::bar());
+
+$var = $var->bar;
+$var = ($var->bar);
+$var = $var->bar->foo;
+$var = ($var->bar)->foo;
+$var = ($var->bar->foo);
+$var = (($var->bar)->foo);
+
+$var = $var::foo();
+$var = ($var::foo());
+$var = $var::foo()::bar();
+$var = ($var::foo()::bar());
+
+$var = $var->bar();
+$var = ($var->bar());
+$var = $var->bar()->foo();
+$var = ($var->bar())->foo();
+$var = ($var->bar()->foo());
+$var = (($var->bar())->foo());
+
+$var = ((object) ($var->bar())->foo());
+$var = (object) (($var->bar())->foo());
+
+$var = $var[0];
+$var = $var[0][1];
+$var = ($var[0]);
+$var = ($var[0][1]);
+$var = $var[0]->foo;
+$var = ($var[0])->foo;
+$var = ($var[0][1])->foo;
+$var = ($var[0])[1]->foo;
+$var = (($var[0])[1])->foo;
+$var = $var[0]->foo();
+$var = ($var[0])->foo();
+$var = ($var[0][1])->foo();
+$var = ($var[0])[1]->foo();
+$var = (($var[0])[1])->foo();
+
+$var = $var[0]->foo()->baz;
+$var = ((($var[0])->foo())->baz);
+
+$var = (new Foo())->bar;
+$var = (new Foo())->bar();
+$var = (new Foo())[1];
+
+$var = $var->bar()();
+$var = ($var->bar())();
+$var = ($var->bar()());
+$var = (($var->bar())());
+
+$var = $var::bar()();
+$var = ($var::bar())();
+$var = ($var::bar()());
+$var = (($var::bar())());
+
+$var = ($var)->bar;
+$var = (($var)->bar);
+$var = ($var)->bar();
+$var = (($var)->bar());
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var->bar;
+$var->bar;
+
+$var->bar();
+$var->bar();
+
+$var::bar();
+$var::bar();
+
+$var = $var->bar;
+$var = $var->bar;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+
+$var = $var::foo();
+$var = $var::foo();
+$var = $var::foo()::bar();
+$var = $var::foo()::bar();
+
+$var = $var->bar();
+$var = $var->bar();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+
+$var = (object) $var->bar()->foo();
+$var = (object) $var->bar()->foo();
+
+$var = $var[0];
+$var = $var[0][1];
+$var = $var[0];
+$var = $var[0][1];
+$var = $var[0]->foo;
+$var = $var[0]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0]->foo();
+$var = $var[0]->foo();
+$var = $var[0][1]->foo();
+$var = $var[0][1]->foo();
+$var = $var[0][1]->foo();
+
+$var = $var[0]->foo()->baz;
+$var = $var[0]->foo()->baz;
+
+$var = (new Foo())->bar;
+$var = (new Foo())->bar();
+$var = (new Foo())[1];
+
+$var = $var->bar()();
+$var = $var->bar()();
+$var = $var->bar()();
+$var = $var->bar()();
+
+$var = $var::bar()();
+$var = $var::bar()();
+$var = $var::bar()();
+$var = $var::bar()();
+
+$var = $var->bar;
+$var = $var->bar;
+$var = $var->bar();
+$var = $var->bar();
+
+`;
+
 exports[`namespace.php 1`] = `
 <?php
 
@@ -1012,7 +1155,7 @@ $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo()[0];
-$var = ((new foo())->bar()->foo()[0])[1];
+$var = (new foo())->bar()->foo()[0][1];
 $var = (new foo())
     ->bar()
     ->foo()
@@ -1380,7 +1523,7 @@ $a = 1 ** +$a;
 $var = call(+$a);
 $var = call(+$a);
 
-$var = +($foo->bar);
+$var = +$foo->bar;
 
 $var = +$var || +$var;
 $var = +$var || +$var;
