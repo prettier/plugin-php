@@ -302,7 +302,8 @@ function lineShouldEndWithSemicolon(path) {
     "number",
     "nowdoc",
     "encapsed",
-    "variable"
+    "variable",
+    "cast"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
