@@ -124,6 +124,12 @@ function needsParens(path) {
         default:
           return false;
       }
+    case "closure":
+      if (parent.kind === "call" && name === "what" && parent.what === node) {
+        return true;
+      }
+
+      return false;
     case "boolean":
     case "number":
     case "magic":
