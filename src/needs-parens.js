@@ -130,6 +130,8 @@ function needsParens(path) {
     case "encapsed":
     case "nowdoc":
     case "variable":
+    case "isset":
+    case "empty":
       return false;
     case "string":
     case "array":
