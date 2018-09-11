@@ -1079,6 +1079,39 @@ if (empty($var)) {
 
 `;
 
+exports[`exit.php 1`] = `
+<?php
+
+exit(1);
+(exit(1));
+
+exit((1));
+
+if (true) exit(1);
+if (true) (exit(1));
+
+call(exit(1));
+call((exit(1)));
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+exit(1);
+exit(1);
+
+exit(1);
+
+if (true) {
+    exit(1);
+}
+if (true) {
+    exit(1);
+}
+
+call(exit(1));
+call(exit(1));
+
+`;
+
 exports[`isset.php 1`] = `
 <?php
 
