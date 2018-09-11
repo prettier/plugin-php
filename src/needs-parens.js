@@ -124,18 +124,31 @@ function needsParens(path) {
           return false;
       }
     case "boolean":
-    case "string":
     case "number":
     case "magic":
     case "encapsed":
     case "nowdoc":
+    case "variable":
+      return false;
+    case "string":
     case "array":
-      if (parent.kind === "call" && name === "what" && parent.what === node) {
+    case "cast":
+      if (
+        name === "what" &&
+        parent.what === node &&
+        (isLookupNode(parent) || parent.kind === "call")
+      ) {
+        if (node.kind === "string" && parent.kind === "offsetlookup") {
+          return false;
+        }
+
         return true;
       }
 
-      return false;
-    case "variable":
+      if (node.kind === "cast" && parent.kind === "bin") {
+        return true;
+      }
+
       return false;
     case "bin": {
       if (["pre", "post"].includes(parent.kind)) {
@@ -153,6 +166,10 @@ function needsParens(path) {
         node.right.kind === "bin" &&
         ["and", "xor", "or"].includes(node.right.type)
       ) {
+        return true;
+      }
+
+      if (parent.kind === "cast") {
         return true;
       }
     }
