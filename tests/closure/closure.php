@@ -129,3 +129,6 @@ $var = function &() {
 
     return $collection;
 };
+
+$func = static function() {};
+$fn = function &() use (&$value) { return $value; };

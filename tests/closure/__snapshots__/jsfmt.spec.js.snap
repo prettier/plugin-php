@@ -132,6 +132,9 @@ $var = function &() {
 
     return $collection;
 };
+
+$func = static function() {};
+$fn = function &() use (&$value) { return $value; };
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -262,6 +265,12 @@ $var = function &() {
     static $collection = array();
 
     return $collection;
+};
+
+$func = static function () {
+};
+$fn = function &() use (&$value) {
+    return $value;
 };
 
 `;

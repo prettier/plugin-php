@@ -1778,6 +1778,7 @@ function printNode(path, options, print) {
         !node.body.comments;
 
       return concat([
+        node.isStatic ? "static " : "",
         "function ",
         node.byref ? "&" : "",
         printArgumentsList(path, options, print),
