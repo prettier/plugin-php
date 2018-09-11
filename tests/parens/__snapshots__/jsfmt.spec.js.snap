@@ -730,6 +730,76 @@ if (((int) 1) === ((int) 1)) {
 
 `;
 
+exports[`clone.php 1`] = `
+<?php
+
+clone $a;
+(clone $a);
+
+$var = clone $a;
+$var = (clone $a);
+$var = (clone $a)->foo;
+$var = (clone $a->foo);
+$var = (clone $a)->foo();
+
+$var = (clone foo())->bar()->foo();
+$var = ((clone foo())->bar())->foo();
+$var = (((clone foo())->bar())->foo());
+$var = (((clone foo())->bar())->foo())[0];
+$var = ((((clone foo())->bar())->foo())[0])[1];
+$var = (((clone foo())->bar())->foo())->baz();
+$var = (clone $foo())->bar;
+$var = (clone $bar->y)->x;
+$var = (clone $foo)[0];
+$var = (clone $foo)[0]['string'];
+
+$var = clone $a->b;
+$var = clone $a->b();
+$var = (clone $a)->b();
+$var = ((clone $a)->b());
+
+$var = (clone ($var));
+$var = (clone($var));
+$var = (clone($var->foo));
+$var = (clone($var->foo))->foo;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+clone $a;
+clone $a;
+
+$var = clone $a;
+$var = clone $a;
+$var = (clone $a)->foo;
+$var = clone $a->foo;
+$var = (clone $a)->foo();
+
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo()[0];
+$var = (clone foo())->bar()->foo()[0][1];
+$var = (clone foo())
+    ->bar()
+    ->foo()
+    ->baz();
+$var = (clone $foo())->bar;
+$var = (clone $bar->y)->x;
+$var = (clone $foo)[0];
+$var = (clone $foo)[0]['string'];
+
+$var = clone $a->b;
+$var = clone $a->b();
+$var = (clone $a)->b();
+$var = (clone $a)->b();
+
+$var = clone $var;
+$var = clone $var;
+$var = clone $var->foo;
+$var = (clone $var->foo)->foo;
+
+`;
+
 exports[`continue.php 1`] = `
 <?php
 
@@ -1121,6 +1191,11 @@ $var = (new $foo())->bar;
 $var = (new $bar->y)->x;
 $var = (new foo)[0];
 $var = (new foo)[0]['string'];
+
+$var = new $a->b;
+$var = new $a->b();
+$var = (new $a)->b();
+$var = ((new $a)->b());
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Translator(
@@ -1164,6 +1239,10 @@ $var = (new $foo())->bar;
 $var = (new $bar->y())->x;
 $var = (new foo())[0];
 $var = (new foo())[0]['string'];
+$var = new $a->b();
+$var = new $a->b();
+$var = (new $a())->b();
+$var = (new $a())->b();
 
 
 `;

@@ -67,6 +67,7 @@ function needsParens(path) {
         default:
           return false;
       }
+    case "clone":
     case "new": {
       if (isLookupNode(parent)) {
         return true;
