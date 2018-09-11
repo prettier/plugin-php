@@ -139,6 +139,7 @@ function needsParens(path) {
     case "isset":
     case "empty":
     case "silent":
+    case "exit":
       return false;
     case "string":
     case "array":
