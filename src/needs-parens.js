@@ -68,11 +68,7 @@ function needsParens(path) {
           return false;
       }
     case "new": {
-      if (isLookupNode(parent)) {
-        return true;
-      }
-
-      return false;
+      return isLookupNode(parent);
     }
     case "yield": {
       switch (parent.kind) {
@@ -138,18 +134,10 @@ function needsParens(path) {
         parent.what === node &&
         (isLookupNode(parent) || parent.kind === "call")
       ) {
-        if (node.kind === "string" && parent.kind === "offsetlookup") {
-          return false;
-        }
-
-        return true;
+        return node.kind !== "string" || parent.kind !== "offsetlookup";
       }
 
-      if (node.kind === "cast" && parent.kind === "bin") {
-        return true;
-      }
-
-      return false;
+      return node.kind === "cast" && parent.kind === "bin";
     case "bin": {
       if (["pre", "post"].includes(parent.kind)) {
         return true;
