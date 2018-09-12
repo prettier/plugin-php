@@ -104,8 +104,14 @@ function needsParens(path) {
             return true;
           }
 
-          if (pp === np && !shouldFlatten(po, no)) {
-            return true;
+          if (pp === np) {
+            if (po === "." && no !== ".") {
+              return true;
+            }
+
+            if (!shouldFlatten(po, no)) {
+              return true;
+            }
           }
 
           if (pp < np && no === "%") {
