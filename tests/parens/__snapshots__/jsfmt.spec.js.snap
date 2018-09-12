@@ -1803,6 +1803,45 @@ $var = @foo();
 
 `;
 
+exports[`throw.php 1`] = `
+<?php
+
+throw new Exception('Division by zero.');
+throw (new Exception('Division by zero.'));
+throw $e;
+throw ($e);
+throw new \\Exception("Bye");
+throw (new \\Exception("Bye"));
+
+if (!$var) {
+    throw new Exception('Division by zero.');
+    throw (new Exception('Division by zero.'));
+    throw $e;
+    throw ($e);
+    throw new \\Exception("Bye");
+    throw (new \\Exception("Bye"));
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+throw new Exception('Division by zero.');
+throw new Exception('Division by zero.');
+throw $e;
+throw $e;
+throw new \\Exception("Bye");
+throw new \\Exception("Bye");
+
+if (!$var) {
+    throw new Exception('Division by zero.');
+    throw new Exception('Division by zero.');
+    throw $e;
+    throw $e;
+    throw new \\Exception("Bye");
+    throw new \\Exception("Bye");
+}
+
+`;
+
 exports[`unary.php 1`] = `
 <?php
 
