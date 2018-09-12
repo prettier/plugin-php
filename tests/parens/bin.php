@@ -274,3 +274,7 @@ $var = $var . $var % $var;
 $var = ($var . $var) % $var;
 $var = $var % $var . $var;
 $var = $var % ($var . $var);
+
+$var = '100' - '100' - '100';
+$var = ('100' - '100') - '100';
+$var = '100' - ('100' - '100');
