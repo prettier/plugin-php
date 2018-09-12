@@ -166,6 +166,12 @@ function needsParens(path) {
     case "staticlookup":
     case "offsetlookup":
       return false;
+    case "print":
+      if (parent.kind === "bin") {
+        return true;
+      }
+
+      return false;
     case "bin": {
       if (["pre", "post"].includes(parent.kind)) {
         return true;
