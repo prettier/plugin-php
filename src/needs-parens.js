@@ -39,8 +39,6 @@ function needsParens(path) {
   }
 
   switch (node.kind) {
-    case "call":
-      return false;
     case "pre":
     case "post":
       if (parent.kind === "unary") {
@@ -67,13 +65,34 @@ function needsParens(path) {
         default:
           return false;
       }
-    case "clone":
-    case "new": {
-      if (isLookupNode(parent)) {
+    case "bin": {
+      if (["pre", "post"].includes(parent.kind)) {
         return true;
       }
 
-      return false;
+      if (["if", "while", "do", "switch", "case"].includes(parent.kind)) {
+        return false;
+      }
+
+      // $var = false or true;
+      // The constant false is assigned to $f before the "or" operation occurs
+      // Acts like: (($var = false) or true)
+      if (
+        node.right.kind === "bin" &&
+        ["and", "xor", "or"].includes(node.right.type)
+      ) {
+        return true;
+      }
+
+      if (parent.kind === "cast") {
+        return true;
+      }
+
+      return node.parenthesizedExpression;
+    }
+    case "clone":
+    case "new": {
+      return isLookupNode(parent);
     }
     case "yield": {
       switch (parent.kind) {
@@ -125,23 +144,7 @@ function needsParens(path) {
           return false;
       }
     case "closure":
-      if (parent.kind === "call" && name === "what" && parent.what === node) {
-        return true;
-      }
-
-      return false;
-    case "boolean":
-    case "number":
-    case "magic":
-    case "encapsed":
-    case "nowdoc":
-    case "variable":
-    case "isset":
-    case "empty":
-    case "silent":
-    case "exit":
-    case "eval":
-      return false;
+      return parent.kind === "call" && name === "what" && parent.what === node;
     case "string":
     case "array":
     case "cast":
@@ -162,42 +165,12 @@ function needsParens(path) {
       }
 
       return false;
-    case "propertylookup":
-    case "staticlookup":
-    case "offsetlookup":
-      return false;
     case "print":
-      if (parent.kind === "bin") {
-        return true;
-      }
-
-      return false;
-    case "bin": {
-      if (["pre", "post"].includes(parent.kind)) {
-        return true;
-      }
-
-      if (["if", "while", "do", "switch", "case"].includes(parent.kind)) {
-        return false;
-      }
-
-      // $var = false or true;
-      // The constant false is assigned to $f before the "or" operation occurs
-      // Acts like: (($var = false) or true)
-      if (
-        node.right.kind === "bin" &&
-        ["and", "xor", "or"].includes(node.right.type)
-      ) {
-        return true;
-      }
-
-      if (parent.kind === "cast") {
-        return true;
-      }
-    }
+    case "include":
+      return parent.kind === "bin";
   }
 
-  return node.parenthesizedExpression;
+  return false;
 }
 
 module.exports = needsParens;
