@@ -41,3 +41,4 @@ $var = +($var ? 1 : 2);
 $var = +(+$var ? 1 : 2);
 $var = +($var++ ? 1 : 2);
 $var = ((true ? 'true' : false) ? (true ? 'true' : false) : (true ? 'true' : false));
+$var = $var ? $var1 ? 1 : 2 : $var2 ? 3 : 4;
