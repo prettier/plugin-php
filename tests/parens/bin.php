@@ -255,3 +255,22 @@ $var = $var == ($var || false);
 $var = false || $var == $var;
 $var = false || ($var == $var);
 $var = ($var || false) == $var;
+
+$var = 'string' . true ? '1' : '2';
+$var = 'string' . (true ? '1' : '2');
+
+$var = 'string' . (100 + 100);
+$var = (100 + 100) . 'string';
+$var = 'string' . ($var || 100);
+$var = ($var || 100) . 'string';
+$var = 'string' . ($var * 100);
+$var = ($var * 100) . 'string';
+$var = 'string' . !$var;
+$var = !$var . 'string';
+$var = 'string' . ($var | 100);
+$var = ($var | 100) . 'string';
+
+$var = $var . $var % $var;
+$var = ($var . $var) % $var;
+$var = $var % $var . $var;
+$var = $var % ($var . $var);
