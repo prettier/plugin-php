@@ -165,3 +165,19 @@ Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOD;
+
+echo <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD
+    ,
+    'test';
+
+echo <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    'test';

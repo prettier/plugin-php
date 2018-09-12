@@ -241,7 +241,36 @@ function isFirstChildrenInlineNode(path) {
  * appear as function arguments or array elements
  */
 function docShouldHaveTrailingNewline(path) {
-  return ["array", "parameter"].includes(path.getParentNode().kind);
+  const node = path.getValue();
+  const parent = path.getParentNode();
+
+  if (!parent) {
+    return false;
+  }
+
+  if (parent.kind === "echo") {
+    const lastIndex = parent.arguments.length - 1;
+    const index = parent.arguments.indexOf(node);
+
+    return index !== lastIndex;
+  }
+
+  if (parent.kind === "array") {
+    const lastIndex = parent.items.length - 1;
+    const index = parent.items.indexOf(node);
+
+    return index !== lastIndex;
+  }
+
+  if (parent.kind === "parameter") {
+    const parentParent = path.getParentNode(1);
+    const lastIndex = parentParent.arguments.length - 1;
+    const index = parentParent.arguments.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
+  return false;
 }
 
 function lineShouldEndWithSemicolon(path) {

@@ -22,6 +22,13 @@ EOF
 , "bar"
 );
 
+$str = array(
+    "bar",
+    <<<'EOF'
+foo
+EOF
+);
+
 $str = sprintf(<<<'EOF'
 foo
 EOF
@@ -56,6 +63,17 @@ using nowdoc syntax.
 EOD
     ,
     $c = 1
+) {
+    echo $b;
+}
+
+function foo1(
+    $a = 1,
+    $b = <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
 ) {
     echo $b;
 }

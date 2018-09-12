@@ -2041,7 +2041,16 @@ function printNode(path, options, print) {
       );
     case "echo": {
       const printedArguments = path.map((argumentPath, index) => {
+        const argumentNode = argumentPath.getValue();
         let printed = print(argumentPath);
+
+        if (
+          (argumentNode.kind === "encapsed" &&
+            argumentNode.type === "heredoc") ||
+          argumentNode.kind === "nowdoc"
+        ) {
+          return printed;
+        }
 
         if (index === 0) {
           printed = dedent(printed);

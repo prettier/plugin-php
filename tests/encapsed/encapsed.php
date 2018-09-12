@@ -59,6 +59,12 @@ foo
 EOF
 , "bar"
 );
+$content = array(
+    "bar",
+    <<<EOF
+foo
+EOF
+);
 
 function foo($a = 1, $b = <<<EOF
 Example of string
@@ -79,6 +85,17 @@ using nowdoc syntax.
 EOF
     ,
     $c = 1
+) {
+    echo $b;
+}
+
+function foo1(
+    $a = 1,
+    $b = <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
 ) {
     echo $b;
 }
