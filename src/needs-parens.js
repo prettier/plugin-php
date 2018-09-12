@@ -1,5 +1,7 @@
 "use strict";
 
+const assert = require("assert");
+
 const {
   isLookupNode,
   getPrecedence,
@@ -104,14 +106,14 @@ function needsParens(path) {
             return true;
           }
 
-          if (pp === np) {
-            if (po === "." && no !== ".") {
-              return true;
-            }
+          if (pp === np && name === "right") {
+            assert.strictEqual(parent.right, node);
 
-            if (!shouldFlatten(po, no)) {
-              return true;
-            }
+            return true;
+          }
+
+          if (pp === np && !shouldFlatten(po, no)) {
+            return true;
           }
 
           if (pp < np && no === "%") {
