@@ -176,7 +176,7 @@ function needsParens(path) {
         case "cast":
           return true;
         case "retif":
-          return name === "test" && parent.test === node;
+          return true;
         case "propertylookup":
         case "staticlookup":
         case "offsetlookup":
