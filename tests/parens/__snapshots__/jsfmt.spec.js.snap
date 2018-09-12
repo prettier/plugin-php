@@ -193,10 +193,10 @@ for ($i = 1; $i <= 10; $i++) {
     echo $i;
 }
 
-for ($i = 1; ($i <= 10); $i++) {
+for ($i = 1; $i <= 10; $i++) {
     echo $i;
 }
-for ($i = 1, $j = 0; ($i <= 10); $j += $i, print $i, $i++);
+for ($i = 1, $j = 0; $i <= 10; $j += $i, print $i, $i++);
 
 if ($a = 1) {
 }
@@ -378,6 +378,172 @@ $var = true && false;
 $var = (true && false);
 $var = true and false;
 $var = (true and false);
+
+$var = $var || $var();
+$var = ($var || $var)();
+$var = $var && $var();
+$var = ($var && $var)();
+$var = call($var || $var);
+$var = call(($var || $var));
+$var = call($var && $var);
+$var = call(($var && $var));
+
+$var = +($var || $var);
+$var = -($var || $var);
+$var = ~($var || $var);
+
+$var = ($var || $var)->foo;
+$var = ($var || $var)->foo();
+$var = ($var || $var)[1];
+
+$var = $var || $var && $var;
+$var = ($var || $var) && $var;
+$var = $var || ($var && $var);
+
+$var = $var & ($var || 'test');
+$var = ($var || 'test') & $var;
+$var = $var & ($var . 'test');
+$var = ($var . 'test') & $var;
+$var = ($var & $var) || 'test';
+$var = $var || ('test' & $var);
+
+$var = ($var || $var) % 100;
+$var = ($var + $var) % 100;
+$var = 100 % ($var || $var);
+$var = 100 % ($var + $var);
+$var = $var || ($var % 100);
+$var = $var + ($var % 100);
+$var = (100 % $var) || $var;
+$var = (100 % $var) + $var;
+
+$var = ($var + $var) >> 1;
+$var = (($var - 1) >> $var) & $var;
+$var = $var > $var ? 0 : ($var - $var) >> $var;
+$var = (($var - $var) >> $var) + 1;
+
+if ($var < 1 << ($var + $var)) {}
+
+$var = $var < $var ? 0 : ((($var - 1) >> $var) << $var);
+$var = 1 - (2 * ($var[3] >> 7));
+$var = ((($var[3] << 1) & 0xff) | ($var[2] >> 7)) - 127;
+$var = (($var[2] & 0x7f) << 16) | ($var[1] << 8) | $var[0];
+
+$var = 2 / 3 * 10 / 2 + 2;
+
+$var = (($var / $var) * $var - $var / 2) * call($var);
+$var = (($var / $var) * $var - $var / 2) * call($var);
+
+$var = $var % 10 - 5;
+$var = $var * $var % 10;
+$var = $var % 10 > 5;
+$var = $var % 10 == 0;
+
+$var = $var + $var / $var;
+$var = $var / $var + $var;
+
+$var = $var * $var % $var;
+$var = $var / $var % $var;
+$var = $var % $var * $var;
+$var = $var % $var / $var;
+
+$var = $var % $var % $var;
+
+$var = $var << $var >> $var;
+$var = $var >> $var << $var;
+$var = $var >> $var >> $var;
+$var = $var + $var >> $var;
+$var = ($var + $var) >> $var;
+$var = $var + ($var >> $var);
+
+$var = $var | $var & $var;
+$var = $var & $var | $var;
+$var = $var ^ $var ^ $var;
+$var = $var & $var & $var;
+$var = $var | $var | $var;
+$var = $var & $var >> $var;
+$var = $var << $var | $var;
+
+$var = $var ? 'foo' : 'bar' . 'test';
+$var = ($var ? 'foo' : 'bar') . 'test';
+$var = $var ? 'foo' : ('bar' . 'test');
+
+call(($var + $var));
+
+$var = call(($var + $var));
+
+$var = $var + $var ** 2;
+$var = ($var + $var) ** 2;
+$var = $var + ($var ** 2);
+$var = (+$var) ** 2;
+$var = +$var ** 2;
+
+$var = $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = ($foo instanceof Foo) || ($foo instanceof Foo);
+$var = (($foo) instanceof Foo);
+
+$var = !$var;
+$var = !($var);
+$var = (!($var));
+$var = !!$var;
+$var = !!($var);
+$var = !(!($var));
+$var = (!(!($var)));
+$var = !!!$var;
+$var = !!!($var);
+$var = !!(!($var));
+$var = !(!(!($var)));
+$var = (!(!(!($var))));
+
+$var = !$var || !$var;
+$var = (!($var) || !($var));
+$var = !(!($var) || !($var));
+
+$var = $var + $var * $var;
+$var = ($var + $var) * $var;
+
+$var = @foo() || @foo();
+$var = @(foo() || foo());
+
+($var += ($var += ($var += $var)));
+($var -= ($var -= ($var -= $var)));
+($var *= ($var *= ($var *= $var)));
+($var **= ($var **= ($var **= $var)));
+($var /= ($var /= ($var /= $var)));
+($var .= ($var .= ($var .= $var)));
+($var %= ($var %= ($var %= $var)));
+($var &= ($var &= ($var &= $var)));
+($var |= ($var |= ($var |= $var)));
+($var ^= ($var ^= ($var ^= $var)));
+($var <<= ($var <<= ($var <<= $var)));
+($var >>= ($var >>= ($var >>= $var)));
+
+$var = $var | $var | $var;
+$var = $var | ($var | $var);
+$var = ($var | $var) | $var;
+$var = $var & $var & $var;
+$var = $var & ($var & $var);
+$var = ($var & $var) & $var;
+
+$var = $var ^ $var | $var;
+$var = ($var ^ $var) | $var;
+$var = $var | $var ^ $var;
+$var = $var | ($var ^ $var);
+$var = ($var | $var) ^ $var;
+
+$var = $var & $var | $var;
+$var = ($var & $var) | $var;
+$var = $var | $var & $var;
+$var = $var | ($var & $var);
+$var = ($var | $var) & $var;
+
+$var = $var == $var || false;
+$var = ($var == $var) || false;
+$var = $var == ($var || false);
+
+$var = false || $var == $var;
+$var = false || ($var == $var);
+$var = ($var || false) == $var;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -414,17 +580,17 @@ $var = $var += 10;
 
 $var = 10 + 20 + 30;
 $var = 10 + 20 + 30;
-$var = 10 + (20 + 30);
+$var = 10 + 20 + 30;
 
 $var = '10' . '20' . '30';
 $var = '10' . '20' . '30';
-$var = '10' . ('20' . '30');
+$var = '10' . '20' . '30';
 
-$var = 10 + 20 % 30;
+$var = 10 + (20 % 30);
 $var = (10 + 20) % 30;
 $var = 10 + (20 % 30);
 
-$var = 10 ** 20 ** 30;
+$var = 10 ** (20 ** 30);
 $var = (10 ** 20) ** 30;
 $var = 10 ** (20 ** 30);
 
@@ -434,23 +600,23 @@ $var = 10 == (20 == 30);
 $var = (10 === 20) === 30;
 $var = 10 === (20 === 30);
 
-$var = 10 * 20 % 30;
+$var = (10 * 20) % 30;
 $var = (10 * 20) % 30;
 $var = 10 * (20 % 30);
 
-$var = 10 * 20 / 30;
+$var = (10 * 20) / 30;
 $var = (10 * 20) / 30;
 $var = 10 * (20 / 30);
 
-$var = 10 / 20 * 30;
+$var = (10 / 20) * 30;
 $var = (10 / 20) * 30;
 $var = 10 / (20 * 30);
 
-$var = 10 << 20 << 30;
+$var = (10 << 20) << 30;
 $var = (10 << 20) << 30;
 $var = 10 << (20 << 30);
 
-$var = 10 >> 20 >> 30;
+$var = (10 >> 20) >> 30;
 $var = (10 >> 20) >> 30;
 $var = 10 >> (20 >> 30);
 
@@ -463,13 +629,180 @@ $var = 10 | 20 | 30;
 $var = 10 | (20 | 30);
 
 $var = false || true;
-$var = (false || true);
+$var = false || true;
 ($var = false) or true;
 $var = (false or true);
 $var = true && false;
-$var = (true && false);
+$var = true && false;
 ($var = true) and false;
 $var = (true and false);
+
+$var = $var || $var();
+$var = ($var || $var)();
+$var = $var && $var();
+$var = ($var && $var)();
+$var = call($var || $var);
+$var = call($var || $var);
+$var = call($var && $var);
+$var = call($var && $var);
+
+$var = +($var || $var);
+$var = -($var || $var);
+$var = ~($var || $var);
+
+$var = ($var || $var)->foo;
+$var = ($var || $var)->foo();
+$var = ($var || $var)[1];
+
+$var = $var || ($var && $var);
+$var = ($var || $var) && $var;
+$var = $var || ($var && $var);
+
+$var = $var & ($var || 'test');
+$var = ($var || 'test') & $var;
+$var = $var & ($var . 'test');
+$var = ($var . 'test') & $var;
+$var = $var & $var || 'test';
+$var = $var || 'test' & $var;
+
+$var = ($var || $var) % 100;
+$var = ($var + $var) % 100;
+$var = 100 % ($var || $var);
+$var = 100 % ($var + $var);
+$var = $var || $var % 100;
+$var = $var + ($var % 100);
+$var = 100 % $var || $var;
+$var = (100 % $var) + $var;
+
+$var = $var + $var >> 1;
+$var = ($var - 1 >> $var) & $var;
+$var = $var > $var ? 0 : $var - $var >> $var;
+$var = ($var - $var >> $var) + 1;
+
+if ($var < 1 << $var + $var) {
+}
+
+$var = $var < $var ? 0 : ($var - 1 >> $var) << $var;
+$var = 1 - 2 * ($var[3] >> 7);
+$var = ((($var[3] << 1) & 0xff) | ($var[2] >> 7)) - 127;
+$var = (($var[2] & 0x7f) << 16) | ($var[1] << 8) | $var[0];
+
+$var = ((2 / 3) * 10) / 2 + 2;
+
+$var = (($var / $var) * $var - $var / 2) * call($var);
+$var = (($var / $var) * $var - $var / 2) * call($var);
+
+$var = ($var % 10) - 5;
+$var = ($var * $var) % 10;
+$var = $var % 10 > 5;
+$var = $var % 10 == 0;
+
+$var = $var + $var / $var;
+$var = $var / $var + $var;
+
+$var = ($var * $var) % $var;
+$var = ($var / $var) % $var;
+$var = ($var % $var) * $var;
+$var = ($var % $var) / $var;
+
+$var = ($var % $var) % $var;
+
+$var = ($var << $var) >> $var;
+$var = ($var >> $var) << $var;
+$var = ($var >> $var) >> $var;
+$var = $var + $var >> $var;
+$var = $var + $var >> $var;
+$var = $var + ($var >> $var);
+
+$var = $var | ($var & $var);
+$var = ($var & $var) | $var;
+$var = $var ^ $var ^ $var;
+$var = $var & $var & $var;
+$var = $var | $var | $var;
+$var = $var & ($var >> $var);
+$var = ($var << $var) | $var;
+
+$var = $var ? 'foo' : 'bar' . 'test';
+$var = ($var ? 'foo' : 'bar') . 'test';
+$var = $var ? 'foo' : 'bar' . 'test';
+
+call($var + $var);
+
+$var = call($var + $var);
+
+$var = $var + $var ** 2;
+$var = ($var + $var) ** 2;
+$var = $var + $var ** 2;
+$var = (+$var) ** 2;
+$var = (+$var) ** 2;
+
+$var = $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = $foo instanceof Foo;
+
+$var = !$var;
+$var = !$var;
+$var = !$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+
+$var = !$var || !$var;
+$var = !$var || !$var;
+$var = !(!$var || !$var);
+
+$var = $var + $var * $var;
+$var = ($var + $var) * $var;
+
+$var = @(foo() || @foo());
+$var = @(foo() || foo());
+
+$var += $var += $var += $var;
+$var -= $var -= $var -= $var;
+$var *= $var *= $var *= $var;
+$var **= $var **= $var **= $var;
+$var /= $var /= $var /= $var;
+$var .= $var .= $var .= $var;
+$var %= $var %= $var %= $var;
+$var &= $var &= $var &= $var;
+$var |= $var |= $var |= $var;
+$var ^= $var ^= $var ^= $var;
+$var <<= $var <<= $var <<= $var;
+$var >>= $var >>= $var >>= $var;
+
+$var = $var | $var | $var;
+$var = $var | ($var | $var);
+$var = $var | $var | $var;
+$var = $var & $var & $var;
+$var = $var & ($var & $var);
+$var = $var & $var & $var;
+
+$var = ($var ^ $var) | $var;
+$var = ($var ^ $var) | $var;
+$var = $var | ($var ^ $var);
+$var = $var | ($var ^ $var);
+$var = ($var | $var) ^ $var;
+
+$var = ($var & $var) | $var;
+$var = ($var & $var) | $var;
+$var = $var | ($var & $var);
+$var = $var | ($var & $var);
+$var = ($var | $var) & $var;
+
+$var = $var == $var || false;
+$var = $var == $var || false;
+$var = $var == ($var || false);
+
+$var = false || $var == $var;
+$var = false || $var == $var;
+$var = ($var || false) == $var;
 
 `;
 
@@ -701,7 +1034,7 @@ $var = ((int) $raw['data']) + $value;
 $var = (bool) ($var ? 1 : 2);
 $var = (bool) ($var + 1 ? 1 : 2);
 $var = ((bool) $var) + 1 ? 1 : 2;
-$var = (bool) (($var + 1) ? 1 : 2);
+$var = (bool) ($var + 1 ? 1 : 2);
 $var = (bool) $var ? 1 : 2;
 $var = (bool) $var ? (bool) 1 : (bool) 2;
 $var = (bool) $var ? (bool) 1 : (bool) 2;
@@ -1104,7 +1437,7 @@ echo "Sum: ", 1 + 2;
 echo "Hello ", isset($name) ? $name : "John Doe", "!";
 echo "Hello ", isset($name) ? $name : "John Doe", "!";
 
-echo 'Sum: ' . (1 + 2);
+echo 'Sum: ' . 1 + 2;
 echo 'Hello ' . isset($name) ? $name : 'John Doe' . '!';
 echo 'Hello ' . (isset($name) ? $name : 'John Doe') . '!';
 
@@ -1901,7 +2234,7 @@ $var[
 ]->map();
 
 $var = $var . $var ? "()" : "";
-$var = ($var . $var) ? "()" : "";
+$var = $var . $var ? "()" : "";
 $var = $var . ($var ? "()" : "");
 $var = +($var ? 1 : 2);
 $var = +(+$var ? 1 : 2);
@@ -2111,7 +2444,7 @@ $var = +$foo->bar;
 
 $var = +$var || +$var;
 $var = +$var || +$var;
-$var = (+$var || +$var);
+$var = +$var || +$var;
 
 $var = -+$var;
 

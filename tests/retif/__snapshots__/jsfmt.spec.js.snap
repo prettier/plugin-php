@@ -72,12 +72,12 @@ $arr = [
 <?php
 
 return true ? 1 : 2;
-return ($testReallyReallyLong >= 1)
+return $testReallyReallyLong >= 1
     ? $someOtherReallyReallyLongVariable
     : $thisOtherVariable;
 return true ?: 2;
-return ($testReallyReallyLong === $someOtherReallyReallyLongVariable &&
-    $otherTest != $someOtherTest)
+return $testReallyReallyLong === $someOtherReallyReallyLongVariable &&
+    $otherTest != $someOtherTest
     ? 1
     : 0;
 
@@ -117,7 +117,7 @@ $test = $foo
         $someOtherReallyReallyLongVariable
     );
 $test =
-    ($testReallyReallyReallyReallyReallyReallyLong >= 1)
+    $testReallyReallyReallyReallyReallyReallyLong >= 1
         ?: $someOtherReallyReallyReallyReallyReallyReallyLongVariable;
 $test = $foo ?: bar(['foo' => 'bar', 'bar' => 'foo']);
 $test = $foo

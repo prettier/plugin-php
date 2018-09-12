@@ -1,6 +1,11 @@
 "use strict";
 
-const { isLookupNode } = require("./util");
+const {
+  isLookupNode,
+  getPrecedence,
+  shouldFlatten,
+  isBitwiseOperator
+} = require("./util");
 
 function needsParens(path) {
   const parent = path.getParentNode();
@@ -66,29 +71,59 @@ function needsParens(path) {
           return false;
       }
     case "bin": {
-      if (["pre", "post"].includes(parent.kind)) {
-        return true;
-      }
-
-      if (["if", "while", "do", "switch", "case"].includes(parent.kind)) {
-        return false;
-      }
-
       // $var = false or true;
       // The constant false is assigned to $f before the "or" operation occurs
       // Acts like: (($var = false) or true)
-      if (
-        node.right.kind === "bin" &&
-        ["and", "xor", "or"].includes(node.right.type)
-      ) {
+      if (["and", "xor", "or"].includes(node.type)) {
         return true;
       }
 
-      if (parent.kind === "cast") {
-        return true;
-      }
+      switch (parent.kind) {
+        case "pre":
+        case "post":
+        case "unary":
+        case "cast":
+        case "silent":
+          return true;
+        case "call":
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+          return name === "what" && parent.what === node;
+        case "bin": {
+          const po = parent.type;
+          const pp = getPrecedence(po);
+          const no = node.type;
+          const np = getPrecedence(no);
 
-      return node.parenthesizedExpression;
+          if (pp > np) {
+            return true;
+          }
+
+          if (po === "||" && no === "&&") {
+            return true;
+          }
+
+          if (pp === np && !shouldFlatten(po, no)) {
+            return true;
+          }
+
+          if (pp < np && no === "%") {
+            return !shouldFlatten(po, no);
+          }
+
+          // Add parenthesis when working with binary operators
+          // It's not stricly needed but helps with code understanding
+          if (isBitwiseOperator(po)) {
+            return true;
+          }
+
+          return false;
+        }
+
+        default:
+          return false;
+      }
     }
     case "clone":
     case "new": {

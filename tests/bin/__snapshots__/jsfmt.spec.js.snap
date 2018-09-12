@@ -345,8 +345,8 @@ call(
 );
 
 $var =
-    $someReallyReallyReallyLongBooleanVariable *
-        $someReallyReallyReallyLongBooleanVariable /
+    ($someReallyReallyReallyLongBooleanVariable *
+        $someReallyReallyReallyLongBooleanVariable) /
     100;
 $var =
     ($someReallyReallyReallyLongBooleanVariable *
@@ -357,18 +357,18 @@ $var =
     ($someReallyReallyReallyLongBooleanVariable / 100);
 $var =
     $someReallyReallyReallyLongBooleanVariable +
-    $someReallyReallyReallyLongBooleanVariable % 100;
+    ($someReallyReallyReallyLongBooleanVariable % 100);
 $var =
-    $someReallyReallyReallyLongBooleanVariable *
-        $someReallyReallyReallyLongBooleanVariable %
+    ($someReallyReallyReallyLongBooleanVariable *
+        $someReallyReallyReallyLongBooleanVariable) %
     100;
 $var =
-    $someReallyReallyReallyLongBooleanVariable <<
-        $someReallyReallyReallyLongBooleanVariable <<
+    ($someReallyReallyReallyLongBooleanVariable <<
+        $someReallyReallyReallyLongBooleanVariable) <<
     100;
 $var =
     $someReallyReallyReallyLongBooleanVariable **
-    $someReallyReallyReallyLongBooleanVariable ** 100;
+    ($someReallyReallyReallyLongBooleanVariable ** 100);
 $var =
     $someReallyReallyReallyLongBooleanVariable +
     $someReallyReallyReallyLongBooleanVariable * 100;
@@ -378,15 +378,15 @@ $var =
     100;
 $var =
     $someReallyReallyReallyLongBooleanVariable +
-    $someReallyReallyReallyLongBooleanVariable % 100;
+    ($someReallyReallyReallyLongBooleanVariable % 100);
 $var =
-    $someReallyReallyReallyLongBooleanVariable %
-        $someReallyReallyReallyLongBooleanVariable +
+    ($someReallyReallyReallyLongBooleanVariable %
+        $someReallyReallyReallyLongBooleanVariable) +
     100;
 
 if (
-    $someReallyReallyReallyLongBooleanVariable *
-        $someReallyReallyReallyLongBooleanVariable /
+    ($someReallyReallyReallyLongBooleanVariable *
+        $someReallyReallyReallyLongBooleanVariable) /
     100
 ) {
 }
@@ -403,24 +403,24 @@ if (
 }
 if (
     $someReallyReallyReallyLongBooleanVariable +
-    $someReallyReallyReallyLongBooleanVariable % 100
+    ($someReallyReallyReallyLongBooleanVariable % 100)
 ) {
 }
 if (
-    $someReallyReallyReallyLongBooleanVariable *
-        $someReallyReallyReallyLongBooleanVariable %
+    ($someReallyReallyReallyLongBooleanVariable *
+        $someReallyReallyReallyLongBooleanVariable) %
     100
 ) {
 }
 if (
-    $someReallyReallyReallyLongBooleanVariable <<
-        $someReallyReallyReallyLongBooleanVariable <<
+    ($someReallyReallyReallyLongBooleanVariable <<
+        $someReallyReallyReallyLongBooleanVariable) <<
     100
 ) {
 }
 if (
     $someReallyReallyReallyLongBooleanVariable **
-    $someReallyReallyReallyLongBooleanVariable ** 100
+    ($someReallyReallyReallyLongBooleanVariable ** 100)
 ) {
 }
 if (
@@ -436,12 +436,12 @@ if (
 }
 if (
     $someReallyReallyReallyLongBooleanVariable +
-    $someReallyReallyReallyLongBooleanVariable % 100
+    ($someReallyReallyReallyLongBooleanVariable % 100)
 ) {
 }
 if (
-    $someReallyReallyReallyLongBooleanVariable %
-        $someReallyReallyReallyLongBooleanVariable +
+    ($someReallyReallyReallyLongBooleanVariable %
+        $someReallyReallyReallyLongBooleanVariable) +
     100
 ) {
 }
@@ -451,13 +451,13 @@ echo 'This ' .
     'string' .
     'string' .
     'string' .
-    (100 + 100) .
+    100 + 100 .
     'string ' .
-    (100 - 100) .
+    100 - 100 .
     'was ' .
-    (100 * 100) .
+    100 * 100 .
     'made ' .
-    (100 / 100) .
+    100 / 100 .
     'with concatenation.';
 
 if ($someReallyReallyReallyLongBooleanVariableWithRddllyReallyLongName || []) {

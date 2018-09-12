@@ -155,30 +155,30 @@ if (
 
 if (
     $this ||
-    $that && $theOtherThing && $someReallyReallyReallyLongBooleanVariable
+    ($that && $theOtherThing && $someReallyReallyReallyLongBooleanVariable)
 ) {
     return true;
 }
 
 if (
     $this ||
-    $that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable
+    ($that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable)
 ) {
     return true;
 }
 
 if (
     $this ||
-    $that &&
+    ($that &&
         $theOtherThing < $someReallyReallyReallyLongBooleanVariable ==
-            $equalCheck
+            $equalCheck)
 ) {
     return true;
 }
 
 if (
     $this ||
-    $that && $theOtherThing ||
+    ($that && $theOtherThing) ||
     $someReallyReallyReallyLongBooleanVariable
 ) {
     return true;
