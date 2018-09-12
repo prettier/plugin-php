@@ -1079,6 +1079,37 @@ if (empty($var)) {
 
 `;
 
+exports[`eval.php 1`] = `
+<?php
+
+eval('return 1;');
+(eval('return 1;'));
+(eval(('return 1;')));
+
+$var = eval('return 1;');
+$var = (eval('return 1;'));
+$var = (eval(('return 1;')));
+
+if (eval('return 1;')) {}
+if ((eval('return 1;'))) {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+eval('return 1;');
+eval('return 1;');
+eval('return 1;');
+
+$var = eval('return 1;');
+$var = eval('return 1;');
+$var = eval('return 1;');
+
+if (eval('return 1;')) {
+}
+if (eval('return 1;')) {
+}
+
+`;
+
 exports[`exit.php 1`] = `
 <?php
 
