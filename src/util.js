@@ -49,6 +49,7 @@ const PRECEDENCE = {};
   ["+", "-", "."],
   ["*", "/", "%"],
   ["!"],
+  ["instanceof"],
   ["++", "--", "~"],
   ["**"]
 ].forEach((tier, i) => {
@@ -65,6 +66,15 @@ const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
 const additiveOperators = ["+", "-"];
 const multiplicativeOperators = ["*", "/", "%"];
 const bitshiftOperators = [">>", "<<"];
+
+function isBitwiseOperator(operator) {
+  return (
+    !!bitshiftOperators[operator] ||
+    operator === "|" ||
+    operator === "^" ||
+    operator === "&"
+  );
+}
 
 function shouldFlatten(parentOp, nodeOp) {
   if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
@@ -533,6 +543,7 @@ function hasNewline(text, index, opts) {
 module.exports = {
   printNumber,
   getPrecedence,
+  isBitwiseOperator,
   shouldFlatten,
   nodeHasStatement,
   getNodeListProperty,
