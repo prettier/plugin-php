@@ -188,26 +188,37 @@ function needsParens(path) {
       }
     case "closure":
       return parent.kind === "call" && name === "what" && parent.what === node;
+    case "cast":
+      if (parent.kind === "bin") {
+        return true;
+      } else if (
+        parent.kind === "retif" &&
+        name === "test" &&
+        parent.test === node
+      ) {
+        return true;
+      } else if (parent.kind === "silent") {
+        return true;
+      }
+    // else fallthrough
     case "string":
     case "array":
-    case "cast":
-      if (
-        name === "what" &&
-        parent.what === node &&
-        (isLookupNode(parent) || parent.kind === "call")
-      ) {
-        if (node.kind === "string" && parent.kind === "offsetlookup") {
+      switch (parent.kind) {
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          if (
+            ["string", "array"].includes(node.kind) &&
+            parent.kind === "offsetlookup"
+          ) {
+            return false;
+          }
+
+          return name === "what" && parent.what === node;
+        default:
           return false;
-        }
-
-        return true;
       }
-
-      if (node.kind === "cast" && parent.kind === "bin") {
-        return true;
-      }
-
-      return false;
     case "print":
     case "include":
       return parent.kind === "bin";

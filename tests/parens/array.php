@@ -35,3 +35,12 @@ $arr = ([('key') => ($var), ('other-key') => ($other_var)]);
 [$var, $other_var] = $arr;
 [($var), ($other_var)] = $arr;
 [('key') => ($var), ('other-key') => ($other_var)] = $arr;
+
+$var = array(1, 2, 3)[1];
+$var = (array(1, 2, 3))[1];
+$var = [1, 2, 3][1];
+$var = ([1, 2, 3])[1];
+$var = array(new stdClass())[0];
+$var = (array((new stdClass())))[0];
+$var = [new stdClass()][0];
+$var = ([(new stdClass())])[0];

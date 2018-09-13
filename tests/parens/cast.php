@@ -42,8 +42,30 @@ $var = ((bool) $var) ? ((bool) 1) :  ((bool) 2);
 $var = ((bool) $var) ? (bool) 1 + 2 :  (bool) 2 + 3;
 $var = ((bool) $var) ? ((bool) 1 + 2) :  ((bool) 2 + 3);
 $var = ((bool) $var) ? (bool) $var ? 1 : 2 :  (bool) $var ? 1 : 2;
+$var = ((bool) $var) ? ((bool) $var) ? 1 : 2 :  ((bool) $var) ? 1 : 2;
 $var = ((bool) $var) ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2);
 $var = (bool) ($var ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2));
+$var = (bool) $var->foo;
+$var = (bool) ($var->foo);
+$var = ((bool) $var->foo);
+$var = ((object) $var)->foo;
+$var = ((object) $var)[0];
+$var = (int) 'test' + (int) 'test';
+$var = ((int) 'test') + ((int) 'test');
+$var = ((int) 'test') * ((int) 'test');
+$var = ((int) 'test') | ((int) 'test');
+$var = ((int) 'test') % ((int) 'test');
+$var = @((int) 'test');
+$var = @((int) call());
+$var = (int) (int) 1;
+$var = (int) ((int) 1);
+$var = call((int) $var, (int) call(), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
+$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
+
+return (int) $var;
+return ((int) $var);
 
 if ((int) 1 === 1) {}
 if (1 === (int) 1) {}
