@@ -14,8 +14,7 @@ function parse(text, parsers, opts) {
   // initialize a new parser instance
   const parser = new engine({
     parser: {
-      extractDoc: true,
-      extractTokens: true
+      extractDoc: true
     },
     ast: {
       withPositions: true,
