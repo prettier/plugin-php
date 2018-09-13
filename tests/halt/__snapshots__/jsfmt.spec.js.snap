@@ -10,3 +10,41 @@ __halt_compiler(); the installation data (eg. tar, gz, PHP, etc.)
 other text
 
 `;
+
+exports[`other-single.php 1`] = `
+<?php
+
+$var = 1;
+
+$var = 1;
+?>
+Foo
+<?php
+
+$var = 1;
+
+__HALT_COMPILER();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+
+$var = 1;
+
+$var = 1;
+?>
+Foo
+<?php
+$var = 1;
+
+__halt_compiler();
+
+`;
+
+exports[`single.php 1`] = `
+<?php
+__HALT_COMPILER();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+__halt_compiler();
+
+`;

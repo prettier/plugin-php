@@ -9,22 +9,41 @@ const util = require("./util");
  * changed by the printer, etc.)
  */
 function clean(node, newObj) {
-  // Ignore `parenthesis` inside `parenthesis`
-  if (node.kind === "parenthesis" && node.inner.kind === "parenthesis") {
-    while (newObj.inner.kind === "parenthesis") {
-      newObj.inner = newObj.inner.inner;
-    }
-  }
+  [
+    "loc",
+    "range",
+    "raw",
+    "comments",
+    "leadingComments",
+    "trailingComments",
+    "parenthesizedExpression",
+    "parent",
+    "prev",
+    "start",
+    "end",
+    "tokens",
+    "errors",
+    "extra"
+  ].forEach(name => {
+    delete newObj[name];
+  });
 
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
   if ((node.kind === "continue" || node.kind === "break") && node.level) {
-    let { level } = newObj;
-    if (level.kind === "parenthesis") {
-      level = level.inner;
-    }
+    const { level } = newObj;
+
     if (level.kind === "number") {
-      newObj.level = level.value == 1 ? {} : level;
+      newObj.level = level.value == 1 ? null : level;
+    }
+  }
+
+  // if () {{ }} -> if () {}
+  if (node.kind === "block") {
+    if (node.children.length === 1 && node.children[0].kind === "block") {
+      while (newObj.children[0].kind === "block") {
+        newObj.children = newObj.children[0].children;
+      }
     }
   }
 
@@ -99,37 +118,20 @@ function clean(node, newObj) {
     }
   }
 
-  // Ignore `parenthesis` for `return`
-  if (node.kind === "return" && node.expr && node.expr.kind === "parenthesis") {
-    newObj.expr = newObj.expr.inner;
-  }
-
-  // Ignore `parenthesis` for `print`
-  if (node.kind === "print" && node.arguments.kind === "parenthesis") {
-    newObj.arguments = newObj.arguments.inner;
-  }
-
-  // Ignore `parenthesis` for `echo`
-  if (node.kind === "echo" && node.arguments.length > 0) {
-    node.arguments.forEach((argument, index) => {
-      newObj.arguments[index] =
-        node.arguments[index].kind === "parenthesis"
-          ? newObj.arguments[index].inner
-          : newObj.arguments[index];
-    });
-  }
-
-  // Ignore `parenthesis` for `include`
-  if (node.kind === "include" && node.target.kind === "parenthesis") {
-    newObj.target = newObj.target.inner;
-  }
-
   if (node.kind === "usegroup" && typeof node.name === "string") {
     newObj.name = newObj.name.replace(/^\\/, "");
   }
 
   if (node.kind === "useitem") {
     newObj.name = newObj.name.replace(/^\\/, "");
+  }
+
+  // TODO: remove after resolve https://github.com/glayzzle/php-parser/issues/181
+  if (node.kind === "unary" && ["+", "-"].includes(node.type)) {
+    return {
+      kind: "number",
+      value: `${newObj.type}${newObj.what.value}`
+    };
   }
 }
 

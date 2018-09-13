@@ -15,7 +15,8 @@ This should print a capital 'A': \x41
 EOT;
 $var = "He drank some $juice juice.".PHP_EOL;
 $var = "He drank some $juices[0] juice.".PHP_EOL;
-$var = "He drank some $juices[koolaid1] juice.".PHP_EOL;
+// Todo https://github.com/glayzzle/php-parser/issues/175
+// $var = "He drank some $juices[koolaid1] juice.".PHP_EOL;
 $var = "$people->john then said hello to $people->jane.".PHP_EOL;
 $var = "{$foo->{$baz[1]}}\n";
 $var = $var->{$var->property};
@@ -32,11 +33,13 @@ $var = Foo::$bar['baz']();
 $var = ${$foo['bar']['baz']};
 $var = $foo->{$bar['baz']};
 $var = $foo->{$bar['baz']}();
+// Todo https://github.com/glayzzle/php-parser/issues/167
 // $var = Foo::{$bar['baz']}();
 
 $var = ($$foo)['bar']['baz'];
 $var = ($foo->$bar)['baz'];
 $var = ($foo->$bar)['baz']();
-$var = (Foo::$bar)['baz']();
+// Todo https://github.com/glayzzle/php-parser/issues/182
+// $var = (Foo::$bar)['baz']();
 
 $$$$$$$$$$var = "I like playing in the park";
