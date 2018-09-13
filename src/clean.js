@@ -70,7 +70,8 @@ function clean(node, newObj) {
         "void",
         "iterable",
         "object",
-        "self"
+        "self",
+        "parent"
       ].indexOf(lowerCasedName) !== -1;
 
     newObj.name = isLowerCase ? lowerCasedName : node.name;
