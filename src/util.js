@@ -274,10 +274,7 @@ function docShouldHaveTrailingNewline(path) {
 }
 
 function lineShouldEndWithSemicolon(path) {
-  let node = path.getValue();
-  while (node.kind === "parenthesis") {
-    node = node.inner;
-  }
+  const node = path.getValue();
   const parentNode = path.getParentNode();
   if (!parentNode) {
     return false;
