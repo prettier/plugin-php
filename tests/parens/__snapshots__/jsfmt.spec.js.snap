@@ -38,6 +38,15 @@ $arr = ([('key') => ($var), ('other-key') => ($other_var)]);
 [$var, $other_var] = $arr;
 [($var), ($other_var)] = $arr;
 [('key') => ($var), ('other-key') => ($other_var)] = $arr;
+
+$var = array(1, 2, 3)[1];
+$var = (array(1, 2, 3))[1];
+$var = [1, 2, 3][1];
+$var = ([1, 2, 3])[1];
+$var = array(new stdClass())[0];
+$var = (array((new stdClass())))[0];
+$var = [new stdClass()][0];
+$var = ([(new stdClass())])[0];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -76,6 +85,15 @@ $arr = ['key' => $var, 'other-key' => $other_var];
 [$var, $other_var] = $arr;
 [$var, $other_var] = $arr;
 ['key' => $var, 'other-key' => $other_var] = $arr;
+
+$var = array(1, 2, 3)[1];
+$var = array(1, 2, 3)[1];
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = array(new stdClass())[0];
+$var = array(new stdClass())[0];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
 
 `;
 
@@ -1031,8 +1049,30 @@ $var = ((bool) $var) ? ((bool) 1) :  ((bool) 2);
 $var = ((bool) $var) ? (bool) 1 + 2 :  (bool) 2 + 3;
 $var = ((bool) $var) ? ((bool) 1 + 2) :  ((bool) 2 + 3);
 $var = ((bool) $var) ? (bool) $var ? 1 : 2 :  (bool) $var ? 1 : 2;
+$var = ((bool) $var) ? ((bool) $var) ? 1 : 2 :  ((bool) $var) ? 1 : 2;
 $var = ((bool) $var) ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2);
 $var = (bool) ($var ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2));
+$var = (bool) $var->foo;
+$var = (bool) ($var->foo);
+$var = ((bool) $var->foo);
+$var = ((object) $var)->foo;
+$var = ((object) $var)[0];
+$var = (int) 'test' + (int) 'test';
+$var = ((int) 'test') + ((int) 'test');
+$var = ((int) 'test') * ((int) 'test');
+$var = ((int) 'test') | ((int) 'test');
+$var = ((int) 'test') % ((int) 'test');
+$var = @((int) 'test');
+$var = @((int) call());
+$var = (int) (int) 1;
+$var = (int) ((int) 1);
+$var = call((int) $var, (int) call(), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
+$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
+
+return (int) $var;
+return ((int) $var);
 
 if ((int) 1 === 1) {}
 if (1 === (int) 1) {}
@@ -1081,14 +1121,36 @@ $var = (bool) ($var ? 1 : 2);
 $var = (bool) ($var + 1 ? 1 : 2);
 $var = ((bool) $var) + 1 ? 1 : 2;
 $var = (bool) ($var + 1 ? 1 : 2);
-$var = (bool) $var ? 1 : 2;
-$var = (bool) $var ? (bool) 1 : (bool) 2;
-$var = (bool) $var ? (bool) 1 : (bool) 2;
-$var = (bool) $var ? (bool) (1 + 2) : (bool) (2 + 3);
-$var = (bool) $var ? (bool) (1 + 2) : (bool) (2 + 3);
-$var = (bool) $var ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
-$var = (bool) $var ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
+$var = ((bool) $var) ? 1 : 2;
+$var = ((bool) $var) ? (bool) 1 : (bool) 2;
+$var = ((bool) $var) ? (bool) 1 : (bool) 2;
+$var = ((bool) $var) ? (bool) (1 + 2) : (bool) (2 + 3);
+$var = ((bool) $var) ? (bool) (1 + 2) : (bool) (2 + 3);
+$var = ((bool) $var) ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
+$var = (((bool) $var) ? (((bool) $var) ? 1 : 2) : (bool) $var) ? 1 : 2;
+$var = ((bool) $var) ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
 $var = (bool) ($var ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2));
+$var = (bool) $var->foo;
+$var = (bool) $var->foo;
+$var = (bool) $var->foo;
+$var = ((object) $var)->foo;
+$var = ((object) $var)[0];
+$var = (int) ('test' + ((int) 'test'));
+$var = ((int) 'test') + ((int) 'test');
+$var = ((int) 'test') * ((int) 'test');
+$var = ((int) 'test') | ((int) 'test');
+$var = ((int) 'test') % ((int) 'test');
+$var = @((int) 'test');
+$var = @((int) call());
+$var = (int) (int) 1;
+$var = (int) (int) 1;
+$var = call((int) $var, (int) call(), (int) ($minutes * 60));
+$var = call((int) $var, (int) call(), (int) ($minutes * 60));
+$var = $var + ((int) ($minutes * 60));
+$var = $var + ((int) ($minutes * 60));
+
+return (int) $var;
+return (int) $var;
 
 if ((int) (1 === 1)) {
 }
