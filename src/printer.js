@@ -2481,6 +2481,12 @@ function printNode(path, options, print) {
         docShouldHaveTrailingNewline(path) ? hardline : ""
       ]);
     case "identifier": {
+      const parent = path.getParentNode();
+
+      if (parent.kind === "constref" && node.name.toLowerCase() !== "null") {
+        return node.name;
+      }
+
       // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
       // for reserved words we prefer lowercase case
       if (node.name === "\\array") {
@@ -2500,7 +2506,8 @@ function printNode(path, options, print) {
           "void",
           "iterable",
           "object",
-          "self"
+          "self",
+          "parent"
         ].indexOf(lowerCasedName) !== -1;
 
       return isLowerCase ? lowerCasedName : node.name;
