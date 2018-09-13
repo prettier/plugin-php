@@ -1494,6 +1494,26 @@ function printNode(path, options, print) {
           ...(node.as ? [node.as] : [])
         ])
       ]);
+    case "traituse":
+      return group(
+        concat([
+          "use ",
+          indent(group(join(concat([",", line]), path.map(print, "traits")))),
+          node.adaptations
+            ? concat([
+                " {",
+                indent(
+                  concat([
+                    hardline,
+                    printLines(path, options, print, "adaptations")
+                  ])
+                ),
+                hardline,
+                "}"
+              ])
+            : ""
+        ])
+      );
     case "function":
       return printDeclarationBlock({
         declaration: concat(["function ", node.byref ? "&" : "", node.name]),
@@ -2389,10 +2409,6 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
-      // @TODO: need resolve https://github.com/glayzzle/php-parser/issues/101
-      // @TODO: for now just reusing double/single quote preference from doc. could eventually
-      // use setting from options. need to figure out how this works w/ complex strings and interpolation
-      // also need to figure out splitting long strings
       const quote = node.isDoubleQuote ? '"' : "'";
 
       let stringValue = node.raw;
@@ -2512,26 +2528,6 @@ function printNode(path, options, print) {
 
       return isLowerCase ? lowerCasedName : node.name;
     }
-    case "traituse":
-      return group(
-        concat([
-          "use ",
-          indent(group(join(concat([",", line]), path.map(print, "traits")))),
-          node.adaptations
-            ? concat([
-                " {",
-                indent(
-                  concat([
-                    hardline,
-                    printLines(path, options, print, "adaptations")
-                  ])
-                ),
-                hardline,
-                "}"
-              ])
-            : ""
-        ])
-      );
     case "error":
     default:
       return `Have not implemented kind ${node.kind} yet.`;
