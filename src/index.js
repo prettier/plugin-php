@@ -197,10 +197,6 @@ const printers = {
           children: { listNodes: ["arguments"], nodes: [] }
         },
         {
-          kinds: ["parenthesis"],
-          children: { listNodes: [], nodes: ["inner"] }
-        },
-        {
           kinds: ["include"],
           children: { listNodes: [], nodes: ["target"] }
         },
