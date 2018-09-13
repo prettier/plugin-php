@@ -135,6 +135,8 @@ $var = function &() {
 
 $func = static function() {};
 $fn = function &() use (&$value) { return $value; };
+
+$var = function () {};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -198,8 +200,7 @@ $foo->bar(
     $longLongLongLongLongLongLongLongLongLongArg3
 );
 
-$emptyFunc = function () {
-};
+$emptyFunc = function () {};
 
 $emptyFuncWithComment = function () {
     /* Comment */
@@ -267,10 +268,11 @@ $var = function &() {
     return $collection;
 };
 
-$func = static function () {
-};
+$func = static function () {};
 $fn = function &() use (&$value) {
     return $value;
 };
+
+$var = function () {};
 
 `;

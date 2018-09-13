@@ -132,3 +132,5 @@ $var = function &() {
 
 $func = static function() {};
 $fn = function &() use (&$value) { return $value; };
+
+$var = function () {};

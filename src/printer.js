@@ -1811,7 +1811,7 @@ function printNode(path, options, print) {
         indent(
           concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
         ),
-        concat([hardline, "}"])
+        concat([hasEmptyBody ? "" : hardline, "}"])
       ]);
     }
     case "retif": {
