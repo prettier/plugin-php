@@ -101,6 +101,6 @@ $var = $foo->$bar['baz']();
 // Todo https://github.com/glayzzle/php-parser/issues/182
 // $var = (Foo::$bar)['baz']();
 
-$$$$$$$$$$var = "I like playing in the park";
+$$$$$$$$$$var = 'I like playing in the park';
 
 `;

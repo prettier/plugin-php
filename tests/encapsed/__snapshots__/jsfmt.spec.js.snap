@@ -167,10 +167,10 @@ $content = array(
 foo
 EOF
     ,
-    "bar"
+    'bar'
 );
 $content = array(
-    "bar",
+    'bar',
     <<<EOF
 foo
 EOF

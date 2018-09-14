@@ -30,7 +30,7 @@ isset($expected_array_got_string['0.5']);
 isset($expected_array_got_string['0 Mostel']);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-echo "test echo";
+echo 'test echo';
 echo $test, $other;
 
 $info = array('coffee', 'brown', 'caffeine');
@@ -41,8 +41,8 @@ list(
     $lastOne
 ) = $info;
 
-print "test print";
-print "parens test";
+print 'test print';
+print 'parens test';
 
 isset($test);
 

@@ -40,7 +40,7 @@ try {
 } catch (OtherException $i) {
     echo 'Caugh other';
 } finally {
-    echo "First finally";
+    echo 'First finally';
 }
 
 try {

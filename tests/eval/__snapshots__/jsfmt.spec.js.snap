@@ -14,9 +14,9 @@ eval(
     "$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableName = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableValue;"
 );
 eval(
-    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
-        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
-        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText"
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText' .
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText' .
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText'
 );
 
 `;

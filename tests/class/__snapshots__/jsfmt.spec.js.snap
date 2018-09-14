@@ -418,7 +418,7 @@ class Foo extends Bar implements Baz, Buzz
 
     function test()
     {
-        return "test";
+        return 'test';
     }
 
     public function &passByReferenceTest()

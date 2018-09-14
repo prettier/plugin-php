@@ -566,6 +566,16 @@ function hasNewline(text, index, opts) {
   return idx !== idx2;
 }
 
+function useSingleQuote(node) {
+  return (
+    !node.isDoubleQuote ||
+    (!node.raw.match(/\\n|\\t|\\r|\\t|\\v|\\e|\\f/) &&
+      !node.value.match(
+        /["'$\n]|\\[0-7]{1,3}|\\x[0-9A-Fa-f]{1,2}|\\u{[0-9A-Fa-f]+}/
+      ))
+  );
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -593,5 +603,6 @@ module.exports = {
   getLastNestedChildNode,
   isProgramLikeNode,
   getNodeKindIncludingLogical,
-  hasNewline
+  hasNewline,
+  useSingleQuote
 };

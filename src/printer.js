@@ -46,7 +46,8 @@ const {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
-  getNodeKindIncludingLogical
+  getNodeKindIncludingLogical,
+  useSingleQuote
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -2409,7 +2410,7 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
-      const quote = node.isDoubleQuote ? '"' : "'";
+      const quote = useSingleQuote(node) ? "'" : '"';
 
       let stringValue = node.raw;
 

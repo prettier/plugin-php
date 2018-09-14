@@ -37,6 +37,69 @@ $chart = "
 
 `;
 
+exports[`quoting.php 1`] = `
+<?php
+// rewrite simple strings
+"rewrite me";
+// don't rewrite complex strings
+"$foo";
+"{$foo}";
+"\${foo} bar";
+"\${$foo}";
+"\\n";
+"\\r";
+"\\t";
+"\\v";
+"\\e";
+"\\f";
+"\\f";
+"\\f";
+"\\"";
+"\\$";
+"don't";
+"\\1";
+"\\12";
+"\\123";
+"\\x0";
+"\\xAF";
+"\\u{aa}";
+"\\u{0000aa}";
+"\\u{9999}";
+"multi
+line";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// rewrite simple strings
+'rewrite me';
+// don't rewrite complex strings
+"$foo";
+"{$foo}";
+"\${foo} bar";
+"\${$foo}";
+"\\n";
+"\\r";
+"\\t";
+"\\v";
+"\\e";
+"\\f";
+"\\f";
+"\\f";
+"\\"";
+"\\$";
+"don't";
+"\\1";
+"\\12";
+"\\123";
+"\\x0";
+"\\xAF";
+"\\u{aa}";
+"\\u{0000aa}";
+"\\u{9999}";
+"multi
+line";
+
+`;
+
 exports[`single.php 1`] = `
 <?php
 'string';
@@ -182,9 +245,9 @@ $string = "foo\\tbar";
 $string = "foo\\vbar";
 $string = "foo\\ebar";
 $string = "foo\\fbar";
-$string = "foo\\\\bar";
-$string = "foo\\\\\\bar";
-$string = "foo\\\\\\\\bar";
+$string = 'foo\\\\bar';
+$string = 'foo\\\\\\bar';
+$string = 'foo\\\\\\\\bar';
 $string = "foo\\$bar";
 $string = "foo\\\\\\$bar";
 $string = "foo\\"bar";
@@ -193,11 +256,11 @@ $string = "foo'bar";
 $string = "foo\\377bar";
 $string = "foo\\3";
 $string = "foo\\xFFbar";
-$string = "foo\\xr";
-$string = "foo\\x";
+$string = 'foo\\xr';
+$string = 'foo\\x';
 $string = "foo\\u{ff}bar";
-$string = "foo\\ubar";
-$string = "foo\\u";
+$string = 'foo\\ubar';
+$string = 'foo\\u';
 $string = "simple $encapsed";
 $string = "simple {$encapsed[0]}";
 $string = "encapsed variable \${name}.";
@@ -213,7 +276,7 @@ $string = "This is {$great}";
 $string = "This square is {$square->width}00 centimeters broad.";
 $string = "This works: {$arr['key']}";
 $string = "This works: {$arr[4][3]}";
-$string = "This works: " . $arr['foo'][3];
+$string = 'This works: ' . $arr['foo'][3];
 $string = "This works too: {$obj->values[3]->name}";
 $string = "This is the value of the var named $name: \${$name}";
 $string = "This is the value of the var named by the return value of getName(): \${getName()}";
@@ -225,7 +288,7 @@ $string = "This is the value of the var named by the return value of getName(): 
 $string = "This is the value of the var named by the return value of \\$object->getName(): \${$object->getName()}";
 $string = "I'd like an \${beers::softdrink}\\n";
 $string = "I'd like an \${beers::$ale}\\n";
-$test = "\\\\";
+$test = '\\\\';
 $test = '\\\\';
 printf("Query run in $queryTimeTaken seconds.\\n");
 $test = "You can also have embedded\\n newlines in
@@ -247,7 +310,7 @@ $string = "\\'bar\\'";
 $string = "\\'";
 $string = '\\'';
 $string = '\\"';
-$string = "\\#";
+$string = '\\#';
 $string = '\\#';
 $string = "\\e";
 $string = '\\e';
@@ -257,9 +320,9 @@ $string = '\\'';
 $string = "\\"\${foo}\\"";
 $string = '\\'\${foo}\\'';
 $string = '\\"\${foo}\\"';
-$string = "/\\!/";
 $string = '/\\!/';
-$string = "/\\@/";
+$string = '/\\!/';
+$string = '/\\@/';
 $string = '/\\@/';
 $string = '\\n';
 $string = '\\r';
@@ -269,14 +332,14 @@ $string = "\\t";
 $string = "\\v";
 $string = "\\e";
 $string = "\\f";
-$string = "\\\\";
+$string = '\\\\';
 $string = "\\$";
 $string = "\\"";
 $string = "\\0";
 $string = "\\777";
 $string = "\\xFF";
 $string = "\\u{FFFF}";
-$string = "\\:";
+$string = '\\:';
 $string = '\\:';
 
 `;

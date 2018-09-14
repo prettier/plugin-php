@@ -82,8 +82,8 @@ $array = [
 $array = [
     /* comment */
     /* comment */
-    /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
-    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */
+    /* comment */ 'foo' /* comment */ => /* comment */ 'bar' /* comment */,
+    /* comment */ 'bar' /* comment */ => /* comment */ 'foo' /* comment */
     /* comment */
     /* comment */
 ];
@@ -111,7 +111,7 @@ const FOO = [
 
 return [
     // foo
-    "bar"
+    'bar'
 ];
 
 $array = [
@@ -444,7 +444,7 @@ class Foo extends Bar implements Baz, Buzz
 
     function test()
     {
-        return "test";
+        return 'test';
     }
 
     public function &passByReferenceTest()
@@ -775,14 +775,14 @@ do {
 
 $test = foo
     ?: bar(function () {
-        $foo = "bar";
+        $foo = 'bar';
         // test
     });
 
 $test = foo
     ? true
     : bar(function () {
-        $foo = "bar";
+        $foo = 'bar';
         // test
     });
 
@@ -972,7 +972,7 @@ if (empty(/* Comment */ [] /* Comment */)) {
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
-    echo "Foo";
+    echo 'Foo';
 }
 
 `;
@@ -1295,19 +1295,19 @@ elseif (false)
 if (1) {
     // Comment 2
     // Comment 3
-    echo "Foo"; // Comment 4
+    echo 'Foo'; // Comment 4
     // Comment 5
 } elseif (2) {
     // Comment 6
     // Comment 7
     // Comment 8
-    echo "Bar";
+    echo 'Bar';
     // Comment 9
 } else {
     // Comment 10
     // Comment 11
     // Comment 12
-    echo "FooBar";
+    echo 'FooBar';
     // Comment 13
 } // Comment 14
 
@@ -1350,13 +1350,13 @@ include (// Comment
 // Comment
 include // Comment
 // Comment
-"test.php"; // Comment
+'test.php'; // Comment
 // Comment // Comment
 
 // Comment
 include // Comment
 // Comment
-"test.php"; // Comment
+'test.php'; // Comment
 // Comment // Comment
 
 `;
@@ -1484,7 +1484,7 @@ if (isset(/* Comment */ $a[1]/* Comment */)) {
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
-    echo "Foo";
+    echo 'Foo';
 }
 
 `;
@@ -1774,13 +1774,13 @@ switch ($i) {
     // Comment
     case 0: // Comment
         // Comment
-        echo "i equals 0"; // Comment
+        echo 'i equals 0'; // Comment
         // Comment
         break; // Comment
     // Comment
     case 1: // Comment
         // Comment
-        echo "i equals 1"; // Comment
+        echo 'i equals 1'; // Comment
         break; // Comment
     // Comment
 } // Comment
