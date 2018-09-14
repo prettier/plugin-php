@@ -50,8 +50,9 @@ function needsParens(path) {
     case "post":
       if (parent.kind === "unary") {
         return (
-          (node.type === "+" && parent.type === "+") ||
-          (node.type === "-" && parent.type === "-")
+          node.kind === "pre" &&
+          ((node.type === "+" && parent.type === "+") ||
+            (node.type === "-" && parent.type === "-"))
         );
       }
     // else fallthrough
