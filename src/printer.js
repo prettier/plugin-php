@@ -2202,31 +2202,36 @@ function printNode(path, options, print) {
         path.call(print, "name"),
         node.curly ? "}" : ""
       ]);
-    case "static":
+    case "static": {
+      const printed = path.map(childPath => {
+        return print(childPath);
+      }, "items");
+
+      const hasValue = node.items.some(item => item.kind === "assign");
+
+      let firstVariable;
+
+      if (printed.length === 1) {
+        [firstVariable] = printed;
+      } else if (printed.length > 1) {
+        // Indent first item
+        firstVariable = indent(printed[0]);
+      }
+
       return group(
         concat([
-          "static ",
+          "static",
+          firstVariable ? concat([" ", firstVariable]) : "",
           indent(
-            concat([
-              join(
-                concat([",", line]),
-                path.map(item => {
-                  // @TODO: hacking this for now. assignments nested inside a static
-                  // declaration doesn't have the operator set, so printing manually
-                  if (item.getValue().kind === "assign") {
-                    return concat([
-                      item.call(print, "left"),
-                      " = ",
-                      item.call(print, "right")
-                    ]);
-                  }
-                  return item.call(print);
-                }, "items")
-              )
-            ])
+            concat(
+              printed
+                .slice(1)
+                .map(p => concat([",", hasValue ? hardline : line, p]))
+            )
           )
         ])
       );
+    }
     case "list":
     case "array": {
       const open = node.shortForm ? "[" : concat([node.kind, "("]);
@@ -2317,7 +2322,8 @@ function printNode(path, options, print) {
       return printAssignment(
         node.left,
         path.call(print, "left"),
-        concat([" ", node.operator]),
+        // Assignments nested inside a static declaration doesn't have the operator set, so printing manually
+        concat([" ", node.operator ? node.operator : "="]),
         node.right,
         path.call(print, "right"),
         options
