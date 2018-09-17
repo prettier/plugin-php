@@ -64,15 +64,15 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
 function handleRemainingComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleCommentInEmptyParens(text, enclosingNode, comment, options) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleTryCatch(enclosingNode, comment) ||
-    handleBreakAndContinueStatementComments(enclosingNode, comment) ||
     handleGoto(enclosingNode, comment) ||
     handleHalt(enclosingNode, precedingNode, comment) ||
-    handleCall(enclosingNode, comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment)
+    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
+    handleBreakAndContinueStatementComments(enclosingNode, comment)
   );
 }
 
@@ -257,10 +257,14 @@ function handleHalt(enclosingNode, precedingNode, comment) {
   return false;
 }
 
-function handleCall(enclosingNode, comment) {
+function handleCommentInEmptyParens(text, enclosingNode, comment) {
+  // Only add dangling comments to fix the case when no arguments are present,
+  // i.e. a function without any argument.
   if (
     enclosingNode &&
-    enclosingNode.kind === "call" &&
+    (enclosingNode.kind === "closure" ||
+      enclosingNode.kind === "call" ||
+      enclosingNode.kind === "new") &&
     enclosingNode.arguments.length === 0
   ) {
     addDanglingComment(enclosingNode, comment);

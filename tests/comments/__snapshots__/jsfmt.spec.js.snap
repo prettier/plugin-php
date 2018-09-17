@@ -566,6 +566,19 @@ $obj2 = clone /* Comments */ $obj /* Comments */;
 
 `;
 
+exports[`closure.php 1`] = `
+<?php
+
+$var = function (/* Comment */) {};
+$var = function (/* Comment */ $arg /* Comment */) {};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = function (/* Comment */) {};
+$var = function (/* Comment */ $arg /* Comment */) {};
+
+`;
+
 exports[`comments.php 1`] = `
 <?php
 /** @var int $int This is a counter. */
@@ -1601,6 +1614,17 @@ class add_vendor extends request
         );
     }
 }
+
+`;
+
+exports[`new.php 1`] = `
+<?php
+$a = new Foo(/*Comment*/);
+$a = new Foo(/* Comment */ 1 /*Comments*/);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a = new Foo(/*Comment*/);
+$a = new Foo(/* Comment */ 1 /*Comments*/);
 
 `;
 
