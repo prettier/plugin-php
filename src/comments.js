@@ -27,54 +27,59 @@ args:
   isLastComment
 */
 
-const handleOwnLineComment = (comment, text, options, ast, isLastComment) => {
+function handleOwnLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
-    handleClass(comment) ||
-    handleFunctionParameter(comment, text, options) ||
-    handleFunction(comment, text, options) ||
+    handleClassComments(enclosingNode, followingNode, comment) ||
+    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
-    handleTryCatch(comment) ||
-    handleAlternate(comment) ||
+    handleTryCatch(enclosingNode, comment) ||
+    handleAlternate(enclosingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleInlineComments(comment) ||
-    handleHalt(comment)
+    handleInlineComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
+    handleHalt(enclosingNode, precedingNode, comment)
   );
-};
+}
 
-const handleEndOfLineComment = (comment, text, options, ast, isLastComment) => {
-  const { enclosingNode } = comment;
+function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
+  const { precedingNode, enclosingNode, followingNode } = comment;
   return (
-    handleClass(comment) ||
-    handleFunctionParameter(comment, text, options) ||
-    handleFunction(comment, text, options) ||
-    handleTryCatch(comment) ||
+    handleClassComments(enclosingNode, followingNode, comment) ||
+    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunction(text, enclosingNode, followingNode, comment, options) ||
+    handleTryCatch(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleHalt(comment)
+    handleHalt(enclosingNode, precedingNode, comment)
   );
-};
+}
 
-const handleRemainingComment = (comment, text, options, ast, isLastComment) => {
-  const { enclosingNode } = comment;
+function handleRemainingComment(comment, text, options, ast, isLastComment) {
+  const { precedingNode, enclosingNode, followingNode } = comment;
   return (
-    handleClass(comment) ||
-    handleFunctionParameter(comment, text, options) ||
-    handleFunction(comment, text, options) ||
-    handleTryCatch(comment) ||
-    handleBreakAndContinueStatementComments(comment) ||
-    handleGoto(comment) ||
-    handleHalt(comment) ||
-    handleCall(comment) ||
+    handleClassComments(enclosingNode, followingNode, comment) ||
+    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunction(text, enclosingNode, followingNode, comment, options) ||
+    handleTryCatch(enclosingNode, comment) ||
+    handleBreakAndContinueStatementComments(enclosingNode, comment) ||
+    handleGoto(enclosingNode, comment) ||
+    handleHalt(enclosingNode, precedingNode, comment) ||
+    handleCall(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment)
   );
-};
+}
 
-const handleForComments = (
+function handleForComments(
   enclosingNode,
   precedingNode,
   followingNode,
   comment
-) => {
+) {
   if (
     enclosingNode &&
     (enclosingNode.kind === "for" || enclosingNode.kind === "foreach")
@@ -90,10 +95,9 @@ const handleForComments = (
   }
 
   return false;
-};
+}
 
-const handleClass = comment => {
-  const { enclosingNode, followingNode } = comment;
+function handleClassComments(enclosingNode, followingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "class") {
     // for extends nodes that have leading comments, we can store them as
     // dangling comments so we can handle them in the printer
@@ -123,10 +127,9 @@ const handleClass = comment => {
     }
   }
   return false;
-};
+}
 
-const handleFunction = (comment, text, options) => {
-  const { enclosingNode, followingNode } = comment;
+function handleFunction(text, enclosingNode, followingNode, comment, options) {
   if (
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method")
@@ -178,10 +181,9 @@ const handleFunction = (comment, text, options) => {
     }
   }
   return false;
-};
+}
 
-const handleFunctionParameter = (comment, text, options) => {
-  const { enclosingNode } = comment;
+function handleFunctionParameter(text, enclosingNode, comment, options) {
   if (
     !enclosingNode ||
     !["function", "method", "parameter"].includes(enclosingNode.kind)
@@ -202,10 +204,9 @@ const handleFunctionParameter = (comment, text, options) => {
     return true;
   }
   return false;
-};
+}
 
-const handleTryCatch = comment => {
-  const { enclosingNode } = comment;
+function handleTryCatch(enclosingNode, comment) {
   if (
     enclosingNode &&
     (enclosingNode.kind === "try" || enclosingNode.kind === "catch")
@@ -218,10 +219,9 @@ const handleTryCatch = comment => {
     }
   }
   return false;
-};
+}
 
-function handleBreakAndContinueStatementComments(comment) {
-  const { enclosingNode } = comment;
+function handleBreakAndContinueStatementComments(enclosingNode, comment) {
   if (
     enclosingNode &&
     (enclosingNode.kind === "continue" || enclosingNode.kind === "break") &&
@@ -233,18 +233,15 @@ function handleBreakAndContinueStatementComments(comment) {
   return false;
 }
 
-const handleGoto = comment => {
-  const { enclosingNode } = comment;
+function handleGoto(enclosingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "goto") {
     addTrailingComment(enclosingNode, comment);
     return true;
   }
   return false;
-};
+}
 
-const handleHalt = comment => {
-  const { precedingNode, enclosingNode } = comment;
-
+function handleHalt(enclosingNode, precedingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "halt") {
     addLeadingComment(enclosingNode, comment);
     return true;
@@ -256,10 +253,9 @@ const handleHalt = comment => {
   }
 
   return false;
-};
+}
 
-const handleCall = comment => {
-  const { enclosingNode } = comment;
+function handleCall(enclosingNode, comment) {
   if (
     enclosingNode &&
     enclosingNode.kind === "call" &&
@@ -269,10 +265,9 @@ const handleCall = comment => {
     return true;
   }
   return false;
-};
+}
 
-const handleAlternate = comment => {
-  const { enclosingNode, followingNode } = comment;
+function handleAlternate(enclosingNode, followingNode, comment) {
   if (
     enclosingNode &&
     enclosingNode.kind === "if" &&
@@ -283,10 +278,14 @@ const handleAlternate = comment => {
     return true;
   }
   return false;
-};
+}
 
-const handleInlineComments = comment => {
-  const { precedingNode, enclosingNode, followingNode } = comment;
+function handleInlineComments(
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment
+) {
   if (!enclosingNode && followingNode && followingNode.kind === "inline") {
     return true;
   } else if (
@@ -299,7 +298,7 @@ const handleInlineComments = comment => {
     return true;
   }
   return false;
-};
+}
 
 function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
   if (
