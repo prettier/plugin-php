@@ -1226,6 +1226,18 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
   return concat([" ", printedRight]);
 }
 
+function needsHardlineAfterDanglingComment(node) {
+  if (!node.comments) {
+    return false;
+  }
+
+  const lastDanglingComment = getLast(
+    node.comments.filter(comment => !comment.leading && !comment.trailing)
+  );
+
+  return lastDanglingComment && !comments.isBlockComment(lastDanglingComment);
+}
+
 function printNode(path, options, print) {
   const node = path.getValue();
 
@@ -1710,8 +1722,23 @@ function printNode(path, options, print) {
       );
 
       if (node.alternate) {
+        parts.push(node.shortForm ? "" : "} ");
+
+        const commentOnOwnLine =
+          (hasTrailingComment(node.body) &&
+            node.body.comments.some(
+              comment => comment.trailing && !comments.isBlockComment(comment)
+            )) ||
+          needsHardlineAfterDanglingComment(node);
+
+        if (hasDanglingComments(node)) {
+          parts.push(
+            comments.printDanglingComments(path, options, true),
+            commentOnOwnLine ? hardline : " "
+          );
+        }
+
         parts.push(
-          node.shortForm ? "" : "} ",
           "else",
           group(
             node.alternate.kind === "if"

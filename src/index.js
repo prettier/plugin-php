@@ -267,9 +267,7 @@ const printers = {
         node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
       );
     },
-    isBlockComment(comment) {
-      return comment.kind === "commentblock";
-    },
+    isBlockComment: comments.isBlockComment,
     handleComments: {
       ownLine: comments.handleOwnLineComment,
       endOfLine: comments.handleEndOfLineComment,
