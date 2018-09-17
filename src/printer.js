@@ -1688,43 +1688,42 @@ function printNode(path, options, print) {
         path.call(print, "value")
       ]);
     case "if": {
-      const handleIfAlternate = alternate => {
-        if (!alternate) {
-          return node.body ? (node.shortForm ? "endif;" : "}") : "";
-        }
+      const parts = [];
+      const body = printBodyControlStructure(path, print, "body", options);
+      const opening = group(
+        concat([
+          "if (",
+          group(
+            concat([
+              indent(concat([softline, path.call(print, "test")])),
+              softline
+            ])
+          ),
+          ")",
+          body
+        ])
+      );
 
-        if (alternate.kind === "if") {
-          return concat([
-            node.shortForm ? "" : "} ",
-            "else",
-            path.call(print, "alternate")
-          ]);
-        }
+      parts.push(
+        opening,
+        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline
+      );
 
-        return concat([
+      if (node.alternate) {
+        parts.push(
           node.shortForm ? "" : "} ",
           "else",
-          printBodyControlStructure(path, print, "alternate", options)
-        ]);
-      };
+          group(
+            node.alternate.kind === "if"
+              ? path.call(print, "alternate")
+              : printBodyControlStructure(path, print, "alternate", options)
+          )
+        );
+      } else {
+        parts.push(node.body ? (node.shortForm ? "endif;" : "}") : "");
+      }
 
-      return concat([
-        group(
-          concat([
-            "if (",
-            group(
-              concat([
-                indent(concat([softline, path.call(print, "test")])),
-                softline
-              ])
-            ),
-            ")",
-            printBodyControlStructure(path, print, "body", options)
-          ])
-        ),
-        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline,
-        handleIfAlternate(node.alternate)
-      ]);
+      return concat(parts);
     }
     case "do":
       return concat([
