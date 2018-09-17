@@ -166,6 +166,8 @@ function needsParens(path) {
         return false;
       } else if (parent.kind === "assign") {
         return false;
+      } else if (parent.kind === "static") {
+        return false;
       }
 
       return true;
