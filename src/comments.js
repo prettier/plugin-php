@@ -463,10 +463,15 @@ function returnArgumentHasLeadingComment(options, argument) {
   return false;
 }
 
+function isBlockComment(comment) {
+  return comment.kind === "commentblock";
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
+  isBlockComment,
   printDanglingComments,
   hasLeadingComment,
   hasTrailingComment,

@@ -1226,6 +1226,18 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
   return concat([" ", printedRight]);
 }
 
+function needsHardlineAfterDanglingComment(node) {
+  if (!node.comments) {
+    return false;
+  }
+
+  const lastDanglingComment = getLast(
+    node.comments.filter(comment => !comment.leading && !comment.trailing)
+  );
+
+  return lastDanglingComment && !comments.isBlockComment(lastDanglingComment);
+}
+
 function printNode(path, options, print) {
   const node = path.getValue();
 
@@ -1688,43 +1700,57 @@ function printNode(path, options, print) {
         path.call(print, "value")
       ]);
     case "if": {
-      const handleIfAlternate = alternate => {
-        if (!alternate) {
-          return node.body ? (node.shortForm ? "endif;" : "}") : "";
+      const parts = [];
+      const body = printBodyControlStructure(path, print, "body", options);
+      const opening = group(
+        concat([
+          "if (",
+          group(
+            concat([
+              indent(concat([softline, path.call(print, "test")])),
+              softline
+            ])
+          ),
+          ")",
+          body
+        ])
+      );
+
+      parts.push(
+        opening,
+        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline
+      );
+
+      if (node.alternate) {
+        parts.push(node.shortForm ? "" : "} ");
+
+        const commentOnOwnLine =
+          (hasTrailingComment(node.body) &&
+            node.body.comments.some(
+              comment => comment.trailing && !comments.isBlockComment(comment)
+            )) ||
+          needsHardlineAfterDanglingComment(node);
+
+        if (hasDanglingComments(node)) {
+          parts.push(
+            comments.printDanglingComments(path, options, true),
+            commentOnOwnLine ? hardline : " "
+          );
         }
 
-        if (alternate.kind === "if") {
-          return concat([
-            node.shortForm ? "" : "} ",
-            "else",
-            path.call(print, "alternate")
-          ]);
-        }
-
-        return concat([
-          node.shortForm ? "" : "} ",
+        parts.push(
           "else",
-          printBodyControlStructure(path, print, "alternate", options)
-        ]);
-      };
+          group(
+            node.alternate.kind === "if"
+              ? path.call(print, "alternate")
+              : printBodyControlStructure(path, print, "alternate", options)
+          )
+        );
+      } else {
+        parts.push(node.body ? (node.shortForm ? "endif;" : "}") : "");
+      }
 
-      return concat([
-        group(
-          concat([
-            "if (",
-            group(
-              concat([
-                indent(concat([softline, path.call(print, "test")])),
-                softline
-              ])
-            ),
-            ")",
-            printBodyControlStructure(path, print, "body", options)
-          ])
-        ),
-        isFirstChildrenInlineNode(path) || !node.body ? "" : hardline,
-        handleIfAlternate(node.alternate)
-      ]);
+      return concat(parts);
     }
     case "do":
       return concat([
