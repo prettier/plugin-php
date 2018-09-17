@@ -566,6 +566,16 @@ function hasNewline(text, index, opts) {
   return idx !== idx2;
 }
 
+// TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
+function hasNewlineInRange(text, start, end) {
+  for (let i = start; i < end; ++i) {
+    if (text.charAt(i) === "\n") {
+      return true;
+    }
+  }
+  return false;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -593,5 +603,6 @@ module.exports = {
   getLastNestedChildNode,
   isProgramLikeNode,
   getNodeKindIncludingLogical,
-  hasNewline
+  hasNewline,
+  hasNewlineInRange
 };

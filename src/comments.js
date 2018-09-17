@@ -9,7 +9,7 @@ const {
 } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
 // TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
-const { hasNewline } = require("./util");
+const { hasNewline, hasNewlineInRange } = require("./util");
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
 with information about where those comment nodes exist in the tree (ie enclosingNode,
@@ -50,6 +50,14 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
 function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleRetifComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment,
+      text,
+      options
+    ) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
@@ -74,6 +82,34 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment)
   );
+}
+
+function handleRetifComments(
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment,
+  text,
+  options
+) {
+  const isSameLineAsPrecedingNode =
+    precedingNode &&
+    !hasNewlineInRange(
+      text,
+      options.locEnd(precedingNode),
+      options.locStart(comment)
+    );
+
+  if (
+    (!precedingNode || !isSameLineAsPrecedingNode) &&
+    enclosingNode &&
+    enclosingNode.kind === "retif" &&
+    followingNode
+  ) {
+    addLeadingComment(followingNode, comment);
+    return true;
+  }
+  return false;
 }
 
 function handleForComments(
