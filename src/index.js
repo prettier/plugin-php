@@ -111,7 +111,7 @@ const printers = {
         },
         {
           kinds: ["if"],
-          children: { listNodes: [], nodes: ["body", "alternate", "test"] }
+          children: { listNodes: [], nodes: ["test", "body", "alternate"] }
         },
         {
           kinds: ["block", "program", "namespace", "declare"],

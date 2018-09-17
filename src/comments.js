@@ -30,12 +30,19 @@ args:
 function handleOwnLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleIfStatementComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
     handleTryCatch(enclosingNode, comment) ||
-    handleAlternate(enclosingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleInlineComments(
       enclosingNode,
@@ -58,6 +65,14 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
       text,
       options
     ) ||
+    handleIfStatementComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
@@ -72,6 +87,14 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
 function handleRemainingComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleIfStatementComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleCommentInEmptyParens(text, enclosingNode, comment, options) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
@@ -82,6 +105,42 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment)
   );
+}
+
+function addBlockStatementFirstComment(node, comment) {
+  const { children } = node;
+  if (children.length === 0) {
+    addDanglingComment(node, comment);
+  } else {
+    addLeadingComment(children[0], comment);
+  }
+}
+
+function addBlockOrNotComment(node, comment) {
+  if (node.kind === "block") {
+    addBlockStatementFirstComment(node, comment);
+  } else {
+    addLeadingComment(node, comment);
+  }
+}
+
+function handleIfStatementComments(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment
+) {
+  if (!enclosingNode || enclosingNode.kind !== "if" || !followingNode) {
+    return false;
+  }
+
+  if (followingNode.kind === "if") {
+    addBlockOrNotComment(followingNode.body, comment);
+    return true;
+  }
+
+  return false;
 }
 
 function handleRetifComments(
@@ -304,19 +363,6 @@ function handleCommentInEmptyParens(text, enclosingNode, comment) {
     enclosingNode.arguments.length === 0
   ) {
     addDanglingComment(enclosingNode, comment);
-    return true;
-  }
-  return false;
-}
-
-function handleAlternate(enclosingNode, followingNode, comment) {
-  if (
-    enclosingNode &&
-    enclosingNode.kind === "if" &&
-    followingNode &&
-    followingNode.kind == "if"
-  ) {
-    addLeadingComment(followingNode.body, comment);
     return true;
   }
   return false;

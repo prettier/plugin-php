@@ -34,3 +34,135 @@ if (false)
 // and this is a comment on an elseif
 elseif (false)
     also_do_nothing();
+
+if (1)
+// comment
+{
+    false;
+}
+// comment
+else if (2)
+    true;
+// multi
+// ple
+// lines
+else if (3)
+    // existing comment
+    true;
+// okay?
+else if (4) {
+    // empty with existing comment
+}
+// comment
+else {
+}
+
+if (5) // comment
+true;
+
+if (6) // comment
+{true;}
+else if (7) // comment
+true;
+else // comment
+{true;}
+
+if (8) // comment
+// comment
+{true;}
+else if (9) // comment
+// comment
+true;
+else // comment
+// comment
+{true;}
+
+if (10) /* comment */ // comment
+{true;}
+else if (11) /* comment */
+true;
+else if (12) // comment /* comment */ // comment
+true;
+else if (13) /* comment */ /* comment */ // comment
+true;
+else /* comment */
+{true;}
+
+if (14) // comment
+/* comment */
+// comment
+{true;}
+else if (15) // comment
+/* comment */
+/* comment */ // comment
+true;
+
+if ($cond) {
+    stuff();
+} /* comment */ else if ($cond) {
+    stuff();
+}
+// comment
+else {
+    stuff();
+}
+
+if ($cond) stuff();
+// comment
+else stuff();
+
+function f() {
+    if ($untrackedChoice === 0) /* Cancel */ {
+        return null;
+    } else if ($untrackedChoice === 1) /* Add */ {
+        yield $repository->addAll($args);
+        $shouldAmend = true;
+    } else if ($untrackedChoice === 2) /* Allow Untracked */ {
+        $allowUntracked = true;
+    }
+}
+
+function f() {
+    if ($untrackedChoice === 0) /* Cancel */
+        null;
+    else if ($untrackedChoice === 1) /* Add */
+        $shouldAmend = true;
+    else if ($untrackedChoice === 2) /* Allow Untracked */
+        $allowUntracked = true;
+}
+
+function f() {
+    if ($untrackedChoice === 0) /* Cancel */ // Cancel
+        null;
+    else if ($untrackedChoice === 1) /* Add */ // Add
+        $shouldAmend = true;
+    else if ($untrackedChoice === 2) /* Allow Untracked */ // Allow Untracked
+        $allowUntracked = true;
+}
+
+function f() {
+    if ($untrackedChoice === 0)
+        /* Cancel */ {
+        return null;
+    }
+    else if ($untrackedChoice === 1)
+        /* Add */ {
+        yield $repository->addAll($args);
+        $shouldAmend = true;
+    }
+    else if ($untrackedChoice === 2)
+        /* Allow Untracked */ {
+        $allowUntracked = true;
+    }
+}
+
+function f() {
+    if ($untrackedChoice === 0) {
+        /* Cancel */ return null;
+    } else if ($untrackedChoice === 1) {
+        /* Add */ yield $repository->addAll($args);
+        $shouldAmend = true;
+    } else if ($untrackedChoice === 2) {
+        /* Allow Untracked */ $allowUntracked = true;
+    }
+}
