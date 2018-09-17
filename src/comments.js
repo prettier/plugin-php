@@ -55,7 +55,8 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleTryCatch(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleHalt(enclosingNode, precedingNode, comment)
+    handleHalt(enclosingNode, precedingNode, comment) ||
+    handleVariableComments(enclosingNode, followingNode, comment)
   );
 }
 
@@ -311,6 +312,21 @@ function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
     } else {
       addLeadingComment(enclosingNode, comment);
     }
+    return true;
+  }
+  return false;
+}
+
+function handleVariableComments(enclosingNode, followingNode, comment) {
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "assign" &&
+    followingNode &&
+    (followingNode.kind === "array" ||
+      followingNode.kind === "string" ||
+      followingNode.kind === "encapsed")
+  ) {
+    addLeadingComment(followingNode, comment);
     return true;
   }
   return false;

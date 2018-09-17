@@ -1898,6 +1898,190 @@ use some\\namespaces\\{
 
 `;
 
+exports[`variable.php 1`] = `
+<?php
+
+$obj = // Comment
+[
+'key' => 'val'
+];
+
+$obj // Comment
+= [
+'key' => 'val'
+];
+
+$obj = [ // Comment
+'key' => 'val'
+];
+
+$obj = [
+// Comment
+'key' => 'val'
+];
+
+$obj = // Comment
+[
+'val'
+];
+
+$obj // Comment
+= [
+'val'
+];
+
+$obj = [ // Comment
+'val'
+];
+
+$obj = [
+// Comment
+'val'
+];
+
+$obj = // Comment
+'val';
+
+$obj = // Comment
+'
+val
+val
+';
+
+$obj = // Comment
+        '
+    val
+    val
+    ';
+
+$obj = // Comment
+    "val";
+
+$obj = // Comment
+"
+val
+val
+";
+
+$obj = // Comment
+        "
+    val
+    val
+    ";
+
+$obj = // Comment
+    "val \${$var}";
+
+$obj = // Comment
+"
+val 
+\${$var}
+";
+
+$obj = // Comment
+    "
+    val 
+    \${$var}
+    ";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$obj =
+    // Comment
+    [
+        'key' => 'val'
+    ];
+
+$obj =
+    // Comment
+    [
+        'key' => 'val'
+    ];
+
+$obj = [
+    // Comment
+    'key' => 'val'
+];
+
+$obj = [
+    // Comment
+    'key' => 'val'
+];
+
+$obj =
+    // Comment
+    ['val'];
+
+$obj =
+    // Comment
+    ['val'];
+
+$obj = [
+    // Comment
+    'val'
+];
+
+$obj = [
+    // Comment
+    'val'
+];
+
+$obj =
+    // Comment
+    'val';
+
+$obj =
+    // Comment
+    '
+val
+val
+';
+
+$obj =
+    // Comment
+    '
+    val
+    val
+    ';
+
+$obj =
+    // Comment
+    "val";
+
+$obj =
+    // Comment
+    "
+val
+val
+";
+
+$obj =
+    // Comment
+    "
+    val
+    val
+    ";
+
+$obj =
+    // Comment
+    "val \${$var}";
+
+$obj =
+    // Comment
+    "
+val 
+\${$var}
+";
+
+$obj =
+    // Comment
+    "
+    val 
+    \${$var}
+    ";
+
+`;
+
 exports[`variadic.php 1`] = `
 <?php
 
