@@ -54,6 +54,7 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleTryCatch(enclosingNode, comment) ||
+    handleEntryComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleHalt(enclosingNode, precedingNode, comment) ||
     handleVariableComments(enclosingNode, followingNode, comment)
@@ -296,6 +297,14 @@ function handleInlineComments(
     precedingNode.kind === "inline"
   ) {
     addDanglingComment(precedingNode, comment);
+    return true;
+  }
+  return false;
+}
+
+function handleEntryComments(enclosingNode, comment) {
+  if (enclosingNode && enclosingNode.kind === "entry") {
+    addLeadingComment(enclosingNode, comment);
     return true;
   }
   return false;
