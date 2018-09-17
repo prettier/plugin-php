@@ -841,11 +841,10 @@ $constraint = new UniqueEntity(array(
     // no "em" option set
 ));
 
-return (
+return
     // parens test
     // some comment
-    $test
-);
+    $test;
 
 /***
  * Configures the tasks tabs (sub_menu)

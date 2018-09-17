@@ -2155,25 +2155,9 @@ function printNode(path, options, print) {
         const printedExpr = path.call(print, "expr");
 
         if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
-          parts.push(
-            concat([
-              " (",
-              indent(concat([hardline, printedExpr])),
-              hardline,
-              ")"
-            ])
-          );
+          parts.push(indent(concat([hardline, printedExpr])));
         } else if (node.expr.kind === "bin") {
-          parts.push(
-            group(
-              concat([
-                ifBreak(" (", " "),
-                indent(concat([softline, printedExpr])),
-                softline,
-                ifBreak(")")
-              ])
-            )
-          );
+          parts.push(group(indent(concat([" ", printedExpr]))));
         } else {
           parts.push(" ", printedExpr);
         }
