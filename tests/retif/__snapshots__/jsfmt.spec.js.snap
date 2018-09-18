@@ -134,11 +134,9 @@ $var =
         ? $this->basePath . DIRECTORY_SEPARATOR . 'other'
         : $this->basePath . DIRECTORY_SEPARATOR . 'database') .
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
-return (
-    ($this->databasePath
+return ($this->databasePath
         ?: $this->basePath . DIRECTORY_SEPARATOR . 'database') .
-    ($path ? DIRECTORY_SEPARATOR . $path : $path)
-);
+    ($path ? DIRECTORY_SEPARATOR . $path : $path);
 
 $test = $foo
     ? foo([
