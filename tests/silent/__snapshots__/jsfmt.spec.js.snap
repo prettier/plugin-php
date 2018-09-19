@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`silent.php 1`] = `
+exports[`silent.php - php-verify: silent.php 1`] = `
 <?php
 $variable = @foo();
 /* Intentional file error */

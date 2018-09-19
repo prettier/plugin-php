@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`static.php 1`] = `
+exports[`static.php - php-verify: static.php 1`] = `
 <?php
 static $a, $b;
 static $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable, $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable;

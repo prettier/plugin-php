@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`arrays.php 1`] = `
+exports[`arrays.php - php-verify: arrays.php 1`] = `
 <?php
 
 $test = array(1, 2, 3, 4, "test");
@@ -707,7 +707,7 @@ string
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 
 array();
@@ -718,7 +718,7 @@ array();
 
 `;
 
-exports[`single-short.php 1`] = `
+exports[`single-short.php - php-verify: single-short.php 1`] = `
 <?php
 
 [];

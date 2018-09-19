@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`array.php 1`] = `
+exports[`array.php - php-verify: array.php 1`] = `
 <?php
 
 array();
@@ -97,7 +97,7 @@ $var = [new stdClass()][0];
 
 `;
 
-exports[`assign.php 1`] = `
+exports[`assign.php - php-verify: assign.php 1`] = `
 <?php
 
 $var = 1;
@@ -304,7 +304,7 @@ switch ($i = 1) {
 
 `;
 
-exports[`bin.php 1`] = `
+exports[`bin.php - php-verify: bin.php 1`] = `
 <?php
 
 $var = 1;
@@ -870,7 +870,7 @@ $var = '100' - ('100' - '100');
 
 `;
 
-exports[`block.php 1`] = `
+exports[`block.php - php-verify: block.php 1`] = `
 <?php
 
 function foo() {
@@ -886,7 +886,7 @@ function foo()
 
 `;
 
-exports[`break.php 1`] = `
+exports[`break.php - php-verify: break.php 1`] = `
 <?php
 
 break;
@@ -913,7 +913,7 @@ break 2;
 
 `;
 
-exports[`call.php 1`] = `
+exports[`call.php - php-verify: call.php 1`] = `
 <?php
 
 call();
@@ -1004,7 +1004,7 @@ $var = ("Foo::bar")();
 
 `;
 
-exports[`cast.php 1`] = `
+exports[`cast.php - php-verify: cast.php 1`] = `
 <?php
 
 (int) '1';
@@ -1171,7 +1171,7 @@ if (((int) 1) === ((int) 1)) {
 
 `;
 
-exports[`clone.php 1`] = `
+exports[`clone.php - php-verify: clone.php 1`] = `
 <?php
 
 clone $a;
@@ -1241,7 +1241,7 @@ $var = (clone $var->foo)->foo;
 
 `;
 
-exports[`closure.php 1`] = `
+exports[`closure.php - php-verify: closure.php 1`] = `
 <?php
 
 (function () {})();
@@ -1287,7 +1287,7 @@ var_dump(...(function () use ($type) {})());
 
 `;
 
-exports[`continue.php 1`] = `
+exports[`continue.php - php-verify: continue.php 1`] = `
 <?php
 
 continue;
@@ -1314,7 +1314,7 @@ continue 2;
 
 `;
 
-exports[`control-structures.php 1`] = `
+exports[`control-structures.php - php-verify: control-structures.php 1`] = `
 <?php
 
 if (($a > $b)) {
@@ -1455,7 +1455,7 @@ while ($i++ < 5) {
 
 `;
 
-exports[`declare.php 1`] = `
+exports[`declare.php - php-verify: declare.php 1`] = `
 <?php
 
 declare(strict_types=1);
@@ -1470,7 +1470,7 @@ $a->c();
 
 `;
 
-exports[`echo.php 1`] = `
+exports[`echo.php - php-verify: echo.php 1`] = `
 <?php
 
 echo "Hello World";
@@ -1554,7 +1554,7 @@ echo (function () {
 
 `;
 
-exports[`empty.php 1`] = `
+exports[`empty.php - php-verify: empty.php 1`] = `
 <?php
 
 empty($var);
@@ -1578,7 +1578,7 @@ if (empty($var)) {
 
 `;
 
-exports[`eval.php 1`] = `
+exports[`eval.php - php-verify: eval.php 1`] = `
 <?php
 
 eval('return 1;');
@@ -1609,7 +1609,7 @@ if (eval('return 1;')) {
 
 `;
 
-exports[`exit.php 1`] = `
+exports[`exit.php - php-verify: exit.php 1`] = `
 <?php
 
 exit(1);
@@ -1642,7 +1642,7 @@ call(exit(1));
 
 `;
 
-exports[`include.php 1`] = `
+exports[`include.php - php-verify: include.php 1`] = `
 <?php
 
 include 'foo.php';
@@ -1718,7 +1718,7 @@ include $_GET['id'] . ".php";
 
 `;
 
-exports[`isset.php 1`] = `
+exports[`isset.php - php-verify: isset.php 1`] = `
 <?php
 
 isset($var);
@@ -1746,7 +1746,7 @@ if (isset($var)) {
 
 `;
 
-exports[`lookups.php 1`] = `
+exports[`lookups.php - php-verify: lookups.php 1`] = `
 <?php
 
 $var->bar;
@@ -1921,7 +1921,7 @@ $var = $var->bar();
 
 `;
 
-exports[`namespace.php 1`] = `
+exports[`namespace.php - php-verify: namespace.php 1`] = `
 <?php
 
 namespace Foo;
@@ -1936,7 +1936,7 @@ $a->c();
 
 `;
 
-exports[`new.php 1`] = `
+exports[`new.php - php-verify: new.php 1`] = `
 <?php
 (new Translator(
     $container,
@@ -2042,7 +2042,7 @@ $var = (new $a())->b();
 
 `;
 
-exports[`parens.php 1`] = `
+exports[`parens.php - php-verify: parens.php 1`] = `
 <?php
 include 'foo.php' . ($test ? 'foo' : 'bar');
 include ($test ? 'foo' : 'bar');
@@ -2053,7 +2053,7 @@ include $test ? 'foo' : 'bar';
 
 `;
 
-exports[`pre-post.php 1`] = `
+exports[`pre-post.php - php-verify: pre-post.php 1`] = `
 <?php
 
 ++$var;
@@ -2174,7 +2174,7 @@ $var = call(--$var->_uuidCounter);
 
 `;
 
-exports[`print.php 1`] = `
+exports[`print.php - php-verify: print.php 1`] = `
 <?php
 
 print("Hello World");
@@ -2266,7 +2266,7 @@ print ($var || $var) && $var;
 
 `;
 
-exports[`program.php 1`] = `
+exports[`program.php - php-verify: program.php 1`] = `
 <?php
 
 ($a->c());
@@ -2277,7 +2277,7 @@ $a->c();
 
 `;
 
-exports[`retif.php 1`] = `
+exports[`retif.php - php-verify: retif.php 1`] = `
 <?php
 
 $var ? 1 : 2;
@@ -2382,7 +2382,7 @@ $var = ($var ? ($var1 ? 1 : 2) : $var2) ? 3 : 4;
 
 `;
 
-exports[`return.php 1`] = `
+exports[`return.php - php-verify: return.php 1`] = `
 <?php
 
 return;
@@ -2415,7 +2415,7 @@ return $this->customer->paymentService ?? null;
 
 `;
 
-exports[`silent.php 1`] = `
+exports[`silent.php - php-verify: silent.php 1`] = `
 <?php
 
 @foo();
@@ -2434,7 +2434,7 @@ $var = @foo();
 
 `;
 
-exports[`throw.php 1`] = `
+exports[`throw.php - php-verify: throw.php 1`] = `
 <?php
 
 throw new Exception('Division by zero.');
@@ -2473,7 +2473,7 @@ if (!$var) {
 
 `;
 
-exports[`unary.php 1`] = `
+exports[`unary.php - php-verify: unary.php 1`] = `
 <?php
 
 +$var;
@@ -2602,7 +2602,7 @@ $var = call(+$var->_uuidCounter);
 
 `;
 
-exports[`unnecessary.php 1`] = `
+exports[`unnecessary.php - php-verify: unnecessary.php 1`] = `
 <?php
 $test = 1;
 $test = (1);
@@ -2717,7 +2717,7 @@ function foo($a = 1, $b = 'string', $c = true, $d = __LINE__)
 
 `;
 
-exports[`yield.php 1`] = `
+exports[`yield.php - php-verify: yield.php 1`] = `
 <?php
 
 function gen_one_to_three() {

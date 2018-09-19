@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`continue.php 1`] = `
+exports[`continue.php - php-verify: continue.php 1`] = `
 <?php
 
 for($i = 0; $i < 10; $i++) {

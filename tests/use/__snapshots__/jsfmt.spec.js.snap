@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`use.php 1`] = `
+exports[`use.php - php-verify: use.php 1`] = `
 <?php
 namespace foo;
 
@@ -78,7 +78,7 @@ use \\Exception;
 
 `;
 
-exports[`without-namespace.php 1`] = `
+exports[`without-namespace.php - php-verify: without-namespace.php 1`] = `
 <?php
 
 use NamespaceA\\ClassA;

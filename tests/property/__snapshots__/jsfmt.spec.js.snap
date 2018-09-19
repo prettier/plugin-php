@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`property.php 1`] = `
+exports[`property.php - php-verify: property.php 1`] = `
 <?php
 
 class Foo

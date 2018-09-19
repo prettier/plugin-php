@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`global.php 1`] = `
+exports[`global.php - php-verify: global.php 1`] = `
 <?php
 global $a, $b;
 global $c;

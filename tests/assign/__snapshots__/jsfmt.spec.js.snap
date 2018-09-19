@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`assign.php 1`] = `
+exports[`assign.php - php-verify: assign.php 1`] = `
 <?php
 $var = 1;
 $var = 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111;

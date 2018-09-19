@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`halt.php 1`] = `
+exports[`halt.php - php-verify: halt.php 1`] = `
 <?php
 __halt_compiler(); the installation data (eg. tar, gz, PHP, etc.)
 other text
@@ -11,7 +11,7 @@ other text
 
 `;
 
-exports[`other-single.php 1`] = `
+exports[`other-single.php - php-verify: other-single.php 1`] = `
 <?php
 
 $var = 1;
@@ -40,7 +40,7 @@ __halt_compiler();
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 __HALT_COMPILER();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

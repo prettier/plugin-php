@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`retif.php 1`] = `
+exports[`retif.php - php-verify: retif.php 1`] = `
 <?php
 
 return true ? 1 : 2;

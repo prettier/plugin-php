@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`print.php 1`] = `
+exports[`print.php - php-verify: print.php 1`] = `
 <?php
 print("Hello World");
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`anonymous.php 1`] = `
+exports[`anonymous.php - php-verify: anonymous.php 1`] = `
 <?php
 interface Logger {
     public function log(string $msg);
@@ -184,7 +184,7 @@ $instance = new class extends \\Foo
 
 `;
 
-exports[`class.php 1`] = `
+exports[`class.php - php-verify: class.php 1`] = `
 <?php
 
 class Foo extends Bar implements Baz, Buzz {

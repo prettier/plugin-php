@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`break.php 1`] = `
+exports[`break.php - php-verify: break.php 1`] = `
 <?php
 
 for($i = 0; $i < 10; $i++) {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`statement.php 1`] = `
+exports[`statement.php - php-verify: statement.php 1`] = `
 <?php
 $var = 1; $var = 2; function foo() { return 1; } class Test { public function method() {} } if (true) echo 'good';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

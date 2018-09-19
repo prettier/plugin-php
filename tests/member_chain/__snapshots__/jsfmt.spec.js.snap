@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`break-last-call.php 1`] = `
+exports[`break-last-call.php - php-verify: break-last-call.php 1`] = `
 <?php
 function call($store) {
     return callApi($endpoint, $schema)->then(
@@ -44,7 +44,7 @@ function call($store)
 
 `;
 
-exports[`break-last-member.php 1`] = `
+exports[`break-last-member.php - php-verify: break-last-member.php 1`] = `
 <?php
 
 $SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()->some_very_long_member_expression;
@@ -86,7 +86,7 @@ $test = $test =
 
 `;
 
-exports[`break-multiple.php 1`] = `
+exports[`break-multiple.php - php-verify: break-multiple.php 1`] = `
 <?php
 
 $object->foo()->bar()->baz();
@@ -110,7 +110,7 @@ foo()->bar->baz();
 
 `;
 
-exports[`conditional.php 1`] = `
+exports[`conditional.php - php-verify: conditional.php 1`] = `
 <?php
 
 
@@ -230,7 +230,7 @@ $object[
 
 `;
 
-exports[`logical.php 1`] = `
+exports[`logical.php - php-verify: logical.php 1`] = `
 <?php
 
 $someLongVariableName = (idx(
@@ -296,7 +296,7 @@ $someLongVariableName = (
 
 `;
 
-exports[`member_chain.php 1`] = `
+exports[`member_chain.php - php-verify: member_chain.php 1`] = `
 <?php
 
 one()->two();
@@ -456,7 +456,7 @@ $foo->bar(
 
 `;
 
-exports[`multiple-members.php 1`] = `
+exports[`multiple-members.php - php-verify: multiple-members.php 1`] = `
 <?php
 
 $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(function() {
@@ -510,7 +510,7 @@ $wrapper
 
 `;
 
-exports[`offsetlookup.php 1`] = `
+exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
 <?php
 
 $version = $someLongString
@@ -609,7 +609,7 @@ $window->Data['key']
 
 `;
 
-exports[`staticlookup.php 1`] = `
+exports[`staticlookup.php - php-verify: staticlookup.php 1`] = `
 <?php
 DB::table('identity')->insert([
     'ref' => $ref,

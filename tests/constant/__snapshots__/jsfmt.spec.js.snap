@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`constants.php 1`] = `
+exports[`constants.php - php-verify: constants.php 1`] = `
 <?php
 define("TEST_CONSTANT", 1);
 

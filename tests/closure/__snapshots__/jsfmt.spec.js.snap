@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`closure.php 1`] = `
+exports[`closure.php - php-verify: closure.php 1`] = `
 <?php
 
 $closureWithArgs = function ($arg1, $arg2) {
