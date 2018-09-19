@@ -30,3 +30,63 @@ $result = (new Pipeline(new \Illuminate\Container\Container))
     ->then(function ($piped) {
         return $piped;
     });
+
+$var = new Foo(
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
