@@ -347,7 +347,8 @@ function lineShouldEndWithSemicolon(path) {
     "encapsed",
     "variable",
     "cast",
-    "clone"
+    "clone",
+    "do"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
