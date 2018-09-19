@@ -1753,7 +1753,7 @@ function printNode(path, options, print) {
             softline
           ])
         ),
-        ");"
+        ")"
       ]);
     case "while":
       return group(
