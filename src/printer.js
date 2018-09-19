@@ -1970,7 +1970,7 @@ function printNode(path, options, print) {
             (firstNonMemberParent.kind === "assign" &&
               firstNonMemberParent.left.kind !== "variable"))) ||
         node.kind === "offsetlookup" ||
-        (node.what.kind === "variable" &&
+        ((node.what.kind === "identifier" || node.what.kind === "variable") &&
           (node.offset.kind === "constref" ||
             node.offset.kind === "variable") &&
           (parent && !isLookupNode(parent)));
