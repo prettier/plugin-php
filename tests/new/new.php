@@ -90,3 +90,25 @@ EOF
     ,
     $arg
 );
+
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+setLogger(new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+$var = new class ($arg, 'string', 2100, $var ? true : false, $other_arg, function () { return 1; }) extends SomeClass implements SomeInterface {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+
+$var = new class {};
+$var = new class() {};
