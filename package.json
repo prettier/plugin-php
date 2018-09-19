@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "mem": "^3.0.1",
-    "php-parser": "3.0.0-prerelease.4"
+    "php-parser": "glayzzle/php-parser#85eb5e622fcd4ef1f70bf3b2529afe5e005bdd52"
   },
   "devDependencies": {
     "eslint": "4.1.1",

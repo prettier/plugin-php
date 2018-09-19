@@ -19,7 +19,9 @@ $var = (($var->bar)->foo);
 $var = $var::foo();
 $var = ($var::foo());
 $var = $var::foo()::bar();
+$var = ($var::foo())::bar();
 $var = ($var::foo()::bar());
+$var = (($var::foo())::bar());
 
 $var = $var->bar();
 $var = ($var->bar());
@@ -40,17 +42,31 @@ $var = ($var[0])->foo;
 $var = ($var[0][1])->foo;
 $var = ($var[0])[1]->foo;
 $var = (($var[0])[1])->foo;
+$var = $var[0]::foo;
+// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/185
+// $var = ($var[0])::foo;
+// $var = ($var[0][1])::foo;
+// $var = ($var[0])[1]::foo;
+// $var = (($var[0])[1])::foo;
 $var = $var[0]->foo();
 $var = ($var[0])->foo();
 $var = ($var[0][1])->foo();
 $var = ($var[0])[1]->foo();
 $var = (($var[0])[1])->foo();
+$var = $var[0]::foo();
+$var = ($var[0])::foo();
+$var = ($var[0][1])::foo();
+$var = ($var[0])[1]::foo();
+$var = (($var[0])[1])::foo();
 
 $var = $var[0]->foo()->baz;
 $var = ((($var[0])->foo())->baz);
 
 $var = (new Foo())->bar;
+// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/185
+// $var = (new Foo())::bar;
 $var = (new Foo())->bar();
+$var = (new Foo())::bar();
 $var = (new Foo())[1];
 
 $var = $var->bar()();
