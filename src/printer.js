@@ -2376,7 +2376,7 @@ function printNode(path, options, print) {
       //     a &&
       //     b &&
       //     c
-      //   ).call()
+      //   )->call()
       if (
         parent.kind === "unary" ||
         (isLookupNode(parent) && parent.kind !== "offsetlookup")

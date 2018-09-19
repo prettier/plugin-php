@@ -188,3 +188,39 @@ $accelerator =
 
         )
     );
+
+~($a || $b);
+~($someReallyReallyReallyLongBooleanVariable || $someOtherReallyReallyReallyLongBooleanVariable);
+
+($a || $b).foo;
+($someReallyReallyReallyLongBooleanVariable || $someOtherReallyReallyReallyLongBooleanVariable)->foo;
+
+($a || $b).foo();
+($someReallyReallyReallyLongBooleanVariable || $someOtherReallyReallyReallyLongBooleanVariable)->foo();
+
+($a || $b)::foo();
+($someReallyReallyReallyLongBooleanVariable || $someOtherReallyReallyReallyLongBooleanVariable)::foo();
+
+($a || $b)['string'];
+($someReallyReallyReallyLongBooleanVariable || $someReallyReallyReallyLongBooleanVariable)['string'];
+
+$var = call($var > $var ? true : false);
+$var = call($someOtherReallyReallyLongVariable > $var ? true : false);
+$var = call($var > $someOtherReallyReallyLongVariable ? true : false);
+$var = call($someOtherReallyReallyLongVariable > $someOtherReallyReallyLongVariable ? true : false);
+$var = call($someOtherReallyReallyReallyReallyReallyReallyLongVariable > $someOtherReallyReallyReallyReallyReallyReallyLongVariable ? true : false);
+
+return $var > $var ? true : false;
+return $someOtherReallyReallyLongVariable > $var ? true : false;
+return $var > $someOtherReallyReallyLongVariable ? true : false;
+return $someOtherReallyReallyLongVariable > $someOtherReallyReallyLongVariable ? true : false;
+return $someOtherReallyReallyReallyReallyReallyReallyLongVariable > $someOtherReallyReallyReallyReallyReallyReallyLongVariable ? true : false;
+
+fn(
+    $bifornCringerMoshedPerplexSawder,
+    $askTrovenaBeenaDependsRowans,
+    $glimseGlyphsHazardNoopsTieTie === averredBathersBoxroomBuggyNurl &&
+    $anodyneCondosMalateOverateRetinol
+        ? $annularCooeedSplicesWalksWayWay
+        : $kochabCooieGameOnOboleUnweave
+);
