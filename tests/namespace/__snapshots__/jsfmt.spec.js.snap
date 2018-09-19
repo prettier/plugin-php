@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`namespace.php 1`] = `
+exports[`namespace.php - php-verify: namespace.php 1`] = `
 <?php
 namespace Base\\Test\\To\\Extend;
 
@@ -15,7 +15,7 @@ use One\\More\\Test;
 
 `;
 
-exports[`nested.php 1`] = `
+exports[`nested.php - php-verify: nested.php 1`] = `
 <?php
 
 namespace foo {
@@ -50,7 +50,7 @@ namespace Name\\Space {
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 namespace Foo;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ namespace Foo;
 
 `;
 
-exports[`without-name.php 1`] = `
+exports[`without-name.php - php-verify: without-name.php 1`] = `
 <?php
 namespace {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

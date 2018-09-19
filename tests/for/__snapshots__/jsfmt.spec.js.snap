@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`for.php 1`] = `
+exports[`for.php - php-verify: for.php 1`] = `
 <?php
 for ($i = 0; $i <= 5; $i++) {
   $test = $i;

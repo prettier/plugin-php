@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`file-with-alt-pragma.php 1`] = `
+exports[`file-with-alt-pragma.php - php-verify: file-with-alt-pragma.php 1`] = `
 <?php
 /**
  * This works too
@@ -31,7 +31,7 @@ echo 'This ' .
 
 `;
 
-exports[`file-with-pragma.php 1`] = `
+exports[`file-with-pragma.php - php-verify: file-with-pragma.php 1`] = `
 <?php
 /**
  * This turns on prettier formatting if --require-pragma is passed
@@ -62,7 +62,7 @@ echo 'This ' .
 
 `;
 
-exports[`file-without-pragma.php 1`] = `
+exports[`file-without-pragma.php - php-verify: file-without-pragma.php 1`] = `
 <?php
 /**
  * No pragma, no prettier (assuming --require-pragma)

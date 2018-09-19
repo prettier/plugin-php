@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`yield.php 1`] = `
+exports[`yield.php - php-verify: yield.php 1`] = `
 <?php
 function from() {
   yield;

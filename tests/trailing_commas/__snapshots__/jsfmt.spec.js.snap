@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`array.php 1`] = `
+exports[`array.php - php-verify: array.php 1`] = `
 <?php
 
 $foo = ['foo', 'bar'];
@@ -65,7 +65,7 @@ $packages = array_merge(
 
 `;
 
-exports[`array.php 2`] = `
+exports[`array.php - php-verify: array.php 2`] = `
 <?php
 
 $foo = ['foo', 'bar'];
@@ -130,7 +130,7 @@ $packages = array_merge(
 
 `;
 
-exports[`list.php 1`] = `
+exports[`list.php - php-verify: list.php 1`] = `
 <?php
 
 list($first, $second, $three, $fourth) = $arr;
@@ -221,7 +221,7 @@ list(
 
 `;
 
-exports[`list.php 2`] = `
+exports[`list.php - php-verify: list.php 2`] = `
 <?php
 
 list($first, $second, $three, $fourth) = $arr;
@@ -312,7 +312,7 @@ list(
 
 `;
 
-exports[`use.php 1`] = `
+exports[`use.php - php-verify: use.php 1`] = `
 <?php
 
 use foo\\bar\\{ClassA, ClassB, ClassC,};
@@ -355,7 +355,7 @@ use other_foo\\bar\\{
 
 `;
 
-exports[`use.php 2`] = `
+exports[`use.php - php-verify: use.php 2`] = `
 <?php
 
 use foo\\bar\\{ClassA, ClassB, ClassC,};

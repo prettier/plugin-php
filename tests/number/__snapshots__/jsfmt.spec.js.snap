@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`number.php 1`] = `
+exports[`number.php - php-verify: number.php 1`] = `
 <?php
 $a = 0;
 $a = 1;
@@ -175,7 +175,7 @@ $a = 111111111111111111111111111111111111111111111111111111111111111111111111111
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 1024;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`kitchen_sink.php 1`] = `
+exports[`kitchen_sink.php - php-verify: kitchen_sink.php 1`] = `
 <?php
 
 function hello($input){

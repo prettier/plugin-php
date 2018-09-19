@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`boolean.php 1`] = `
+exports[`boolean.php - php-verify: boolean.php 1`] = `
 <?php
 $true = true;
 $false = false;
@@ -11,7 +11,7 @@ $false = false;
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 true;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

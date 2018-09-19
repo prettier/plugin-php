@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`encapsed.php 1`] = `
+exports[`encapsed.php - php-verify: encapsed.php 1`] = `
 <?php
 $encapsShell = \`a $b\`;
 $encaps = "one $b";
@@ -218,7 +218,7 @@ EOF
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 "one $b";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -227,7 +227,7 @@ exports[`single.php 1`] = `
 
 `;
 
-exports[`single-heredoc.php 1`] = `
+exports[`single-heredoc.php - php-verify: single-heredoc.php 1`] = `
 <?php
 <<<EOD
 Example of string

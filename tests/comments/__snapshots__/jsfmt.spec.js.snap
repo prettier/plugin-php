@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`array.php 1`] = `
+exports[`array.php - php-verify: array.php 1`] = `
 <?php
 $array = [/* comment */];
 $array = [
@@ -170,7 +170,7 @@ $array = [
 
 `;
 
-exports[`assign.php 1`] = `
+exports[`assign.php - php-verify: assign.php 1`] = `
 <?php
 $var =
     // Comment
@@ -277,7 +277,7 @@ $var /* Comment */ = /* Comment */ 'some' . 'long' . 'string';
 
 `;
 
-exports[`bin.php 1`] = `
+exports[`bin.php - php-verify: bin.php 1`] = `
 <?php
 
 $variable = FormUtil::isEmpty($this->modelData) ||
@@ -311,7 +311,7 @@ $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
 `;
 
-exports[`blank_lines.php 1`] = `
+exports[`blank_lines.php - php-verify: blank_lines.php 1`] = `
 <?php
 
 // The first line of a comment
@@ -335,7 +335,7 @@ exports[`blank_lines.php 1`] = `
 
 `;
 
-exports[`break.php 1`] = `
+exports[`break.php - php-verify: break.php 1`] = `
 <?php
 
 for (;;) {
@@ -361,7 +361,7 @@ for (;;) {
 
 `;
 
-exports[`call.php 1`] = `
+exports[`call.php - php-verify: call.php 1`] = `
 <?php
 
 foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
@@ -380,7 +380,7 @@ $foo->bar(/* B */);
 
 `;
 
-exports[`cast.php 1`] = `
+exports[`cast.php - php-verify: cast.php 1`] = `
 <?php
 
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
@@ -391,7 +391,7 @@ $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 
 `;
 
-exports[`class.php 1`] = `
+exports[`class.php - php-verify: class.php 1`] = `
 <?php
 namespace Test\\test\\test;
 
@@ -555,7 +555,7 @@ class ResponseMethodFailure
 
 `;
 
-exports[`clone.php 1`] = `
+exports[`clone.php - php-verify: clone.php 1`] = `
 <?php
 
 $obj2 = clone /* Comments */ $obj /* Comments */;
@@ -566,7 +566,7 @@ $obj2 = clone /* Comments */ $obj /* Comments */;
 
 `;
 
-exports[`closure.php 1`] = `
+exports[`closure.php - php-verify: closure.php 1`] = `
 <?php
 
 $var = function (/* Comment */) {};
@@ -579,7 +579,7 @@ $var = function (/* Comment */ $arg /* Comment */) {};
 
 `;
 
-exports[`comments.php 1`] = `
+exports[`comments.php - php-verify: comments.php 1`] = `
 <?php
 /** @var int $int This is a counter. */
 $int = 0;
@@ -892,7 +892,7 @@ class Test
 
 `;
 
-exports[`continue.php 1`] = `
+exports[`continue.php - php-verify: continue.php 1`] = `
 <?php
 
 for (;;) {
@@ -918,7 +918,7 @@ for (;;) {
 
 `;
 
-exports[`do.php 1`] = `
+exports[`do.php - php-verify: do.php 1`] = `
 <?php
 // Comment
 do { // Comment
@@ -944,7 +944,7 @@ do {
 
 `;
 
-exports[`echo.php 1`] = `
+exports[`echo.php - php-verify: echo.php 1`] = `
 <?php
 
 // Comment
@@ -966,7 +966,7 @@ $foo, // Comment
 
 `;
 
-exports[`edge_cases.php 1`] = `
+exports[`edge_cases.php - php-verify: edge_cases.php 1`] = `
 <?php
 class Test{
   public function testFunction (/* inline */ $arg) {
@@ -1011,7 +1011,7 @@ function testFunction($arg1, /* inline */ $arg2)
 
 `;
 
-exports[`empty.php 1`] = `
+exports[`empty.php - php-verify: empty.php 1`] = `
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
@@ -1026,7 +1026,7 @@ if (empty(/* Comment */ [] /* Comment */)) {
 
 `;
 
-exports[`eval.php 1`] = `
+exports[`eval.php - php-verify: eval.php 1`] = `
 <?php
 
 eval(
@@ -1045,7 +1045,7 @@ eval(
 
 `;
 
-exports[`exit.php 1`] = `
+exports[`exit.php - php-verify: exit.php 1`] = `
 <?php
 
 exit(/* Comment */);
@@ -1069,7 +1069,7 @@ exit(
 
 `;
 
-exports[`for.php 1`] = `
+exports[`for.php - php-verify: for.php 1`] = `
 <?php
 for // Comment
 (;;);
@@ -1133,7 +1133,7 @@ for (;;) {
 
 `;
 
-exports[`foreach.php 1`] = `
+exports[`foreach.php - php-verify: foreach.php 1`] = `
 <?php
 // Comment
 foreach ($iterable as $value) { // Comment
@@ -1214,7 +1214,7 @@ foreach ($x as $y) {
 
 `;
 
-exports[`functions.php 1`] = `
+exports[`functions.php - php-verify: functions.php 1`] = `
 <?php
 
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
@@ -1240,7 +1240,7 @@ function emptyFn()
 
 `;
 
-exports[`global.php 1`] = `
+exports[`global.php - php-verify: global.php 1`] = `
 <?php
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
@@ -1251,7 +1251,7 @@ global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 `;
 
-exports[`goto.php 1`] = `
+exports[`goto.php - php-verify: goto.php 1`] = `
 <?php
 
 /* Comment */goto/* Comment */a/* Comment */;
@@ -1269,7 +1269,7 @@ echo 'Bar';
 
 `;
 
-exports[`halt.php 1`] = `
+exports[`halt.php - php-verify: halt.php 1`] = `
 <?php
 
 /*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1278,7 +1278,7 @@ exports[`halt.php 1`] = `
 /*Comment*/ /*Comment*/ /*Comment*/ /*Comment*/ __halt_compiler();
 `;
 
-exports[`heredoc.php 1`] = `
+exports[`heredoc.php - php-verify: heredoc.php 1`] = `
 <?php
 $str = /* Comment */<<<EOD
 Example of string
@@ -1301,7 +1301,7 @@ echo $str;
 
 `;
 
-exports[`if.php 1`] = `
+exports[`if.php - php-verify: if.php 1`] = `
 <?php
 // Comment 1
 if (1) { // Comment 2
@@ -1675,7 +1675,7 @@ function f()
 
 `;
 
-exports[`include.php 1`] = `
+exports[`include.php - php-verify: include.php 1`] = `
 <?php
 // Comment
 include // Comment
@@ -1706,7 +1706,7 @@ include // Comment
 
 `;
 
-exports[`inline.php 1`] = `
+exports[`inline.php - php-verify: inline.php 1`] = `
 some text
 /**
 * A comment
@@ -1722,7 +1722,7 @@ some text
 
 `;
 
-exports[`inline2.php 1`] = `
+exports[`inline2.php - php-verify: inline2.php 1`] = `
 <?php
 // test
 ?>
@@ -1735,7 +1735,7 @@ exports[`inline2.php 1`] = `
 
 `;
 
-exports[`inline3.php 1`] = `
+exports[`inline3.php - php-verify: inline3.php 1`] = `
 <h1>Test</h1>
 <?php
 // test
@@ -1747,7 +1747,7 @@ exports[`inline3.php 1`] = `
 ?>
 `;
 
-exports[`inline4.php 1`] = `
+exports[`inline4.php - php-verify: inline4.php 1`] = `
 <?php
 /**
  * A
@@ -1776,7 +1776,7 @@ exports[`inline4.php 1`] = `
 
 `;
 
-exports[`inline5.php 1`] = `
+exports[`inline5.php - php-verify: inline5.php 1`] = `
 <h1>Test</h1>
 <?php
 // test
@@ -1791,7 +1791,7 @@ exports[`inline5.php 1`] = `
 
 `;
 
-exports[`inline6.php 1`] = `
+exports[`inline6.php - php-verify: inline6.php 1`] = `
 <h1>Test</h1>
 <?php
 
@@ -1812,14 +1812,14 @@ exports[`inline6.php 1`] = `
 
 `;
 
-exports[`inline7.php 1`] = `
+exports[`inline7.php - php-verify: inline7.php 1`] = `
 <?php echo 1; // comment ?>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php echo 1; // comment ?>
 
 `;
 
-exports[`isset.php 1`] = `
+exports[`isset.php - php-verify: isset.php 1`] = `
 <?php
 
 if (isset(/* Comment */ $a[1]/* Comment */)) {
@@ -1834,7 +1834,7 @@ if (isset(/* Comment */ $a[1] /* Comment */)) {
 
 `;
 
-exports[`list.php 1`] = `
+exports[`list.php - php-verify: list.php 1`] = `
 <?php
 
 list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /* Comment */ $power /* Comment */) = $info;
@@ -1849,7 +1849,7 @@ list(
 
 `;
 
-exports[`method.php 1`] = `
+exports[`method.php - php-verify: method.php 1`] = `
 <?php
 
 class Foo {
@@ -1912,7 +1912,7 @@ class add_vendor extends request
 
 `;
 
-exports[`new.php 1`] = `
+exports[`new.php - php-verify: new.php 1`] = `
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
@@ -1923,7 +1923,7 @@ $a = new Foo(/* Comment */ 1 /*Comments*/);
 
 `;
 
-exports[`no_code.php 1`] = `
+exports[`no_code.php - php-verify: no_code.php 1`] = `
 <?php
 /**
  * Product Loop Start
@@ -1948,7 +1948,7 @@ exports[`no_code.php 1`] = `
 
 `;
 
-exports[`nowdoc.php 1`] = `
+exports[`nowdoc.php - php-verify: nowdoc.php 1`] = `
 <?php
 $str = /* Comment */<<<'EOD'
 Example of string
@@ -1971,7 +1971,7 @@ echo $str;
 
 `;
 
-exports[`offsetlookup.php 1`] = `
+exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
 <?php
 
 echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
@@ -1982,7 +1982,7 @@ echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
 `;
 
-exports[`parameter.php 1`] = `
+exports[`parameter.php - php-verify: parameter.php 1`] = `
 <?php
 
 function foo(/* Comment */ $a, /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */) {};
@@ -2003,7 +2003,7 @@ function bar(/* Comment */ &$a /* Comment */)
 
 `;
 
-exports[`post.php 1`] = `
+exports[`post.php - php-verify: post.php 1`] = `
 <?php
 
 $a/* Comment */++;
@@ -2014,7 +2014,7 @@ $a /* Comment */++;
 
 `;
 
-exports[`pre.php 1`] = `
+exports[`pre.php - php-verify: pre.php 1`] = `
 <?php
 
 ++/*Comment */$a;
@@ -2025,7 +2025,7 @@ exports[`pre.php 1`] = `
 
 `;
 
-exports[`print.php 1`] = `
+exports[`print.php - php-verify: print.php 1`] = `
 <?php
 
 print // Comment
@@ -2045,7 +2045,7 @@ print /* Comment */ $foo /* Comment */;
 
 `;
 
-exports[`propertylookup.php 1`] = `
+exports[`propertylookup.php - php-verify: propertylookup.php 1`] = `
 <?php
 
 echo $a/*Comment*/->/*Comment*/bar();
@@ -2056,7 +2056,7 @@ echo /*Comment*/ /*Comment*/ $a->bar();
 
 `;
 
-exports[`retif.php 1`] = `
+exports[`retif.php - php-verify: retif.php 1`] = `
 <?php
 
 $inspect = $condition
@@ -2120,7 +2120,7 @@ $var =
 
 `;
 
-exports[`return.php 1`] = `
+exports[`return.php - php-verify: return.php 1`] = `
 <?php
 
 function f() {
@@ -2136,7 +2136,7 @@ function f()
 
 `;
 
-exports[`silent.php 1`] = `
+exports[`silent.php - php-verify: silent.php 1`] = `
 <?php
 
 @/*comment*/test();
@@ -2147,7 +2147,7 @@ exports[`silent.php 1`] = `
 
 `;
 
-exports[`static.php 1`] = `
+exports[`static.php - php-verify: static.php 1`] = `
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2156,7 +2156,7 @@ static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 `;
 
-exports[`staticlookup.php 1`] = `
+exports[`staticlookup.php - php-verify: staticlookup.php 1`] = `
 <?php
 
 echo Foo/*Comment*/::/*Comment*/bar();
@@ -2167,7 +2167,7 @@ echo /*Comment*/ /*Comment*/ Foo::bar();
 
 `;
 
-exports[`switch.php 1`] = `
+exports[`switch.php - php-verify: switch.php 1`] = `
 <?php
 // Comment
 switch ($i) { // Comment
@@ -2210,7 +2210,7 @@ switch (/* Comment */ 1 /* Comment */) {
 
 `;
 
-exports[`throw.php 1`] = `
+exports[`throw.php - php-verify: throw.php 1`] = `
 <?php
 
 // Comment
@@ -2246,7 +2246,7 @@ throw new ClassName /* Comment */(
 
 `;
 
-exports[`traits.php 1`] = `
+exports[`traits.php - php-verify: traits.php 1`] = `
 <?php
 
 class ImplementingClass {
@@ -2276,7 +2276,7 @@ class ImplementingClass
 
 `;
 
-exports[`unary.php 1`] = `
+exports[`unary.php - php-verify: unary.php 1`] = `
 <?php
 
 +/* Comment */$a;
@@ -2287,7 +2287,7 @@ exports[`unary.php 1`] = `
 
 `;
 
-exports[`unset.php 1`] = `
+exports[`unset.php - php-verify: unset.php 1`] = `
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
@@ -2298,7 +2298,7 @@ unset(/* Comment */ $foo /* Comment */);
 
 `;
 
-exports[`usegroup.php 1`] = `
+exports[`usegroup.php - php-verify: usegroup.php 1`] = `
 <?php
 
 use /* Comment */ some\\namespaces\\/* Comment */{
@@ -2318,7 +2318,7 @@ use some\\namespaces\\{
 
 `;
 
-exports[`variable.php 1`] = `
+exports[`variable.php - php-verify: variable.php 1`] = `
 <?php
 
 $obj = // Comment
@@ -2502,7 +2502,7 @@ $obj =
 
 `;
 
-exports[`variadic.php 1`] = `
+exports[`variadic.php - php-verify: variadic.php 1`] = `
 <?php
 
 foo(.../*Comment*/$foo);
@@ -2513,7 +2513,7 @@ foo(.../*Comment*/ $foo);
 
 `;
 
-exports[`while.php 1`] = `
+exports[`while.php - php-verify: while.php 1`] = `
 <?php
 // Comment 1
 while (true) { // Comment 2
@@ -2538,7 +2538,7 @@ while (/* Comments */ true /* Comments */) {
 
 `;
 
-exports[`yield.php 1`] = `
+exports[`yield.php - php-verify: yield.php 1`] = `
 <?php
 
 function gen_one_to_three() {
@@ -2556,7 +2556,7 @@ function gen_one_to_three()
 
 `;
 
-exports[`yieldfrom.php 1`] = `
+exports[`yieldfrom.php - php-verify: yieldfrom.php 1`] = `
 <?php
 
 function gen() {

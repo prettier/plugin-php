@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`propertylookup.php 1`] = `
+exports[`propertylookup.php - php-verify: propertylookup.php 1`] = `
 <?php
 
 $a = $obj->value;
@@ -52,7 +52,7 @@ $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVe
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

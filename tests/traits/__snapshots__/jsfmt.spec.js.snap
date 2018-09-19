@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`traits.php 1`] = `
+exports[`traits.php - php-verify: traits.php 1`] = `
 <?php
 trait A {
   function testFunction() { /*1*/ }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`magic.php 1`] = `
+exports[`magic.php - php-verify: magic.php 1`] = `
 <?php
 __LINE__;
 __FILE__;
@@ -27,7 +27,7 @@ $magic = __LINE__;
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 __LINE__
 ?>

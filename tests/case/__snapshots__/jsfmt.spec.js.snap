@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`case.php 1`] = `
+exports[`case.php - php-verify: case.php 1`] = `
 <?php
 DECLARE(ticks=1);
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sys.php 1`] = `
+exports[`sys.php - php-verify: sys.php 1`] = `
 <?php
 echo "test echo";
 echo $test, $other;

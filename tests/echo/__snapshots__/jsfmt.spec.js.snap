@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`echo.php 1`] = `
+exports[`echo.php - php-verify: echo.php 1`] = `
 <?php
 
 echo "Hello World";
