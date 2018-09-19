@@ -20,9 +20,9 @@ BEFORE SUBMITTING AN ISSUE:
 
 -->
 
-**Prettier 1.14.2**
+**Prettier 1.14.3**
 
-**PHP Plugin 0.6.0**
+**PHP Plugin 0.7.0**
 
 ```sh
 # Options (if any):

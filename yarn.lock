@@ -1812,7 +1812,7 @@ is-buffer@^1.1.4, is-buffer@^1.1.5:
 
 is-builtin-module@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-builtin-module/-/is-builtin-module-1.0.0.tgz#540572d34f7ac3119f8f76c30cbc1b1e037affbe"
+  resolved "http://registry.npmjs.org/is-builtin-module/-/is-builtin-module-1.0.0.tgz#540572d34f7ac3119f8f76c30cbc1b1e037affbe"
   dependencies:
     builtin-modules "^1.0.0"
 
@@ -3229,7 +3229,7 @@ preserve@^0.2.0:
 
 prettier@prettier/prettier:
   version "1.15.0-dev"
-  resolved "https://codeload.github.com/prettier/prettier/tar.gz/8ddff0787ab2af8537cfb7d152948c80c1531b8c"
+  resolved "https://codeload.github.com/prettier/prettier/tar.gz/27bf64f6ce23679f37d010fd47da81a6c379f2eb"
   dependencies:
     "@babel/code-frame" "7.0.0-beta.46"
     "@babel/parser" "7.0.0-beta.55"
