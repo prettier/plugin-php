@@ -39,7 +39,13 @@ $var = $foo->{$bar['baz']}();
 $var = ($$foo)['bar']['baz'];
 $var = ($foo->$bar)['baz'];
 $var = ($foo->$bar)['baz']();
-// Todo https://github.com/glayzzle/php-parser/issues/182
-// $var = (Foo::$bar)['baz']();
+$var = Foo::$bar()['baz']();
+$var = (Foo::$bar())['baz']();
+$var = Foo::bar()['baz']();
+$var = (Foo::bar())['baz']();
+
+// Todo https://github.com/glayzzle/php-parser/issues/186
+// $var = Foo::$bar['baz'];
+// $var = (Foo::$bar)['baz'];
 
 $$$$$$$$$$var = "I like playing in the park";
