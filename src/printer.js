@@ -374,7 +374,8 @@ function printMemberChain(path, options, print) {
     return (
       isLookupNode(lastNode) &&
       (lastNode.offset.kind === "constref" ||
-        lastNode.offset.kind === "variable")
+        lastNode.offset.kind === "variable" ||
+        lastNode.offset.kind === "encapsed")
     );
   }
 
@@ -671,11 +672,10 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 function wrapPropertyLookup(node, doc) {
   let addCurly = true;
 
-  if (node.offset.kind === "variable") {
-    addCurly = false;
-  } else if (
-    node.offset.kind === "constref" &&
-    typeof node.offset.name === "string"
+  if (
+    node.offset.kind === "variable" ||
+    (node.offset.kind === "constref" && typeof node.offset.name === "string") ||
+    node.offset.kind === "encapsed"
   ) {
     addCurly = false;
   }
@@ -1963,7 +1963,8 @@ function printNode(path, options, print) {
         node.kind === "offsetlookup" ||
         ((node.what.kind === "identifier" || node.what.kind === "variable") &&
           (node.offset.kind === "constref" ||
-            node.offset.kind === "variable") &&
+            node.offset.kind === "variable" ||
+            node.offset.kind === "encapsed") &&
           (parent && !isLookupNode(parent)));
 
       return concat([
@@ -2447,7 +2448,25 @@ function printNode(path, options, print) {
     }
     case "encapsed":
       if (node.type === "offset") {
-        return group(concat(path.map(print, "value")));
+        return group(
+          concat(
+            path.map(valuePath => {
+              const node = valuePath.getValue();
+              const printedValue = print(valuePath);
+
+              if (node.kind !== "constref") {
+                return concat([
+                  "{",
+                  indent(concat([softline, printedValue])),
+                  softline,
+                  "}"
+                ]);
+              }
+
+              return printedValue;
+            }, "value")
+          )
+        );
       }
 
       return concat([
