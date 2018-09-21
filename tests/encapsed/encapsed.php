@@ -106,4 +106,5 @@ $var = $foo->bzr_{'string'};
 $var = $foo->bzr_{$baz};
 $var = $foo->bzr_{$baz->foo};
 $var = $foo->bzr_{$var ? 'one' : 'two'};
+$var = $foo->bzr_{$veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar};
 $var = $foo->bzr_{(function () { return 1; })($var)};
