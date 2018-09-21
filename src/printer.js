@@ -2173,8 +2173,13 @@ function printNode(path, options, print) {
 
         if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
           parts.push(indent(concat([hardline, printedExpr])));
-        } else if (node.expr.kind === "bin") {
-          parts.push(group(indent(concat([" ", printedExpr]))));
+        } else if (
+          node.expr.kind === "bin" &&
+          (!isLookupNode(node.expr.left) &&
+            node.expr.left.kind !== "call" &&
+            node.expr.left.kind !== "new")
+        ) {
+          parts.push(group(concat([" ", indent(concat([printedExpr]))])));
         } else {
           parts.push(" ", printedExpr);
         }

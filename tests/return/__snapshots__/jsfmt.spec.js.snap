@@ -67,6 +67,68 @@ return new class {
 };
 
 return null;
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)['extra']['laravel']['dont-discover'] ?? [];
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)['extra']['laravel']['dont-discover'] ? [] : [];
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)['extra']['laravel']['dont-discover'] . 'string';
+
+return 'string' . json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)['extra']['laravel']['dont-discover'];
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)->foo->bar->foo->bar;
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)->foo()->bar()->foo()->bar();
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)::foo()::bar()::foo()::bar();
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)->foo->bar->foo->bar . 'string';
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)->foo()->bar()->foo()->bar() . 'string';
+
+return json_decode(
+    file_get_contents($this->basePath . '/composer.json'),
+    true
+)::foo()::bar()::foo()::bar() . 'string';
+
+return isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine) ? true : false;
+
+return eval('$var = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine"; $var .= $var;');
+
+return include 'foo.php' . ' MORE OUTPUT';
+return include 'foo.php' . ' MORE OUTPUT' . ' MORE OUTPUT' . ' MORE OUTPUT' . ' MORE OUTPUT' . ' MORE OUTPUT' . ' MORE OUTPUT';
+
+return new Foo($arg);
+return new Foo($arg, 'string', 1024, $veryVeryVeryVeryVeryVeryLongLine, true, false);
+return new Foo($arg, 'string', 1024, $veryVeryVeryVeryVeryVeryLongLine, true, false) . 'string';
+return 'string' . new Foo($arg, 'string', 1024, $veryVeryVeryVeryVeryVeryLongLine, true, false);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -197,5 +259,98 @@ return new class {
 };
 
 return null;
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
+    'extra'
+]['laravel']['dont-discover'] ?? [];
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
+    'extra'
+]['laravel']['dont-discover']
+    ? []
+    : [];
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
+    'extra'
+]['laravel']['dont-discover'] . 'string';
+
+return 'string' .
+    json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
+        'extra'
+    ]['laravel']['dont-discover'];
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ->foo->bar->foo->bar;
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ->foo()
+    ->bar()
+    ->foo()
+    ->bar();
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ::foo()
+    ::bar()
+    ::foo()
+    ::bar();
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ->foo->bar->foo->bar . 'string';
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ->foo()
+    ->bar()
+    ->foo()
+    ->bar() . 'string';
+
+return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+    ::foo()
+    ::bar()
+    ::foo()
+    ::bar() . 'string';
+
+return isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine)
+    ? true
+    : false;
+
+return eval(
+    '$var = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine"; $var .= $var;'
+);
+
+return include 'foo.php' . ' MORE OUTPUT';
+return include 'foo.php' .
+    ' MORE OUTPUT' .
+    ' MORE OUTPUT' .
+    ' MORE OUTPUT' .
+    ' MORE OUTPUT' .
+    ' MORE OUTPUT' .
+    ' MORE OUTPUT';
+
+return new Foo($arg);
+return new Foo(
+    $arg,
+    'string',
+    1024,
+    $veryVeryVeryVeryVeryVeryLongLine,
+    true,
+    false
+);
+return new Foo(
+    $arg,
+    'string',
+    1024,
+    $veryVeryVeryVeryVeryVeryLongLine,
+    true,
+    false
+) . 'string';
+return 'string' .
+    new Foo(
+        $arg,
+        'string',
+        1024,
+        $veryVeryVeryVeryVeryVeryLongLine,
+        true,
+        false
+    );
 
 `;
