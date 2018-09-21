@@ -2435,65 +2435,70 @@ function printNode(path, options, print) {
       ]);
     }
     case "encapsed":
-      if (node.type === "offset") {
-        return group(
-          concat(
-            path.map(valuePath => {
-              const node = valuePath.getValue();
-              const printedValue = print(valuePath);
+      switch (node.type) {
+        case "string":
+        case "shell":
+        case "heredoc":
+          return concat([
+            node.type === "heredoc" ? breakParent : "",
+            getEncapsedQuotes(node),
+            // Respect `indent` for `heredoc` nodes
+            node.type === "heredoc" ? literalline : "",
+            concat(
+              path.map(valuePath => {
+                const node = valuePath.getValue();
 
-              if (node.kind !== "constref") {
-                return concat([
-                  "{",
-                  indent(concat([softline, printedValue])),
-                  softline,
-                  "}"
-                ]);
-              }
+                if (node.kind === "string") {
+                  return node.raw;
+                }
 
-              return printedValue;
-            }, "value")
-          )
-        );
+                if (node.kind === "variable") {
+                  if (typeof node.name === "object") {
+                    return concat([
+                      node.curly ? "${" : "",
+                      path.call(print, "name"),
+                      node.curly ? "}" : ""
+                    ]);
+                  }
+
+                  if (node.curly) {
+                    return concat(["{$", node.name, "}"]);
+                  }
+
+                  return print(valuePath);
+                }
+
+                return concat(["{", print(valuePath), "}"]);
+              }, "value")
+            ),
+            getEncapsedQuotes(node, { opening: false }),
+            node.type === "heredoc" && docShouldHaveTrailingNewline(path)
+              ? hardline
+              : ""
+          ]);
+        case "offset":
+          return group(
+            concat(
+              path.map(valuePath => {
+                const node = valuePath.getValue();
+                const printedValue = print(valuePath);
+
+                if (node.kind !== "constref") {
+                  return concat([
+                    "{",
+                    indent(concat([softline, printedValue])),
+                    softline,
+                    "}"
+                  ]);
+                }
+
+                return printedValue;
+              }, "value")
+            )
+          );
+        default:
+          return `Have not implemented kind ${node.type} yet.`;
       }
-
-      return concat([
-        node.type === "heredoc" ? breakParent : "",
-        getEncapsedQuotes(node),
-        // Respect `indent` for `heredoc` nodes
-        node.type === "heredoc" ? literalline : "",
-        concat(
-          path.map(valuePath => {
-            const node = valuePath.getValue();
-
-            if (node.kind === "string") {
-              return node.raw;
-            }
-
-            if (node.kind === "variable") {
-              if (typeof node.name === "object") {
-                return concat([
-                  node.curly ? "${" : "",
-                  path.call(print, "name"),
-                  node.curly ? "}" : ""
-                ]);
-              }
-
-              if (node.curly) {
-                return concat(["{$", node.name, "}"]);
-              }
-
-              return print(valuePath);
-            }
-
-            return concat(["{", print(valuePath), "}"]);
-          }, "value")
-        ),
-        getEncapsedQuotes(node, { opening: false }),
-        node.type === "heredoc" && docShouldHaveTrailingNewline(path)
-          ? hardline
-          : ""
-      ]);
     case "inline":
       return join(
         literalline,
