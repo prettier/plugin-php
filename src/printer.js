@@ -71,18 +71,6 @@ function genericPrint(path, options, print) {
 
   const printedWithoutParens = printNode(path, options, print);
 
-  if (
-    node.kind === "program" &&
-    node.children.length === 0 &&
-    node.comments === 0
-  ) {
-    return concat(["<?php", hardline]);
-  }
-
-  if (node.kind === "inline") {
-    return printedWithoutParens;
-  }
-
   const parts = [];
   const needsParens = pathNeedsParens(path, options);
 
