@@ -224,3 +224,16 @@ fn(
         ? $annularCooeedSplicesWalksWayWay
         : $kochabCooieGameOnOboleUnweave
 );
+
+$var = $a ?? $b;
+$var = $a ?? $b ?? $c;
+$var = $a ?? $b ?? $c ?? $d;
+$var = $a ?? $b ?? $c ?? $d ?? call($a, $b, $c);
+$var = $a ?? $b ?? $c ?? $d ?? $var ? 1 : 2;
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable;
+$var = $someOtherReallyReallyReallyLongVariable ?? $someOtherReallyReallyReallyLongVariable;
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable;
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable;
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? call($someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable);
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+$var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable;
