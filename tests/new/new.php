@@ -112,3 +112,16 @@ $var = new class ($arg, 'string', 2100, $var ? true : false, $other_arg, functio
 
 $var = new class {};
 $var = new class() {};
+
+class A {
+    public function create1() {
+        $class = get_class($this);
+        return new $class();
+    }
+    public function create2() {
+        return new static();
+    }
+    public function create3() {
+        return new static($arg, $arg, $arg);
+    }
+}
