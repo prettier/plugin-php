@@ -1182,7 +1182,7 @@ function printClass(path, options, print) {
   return concat([printedDeclaration, printedBody]);
 }
 
-function printFunction(path, print, options) {
+function printFunction(path, options, print) {
   const node = path.getValue();
   const declaration = [];
 
@@ -1274,9 +1274,9 @@ function printFunction(path, print, options) {
 
 function printBodyControlStructure(
   path,
+  options,
   print,
-  bodyProperty = "body",
-  options = {}
+  bodyProperty = "body"
 ) {
   const node = path.getValue();
 
@@ -1546,7 +1546,7 @@ function printNode(path, options, print) {
     case "function":
     case "closure":
     case "method":
-      return printFunction(path, print, options);
+      return printFunction(path, options, print);
     case "parameter": {
       const name = concat([
         node.nullable ? "?" : "",
@@ -1614,7 +1614,7 @@ function printNode(path, options, print) {
       ]);
     case "if": {
       const parts = [];
-      const body = printBodyControlStructure(path, print, "body", options);
+      const body = printBodyControlStructure(path, options, print, "body");
       const opening = group(
         concat([
           "if (",
@@ -1656,7 +1656,7 @@ function printNode(path, options, print) {
           group(
             node.alternate.kind === "if"
               ? path.call(print, "alternate")
-              : printBodyControlStructure(path, print, "alternate", options)
+              : printBodyControlStructure(path, options, print, "alternate")
           )
         );
       } else {
@@ -1668,7 +1668,7 @@ function printNode(path, options, print) {
     case "do":
       return concat([
         "do",
-        printBodyControlStructure(path, print, "body", options),
+        printBodyControlStructure(path, options, print, "body"),
         " while (",
         group(
           concat([
@@ -1689,11 +1689,11 @@ function printNode(path, options, print) {
             ])
           ),
           ")",
-          printBodyControlStructure(path, print, "body", options)
+          printBodyControlStructure(path, options, print, "body")
         ])
       );
     case "for": {
-      const body = printBodyControlStructure(path, print, "body", options);
+      const body = printBodyControlStructure(path, options, print, "body");
 
       // We want to keep dangling comments above the loop to stay consistent.
       // Any comment positioned between the for statement and the parentheses
@@ -1748,7 +1748,7 @@ function printNode(path, options, print) {
       ]);
     }
     case "foreach": {
-      const body = printBodyControlStructure(path, print, "body", options);
+      const body = printBodyControlStructure(path, options, print, "body");
 
       // We want to keep dangling comments above the loop to stay consistent.
       // Any comment positioned between the for statement and the parentheses
@@ -1804,7 +1804,7 @@ function printNode(path, options, print) {
             ")"
           ])
         ),
-        printBodyControlStructure(path, print, "body", options)
+        printBodyControlStructure(path, options, print, "body")
       ]);
     case "case":
       return concat([
