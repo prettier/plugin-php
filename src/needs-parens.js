@@ -179,6 +179,10 @@ function needsParens(path) {
         case "cast":
           return true;
         case "retif":
+          if (name === "test" && !parent.trueExpr) {
+            return false;
+          }
+
           return true;
         case "propertylookup":
         case "staticlookup":
