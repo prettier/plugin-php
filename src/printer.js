@@ -1031,10 +1031,10 @@ function printDeclarationBlock({
   argumentsList = [],
   returnTypeContents = "",
   bodyContents = "",
-  node,
   path,
   options
 }) {
+  const node = path.getValue();
   const isClassLikeNode = ["class", "interface", "trait"].includes(node.kind);
   const printedDeclaration = group(declaration);
   const printedSignature = !isClassLikeNode
@@ -1423,7 +1423,6 @@ function printNode(path, options, print) {
           )
         ]),
         bodyContents: printLines(path, options, print, "body"),
-        node,
         path,
         options
       });
@@ -1443,7 +1442,6 @@ function printNode(path, options, print) {
             : ""
         ]),
         bodyContents: printLines(path, options, print, "body"),
-        node,
         path,
         options
       });
@@ -1465,7 +1463,6 @@ function printNode(path, options, print) {
             : ""
         ]),
         bodyContents: printLines(path, options, print, "body"),
-        node,
         path,
         options
       });
@@ -1529,7 +1526,6 @@ function printNode(path, options, print) {
             ])
           : "",
         bodyContents: node.body ? path.call(print, "body") : "",
-        node,
         path,
         options
       });
@@ -1611,7 +1607,6 @@ function printNode(path, options, print) {
             ])
           : "",
         bodyContents: node.body ? concat([path.call(print, "body")]) : "",
-        node,
         path,
         options
       });
