@@ -2457,8 +2457,20 @@ function printNode(path, options, print) {
       ]);
     case "identifier": {
       const parent = path.getParentNode();
+      const normalizedName = node.name.toLowerCase();
 
-      if (parent.kind === "constref" && node.name.toLowerCase() !== "null") {
+      if (
+        (parent.kind === "staticlookup" &&
+          parent.what === node &&
+          ["self", "parent", "static"].includes(normalizedName)) ||
+        (parent.kind === "parameter" &&
+          parent.type === node &&
+          ["self", "parent", "static"].includes(normalizedName))
+      ) {
+        return node.name.toLowerCase();
+      }
+
+      if (parent.kind === "constref" && normalizedName !== "null") {
         return node.name;
       }
 
@@ -2470,7 +2482,6 @@ function printNode(path, options, print) {
         return "callable";
       }
 
-      const lowerCasedName = node.name.toLowerCase();
       const isLowerCase =
         [
           "int",
@@ -2480,12 +2491,10 @@ function printNode(path, options, print) {
           "null",
           "void",
           "iterable",
-          "object",
-          "self",
-          "parent"
-        ].indexOf(lowerCasedName) !== -1;
+          "object"
+        ].indexOf(normalizedName) !== -1;
 
-      return isLowerCase ? lowerCasedName : node.name;
+      return isLowerCase ? normalizedName : node.name;
     }
     case "error":
     default:
