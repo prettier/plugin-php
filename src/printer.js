@@ -348,6 +348,9 @@ function printMemberChain(path, options, print) {
   //
 
   function shouldNotWrap(groups) {
+    const hasComputed =
+      groups[1].length && groups[1][0].node.kind === "offsetlookup";
+
     if (groups[0].length === 1) {
       const firstNode = groups[0][0].node;
 
@@ -363,7 +366,8 @@ function printMemberChain(path, options, print) {
       isLookupNode(lastNode) &&
       (lastNode.offset.kind === "constref" ||
         lastNode.offset.kind === "variable" ||
-        lastNode.offset.kind === "encapsed")
+        lastNode.offset.kind === "encapsed") &&
+      hasComputed
     );
   }
 
