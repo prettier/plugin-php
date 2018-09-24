@@ -1026,7 +1026,164 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(wrappedParts);
 }
 
-function printDeclarationBlock({
+function printClass(path, options, print) {
+  const node = path.getValue();
+  const parentNode = path.getParentNode();
+
+  const declaration = [];
+
+  if (node.isFinal) {
+    declaration.push("final ");
+  }
+
+  if (node.isAbstract) {
+    declaration.push("abstract ");
+  }
+
+  declaration.push(node.kind);
+
+  if (node.name) {
+    declaration.push(" ", node.name);
+  }
+
+  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
+
+  // if this is an anonymous class, we need to check if the parent was a
+  // "new" node. if it was, we need to get the arguments from that node
+  // ex: $test = new class($arg1, $arg2) extends TestClass {};
+  if (
+    isAnonymousClass &&
+    parentNode.kind === "new" &&
+    parentNode.arguments.length > 0
+  ) {
+    declaration.push(printArgumentsList(path, options, print));
+  }
+
+  const partsDeclarationGroup = [];
+
+  if (node.extends) {
+    if (!Array.isArray(node.extends)) {
+      partsDeclarationGroup.push(
+        group(
+          concat([
+            // check if the extends node has a comment
+            hasDanglingComments(node.extends)
+              ? concat([
+                  hardline,
+                  path.call(
+                    extendsPath =>
+                      comments.printDanglingComments(
+                        extendsPath,
+                        options,
+                        true
+                      ),
+                    "extends"
+                  ),
+                  hardline
+                ])
+              : line,
+            "extends ",
+            path.call(print, "extends")
+          ])
+        )
+      );
+    } else {
+      partsDeclarationGroup.push(
+        concat([
+          line,
+          "extends",
+          group(
+            indent(
+              concat([
+                join(
+                  ",",
+                  path.map(extendPath => {
+                    // check if any of the implements nodes have comments
+                    return hasDanglingComments(extendPath.getValue())
+                      ? concat([
+                          hardline,
+                          comments.printDanglingComments(
+                            extendPath,
+                            options,
+                            true
+                          ),
+                          hardline,
+                          print(extendPath)
+                        ])
+                      : concat([line, print(extendPath)]);
+                  }, "extends")
+                )
+              ])
+            )
+          )
+        ])
+      );
+    }
+  }
+
+  if (node.implements) {
+    partsDeclarationGroup.push(
+      concat([
+        isAnonymousClass ? " " : line,
+        "implements",
+        group(
+          indent(
+            concat([
+              join(
+                ",",
+                path.map(implementPath => {
+                  // check if any of the implements nodes have comments
+                  return hasDanglingComments(implementPath.getValue())
+                    ? concat([
+                        hardline,
+                        comments.printDanglingComments(
+                          implementPath,
+                          options,
+                          true
+                        ),
+                        hardline,
+                        print(implementPath)
+                      ])
+                    : concat([line, print(implementPath)]);
+                }, "implements")
+              )
+            ])
+          )
+        )
+      ])
+    );
+  }
+
+  if (partsDeclarationGroup.length > 0) {
+    declaration.push(group(indent(concat(partsDeclarationGroup))));
+  }
+
+  const hasEmptyBody =
+    node.body &&
+    node.body.length === 0 &&
+    (!node.comments || node.comments.length === 0);
+  const body = concat([
+    "{",
+    indent(
+      concat([
+        hasEmptyBody ? "" : hardline,
+        printLines(path, options, print, "body")
+      ])
+    ),
+    comments.printDanglingComments(path, options, true),
+    isAnonymousClass && hasEmptyBody ? "" : hardline,
+    "}"
+  ]);
+
+  return concat([
+    group(
+      concat([group(concat(declaration)), isAnonymousClass ? line : hardline])
+    ),
+    body
+  ]);
+}
+
+function printFunction({
   declaration,
   argumentsList = [],
   returnTypeContents = "",
@@ -1035,60 +1192,39 @@ function printDeclarationBlock({
   options
 }) {
   const node = path.getValue();
-  const isClassLikeNode = ["class", "interface", "trait"].includes(node.kind);
   const printedDeclaration = group(declaration);
-  const printedSignature = !isClassLikeNode
-    ? group(
-        concat([
-          "(",
-          argumentsList.length
-            ? concat([
-                indent(
-                  concat([softline, join(concat([",", line]), argumentsList)])
-                ),
-                softline
-              ])
-            : "",
-          ")",
-          returnTypeContents ? concat([": ", returnTypeContents]) : ""
-        ])
-      )
-    : "";
+  const printedSignature = group(
+    concat([
+      "(",
+      argumentsList.length
+        ? concat([
+            indent(
+              concat([softline, join(concat([",", line]), argumentsList)])
+            ),
+            softline
+          ])
+        : "",
+      ")",
+      returnTypeContents ? concat([": ", returnTypeContents]) : ""
+    ])
+  );
 
   const hasEmptyBody =
-    ((node.kind === "function" || node.kind === "method") &&
-      node.body &&
-      node.body.children &&
-      node.body.children.length === 0 &&
-      !node.body.comments) ||
-    (isClassLikeNode && node.body && node.body.length === 0 && !node.comments);
+    (node.kind === "function" || node.kind === "method") &&
+    node.body &&
+    node.body.children &&
+    node.body.children.length === 0 &&
+    !node.body.comments;
 
   const printedBody = bodyContents
     ? concat([
         "{",
         indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
         comments.printDanglingComments(path, options, true),
-        node.kind === "class" && node.isAnonymous && hasEmptyBody
-          ? ""
-          : hardline,
+        hardline,
         "}"
       ])
     : "";
-
-  if (isClassLikeNode) {
-    return concat([
-      group(
-        concat([
-          printedDeclaration,
-          printedSignature,
-          bodyContents && node.kind === "class" && node.isAnonymous
-            ? line
-            : hardline
-        ])
-      ),
-      printedBody
-    ]);
-  }
 
   return conditionalGroup([
     concat([
@@ -1334,138 +1470,10 @@ function printNode(path, options, print) {
           : "",
         node.alias ? concat([" as ", node.alias]) : ""
       ]);
-    case "class": {
-      const classPrefixes = [
-        ...(node.isFinal ? ["final"] : []),
-        ...(node.isAbstract ? ["abstract"] : [])
-      ];
-      const parentNode = path.getParentNode();
-      // if this is an anonymous class, we need to check if the parent was a
-      // "new" node. if it was, we need to get the arguments from that node
-      // ex: $test = new class($arg1, $arg2) extends TestClass {};
-      const anonymousArguments =
-        node.isAnonymous &&
-        parentNode.kind === "new" &&
-        parentNode.arguments.length > 0
-          ? printArgumentsList(path, options, print)
-          : "";
-
-      return printDeclarationBlock({
-        declaration: concat([
-          classPrefixes.join(" "),
-          classPrefixes.length > 0 ? " " : "",
-          concat([
-            "class",
-            anonymousArguments,
-            node.name ? concat([" ", node.name]) : ""
-          ]),
-          group(
-            indent(
-              concat([
-                node.extends
-                  ? group(
-                      concat([
-                        // check if the extends node has a comment
-                        hasDanglingComments(node.extends)
-                          ? concat([
-                              hardline,
-                              path.call(
-                                extendsPath =>
-                                  comments.printDanglingComments(
-                                    extendsPath,
-                                    options,
-                                    true
-                                  ),
-                                "extends"
-                              ),
-                              hardline
-                            ])
-                          : line,
-                        "extends ",
-                        path.call(print, "extends")
-                      ])
-                    )
-                  : "",
-                node.implements
-                  ? concat([
-                      line,
-                      "implements",
-                      group(
-                        indent(
-                          concat([
-                            join(
-                              ",",
-                              path.map(implementsPath => {
-                                // check if any of the implements nodes have comments
-                                return hasDanglingComments(
-                                  implementsPath.getValue()
-                                )
-                                  ? concat([
-                                      hardline,
-                                      comments.printDanglingComments(
-                                        implementsPath,
-                                        options,
-                                        true
-                                      ),
-                                      hardline,
-                                      print(implementsPath)
-                                    ])
-                                  : concat([line, print(implementsPath)]);
-                              }, "implements")
-                            )
-                          ])
-                        )
-                      )
-                    ])
-                  : ""
-              ])
-            )
-          )
-        ]),
-        bodyContents: printLines(path, options, print, "body"),
-        path,
-        options
-      });
-    }
+    case "class":
     case "interface":
-      return printDeclarationBlock({
-        declaration: concat([
-          concat(["interface ", node.name]),
-          node.extends
-            ? indent(
-                concat([
-                  line,
-                  "extends ",
-                  join(", ", path.map(print, "extends"))
-                ])
-              )
-            : ""
-        ]),
-        bodyContents: printLines(path, options, print, "body"),
-        path,
-        options
-      });
     case "trait":
-      return printDeclarationBlock({
-        declaration: concat([
-          concat(["trait ", node.name]),
-          node.extends
-            ? indent(concat([line, "extends ", path.call(print, "extends")]))
-            : "",
-          node.implements
-            ? indent(
-                concat([
-                  line,
-                  "implements ",
-                  join(", ", path.map(print, "implements"))
-                ])
-              )
-            : ""
-        ]),
-        bodyContents: printLines(path, options, print, "body"),
-        path,
-        options
-      });
+      return printClass(path, options, print);
     case "traitprecedence":
       return concat([
         path.call(print, "trait"),
@@ -1506,7 +1514,7 @@ function printNode(path, options, print) {
         ])
       );
     case "function":
-      return printDeclarationBlock({
+      return printFunction({
         declaration: concat(["function ", node.byref ? "&" : "", node.name]),
         argumentsList: path.map(print, "arguments"),
         returnTypeContents: node.type
@@ -1581,7 +1589,7 @@ function printNode(path, options, print) {
         ...(node.isStatic ? ["static"] : [])
       ];
 
-      return printDeclarationBlock({
+      return printFunction({
         declaration: concat([
           methodPrefixes.join(" "),
           methodPrefixes.length > 0 ? " " : "",

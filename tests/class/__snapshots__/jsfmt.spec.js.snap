@@ -176,8 +176,10 @@ $instance = new class extends \\Foo implements \\HandleableInterface {
 };
 
 // Parenthesis on the next line
-$instance = new class extends \\Foo
-    implements \\ArrayAccess, \\Countable, \\Serializable
+$instance = new class extends \\Foo implements
+        \\ArrayAccess,
+        \\Countable,
+        \\Serializable
 {
     // Class content
 };
