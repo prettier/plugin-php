@@ -1158,11 +1158,15 @@ function printClass(path, options, print) {
     declaration.push(group(indent(concat(partsDeclarationGroup))));
   }
 
+  const printedDeclaration = group(
+    concat([group(concat(declaration)), isAnonymousClass ? line : hardline])
+  );
+
   const hasEmptyBody =
     node.body &&
     node.body.length === 0 &&
     (!node.comments || node.comments.length === 0);
-  const body = concat([
+  const printedBody = concat([
     "{",
     indent(
       concat([
@@ -1175,68 +1179,94 @@ function printClass(path, options, print) {
     "}"
   ]);
 
-  return concat([
-    group(
-      concat([group(concat(declaration)), isAnonymousClass ? line : hardline])
-    ),
-    body
-  ]);
+  return concat([printedDeclaration, printedBody]);
 }
 
-function printFunction({
-  declaration,
-  argumentsList = [],
-  returnTypeContents = "",
-  bodyContents = "",
-  path,
-  options
-}) {
+function printFunction(path, print, options) {
   const node = path.getValue();
-  const printedDeclaration = group(declaration);
-  const printedSignature = group(
-    concat([
-      "(",
-      argumentsList.length
-        ? concat([
-            indent(
-              concat([softline, join(concat([",", line]), argumentsList)])
-            ),
-            softline
-          ])
-        : "",
-      ")",
-      returnTypeContents ? concat([": ", returnTypeContents]) : ""
-    ])
-  );
+  const declaration = [];
 
+  if (node.isFinal) {
+    declaration.push("final ");
+  }
+
+  if (node.isAbstract) {
+    declaration.push("abstract ");
+  }
+
+  if (node.visibility) {
+    declaration.push(node.visibility, " ");
+  }
+
+  if (node.isStatic) {
+    declaration.push("static ");
+  }
+
+  declaration.push("function ");
+
+  if (node.byref) {
+    declaration.push("&");
+  }
+
+  if (node.name) {
+    declaration.push(node.name);
+  }
+
+  declaration.push(printArgumentsList(path, options, print));
+
+  if (node.uses && node.uses.length > 0) {
+    declaration.push(
+      group(concat([" use ", printArgumentsList(path, options, print, "uses")]))
+    );
+  }
+
+  if (node.type) {
+    declaration.push(
+      concat([
+        ": ",
+        hasDanglingComments(node.type)
+          ? concat([
+              path.call(
+                typePath =>
+                  comments.printDanglingComments(typePath, options, true),
+                "type"
+              ),
+              " "
+            ])
+          : "",
+        node.nullable ? "?" : "",
+        path.call(print, "type")
+      ])
+    );
+  }
+
+  const printedDeclaration = concat(declaration);
   const hasEmptyBody =
-    (node.kind === "function" || node.kind === "method") &&
     node.body &&
     node.body.children &&
     node.body.children.length === 0 &&
     !node.body.comments;
-
-  const printedBody = bodyContents
+  const isClosure = node.kind === "closure";
+  const printedBody = node.body
     ? concat([
         "{",
-        indent(concat([hasEmptyBody ? "" : hardline, bodyContents])),
-        comments.printDanglingComments(path, options, true),
-        hardline,
+        indent(
+          concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
+        ),
+        isClosure && hasEmptyBody ? "" : hardline,
         "}"
       ])
     : "";
 
+  if (isClosure) {
+    return concat([printedDeclaration, " ", printedBody]);
+  }
+
   return conditionalGroup([
+    concat([printedDeclaration, node.body ? hardline : "", printedBody]),
     concat([
       printedDeclaration,
-      printedSignature,
-      bodyContents ? hardline : "",
-      printedBody
-    ]),
-    concat([
-      printedDeclaration,
-      printedSignature,
-      bodyContents ? (argumentsList.length === 0 ? hardline : " ") : "",
+      node.body ? (node.arguments.length === 0 ? hardline : " ") : "",
       printedBody
     ])
   ]);
@@ -1514,111 +1544,9 @@ function printNode(path, options, print) {
         ])
       );
     case "function":
-      return printFunction({
-        declaration: concat(["function ", node.byref ? "&" : "", node.name]),
-        argumentsList: path.map(print, "arguments"),
-        returnTypeContents: node.type
-          ? concat([
-              hasDanglingComments(node.type)
-                ? concat([
-                    path.call(
-                      typePath =>
-                        comments.printDanglingComments(typePath, options, true),
-                      "type"
-                    ),
-                    " "
-                  ])
-                : "",
-              node.nullable ? "?" : "",
-              path.call(print, "type")
-            ])
-          : "",
-        bodyContents: node.body ? path.call(print, "body") : "",
-        path,
-        options
-      });
-    case "closure": {
-      const hasEmptyBody =
-        node.body &&
-        node.body.children &&
-        node.body.children.length === 0 &&
-        !node.body.comments;
-
-      return concat([
-        node.isStatic ? "static " : "",
-        "function ",
-        node.byref ? "&" : "",
-        printArgumentsList(path, options, print),
-        node.uses && node.uses.length > 0
-          ? group(
-              concat([
-                " use ",
-                printArgumentsList(path, options, print, "uses")
-              ])
-            )
-          : "",
-        node.type
-          ? concat([
-              ": ",
-              hasDanglingComments(node.type)
-                ? concat([
-                    path.call(
-                      typePath =>
-                        comments.printDanglingComments(typePath, options, true),
-                      "type"
-                    ),
-                    " "
-                  ])
-                : "",
-              node.nullable ? "?" : "",
-              path.call(print, "type")
-            ])
-          : "",
-        " {",
-        indent(
-          concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
-        ),
-        concat([hasEmptyBody ? "" : hardline, "}"])
-      ]);
-    }
-    case "method": {
-      const methodPrefixes = [
-        ...(node.isFinal ? ["final"] : []),
-        ...(node.isAbstract ? ["abstract"] : []),
-        ...(node.visibility ? [node.visibility] : []),
-        ...(node.isStatic ? ["static"] : [])
-      ];
-
-      return printFunction({
-        declaration: concat([
-          methodPrefixes.join(" "),
-          methodPrefixes.length > 0 ? " " : "",
-          "function ",
-          node.byref ? "&" : "",
-          node.name
-        ]),
-        argumentsList: path.map(print, "arguments"),
-        returnTypeContents: node.type
-          ? concat([
-              hasDanglingComments(node.type)
-                ? concat([
-                    path.call(
-                      typePath =>
-                        comments.printDanglingComments(typePath, options, true),
-                      "type"
-                    ),
-                    " "
-                  ])
-                : "",
-              node.nullable ? "?" : "",
-              path.call(print, "type")
-            ])
-          : "",
-        bodyContents: node.body ? concat([path.call(print, "body")]) : "",
-        path,
-        options
-      });
-    }
+    case "closure":
+    case "method":
+      return printFunction(path, print, options);
     case "parameter": {
       const name = concat([
         node.nullable ? "?" : "",
