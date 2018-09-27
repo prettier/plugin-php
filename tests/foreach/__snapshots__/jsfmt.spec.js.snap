@@ -62,6 +62,10 @@ foreach (
     as $key => $aliases
 ) {
 }
+
+foreach ($test as &$i) {
+    $test2 = $i;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 foreach ($test as $i) {
@@ -154,6 +158,10 @@ foreach (
     ]
     as $key => $aliases
 ) {
+}
+
+foreach ($test as &$i) {
+    $test2 = $i;
 }
 
 `;
