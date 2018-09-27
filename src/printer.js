@@ -1514,8 +1514,7 @@ function printNode(path, options, print) {
       ]);
     case "traitalias":
       return concat([
-        path.call(print, "trait"),
-        node.trait ? "::" : "",
+        node.trait ? concat([path.call(print, "trait"), "::"]) : "",
         node.method || "",
         " as ",
         join(" ", [
