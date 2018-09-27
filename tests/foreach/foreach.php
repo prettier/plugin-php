@@ -59,3 +59,7 @@ foreach (
     as $key => $aliases
 ) {
 }
+
+foreach ($test as &$i) {
+    $test2 = $i;
+}
