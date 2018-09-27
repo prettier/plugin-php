@@ -1584,11 +1584,13 @@ function printNode(path, options, print) {
     case "variadic":
       return concat(["...", path.call(print, "what")]);
     case "property":
+    case "constant":
+    case "classconstant":
       return group(
         concat([
           node.visibility ? concat([node.visibility, " "]) : "",
           node.isStatic ? "static " : "",
-          "$",
+          node.kind === "property" ? "$" : "const ",
           node.name,
           node.value
             ? concat([
@@ -1603,15 +1605,6 @@ function printNode(path, options, print) {
             : ""
         ])
       );
-    case "constant":
-    case "classconstant":
-      return concat([
-        node.visibility ? concat([node.visibility, " "]) : "",
-        "const ",
-        node.name,
-        " = ",
-        path.call(print, "value")
-      ]);
     case "if": {
       const parts = [];
       const body = printBodyControlStructure(path, options, print, "body");
@@ -2314,8 +2307,11 @@ function printNode(path, options, print) {
         (parent.kind === "retif" &&
           (parentParent && parentParent.kind !== "return"));
 
-      const shouldIndentIfInlining =
-        parent.kind === "assign" || parent.kind === "property";
+      const shouldIndentIfInlining = [
+        "assign",
+        "property",
+        "classconstant"
+      ].includes(parent.kind);
 
       const samePrecedenceSubExpression =
         node.left.kind === "bin" && shouldFlatten(node.type, node.left.type);
