@@ -1342,7 +1342,7 @@ function isLookupNodeChain(node) {
     return false;
   }
 
-  if (node.what.kind === "variable") {
+  if (["variable", "identifier"].includes(node.what.kind)) {
     return true;
   }
 

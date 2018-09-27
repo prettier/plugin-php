@@ -72,3 +72,22 @@ $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryV
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = (new MyClass())->call($arg);
 $obj->loooooooooooong->lookup = $this->getRequest()->getParam('instance-resource-id');
 $obj->loooooooooooong->lookup = (int) $this->getRequest()->getParam('instance-resource-id');
+
+$component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = $var->insertReallyReallyReally{$ReallyReallyReallyReallyReallyLongName};
+$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = (new Foo())->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = (clone $a)->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+
+$component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReally{$ReallyReallyReallyReallyReallyReallyLongName};
+$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = (new Foo())->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+$component = (clone $a)->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+
+$component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+$component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
