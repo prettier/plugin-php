@@ -108,3 +108,20 @@ $var = $foo->bzr_{$baz->foo};
 $var = $foo->bzr_{$var ? 'one' : 'two'};
 $var = $foo->bzr_{$veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar};
 $var = $foo->bzr_{(function () { return 1; })($var)};
+
+$var = "{$this->target->resource->binary}";
+$var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
+$var = "{$this->target->resource->binary['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVertyVeryLongString']}";
+$var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
+$var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
+$var = "{$this->target->resource->binary} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
+$var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary}";
+$var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
+$var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
+$var = "My name is {${getName($arg, 'string', 1024, $var ? true : false, ['foo' => 'bar', 'bar' => 'foo'])}}";
+$var = "My name is {${getName($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar, $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar, $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar)}}";
+
+$encapsHereDoc = <<<STR
+ Hello World {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}
+ Hello World {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}
+STR;

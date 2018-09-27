@@ -17,7 +17,7 @@ const {
   align,
   dedentToRoot
 } = require("prettier").doc.builders;
-const { willBreak } = require("prettier").doc.utils;
+const { willBreak, removeLines } = require("prettier").doc.utils;
 const {
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
@@ -2399,7 +2399,7 @@ function printNode(path, options, print) {
                   return print(valuePath);
                 }
 
-                return concat(["{", print(valuePath), "}"]);
+                return concat(["{", removeLines(print(valuePath)), "}"]);
               }, "value")
             ),
             getEncapsedQuotes(node, { opening: false }),
