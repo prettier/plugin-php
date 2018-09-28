@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`block.php 1`] = `
+exports[`block.php - php-verify: block.php 1`] = `
 <?php
 
 function test() {{{

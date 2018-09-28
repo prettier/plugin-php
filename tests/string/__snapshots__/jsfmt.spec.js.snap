@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`multiline.php 1`] = `
+exports[`multiline.php - php-verify: multiline.php 1`] = `
 <?php
 $string = 'foo
 bar';
@@ -37,7 +37,7 @@ $chart = "
 
 `;
 
-exports[`quoting.php 1`] = `
+exports[`quoting.php - php-verify: quoting.php 1`] = `
 <?php
 // rewrite simple strings
 "rewrite me";
@@ -100,7 +100,7 @@ line";
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 'string';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,7 +109,7 @@ exports[`single.php 1`] = `
 
 `;
 
-exports[`string.php 1`] = `
+exports[`string.php - php-verify: string.php 1`] = `
 <?php
 $string = 'this is a simple string';
 $string = 'You can also have embedded\\n newlines in

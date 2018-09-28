@@ -291,6 +291,13 @@ function lineShouldEndWithSemicolon(path) {
   ) {
     return true;
   }
+  if (
+    parentNode.kind === "class" &&
+    parentNode.isAnonymous &&
+    parentNode.arguments.includes(node)
+  ) {
+    return false;
+  }
   if (!nodeHasStatement(parentNode)) {
     return false;
   }
@@ -340,7 +347,8 @@ function lineShouldEndWithSemicolon(path) {
     "encapsed",
     "variable",
     "cast",
-    "clone"
+    "clone",
+    "do"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -576,6 +584,16 @@ function useSingleQuote(node) {
   );
 }
 
+// TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
+function hasNewlineInRange(text, start, end) {
+  for (let i = start; i < end; ++i) {
+    if (text.charAt(i) === "\n") {
+      return true;
+    }
+  }
+  return false;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -604,5 +622,6 @@ module.exports = {
   isProgramLikeNode,
   getNodeKindIncludingLogical,
   hasNewline,
-  useSingleQuote
+  useSingleQuote,
+  hasNewlineInRange
 };

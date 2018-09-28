@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`identifier.php 1`] = `
+exports[`identifier.php - php-verify: identifier.php 1`] = `
 <?php
 
 function int(int $var) {}
@@ -43,6 +43,11 @@ class A {
         static::who();
         sTaTic::who();
     }
+
+    public function foo(self $arg) {}
+    public function foo2(sElF $arg) {}
+    public function foo3(parent $arg) {}
+    public function foo4(pArEnT $arg) {}
 }
 
 // Should don't change
@@ -52,6 +57,11 @@ $var = $array[iNt];
 
 $var = $array->{int};
 $var = $array->{iNt};
+
+self();
+sElF();
+parent();
+pArEnT();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -157,6 +167,19 @@ class A
         static::who();
         static::who();
     }
+
+    public function foo(self $arg)
+    {
+    }
+    public function foo2(self $arg)
+    {
+    }
+    public function foo3(parent $arg)
+    {
+    }
+    public function foo4(parent $arg)
+    {
+    }
 }
 
 // Should don't change
@@ -166,5 +189,10 @@ $var = $array[iNt];
 
 $var = $array->{int};
 $var = $array->{iNt};
+
+self();
+sElF();
+parent();
+pArEnT();
 
 `;

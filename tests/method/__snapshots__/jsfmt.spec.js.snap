@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`method.php 1`] = `
+exports[`method.php - php-verify: method.php 1`] = `
 <?php
 
 class Foo

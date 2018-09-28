@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`trailing_whitespace.php 1`] = `
+exports[`trailing_whitespace.php - php-verify: trailing_whitespace.php 1`] = `
 <?php   
 $test = 'string';   
    
@@ -13,7 +13,7 @@ $test1 = 'string';
 
 `;
 
-exports[`trailing_whitespace_after_tag.php 1`] = `
+exports[`trailing_whitespace_after_tag.php - php-verify: trailing_whitespace_after_tag.php 1`] = `
 <?php
 $code = true;
 ?>
@@ -24,7 +24,7 @@ $code = true;
 
 `;
 
-exports[`trailing_whitespace_comment.php 1`] = `
+exports[`trailing_whitespace_comment.php - php-verify: trailing_whitespace_comment.php 1`] = `
 <?php
 class test{
 } // some comment

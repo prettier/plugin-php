@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`variadic.php 1`] = `
+exports[`variadic.php - php-verify: variadic.php 1`] = `
 <?php
 
 function f($req, $opt = null, ...$params) {

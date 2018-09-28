@@ -16,7 +16,7 @@
     <img alt="Gitter" src="https://img.shields.io/gitter/room/jlongster/prettier.svg?style=flat-square">
   </a>
   <a href="https://travis-ci.org/prettier/prettier-php">
-    <img alt="Travis" src="https://img.shields.io/travis/prettier/prettier-php/master.svg?style=flat-square">
+    <img alt="Travis" src="https://img.shields.io/travis/prettier/plugin-php/master.svg?style=flat-square">
   </a>
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">

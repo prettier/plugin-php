@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`errors.php 1`] = `
+exports[`errors.php - php-verify: errors.php 1`] = `
 <?php
 try {
     throw new OtherException();

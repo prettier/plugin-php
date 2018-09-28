@@ -30,3 +30,98 @@ $result = (new Pipeline(new \Illuminate\Container\Container))
     ->then(function ($piped) {
         return $piped;
     });
+
+$var = new Foo(
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
+
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+setLogger(new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+$var = new class ($arg, 'string', 2100, $var ? true : false, $other_arg, function () { return 1; }) extends SomeClass implements SomeInterface {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+
+$var = new class {};
+$var = new class() {};
+
+class A {
+    public function create1() {
+        $class = get_class($this);
+        return new $class();
+    }
+    public function create2() {
+        return new static();
+    }
+    public function create3() {
+        return new static($arg, $arg, $arg);
+    }
+}

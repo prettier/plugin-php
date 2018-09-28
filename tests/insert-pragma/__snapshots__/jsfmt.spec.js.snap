@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pragma-alreadyinserted.php 1`] = `
+exports[`pragma-alreadyinserted.php - php-verify: pragma-alreadyinserted.php 1`] = `
 <?php
 /**
  * This already has the pragma, it shouldn't get another.
@@ -25,7 +25,7 @@ echo 'Hello World';
 
 `;
 
-exports[`pragma-nodocblock.php 1`] = `
+exports[`pragma-nodocblock.php - php-verify: pragma-nodocblock.php 1`] = `
 <?php echo "Hello World";
 
 echo "Hello World";
@@ -44,7 +44,7 @@ echo 'Hello World';
 
 `;
 
-exports[`pragma-sparsedocblock.php 1`] = `
+exports[`pragma-sparsedocblock.php - php-verify: pragma-sparsedocblock.php 1`] = `
 <?php
 /**
  * This docblock doesn't have any pragma in it yet.
@@ -62,7 +62,7 @@ echo 'Hello World';
 
 `;
 
-exports[`pragma-weirddocblock.php 1`] = `
+exports[`pragma-weirddocblock.php - php-verify: pragma-weirddocblock.php 1`] = `
 <?php
 /** edge case docblock */
 
@@ -78,7 +78,7 @@ echo 'Hello World';
 
 `;
 
-exports[`pragma-weirddocblock-alt.php 1`] = `
+exports[`pragma-weirddocblock-alt.php - php-verify: pragma-weirddocblock-alt.php 1`] = `
 <?php
 /** @edge 
  * case */
@@ -94,7 +94,7 @@ echo 'Hello World';
 
 `;
 
-exports[`pragma-withdocblock.php 1`] = `
+exports[`pragma-withdocblock.php - php-verify: pragma-withdocblock.php 1`] = `
 <?php
 /**
  * This is a preexisting docblock which will receive a "format" pragma

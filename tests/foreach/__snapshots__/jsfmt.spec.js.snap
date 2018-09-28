@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`foreach.php 1`] = `
+exports[`foreach.php - php-verify: foreach.php 1`] = `
 <?php
 foreach ($test as $i) {
   $test2 = $i;
@@ -61,6 +61,10 @@ foreach (
     ]
     as $key => $aliases
 ) {
+}
+
+foreach ($test as &$i) {
+    $test2 = $i;
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
@@ -154,6 +158,10 @@ foreach (
     ]
     as $key => $aliases
 ) {
+}
+
+foreach ($test as &$i) {
+    $test2 = $i;
 }
 
 `;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`empty_lines.php 1`] = `
+exports[`empty_lines.php - php-verify: empty_lines.php 1`] = `
 <?php
 
 switch (foo) {
@@ -147,7 +147,7 @@ switch (a) {
 
 `;
 
-exports[`empty_switch.php 1`] = `
+exports[`empty_switch.php - php-verify: empty_switch.php 1`] = `
 <?php
 switch (1) { default:; }
 switch (1) {}
@@ -165,7 +165,7 @@ endswitch;
 
 `;
 
-exports[`switch.php 1`] = `
+exports[`switch.php - php-verify: switch.php 1`] = `
 <?php
 switch (2) {
   case 1:

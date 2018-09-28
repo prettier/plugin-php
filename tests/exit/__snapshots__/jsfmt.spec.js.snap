@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`exit.php 1`] = `
+exports[`exit.php - php-verify: exit.php 1`] = `
 <?php
 exit("exit info");
 exit(1);

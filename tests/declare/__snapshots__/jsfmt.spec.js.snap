@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`declare.php 1`] = `
+exports[`declare.php - php-verify: declare.php 1`] = `
 <?php
 declare(ticks=1):
 $test = 1;

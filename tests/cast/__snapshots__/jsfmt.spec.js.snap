@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cast.php 1`] = `
+exports[`cast.php - php-verify: cast.php 1`] = `
 <?php
 
 $bar = (int) $foo;
@@ -47,7 +47,7 @@ $binary = 'b"binary string"';
 
 `;
 
-exports[`singe.php 1`] = `
+exports[`singe.php - php-verify: singe.php 1`] = `
 <?php
 
 (int) '1';

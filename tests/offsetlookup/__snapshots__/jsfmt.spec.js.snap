@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`offsetlookup.php 1`] = `
+exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
 <?php
 
 $variable['data']['title'] = html_entity_decode(wp_get_document_title());
@@ -61,7 +61,7 @@ $variable[
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 $arr[1];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

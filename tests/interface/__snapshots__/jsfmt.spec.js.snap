@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`interface.php 1`] = `
+exports[`interface.php - php-verify: interface.php 1`] = `
 <?php
 
 interface testInterface {

@@ -40,6 +40,11 @@ class A {
         static::who();
         sTaTic::who();
     }
+
+    public function foo(self $arg) {}
+    public function foo2(sElF $arg) {}
+    public function foo3(parent $arg) {}
+    public function foo4(pArEnT $arg) {}
 }
 
 // Should don't change
@@ -49,3 +54,8 @@ $var = $array[iNt];
 
 $var = $array->{int};
 $var = $array->{iNt};
+
+self();
+sElF();
+parent();
+pArEnT();

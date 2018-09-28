@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 $variable;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -9,7 +9,7 @@ $variable;
 
 `;
 
-exports[`variable.php 1`] = `
+exports[`variable.php - php-verify: variable.php 1`] = `
 <?php
 
 $var = 'Bob';
@@ -51,8 +51,14 @@ $var = $foo->{$bar['baz']}();
 $var = ($$foo)['bar']['baz'];
 $var = ($foo->$bar)['baz'];
 $var = ($foo->$bar)['baz']();
-// Todo https://github.com/glayzzle/php-parser/issues/182
-// $var = (Foo::$bar)['baz']();
+$var = Foo::$bar()['baz']();
+$var = (Foo::$bar())['baz']();
+$var = Foo::bar()['baz']();
+$var = (Foo::bar())['baz']();
+
+// Todo https://github.com/glayzzle/php-parser/issues/186
+// $var = Foo::$bar['baz'];
+// $var = (Foo::$bar)['baz'];
 
 $$$$$$$$$$var = "I like playing in the park";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,8 +104,14 @@ $var = $foo->{$bar['baz']}();
 $var = $$foo['bar']['baz'];
 $var = $foo->$bar['baz'];
 $var = $foo->$bar['baz']();
-// Todo https://github.com/glayzzle/php-parser/issues/182
-// $var = (Foo::$bar)['baz']();
+$var = Foo::$bar()['baz']();
+$var = Foo::$bar()['baz']();
+$var = Foo::bar()['baz']();
+$var = Foo::bar()['baz']();
+
+// Todo https://github.com/glayzzle/php-parser/issues/186
+// $var = Foo::$bar['baz'];
+// $var = (Foo::$bar)['baz'];
 
 $$$$$$$$$$var = 'I like playing in the park';
 

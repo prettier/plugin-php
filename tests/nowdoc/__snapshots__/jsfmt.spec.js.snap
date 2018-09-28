@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`nowdoc.php 1`] = `
+exports[`nowdoc.php - php-verify: nowdoc.php 1`] = `
 <?php
 
 $str = <<<'EOD'
@@ -178,7 +178,7 @@ EOD
 
 `;
 
-exports[`single.php 1`] = `
+exports[`single.php - php-verify: single.php 1`] = `
 <?php
 <<<'EOD'
 Example of string

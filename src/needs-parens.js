@@ -166,6 +166,8 @@ function needsParens(path) {
         return false;
       } else if (parent.kind === "assign") {
         return false;
+      } else if (parent.kind === "static") {
+        return false;
       }
 
       return true;
@@ -177,6 +179,10 @@ function needsParens(path) {
         case "cast":
           return true;
         case "retif":
+          if (name === "test" && !parent.trueExpr) {
+            return false;
+          }
+
           return true;
         case "propertylookup":
         case "staticlookup":

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`retif.php 1`] = `
+exports[`retif.php - php-verify: retif.php 1`] = `
 <?php
 
 return true ? 1 : 2;
@@ -134,11 +134,9 @@ $var =
         ? $this->basePath . DIRECTORY_SEPARATOR . 'other'
         : $this->basePath . DIRECTORY_SEPARATOR . 'database') .
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
-return (
-    ($this->databasePath
+return ($this->databasePath
         ?: $this->basePath . DIRECTORY_SEPARATOR . 'database') .
-    ($path ? DIRECTORY_SEPARATOR . $path : $path)
-);
+    ($path ? DIRECTORY_SEPARATOR . $path : $path);
 
 $test = $foo
     ? foo([

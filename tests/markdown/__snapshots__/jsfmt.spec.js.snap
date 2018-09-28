@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`markdown.md 1`] = `
+exports[`markdown.md - markdown-verify: markdown.md 1`] = `
 # PHP in Markdown
 
 \`\`\`php
