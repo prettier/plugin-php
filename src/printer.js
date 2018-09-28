@@ -517,6 +517,7 @@ function shouldGroupFirstArg(args) {
     (firstArg.kind === "function" ||
       firstArg.kind === "method" ||
       firstArg.kind === "closure") &&
+    secondArg.kind !== "retif" &&
     !couldGroupArg(secondArg)
   );
 }

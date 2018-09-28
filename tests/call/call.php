@@ -119,3 +119,26 @@ implode(
         array_merge($arr1, $arr2, $arr3)
     )
 );
+
+call(function() {
+    return thing();
+}, 1 ? 2 : 3);
+
+call(function() {
+    return thing();
+}, something() ? someOtherThing() : somethingElse(true, 0));
+
+call(function() {
+    return thing();
+}, something($longArgumentName, $anotherLongArgumentName) ? someOtherThing() : somethingElse(true, 0));
+
+call(function() {
+    return thing();
+}, something($longArgumentName, $anotherLongArgumentName, $anotherLongArgumentName, $anotherLongArgumentName) ? someOtherThing() : somethingElse(true, 0));
+
+array_map(function ($aligment) {
+    return 'row-' . $aligment . '-xs';
+}, is_array($attributes['alignment'])
+    ? $attributes['alignment']
+    : explode(' ', $attributes['alignment'])
+);
