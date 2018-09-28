@@ -20,4 +20,5 @@ class Foo
     }
     use HelloWorld { sayHello as protected; }
     use HelloWorld { sayHello as private myPrivateHello; }
+    use EmptyTrait {}
 }

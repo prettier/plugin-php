@@ -1531,12 +1531,14 @@ function printNode(path, options, print) {
           node.adaptations
             ? concat([
                 " {",
-                indent(
-                  concat([
-                    hardline,
-                    printLines(path, options, print, "adaptations")
-                  ])
-                ),
+                node.adaptations.length > 0
+                  ? indent(
+                      concat([
+                        hardline,
+                        printLines(path, options, print, "adaptations")
+                      ])
+                    )
+                  : "",
                 hardline,
                 "}"
               ])
