@@ -1178,6 +1178,8 @@ clone $a;
 (clone $a);
 
 $var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
 $var = (clone $a);
 $var = (clone $a)->foo;
 $var = (clone $a->foo);
@@ -1210,6 +1212,8 @@ clone $a;
 clone $a;
 
 $var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
 $var = clone $a;
 $var = (clone $a)->foo;
 $var = clone $a->foo;
@@ -1991,6 +1995,13 @@ $var = new $a->b;
 $var = new $a->b();
 $var = (new $a)->b();
 $var = ((new $a)->b());
+
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+
+$var = (new class {})->foo;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Translator(
@@ -2038,6 +2049,11 @@ $var = new $a->b();
 $var = new $a->b();
 $var = (new $a())->b();
 $var = (new $a())->b();
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+$var = (new class {})->foo;
 
 
 `;
