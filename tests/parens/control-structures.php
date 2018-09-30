@@ -8,13 +8,23 @@ if (($a > $b)) {
     echo "a is smaller than b";
 }
 
+if ($foo or $bar == 1) {}
+if (($foo or $bar == 1)) {}
+
+for (($i = 0); ($i < 5); ($i++)) {}
+for ($foo or $bar;;) {}
+
 while (($i <= 10)) {
     echo $i++;
 }
 
+while ($foo or $bar < 10) {}
+
 do {
     echo $i;
 } while (($i > 0));
+
+do {} while ($foo and $bar);
 
 switch (($i)) {
     case (0):
@@ -39,6 +49,8 @@ switch (($i + 1)) {
         echo "i equals 2";
         break;
 }
+
+switch ($foo or $bar) {}
 
 while (++$i) {
     switch ($i) {
