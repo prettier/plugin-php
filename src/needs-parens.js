@@ -162,10 +162,7 @@ function needsParens(path) {
         (parent.init.includes(node) || parent.increment.includes(node))
       ) {
         return false;
-      } else if (
-        ["if", "while", "do", "switch"].includes(parent.kind) &&
-        name === "test"
-      ) {
+      } else if (parent.kind === "while" && node.left.kind === "list") {
         return false;
       } else if (parent.kind === "assign") {
         return false;
