@@ -66,3 +66,14 @@ while ($i++ < 5) {
     }
     echo "Neither does this.<br />\n";
 }
+
+if ($var = 1) {}
+do {} while ($var = 1);
+while ($var = 1) {}
+for (($i = 1); ($i <= 10); ($i++)) {}
+foreach (($arr) as $value) {}
+foreach (($arr) as $key => $value) {}
+switch ($var = 1) {}
+
+while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
