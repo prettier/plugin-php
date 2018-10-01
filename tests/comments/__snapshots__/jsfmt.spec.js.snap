@@ -1819,6 +1819,61 @@ exports[`inline7.php - php-verify: inline7.php 1`] = `
 
 `;
 
+exports[`interface.php - php-verify: interface.php 1`] = `
+<?php
+
+interface IFoo { /* Comments */ }
+interface IFoo {
+    // Comments
+}
+
+// Comment
+interface IFoo extends
+    // Comment
+    MyClass {}
+
+// Comment
+interface IFoo extends
+    // Comment
+    MyClass,
+    // Comment
+    MyOtherClass,
+    // Comment
+    OtherClass {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+interface IFoo
+{
+    /* Comments */
+}
+interface IFoo
+{
+    // Comments
+}
+
+// Comment
+interface IFoo extends
+    // Comment
+    MyClass
+{
+
+}
+
+// Comment
+interface IFoo extends
+    // Comment
+    MyClass,
+    // Comment
+    MyOtherClass,
+    // Comment
+    OtherClass
+{
+
+}
+
+`;
+
 exports[`isset.php - php-verify: isset.php 1`] = `
 <?php
 
@@ -2243,6 +2298,53 @@ throw new ClassName /* Comment */(
     /* Comment */ 2 /* Comment */
     /* Comment */
 ); /* Comment */
+
+`;
+
+exports[`trait.php - php-verify: trait.php 1`] = `
+<?php
+
+trait tFoo { /* Comment */ }
+
+trait tFoo {
+    // Comment
+}
+
+// Comment
+trait tFoo extends /* Comment */ ReflectionMethod {}
+
+// Comment
+trait tFoo extends
+    // Comment
+    ReflectionMethod {}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+trait tFoo
+{
+    /* Comment */
+}
+
+trait tFoo
+{
+    // Comment
+}
+
+// Comment
+trait tFoo
+    /* Comment */
+    extends ReflectionMethod
+{
+
+}
+
+// Comment
+trait tFoo
+    // Comment
+    extends ReflectionMethod
+{
+
+}
 
 `;
 
