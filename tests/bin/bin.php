@@ -237,3 +237,5 @@ $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable 
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? call($someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable);
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable;
+
+if ($foo or $bar == 1) {}
