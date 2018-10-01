@@ -291,7 +291,7 @@ final class MyClass extends Bar implements iTemplate
 
     private $private = 'Private';
 
-    public $foo = 'Bar';
+    var $foo = 'Bar';
 
     function printHello()
     {

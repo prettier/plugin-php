@@ -1597,7 +1597,9 @@ function printNode(path, options, print) {
     case "classconstant":
       return group(
         concat([
-          node.visibility ? concat([node.visibility, " "]) : "",
+          node.visibility || node.visibility === null
+            ? concat([node.visibility === null ? "var" : node.visibility, " "])
+            : "",
           node.isStatic ? "static " : "",
           node.kind === "property" ? "$" : "const ",
           node.name,
