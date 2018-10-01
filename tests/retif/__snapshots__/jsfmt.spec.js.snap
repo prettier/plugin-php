@@ -117,6 +117,36 @@ $var = $this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database'
 $var = $var ?: $otherVar ?: 'string' . 'string';
 $var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string';
 $var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string';
+
+echo $var ? 'string' : 'other-string';
+echo $var ?: $var ?: $var ?: 'string';
+echo $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+echo $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+print $var ? 'string' : 'other-string';
+print $var ?: $var ?: $var ?: 'string';
+print $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+print $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+include $var ? 'string' : 'other-string';
+include $var ?: $var ?: $var ?: 'string';
+include $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+include $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+$var = include $var ? 'string' : 'other-string';
+$var = include $var ?: $var ?: $var ?: 'string';
+$var = include $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+$var = include $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+call($var ? 'string' : 'other-string');
+call($var ?: $var ?: $var ?: 'string');
+call($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+call($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string');
+
+exit($var ? 'string' : 'other-string');
+exit($var ?: $var ?: $var ?: 'string');
+exit($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+exit($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string');
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -412,5 +442,73 @@ $var =
         'string' .
         'string' .
         'string';
+
+echo $var ? 'string' : 'other-string';
+echo $var ?: $var ?: $var ?: 'string';
+echo $someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable;
+echo $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string';
+
+print $var ? 'string' : 'other-string';
+print $var ?: $var ?: $var ?: 'string';
+print $someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable;
+print $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string';
+
+include $var ? 'string' : 'other-string';
+include $var ?: $var ?: $var ?: 'string';
+include $someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable;
+include $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string';
+
+$var = include $var ? 'string' : 'other-string';
+$var = include $var ?: $var ?: $var ?: 'string';
+$var = include $someOtherReallyReallyLongVariable
+    ? $someOtherReallyReallyLongVariable
+    : $someOtherReallyReallyLongVariable;
+$var = include $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string';
+
+call($var ? 'string' : 'other-string');
+call($var ?: $var ?: $var ?: 'string');
+call(
+    $someOtherReallyReallyLongVariable
+        ? $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable
+);
+call(
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string'
+);
+
+exit($var ? 'string' : 'other-string');
+exit($var ?: $var ?: $var ?: 'string');
+exit(
+    $someOtherReallyReallyLongVariable
+        ? $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable
+);
+exit(
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable ?:
+    'string'
+);
 
 `;

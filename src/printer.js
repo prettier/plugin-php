@@ -2045,11 +2045,10 @@ function printNode(path, options, print) {
         if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
           parts.push(indent(concat([hardline, printedExpr])));
         } else if (
-          (node.expr.kind === "retif" && !node.expr.trueExpr) ||
-          (node.expr.kind === "bin" &&
-            (!isLookupNode(node.expr.left) &&
-              node.expr.left.kind !== "call" &&
-              node.expr.left.kind !== "new"))
+          node.expr.kind === "bin" &&
+          (!isLookupNode(node.expr.left) &&
+            node.expr.left.kind !== "call" &&
+            node.expr.left.kind !== "new")
         ) {
           parts.push(group(concat([" ", indent(concat([printedExpr]))])));
         } else {
@@ -2346,7 +2345,12 @@ function printNode(path, options, print) {
       if (!node.trueExpr) {
         const printed = concat([
           printedTest,
-          parent.kind === "bin" ? indent(concat(parts)) : concat(parts)
+          parent.kind === "bin" ||
+          ["print", "echo", "return", "include"].includes(
+            firstNonRetifParent.kind
+          )
+            ? indent(concat(parts))
+            : concat(parts)
         ]);
 
         // Break between the parens in unaries or in a lookup nodes, i.e.
