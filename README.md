@@ -18,6 +18,9 @@
   <a href="https://travis-ci.org/prettier/prettier-php">
     <img alt="Travis" src="https://img.shields.io/travis/prettier/plugin-php/master.svg?style=flat-square">
   </a>
+  <a href="https://ci.appveyor.com/project/prettier/plugin-php">
+    <img alt="AppVeyor Build Status" src="https://img.shields.io/appveyor/ci/prettier/plugin-php.svg?style=flat-square&label=AppVeyor">
+  </a>
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
   </a>
