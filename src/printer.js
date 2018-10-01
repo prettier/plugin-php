@@ -2496,7 +2496,7 @@ function printNode(path, options, print) {
       ]);
     case "identifier": {
       const parent = path.getParentNode();
-      const normalizedName = node.name.toLowerCase();
+      let normalizedName = node.name.toLowerCase();
 
       if (
         (parent.kind === "staticlookup" &&
@@ -2509,31 +2509,44 @@ function printNode(path, options, print) {
         return node.name.toLowerCase();
       }
 
-      if (parent.kind === "constref" && normalizedName !== "null") {
-        return node.name;
-      }
+      if (
+        ((parent.kind === "parameter" && parent.type === node) ||
+          ["function", "closure", "method"].includes(parent.kind)) &&
+        parent.type === node
+      ) {
+        // This is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
+        // for reserved words we prefer lowercase case
+        if (normalizedName === "\\array") {
+          normalizedName = "array";
+        } else if (normalizedName === "\\callable") {
+          normalizedName = "callable";
+        }
 
-      // this is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
-      // for reserved words we prefer lowercase case
-      if (node.name === "\\array") {
-        return "array";
-      } else if (node.name === "\\callable") {
-        return "callable";
-      }
-
-      const isLowerCase =
-        [
+        return [
           "int",
           "float",
           "bool",
           "string",
-          "null",
-          "void",
           "iterable",
-          "object"
-        ].indexOf(normalizedName) !== -1;
+          "object",
+          "array",
+          "callable",
+          "void"
+        ].includes(normalizedName)
+          ? normalizedName
+          : node.name;
+      }
 
-      return isLowerCase ? normalizedName : node.name;
+      // null
+      if (
+        normalizedName === "null" &&
+        parent.kind === "constref" &&
+        parent.name === node
+      ) {
+        return normalizedName;
+      }
+
+      return node.name;
     }
     case "error":
     default:
