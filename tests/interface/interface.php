@@ -12,3 +12,17 @@ interface test2 extends testInterface {
 interface EmptyInterface {}
 
 interface EmptyInterfaceWithComments { /* Comment */ }
+
+interface Foo extends MyClass {}
+
+interface Foo extends MyClass, MyOtherClass, OtherClass {}
+
+interface Foo extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName {}
+
+interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName {}
+
+interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName extends Foo {}
+
+interface Foo extends MyClass, MyOtherClass, MyOtherOtherOtherClass, MyVeryVeryVeryLongClassName {}
+
+interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName extends MyClass, MyOtherClass, MyOtherOtherOtherClass, MyVeryVeryVeryLongClassName {}

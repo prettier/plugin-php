@@ -1089,34 +1089,41 @@ function printClass(path, options, print) {
         )
       );
     } else {
-      partsDeclarationGroup.push(
-        concat([
-          line,
-          "extends",
-          group(
-            indent(
-              concat([
-                join(
-                  ",",
-                  path.map(extendPath => {
-                    // check if any of the implements nodes have comments
-                    return hasDanglingComments(extendPath.getValue())
-                      ? concat([
-                          hardline,
-                          comments.printDanglingComments(
-                            extendPath,
-                            options,
-                            true
-                          ),
-                          hardline,
-                          print(extendPath)
-                        ])
-                      : concat([line, print(extendPath)]);
-                  }, "extends")
-                )
+      const printedExtends = lineBreak => {
+        return path.map(extendPath => {
+          // check if any of the implements nodes have comments
+          return hasDanglingComments(extendPath.getValue())
+            ? concat([
+                hardline,
+                comments.printDanglingComments(extendPath, options, true),
+                hardline,
+                print(extendPath)
               ])
+            : concat([lineBreak, print(extendPath)]);
+        }, "extends");
+      };
+
+      partsDeclarationGroup.push(
+        conditionalGroup([
+          concat([" extends", group(concat([join(",", printedExtends(" "))]))]),
+          concat([
+            " extends",
+            group(concat([join(",", printedExtends(hardline))]))
+          ]),
+          concat([
+            line,
+            "extends",
+            group(
+              indent(
+                concat([
+                  join(
+                    ",",
+                    printedExtends(node.extends.length > 1 ? line : " ")
+                  )
+                ])
+              )
             )
-          )
+          ])
         ])
       );
     }
