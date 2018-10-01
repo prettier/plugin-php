@@ -69,14 +69,9 @@ function needsParens(path) {
           return false;
       }
     case "bin": {
-      // $var = false or true;
-      // The constant false is assigned to $f before the "or" operation occurs
-      // Acts like: (($var = false) or true)
-      if (["and", "xor", "or"].includes(node.type)) {
-        return true;
-      }
-
       switch (parent.kind) {
+        case "assign":
+          return ["and", "xor", "or"].includes(node.type);
         case "pre":
         case "post":
         case "unary":

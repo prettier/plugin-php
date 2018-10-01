@@ -278,3 +278,22 @@ $var = $var % ($var . $var);
 $var = '100' - '100' - '100';
 $var = ('100' - '100') - '100';
 $var = '100' - ('100' - '100');
+
+if (false || true) {};
+if ((false || true)) {};
+if (false or true) {};
+if ((false or true)) {};
+if (true && false) {};
+if ((true && false)) {};
+if (true and false) {};
+if ((true and false)) {};
+
+if (!$foo or $bar == -1) {}
+if ((!$foo or $bar == -1)) {}
+if ((!$foo or $bar) == -1) {}
+if (!$foo or ($bar == -1)) {}
+
+do {} while ($foo and $bar);
+while ($foo or $bar < 10) {}
+for ($foo or $bar;;) {}
+switch ($foo or $bar) {}
