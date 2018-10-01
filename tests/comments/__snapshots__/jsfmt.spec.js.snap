@@ -2317,39 +2317,6 @@ trait tFoo extends /* Comment */ ReflectionMethod {}
 trait tFoo extends
     // Comment
     ReflectionMethod {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-
-trait tFoo
-{
-    /* Comment */
-}
-
-trait tFoo
-{
-    // Comment
-}
-
-// Comment
-trait tFoo
-    /* Comment */
-    extends ReflectionMethod
-{
-
-}
-
-// Comment
-trait tFoo
-    // Comment
-    extends ReflectionMethod
-{
-
-}
-
-`;
-
-exports[`traits.php - php-verify: traits.php 1`] = `
-<?php
 
 class ImplementingClass {
     /* Comment */
@@ -2362,6 +2329,32 @@ class ImplementingClass {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
+
+trait tFoo
+{
+    /* Comment */
+}
+
+trait tFoo
+{
+    // Comment
+}
+
+// Comment
+trait tFoo
+    /* Comment */
+    extends ReflectionMethod
+{
+
+}
+
+// Comment
+trait tFoo
+    // Comment
+    extends ReflectionMethod
+{
+
+}
 
 class ImplementingClass
 {
