@@ -29,4 +29,6 @@ EOD;
     public static $my_static = 'foo';
     static $my_static_1 = 'foo';
     public static $my_public_static='bar';
+    static $foo; // visibility is empty
+    var $bar; // visibility is null
 }
