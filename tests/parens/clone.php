@@ -4,6 +4,8 @@ clone $a;
 (clone $a);
 
 $var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
 $var = (clone $a);
 $var = (clone $a)->foo;
 $var = (clone $a->foo);

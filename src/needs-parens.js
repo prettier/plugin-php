@@ -2,12 +2,7 @@
 
 const assert = require("assert");
 
-const {
-  isLookupNode,
-  getPrecedence,
-  shouldFlatten,
-  isBitwiseOperator
-} = require("./util");
+const { getPrecedence, shouldFlatten, isBitwiseOperator } = require("./util");
 
 function needsParens(path) {
   const parent = path.getParentNode();
@@ -136,7 +131,15 @@ function needsParens(path) {
     }
     case "clone":
     case "new": {
-      return isLookupNode(parent);
+      switch (parent.kind) {
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return name === "what" && parent.what === node;
+        default:
+          return false;
+      }
     }
     case "yield": {
       switch (parent.kind) {

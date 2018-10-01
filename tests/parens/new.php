@@ -52,3 +52,10 @@ $var = new $a->b;
 $var = new $a->b();
 $var = (new $a)->b();
 $var = ((new $a)->b());
+
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+
+$var = (new class {})->foo;
