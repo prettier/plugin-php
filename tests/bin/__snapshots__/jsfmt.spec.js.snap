@@ -630,8 +630,8 @@ $var =
     $someOtherReallyReallyLongVariable ??
     $someOtherReallyReallyLongVariable ??
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable
-        ?: $someOtherReallyReallyLongVariable;
+    $someOtherReallyReallyLongVariable ?:
+    $someOtherReallyReallyLongVariable;
 
 `;
 
