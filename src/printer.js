@@ -1367,8 +1367,9 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
   const canBreak =
     (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
     (rightNode.kind === "retif" &&
-      rightNode.test.kind === "bin" &&
-      !shouldInlineLogicalExpression(rightNode.test)) ||
+      (!rightNode.trueExpr ||
+        (rightNode.test.kind === "bin" &&
+          !shouldInlineLogicalExpression(rightNode.test)))) ||
     ((leftNode.kind === "variable" ||
       leftNode.kind === "string" ||
       isLookupNode(leftNode)) &&
@@ -1909,64 +1910,6 @@ function printNode(path, options, print) {
       }
 
       return node.name;
-    case "retif": {
-      const parts = [];
-      const parent = path.getParentNode();
-
-      // Find the outermost non-retif parent, and the outermost retif parent.
-      let currentParent;
-      let i = 0;
-
-      do {
-        currentParent = path.getParentNode(i);
-        i++;
-      } while (currentParent && currentParent.kind === "retif");
-      const firstNonRetifParent = currentParent || parent;
-
-      const printedTrueExpr = path.call(print, "trueExpr");
-      const printedFalseExpr = path.call(print, "falseExpr");
-      const part = concat([
-        line,
-        "?",
-        node.trueExpr
-          ? concat([
-              " ",
-              node.trueExpr.kind === "bin"
-                ? indent(printedTrueExpr)
-                : printedTrueExpr,
-              line
-            ])
-          : "",
-        ": ",
-        node.falseExpr.kind === "bin"
-          ? indent(printedFalseExpr)
-          : printedFalseExpr
-      ]);
-
-      parts.push(part);
-
-      // We want a whole chain of retif to all break if any of them break.
-      const maybeGroup = doc =>
-        parent === firstNonRetifParent ? group(doc) : doc;
-
-      // Break the closing parens to keep the chain right after it:
-      // ($a
-      //   ? $b
-      //   : $c
-      // )->call()
-      const breakLookupNodes = ["propertylookup", "staticlookup"];
-      const breakClosingParens = breakLookupNodes.includes(parent.kind);
-
-      const printedTest = path.call(print, "test");
-
-      return maybeGroup(
-        concat([
-          node.test.kind === "retif" ? indent(printedTest) : printedTest,
-          indent(concat(parts)),
-          breakClosingParens ? softline : ""
-        ])
-      );
-    }
     case "exit":
       return group(
         concat([
@@ -2102,10 +2045,11 @@ function printNode(path, options, print) {
         if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
           parts.push(indent(concat([hardline, printedExpr])));
         } else if (
-          node.expr.kind === "bin" &&
-          (!isLookupNode(node.expr.left) &&
-            node.expr.left.kind !== "call" &&
-            node.expr.left.kind !== "new")
+          (node.expr.kind === "retif" && !node.expr.trueExpr) ||
+          (node.expr.kind === "bin" &&
+            (!isLookupNode(node.expr.left) &&
+              node.expr.left.kind !== "call" &&
+              node.expr.left.kind !== "new"))
         ) {
           parts.push(group(concat([" ", indent(concat([printedExpr]))])));
         } else {
@@ -2281,14 +2225,14 @@ function printNode(path, options, print) {
       );
 
       //   if (
-      //     this.hasPlugin("dynamicImports") && this.lookahead().type === tt.parenLeft
+      //     $this->hasPlugin('dynamicImports') && $this->lookahead()->type === tt->parenLeft
       //   ) {
       //
       // looks super weird, we want to break the children if the parent breaks
       //
       //   if (
-      //     this.hasPlugin("dynamicImports") &&
-      //     this.lookahead().type === tt.parenLeft
+      //     $this->hasPlugin('dynamicImports') &&
+      //     $this->lookahead()->type === tt->parenLeft
       //   ) {
       if (isInsideParenthesis) {
         return concat(parts);
@@ -2344,6 +2288,90 @@ function printNode(path, options, print) {
           // left-most expression.
           parts.length > 0 ? parts[0] : "",
           indent(rest)
+        ])
+      );
+    }
+    case "retif": {
+      const parts = [];
+      const parent = path.getParentNode();
+
+      // Find the outermost non-retif parent, and the outermost retif parent.
+      let currentParent;
+      let i = 0;
+
+      do {
+        currentParent = path.getParentNode(i);
+        i++;
+      } while (currentParent && currentParent.kind === "retif");
+      const firstNonRetifParent = currentParent || parent;
+
+      const printedFalseExpr =
+        node.falseExpr.kind === "bin"
+          ? indent(path.call(print, "falseExpr"))
+          : path.call(print, "falseExpr");
+      const part = concat([
+        node.trueExpr ? line : " ",
+        "?",
+        node.trueExpr
+          ? concat([
+              " ",
+              node.trueExpr.kind === "bin"
+                ? indent(path.call(print, "trueExpr"))
+                : path.call(print, "trueExpr"),
+              line
+            ])
+          : "",
+        ":",
+        node.trueExpr
+          ? concat([" ", printedFalseExpr])
+          : concat([line, printedFalseExpr])
+      ]);
+
+      parts.push(part);
+
+      // We want a whole chain of retif to all break if any of them break.
+      const maybeGroup = doc =>
+        parent === firstNonRetifParent ? group(doc) : doc;
+
+      // Break the closing parens to keep the chain right after it:
+      // ($a
+      //   ? $b
+      //   : $c
+      // )->call()
+      const breakLookupNodes = ["propertylookup", "staticlookup"];
+      const breakClosingParens = breakLookupNodes.includes(parent.kind);
+
+      const printedTest = path.call(print, "test");
+
+      if (!node.trueExpr) {
+        const printed = concat([
+          printedTest,
+          parent.kind === "bin" ? indent(concat(parts)) : concat(parts)
+        ]);
+
+        // Break between the parens in unaries or in a lookup nodes, i.e.
+        //
+        //   (
+        //     a ?:
+        //     b ?:
+        //     c
+        //   )->call()
+        if (
+          (parent.kind === "call" && parent.what === node) ||
+          parent.kind === "unary" ||
+          (isLookupNode(parent) && parent.kind !== "offsetlookup")
+        ) {
+          return group(concat([indent(concat([softline, printed])), softline]));
+        }
+
+        return maybeGroup(printed);
+      }
+
+      return maybeGroup(
+        concat([
+          node.test.kind === "retif" ? indent(printedTest) : printedTest,
+          indent(concat(parts)),
+          breakClosingParens ? softline : ""
         ])
       );
     }

@@ -65,3 +65,52 @@ $arr = [
     'step' => $someOtherReallyReallyReallyReallyLongVariable . $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
     'step' => $someOtherReallyReallyReallyReallyLongVariable && $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
 ];
+
+$var = $var ?: $var ?: $var ?: 'string';
+$var = $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: 'string';
+
+($var ? 'string' : 'other-string')();
+($var ?: $var ?: $var ?: 'string')();
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')();
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')();
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)();
+
+($var ? $var : $var)->call();
+($var ?: $var ?: $var ?: 'string')->call();
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')->call();
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')->call();
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)->call();
+
+($var ?: $var ?: $var ?: 'string')->foo;
+($var ? $var : $var)->foo;
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')->foo;
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')->foo;
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)->foo;
+
+call(function () {
+    return 1;
+}, $var ? 1 : 2);
+
+call(function () {
+    return 1;
+}, $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+
+call(function () {
+    return 1;
+}, $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ? :'test');
+
+$var = [
+    'foo' =>  $var ?: $var ?: $var ?: 'string',
+    'other-foo' =>  $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string'
+];
+
+return $var ? 'string' : 'other-string';
+return $var ?: $var ?: $var ?: 'string';
+return $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+return $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+$var = $this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database';
+
+$var = $var ?: $otherVar ?: 'string' . 'string';
+$var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string';
+$var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string';

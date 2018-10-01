@@ -823,8 +823,9 @@ do {
     // some comment
 } while (true);
 
-$test = foo
-    ?: bar(function () {
+$test =
+    foo ?:
+    bar(function () {
         $foo = "bar";
         // test
     });
