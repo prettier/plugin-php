@@ -1031,7 +1031,7 @@ function printClassPart(path, options, print, part = "extends") {
   const node = path.getValue();
 
   const printParts = lineBreak => {
-    return path.map(partPath => {
+    const printedParts = path.map(partPath => {
       // check if any of the implements nodes have comments
       return hasDanglingComments(partPath.getValue())
         ? concat([
@@ -1042,21 +1042,17 @@ function printClassPart(path, options, print, part = "extends") {
           ])
         : concat([lineBreak, print(partPath)]);
     }, part);
+
+    return group(concat([join(",", printedParts)]));
   };
 
   return conditionalGroup([
-    concat([` ${part}`, group(concat([join(",", printParts(" "))]))]),
-    concat([` ${part}`, group(concat([join(",", printParts(hardline))]))]),
+    concat([" ", part, printParts(" ")]),
+    concat([" ", part, printParts(hardline)]),
     concat([
       line,
       part,
-      group(
-        indent(
-          concat([
-            join(",", printParts(node[part].length > 1 ? hardline : " "))
-          ])
-        )
-      )
+      indent(printParts(node[part].length > 1 ? hardline : " "))
     ])
   ]);
 }
