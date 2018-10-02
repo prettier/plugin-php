@@ -236,3 +236,11 @@ class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClas
 class MyClass implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {}
+
+class EmptyClass extends MyOtherClass {}
+
+class EmptyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends EmptyClass {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
