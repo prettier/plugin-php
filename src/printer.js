@@ -1029,30 +1029,47 @@ function printLines(path, options, print, childrenAttribute = "children") {
 
 function printClassPart(path, options, print, part = "extends") {
   const node = path.getValue();
+  const hasMultipleParts = Array.isArray(node[part]);
 
-  const printParts = lineBreak => {
+  const printPart = lineBreak => {
     const printedParts = path.map(partPath => {
-      // check if any of the implements nodes have comments
+      const printedPart = print(partPath);
+      // Check if any of the implements nodes have comments
       return hasDanglingComments(partPath.getValue())
         ? concat([
             hardline,
             comments.printDanglingComments(partPath, options, true),
             hardline,
-            print(partPath)
+            printedPart
           ])
-        : concat([lineBreak, print(partPath)]);
+        : concat([lineBreak, printedPart]);
     }, part);
 
-    return group(concat([join(",", printedParts)]));
+    return hasMultipleParts
+      ? group(concat([join(",", printedParts)]))
+      : concat([lineBreak, path.call(print, "extends")]);
+  };
+
+  const printCommentsBeforePart = lineBreak => {
+    return hasDanglingComments(node[part])
+      ? concat([
+          hardline,
+          path.call(
+            partPath => comments.printDanglingComments(partPath, options, true),
+            part
+          ),
+          hardline
+        ])
+      : lineBreak;
   };
 
   return conditionalGroup([
-    concat([" ", part, printParts(" ")]),
-    concat([" ", part, printParts(hardline)]),
+    concat([printCommentsBeforePart(" "), part, printPart(" ")]),
+    concat([printCommentsBeforePart(" "), part, printPart(hardline)]),
     concat([
-      line,
+      printCommentsBeforePart(line),
       part,
-      indent(printParts(node[part].length > 1 ? hardline : " "))
+      indent(printPart(node[part].length > 1 ? hardline : " "))
     ])
   ]);
 }
@@ -1093,47 +1110,7 @@ function printClass(path, options, print) {
   const partsDeclarationGroup = [];
 
   if (node.extends) {
-    if (!Array.isArray(node.extends)) {
-      // Check if the extends node has a comment
-      const printClassComments = lineBreak => {
-        return hasDanglingComments(node.extends)
-          ? concat([
-              hardline,
-              path.call(
-                extendsPath =>
-                  comments.printDanglingComments(extendsPath, options, true),
-                "extends"
-              ),
-              hardline
-            ])
-          : lineBreak;
-      };
-
-      partsDeclarationGroup.push(
-        conditionalGroup([
-          concat([
-            printClassComments(" "),
-            "extends ",
-            path.call(print, "extends")
-          ]),
-          concat([
-            printClassComments(" "),
-            "extends",
-            hardline,
-            path.call(print, "extends")
-          ]),
-          concat([
-            printClassComments(line),
-            "extends ",
-            path.call(print, "extends")
-          ])
-        ])
-      );
-    } else {
-      partsDeclarationGroup.push(
-        printClassPart(path, options, print, "extends")
-      );
-    }
+    partsDeclarationGroup.push(printClassPart(path, options, print, "extends"));
   }
 
   if (node.implements) {
