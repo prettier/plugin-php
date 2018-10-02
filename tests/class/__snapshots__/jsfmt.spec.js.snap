@@ -177,9 +177,9 @@ $instance = new class extends \\Foo implements \\HandleableInterface {
 
 // Parenthesis on the next line
 $instance = new class extends \\Foo implements
-        \\ArrayAccess,
-        \\Countable,
-        \\Serializable
+    \\ArrayAccess,
+    \\Countable,
+    \\Serializable
 {
     // Class content
 };
@@ -411,6 +411,20 @@ class test {
 class EmptyClass {}
 
 class EmptyClassWithComments { /* Comment */ }
+
+class MyClass implements MyOtherClass {}
+
+class MyClass implements MyOtherClass, MyOtherClass1, MyOtherClass2 {}
+
+class MyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyOtherClass {}
+
+class MyClass implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -432,9 +446,10 @@ class Foo extends Bar implements Baz, Buzz
 
 $test = new Foo();
 
-abstract class ReallyReallyReallyLongClassName
-    extends AbstractModelFactoryResourceController
-    implements TooMuchObjectOrientation, ThisIsMadness
+abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResourceController
+    implements
+        TooMuchObjectOrientation,
+        ThisIsMadness
 {
     // variable doc
     public $test;
@@ -639,59 +654,51 @@ class ClassName extends ParentClass implements InterfaceClass
 {
 }
 
-class ClassName extends ParentClass
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends ParentClass
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    InterfaceClass
+{
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
 }
 
-class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
-{
-}
-
-class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends ParentClass
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
-class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
-class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
@@ -699,14 +706,12 @@ class ClassName
 {
 }
 
-class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    extends ParentClass
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass
     implements InterfaceClass
 {
 }
 
-class Custom_Plugin_NotificationPlaceholderSource
-    extends Notification_Manager_DefaultPlaceholderSource
+class Custom_Plugin_NotificationPlaceholderSource extends Notification_Manager_DefaultPlaceholderSource
 {
 }
 
@@ -744,6 +749,46 @@ class EmptyClass
 class EmptyClassWithComments
 {
     /* Comment */
+}
+
+class MyClass implements MyOtherClass
+{
+}
+
+class MyClass implements MyOtherClass, MyOtherClass1, MyOtherClass2
+{
+}
+
+class MyClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+{
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements MyOtherClass
+{
+}
+
+class MyClass implements
+    MyOtherClass,
+    MyOtherClass,
+    MyOtherOtherOtherClass,
+    MyOtherOtherOtherOtherClass
+{
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements
+        MyOtherClass,
+        MyOtherClass,
+        MyOtherOtherOtherClass,
+        MyOtherOtherOtherOtherClass
+{
 }
 
 `;

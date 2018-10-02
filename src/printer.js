@@ -1053,7 +1053,7 @@ function printClassPart(path, options, print, part = "extends") {
       group(
         indent(
           concat([
-            join(",", printedExtends(node.extends.length > 1 ? line : " "))
+            join(",", printedExtends(node[part].length > 1 ? hardline : " "))
           ])
         )
       )
@@ -1116,7 +1116,7 @@ function printClass(path, options, print) {
                   ),
                   hardline
                 ])
-              : line,
+              : " ",
             "extends ",
             path.call(print, "extends")
           ])
@@ -1131,34 +1131,7 @@ function printClass(path, options, print) {
 
   if (node.implements) {
     partsDeclarationGroup.push(
-      concat([
-        isAnonymousClass ? " " : line,
-        "implements",
-        group(
-          indent(
-            concat([
-              join(
-                ",",
-                path.map(implementPath => {
-                  // check if any of the implements nodes have comments
-                  return hasDanglingComments(implementPath.getValue())
-                    ? concat([
-                        hardline,
-                        comments.printDanglingComments(
-                          implementPath,
-                          options,
-                          true
-                        ),
-                        hardline,
-                        print(implementPath)
-                      ])
-                    : concat([line, print(implementPath)]);
-                }, "implements")
-              )
-            ])
-          )
-        )
-      ])
+      printClassPart(path, options, print, "implements")
     );
   }
 
