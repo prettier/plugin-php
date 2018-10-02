@@ -1030,7 +1030,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
 function printClassPart(path, options, print, part = "extends") {
   const node = path.getValue();
 
-  const printedExtends = lineBreak => {
+  const printParts = lineBreak => {
     return path.map(partPath => {
       // check if any of the implements nodes have comments
       return hasDanglingComments(partPath.getValue())
@@ -1045,15 +1045,15 @@ function printClassPart(path, options, print, part = "extends") {
   };
 
   return conditionalGroup([
-    concat([` ${part}`, group(concat([join(",", printedExtends(" "))]))]),
-    concat([` ${part}`, group(concat([join(",", printedExtends(hardline))]))]),
+    concat([` ${part}`, group(concat([join(",", printParts(" "))]))]),
+    concat([` ${part}`, group(concat([join(",", printParts(hardline))]))]),
     concat([
       line,
       part,
       group(
         indent(
           concat([
-            join(",", printedExtends(node[part].length > 1 ? hardline : " "))
+            join(",", printParts(node[part].length > 1 ? hardline : " "))
           ])
         )
       )
@@ -1098,29 +1098,40 @@ function printClass(path, options, print) {
 
   if (node.extends) {
     if (!Array.isArray(node.extends)) {
+      // Check if the extends node has a comment
+      const printClassComments = lineBreak => {
+        return hasDanglingComments(node.extends)
+          ? concat([
+              hardline,
+              path.call(
+                extendsPath =>
+                  comments.printDanglingComments(extendsPath, options, true),
+                "extends"
+              ),
+              hardline
+            ])
+          : lineBreak;
+      };
+
       partsDeclarationGroup.push(
-        group(
+        conditionalGroup([
           concat([
-            // check if the extends node has a comment
-            hasDanglingComments(node.extends)
-              ? concat([
-                  hardline,
-                  path.call(
-                    extendsPath =>
-                      comments.printDanglingComments(
-                        extendsPath,
-                        options,
-                        true
-                      ),
-                    "extends"
-                  ),
-                  hardline
-                ])
-              : " ",
+            printClassComments(" "),
+            "extends ",
+            path.call(print, "extends")
+          ]),
+          concat([
+            printClassComments(" "),
+            "extends",
+            hardline,
+            path.call(print, "extends")
+          ]),
+          concat([
+            printClassComments(line),
             "extends ",
             path.call(print, "extends")
           ])
-        )
+        ])
       );
     } else {
       partsDeclarationGroup.push(
