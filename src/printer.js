@@ -1027,6 +1027,40 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(wrappedParts);
 }
 
+function printClassPart(path, options, print, part = "extends") {
+  const node = path.getValue();
+
+  const printedExtends = lineBreak => {
+    return path.map(partPath => {
+      // check if any of the implements nodes have comments
+      return hasDanglingComments(partPath.getValue())
+        ? concat([
+            hardline,
+            comments.printDanglingComments(partPath, options, true),
+            hardline,
+            print(partPath)
+          ])
+        : concat([lineBreak, print(partPath)]);
+    }, part);
+  };
+
+  return conditionalGroup([
+    concat([` ${part}`, group(concat([join(",", printedExtends(" "))]))]),
+    concat([` ${part}`, group(concat([join(",", printedExtends(hardline))]))]),
+    concat([
+      line,
+      part,
+      group(
+        indent(
+          concat([
+            join(",", printedExtends(node.extends.length > 1 ? line : " "))
+          ])
+        )
+      )
+    ])
+  ]);
+}
+
 function printClass(path, options, print) {
   const node = path.getValue();
   const parentNode = path.getParentNode();
@@ -1089,42 +1123,8 @@ function printClass(path, options, print) {
         )
       );
     } else {
-      const printedExtends = lineBreak => {
-        return path.map(extendPath => {
-          // check if any of the implements nodes have comments
-          return hasDanglingComments(extendPath.getValue())
-            ? concat([
-                hardline,
-                comments.printDanglingComments(extendPath, options, true),
-                hardline,
-                print(extendPath)
-              ])
-            : concat([lineBreak, print(extendPath)]);
-        }, "extends");
-      };
-
       partsDeclarationGroup.push(
-        conditionalGroup([
-          concat([" extends", group(concat([join(",", printedExtends(" "))]))]),
-          concat([
-            " extends",
-            group(concat([join(",", printedExtends(hardline))]))
-          ]),
-          concat([
-            line,
-            "extends",
-            group(
-              indent(
-                concat([
-                  join(
-                    ",",
-                    printedExtends(node.extends.length > 1 ? line : " ")
-                  )
-                ])
-              )
-            )
-          ])
-        ])
+        printClassPart(path, options, print, "extends")
       );
     }
   }
