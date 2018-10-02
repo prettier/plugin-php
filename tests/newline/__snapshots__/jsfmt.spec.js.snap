@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CRLF.php - php-verify: CRLF.php 1`] = `
-<?php
-$test = 1;
-
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
+<?php\\r
+$test = 1;\\r
+\\r
+class Foo\\r
+{\\r
+    /**\\r
+     * Comment indented with tabs in file with utf-8[dos]\\r
+     */\\r
+    private $foo;\\r
+}\\r
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$test = 1;
-
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
+<?php\\r
+$test = 1;\\r
+\\r
+class Foo\\r
+{\\r
+    /**\\r
+     * Comment indented with tabs in file with utf-8[dos]\\r
+     */\\r
+    private $foo;\\r
+}\\r
 
 `;
 

@@ -27,7 +27,7 @@ function run_spec(dirname, parsers, options) {
       filename[0] !== "." &&
       filename !== "jsfmt.spec.js"
     ) {
-      const source = read(path).replace(/\r\n/g, "\n");
+      const source = read(path);
 
       const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
         parser: parsers[0]
