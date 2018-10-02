@@ -176,8 +176,10 @@ $instance = new class extends \\Foo implements \\HandleableInterface {
 };
 
 // Parenthesis on the next line
-$instance = new class extends
-    \\Foo implements \\ArrayAccess, \\Countable, \\Serializable
+$instance = new class extends \\Foo implements
+    \\ArrayAccess,
+    \\Countable,
+    \\Serializable
 {
     // Class content
 };
@@ -431,6 +433,42 @@ class EmptyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVer
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends EmptyClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends MyOtherClass implements MyI {}
+
+class MyClass extends MyOtherClass implements MyI, MyII, MyIII {}
+
+class MyClass extends MyOtherClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {}
+
+final class BaseClass {}
+
+abstract class BaseClass {}
+
+final class BaseClass extends MyOtherClass {}
+
+abstract class BaseClass extends MyOtherClass {}
+
+final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass {}
+
+abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass {}
+
+final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass1 {}
+
+abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass1 {}
+
+final class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
+
+abstract class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -452,10 +490,11 @@ class Foo extends Bar implements Baz, Buzz
 
 $test = new Foo();
 
-abstract class ReallyReallyReallyLongClassName extends
-    AbstractModelFactoryResourceController implements
-    TooMuchObjectOrientation,
-    ThisIsMadness
+abstract class ReallyReallyReallyLongClassName
+    extends AbstractModelFactoryResourceController
+    implements
+        TooMuchObjectOrientation,
+        ThisIsMadness
 {
     // variable doc
     public $test;
@@ -660,59 +699,55 @@ class ClassName extends ParentClass implements InterfaceClass
 {
 }
 
-class ClassName extends
-    ParentClass implements
+class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends
-    ParentClass implements
+class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    InterfaceClass
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements InterfaceClass
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
-class ClassName extends
-    ParentClass implements
+class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
-class ClassName extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
@@ -721,7 +756,8 @@ class ClassName extends
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    extends ParentClass implements InterfaceClass
+    extends ParentClass
+    implements InterfaceClass
 {
 }
 
@@ -822,6 +858,104 @@ class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClas
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+}
+
+class MyClass extends MyOtherClass implements MyI
+{
+}
+
+class MyClass extends MyOtherClass implements MyI, MyII, MyIII
+{
+}
+
+class MyClass extends MyOtherClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+}
+
+class MyClass extends MyOtherClass implements
+    MyInterface,
+    MyOtherInterface,
+    MyOtherOtherInterface
+{
+}
+
+class MyClass
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements MyI
+{
+}
+
+class MyClass
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements
+        MyI,
+        MyII,
+        MyIII
+{
+}
+
+class MyClass
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+}
+
+class MyClass
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements
+        MyI,
+        MyII,
+        MyIII
+{
+}
+
+final class BaseClass
+{
+}
+
+abstract class BaseClass
+{
+}
+
+final class BaseClass extends MyOtherClass
+{
+}
+
+abstract class BaseClass extends MyOtherClass
+{
+}
+
+final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass
+{
+}
+
+abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass
+{
+}
+
+final class BaseClass extends
+    MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass1
+{
+}
+
+abstract class BaseClass extends
+    MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass1
+{
+}
+
+final class BaseClass extends MyOtherClass implements
+    MyInterface,
+    MyOtherInterface,
+    MyOtherOtherInterface
+{
+}
+
+abstract class BaseClass extends MyOtherClass implements
+    MyInterface,
+    MyOtherInterface,
+    MyOtherOtherInterface
 {
 }
 

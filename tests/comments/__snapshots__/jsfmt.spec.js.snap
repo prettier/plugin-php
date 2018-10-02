@@ -466,6 +466,44 @@ class ResponseMethodFailure
 {
 
 }
+
+// 424 : Method failure
+class ResponseMethodFailure
+    extends // behaves as an error
+        ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+
+// 424 : Method failure
+class ResponseMethodFailure
+    extends
+        // behaves as an error
+        ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+// 424 : Method failure
+class ResponseMethodFailure extends ResponseNotAcceptable implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
+{
+
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Test\\test\\test;
@@ -543,7 +581,44 @@ trait FooT
 // 424 : Method failure
 class ResponseMethodFailure
     // behaves as an error
-    extends ResponseNotAcceptable implements
+    extends ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+// 424 : Method failure
+class ResponseMethodFailure
+    // behaves as an error
+    extends ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+// 424 : Method failure
+class ResponseMethodFailure
+    // behaves as an error
+    extends ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+// 424 : Method failure
+class ResponseMethodFailure extends ResponseNotAcceptable implements
     // Some comment
     FooBar,
     // Another comment
