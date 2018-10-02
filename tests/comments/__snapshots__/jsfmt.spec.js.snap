@@ -543,12 +543,11 @@ trait FooT
 // 424 : Method failure
 class ResponseMethodFailure
     // behaves as an error
-    extends ResponseNotAcceptable
-    implements
-        // Some comment
-        FooBar,
-        // Another comment
-        BarBaz
+    extends ResponseNotAcceptable implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
 {
 
 }
