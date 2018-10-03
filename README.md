@@ -186,13 +186,6 @@ To test it out on a PHP file:
   <tbody>
     <tr>
       <td align="center">
-        <a href="https://github.com/mgrip">
-          <img width="150" height="150" src="https://github.com/mgrip.png?v=3&s=150">
-          </br>
-          Mike Grip
-        </a>
-      </td>
-      <td align="center">
         <a href="https://github.com/czosel">
           <img width="150" height="150" src="https://github.com/czosel.png?v=3&s=150">
           </br>
