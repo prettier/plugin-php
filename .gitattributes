@@ -1,3 +1,6 @@
 tests/newline/CRLF.php text eol=crlf
 tests/newline/html-CRLF.php text eol=crlf
 tests/newline/mixed-CRLF.php text eol=crlf
+tests/require-pragma/file-with-alt-pragma-CRLF.php text eol=crlf
+tests/require-pragma/file-with-pragma-CRLF.php text eol=crlf
+tests/require-pragma/file-without-pragma-CRLF.php text eol=crlf
