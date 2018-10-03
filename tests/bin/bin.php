@@ -237,3 +237,12 @@ $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable 
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? call($someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable);
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable;
+
+$var = $var instanceof Arrayable ? $var : $var;
+$var = $someOtherReallyReallyReallyLongVariable instanceof Arrayable ? $var : $var;
+$var = $someOtherReallyReallyReallyReallyLongVariable instanceof Arrayable ? $var : $var;
+$var = $var instanceof Arrayable ? $someOtherReallyReallyReallyLongVariable : $var;
+$var = $var instanceof Arrayable ? $someOtherReallyReallyReallyReallyLongVariable : $var;
+$var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyLongVariable;
+$var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyReallyLongVariable;
+$var = $someOtherReallyReallyReallyLongVariable instanceof Arrayable ? $someOtherReallyReallyReallyLongVariable : $someOtherReallyReallyReallyLongVariable;
