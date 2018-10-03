@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pragma-alreadyinserted.php - php-verify: pragma-alreadyinserted.php 1`] = `
+exports[`pragma-alreadyinserted-CRLF.php - php-verify: pragma-alreadyinserted-CRLF.php 1`] = `
 <?php
 /**
  * This already has the pragma, it shouldn't get another.
@@ -25,7 +25,32 @@ echo "Hello World";
 
 `;
 
-exports[`pragma-nodocblock.php - php-verify: pragma-nodocblock.php 1`] = `
+exports[`pragma-alreadyinserted-LF.php - php-verify: pragma-alreadyinserted-LF.php 1`] = `
+<?php
+/**
+ * This already has the pragma, it shouldn't get another.
+ *
+ * @format
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This already has the pragma, it shouldn't get another.
+ *
+ * @format
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-nodocblock-CRLF.php - php-verify: pragma-nodocblock-CRLF.php 1`] = `
 <?php echo "Hello World";
 
 echo "Hello World";
@@ -44,7 +69,26 @@ echo "Hello World";
 
 `;
 
-exports[`pragma-sparsedocblock.php - php-verify: pragma-sparsedocblock.php 1`] = `
+exports[`pragma-nodocblock-LF.php - php-verify: pragma-nodocblock-LF.php 1`] = `
+<?php echo "Hello World";
+
+echo "Hello World";
+
+// non-docblock comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * @format
+ */
+echo "Hello World";
+
+echo "Hello World";
+
+// non-docblock comment
+
+`;
+
+exports[`pragma-sparsedocblock-CRLF.php - php-verify: pragma-sparsedocblock-CRLF.php 1`] = `
 <?php
 /**
  * This docblock doesn't have any pragma in it yet.
@@ -62,7 +106,25 @@ echo "Hello World";
 
 `;
 
-exports[`pragma-weirddocblock.php - php-verify: pragma-weirddocblock.php 1`] = `
+exports[`pragma-sparsedocblock-LF.php - php-verify: pragma-sparsedocblock-LF.php 1`] = `
+<?php
+/**
+ * This docblock doesn't have any pragma in it yet.
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This docblock doesn't have any pragma in it yet.
+ * @format
+ */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-weirddocblock-CRLF.php - php-verify: pragma-weirddocblock-CRLF.php 1`] = `
 <?php
 /** edge case docblock */
 
@@ -78,7 +140,23 @@ echo "Hello World";
 
 `;
 
-exports[`pragma-weirddocblock-alt.php - php-verify: pragma-weirddocblock-alt.php 1`] = `
+exports[`pragma-weirddocblock-LF.php - php-verify: pragma-weirddocblock-LF.php 1`] = `
+<?php
+/** edge case docblock */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * edge case docblock
+ * @format
+ */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-weirddocblock-alt-CRLF.php - php-verify: pragma-weirddocblock-alt-CRLF.php 1`] = `
 <?php
 /** @edge 
  * case */
@@ -94,7 +172,47 @@ echo "Hello World";
 
 `;
 
-exports[`pragma-withdocblock.php - php-verify: pragma-withdocblock.php 1`] = `
+exports[`pragma-weirddocblock-alt-LF.php - php-verify: pragma-weirddocblock-alt-LF.php 1`] = `
+<?php
+/** @edge 
+ * case */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/** @edge
+ * @format
+ * case */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-withdocblock-CRLF.php - php-verify: pragma-withdocblock-CRLF.php 1`] = `
+<?php
+/**
+ * This is a preexisting docblock which will receive a "format" pragma
+ *
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This is a preexisting docblock which will receive a "format" pragma
+ *
+ * @format
+ * @author    Bob Bobberson
+ * @copyright Doge Inc. 2018 - All Rights Reserved
+ */
+
+echo "Hello World";
+
+`;
+
+exports[`pragma-withdocblock-LF.php - php-verify: pragma-withdocblock-LF.php 1`] = `
 <?php
 /**
  * This is a preexisting docblock which will receive a "format" pragma
