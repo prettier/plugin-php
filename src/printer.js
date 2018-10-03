@@ -1193,7 +1193,7 @@ function printClass(path, options, print) {
       ])
     ),
     comments.printDanglingComments(path, options, true),
-    isAnonymousClass && hasEmptyBody ? "" : hardline,
+    isAnonymousClass && hasEmptyBody ? ifBreak(line, "") : hardline,
     "}"
   ]);
 

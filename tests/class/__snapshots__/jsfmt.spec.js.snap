@@ -86,6 +86,34 @@ $instance = new class extends \\Foo implements
 {
     // Class content
 };
+
+$class = new class {};
+
+$class = new class implements MyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
+
+$class = new class implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+$class = new class extends MyOtherClass implements MyI {};
+
+$class = new class extends MyOtherClass implements MyI, MyII, MyIII {};
+
+$class = new class extends MyOtherClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+$class = new class extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 interface Logger
@@ -182,6 +210,69 @@ $instance = new class extends \\Foo implements
     \\Serializable
 {
     // Class content
+};
+
+$class = new class {};
+
+$class = new class implements MyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
+
+$class = new class implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+{
+};
+
+$class = new class implements
+    MyOtherClass,
+    MyOtherClass,
+    MyOtherOtherOtherClass,
+    MyOtherOtherOtherOtherClass
+{
+};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+};
+
+$class = new class extends MyOtherClass implements MyI {};
+
+$class = new class extends MyOtherClass implements MyI, MyII, MyIII {};
+
+$class = new class extends MyOtherClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+};
+
+$class = new class extends MyOtherClass implements
+    MyInterface,
+    MyOtherInterface,
+    MyOtherOtherInterface
+{
+};
+
+$class = new class
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements MyI
+{
+};
+
+$class = new class
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements
+        MyI,
+        MyII,
+        MyIII
+{
+};
+
+$class = new class
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
 };
 
 `;
