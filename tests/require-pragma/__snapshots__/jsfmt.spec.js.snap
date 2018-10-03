@@ -157,3 +157,37 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
 echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
 
 `;
+
+exports[`file-without-pragma-and-no-docblock-CRLF.php - php-verify: file-without-pragma-and-no-docblock-CRLF.php 1`] = `
+<?php
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+
+// @prettier
+// @format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+
+// @prettier
+// @format
+
+`;
+
+exports[`file-without-pragma-and-no-docblock-LF.php.php - php-verify: file-without-pragma-and-no-docblock-LF.php.php 1`] = `
+<?php
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+
+// @prettier
+// @format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+
+// @prettier
+// @format
+
+`;
