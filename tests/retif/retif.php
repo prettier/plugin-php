@@ -172,3 +172,18 @@ $var = $abilities ?: [
     'update' => 'update',
     'delete' => 'delete'
 ];
+
+$callback = $var ?: function () { return true; };
+$callback = $var ?: function () { return true; } ?: function () { return true; };
+
+$var = $delay instanceof DateTimeInterface
+    ? $delay->getTimestamp()
+    : Carbon::now()
+        ->addSeconds($delay)
+        ->getTimestamp();
+
+return $delay instanceof DateTimeInterface
+    ? $delay->getTimestamp()
+    : Carbon::now()
+        ->addSeconds($delay)
+        ->getTimestamp();

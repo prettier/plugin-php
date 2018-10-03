@@ -246,3 +246,17 @@ $var = $var instanceof Arrayable ? $someOtherReallyReallyReallyReallyLongVariabl
 $var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyLongVariable;
 $var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyReallyLongVariable;
 $var = $someOtherReallyReallyReallyLongVariable instanceof Arrayable ? $someOtherReallyReallyReallyLongVariable : $someOtherReallyReallyReallyLongVariable;
+
+$callback =
+    $var ??
+    function () {
+        return true;
+    };
+$callback =
+    $var ??
+    function () {
+        return true;
+    } ??
+    function () {
+        return true;
+    };
