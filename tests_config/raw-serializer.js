@@ -4,7 +4,7 @@ const RAW = Symbol.for("raw");
 
 module.exports = {
   print(val) {
-    return val[RAW];
+    return val[RAW].replace(/\r/g, "\\r");
   },
   test(val) {
     return (

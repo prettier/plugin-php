@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CRLF.php - php-verify: CRLF.php 1`] = `
-<?php
-$test = 1;
-
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
+<?php\\r
+$test = 1;\\r
+\\r
+class Foo\\r
+{\\r
+    /**\\r
+     * Comment indented with tabs in file with utf-8[dos]\\r
+     */\\r
+    private $foo;\\r
+}\\r
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$test = 1;
-
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
+<?php\\r
+$test = 1;\\r
+\\r
+class Foo\\r
+{\\r
+    /**\\r
+     * Comment indented with tabs in file with utf-8[dos]\\r
+     */\\r
+    private $foo;\\r
+}\\r
 
 `;
 
@@ -50,5 +50,67 @@ exports[`file-terminated-without-line-ending.php - php-verify: file-terminated-w
 $test = 1;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = 1;
+
+`;
+
+exports[`html-CRLF.php - php-verify: html-CRLF.php 1`] = `
+<!DOCTYPE html>\\r
+<html lang="de">\\r
+<head>\\r
+    <meta charset="utf-8" />\\r
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />\\r
+    <title>.</title>\\r
+</head>\\r
+<body>\\r
+\\r
+    <?php echo 'foo!'; ?>\\r
+\\r
+</body>\\r
+</html>\\r
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>\\r
+<html lang="de">\\r
+<head>\\r
+    <meta charset="utf-8" />\\r
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />\\r
+    <title>.</title>\\r
+</head>\\r
+<body>\\r
+\\r
+    <?php echo 'foo!'; ?>\\r
+\\r
+</body>\\r
+</html>\\r
+
+`;
+
+exports[`html-LF.php - php-verify: html-LF.php 1`] = `
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <title>.</title>
+</head>
+<body>
+
+    <?php echo 'foo!'; ?>
+
+</body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <title>.</title>
+</head>
+<body>
+
+    <?php echo 'foo!'; ?>
+
+</body>
+</html>
 
 `;
