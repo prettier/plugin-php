@@ -111,3 +111,157 @@ $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {};
 
 $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) implements MyOtherClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {} ;
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends MyOtherClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends MyOtherClass implements MyI {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends MyOtherClass implements MyI, MyII, MyIII {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends MyOtherClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {};
+
+$class = new class(
+    $arg,
+    'string',
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    }
+) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
