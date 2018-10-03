@@ -52,3 +52,65 @@ $test = 1;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $test = 1;
 
 `;
+
+exports[`html-CRLF.php - php-verify: html-CRLF.php 1`] = `
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+
+`;
+
+exports[`html-LF.php - php-verify: html-LF.php 1`] = `
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+
+`;
