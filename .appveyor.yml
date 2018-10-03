@@ -1,0 +1,29 @@
+# https://www.appveyor.com/docs/appveyor-yml
+
+environment:
+  matrix:
+    - nodejs_version: 10
+
+clone_depth: 10
+
+version: "{build}"
+build: off
+deploy: off
+
+branches:
+  only:
+  - master
+
+cache:
+  - node_modules
+  - '%LOCALAPPDATA%/Yarn'
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - cmd: npm -v
+  - cmd: node -v
+  - cmd: npm install -g yarn
+  - cmd: yarn
+
+test_script:
+  - cmd: yarn test

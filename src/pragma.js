@@ -25,7 +25,7 @@ const hasPragma = text => {
 };
 
 const injectPragma = docblock => {
-  let lines = docblock.split(EOL);
+  let lines = docblock.split(/\r?\n/g);
   if (lines.length === 1) {
     // normalize to multiline for simplicity
     const [, line] = /\/*\*\*(.*)\*\//.exec(lines[0]);
