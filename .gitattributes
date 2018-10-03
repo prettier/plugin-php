@@ -1,2 +1,3 @@
 tests/newline/CRLF.php text eol=crlf
 tests/newline/html-CRLF.php text eol=crlf
+tests/newline/mixed-CRLF.php text eol=crlf
