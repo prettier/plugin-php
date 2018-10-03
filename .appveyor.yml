@@ -10,13 +10,9 @@ version: "{build}"
 build: off
 deploy: off
 
-branches:
-  only:
-  - master
-
 cache:
   - node_modules
-  - '%LOCALAPPDATA%/Yarn'
+  - "%LOCALAPPDATA%/Yarn"
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -26,4 +22,5 @@ install:
   - cmd: yarn
 
 test_script:
+  - cmd: set AST_COMPARE=1
   - cmd: yarn test
