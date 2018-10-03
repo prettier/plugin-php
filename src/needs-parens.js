@@ -75,7 +75,6 @@ function needsParens(path) {
         case "pre":
         case "post":
         case "unary":
-        case "cast":
         case "silent":
           return true;
         case "call":
@@ -171,8 +170,6 @@ function needsParens(path) {
       switch (parent.kind) {
         case "unary":
         case "bin":
-        case "cast":
-          return true;
         case "retif":
           if (name === "test" && !parent.trueExpr) {
             return false;
@@ -191,17 +188,8 @@ function needsParens(path) {
     case "closure":
       return parent.kind === "call" && name === "what" && parent.what === node;
     case "cast":
-      if (parent.kind === "bin") {
-        return true;
-      } else if (
-        parent.kind === "retif" &&
-        name === "test" &&
-        parent.test === node
-      ) {
-        return true;
-      } else if (parent.kind === "silent") {
-        return true;
-      }
+      // TODO: bug https://github.com/glayzzle/php-parser/issues/172
+      return node.parenthesizedExpression;
     // else fallthrough
     case "string":
     case "array":
