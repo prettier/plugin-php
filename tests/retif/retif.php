@@ -144,3 +144,31 @@ exit($var ? 'string' : 'other-string');
 exit($var ?: $var ?: $var ?: 'string');
 exit($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
 exit($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string');
+
+$var = $abilities ?: [];
+$var = $abilities ?: ['foo', 'bar', 'bar'];
+$var = $abilities ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: ['view' => 'view'];
+$var = $abilities ?: [
+    'view' => 'view'
+];
+$var = $abilities ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+];
+$var = $abilities ?: ['foo', 'bar', 'bar'] ?: ['foo', 'bar', 'bar'];
+$var = $abilities ?: ['foo', 'bar', 'bar'] ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+] ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+];

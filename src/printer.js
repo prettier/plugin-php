@@ -676,6 +676,10 @@ function wrapPropertyLookup(node, doc) {
   return addCurly ? concat(["{", doc, "}"]) : doc;
 }
 
+function shouldInlineRetifFalseExpression(node) {
+  return node.kind === "array" && node.items.length !== 0;
+}
+
 function shouldInlineLogicalExpression(node) {
   return node.right.kind === "array" && node.right.items.length !== 0;
 }
@@ -1379,7 +1383,8 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
   const canBreak =
     (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
     (rightNode.kind === "retif" &&
-      (!rightNode.trueExpr ||
+      ((!rightNode.trueExpr &&
+        !shouldInlineRetifFalseExpression(rightNode.falseExpr)) ||
         (rightNode.test.kind === "bin" &&
           !shouldInlineLogicalExpression(rightNode.test)))) ||
     ((leftNode.kind === "variable" ||
@@ -2335,7 +2340,10 @@ function printNode(path, options, print) {
         ":",
         node.trueExpr
           ? concat([" ", printedFalseExpr])
-          : concat([line, printedFalseExpr])
+          : concat([
+              shouldInlineRetifFalseExpression(node.falseExpr) ? " " : line,
+              printedFalseExpr
+            ])
       ]);
 
       parts.push(part);
