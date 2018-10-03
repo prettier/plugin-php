@@ -34,6 +34,64 @@ $test = 1;
 
 `;
 
+exports[`comment-block-CRLF.php - php-verify: comment-block-CRLF.php 1`] = `
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+
+`;
+
+exports[`comment-block-LF.php - php-verify: comment-block-LF.php 1`] = `
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+
+`;
+
 exports[`file-terminated-with-multiple-LF.php - php-verify: file-terminated-with-multiple-LF.php 1`] = `
 <?php
 $test = 1;
