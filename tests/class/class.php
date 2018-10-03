@@ -244,3 +244,39 @@ class EmptyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVer
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends EmptyClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends MyOtherClass implements MyI {}
+
+class MyClass extends MyOtherClass implements MyI, MyII, MyIII {}
+
+class MyClass extends MyOtherClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
+
+class MyClass extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements MyI, MyII, MyIII {}
+
+final class BaseClass {}
+
+abstract class BaseClass {}
+
+final class BaseClass extends MyOtherClass {}
+
+abstract class BaseClass extends MyOtherClass {}
+
+final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass {}
+
+abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass {}
+
+final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass1 {}
+
+abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass1 {}
+
+final class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
+
+abstract class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}

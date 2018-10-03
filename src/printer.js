@@ -1027,51 +1027,54 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(wrappedParts);
 }
 
-function printClassPart(path, options, print, part = "extends") {
+function printClassPart(
+  path,
+  options,
+  print,
+  part = "extends",
+  beforePart = " ",
+  afterPart = " "
+) {
   const node = path.getValue();
-  const hasMultipleParts = Array.isArray(node[part]);
-
-  const printPart = lineBreak => {
-    const printedParts = path.map(partPath => {
-      const printedPart = print(partPath);
-      // Check if any of the implements nodes have comments
-      return hasDanglingComments(partPath.getValue())
-        ? concat([
-            hardline,
-            comments.printDanglingComments(partPath, options, true),
-            hardline,
-            printedPart
-          ])
-        : concat([lineBreak, printedPart]);
-    }, part);
-
-    return hasMultipleParts
-      ? group(concat([join(",", printedParts)]))
-      : concat([lineBreak, path.call(print, "extends")]);
-  };
-
-  const printCommentsBeforePart = lineBreak => {
-    return hasDanglingComments(node[part])
-      ? concat([
-          hardline,
-          path.call(
-            partPath => comments.printDanglingComments(partPath, options, true),
-            part
-          ),
-          hardline
+  const printedBeforePart = hasDanglingComments(node[part])
+    ? concat([
+        hardline,
+        path.call(
+          partPath => comments.printDanglingComments(partPath, options, true),
+          part
+        ),
+        hardline
+      ])
+    : beforePart;
+  const printedPartItems = Array.isArray(node[part])
+    ? group(
+        concat([
+          join(
+            ",",
+            path.map(itemPartPath => {
+              const printedPart = print(itemPartPath);
+              // Check if any of the implements nodes have comments
+              return hasDanglingComments(itemPartPath.getValue())
+                ? concat([
+                    hardline,
+                    comments.printDanglingComments(itemPartPath, options, true),
+                    hardline,
+                    printedPart
+                  ])
+                : concat([afterPart, printedPart]);
+            }, part)
+          )
         ])
-      : lineBreak;
-  };
+      )
+    : concat([afterPart, path.call(print, part)]);
 
-  return conditionalGroup([
-    concat([printCommentsBeforePart(" "), part, printPart(" ")]),
-    concat([printCommentsBeforePart(" "), part, printPart(hardline)]),
+  return indent(
     concat([
-      printCommentsBeforePart(line),
+      printedBeforePart,
       part,
-      indent(printPart(node[part].length > 1 ? hardline : " "))
+      willBreak(printedBeforePart) ? indent(printedPartItems) : printedPartItems
     ])
-  ]);
+  );
 }
 
 function printClass(path, options, print) {
@@ -1107,20 +1110,70 @@ function printClass(path, options, print) {
     declaration.push(printArgumentsList(path, options, print));
   }
 
-  const partsDeclarationGroup = [];
-
-  if (node.extends) {
-    partsDeclarationGroup.push(printClassPart(path, options, print, "extends"));
-  }
-
-  if (node.implements) {
-    partsDeclarationGroup.push(
-      printClassPart(path, options, print, "implements")
+  // Only `class` can have `extends` and `implements`
+  if (node.extends && node.implements) {
+    declaration.push(
+      conditionalGroup(
+        [
+          concat([
+            printClassPart(path, options, print, "extends"),
+            printClassPart(path, options, print, "implements")
+          ]),
+          concat([
+            printClassPart(path, options, print, "extends"),
+            printClassPart(path, options, print, "implements", " ", hardline)
+          ]),
+          concat([
+            printClassPart(path, options, print, "extends", hardline, " "),
+            printClassPart(
+              path,
+              options,
+              print,
+              "implements",
+              hardline,
+              node.implements.length > 1 ? hardline : " "
+            )
+          ])
+        ],
+        {
+          shouldBreak: hasDanglingComments(node.extends)
+        }
+      )
     );
-  }
+  } else {
+    if (node.extends) {
+      declaration.push(
+        conditionalGroup([
+          printClassPart(path, options, print, "extends"),
+          printClassPart(path, options, print, "extends", " ", hardline),
+          printClassPart(
+            path,
+            options,
+            print,
+            "extends",
+            hardline,
+            node.extends.length > 1 ? hardline : " "
+          )
+        ])
+      );
+    }
 
-  if (partsDeclarationGroup.length > 0) {
-    declaration.push(group(indent(concat(partsDeclarationGroup))));
+    if (node.implements) {
+      declaration.push(
+        conditionalGroup([
+          printClassPart(path, options, print, "implements"),
+          printClassPart(path, options, print, "implements", " ", hardline),
+          printClassPart(
+            path,
+            options,
+            print,
+            "implements",
+            hardline,
+            node.implements.length > 1 ? hardline : " "
+          )
+        ])
+      );
+    }
   }
 
   const printedDeclaration = group(
