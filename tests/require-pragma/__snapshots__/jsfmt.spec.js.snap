@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`file-with-alt-pragma.php - php-verify: file-with-alt-pragma.php 1`] = `
+exports[`file-with-alt-pragma-CRLF.php - php-verify: file-with-alt-pragma-CRLF.php 1`] = `
 <?php
 /**
  * This works too
@@ -31,7 +31,38 @@ echo 'This ' .
 
 `;
 
-exports[`file-with-pragma.php - php-verify: file-with-pragma.php 1`] = `
+exports[`file-with-alt-pragma-LF.php - php-verify: file-with-alt-pragma-LF.php 1`] = `
+<?php
+/**
+ * This works too
+ *
+ * @prettier
+ */
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This works too
+ *
+ * @prettier
+ */
+
+echo 'This ' .
+    'string ' .
+    'was ' .
+    'made ' .
+    'with concatenation.' .
+    'This ' .
+    'string ' .
+    'was ' .
+    'made ' .
+    'with concatenation.' .
+    "\\n";
+
+`;
+
+exports[`file-with-pragma-CRLF.php - php-verify: file-with-pragma-CRLF.php 1`] = `
 <?php
 /**
  * This turns on prettier formatting if --require-pragma is passed
@@ -62,7 +93,55 @@ echo 'This ' .
 
 `;
 
-exports[`file-without-pragma.php - php-verify: file-without-pragma.php 1`] = `
+exports[`file-with-pragma-LF.php - php-verify: file-with-pragma-LF.php 1`] = `
+<?php
+/**
+ * This turns on prettier formatting if --require-pragma is passed
+ *
+ * @format
+ */
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * This turns on prettier formatting if --require-pragma is passed
+ *
+ * @format
+ */
+
+echo 'This ' .
+    'string ' .
+    'was ' .
+    'made ' .
+    'with concatenation.' .
+    'This ' .
+    'string ' .
+    'was ' .
+    'made ' .
+    'with concatenation.' .
+    "\\n";
+
+`;
+
+exports[`file-without-pragma-CRLF.php - php-verify: file-without-pragma-CRLF.php 1`] = `
+<?php
+/**
+ * No pragma, no prettier (assuming --require-pragma)
+ */
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * No pragma, no prettier (assuming --require-pragma)
+ */
+
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+
+`;
+
+exports[`file-without-pragma-LF.php - php-verify: file-without-pragma-LF.php 1`] = `
 <?php
 /**
  * No pragma, no prettier (assuming --require-pragma)
