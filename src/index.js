@@ -283,7 +283,7 @@ const printers = {
             return comment.value;
           }
 
-          const lines = comment.value.split("\n");
+          const lines = comment.value.split(/\r?\n/g);
           // if this is a block comment, handle indentation
           if (
             lines
