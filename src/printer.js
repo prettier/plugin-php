@@ -2486,7 +2486,7 @@ function printNode(path, options, print) {
     case "inline":
       return join(
         literalline,
-        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
+        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split(/\r?\n/g)
       );
     case "magic":
       // for magic constant we prefer upper case
