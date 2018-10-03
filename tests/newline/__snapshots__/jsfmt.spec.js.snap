@@ -114,3 +114,29 @@ exports[`html-LF.php - php-verify: html-LF.php 1`] = `
 </html>
 
 `;
+
+exports[`mixed-CRLF.php - php-verify: mixed-CRLF.php 1`] = `
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+
+`;
+
+exports[`mixed-LF.php - php-verify: mixed-LF.php 1`] = `
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+
+`;
