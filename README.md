@@ -21,6 +21,9 @@
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
   </a>
+  <a href="https://codecov.io/gh/prettier/plugin-php">
+    <img alt="Codecov Coverage Status" src="https://img.shields.io/codecov/c/github/prettier/plugin-php.svg?style=flat-square">
+  </a>
   <!-- <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="monthly downloads" src="https://img.shields.io/npm/dm/@prettier/plugin-php.svg?style=flat-square">
   </a> -->
