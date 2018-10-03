@@ -764,6 +764,7 @@ function printLookupNodes(path, options, print) {
       return printStaticLookup(path, options, print);
     case "offsetlookup":
       return printOffsetLookup(path, options, print);
+    /* istanbul ignore next */
     default:
       return `Have not implemented lookup kind ${node.kind} yet.`;
   }
@@ -783,6 +784,7 @@ function getEncapsedQuotes(node, { opening = true } = {}) {
     return quotes[node.type];
   }
 
+  /* istanbul ignore next */
   return `Unimplemented encapsed type ${node.type}`;
 }
 
@@ -2480,6 +2482,7 @@ function printNode(path, options, print) {
               }, "value")
             )
           );
+        // istanbul ignore next
         default:
           return `Have not implemented kind ${node.type} yet.`;
       }
@@ -2560,6 +2563,7 @@ function printNode(path, options, print) {
     }
     case "error":
     default:
+      // istanbul ignore next
       return `Have not implemented kind ${node.kind} yet.`;
   }
 }
