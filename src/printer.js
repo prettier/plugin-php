@@ -668,7 +668,7 @@ function wrapPropertyLookup(node, doc) {
   if (
     node.offset.kind === "variable" ||
     (node.offset.kind === "constref" && typeof node.offset.name === "string") ||
-    node.offset.kind === "encapsed"
+    (node.offset.kind === "encapsed" && node.offset.type === "offset")
   ) {
     addCurly = false;
   }
