@@ -125,3 +125,9 @@ $encapsHereDoc = <<<STR
  Hello World {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}
  Hello World {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}
 STR;
+
+
+$var =  $this->swift->{'set'}($address, $name);
+$var =  $this->swift->{'set' . 'Offset'}($address, $name);
+$var =  $this->swift->{"set"}($address, $name);
+$var =  $this->swift->{"set{$type}"}($address, $name);
