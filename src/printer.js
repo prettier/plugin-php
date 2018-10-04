@@ -2061,13 +2061,6 @@ function printNode(path, options, print) {
 
         if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
           parts.push(indent(concat([hardline, printedExpr])));
-        } else if (
-          node.expr.kind === "bin" &&
-          (!isLookupNode(node.expr.left) &&
-            node.expr.left.kind !== "call" &&
-            node.expr.left.kind !== "new")
-        ) {
-          parts.push(group(concat([" ", indent(concat([printedExpr]))])));
         } else {
           parts.push(" ", printedExpr);
         }
@@ -2273,7 +2266,6 @@ function printNode(path, options, print) {
       // Avoid indenting sub-expressions in some cases where the first sub-expression is already
       // indented accordingly. We should indent sub-expressions where the first case isn't indented.
       const shouldNotIndent =
-        parent.kind === "return" ||
         (node !== parent.body && parent.kind === "for") ||
         (parent.kind === "retif" &&
           (parentParent && parentParent.kind !== "return"));
