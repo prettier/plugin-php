@@ -356,7 +356,10 @@ function printMemberChain(path, options, print) {
 
       return (
         (firstNode.kind === "variable" && firstNode.name === "this") ||
-        firstNode.kind === "identifier"
+        firstNode.kind === "identifier" ||
+        // TODO: https://github.com/glayzzle/php-parser/issues/183
+        (firstNode.kind === "constref" &&
+          firstNode.name.toLowerCase() === "static")
       );
     }
 

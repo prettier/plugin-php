@@ -74,3 +74,50 @@ $component = find('.org-lclp-edit-copy-url-banner__link')[0]
 
 $component = Foo::test(['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoo', 'barfoo' => 'foobar']);
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+static
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+sTaTic
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+self
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+parent
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+
+Foo
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
