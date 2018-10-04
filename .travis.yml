@@ -11,5 +11,5 @@ cache:
 install:
   - yarn install
 script:
-  - AST_COMPARE=1 yarn test -- --runInBand
+  - AST_COMPARE=1 yarn test -- --runInBand --ci
   - yarn codecov

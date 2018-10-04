@@ -131,3 +131,6 @@ $var =  $this->swift->{'set'}($address, $name);
 $var =  $this->swift->{'set' . 'Offset'}($address, $name);
 $var =  $this->swift->{"set"}($address, $name);
 $var =  $this->swift->{"set{$type}"}($address, $name);
+
+$message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
+$var = "string string string string string {$parameter->getDeclaringClass()->getName()}";

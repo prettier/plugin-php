@@ -46,7 +46,8 @@ const {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
-  getNodeKindIncludingLogical
+  getNodeKindIncludingLogical,
+  getAncestorNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -109,6 +110,7 @@ function printStaticLookup(path, options, print) {
 
 function printOffsetLookup(path, options, print) {
   const node = path.getValue();
+  const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
   const isOffsetNumberNode = node.offset && node.offset.kind === "number";
 
   return concat([
@@ -118,11 +120,11 @@ function printOffsetLookup(path, options, print) {
           concat([
             indent(
               concat([
-                isOffsetNumberNode ? "" : softline,
+                isOffsetNumberNode || hasEncapsedAncestor ? "" : softline,
                 path.call(print, "offset")
               ])
             ),
-            isOffsetNumberNode ? "" : softline
+            isOffsetNumberNode || hasEncapsedAncestor ? "" : softline
           ])
         )
       : "",
@@ -437,9 +439,11 @@ function printMemberChain(path, options, print) {
       .some(node => comments.hasTrailingComment(node.node)) ||
     (groups[cutoff] && comments.hasLeadingComment(groups[cutoff][0].node));
 
+  const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
+
   // If we only have a single `->`, we shouldn't do anything fancy and just
   // render everything concatenated together.
-  if (groups.length <= cutoff && !hasComment) {
+  if ((groups.length <= cutoff && !hasComment) || hasEncapsedAncestor) {
     return group(oneLine);
   }
 
@@ -1903,7 +1907,9 @@ function printNode(path, options, print) {
         i++;
       } while (firstNonMemberParent && isLookupNode(firstNonMemberParent));
 
+      const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
       const shouldInline =
+        hasEncapsedAncestor ||
         (firstNonMemberParent &&
           (firstNonMemberParent.kind === "new" ||
             (firstNonMemberParent.kind === "assign" &&
@@ -2457,7 +2463,7 @@ function printNode(path, options, print) {
                   return print(valuePath);
                 }
 
-                return concat(["{", removeLines(print(valuePath)), "}"]);
+                return concat(["{", print(valuePath), "}"]);
               }, "value")
             ),
             getEncapsedQuotes(node, { opening: false }),
