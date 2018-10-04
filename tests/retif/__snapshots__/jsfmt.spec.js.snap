@@ -259,7 +259,7 @@ $var =
         : $this->basePath . DIRECTORY_SEPARATOR . 'database') .
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
 return ($this->databasePath ?:
-        $this->basePath . DIRECTORY_SEPARATOR . 'database') .
+    $this->basePath . DIRECTORY_SEPARATOR . 'database') .
     ($path ? DIRECTORY_SEPARATOR . $path : $path);
 
 $test = $foo
