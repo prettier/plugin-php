@@ -443,7 +443,7 @@ function handleTryComments(enclosingNode, followingNode, comment) {
   }
 
   if (followingNode.kind === "try") {
-    addBlockOrNotComment(followingNode.finalizer, comment);
+    addBlockOrNotComment(followingNode.always, comment);
     return true;
   }
 
