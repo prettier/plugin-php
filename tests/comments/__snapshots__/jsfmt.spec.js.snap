@@ -2446,6 +2446,93 @@ class ImplementingClass
 
 `;
 
+exports[`try.php - php-verify: try.php 1`] = `
+<?php
+
+// comment 1
+try {
+    // comment 2
+}
+// comment 3
+catch(Expection $e) {
+    // comment 4
+}
+// comment 5
+finally // comment 6
+{
+    // comment 7
+}
+
+// comment 1
+try {
+    // comment 2
+}
+// comment 3
+finally // comment 4
+{
+    // comment 5
+}
+
+// comment 1
+try {
+    // comment 2
+}
+// comment 3
+catch(OtherException $e) {
+    // comment 4
+}
+// comment 5
+catch(Expection $e) {
+    // comment 6
+}
+// comment 7
+finally // comment 8
+{
+    // comment 9
+}
+// comment 10
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+// comment 1
+try {
+    // comment 2
+} catch (Expection $e) {
+    // comment 3
+    // comment 4
+} finally {
+    // comment 5
+    // comment 6
+    // comment 7
+}
+
+// comment 1
+try {
+    // comment 2
+} finally {
+    // comment 3
+    // comment 4
+    // comment 5
+}
+
+// comment 1
+try {
+    // comment 2
+} catch (OtherException $e) {
+    // comment 3
+    // comment 4
+} catch (Expection $e) {
+    // comment 5
+    // comment 6
+} finally {
+    // comment 7
+    // comment 8
+    // comment 9
+}
+// comment 10
+
+`;
+
 exports[`unary.php - php-verify: unary.php 1`] = `
 <?php
 

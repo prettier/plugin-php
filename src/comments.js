@@ -38,11 +38,11 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
       comment,
       options
     ) ||
+    handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
-    handleTryCatch(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleInlineComments(
       enclosingNode,
@@ -73,10 +73,10 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
       comment,
       options
     ) ||
+    handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
-    handleTryCatch(enclosingNode, comment) ||
     handleEntryComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleHalt(enclosingNode, precedingNode, comment) ||
@@ -99,7 +99,6 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
-    handleTryCatch(enclosingNode, comment) ||
     handleGoto(enclosingNode, comment) ||
     handleHalt(enclosingNode, precedingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
@@ -324,21 +323,6 @@ function handleFunctionParameter(text, enclosingNode, comment, options) {
   return false;
 }
 
-function handleTryCatch(enclosingNode, comment) {
-  if (
-    enclosingNode &&
-    (enclosingNode.kind === "try" || enclosingNode.kind === "catch")
-  ) {
-    // for empty try/catch blocks where the body is only made up of comments, we need
-    // to attach this as a dangling comment on the node itself
-    if (!(enclosingNode.body && enclosingNode.body.children.length > 0)) {
-      addDanglingComment(enclosingNode, comment);
-      return true;
-    }
-  }
-  return false;
-}
-
 function handleBreakAndContinueStatementComments(enclosingNode, comment) {
   if (
     enclosingNode &&
@@ -445,6 +429,29 @@ function handleVariableComments(enclosingNode, followingNode, comment) {
     addLeadingComment(followingNode, comment);
     return true;
   }
+  return false;
+}
+
+function handleTryComments(enclosingNode, followingNode, comment) {
+  if (!enclosingNode || enclosingNode.kind !== "try" || !followingNode) {
+    return false;
+  }
+
+  if (followingNode.kind === "block") {
+    addBlockStatementFirstComment(followingNode, comment);
+    return true;
+  }
+
+  if (followingNode.kind === "try") {
+    addBlockOrNotComment(followingNode.always, comment);
+    return true;
+  }
+
+  if (followingNode.kind === "catch") {
+    addBlockOrNotComment(followingNode.body, comment);
+    return true;
+  }
+
   return false;
 }
 
