@@ -84,3 +84,5 @@ $var = (bool) call() || $var;
 $var = (int) $var === 1;
 $var = ((int) $var) === 1;
 $var = (int) ($var === 1);
+
+$this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));

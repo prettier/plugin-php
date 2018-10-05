@@ -1145,6 +1145,8 @@ $var = (bool) call() || $var;
 $var = (int) $var === 1;
 $var = ((int) $var) === 1;
 $var = (int) ($var === 1);
+
+$this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1209,9 +1211,9 @@ $var = @((int) call());
 $var = (int) (int) 1;
 $var = (int) ((int) 1);
 $var = call((int) $var, (int) call(), (int) $minutes * 60);
-$var = call(((int) $var), ((int) call()), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
 $var = $var + (int) $minutes * 60;
-$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
 
 return (int) $var;
 return (int) $var;
@@ -1239,7 +1241,9 @@ $var = (bool) call() || $var;
 
 $var = (int) $var === 1;
 $var = ((int) $var) === 1;
-$var = (int) $var === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix . $key, $value, (int) ($minutes * 60));
 
 `;
 
