@@ -708,6 +708,79 @@ $var = new class {
 
 `;
 
+exports[`classconstant.php - php-verify: classconstant.php 1`] = `
+<?php
+
+$var = new class {
+    const CONSTANT =
+        // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    const CONSTANT = // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    const
+        // Comment 1
+        CONSTANT
+        // Comment 2
+        =
+        // Comment 3
+        'string';
+};
+
+$var = new class {
+    public
+        // Comment 1
+        const
+        // Comment 2
+        CONSTANT
+        // Comment 3
+        =
+        // Comment 4
+        'string';
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = new class {
+    const CONSTANT =
+        // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    const CONSTANT =
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    const CONSTANT =
+        // Comment 2
+        // Comment 3
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    // Comment 2
+    public const CONSTANT =
+        // Comment 3
+        // Comment 4
+        'string';
+};
+
+`;
+
 exports[`clone.php - php-verify: clone.php 1`] = `
 <?php
 
@@ -2280,6 +2353,79 @@ $foo;
 /* Comment */
 
 print /* Comment */ $foo /* Comment */;
+
+`;
+
+exports[`property.php - php-verify: property.php 1`] = `
+<?php
+
+$var = new class {
+    public $name =
+        // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    public $name = // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    public
+        // Comment 1
+        $name
+        // Comment 2
+        =
+        // Comment 3
+        'string';
+};
+
+$var = new class {
+    public
+        // Comment 1
+        static
+        // Comment 2
+        $name
+        // Comment 3
+        =
+        // Comment 4
+        'string';
+};
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = new class {
+    public $name =
+        // Comment 1
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    public $name =
+        // Comment 2
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    public $name =
+        // Comment 2
+        // Comment 3
+        'string';
+};
+
+$var = new class {
+    // Comment 1
+    // Comment 2
+    public static $name =
+        // Comment 3
+        // Comment 4
+        'string';
+};
 
 `;
 
