@@ -5,6 +5,8 @@ class Foo {
 
     public function emptyMethod(/* comments */) {}
 
+    abstract public function sortByName(/* bool $useNaturalSort = false */);
+
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
 }
 

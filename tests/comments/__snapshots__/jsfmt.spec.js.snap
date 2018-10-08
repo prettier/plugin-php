@@ -1351,9 +1351,8 @@ function foo($a): /* 5 */ ?string /* 6 */
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
 {
 }
-function emptyFn()
+function emptyFn(/*Comment */)
 {
-    /*Comment */
 }
 
 `;
@@ -2057,6 +2056,8 @@ class Foo {
 
     public function emptyMethod(/* comments */) {}
 
+    abstract public function sortByName(/* bool $useNaturalSort = false */);
+
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
 }
 
@@ -2085,10 +2086,11 @@ class Foo
     ): /* 5 */ ?string /* 6 */ {
     }
 
-    public function emptyMethod()
+    public function emptyMethod(/* comments */)
     {
-        /* comments */
-    } /* comment */
+    }
+
+    abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
 
     /* comment */ /* comment */ protected static $foo; /* comment */
 }

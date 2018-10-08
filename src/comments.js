@@ -357,12 +357,25 @@ function handleHalt(enclosingNode, precedingNode, comment) {
   return false;
 }
 
-function handleCommentInEmptyParens(text, enclosingNode, comment) {
+function handleCommentInEmptyParens(text, enclosingNode, comment, options) {
+  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    comment,
+    options
+  );
+
+  if (text.charAt(nextCharIndex) !== ")") {
+    return false;
+  }
+
   // Only add dangling comments to fix the case when no arguments are present,
   // i.e. a function without any argument.
   if (
     enclosingNode &&
-    (enclosingNode.kind === "closure" ||
+    (enclosingNode.kind === "function" ||
+      enclosingNode.kind === "closure" ||
+      enclosingNode.kind === "method" ||
+      enclosingNode.kind === "closure" ||
       enclosingNode.kind === "call" ||
       enclosingNode.kind === "new") &&
     enclosingNode.arguments.length === 0
