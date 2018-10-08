@@ -46,7 +46,8 @@ const {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
-  getNodeKindIncludingLogical
+  getNodeKindIncludingLogical,
+  hasEmptyBody
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -1189,7 +1190,7 @@ function printClass(path, options, print) {
     concat([group(concat(declaration)), isAnonymousClass ? line : hardline])
   );
 
-  const hasEmptyBody =
+  const hasEmptyClassBody =
     node.body &&
     node.body.length === 0 &&
     (!node.comments || node.comments.length === 0);
@@ -1197,12 +1198,12 @@ function printClass(path, options, print) {
     "{",
     indent(
       concat([
-        hasEmptyBody ? "" : hardline,
+        hasEmptyClassBody ? "" : hardline,
         printLines(path, options, print, "body")
       ])
     ),
     comments.printDanglingComments(path, options, true),
-    isAnonymousClass && hasEmptyBody ? ifBreak(line, "") : hardline,
+    isAnonymousClass && hasEmptyClassBody ? ifBreak(line, "") : hardline,
     "}"
   ]);
 
@@ -1268,19 +1269,14 @@ function printFunction(path, options, print) {
   }
 
   const printedDeclaration = concat(declaration);
-  const hasEmptyBody =
-    node.body &&
-    node.body.children &&
-    node.body.children.length === 0 &&
-    !node.body.comments;
   const isClosure = node.kind === "closure";
   const printedBody = node.body
     ? concat([
         "{",
         indent(
-          concat([hasEmptyBody ? "" : hardline, path.call(print, "body")])
+          concat([hasEmptyBody(path) ? "" : hardline, path.call(print, "body")])
         ),
-        isClosure && hasEmptyBody ? "" : hardline,
+        isClosure && hasEmptyBody(path) ? "" : hardline,
         "}"
       ])
     : "";
@@ -1967,7 +1963,7 @@ function printNode(path, options, print) {
         "try {",
         indent(
           concat([
-            hardline,
+            hasEmptyBody(path) ? "" : hardline,
             path.call(print, "body"),
             comments.printDanglingComments(path, options, true)
           ])
@@ -1978,13 +1974,18 @@ function printNode(path, options, print) {
         node.always
           ? concat([
               " finally {",
-              indent(concat([hardline, path.call(print, "always")])),
+              indent(
+                concat([
+                  hasEmptyBody(path, "always") ? "" : hardline,
+                  path.call(print, "always")
+                ])
+              ),
               hardline,
               "}"
             ])
           : ""
       ]);
-    case "catch":
+    case "catch": {
       return concat([
         " catch",
         node.what
@@ -1999,7 +2000,7 @@ function printNode(path, options, print) {
         " {",
         indent(
           concat([
-            hardline,
+            hasEmptyBody(path) ? "" : hardline,
             path.call(print, "body"),
             comments.printDanglingComments(path, options, true)
           ])
@@ -2007,6 +2008,7 @@ function printNode(path, options, print) {
         hardline,
         "}"
       ]);
+    }
     case "throw":
       return concat(["throw ", path.call(print, "what")]);
     case "silent":

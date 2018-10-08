@@ -585,6 +585,17 @@ function hasNewlineInRange(text, start, end) {
   return false;
 }
 
+function hasEmptyBody(path, name = "body") {
+  const node = path.getValue();
+
+  return (
+    node[name] &&
+    node[name].children &&
+    node[name].children.length === 0 &&
+    (!node[name].comments || node[name].comments.length === 0)
+  );
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -613,5 +624,6 @@ module.exports = {
   isProgramLikeNode,
   getNodeKindIncludingLogical,
   hasNewline,
-  hasNewlineInRange
+  hasNewlineInRange,
+  hasEmptyBody
 };
