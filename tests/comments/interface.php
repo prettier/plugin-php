@@ -18,3 +18,18 @@ interface IFoo extends
     MyOtherClass,
     // Comment
     OtherClass {}
+
+interface MyInterface
+{
+}
+
+// Comment
+interface MyInterface
+{
+
+}
+
+interface MyInterface
+{
+    // Comment
+}

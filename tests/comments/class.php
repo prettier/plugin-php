@@ -110,3 +110,27 @@ class ResponseMethodFailure extends ResponseNotAcceptable implements
 {
 
 }
+
+class MyClass
+{
+}
+
+// Comment
+class MyClass
+{
+
+}
+
+class MyClass
+{
+    // Comment
+}
+
+$var = new class {};
+
+// Comment
+$var = new class {};
+
+$var = new class {
+    // Comment
+};

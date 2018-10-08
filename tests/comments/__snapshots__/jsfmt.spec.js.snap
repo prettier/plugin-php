@@ -504,6 +504,30 @@ class ResponseMethodFailure extends ResponseNotAcceptable implements
 {
 
 }
+
+class MyClass
+{
+}
+
+// Comment
+class MyClass
+{
+
+}
+
+class MyClass
+{
+    // Comment
+}
+
+$var = new class {};
+
+// Comment
+$var = new class {};
+
+$var = new class {
+    // Comment
+};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Test\\test\\test;
@@ -588,7 +612,6 @@ class ResponseMethodFailure
         // Another comment
         BarBaz
 {
-
 }
 
 // 424 : Method failure
@@ -601,7 +624,6 @@ class ResponseMethodFailure
         // Another comment
         BarBaz
 {
-
 }
 
 // 424 : Method failure
@@ -614,7 +636,6 @@ class ResponseMethodFailure
         // Another comment
         BarBaz
 {
-
 }
 
 // 424 : Method failure
@@ -624,8 +645,30 @@ class ResponseMethodFailure extends ResponseNotAcceptable implements
     // Another comment
     BarBaz
 {
-
 }
+
+class MyClass
+{
+}
+
+// Comment
+class MyClass
+{
+}
+
+class MyClass
+{
+    // Comment
+}
+
+$var = new class {};
+
+// Comment
+$var = new class {};
+
+$var = new class {
+    // Comment
+};
 
 `;
 
@@ -1915,6 +1958,21 @@ interface IFoo extends
     MyOtherClass,
     // Comment
     OtherClass {}
+
+interface MyInterface
+{
+}
+
+// Comment
+interface MyInterface
+{
+
+}
+
+interface MyInterface
+{
+    // Comment
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1932,7 +1990,6 @@ interface IFoo extends
     // Comment
     MyClass
 {
-
 }
 
 // Comment
@@ -1944,7 +2001,20 @@ interface IFoo extends
     // Comment
     OtherClass
 {
+}
 
+interface MyInterface
+{
+}
+
+// Comment
+interface MyInterface
+{
+}
+
+interface MyInterface
+{
+    // Comment
 }
 
 `;
@@ -2408,6 +2478,21 @@ class ImplementingClass {
         /* Comment */ C/* Comment */::/* Comment */ testFunction /* Comment */ as  /* Comment */ private /* Comment */ testVisibility /* Comment */;
     }
 }
+
+trait MyTrait
+{
+}
+
+// Comment
+trait MyTrait
+{
+
+}
+
+trait MyTrait
+{
+    // Comment
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2426,7 +2511,6 @@ trait tFoo
     /* Comment */
     extends ReflectionMethod
 {
-
 }
 
 // Comment
@@ -2434,7 +2518,6 @@ trait tFoo
     // Comment
     extends ReflectionMethod
 {
-
 }
 
 class ImplementingClass
@@ -2448,6 +2531,20 @@ class ImplementingClass
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
         /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
     }
+}
+
+trait MyTrait
+{
+}
+
+// Comment
+trait MyTrait
+{
+}
+
+trait MyTrait
+{
+    // Comment
 }
 
 `;

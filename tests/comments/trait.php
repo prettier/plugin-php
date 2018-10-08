@@ -23,3 +23,18 @@ class ImplementingClass {
         /* Comment */ C/* Comment */::/* Comment */ testFunction /* Comment */ as  /* Comment */ private /* Comment */ testVisibility /* Comment */;
     }
 }
+
+trait MyTrait
+{
+}
+
+// Comment
+trait MyTrait
+{
+
+}
+
+trait MyTrait
+{
+    // Comment
+}
