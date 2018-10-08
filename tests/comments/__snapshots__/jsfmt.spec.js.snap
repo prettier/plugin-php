@@ -2280,9 +2280,15 @@ exports[`silent.php - php-verify: silent.php 1`] = `
 exports[`static.php - php-verify: static.php 1`] = `
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+
+static // Comment
+$a;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+
+static // Comment
+    $a;
 
 `;
 
