@@ -72,6 +72,9 @@ function needsParens(path) {
       switch (parent.kind) {
         case "assign":
           return ["and", "xor", "or"].includes(node.type);
+        case "cast":
+          // TODO: bug https://github.com/glayzzle/php-parser/issues/172
+          return node.parenthesizedExpression;
         case "pre":
         case "post":
         case "unary":
