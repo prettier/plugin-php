@@ -72,13 +72,13 @@ function needsParens(path) {
       switch (parent.kind) {
         case "assign":
           return ["and", "xor", "or"].includes(node.type);
+        case "silent":
         case "cast":
           // TODO: bug https://github.com/glayzzle/php-parser/issues/172
           return node.parenthesizedExpression;
         case "pre":
         case "post":
         case "unary":
-        case "silent":
           return true;
         case "call":
         case "propertylookup":
@@ -190,6 +190,7 @@ function needsParens(path) {
       }
     case "closure":
       return parent.kind === "call" && name === "what" && parent.what === node;
+    case "silence":
     case "cast":
       // TODO: bug https://github.com/glayzzle/php-parser/issues/172
       return node.parenthesizedExpression;
