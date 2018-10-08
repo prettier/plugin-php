@@ -1191,9 +1191,7 @@ function printClass(path, options, print) {
   );
 
   const hasEmptyClassBody =
-    node.body &&
-    node.body.length === 0 &&
-    (!node.comments || node.comments.length === 0);
+    node.body && node.body.length === 0 && !hasDanglingComments(node);
   const printedBody = concat([
     "{",
     indent(
