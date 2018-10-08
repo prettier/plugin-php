@@ -219,6 +219,24 @@ $var = /* Comment */
     /* Comment */'some' .
     'long' .
     'string';
+
+// Comment
+$var =
+// Comment
+$var1 =
+// Comment
+$var2 =
+// Comment
+$var3;
+
+// Comment
+$var =
+// Comment
+$var1 =
+// Comment
+$var2 =
+// Comment
+$var3;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $var =
@@ -274,6 +292,24 @@ $var = // Comment/
     'some' . 'long' . 'string';
 
 $var /* Comment */ = /* Comment */ 'some' . 'long' . 'string';
+
+// Comment
+$var =
+    // Comment
+    $var1 =
+        // Comment
+        $var2 =
+            // Comment
+            $var3;
+
+// Comment
+$var =
+    // Comment
+    $var1 =
+        // Comment
+        $var2 =
+            // Comment
+            $var3;
 
 `;
 
