@@ -2101,9 +2101,9 @@ function printNode(path, options, print) {
 
       let firstVariable;
 
-      if (printed.length === 1) {
+      if (printed.length === 1 && !node.items[0].comments) {
         [firstVariable] = printed;
-      } else if (printed.length > 1) {
+      } else if (printed.length > 0) {
         // Indent first item
         firstVariable = indent(printed[0]);
       }
