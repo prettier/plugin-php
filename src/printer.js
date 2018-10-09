@@ -1466,7 +1466,9 @@ function printNode(path, options, print) {
           : concat([
               ";",
               // Second hardline for newline between `namespace` and first child node
-              node.children.length > 0 ? concat([hardline, hardline]) : ""
+              node.children.length > 0
+                ? concat([node.comments ? "" : hardline, hardline])
+                : ""
             ]),
         node.children.length > 0
           ? node.withBrackets
