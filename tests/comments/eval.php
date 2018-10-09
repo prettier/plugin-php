@@ -5,3 +5,7 @@ eval(
     "echo 'test';"
     /* Comment */
 );
+
+eval( // Comment
+    $a
+);

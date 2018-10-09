@@ -78,6 +78,7 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleEntryComments(enclosingNode, comment) ||
+    handleCallComments(precedingNode, enclosingNode, comment) ||
     handlePropertyComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleHalt(enclosingNode, precedingNode, comment) ||
@@ -476,6 +477,20 @@ function handlePropertyComments(enclosingNode, comment) {
       enclosingNode.kind === "classconstant")
   ) {
     addLeadingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
+}
+
+function handleCallComments(precedingNode, enclosingNode, comment) {
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "call" &&
+    precedingNode &&
+    enclosingNode.what === precedingNode &&
+    enclosingNode.arguments.length > 0
+  ) {
+    addLeadingComment(enclosingNode.arguments[0], comment);
     return true;
   }
   return false;
