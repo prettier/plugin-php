@@ -52,7 +52,18 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleInlineComments(enclosingNode, precedingNode, followingNode, comment)
+    handleInlineComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
+    handleNamespaceComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    )
   );
 }
 
@@ -107,7 +118,13 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleCallComments(precedingNode, enclosingNode, comment) ||
     handlePropertyComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleVariableComments(enclosingNode, followingNode, comment)
+    handleVariableComments(enclosingNode, followingNode, comment) ||
+    handleNamespaceComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    )
   );
 }
 
@@ -129,7 +146,13 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleGoto(enclosingNode, comment) ||
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleBreakAndContinueStatementComments(enclosingNode, comment)
+    handleBreakAndContinueStatementComments(enclosingNode, comment) ||
+    handleNamespaceComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    )
   );
 }
 
@@ -581,6 +604,26 @@ function handleCallComments(precedingNode, enclosingNode, comment) {
     addLeadingComment(enclosingNode.arguments[0], comment);
     return true;
   }
+  return false;
+}
+
+function handleNamespaceComments(
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment
+) {
+  if (
+    !followingNode &&
+    !precedingNode &&
+    enclosingNode &&
+    enclosingNode.kind === "namespace" &&
+    !enclosingNode.withBrackets
+  ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+
   return false;
 }
 
