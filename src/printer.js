@@ -1432,6 +1432,7 @@ function printNode(path, options, print) {
         comments.printDanglingComments(path, options, true)
       ]);
     case "declare": {
+      const parent = path.getParentNode();
       const printDeclareArguments = path => {
         const [directive] = Object.keys(path.getValue().what);
         return concat([directive, "=", path.call(print, "what", directive)]);
@@ -1452,7 +1453,19 @@ function printNode(path, options, print) {
         ]);
       }
 
-      return concat(["declare(", printDeclareArguments(path), ");"]);
+      const nextNode =
+        parent &&
+        parent.children &&
+        parent.children.length > 0 &&
+        parent.children.indexOf(node) !== -1 &&
+        parent.children[parent.children.indexOf(node) + 1];
+
+      return concat([
+        "declare(",
+        printDeclareArguments(path),
+        ")",
+        nextNode && nextNode.kind === "inline" ? "" : ";"
+      ]);
     }
     case "namespace": {
       const printed = printLines(path, options, print);
