@@ -1533,6 +1533,11 @@ function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
 function foo($a): /* 5 */ ?string /* 6 */ {}
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
 function emptyFn(/*Comment */) {}
+function fn( // Comment
+) {}
+function fn(
+    // Comment
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1548,6 +1553,13 @@ function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
 function emptyFn(/*Comment */)
 {
 }
+function fn()
+{
+} // Comment
+function fn()
+{
+}
+// Comment
 
 `;
 
@@ -2290,6 +2302,20 @@ class Foo {
     abstract public function sortByName(/* bool $useNaturalSort = false */);
 
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
+
+    public function foo( // Comment
+    ) {}
+
+    public function foo(
+        // Comment
+    ) {}
+
+    abstract public function foo( // Comment
+    );
+
+    abstract public function foo(
+        // Comment
+    );
 }
 
 
@@ -2324,6 +2350,20 @@ class Foo
     abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
 
     /* comment */ /* comment */ protected static $foo; /* comment */
+
+    public function foo()
+    {
+    } // Comment
+
+    public function foo()
+    {
+    }
+    // Comment
+
+    abstract public function foo(); // Comment
+
+    abstract public function foo();
+    // Comment
 }
 
 class add_vendor extends request

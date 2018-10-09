@@ -8,6 +8,20 @@ class Foo {
     abstract public function sortByName(/* bool $useNaturalSort = false */);
 
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
+
+    public function foo( // Comment
+    ) {}
+
+    public function foo(
+        // Comment
+    ) {}
+
+    abstract public function foo( // Comment
+    );
+
+    abstract public function foo(
+        // Comment
+    );
 }
 
 
