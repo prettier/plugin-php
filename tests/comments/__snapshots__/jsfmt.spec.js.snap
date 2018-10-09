@@ -482,10 +482,24 @@ exports[`cast.php - php-verify: cast.php 1`] = `
 <?php
 
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
+
+$var = (int) // Comment
+    $a;
+
+$var = (int) // Comment
+    // Comment
+    $a;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
+
+$var = (int) // Comment
+    $a;
+
+$var = (int) // Comment
+    // Comment
+    $a;
 
 `;
 
