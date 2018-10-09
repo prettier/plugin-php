@@ -2223,7 +2223,12 @@ function printNode(path, options, print) {
       ]);
     }
     case "yieldfrom":
-      return concat(["yield from ", path.call(print, "value")]);
+      return concat([
+        "yield from ",
+        node.comments
+          ? indent(path.call(print, "value"))
+          : path.call(print, "value")
+      ]);
     case "unary":
       return concat([node.type, path.call(print, "what")]);
     case "pre":
