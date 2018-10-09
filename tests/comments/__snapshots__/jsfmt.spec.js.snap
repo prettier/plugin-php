@@ -1586,7 +1586,30 @@ exports[`halt.php - php-verify: halt.php 1`] = `
 /*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-/*Comment*/ /*Comment*/ /*Comment*/ /*Comment*/ __halt_compiler();
+/*Comment*/ /*Comment*/
+/*Comment*/
+/*Comment*/
+__halt_compiler();
+`;
+
+exports[`halt-1.php - php-verify: halt-1.php 1`] = `
+<?php
+
+// Comment 1
+__halt_compiler
+// Comment 2
+( // Comment 3
+// Comment 4
+);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+// Comment 1
+// Comment 2
+// Comment 3
+// Comment 4
+__halt_compiler();
+
 `;
 
 exports[`heredoc.php - php-verify: heredoc.php 1`] = `
