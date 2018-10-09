@@ -15,6 +15,17 @@ use One\\More\\Test;
 
 `;
 
+exports[`namespace-keyword.php - php-verify: namespace-keyword.php 1`] = `
+<?php
+
+$obj = new namespace\\Another;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$obj = new namespace\\Another();
+
+`;
+
 exports[`nested.php - php-verify: nested.php 1`] = `
 <?php
 

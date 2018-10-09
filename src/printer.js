@@ -2593,7 +2593,11 @@ function printNode(path, options, print) {
         return normalizedName;
       }
 
-      return node.name;
+      return concat([
+        // Todo https://github.com/glayzzle/php-parser/issues/200
+        node.loc.source.includes("namespace\\") ? "namespace\\" : "",
+        node.name
+      ]);
     }
     case "error":
     default:
