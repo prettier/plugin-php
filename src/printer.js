@@ -1437,27 +1437,18 @@ function printNode(path, options, print) {
         return concat([directive, "=", path.call(print, "what", directive)]);
       };
 
-      if (node.mode === "short") {
+      if (["block", "short"].includes(node.mode)) {
         return concat([
           "declare(",
           printDeclareArguments(path),
-          "):",
-          node.children.length > 0
-            ? concat([hardline, concat(path.map(print, "children"))])
-            : "",
-          hardline,
-          "enddeclare;"
-        ]);
-      } else if (node.mode === "block") {
-        return concat([
-          "declare(",
-          printDeclareArguments(path),
-          ") {",
+          ")",
+          node.mode === "block" ? " {" : ":",
           node.children.length > 0
             ? indent(concat([hardline, concat(path.map(print, "children"))]))
             : "",
+          comments.printDanglingComments(path, options),
           hardline,
-          "}"
+          node.mode === "block" ? "}" : "enddeclare;"
         ]);
       }
 

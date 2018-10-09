@@ -1265,6 +1265,59 @@ for (;;) {
 
 `;
 
+exports[`declare.php - php-verify: declare.php 1`] = `
+<?php
+
+declare(ticks=1) {
+    // Comment
+}
+
+// Comment
+declare(ticks=1) {
+    // Comment
+    $a = 1;
+    // Comment
+}
+
+// Comment
+declare(ticks=1);
+// Comment
+
+// Comment
+declare(ticks=1):
+    // Comment
+    $test = 1;
+    // Comment
+enddeclare;
+// Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(ticks=1) {
+    // Comment
+}
+
+// Comment
+declare(ticks=1) {
+    // Comment
+    $a = 1;
+    // Comment
+}
+
+// Comment
+declare(ticks=1);
+// Comment
+
+// Comment
+declare(ticks=1):
+    // Comment
+    $test = 1;
+    // Comment
+enddeclare;
+// Comment
+
+`;
+
 exports[`do.php - php-verify: do.php 1`] = `
 <?php
 // Comment
