@@ -1189,8 +1189,7 @@ $constraint = new UniqueEntity(array(
     // no "em" option set
 ));
 
-return
-    // parens test
+return // parens test
     // some comment
     $test;
 
@@ -2838,6 +2837,28 @@ exports[`return.php - php-verify: return.php 1`] = `
 function f() {
     return /* a */;
 }
+
+return // Comment
+    ;
+
+return // Comment
+    $a;
+
+return // Comment
+    [
+        $a, $b, $c
+    ];
+
+return /* Comment */
+    $a;
+
+// Comment
+return $a;
+
+return /* Comment */ $a /* Comment */ = /* Comment */ $b /* Comment */;
+
+return // Comment
+    new Foo();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2845,6 +2866,25 @@ function f()
 {
     return /* a */;
 }
+
+return; // Comment
+
+return // Comment
+    $a;
+
+return // Comment
+    [$a, $b, $c];
+
+return /* Comment */
+    $a;
+
+// Comment
+return $a;
+
+return /* Comment */ $a /* Comment */ = /* Comment */ $b /* Comment */;
+
+return // Comment
+    new Foo();
 
 `;
 

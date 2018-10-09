@@ -67,6 +67,14 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
       comment,
       options
     ) ||
+    handleReturnComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleLastFunctionArgComments(
       text,
       precedingNode,
@@ -155,6 +163,21 @@ function handleArrayComments(
     enclosingNode &&
     enclosingNode.kind === "array"
   ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+
+  return false;
+}
+
+function handleReturnComments(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment
+) {
+  if (enclosingNode && enclosingNode.kind === "return" && !enclosingNode.expr) {
     addTrailingComment(enclosingNode, comment);
     return true;
   }
@@ -632,17 +655,6 @@ function printComments(comments, options) {
   return concat(parts);
 }
 
-// This recurses the return argument, looking for the first token
-// (the leftmost leaf node) and, if it (or its parents) has any
-// leadingComments, returns true (so it can be wrapped in parens).
-function returnArgumentHasLeadingComment(options, argument) {
-  if (hasLeadingOwnLineComment(options.originalText, argument, options)) {
-    return true;
-  }
-
-  return false;
-}
-
 function isBlockComment(comment) {
   return comment.kind === "commentblock";
 }
@@ -656,6 +668,5 @@ module.exports = {
   hasLeadingComment,
   hasTrailingComment,
   hasLeadingOwnLineComment,
-  printComments,
-  returnArgumentHasLeadingComment
+  printComments
 };

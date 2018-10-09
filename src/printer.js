@@ -2092,11 +2092,7 @@ function printNode(path, options, print) {
       if (node.expr) {
         const printedExpr = path.call(print, "expr");
 
-        if (comments.returnArgumentHasLeadingComment(options, node.expr)) {
-          parts.push(indent(concat([hardline, printedExpr])));
-        } else {
-          parts.push(" ", printedExpr);
-        }
+        parts.push(" ", node.expr.comments ? indent(printedExpr) : printedExpr);
       }
 
       if (hasDanglingComments(node)) {
