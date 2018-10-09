@@ -403,6 +403,36 @@ exports[`call.php - php-verify: call.php 1`] = `
 foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
 foo(/* A */);
 $foo->bar(/* B */);
+
+render( // Comment
+    'string',
+    $container
+);
+
+$var->render( // Comment
+    'string',
+    $var
+);
+
+render(
+    'string',
+    $container
+    // Comment
+);
+
+$var->render(
+    'string',
+    $var
+    // Comment
+);
+
+$var->render(
+    // Comment
+    'string',
+    // Comment
+    $var
+    // Comment
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -413,6 +443,38 @@ foo(
 );
 foo(/* A */);
 $foo->bar(/* B */);
+
+render(
+    // Comment
+    'string',
+    $container
+);
+
+$var->render(
+    // Comment
+    'string',
+    $var
+);
+
+render(
+    'string',
+    $container
+    // Comment
+);
+
+$var->render(
+    'string',
+    $var
+    // Comment
+);
+
+$var->render(
+    // Comment
+    'string',
+    // Comment
+    $var
+    // Comment
+);
 
 `;
 
@@ -1244,11 +1306,25 @@ exports[`empty.php - php-verify: empty.php 1`] = `
 if (empty(/* Comment */ [] /* Comment */)) {
     echo "Foo";
 }
+
+if (
+    empty( // Comment
+        $a
+    )
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
     echo "Foo";
+}
+
+if (
+    empty(
+        // Comment
+        $a
+    )
+) {
 }
 
 `;
@@ -1261,6 +1337,10 @@ eval(
     "echo 'test';"
     /* Comment */
 );
+
+eval( // Comment
+    $a
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1268,6 +1348,11 @@ eval(
     /* Comment */
     "echo 'test';"
     /* Comment */
+);
+
+eval(
+    // Comment
+    $a
 );
 
 `;
@@ -2133,11 +2218,25 @@ exports[`isset.php - php-verify: isset.php 1`] = `
 if (isset(/* Comment */ $a[1]/* Comment */)) {
     echo "Foo";
 }
+
+if (
+    isset( // Comment
+        $a
+    )
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
     echo "Foo";
+}
+
+if (
+    isset(
+        // Comment
+        $a
+    )
+) {
 }
 
 `;
@@ -2835,10 +2934,19 @@ exports[`unset.php - php-verify: unset.php 1`] = `
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
+
+unset( // Comment
+    $var
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
+
+unset(
+    // Comment
+    $var
+);
 
 `;
 
