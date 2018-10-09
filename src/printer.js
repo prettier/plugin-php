@@ -1950,7 +1950,9 @@ function printNode(path, options, print) {
         node.require ? "require" : "include",
         node.once ? "_once" : "",
         " ",
-        path.call(print, "target")
+        node.target.comments
+          ? indent(path.call(print, "target"))
+          : path.call(print, "target")
       ]);
     case "label":
       return concat([node.name, ":"]);

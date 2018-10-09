@@ -12,3 +12,6 @@ include (// Comment
 "test.php" // Comment
     // Comment
 ); // Comment
+
+include /* Comment */ $a /* Comment */;
+include /* Comment */ 'string' /* Comment */;
