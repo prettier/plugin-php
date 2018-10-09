@@ -59,6 +59,14 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
 function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleArrayComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleLastFunctionArgComments(
       text,
       precedingNode,
@@ -132,6 +140,26 @@ function addBlockOrNotComment(node, comment) {
   } else {
     addLeadingComment(node, comment);
   }
+}
+
+function handleArrayComments(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment
+) {
+  if (
+    !precedingNode &&
+    !followingNode &&
+    enclosingNode &&
+    enclosingNode.kind === "array"
+  ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+
+  return false;
 }
 
 function handleLastFunctionArgComments(
