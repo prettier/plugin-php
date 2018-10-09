@@ -2211,13 +2211,20 @@ function printNode(path, options, print) {
         path.call(print, "value"),
         options
       );
-    case "yield":
-      return concat([
-        "yield",
-        node.key || node.value ? " " : "",
+    case "yield": {
+      const printedKeyAndValue = concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
         path.call(print, "value")
       ]);
+
+      return concat([
+        "yield",
+        node.key || node.value ? " " : "",
+        node.value && node.value.comments
+          ? indent(printedKeyAndValue)
+          : printedKeyAndValue
+      ]);
+    }
     case "yieldfrom":
       return concat(["yield from ", path.call(print, "value")]);
     case "unary":
