@@ -2012,7 +2012,20 @@ function printNode(path, options, print) {
     case "silent":
       return concat(["@", path.call(print, "expr")]);
     case "halt":
-      return concat(["__halt_compiler();", node.after]);
+      return concat([
+        hasDanglingComments(node)
+          ? concat([
+              comments.printDanglingComments(
+                path,
+                options,
+                /* sameIndent */ true
+              ),
+              hardline
+            ])
+          : "",
+        "__halt_compiler();",
+        node.after
+      ]);
     case "eval":
       return group(
         concat([

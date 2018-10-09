@@ -44,13 +44,7 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleInlineComments(
-      enclosingNode,
-      precedingNode,
-      followingNode,
-      comment
-    ) ||
-    handleHalt(enclosingNode, precedingNode, comment)
+    handleInlineComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
 
@@ -81,7 +75,6 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleCallComments(precedingNode, enclosingNode, comment) ||
     handlePropertyComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
-    handleHalt(enclosingNode, precedingNode, comment) ||
     handleVariableComments(enclosingNode, followingNode, comment)
   );
 }
@@ -102,7 +95,7 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleGoto(enclosingNode, comment) ||
-    handleHalt(enclosingNode, precedingNode, comment) ||
+    handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment)
   );
@@ -345,14 +338,14 @@ function handleGoto(enclosingNode, comment) {
   return false;
 }
 
-function handleHalt(enclosingNode, precedingNode, comment) {
+function handleHalt(precedingNode, enclosingNode, followingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "halt") {
-    addLeadingComment(enclosingNode, comment);
+    addDanglingComment(enclosingNode, comment);
     return true;
   }
 
   if (precedingNode && precedingNode.kind === "halt") {
-    addLeadingComment(precedingNode, comment);
+    addDanglingComment(precedingNode, comment);
     return true;
   }
 
