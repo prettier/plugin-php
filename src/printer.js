@@ -2065,7 +2065,12 @@ function printNode(path, options, print) {
       );
     }
     case "print": {
-      return concat(["print ", path.call(print, "arguments")]);
+      return concat([
+        "print ",
+        node.arguments.comments
+          ? indent(path.call(print, "arguments"))
+          : path.call(print, "arguments")
+      ]);
     }
     case "return": {
       const parts = [];
