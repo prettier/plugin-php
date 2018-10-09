@@ -3058,6 +3058,9 @@ use /* Comment */ some\\namespaces\\/* Comment */{
     /* Comment */ ClassB/* Comment */,
     /* Comment */ ClassC /* Comment */ as /* Comment */ C
 };
+
+use // Comment
+    My\\Full\\NSname;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -3067,6 +3070,9 @@ use some\\namespaces\\{
     /* Comment */ ClassC /* Comment */
     /* Comment */ as C
 };
+
+use // Comment
+    My\\Full\\NSname;
 
 `;
 
