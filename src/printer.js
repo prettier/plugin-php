@@ -2043,32 +2043,32 @@ function printNode(path, options, print) {
         ])
       );
     case "echo": {
-      const printedArguments = path.map((argumentPath, index) => {
-        const argumentNode = argumentPath.getValue();
-        let printed = print(argumentPath);
-
-        if (
-          (argumentNode.kind === "encapsed" &&
-            argumentNode.type === "heredoc") ||
-          argumentNode.kind === "nowdoc"
-        ) {
-          return printed;
-        }
-
-        if (index === 0) {
-          printed = dedent(printed);
-        }
-
-        return printed;
+      const printedArguments = path.map(childPath => {
+        return print(childPath);
       }, "arguments");
 
-      return indent(
-        group(
-          concat([
-            node.shortForm ? "" : "echo ",
-            group(join(concat([",", line]), printedArguments))
-          ])
-        )
+      let firstVariable;
+
+      if (printedArguments.length === 1 && !node.arguments[0].comments) {
+        [firstVariable] = printedArguments;
+      } else if (printedArguments.length > 0) {
+        firstVariable =
+          (node.arguments[0].kind === "encapsed" &&
+            node.arguments[0].type === "heredoc") ||
+          node.arguments[0].kind === "nowdoc" ||
+          node.arguments[0].comments
+            ? indent(printedArguments[0])
+            : dedent(printedArguments[0]);
+      }
+
+      return group(
+        concat([
+          node.shortForm ? "" : "echo ",
+          firstVariable ? firstVariable : "",
+          indent(
+            concat(printedArguments.slice(1).map(p => concat([",", line, p])))
+          )
+        ])
       );
     }
     case "print": {
