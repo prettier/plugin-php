@@ -2836,6 +2836,9 @@ throw new ClassName( /* Comment */
     /* Comment */
     /* Comment */ 2 /* Comment */
     /* Comment */); /* Comment */
+
+throw // Comment
+    new Exception();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2853,6 +2856,9 @@ throw new ClassName /* Comment */(
     /* Comment */ 2 /* Comment */
     /* Comment */
 ); /* Comment */
+
+throw // Comment
+    new Exception();
 
 `;
 

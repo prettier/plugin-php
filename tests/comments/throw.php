@@ -13,3 +13,6 @@ throw new ClassName( /* Comment */
     /* Comment */
     /* Comment */ 2 /* Comment */
     /* Comment */); /* Comment */
+
+throw // Comment
+    new Exception();
