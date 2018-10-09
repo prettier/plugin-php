@@ -30,6 +30,14 @@ args:
 function handleOwnLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleLastFunctionArgComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleIfStatementComments(
       text,
       precedingNode,
@@ -51,6 +59,14 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
 function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
+    handleLastFunctionArgComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleRetifComments(
       enclosingNode,
       precedingNode,
@@ -116,6 +132,34 @@ function addBlockOrNotComment(node, comment) {
   } else {
     addLeadingComment(node, comment);
   }
+}
+
+function handleLastFunctionArgComments(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment,
+  options
+) {
+  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    comment,
+    options
+  );
+  const nextCharacter = text.charAt(nextCharIndex);
+
+  // Real functions
+  if (
+    !precedingNode &&
+    enclosingNode &&
+    (enclosingNode.kind === "function" || enclosingNode.kind === "method") &&
+    nextCharacter === ")"
+  ) {
+    addTrailingComment(enclosingNode, comment);
+    return true;
+  }
+  return false;
 }
 
 function handleIfStatementComments(
