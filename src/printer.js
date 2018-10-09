@@ -2244,7 +2244,14 @@ function printNode(path, options, print) {
     case "post":
       return concat([path.call(print, "what"), node.type + node.type]);
     case "cast":
-      return concat(["(", node.type, ") ", path.call(print, "what")]);
+      return concat([
+        "(",
+        node.type,
+        ") ",
+        node.what.comments
+          ? indent(path.call(print, "what"))
+          : path.call(print, "what")
+      ]);
     case "assign": {
       return printAssignment(
         node.left,
