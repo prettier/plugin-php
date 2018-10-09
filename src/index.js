@@ -68,6 +68,26 @@ const loc = prop => node => {
       );
     }
   }
+
+  // TODO: remove after resolve https://github.com/glayzzle/php-parser/issues/202
+  if (
+    prop === "start" &&
+    (node.kind === "call" ||
+      node.kind === "new" ||
+      node.kind === "propertylookup" ||
+      node.kind === "offsetlookup" ||
+      node.kind === "staticlookup") &&
+    node.what
+  ) {
+    let firstNode = node;
+
+    while (firstNode.what) {
+      firstNode = firstNode.what;
+    }
+
+    return firstNode.loc[prop].offset;
+  }
+
   return node.loc && node.loc[prop] && node.loc[prop].offset;
 };
 
@@ -136,7 +156,7 @@ const printers = {
           children: { listNodes: ["arguments"], nodes: ["what"] }
         },
         {
-          kinds: ["offsetlookup", "staticlookup"],
+          kinds: ["propertylookup", "offsetlookup", "staticlookup"],
           children: { listNodes: [], nodes: ["what", "offset"] }
         },
         {
