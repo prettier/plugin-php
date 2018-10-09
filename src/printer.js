@@ -1883,7 +1883,12 @@ function printNode(path, options, print) {
       );
     }
     case "clone":
-      return concat(["clone ", path.call(print, "what")]);
+      return concat([
+        "clone ",
+        node.what.comments
+          ? indent(path.call(print, "what"))
+          : path.call(print, "what")
+      ]);
     case "propertylookup":
     case "staticlookup":
     case "offsetlookup": {

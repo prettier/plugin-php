@@ -847,10 +847,16 @@ exports[`clone.php - php-verify: clone.php 1`] = `
 <?php
 
 $obj2 = clone /* Comments */ $obj /* Comments */;
+
+$obj2 = clone // Comment
+    $obj;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 $obj2 = clone /* Comments */ $obj /* Comments */;
+
+$obj2 = clone // Comment
+    $obj;
 
 `;
 
