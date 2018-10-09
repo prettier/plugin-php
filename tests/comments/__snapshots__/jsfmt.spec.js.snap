@@ -918,11 +918,56 @@ exports[`closure.php - php-verify: closure.php 1`] = `
 
 $var = function (/* Comment */) {};
 $var = function (/* Comment */ $arg /* Comment */) {};
+$var = function () {
+    // Comment
+};
+$var = function () {
+    // Comment
+
+    return 'string';
+};
+$var->call(function () {
+    // Comment
+});
+$var->call(function () {
+    // Comment
+
+    return 'string';
+});
+$var->call(function () {
+    // Comment
+
+    return 'string';
+})->call();
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 $var = function (/* Comment */) {};
 $var = function (/* Comment */ $arg /* Comment */) {};
+$var = function () {
+    // Comment
+};
+$var = function () {
+    // Comment
+
+    return 'string';
+};
+$var->call(function () {
+    // Comment
+});
+$var->call(function () {
+    // Comment
+
+    return 'string';
+});
+$var
+    ->call(function () {
+        // Comment
+
+        return 'string';
+    })
+    ->call();
 
 `;
 
@@ -2796,7 +2841,7 @@ echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
 `;
 
@@ -2974,7 +3019,8 @@ echo $a/*Comment*/->/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo /*Comment*/ /*Comment*/ $a->bar();
+echo $a /*Comment*/
+    ->/*Comment*/ bar();
 
 `;
 
@@ -3132,7 +3178,7 @@ echo Foo/*Comment*/::/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo /*Comment*/ /*Comment*/ Foo::bar();
+echo Foo /*Comment*/::/*Comment*/ bar();
 
 `;
 

@@ -492,47 +492,47 @@ $sel = $this->connections
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-// App configuration.
 $fooBar
     ->doSomething('Hello World')
     ->doAnotherThing('Foo', ['foo' => $bar])
 
-    ->doOneMoreThing($config)
+    ->// App configuration.
+    doOneMoreThing($config)
 
     ->run(function () {
         $console->log('Bar');
     });
 
-// Hello world
-// App configuration.
 $bigDeal
 
     ->doSomething('Hello World')
 
-    ->doAnotherThing('Foo', ['foo' => $bar])
+    ->// Hello world
+    doAnotherThing('Foo', ['foo' => $bar])
 
-    ->doOneMoreThing($config)
+    ->// App configuration.
+    doOneMoreThing($config)
 
     ->run(function () {
         $console->log('Bar');
     });
 
-// Hello world
 $foo->bar->baz
 
     ->doSomething('Hello World')
 
-    ->foo->bar->doAnotherThing('Foo', ['foo' => $bar])
+    ->// Hello world
+    foo->bar->doAnotherThing('Foo', ['foo' => $bar])
 
     ->doOneMoreThing($config)
     ->bar->run(function () {
         $console->log('Bar');
-    }); // Run this
+    });
 
-// Hello world
 ($somethingGood ? $thisIsIt : $maybeNot)
 
-    ->doSomething('Hello World')
+    ->// Hello world
+    doSomething('Hello World')
 
     ->doAnotherThing('Foo', ['foo' => $bar])
     ->run(function () {
