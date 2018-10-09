@@ -2015,7 +2015,12 @@ function printNode(path, options, print) {
       ]);
     }
     case "throw":
-      return concat(["throw ", path.call(print, "what")]);
+      return concat([
+        "throw ",
+        node.what.comments
+          ? indent(path.call(print, "what"))
+          : path.call(print, "what")
+      ]);
     case "silent":
       return concat(["@", path.call(print, "expr")]);
     case "halt":
