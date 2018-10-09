@@ -1573,10 +1573,25 @@ exports[`global.php - php-verify: global.php 1`] = `
 <?php
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+global // Comment
+    $a;
+global
+    // Comment
+    $a;
+global // Comment
+    $a,
+    $b;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
+global // Comment
+    $a;
+global // Comment
+    $a;
+global // Comment
+    $a,
+    $b;
 
 `;
 
