@@ -119,6 +119,12 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handlePropertyComments(enclosingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleVariableComments(enclosingNode, followingNode, comment) ||
+    handleInlineComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
     handleNamespaceComments(
       enclosingNode,
       precedingNode,
@@ -147,6 +153,12 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
     handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment) ||
+    handleInlineComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
     handleNamespaceComments(
       enclosingNode,
       precedingNode,
@@ -505,7 +517,7 @@ function handleInlineComments(
   followingNode,
   comment
 ) {
-  if (!enclosingNode && followingNode && followingNode.kind === "inline") {
+  if (followingNode && followingNode.kind === "inline") {
     return true;
   } else if (
     !enclosingNode &&
