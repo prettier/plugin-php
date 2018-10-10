@@ -2102,6 +2102,23 @@ function f() {
         /* Allow Untracked */ $allowUntracked = true;
     }
 }
+
+if (true)
+    // Comment
+    echo 'foo';
+else if (false)
+    // Comment
+    echo 'bar';
+else
+    // Comment
+    echo 'baz';
+
+if (true) // Comment
+    echo 'foo';
+else if (false) // Comment
+    echo 'bar';
+else // Comment
+    echo 'baz';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment 1
@@ -2161,68 +2178,63 @@ if (1) {
 
 }
 
-if (
-    5 // comment
-) {
+if (5) {
+    // comment
     true;
 }
 
-if (
-    6 // comment
-) {
-    true;
-} elseif (
-    7 // comment
-) {
-    true; // comment
-} else {
-    true;
-}
-
-if (
-    8 // comment
-) {
+if (6) {
     // comment
     true;
-} elseif (
-    9 // comment
-) {
+} elseif (7) {
     // comment
-    true; // comment
+    true;
 } else {
     // comment
     true;
 }
 
-if (
-    10 /* comment */ // comment
-) {
+if (8) {
+    // comment
+    // comment
     true;
-} elseif (11 /* comment */) {
+} elseif (9) {
+    // comment
+    // comment
     true;
-} elseif (
-    12 // comment /* comment */ // comment
-) {
-    true;
-} elseif (
-    13 /* comment */ /* comment */ // comment
-) {
-    true; /* comment */
 } else {
+    // comment
+    // comment
     true;
 }
 
-if (
-    14 // comment
-) {
+if (10) {
+    /* comment */ // comment
+    true;
+} elseif (11) {
+    /* comment */
+    true;
+} elseif (12) {
+    // comment /* comment */ // comment
+    true;
+} elseif (13) {
+    /* comment */ /* comment */ // comment
+    true;
+} else {
+    /* comment */
+    true;
+}
+
+if (14) {
+    // comment
     /* comment */
     // comment
     true;
-} elseif (
-    15 // comment // comment
-) {
+} elseif (15) {
+    // comment
     /* comment */
-    /* comment */ true;
+    /* comment */ // comment
+    true;
 }
 
 if ($cond) {
@@ -2255,28 +2267,28 @@ function f()
 
 function f()
 {
-    if ($untrackedChoice === 0 /* Cancel */) {
+    if ($untrackedChoice === 0) {
+        /* Cancel */
         null;
-    } elseif ($untrackedChoice === 1 /* Add */) {
+    } elseif ($untrackedChoice === 1) {
+        /* Add */
         $shouldAmend = true;
-    } elseif ($untrackedChoice === 2 /* Allow Untracked */) {
+    } elseif ($untrackedChoice === 2) {
+        /* Allow Untracked */
         $allowUntracked = true;
     }
 }
 
 function f()
 {
-    if (
-        $untrackedChoice === 0 /* Cancel */ // Cancel
-    ) {
+    if ($untrackedChoice === 0) {
+        /* Cancel */ // Cancel
         null;
-    } elseif (
-        $untrackedChoice === 1 /* Add */ // Add
-    ) {
+    } elseif ($untrackedChoice === 1) {
+        /* Add */ // Add
         $shouldAmend = true;
-    } elseif (
-        $untrackedChoice === 2 /* Allow Untracked */ // Allow Untracked
-    ) {
+    } elseif ($untrackedChoice === 2) {
+        /* Allow Untracked */ // Allow Untracked
         $allowUntracked = true;
     }
 }
@@ -2303,6 +2315,27 @@ function f()
     } elseif ($untrackedChoice === 2) {
         /* Allow Untracked */ $allowUntracked = true;
     }
+}
+
+if (true) {
+    // Comment
+    echo 'foo';
+} elseif (false) {
+    // Comment
+    echo 'bar';
+} else {
+    // Comment
+    echo 'baz';
+}
+
+if (true) {
+    // Comment
+    echo 'foo';
+} elseif (false) {
+    // Comment
+    echo 'bar'; // Comment
+} else {
+    echo 'baz';
 }
 
 `;

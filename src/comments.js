@@ -253,14 +253,37 @@ function handleIfStatementComments(
   precedingNode,
   enclosingNode,
   followingNode,
-  comment
+  comment,
+  options
 ) {
   if (!enclosingNode || enclosingNode.kind !== "if" || !followingNode) {
     return false;
   }
 
+  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    comment,
+    options
+  );
+  const nextCharacter = text.charAt(nextCharIndex);
+
+  if (nextCharacter === ")") {
+    addTrailingComment(precedingNode, comment);
+    return true;
+  }
+
   if (followingNode.kind === "if") {
     addBlockOrNotComment(followingNode.body, comment);
+    return true;
+  }
+
+  // For comments positioned after the condition parenthesis in an if statement
+  // before the consequent with or without brackets on, such as
+  // if (a) /* comment */ {} or if (a) /* comment */ true,
+  // we look at the next character to see if it is a { or if the following node
+  // is the consequent for the if statement
+  if (nextCharacter === "{" || enclosingNode.body === followingNode) {
+    addLeadingComment(followingNode, comment);
     return true;
   }
 
