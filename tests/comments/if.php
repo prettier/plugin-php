@@ -197,6 +197,74 @@ elseif (is_null($value)) {
     $relation = $value;
 }
 
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+// Comment
+else {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+else {
+    call();
+}
+
+
+// Comment
+if (true) {
+    call();
+}
+
+
+
+// Comment
+elseif (false) {
+    call();
+}
+
+
+
+// Comment
+else {
+    call();
+}
+
+
 if (true) {
     echo 'test';
 } /* comment */ else if (false) {

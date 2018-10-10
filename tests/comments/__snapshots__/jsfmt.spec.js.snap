@@ -2133,6 +2133,74 @@ elseif (is_null($value)) {
     $relation = $value;
 }
 
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+// Comment
+else {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+else {
+    call();
+}
+
+
+// Comment
+if (true) {
+    call();
+}
+
+
+
+// Comment
+elseif (false) {
+    call();
+}
+
+
+
+// Comment
+else {
+    call();
+}
+
+
 if (true) {
     echo 'test';
 } /* comment */ else if (false) {
@@ -2196,6 +2264,7 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 if (false) {
     do_nothing();
 }
+
 // and this is a comment on an elseif
 elseif (false) {
     also_do_nothing();
@@ -2401,6 +2470,68 @@ if ($value instanceof Arrayable) {
 // if it a has one or belongs to type relationships on the models.
 elseif (is_null($value)) {
     $relation = $value;
+}
+
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+// Comment
+elseif (false) {
+    call();
+}
+// Comment
+else {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+else {
+    call();
+}
+
+// Comment
+if (true) {
+    call();
+}
+
+// Comment
+elseif (false) {
+    call();
+}
+
+// Comment
+else {
+    call();
 }
 
 if (true) {

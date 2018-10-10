@@ -1672,6 +1672,9 @@ function printNode(path, options, print) {
 
         if (hasDanglingComments(node)) {
           parts.push(
+            isNextLineEmpty(options.originalText, node.body, options)
+              ? hardline
+              : "",
             comments.printDanglingComments(path, options, true),
             commentOnOwnLine ? hardline : " "
           );
