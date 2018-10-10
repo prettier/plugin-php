@@ -97,3 +97,12 @@ if ( true ) {{
     return 1;
 }} else
     return 3;
+
+if ($a === 'string
+string
+string') {
+    $var = 'string
+    string
+    string
+    other';
+}

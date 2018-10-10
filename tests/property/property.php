@@ -31,4 +31,12 @@ EOD;
     public static $my_public_static='bar';
     static $foo; // visibility is empty
     var $bar; // visibility is null
+    public $string = 'string
+string
+string';
+    public $string2 = 'string
+string
+string' . 'string
+string
+string';
 }

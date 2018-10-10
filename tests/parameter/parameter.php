@@ -95,4 +95,16 @@ function bar5($arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" === "veryV
     return $arg;
 }
 
+function foo($arg = 'string
+string
+string') {}
 
+function foo($arg = 'string
+string
+string', $arg = 'string
+string
+string') {}
+
+function foo($a, $b = 'string
+string
+string', $c) {}

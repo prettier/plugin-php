@@ -260,3 +260,51 @@ $callback =
     function () {
         return true;
     };
+$regex =
+    '/
+    (\\\\)?                    # escaped with a backslash?
+    \$
+    (?!\()                     # no opening parenthesis
+    (\{)?                      # optional brace
+    (' .
+    self::VARNAME_REGEX .
+    ')  # var name
+    (\})?                      # optional closing brace
+/x';
+$var = '
+string
+string
+string
+' . '
+string
+string
+string
+';
+
+$var = $var . '
+string
+';
+
+$var = '
+string
+' . $var;
+
+$var = '
+string\n
+string\n
+string\n
+' . '
+string\r\n
+string\r\n
+string\r\n
+';
+
+$var = '
+string\\n
+string\\n
+string\\n
+' . '
+string\\r\\n
+string\\r\\n
+string\\r\\n
+';
