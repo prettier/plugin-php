@@ -166,3 +166,20 @@ function f() {
         /* Allow Untracked */ $allowUntracked = true;
     }
 }
+
+if (true)
+    // Comment
+    echo 'foo';
+else if (false)
+    // Comment
+    echo 'bar';
+else
+    // Comment
+    echo 'baz';
+
+if (true) // Comment
+    echo 'foo';
+else if (false) // Comment
+    echo 'bar';
+else // Comment
+    echo 'baz';
