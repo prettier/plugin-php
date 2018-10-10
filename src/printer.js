@@ -47,7 +47,8 @@ const {
   getLastNestedChildNode,
   isProgramLikeNode,
   getNodeKindIncludingLogical,
-  hasEmptyBody
+  hasEmptyBody,
+  hasNewline
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -1387,7 +1388,7 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
     ((leftNode.kind === "variable" ||
       leftNode.kind === "string" ||
       isLookupNode(leftNode)) &&
-      ((rightNode.kind === "string" && !rightNode.raw.includes("\n")) ||
+      ((rightNode.kind === "string" && !stringHasNewLines(rightNode)) ||
         isLookupNodeChain(rightNode)));
 
   if (canBreak) {
@@ -1407,6 +1408,18 @@ function needsHardlineAfterDanglingComment(node) {
   );
 
   return lastDanglingComment && !comments.isBlockComment(lastDanglingComment);
+}
+
+function stringHasNewLines(node) {
+  return node.raw.includes("\n");
+}
+
+function isStringOnItsOwnLine(node, text, options) {
+  return (
+    node.kind === "string" &&
+    stringHasNewLines(node) &&
+    !hasNewline(text, options.locStart(node), { backwards: true })
+  );
 }
 
 function printNode(path, options, print) {
@@ -1846,6 +1859,17 @@ function printNode(path, options, print) {
 
       return node.kind;
     case "call": {
+      if (
+        // Multiline strings as single arguments
+        node.arguments.length === 1 &&
+        isStringOnItsOwnLine(node.arguments[0], options.originalText, options)
+      ) {
+        return concat([
+          path.call(print, "what"),
+          concat(["(", join(", ", path.map(print, "arguments")), ")"])
+        ]);
+      }
+
       // chain: Call (*LookupNode (Call (*LookupNode (...))))
       if (isLookupNode(node.what)) {
         return printMemberChain(path, options, print);
@@ -1928,10 +1952,12 @@ function printNode(path, options, print) {
           node.useDie ? "die" : "exit",
           "(",
           node.status
-            ? concat([
-                indent(concat([softline, path.call(print, "status")])),
-                softline
-              ])
+            ? isStringOnItsOwnLine(node.status, options.originalText, options)
+              ? path.call(print, "status")
+              : concat([
+                  indent(concat([softline, path.call(print, "status")])),
+                  softline
+                ])
             : comments.printDanglingComments(path, options),
           ")"
         ])
@@ -2035,7 +2061,9 @@ function printNode(path, options, print) {
       return group(
         concat([
           "eval(",
-          indent(concat([softline, path.call(print, "source")])),
+          isStringOnItsOwnLine(node.source, options.originalText, options)
+            ? path.call(print, "source")
+            : indent(concat([softline, path.call(print, "source")])),
           softline,
           ")"
         ])
@@ -2457,7 +2485,7 @@ function printNode(path, options, print) {
       return concat([
         node.raw[0] === "b" ? "b" : "",
         quote,
-        stringValue,
+        join(literalline, stringValue.split(/\r?\n/g)),
         quote
       ]);
     }

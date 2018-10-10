@@ -8,3 +8,11 @@ exit("Very very very very very very very very very very very very very very very
 exit;
 exit();
 exit(0376);
+exit('string
+string
+string');
+exit(
+    'string
+string
+string'
+);

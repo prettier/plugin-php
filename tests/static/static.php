@@ -27,3 +27,11 @@ static $a = [
     ];
 static $a = 'string' . 'string' . 'string' . 'string' . 'string' . 'string'. 'string' . 'string';
 static $a, $b = 'string' . 'string' . 'string' . 'string' . 'string' . 'string'. 'string' . 'string';
+static $a = 'string
+string
+string';
+static $a = 'string
+string
+string', $b = 'string
+string
+string';

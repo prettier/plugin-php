@@ -142,3 +142,75 @@ array_map(function ($aligment) {
     ? $attributes['alignment']
     : explode(' ', $attributes['alignment'])
 );
+
+call('
+string
+string
+string');
+
+call(
+    '
+string
+string
+string');
+
+call('
+string
+string
+string', $a);
+
+call($a, '
+string
+string
+string');
+
+call("
+string
+string
+string");
+
+call(
+    "
+string
+string
+string");
+
+call("
+string
+string
+string", $a);
+
+call($a, "
+string
+string
+string");
+
+$a->call('
+string
+string
+string');
+
+$a->bar->call(
+    '
+string
+string
+string'
+);
+
+$a->call('
+string
+string
+string')->call('
+string
+string
+string'
+);
+
+$a->call($a, '
+string
+string
+string', $c)->call($a, '
+string
+string
+string', $c
+);

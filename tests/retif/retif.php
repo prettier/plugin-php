@@ -187,3 +187,13 @@ return $delay instanceof DateTimeInterface
     : Carbon::now()
         ->addSeconds($delay)
         ->getTimestamp();
+
+$var = true ? 'string
+string
+string' : 'string
+string
+string';
+
+$var = $var ?: 'string
+string
+string';

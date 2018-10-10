@@ -100,6 +100,15 @@ if ( true ) {{
     return 1;
 }} else
     return 3;
+
+if ($a === 'string
+string
+string') {
+    $var = 'string
+    string
+    string
+    other';
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 if (true) {
@@ -232,6 +241,18 @@ if (true) {
     return 1;
 } else {
     return 3;
+}
+
+if (
+    $a ===
+    'string
+string
+string'
+) {
+    $var = 'string
+    string
+    string
+    other';
 }
 
 `;
