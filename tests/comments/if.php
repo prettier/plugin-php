@@ -183,3 +183,43 @@ else if (false) // Comment
     echo 'bar';
 else // Comment
     echo 'baz';
+
+// If the values implements the Arrayable interface we can just call this
+// toArray method on the instances which will convert both models and
+// collections to their proper array form and we'll set the values.
+if ($value instanceof Arrayable) {
+    $relation = $value->toArray();
+}
+// If the value is null, we'll still go ahead and set it in this list of
+// attributes since null is used to represent empty relationships if
+// if it a has one or belongs to type relationships on the models.
+elseif (is_null($value)) {
+    $relation = $value;
+}
+
+if (true) {
+    echo 'test';
+} /* comment */ else if (false) {
+    echo 'test';
+}
+// comment
+else {
+    echo 'test';
+}
+
+if (true) echo 'test';
+// comment
+else echo 'test';
+
+if ($code === 92 /* '\' */) {}
+if ($code === 92 /* '\' */ /* '\' */) {}
+
+if ($code === 92) /* '\' */ {}
+if ($code === 92) { /* '\' */ }
+
+if (
+1
+    // Comment
+) {
+    $a;
+}

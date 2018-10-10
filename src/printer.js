@@ -1312,7 +1312,6 @@ function printBodyControlStructure(
     node.shortForm ? ":" : " {",
     indent(
       concat([
-        comments.printDanglingComments(path, options, true),
         node[bodyProperty].kind !== "block" ||
         (node[bodyProperty].children &&
           node[bodyProperty].children.length > 0) ||
@@ -1668,6 +1667,8 @@ function printNode(path, options, print) {
               comment => comment.trailing && !comments.isBlockComment(comment)
             )) ||
           needsHardlineAfterDanglingComment(node);
+        const elseOnSameLine = !commentOnOwnLine;
+        parts.push(elseOnSameLine ? "" : hardline);
 
         if (hasDanglingComments(node)) {
           parts.push(

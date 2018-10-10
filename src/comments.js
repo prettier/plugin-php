@@ -272,6 +272,15 @@ function handleIfStatementComments(
     return true;
   }
 
+  // Comments before `else`/`else if` treat as a dangling comment
+  if (
+    precedingNode === enclosingNode.body &&
+    followingNode === enclosingNode.alternate
+  ) {
+    addDanglingComment(enclosingNode, comment);
+    return true;
+  }
+
   if (followingNode.kind === "if") {
     addBlockOrNotComment(followingNode.body, comment);
     return true;
@@ -523,7 +532,6 @@ function handleCommentInEmptyParens(text, enclosingNode, comment, options) {
     (enclosingNode.kind === "function" ||
       enclosingNode.kind === "closure" ||
       enclosingNode.kind === "method" ||
-      enclosingNode.kind === "closure" ||
       enclosingNode.kind === "call" ||
       enclosingNode.kind === "new") &&
     enclosingNode.arguments.length === 0
