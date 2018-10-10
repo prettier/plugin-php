@@ -2457,6 +2457,79 @@ exports[`inline7.php - php-verify: inline7.php 1`] = `
 
 `;
 
+exports[`inline8.php - php-verify: inline8.php 1`] = `
+<h1 <?php echo $var; // Comment ?>></h1>
+
+<h1 <?php echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar; // Comment ?>></h1>
+
+<?php
+if ($showRow) {
+    echo $arguments['afterItems'];
+    // escape ok
+    ?>
+  </div>
+    <?php
+}
+?>
+
+<div>
+<?php
+// Comment
+$a = 1;
+?>
+</div>
+
+<?php // test ?>
+<?php echo 1; ?>
+
+<?php // test ?>
+<div></div>
+<?php echo 1; ?>
+
+<?php // test ?>
+<?php echo 1; ?>
+<?php echo 2; ?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<h1 <?php echo $var;
+// Comment
+?>></h1>
+
+<h1 <?php echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar;
+// Comment
+?>></h1>
+
+<?php if ($showRow) {
+    echo $arguments['afterItems'];
+    // escape ok
+    ?>
+  </div>
+    <?php
+} ?>
+
+<div>
+<?php // Comment
+$a = 1; ?>
+</div>
+
+<?php
+// test
+?>
+<?php echo 1; ?>
+
+<?php
+// test
+?>
+<div></div>
+<?php echo 1; ?>
+
+<?php
+// test
+?>
+<?php echo 1; ?>
+<?php echo 2; ?>
+
+`;
+
 exports[`interface.php - php-verify: interface.php 1`] = `
 <?php
 
