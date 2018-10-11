@@ -3240,6 +3240,29 @@ namespace Foo1; // Comment
 
 `;
 
+exports[`namespace-3.php - php-verify: namespace-3.php 1`] = `
+<?php
+
+namespace Foo;
+
+// Comment
+
+// Comment
+
+// Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Foo;
+
+// Comment
+
+// Comment
+
+// Comment
+
+`;
+
 exports[`new.php - php-verify: new.php 1`] = `
 <?php
 $a = new Foo(/*Comment*/);
