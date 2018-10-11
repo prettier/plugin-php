@@ -1290,6 +1290,32 @@ declare(ticks=1):
     // Comment
 enddeclare;
 // Comment
+
+declare(ticks=1) // Comment
+{
+}
+
+declare(ticks=1) { // Comment
+}
+
+declare(ticks=1) // Comment
+{
+    $a = 1;
+}
+
+declare(ticks=1) { // Comment
+    $a = 1;
+}
+
+declare // Comment
+(ticks=1)
+{
+}
+
+declare /* Comment */ (/* Comment */ticks/* Comment */=/* Comment */1/* Comment */) {}
+
+declare // Comment
+(strict_types=1);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1315,6 +1341,33 @@ declare(ticks=1):
     // Comment
 enddeclare;
 // Comment
+
+declare(ticks=1) {
+    // Comment
+}
+
+declare(ticks=1) {
+    // Comment
+}
+
+declare(ticks=1) {
+    // Comment
+    $a = 1;
+}
+
+declare(ticks=1) {
+    // Comment
+    $a = 1;
+}
+
+declare(ticks=1) {
+    // Comment
+}
+
+declare(ticks=/* Comment */ /* Comment */ /* Comment */ /* Comment */ 1 /* Comment */) {
+}
+
+declare(strict_types=1); // Comment
 
 `;
 
@@ -1591,8 +1644,12 @@ for ($i = 1; $i <= 10; $i++) {
     // Comment
 } // Comment
 
-for ($i = 1; $i <= 10; $i++) {
-    /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ /* Comments */ echo $i;
+for (
+    /* Comments */ $i /* Comments */ = /* Comments */ 1 /* Comments */;
+    /* Comments */ $i /* Comments */ <= /* Comments */ 10 /* Comments */;
+    /* Comments */ $i++ /* Comments */
+) {
+    echo $i;
 }
 
 foreach ([1, 2, 3] as $i) {
@@ -3216,6 +3273,34 @@ $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the
 $var = $process->env->NODE_ENV === "production"
     ? call("./configureProdStore") // a
     : call("./configureDevStore"); // b
+
+$var = $a
+    // Comment
+    ? $b
+    // Comment
+    : $c;
+
+$var = $a
+    ? // Comment
+    $b
+    : // Comment
+    $c;
+
+$var = $a
+    ? $b
+    // Comment
+    : $c
+    // Comment
+    ;
+
+$var = $a
+    ? $b  // Comment
+    : $c  // Comment
+;
+
+$var = $a
+    ? $b // Comment
+    : $c; // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -3244,9 +3329,36 @@ $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the
     : [];
 
 $var =
-    $process->env->NODE_ENV === "production"
-        ? call("./configureProdStore") // a
+    $process->env->NODE_ENV ===
+    "production" // a
+        ? call("./configureProdStore")
         : call("./configureDevStore"); // b
+
+$var = $a
+    ? // Comment
+    $b
+    : // Comment
+    $c;
+
+$var = $a
+    ? // Comment
+    $b
+    : // Comment
+    $c;
+
+$var = $a
+    ? $b
+    : // Comment
+    $c;
+// Comment
+
+$var = $a
+    ? $b // Comment
+    : $c; // Comment
+
+$var = $a
+    ? $b // Comment
+    : $c; // Comment
 
 `;
 
@@ -3504,7 +3616,7 @@ class ImplementingClass
         /* Comment */ otherTrait /* Comment */;
     /* Comment */ /* Comment */ use testTrait /* Comment */,
         /* Comment */ implementingTrait /* Comment */ /* Comment */ {
-        /* Comment */ A /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction insteadof C; /* Comment */ /* Comment */
+        /* Comment */ A /* Comment */ /* Comment */ /* Comment */::testFunction insteadof /* Comment */ C; /* Comment */ /* Comment */
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
         /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
     }
