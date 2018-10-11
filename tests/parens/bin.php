@@ -297,3 +297,13 @@ do {} while ($foo and $bar);
 while ($foo or $bar < 10) {}
 for ($foo or $bar;;) {}
 switch ($foo or $bar) {}
+
+$a ** $b ** $c;
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a**$b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;

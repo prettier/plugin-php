@@ -63,7 +63,6 @@ function getPrecedence(op) {
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
-const additiveOperators = ["+", "-"];
 const multiplicativeOperators = ["*", "/", "%"];
 const bitshiftOperators = [">>", "<<"];
 
@@ -78,11 +77,6 @@ function isBitwiseOperator(operator) {
 
 function shouldFlatten(parentOp, nodeOp) {
   if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
-    // x + y % z --> (x + y) % z
-    if (nodeOp === "%" && !additiveOperators.includes(parentOp)) {
-      return true;
-    }
-
     return false;
   }
 
