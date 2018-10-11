@@ -1623,6 +1623,278 @@ func(
 
 `;
 
+exports[`mixed-38.php - php-verify: mixed-38.php 1`] = `
+<?php
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-39.php - php-verify: mixed-39.php 1`] = `
+<?php
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-40.php - php-verify: mixed-40.php 1`] = `
+<?php
+
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-41.php - php-verify: mixed-41.php 1`] = `
+<?php
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+`;
+
+exports[`mixed-42.php - php-verify: mixed-42.php 1`] = `
+<?php
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+?>
+
+`;
+
+exports[`mixed-43.php - php-verify: mixed-43.php 1`] = `
+<?php
+
+?>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+?>
+
+`;
+
+exports[`mixed-44.php - php-verify: mixed-44.php 1`] = `
+<?php
+declare(strict_types=1);
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+declare(strict_types=1);
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-45.php - php-verify: mixed-45.php 1`] = `
+<?php
+
+declare(strict_types=1);
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-46.php - php-verify: mixed-46.php 1`] = `
+<?php
+
+
+declare(strict_types=1);
+
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-47.php - php-verify: mixed-47.php 1`] = `
+<?php
+namespace Foo;
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Foo;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-48.php - php-verify: mixed-48.php 1`] = `
+<?php
+
+namespace Foo;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Foo;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-49.php - php-verify: mixed-49.php 1`] = `
+<?php
+
+
+namespace Foo;
+
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Foo;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-50.php - php-verify: mixed-50.php 1`] = `
+<?php
+declare(strict_types=1);
+namespace Vendor\\Package;
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+declare(strict_types=1);
+namespace Vendor\\Package;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-51.php - php-verify: mixed-51.php 1`] = `
+<?php
+
+declare(strict_types=1);
+
+namespace Vendor\\Package;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+namespace Vendor\\Package;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
+exports[`mixed-52.php - php-verify: mixed-52.php 1`] = `
+<?php
+
+
+declare(strict_types=1);
+
+
+namespace Vendor\\Package;
+
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+namespace Vendor\\Package;
+
+$var = 1;
+$var = 2;
+?>
+<div></div>
+
+`;
+
 exports[`only-html.php - php-verify: only-html.php 1`] = `
 <!DOCTYPE html>
 <html>

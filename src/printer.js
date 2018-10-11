@@ -927,7 +927,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
           : "";
         const shouldBreak = end - start > 1;
         const before = shouldBreak
-          ? isBlockNestedNode && !prevInlineNode
+          ? (isBlockNestedNode && !prevInlineNode) ||
+            (isProgramLikeNode(node) && start === 0)
             ? ""
             : hardline
           : "";
