@@ -1900,7 +1900,16 @@ function printNode(path, options, print) {
         concat([
           "new ",
           path.call(print, "what"),
-          isAnonymousClassNode ? "" : printArgumentsList(path, options, print)
+          isAnonymousClassNode
+            ? ""
+            : node.arguments.length === 1 &&
+              isStringOnItsOwnLine(
+                node.arguments[0],
+                options.originalText,
+                options
+              )
+              ? concat(["(", join(", ", path.map(print, "arguments")), ")"])
+              : printArgumentsList(path, options, print)
         ])
       );
     }
