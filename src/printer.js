@@ -19,6 +19,7 @@ const {
 } = require("prettier").doc.builders;
 const { willBreak, removeLines } = require("prettier").doc.utils;
 const {
+  isPreviousLineEmpty,
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
   getNextNonSpaceNonCommentCharacterIndex
@@ -1476,30 +1477,30 @@ function printNode(path, options, print) {
 
       return concat(["declare(", printDeclareArguments(path), ");"]);
     }
-    case "namespace": {
-      const printed = printLines(path, options, print);
-      const hasName = node.name && typeof node.name === "string";
-
+    case "namespace":
       return concat([
         "namespace ",
-        hasName ? node.name : "",
-        node.withBrackets
-          ? concat([hasName ? " " : "", "{"])
-          : concat([
-              ";",
-              // Second hardline for newline between `namespace` and first child node
-              node.children.length > 0
-                ? concat([node.comments ? "" : hardline, hardline])
-                : ""
-            ]),
+        node.name && typeof node.name === "string"
+          ? concat([node.name, node.withBrackets ? " " : ""])
+          : "",
+        node.withBrackets ? "{" : ";",
         node.children.length > 0
           ? node.withBrackets
-            ? indent(concat([hardline, printed]))
-            : printed
+            ? indent(concat([hardline, printLines(path, options, print)]))
+            : concat([
+                hardline,
+                isPreviousLineEmpty(
+                  options.originalText,
+                  node.children[0],
+                  options
+                )
+                  ? hardline
+                  : "",
+                printLines(path, options, print)
+              ])
           : "",
         node.withBrackets ? concat([hardline, "}"]) : ""
       ]);
-    }
     case "usegroup":
       return group(
         concat([

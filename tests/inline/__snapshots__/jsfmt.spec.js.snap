@@ -1770,7 +1770,6 @@ $var = 2;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 namespace Foo;
-
 $var = 1;
 $var = 2;
 ?>
@@ -1834,7 +1833,6 @@ $var = 2;
 <?php
 declare(strict_types=1);
 namespace Vendor\\Package;
-
 $var = 1;
 $var = 2;
 ?>
