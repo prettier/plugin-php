@@ -14,6 +14,39 @@ eval(
 string
 string'
 );
+eval("string
+string
+string
+$var");
+eval(
+    "string
+string
+string
+$var"
+);
+eval(\`string
+string
+string
+$var\`);
+eval(
+\`string
+string
+string
+$var\`
+);
+eval(<<<FOO
+string
+string
+string
+$var
+FOO
+);
+eval(<<<'FOO'
+string
+string
+string
+FOO
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 eval('return 1;');
@@ -34,6 +67,43 @@ eval(
     'string
 string
 string'
+);
+eval("string
+string
+string
+$var"
+);
+eval(
+    "string
+string
+string
+$var"
+);
+eval(\`string
+string
+string
+$var\`
+);
+eval(
+    \`string
+string
+string
+$var\`
+);
+eval(
+    <<<FOO
+string
+string
+string
+$var
+FOO
+);
+eval(
+    <<<'FOO'
+string
+string
+string
+FOO
 );
 
 `;

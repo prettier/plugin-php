@@ -19,6 +19,39 @@ exit(
 string
 string'
 );
+exit("string
+string
+string
+$var");
+exit(
+"string
+string
+string
+$var"
+);
+exit(\`string
+string
+string
+$var\`);
+exit(
+\`string
+string
+string
+$var\`
+);
+exit(<<<FOO
+string
+string
+string
+$var
+FOO
+);
+exit(<<<'FOO'
+string
+string
+string
+FOO
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 exit("exit info");
@@ -40,6 +73,41 @@ exit(
     'string
 string
 string'
+);
+exit("string
+string
+string
+$var");
+exit(
+    "string
+string
+string
+$var"
+);
+exit(\`string
+string
+string
+$var\`);
+exit(
+    \`string
+string
+string
+$var\`
+);
+exit(
+    <<<FOO
+string
+string
+string
+$var
+FOO
+);
+exit(
+    <<<'FOO'
+string
+string
+string
+FOO
 );
 
 `;

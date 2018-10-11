@@ -148,6 +148,27 @@ new Foo('string
 string
 string', $b
 );
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+"string
+string
+string
+$var"
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+\`string
+string
+string
+$var\`
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Foo();
@@ -330,6 +351,27 @@ new Foo(
 string
 string',
     $b
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+    "string
+string
+string
+$var"
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+    \`string
+string
+string
+$var\`
 );
 
 `;
