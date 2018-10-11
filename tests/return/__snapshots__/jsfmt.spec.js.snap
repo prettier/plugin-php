@@ -227,6 +227,14 @@ return is_string($this->recallerWithClass) && Str::contains($this->recaller, '|'
 return Str::contains($this->recaller, '|') && is_string($this->recallerWithClass);
 
 return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ?? null === true;
+return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ??
+    null === true;
+return in_array('odbc', $this->getAvailableDrivers()) && ($config['odbc'] ?? null) === true;
+return in_array('odbc', $this->getAvailableDrivers()) &&
+    ($config['odbc'] ?? null) === true;
+return ($map[$name] ?? $name).(! is_null($parameters) ? ':'.$parameters : '');
+return ($map[$name] ?? $name) .
+    (!is_null($parameters) ? ':' . $parameters : '');
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -552,5 +560,15 @@ return Str::contains($this->recaller, '|') &&
 
 return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ??
     null === true;
+return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ??
+    null === true;
+return in_array('odbc', $this->getAvailableDrivers()) &&
+    ($config['odbc'] ?? null) === true;
+return in_array('odbc', $this->getAvailableDrivers()) &&
+    ($config['odbc'] ?? null) === true;
+return ($map[$name] ?? $name) .
+    (!is_null($parameters) ? ':' . $parameters : '');
+return ($map[$name] ?? $name) .
+    (!is_null($parameters) ? ':' . $parameters : '');
 
 `;
