@@ -125,3 +125,23 @@ class A {
         return new static($arg, $arg, $arg);
     }
 }
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string'
+);
+
+new Foo($a, 'string
+string
+string'
+);
+
+new Foo('string
+string
+string', $b
+);
