@@ -145,3 +145,24 @@ new Foo('string
 string
 string', $b
 );
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+"string
+string
+string
+$var"
+);
+new Foo(`string
+string
+string
+$var`);
+new Foo(
+`string
+string
+string
+$var`
+);

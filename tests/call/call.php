@@ -214,3 +214,79 @@ string
 string
 string', $c
 );
+
+call("string $var string");
+call(
+    "string $var string"
+);
+
+call("string
+string
+string
+$var");
+call(
+"string
+string
+string
+$var"
+);
+
+call(`string $var string`);
+call(
+    `string $var string`
+);
+
+call(`string
+string
+string
+$var`);
+call(
+`string
+string
+string
+$var`
+);
+
+call(<<<FOO
+string
+string
+string
+$var
+FOO
+);
+
+call(<<<'FOO'
+string
+string
+string
+FOO
+);
+
+call(
+    <<<FOO
+string
+string
+string
+$var
+FOO
+    ,
+    <<<FOO
+string
+string
+string
+$var
+FOO
+);
+
+call(<<<'FOO'
+string
+string
+string
+FOO
+,
+    <<<'FOO'
+string
+string
+string
+FOO
+);

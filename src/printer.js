@@ -1416,9 +1416,18 @@ function stringHasNewLines(node) {
 
 function isStringOnItsOwnLine(node, text, options) {
   return (
-    node.kind === "string" &&
+    (node.kind === "string" ||
+      (node.kind === "encapsed" &&
+        (node.type === "string" || node.type === "shell"))) &&
     stringHasNewLines(node) &&
-    !hasNewline(text, options.locStart(node), { backwards: true })
+    !hasNewline(
+      text,
+      // TODO: https://github.com/glayzzle/php-parser/issues/204
+      node.kind === "string"
+        ? options.locStart(node)
+        : options.locStart(node) - 1,
+      { backwards: true }
+    )
   );
 }
 
@@ -2518,7 +2527,7 @@ function printNode(path, options, print) {
                 const node = valuePath.getValue();
 
                 if (node.kind === "string") {
-                  return node.raw;
+                  return join(literalline, node.raw.split(/\r?\n/g));
                 }
 
                 if (node.kind === "variable") {
