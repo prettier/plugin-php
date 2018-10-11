@@ -63,7 +63,8 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
       precedingNode,
       followingNode,
       comment
-    )
+    ) ||
+    handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
 
@@ -130,7 +131,8 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
       precedingNode,
       followingNode,
       comment
-    )
+    ) ||
+    handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
 
@@ -670,6 +672,38 @@ function handleNamespaceComments(
   return false;
 }
 
+function handleDeclareComments(
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment
+) {
+  if (!enclosingNode || enclosingNode.kind !== "declare") {
+    return false;
+  }
+
+  if (
+    !followingNode ||
+    enclosingNode.what[Object.keys(enclosingNode.what)[0]] === followingNode
+  ) {
+    if (enclosingNode.mode === "none") {
+      addTrailingComment(enclosingNode, comment);
+    } else {
+      addDanglingComment(enclosingNode, comment);
+    }
+
+    return true;
+  }
+
+  if (followingNode && precedingNode) {
+    addLeadingComment(followingNode, comment);
+
+    return true;
+  }
+
+  return false;
+}
+
 // https://github.com/prettier/prettier/blob/master/src/main/comments.js#L335
 function printComment(commentPath, options) {
   const comment = commentPath.getValue();
@@ -745,10 +779,42 @@ function isBlockComment(comment) {
   return comment.kind === "commentblock";
 }
 
+function getCommentChildNodes(node) {
+  if (typeof node !== "object") {
+    return [];
+  }
+
+  const getChildNodes = node =>
+    Object.keys(node)
+      .filter(
+        n =>
+          n !== "kind" &&
+          n !== "loc" &&
+          n !== "errors" &&
+          n !== "extra" &&
+          n !== "comments" &&
+          n !== "leadingComments" &&
+          n !== "enclosingNode" &&
+          n !== "precedingNode" &&
+          n !== "followingNode"
+      )
+      .map(n => node[n]);
+
+  return getChildNodes(node);
+}
+
+function canAttachComment(node) {
+  return (
+    node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
+  );
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
+  getCommentChildNodes,
+  canAttachComment,
   isBlockComment,
   printDanglingComments,
   hasLeadingComment,

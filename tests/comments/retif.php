@@ -27,3 +27,31 @@ $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the
 $var = $process->env->NODE_ENV === "production"
     ? call("./configureProdStore") // a
     : call("./configureDevStore"); // b
+
+$var = $a
+    // Comment
+    ? $b
+    // Comment
+    : $c;
+
+$var = $a
+    ? // Comment
+    $b
+    : // Comment
+    $c;
+
+$var = $a
+    ? $b
+    // Comment
+    : $c
+    // Comment
+    ;
+
+$var = $a
+    ? $b  // Comment
+    : $c  // Comment
+;
+
+$var = $a
+    ? $b // Comment
+    : $c; // Comment
