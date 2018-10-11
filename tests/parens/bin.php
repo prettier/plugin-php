@@ -307,3 +307,13 @@ $a ** -$b;
 ($a * $b) ** $c;
 $a ** ($b * $c);
 ($a % $b) ** $c;
+
+$var = $var + $var ?? '';
+$var = $var + ($var ?? '');
+$var = ($var + $var) ?? '';
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
