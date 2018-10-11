@@ -1629,6 +1629,45 @@ for($i = 1; $i < 10; $i++)
 
 for (;;) { // Comment
 }
+
+for (
+    // Comment
+    $i = 0;
+    // Comment
+    $i <= 5;
+    // Comment
+    $i++
+) {
+}
+
+for (
+    $i = 0; // Comment
+    $i <= 5; // Comment
+    $i++ // Comment
+) {
+}
+
+for ( // Comment
+    $i = 0;
+    $i <= 5;
+    $i++
+) {
+}
+
+for (
+    // Comment
+    $i = 1,
+    // Comment
+    $j = 0;
+    // Comment
+    $i <= 10;
+    // Comment
+    $j += $i,
+    // Comment
+    print $i,
+    // Comment
+    print $i++
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -1666,6 +1705,46 @@ for (;;) {
     // Comment
 }
 
+for (
+    // Comment
+    $i = 0;
+    // Comment
+    $i <= 5;
+    // Comment
+    $i++
+) {
+}
+
+for (
+    $i = 0; // Comment
+    $i <= 5; // Comment
+    $i++ // Comment
+) {
+}
+
+for (
+    // Comment
+    $i = 0;
+    $i <= 5;
+    $i++
+) {
+}
+
+for (
+    // Comment
+    $i = 1,
+    // Comment
+    $j = 0;
+    // Comment
+    $i <= 10;
+    // Comment
+    $j += $i,
+    // Comment
+    print $i,
+    // Comment
+    print $i++
+);
+
 `;
 
 exports[`foreach.php - php-verify: foreach.php 1`] = `
@@ -1700,6 +1779,20 @@ as $y) {};
 foreach($x as
 //a
 $y) {};
+
+foreach (
+    // Comment
+    $arr as &$value
+) {
+}
+
+foreach (
+    $arr
+    as $key =>
+        // Comment
+        $value
+) {
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -1723,10 +1816,10 @@ foreach (
 ) {
 }
 
-/*a*/
 foreach (
     $x //b
-    as $y //c
+    as /*a*/
+    $y //c
 ) {
 }
 
@@ -1739,12 +1832,33 @@ foreach (
 foreach ($x /*a*/ as $y) {
 } //b //c
 
-//a
-foreach ($x as $y) {
+foreach (
+    $x
+    as //a
+    $y
+) {
 }
 
-//a
-foreach ($x as $y) {
+foreach (
+    $x
+    as //a
+    $y
+) {
+}
+
+foreach (
+    // Comment
+    $arr
+    as &$value
+) {
+}
+
+foreach (
+    $arr
+    as $key =>
+        // Comment
+        $value
+) {
 }
 
 `;

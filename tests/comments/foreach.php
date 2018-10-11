@@ -29,3 +29,17 @@ as $y) {};
 foreach($x as
 //a
 $y) {};
+
+foreach (
+    // Comment
+    $arr as &$value
+) {
+}
+
+foreach (
+    $arr
+    as $key =>
+        // Comment
+        $value
+) {
+}

@@ -336,6 +336,7 @@ function handleForComments(
   comment
 ) {
   if (
+    !followingNode &&
     enclosingNode &&
     (enclosingNode.kind === "for" || enclosingNode.kind === "foreach")
   ) {
