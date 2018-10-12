@@ -2547,7 +2547,20 @@ function printNode(path, options, print) {
                   return print(valuePath);
                 }
 
-                return concat(["{", removeLines(print(valuePath)), "}"]);
+                const hasCurly =
+                  options.originalText[
+                    getNextNonSpaceNonCommentCharacterIndex(
+                      options.originalText,
+                      node,
+                      options
+                    )
+                  ] === "}";
+
+                return concat([
+                  hasCurly ? "{" : "",
+                  removeLines(print(valuePath)),
+                  hasCurly ? "}" : ""
+                ]);
               }, "value")
             ),
             getEncapsedQuotes(node, { opening: false }),

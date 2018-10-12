@@ -134,6 +134,35 @@ $var =  $this->swift->{'set'}($address, $name);
 $var =  $this->swift->{'set' . 'Offset'}($address, $name);
 $var =  $this->swift->{"set"}($address, $name);
 $var =  $this->swift->{"set{$type}"}($address, $name);
+
+$var = "string \${$var} string";
+$var = "string $var string";
+$var = "string {$var} string";
+$var = "string $var->foo string";
+$var = "string {$var->foo} string";
+$var = "string $var->foo->baz string";
+$var = "string {$var->foo->bar} string";
+$var = "string {$var->call()} string";
+$var = "string {$var::$foo} string";
+$var = "string {$var::call()} string";
+$var = "string $var[0] string";
+$var = "string {$var[0]} string";
+$var = "string $var[0][0] string";
+$var = "string {$var[0][0]} string";
+$var = "string $var[0]->bar string";
+$var = "string {$var[0]->bar} string";
+$var = "string {\${$var}} string";
+$var = "string {\${call()}} string";
+$var = "string {\${$var->foo}} string";
+$var = "string {\${$var->call()}} string";
+$var = "string {\${$var::$var}} string";
+$var = "string {\${$var::call()}} string";
+$var = "string $foo->{$baz[1]} string";
+$var = "string {$foo->{$baz[1]}} string";
+$var = "string {$var->foo->bar/* Comment */} string";
+$var = "string {$var->foo->bar  /* Comment */   } string";
+$var = "string {$var->foo->bar
+} string";
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $encapsShell = \`a $b\`;
@@ -295,6 +324,34 @@ $var = $this->swift->{'set'}($address, $name);
 $var = $this->swift->{'set' . 'Offset'}($address, $name);
 $var = $this->swift->{"set"}($address, $name);
 $var = $this->swift->{"set{$type}"}($address, $name);
+
+$var = "string \${$var} string";
+$var = "string $var string";
+$var = "string {$var} string";
+$var = "string $var->foo string";
+$var = "string {$var->foo} string";
+$var = "string $var->foo->baz string";
+$var = "string {$var->foo->bar} string";
+$var = "string {$var->call()} string";
+$var = "string {$var::$foo} string";
+$var = "string {$var::call()} string";
+$var = "string $var[0] string";
+$var = "string {$var[0]} string";
+$var = "string $var[0][0] string";
+$var = "string {$var[0][0]} string";
+$var = "string $var[0]->bar string";
+$var = "string {$var[0]->bar} string";
+$var = "string \${$var} string";
+$var = "string \${call()} string";
+$var = "string \${$var->foo} string";
+$var = "string \${$var->call()} string";
+$var = "string \${$var::$var} string";
+$var = "string \${$var::call()} string";
+$var = "string $foo->{$baz[1]} string";
+$var = "string {$foo->{$baz[1]}} string";
+$var = "string {$var->foo->bar /* Comment */} string";
+$var = "string {$var->foo->bar /* Comment */} string";
+$var = "string {$var->foo->bar} string";
 
 `;
 

@@ -156,3 +156,7 @@ $var = "string {${$var::$var}} string";
 $var = "string {${$var::call()}} string";
 $var = "string $foo->{$baz[1]} string";
 $var = "string {$foo->{$baz[1]}} string";
+$var = "string {$var->foo->bar/* Comment */} string";
+$var = "string {$var->foo->bar  /* Comment */   } string";
+$var = "string {$var->foo->bar
+} string";
