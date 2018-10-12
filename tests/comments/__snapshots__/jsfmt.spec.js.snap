@@ -1371,6 +1371,312 @@ declare(strict_types=1); // Comment
 
 `;
 
+exports[`declare-1.php - php-verify: declare-1.php 1`] = `
+<?php
+
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+
+declare(strict_types=1);
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+
+declare(strict_types=1);
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-2.php - php-verify: declare-2.php 1`] = `
+<?php
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+declare(strict_types=1);
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+declare(strict_types=1);
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-3.php - php-verify: declare-3.php 1`] = `
+<?php
+
+
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+
+
+declare(strict_types=1);
+
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+
+declare(strict_types=1);
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-4.php - php-verify: declare-4.php 1`] = `
+<?php
+
+// Comment
+declare(strict_types=1); // Comment
+// Comment
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+// Comment
+declare(strict_types=1); // Comment
+// Comment
+
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-5.php - php-verify: declare-5.php 1`] = `
+<?php
+// Comment
+declare(strict_types=1); // Comment
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+declare(strict_types=1); // Comment
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-6.php - php-verify: declare-6.php 1`] = `
+<?php declare(strict_types=1); // Comment
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1); // Comment
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-7.php - php-verify: declare-7.php 1`] = `
+<?php declare(strict_types=1); // Comment
+
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1); // Comment
+
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+
+use PHPUnit_Framework_TestCase;
+
+`;
+
+exports[`declare-8.php - php-verify: declare-8.php 1`] = `
+<?php declare(strict_types=1);
+/**
+ * QueryBuilder for PHP
+ *
+ * VerbBase class
+ *
+ * @version 1.1
+ * @date 2015-12-13
+ */
+
+namespace QueryBuilder\\QueryBuilders;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1);
+/**
+ * QueryBuilder for PHP
+ *
+ * VerbBase class
+ *
+ * @version 1.1
+ * @date 2015-12-13
+ */
+
+namespace QueryBuilder\\QueryBuilders;
+
+`;
+
+exports[`declare-9.php - php-verify: declare-9.php 1`] = `
+<?php
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2018 webtrees development team
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+declare(strict_types=1);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2018 webtrees development team
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+declare(strict_types=1);
+
+`;
+
+exports[`declare-10.php - php-verify: declare-10.php 1`] = `
+<?php
+
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2018 webtrees development team
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+declare(strict_types=1);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2018 webtrees development team
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+declare(strict_types=1);
+
+`;
+
 exports[`do.php - php-verify: do.php 1`] = `
 <?php
 // Comment
