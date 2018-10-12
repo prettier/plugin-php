@@ -2082,6 +2082,7 @@ namespace Foo;
 <?php
 
 namespace Foo;
+
 $a->c();
 
 `;

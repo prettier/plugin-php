@@ -3473,6 +3473,293 @@ namespace Monolog\\Handler;
 
 `;
 
+exports[`namespace-10.php - php-verify: namespace-10.php 1`] = `
+<?php
+
+namespace Monolog\\Formatter;
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Monolog\\Formatter;
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-11.php - php-verify: namespace-11.php 1`] = `
+<?php
+
+namespace Monolog\\Formatter;
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Monolog\\Formatter;
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-12.php - php-verify: namespace-12.php 1`] = `
+<?php
+
+// Comment
+namespace Monolog\\Formatter;
+// Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+// Comment
+namespace Monolog\\Formatter;
+// Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-13.php - php-verify: namespace-13.php 1`] = `
+<?php
+// Comment
+namespace Monolog\\Formatter;
+// Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+// Comment
+namespace Monolog\\Formatter;
+// Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-14.php - php-verify: namespace-14.php 1`] = `
+<?php
+
+namespace Monolog\\Formatter; // Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Monolog\\Formatter;
+
+// Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-15.php - php-verify: namespace-15.php 1`] = `
+<?php
+namespace Monolog\\Formatter; // Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Monolog\\Formatter;
+// Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-16.php - php-verify: namespace-16.php 1`] = `
+<?php
+namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Monolog\\Formatter;
+/* Comment */ /* Comment */ /* Comment */
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-17.php - php-verify: namespace-17.php 1`] = `
+<?php
+
+namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Monolog\\Formatter;
+
+/* Comment */ /* Comment */ /* Comment */
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-18.php - php-verify: namespace-18.php 1`] = `
+<?php
+
+namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */ // Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+namespace Monolog\\Formatter;
+
+/* Comment */ /* Comment */ /* Comment */ // Comment
+
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+`;
+
+exports[`namespace-19.php - php-verify: namespace-19.php 1`] = `
+<?php
+namespace Foo; // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Foo; // Comment
+
+`;
+
+exports[`namespace-20.php - php-verify: namespace-20.php 1`] = `
+<?php
+namespace Foo; // Comment
+
+use Foo\\Bar;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+namespace Foo;
+
+// Comment
+
+use Foo\\Bar;
+
+`;
+
 exports[`new.php - php-verify: new.php 1`] = `
 <?php
 $a = new Foo(/*Comment*/);
