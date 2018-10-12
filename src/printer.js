@@ -49,6 +49,7 @@ const {
   getNodeKindIncludingLogical,
   hasEmptyBody,
   hasNewline,
+  hasNewlineInRange,
   isNextLineEmptyAfterNamespace
 } = require("./util");
 
@@ -2234,7 +2235,17 @@ function printNode(path, options, print) {
       const needsForcedTrailingComma = lastElem === null;
 
       const isAssociative = !!(node[index][0] && node[index][0].key);
-      const shouldBreak = isAssociative && node.loc.source.includes("\n");
+      const [firstProperty] = node[index]
+        .map(() => node[index][0])
+        .sort((a, b) => options.locStart(a) - options.locStart(b));
+      const shouldBreak =
+        isAssociative &&
+        firstProperty &&
+        hasNewlineInRange(
+          options.originalText,
+          options.locStart(node),
+          options.locStart(firstProperty)
+        );
 
       return group(
         concat([

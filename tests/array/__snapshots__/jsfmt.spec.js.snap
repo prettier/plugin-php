@@ -690,12 +690,8 @@ $multiline = [
         'not' => 'collapse'
     ]
 ];
-$multiline = [
-    'don\\'t' => 'collapse'
-];
-$multiline = array(
-    'don\\'t' => 'collapse'
-);
+$multiline = ['don\\'t' => 'collapse'];
+$multiline = array('don\\'t' => 'collapse');
 
 $mixed = [
     'only' => ['partly' => 'collapsed']
@@ -711,9 +707,7 @@ $arr = array($var);
 $arr = [$var];
 $arr = [$var];
 $arr = [$foo => $bar];
-$arr = [
-    $foo => $bar
-];
+$arr = [$foo => $bar];
 
 $collapse = ["not", "associative"];
 $collapse = ["not", "associative"];

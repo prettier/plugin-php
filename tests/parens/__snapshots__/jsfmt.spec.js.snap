@@ -2163,7 +2163,9 @@ new Translator(
     new MessageFormatter(),
     'en',
     $someOtherVar,
-    array('foo' => 'bar')
+    array(
+        'foo' => 'bar'
+    )
 ); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar'
