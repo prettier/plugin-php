@@ -522,6 +522,7 @@ function skip(chars) {
 }
 
 const skipSpaces = skip(" \t");
+const skipEverythingButNewLine = skip(/[^\r\n]/);
 
 // This one doesn't use the above helper function because it wants to
 // test \r\n in order and `skip` doesn't support ordering and we only
@@ -591,6 +592,13 @@ function hasEmptyBody(path, name = "body") {
   );
 }
 
+function isNextLineEmptyAfterNamespace(text, node, locStart) {
+  let idx = locStart(node);
+  idx = skipEverythingButNewLine(text, idx);
+  idx = skipNewline(text, idx);
+  return hasNewline(text, idx);
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -620,5 +628,6 @@ module.exports = {
   getNodeKindIncludingLogical,
   hasNewline,
   hasNewlineInRange,
-  hasEmptyBody
+  hasEmptyBody,
+  isNextLineEmptyAfterNamespace
 };

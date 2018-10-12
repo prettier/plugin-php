@@ -19,7 +19,6 @@ const {
 } = require("prettier").doc.builders;
 const { willBreak, removeLines } = require("prettier").doc.utils;
 const {
-  isPreviousLineEmpty,
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
   getNextNonSpaceNonCommentCharacterIndex
@@ -49,7 +48,8 @@ const {
   isProgramLikeNode,
   getNodeKindIncludingLogical,
   hasEmptyBody,
-  hasNewline
+  hasNewline,
+  isNextLineEmptyAfterNamespace
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -1489,10 +1489,10 @@ function printNode(path, options, print) {
             ? indent(concat([hardline, printLines(path, options, print)]))
             : concat([
                 hardline,
-                isPreviousLineEmpty(
+                isNextLineEmptyAfterNamespace(
                   options.originalText,
-                  node.children[0],
-                  options
+                  node,
+                  options.locStart
                 )
                   ? hardline
                   : "",

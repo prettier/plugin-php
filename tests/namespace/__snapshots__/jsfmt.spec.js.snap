@@ -51,6 +51,7 @@ call();
 <?php
 
 namespace Foo;
+
 call();
 
 `;
