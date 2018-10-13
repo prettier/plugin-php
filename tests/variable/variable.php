@@ -49,3 +49,11 @@ $var = (Foo::bar())['baz']();
 // $var = (Foo::$bar)['baz'];
 
 $$$$$$$$$$var = "I like playing in the park";
+
+$var = ${$a[1]};
+$var = ${$a}[1];
+$var = ${"name_$type"};
+$var = ${ 'price_for_' . $today};
+${date("M")} = "Worked";
+${$a}[] =  "four" ;
+${$base.$suffix} = "whatever";
