@@ -126,6 +126,20 @@ function needsParens(path) {
           return false;
       }
     }
+    case "propertylookup":
+    case "staticlookup": {
+      switch (parent.kind) {
+        case "call":
+          return (
+            name === "what" &&
+            parent.what === node &&
+            node.parenthesizedExpression
+          );
+
+        default:
+          return false;
+      }
+    }
     case "clone":
     case "new": {
       switch (parent.kind) {
