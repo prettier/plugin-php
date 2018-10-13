@@ -290,3 +290,28 @@ string
 string
 FOO
 );
+
+$var = ($this->foo)();
+$var = ($this->foo())();
+$var = ($this->foo->bar)();
+$var = ($this->foo->bar())();
+$var = ($this->foo->bar->baz->foo->bar->baz)();
+$var = ($this->foo()->bar()->baz()->foo()->bar()->baz())();
+$var = ($this->foo()->bar()->baz()->foo()->bar()->baz)();
+$var = ($this['foo'])();
+$var = ($this['foo']['bar'])();
+$var = ($this::$foo)();
+$var = $var::foo()();
+$var = ($var::foo())();
+$var = ('test')();
+$var = (('test')());
+$var = (('test')())();
+$var = (('test')())->bar();
+$var = ((('test')())->bar)();
+$var = (['Foo', 'bar'])();
+$var = (['Foo', 'bar'])->bar();
+$var = ((['Foo', 'bar'])->bar)();
+$var = ($var->foo)()();
+$var = (($var->foo)())();
+$var = (($var->foo)()->bar)();
+$var = ((($var->foo)()->bar)()->baz)();

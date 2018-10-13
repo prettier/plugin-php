@@ -246,6 +246,23 @@ function printMemberChain(path, options, print) {
   });
   path.call(what => traverse(what), "what");
 
+  // Restore parens around `propertylookup` and `staticlookup` nodes with call.
+  // $value = ($object->foo)();
+  // $value = ($object::$foo)();
+  for (let i = 0; i < printedNodes.length; ++i) {
+    if (
+      printedNodes[i].node.kind === "call" &&
+      printedNodes[i - 1] &&
+      ["propertylookup", "staticlookup"].includes(
+        printedNodes[i - 1].node.kind
+      ) &&
+      printedNodes[i - 1].needsParens
+    ) {
+      printedNodes[0].printed = concat(["(", printedNodes[0].printed]);
+      printedNodes[i - 1].printed = concat([printedNodes[i - 1].printed, ")"]);
+    }
+  }
+
   // create groups from list of nodes, i.e.
   //   [identifier a, call, isLookupNode b, isLookupNode c, call,
   //    isLookupNode d, call]
