@@ -77,3 +77,82 @@ EOD
 ) {
     echo $b;
 }
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . $var;
+
+$var = $var . $var . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . $var;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . <<<'EOF'
+string
+string
+string
+EOF
+    . $var;

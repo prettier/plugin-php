@@ -238,9 +238,18 @@ function isFirstChildrenInlineNode(path) {
 function docShouldHaveTrailingNewline(path) {
   const node = path.getValue();
   const parent = path.getParentNode();
+  const parentParent = path.getParentNode(1);
 
   if (!parent) {
     return false;
+  }
+
+  if (
+    parent.kind === "bin" &&
+    (parent.left === node ||
+      (parent.right === node && parentParent.kind === "bin"))
+  ) {
+    return true;
   }
 
   if (parent.kind === "echo") {
@@ -251,7 +260,6 @@ function docShouldHaveTrailingNewline(path) {
   }
 
   if (parent.kind === "entry") {
-    const parentParent = path.getParentNode(1);
     const lastIndex = parentParent.items.length - 1;
     const index = parentParent.items.indexOf(parent);
 
