@@ -84,6 +84,22 @@ class A {
         sTaTic::who();
     }
 
+    public function newSelf() {
+        return new SeLf();
+    }
+
+    public function newParent() {
+        return new pArEnT();
+    }
+
+    public function returnSelf(): sElF {
+        return $this;
+    }
+
+    public function returnParent(): pArEnT {
+        return $this;
+    }
+
     public function foo(self $arg) {}
     public function foo2(sElF $arg) {}
     public function foo3(parent $arg) {}
