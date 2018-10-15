@@ -2643,7 +2643,7 @@ function printNode(path, options, print) {
       let normalizedName = node.name.toLowerCase();
 
       if (
-        (parent.kind === "staticlookup" &&
+        ((parent.kind === "staticlookup" || parent.kind === "new") &&
           parent.what === node &&
           ["self", "parent", "static"].includes(normalizedName)) ||
         (parent.kind === "parameter" &&
@@ -2675,7 +2675,9 @@ function printNode(path, options, print) {
           "object",
           "array",
           "callable",
-          "void"
+          "void",
+          "self",
+          "parent"
         ].includes(normalizedName)
           ? normalizedName
           : node.name;
