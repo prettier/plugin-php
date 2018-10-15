@@ -1971,7 +1971,11 @@ function printNode(path, options, print) {
             (firstNonMemberParent.kind === "assign" &&
               firstNonMemberParent.left.kind !== "variable"))) ||
         node.kind === "offsetlookup" ||
-        ((node.what.kind === "identifier" || node.what.kind === "variable") &&
+        ((node.what.kind === "identifier" ||
+          node.what.kind === "variable" ||
+          // TODO: https://github.com/glayzzle/php-parser/issues/183
+          (node.what.kind === "constref" &&
+            node.what.name.toLowerCase() === "static")) &&
           (node.offset.kind === "constref" ||
             node.offset.kind === "variable" ||
             node.offset.kind === "encapsed") &&
