@@ -81,3 +81,7 @@ $obj::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 $var = ($this->modelClass)::where('name', 'like', strtoupper("%${key}%"))->get();
 
 MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClass::class;
+
+$var = static::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];
+$var = self::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];
+$var = parent::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];

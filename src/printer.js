@@ -1383,7 +1383,11 @@ function isLookupNodeChain(node) {
     return false;
   }
 
-  if (["variable", "identifier"].includes(node.what.kind)) {
+  if (
+    ["variable", "identifier"].includes(node.what.kind) ||
+    // TODO: https://github.com/glayzzle/php-parser/issues/183
+    (node.what.kind === "constref" && node.what.name.toLowerCase() === "static")
+  ) {
     return true;
   }
 
