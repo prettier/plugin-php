@@ -315,3 +315,29 @@ $var = ($var->foo)()();
 $var = (($var->foo)())();
 $var = (($var->foo)()->bar)();
 $var = ((($var->foo)()->bar)()->baz)();
+
+$obj = call('return new class($value)
+{
+    private $foo;
+
+    public function __construct($foo)
+    {
+        $this->foo = $foo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFoo()
+    {
+        return $this->foo;
+    }
+
+    /**
+     * @param mixed $foo
+     */
+    public function setFoo($foo)
+    {
+        $this->foo = $foo;
+    }
+};');
