@@ -44,3 +44,29 @@ string
 string
 FOO
 );
+
+$obj = eval('return new class($value)
+{
+    private $foo;
+
+    public function __construct($foo)
+    {
+        $this->foo = $foo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFoo()
+    {
+        return $this->foo;
+    }
+
+    /**
+     * @param mixed $foo
+     */
+    public function setFoo($foo)
+    {
+        $this->foo = $foo;
+    }
+};');

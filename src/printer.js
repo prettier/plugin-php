@@ -2123,8 +2123,10 @@ function printNode(path, options, print) {
           "eval(",
           isStringOnItsOwnLine(node.source, options.originalText, options)
             ? path.call(print, "source")
-            : indent(concat([softline, path.call(print, "source")])),
-          softline,
+            : concat([
+                indent(concat([softline, path.call(print, "source")])),
+                softline
+              ]),
           ")"
         ])
       );
