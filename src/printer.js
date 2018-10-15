@@ -773,7 +773,17 @@ function printBinaryExpression(
       getNodeKindIncludingLogical(node.right) !==
         getNodeKindIncludingLogical(node);
 
-    parts.push(" ", shouldGroup ? group(right) : right);
+    parts.push(
+      node.left.kind === "nowdoc" ||
+        (node.left.kind === "encapsed" && node.left.type === "heredoc") ||
+        (node.left.kind === "bin" &&
+          (node.left.right.kind === "nowdoc" ||
+            (node.left.right.kind === "encapsed" &&
+              node.left.right.type === "heredoc")))
+        ? ""
+        : " ",
+      shouldGroup ? group(right) : right
+    );
   } else {
     // Our stopping case. Simply print the node normally.
     parts.push(path.call(print));
