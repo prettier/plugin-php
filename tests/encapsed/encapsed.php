@@ -160,3 +160,72 @@ $var = "string {$var->foo->bar/* Comment */} string";
 $var = "string {$var->foo->bar  /* Comment */   } string";
 $var = "string {$var->foo->bar
 } string";
+
+$expected = array(
+    'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'foo' => 'bar'
+);
+$expected = array(
+    'foo' => 'bar',
+    'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+);
+$expected = array(
+    'foo' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'bar' =>  <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'baz' =>  <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'collection' => array(
+        array(
+            'one' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+        ),
+        array(
+            'two' => <<<'EOT'
+foo
+# bar
+baz
+EOT
+        )
+    )
+);
