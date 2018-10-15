@@ -49,7 +49,8 @@ const {
   getNodeKindIncludingLogical,
   hasEmptyBody,
   hasNewline,
-  isNextLineEmptyAfterNamespace
+  isNextLineEmptyAfterNamespace,
+  shouldPrintHardlineBeforeTrailingComma
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -2261,7 +2262,14 @@ function printNode(path, options, print) {
           ),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
-            !needsForcedTrailingComma && shouldPrintComma(options) ? "," : ""
+            !needsForcedTrailingComma && shouldPrintComma(options)
+              ? concat([
+                  lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
+                    ? hardline
+                    : "",
+                  ","
+                ])
+              : ""
           ),
           comments.printDanglingComments(path, options, true),
           softline,

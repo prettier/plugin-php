@@ -250,6 +250,14 @@ function docShouldHaveTrailingNewline(path) {
     return index !== lastIndex;
   }
 
+  if (parent.kind === "entry") {
+    const parentParent = path.getParentNode(1);
+    const lastIndex = parentParent.items.length - 1;
+    const index = parentParent.items.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
   if (parent.kind === "array") {
     const lastIndex = parent.items.length - 1;
     const index = parent.items.indexOf(node);
@@ -599,6 +607,25 @@ function isNextLineEmptyAfterNamespace(text, node, locStart) {
   return hasNewline(text, idx);
 }
 
+function shouldPrintHardlineBeforeTrailingComma(lastElem) {
+  if (
+    lastElem.kind === "nowdoc" ||
+    (lastElem.kind === "encapsed" && lastElem.type === "heredoc")
+  ) {
+    return true;
+  }
+
+  if (
+    lastElem.kind === "entry" &&
+    (lastElem.value.kind === "nowdoc" ||
+      (lastElem.value.kind === "encapsed" && lastElem.value.type === "heredoc"))
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -629,5 +656,6 @@ module.exports = {
   hasNewline,
   hasNewlineInRange,
   hasEmptyBody,
-  isNextLineEmptyAfterNamespace
+  isNextLineEmptyAfterNamespace,
+  shouldPrintHardlineBeforeTrailingComma
 };
