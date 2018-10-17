@@ -104,3 +104,14 @@ foreach ($data as ["id" => $id, "name" => $name]) {
 
 function swap( &$a, &$b ): void
 { [ $a, $b ] = [ $b, $a ]; }
+
+$array = [1, 2];
+list($a, &$b) = $array;
+[$a, &$b] = $array;
+list(&$a, $b,, list(&$c, $d)) = $array;
+[&$a, $b,, [&$c, $d]] = $array;
+
+foreach ($array as list(&$a, $b)) {
+}
+foreach ($array as [&$a, $b]) {
+}
