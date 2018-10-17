@@ -9,3 +9,8 @@ if (
         $a
     )
 ) {}
+
+if (
+    isset // Comment
+    ($a)
+) {}

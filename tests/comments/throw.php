@@ -16,3 +16,9 @@ throw new ClassName( /* Comment */
 
 throw // Comment
     new Exception();
+
+throw
+    // Comment
+    new Exception();
+
+throw /* Comment */ new Foo() /* Comment */; // Comment

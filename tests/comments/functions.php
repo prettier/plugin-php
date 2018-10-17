@@ -9,3 +9,11 @@ function fn( // Comment
 function fn(
     // Comment
 ) {}
+function foo(
+    // Comment
+    int $a,
+    // Comment
+    string $b,
+    bool // Comment
+    $c
+) {}

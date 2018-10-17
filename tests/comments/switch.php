@@ -16,3 +16,20 @@ switch ($i) { // Comment
 } // Comment
 
 switch (/* Comment */ 1 /* Comment */) {}
+
+switch($i) {
+    case // Comment
+        0:
+        break;
+    // Comment
+    case 1:
+        break;
+
+    // Comment
+    case 2:
+        break;
+
+    case 3 // Comment
+        :
+        break;
+}
