@@ -558,6 +558,14 @@ function handleInlineComments(
   comment
 ) {
   if (followingNode && followingNode.kind === "inline") {
+    if (!followingNode.leadingComments) {
+      followingNode.leadingComments = [];
+    }
+
+    if (!followingNode.leadingComments.includes(comment)) {
+      followingNode.leadingComments.push(comment);
+    }
+
     return true;
   } else if (
     !enclosingNode &&

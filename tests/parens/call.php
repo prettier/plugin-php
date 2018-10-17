@@ -1,7 +1,8 @@
 <?php
 
 call();
-(call());
+// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/194#issuecomment-430657284
+// (call());
 
 $var = call();
 $var = (call());

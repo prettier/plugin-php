@@ -313,6 +313,7 @@ function lineShouldEndWithSemicolon(path) {
     return false;
   }
   const semiColonWhitelist = [
+    "expressionstatement",
     "array",
     "assign",
     "return",
