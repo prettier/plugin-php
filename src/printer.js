@@ -1475,6 +1475,8 @@ function printNode(path, options, print) {
         ])
       );
     }
+    case "expressionstatement":
+      return path.call(print, "expression");
     case "block":
       return concat([
         printLines(path, options, print),
@@ -2324,7 +2326,7 @@ function printNode(path, options, print) {
     case "yieldfrom":
       return concat([
         "yield from ",
-        node.comments
+        node.value.comments
           ? indent(path.call(print, "value"))
           : path.call(print, "value")
       ]);

@@ -18,6 +18,7 @@ function needsParens(path) {
     [
       //  No need parens for top level children of this nodes
       "program",
+      "expressionstatement",
       "namespace",
       "declare",
       "block",
