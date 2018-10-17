@@ -308,3 +308,36 @@ string
 string
 EOF
     . $var;
+
+$str = <<<EOD
+EOD;
+
+$str = <<<EOD
+
+EOD;
+
+$str = <<<EOD
+
+
+EOD;
+
+$str = <<<EOD
+
+
+
+EOD;
+
+$str = <<<EOD
+string
+EOD;
+
+$str = <<<EOD
+string
+string
+EOD;
+
+$str = <<<EOD
+string
+string
+string
+EOD;
