@@ -2918,6 +2918,14 @@ function fn( // Comment
 function fn(
     // Comment
 ) {}
+function foo(
+    // Comment
+    int $a,
+    // Comment
+    string $b,
+    bool // Comment
+    $c
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2940,6 +2948,15 @@ function fn()
 {
 }
 // Comment
+function foo(
+    // Comment
+    int $a,
+    // Comment
+    string $b,
+    bool $c // Comment
+)
+{
+}
 
 `;
 
@@ -2976,7 +2993,20 @@ exports[`goto.php - php-verify: goto.php 1`] = `
 echo 'Foo';
 
 /* Comment */a/* Comment */:/* Comment */
-echo 'Bar';~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo 'Bar';
+
+b:
+// Comment
+echo 'test';
+
+goto // Comment
+b;
+
+c: // Comment
+echo 'test';
+
+goto c; // Comment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 /* Comment */ goto a; /* Comment */ /* Comment */
@@ -2984,6 +3014,17 @@ echo 'Foo';
 
 /* Comment */ /* Comment */ a: /* Comment */
 echo 'Bar';
+
+b:
+// Comment
+echo 'test';
+
+goto b; // Comment
+
+c: // Comment
+echo 'test';
+
+goto c; // Comment
 
 `;
 
@@ -4727,10 +4768,13 @@ exports[`new.php - php-verify: new.php 1`] = `
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
+$a = new // Comment
+    Foo();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
+$a = new Foo(); // Comment
 
 `;
 
@@ -5215,6 +5259,23 @@ switch ($i) { // Comment
 } // Comment
 
 switch (/* Comment */ 1 /* Comment */) {}
+
+switch($i) {
+    case // Comment
+        0:
+        break;
+    // Comment
+    case 1:
+        break;
+
+    // Comment
+    case 2:
+        break;
+
+    case 3 // Comment
+        :
+        break;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 // Comment
@@ -5235,6 +5296,22 @@ switch ($i) {
 } // Comment
 
 switch (/* Comment */ 1 /* Comment */) {
+}
+
+switch ($i) {
+    case // Comment
+        0:
+        break;
+    // Comment
+    case 1:
+        break;
+
+    // Comment
+    case 2:
+        break;
+
+    case 3: // Comment
+        break;
 }
 
 `;

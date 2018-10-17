@@ -132,7 +132,13 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
       followingNode,
       comment
     ) ||
-    handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
+    handleDeclareComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
+    handleGoto(enclosingNode, comment)
   );
 }
 

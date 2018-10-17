@@ -1875,7 +1875,13 @@ function printNode(path, options, print) {
     case "case":
       return concat([
         node.test
-          ? concat(["case ", path.call(print, "test"), ":"])
+          ? concat([
+              "case ",
+              node.test.comments
+                ? indent(path.call(print, "test"))
+                : path.call(print, "test"),
+              ":"
+            ])
           : "default:",
         node.body
           ? node.body.children && node.body.children.length
