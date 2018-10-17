@@ -667,8 +667,6 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     ]);
   }
 
-  const lastArgument = getLast(args);
-
   return group(
     concat([
       "(",
@@ -677,11 +675,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
       ")"
     ]),
     {
-      shouldBreak:
-        printedArguments.some(willBreak) ||
-        anyArgEmptyLine ||
-        (lastArgument.kind === "encapsed" && lastArgument.type === "heredoc") ||
-        lastArgument.kind === "nowdoc"
+      shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine
     }
   );
 }
@@ -2564,7 +2558,6 @@ function printNode(path, options, print) {
         case "shell":
         case "heredoc":
           return concat([
-            node.type === "heredoc" ? breakParent : "",
             getEncapsedQuotes(node),
             // Respect `indent` for `heredoc` nodes
             node.type === "heredoc" ? literalline : "",
@@ -2648,12 +2641,11 @@ function printNode(path, options, print) {
     case "nowdoc":
       // Respect `indent` for `nowdoc` nodes
       return concat([
-        breakParent,
         "<<<'",
         node.label,
         "'",
         literalline,
-        node.value,
+        join(literalline, node.value.split(/\r?\n/g)),
         literalline,
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : ""
