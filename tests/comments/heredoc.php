@@ -7,3 +7,9 @@ EOD;
 /* Comment */
 
 echo $str;
+
+// Comment
+$var = <<<HERE
+string
+HERE;
+// Comment

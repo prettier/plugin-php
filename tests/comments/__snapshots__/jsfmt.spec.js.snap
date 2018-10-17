@@ -2438,11 +2438,24 @@ if (
         $a
     )
 ) {}
+
+if (
+    empty // Comment
+    ($a)
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
     echo "Foo";
+}
+
+if (
+    empty(
+        // Comment
+        $a
+    )
+) {
 }
 
 if (
@@ -2467,6 +2480,14 @@ eval(
 eval( // Comment
     $a
 );
+
+eval // Comment
+('return "1";');
+
+// Comment
+eval('return "1";');
+
+eval('return "1";'); // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2480,6 +2501,16 @@ eval(
     // Comment
     $a
 );
+
+eval(
+    // Comment
+    'return "1";'
+);
+
+// Comment
+eval('return "1";');
+
+eval('return "1";'); // Comment
 
 `;
 
@@ -2998,6 +3029,12 @@ EOD;
 /* Comment */
 
 echo $str;
+
+// Comment
+$var = <<<HERE
+string
+HERE;
+// Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $str /* Comment */ = <<<EOD
@@ -3008,6 +3045,12 @@ EOD;
 /* Comment */
 
 echo $str;
+
+// Comment
+$var = <<<HERE
+string
+HERE;
+// Comment
 
 `;
 
@@ -3968,11 +4011,24 @@ if (
         $a
     )
 ) {}
+
+if (
+    isset // Comment
+    ($a)
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
     echo "Foo";
+}
+
+if (
+    isset(
+        // Comment
+        $a
+    )
+) {
 }
 
 if (
@@ -4713,6 +4769,12 @@ EOD;
 /* Comment */
 
 echo $str;
+
+// Comment
+$var = <<<'NOW'
+string
+NOW;
+// Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $str = /* Comment */ <<<'EOD'
@@ -4723,6 +4785,12 @@ EOD;
 /* Comment */
 
 echo $str;
+
+// Comment
+$var = <<<'NOW'
+string
+NOW;
+// Comment
 
 `;
 
@@ -5190,6 +5258,12 @@ throw new ClassName( /* Comment */
 
 throw // Comment
     new Exception();
+
+throw
+    // Comment
+    new Exception();
+
+throw /* Comment */ new Foo() /* Comment */; // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -5210,6 +5284,11 @@ throw new ClassName /* Comment */(
 
 throw // Comment
     new Exception();
+
+throw // Comment
+    new Exception();
+
+throw /* Comment */ new Foo() /* Comment */; // Comment
 
 `;
 
@@ -5445,10 +5524,18 @@ unset(/* Comment */ $foo /* Comment */);
 unset( // Comment
     $var
 );
+
+unset // Comment
+($var);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
+
+unset(
+    // Comment
+    $var
+);
 
 unset(
     // Comment

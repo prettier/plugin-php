@@ -9,3 +9,8 @@ if (
         $a
     )
 ) {}
+
+if (
+    empty // Comment
+    ($a)
+) {}
