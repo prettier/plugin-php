@@ -33,41 +33,7 @@ const languages = [
   }
 ];
 
-// for anonymous classes, we need to keep track of the parent "new" node.
-// this is because in a case like this:
-//   $test = new class($arg1, $arg2) extends TestClass {};
-// we actually want to pretend that the class node starts after the "new"
-// node's arguments, since there is logic in prettier that assumes child nodes
-// will never overlap each other (ie the "new" node has the arguments, and class
-// as children, and we can't have them overlap)
-const anonymousClassesNewNodes = [];
 const loc = prop => node => {
-  if (
-    node.kind === "new" &&
-    node.what.kind === "class" &&
-    node.what.isAnonymous &&
-    node.arguments.length > 0 &&
-    !anonymousClassesNewNodes.includes(node)
-  ) {
-    anonymousClassesNewNodes.push(node);
-  }
-  if (prop === "start" && node.kind === "class" && node.isAnonymous) {
-    const parentNewNode = anonymousClassesNewNodes.find(
-      newNode => newNode.what === node
-    );
-    if (parentNewNode && parentNewNode.arguments.length > 0) {
-      const lastArgumentNode =
-        parentNewNode.arguments[parentNewNode.arguments.length - 1];
-      // if this is an anonymous class node with a parent "new" node, use the
-      // location of the last argument in the new node as the fake start location
-      // for this class node
-      return (
-        (lastArgumentNode.loc &&
-          lastArgumentNode.loc.end &&
-          lastArgumentNode.loc.end.offset) + 1
-      );
-    }
-  }
   return node.loc && node.loc[prop] && node.loc[prop].offset;
 };
 

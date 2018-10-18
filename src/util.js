@@ -302,13 +302,6 @@ function lineShouldEndWithSemicolon(path) {
   ) {
     return true;
   }
-  if (
-    parentNode.kind === "class" &&
-    parentNode.isAnonymous &&
-    parentNode.arguments.includes(node)
-  ) {
-    return false;
-  }
   if (!nodeHasStatement(parentNode)) {
     return false;
   }

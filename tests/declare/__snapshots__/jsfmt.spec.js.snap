@@ -59,6 +59,74 @@ enddeclare;
 
 `;
 
+exports[`declare-invalid.php - php-verify: declare-invalid.php 1`] = `
+<?php
+
+declare(unknown=1);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(unknown=1);
+
+`;
+
+exports[`declare-multiple-statements.php - php-verify: declare-multiple-statements.php 1`] = `
+<?php
+
+declare(ticks=1) {
+    $a = 1;
+    $b = 2;
+}
+
+declare(ticks=2) {
+    function test() {
+        $a = 1;
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(ticks=1) {
+    $a = 1;
+    $b = 2;
+}
+
+declare(ticks=2) {
+    function test()
+    {
+        $a = 1;
+    }
+}
+
+`;
+
+exports[`declare-multiple-statements-2.php - php-verify: declare-multiple-statements-2.php 1`] = `
+<?php
+
+declare(strict_types=1);
+
+$a = 1;
+$b = 2;
+
+function test() {
+    $a = 1;
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+declare(strict_types=1);
+
+$a = 1;
+$b = 2;
+
+function test()
+{
+    $a = 1;
+}
+
+`;
+
 exports[`declare-newline-after.php - php-verify: declare-newline-after.php 1`] = `
 <?php
 declare(ticks=1);

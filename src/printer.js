@@ -1114,7 +1114,6 @@ function printClassPart(
 
 function printClass(path, options, print) {
   const node = path.getValue();
-  const parentNode = path.getParentNode();
 
   const declaration = [];
 
@@ -1126,23 +1125,13 @@ function printClass(path, options, print) {
     declaration.push("abstract ");
   }
 
-  declaration.push(node.kind);
+  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
+
+  // `new` print `class` keyword with arguments
+  declaration.push(isAnonymousClass ? "" : node.kind);
 
   if (node.name) {
     declaration.push(" ", node.name);
-  }
-
-  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
-
-  // if this is an anonymous class, we need to check if the parent was a
-  // "new" node. if it was, we need to get the arguments from that node
-  // ex: $test = new class($arg1, $arg2) extends TestClass {};
-  if (
-    isAnonymousClass &&
-    parentNode.kind === "new" &&
-    parentNode.arguments.length > 0
-  ) {
-    declaration.push(printArgumentsList(path, options, print));
   }
 
   // Only `class` can have `extends` and `implements`
@@ -1226,7 +1215,7 @@ function printClass(path, options, print) {
       ])
     ),
     comments.printDanglingComments(path, options, true),
-    isAnonymousClass && hasEmptyClassBody ? ifBreak(line, "") : hardline,
+    isAnonymousClass && hasEmptyClassBody ? softline : hardline,
     "}"
   ]);
 
@@ -1495,7 +1484,7 @@ function printNode(path, options, print) {
           ")",
           node.mode === "block" ? " {" : ":",
           node.children.length > 0
-            ? indent(concat([hardline, concat(path.map(print, "children"))]))
+            ? indent(concat([hardline, printLines(path, options, print)]))
             : "",
           comments.printDanglingComments(path, options),
           hardline,
@@ -1908,8 +1897,8 @@ function printNode(path, options, print) {
 
       return node.kind;
     case "call": {
+      // Multiline strings as single arguments
       if (
-        // Multiline strings as single arguments
         node.arguments.length === 1 &&
         isStringOnItsOwnLine(node.arguments[0], options.originalText, options)
       ) {
@@ -1930,32 +1919,38 @@ function printNode(path, options, print) {
       ]);
     }
     case "new": {
-      // TODO: maybe need rewrite after resolve https://github.com/glayzzle/php-parser/issues/187
-      // If the child node is an anonymous class, we need to store the arguments in `what` node
-      // so the child class node can access them later.
       const isAnonymousClassNode =
         node.what && node.what.kind === "class" && node.what.isAnonymous;
 
-      if (isAnonymousClassNode) {
-        node.what.arguments = node.arguments;
-      }
-
-      return group(
-        concat([
+      // Multiline strings as single arguments
+      if (
+        !isAnonymousClassNode &&
+        node.arguments.length === 1 &&
+        isStringOnItsOwnLine(node.arguments[0], options.originalText, options)
+      ) {
+        return concat([
           "new ",
           path.call(print, "what"),
-          isAnonymousClassNode
-            ? ""
-            : node.arguments.length === 1 &&
-              isStringOnItsOwnLine(
-                node.arguments[0],
-                options.originalText,
-                options
-              )
-              ? concat(["(", join(", ", path.map(print, "arguments")), ")"])
-              : printArgumentsList(path, options, print)
-        ])
-      );
+          "(",
+          join(", ", path.map(print, "arguments")),
+          ")"
+        ]);
+      }
+
+      const printedWhat = isAnonymousClassNode
+        ? concat([
+            "class",
+            node.arguments.length > 0
+              ? printArgumentsList(path, options, print)
+              : "",
+            group(path.call(print, "what"))
+          ])
+        : concat([
+            path.call(print, "what"),
+            printArgumentsList(path, options, print)
+          ]);
+
+      return concat(["new ", printedWhat]);
     }
     case "clone":
       return concat([
