@@ -1495,7 +1495,7 @@ function printNode(path, options, print) {
           ")",
           node.mode === "block" ? " {" : ":",
           node.children.length > 0
-            ? indent(concat([hardline, concat(path.map(print, "children"))]))
+            ? indent(concat([hardline, printLines(path, options, print)]))
             : "",
           comments.printDanglingComments(path, options),
           hardline,
