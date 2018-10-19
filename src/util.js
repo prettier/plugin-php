@@ -251,6 +251,16 @@ function docShouldHaveTrailingNewline(path) {
     return false;
   }
 
+  if (
+    (parentParent && ["call", "new", "echo"].includes(parentParent.kind)) ||
+    parent.kind === "parameter"
+  ) {
+    const lastIndex = parentParent.arguments.length - 1;
+    const index = parentParent.arguments.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
   if (parentParent && parentParent.kind === "for") {
     const initIndex = parentParent.init.indexOf(parent);
 
@@ -271,32 +281,38 @@ function docShouldHaveTrailingNewline(path) {
     }
   }
 
+  if (parent.kind === "bin") {
+    if (parentParent && parentParent.kind === "bin") {
+      return true;
+    }
+
+    return parent.left === node;
+  }
+
   if (parent.kind === "case" && parent.test === node) {
     return true;
   }
 
   if (
-    parent.kind === "assign" &&
-    parent.right === node &&
-    parentParent &&
-    parentParent.kind === "static"
+    (parent.kind === "assign" &&
+      parent.right === node &&
+      parentParent &&
+      parentParent.kind === "static") ||
+    parent.kind === "entry"
   ) {
+    if (parent.kind === "entry" && parent.key === node) {
+      return true;
+    }
+
     const lastIndex = parentParent.items.length - 1;
     const index = parentParent.items.indexOf(parent);
 
     return index !== lastIndex;
   }
 
-  if (parent.kind === "echo") {
+  if (["call", "new", "echo"].includes(parent.kind)) {
     const lastIndex = parent.arguments.length - 1;
     const index = parent.arguments.indexOf(node);
-
-    return index !== lastIndex;
-  }
-
-  if (parent.kind === "entry") {
-    const lastIndex = parentParent.items.length - 1;
-    const index = parentParent.items.indexOf(parent);
 
     return index !== lastIndex;
   }
@@ -304,14 +320,6 @@ function docShouldHaveTrailingNewline(path) {
   if (parent.kind === "array") {
     const lastIndex = parent.items.length - 1;
     const index = parent.items.indexOf(node);
-
-    return index !== lastIndex;
-  }
-
-  if (parent.kind === "parameter") {
-    const parentParent = path.getParentNode(1);
-    const lastIndex = parentParent.arguments.length - 1;
-    const index = parentParent.arguments.indexOf(parent);
 
     return index !== lastIndex;
   }

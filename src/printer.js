@@ -566,10 +566,6 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     const arg = argPath.getNode();
     const parts = [print(argPath)];
 
-    if (index !== lastArgIndex && isDocNode(arg)) {
-      parts.push(hardline);
-    }
-
     if (index === lastArgIndex) {
       // do nothing
     } else if (isNextLineEmpty(options.originalText, arg, options)) {
@@ -764,12 +760,12 @@ function printBinaryExpression(
       getNodeKindIncludingLogical(node.right) !==
         getNodeKindIncludingLogical(node);
 
-    const shouldHaveHardline =
+    const shouldNotHaveWhitespace =
       isDocNode(node.left) ||
       (node.left.kind === "bin" && isDocNode(node.left.right));
 
     parts.push(
-      shouldHaveHardline ? hardline : " ",
+      shouldNotHaveWhitespace ? "" : " ",
       shouldGroup ? group(right) : right
     );
   } else {
