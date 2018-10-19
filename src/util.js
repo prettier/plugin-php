@@ -259,6 +259,10 @@ function docShouldHaveTrailingNewline(path) {
     return true;
   }
 
+  if (parent.kind === "case" && parent.test === node) {
+    return true;
+  }
+
   if (
     parent.kind === "assign" &&
     parent.right === node &&
