@@ -231,6 +231,13 @@ function isFirstChildrenInlineNode(path) {
   return firstChild.kind === "inline";
 }
 
+function isDocNode(node) {
+  return (
+    node.kind === "nowdoc" ||
+    (node.kind === "encapsed" && node.type === "heredoc")
+  );
+}
+
 /**
  * Heredoc/Nowdoc nodes need a trailing linebreak if they
  * appear as function arguments or array elements
@@ -250,6 +257,18 @@ function docShouldHaveTrailingNewline(path) {
       (parent.right === node && parentParent.kind === "bin"))
   ) {
     return true;
+  }
+
+  if (
+    parent.kind === "assign" &&
+    parent.right === node &&
+    parentParent &&
+    parentParent.kind === "static"
+  ) {
+    const lastIndex = parentParent.items.length - 1;
+    const index = parentParent.items.indexOf(parent);
+
+    return index !== lastIndex;
   }
 
   if (parent.kind === "echo") {
@@ -659,5 +678,6 @@ module.exports = {
   hasNewlineInRange,
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
-  shouldPrintHardlineBeforeTrailingComma
+  shouldPrintHardlineBeforeTrailingComma,
+  isDocNode
 };

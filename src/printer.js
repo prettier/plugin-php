@@ -50,7 +50,8 @@ const {
   hasEmptyBody,
   hasNewline,
   isNextLineEmptyAfterNamespace,
-  shouldPrintHardlineBeforeTrailingComma
+  shouldPrintHardlineBeforeTrailingComma,
+  isDocNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -565,11 +566,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     const arg = argPath.getNode();
     const parts = [print(argPath)];
 
-    if (
-      index !== lastArgIndex &&
-      ((arg.kind === "encapsed" && arg.type === "heredoc") ||
-        arg.kind === "nowdoc")
-    ) {
+    if (index !== lastArgIndex && isDocNode(arg)) {
       parts.push(hardline);
     }
 
@@ -768,12 +765,8 @@ function printBinaryExpression(
         getNodeKindIncludingLogical(node);
 
     parts.push(
-      node.left.kind === "nowdoc" ||
-        (node.left.kind === "encapsed" && node.left.type === "heredoc") ||
-        (node.left.kind === "bin" &&
-          (node.left.right.kind === "nowdoc" ||
-            (node.left.right.kind === "encapsed" &&
-              node.left.right.type === "heredoc")))
+      isDocNode(node.left) ||
+        (node.left.kind === "bin" && isDocNode(node.left.right))
         ? ""
         : " ",
       shouldGroup ? group(right) : right
@@ -2138,10 +2131,7 @@ function printNode(path, options, print) {
         [firstVariable] = printedArguments;
       } else if (printedArguments.length > 0) {
         firstVariable =
-          (node.arguments[0].kind === "encapsed" &&
-            node.arguments[0].type === "heredoc") ||
-          node.arguments[0].kind === "nowdoc" ||
-          node.arguments[0].comments
+          isDocNode(node.arguments[0]) || node.arguments[0].comments
             ? indent(printedArguments[0])
             : dedent(printedArguments[0]);
       }
