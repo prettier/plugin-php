@@ -607,6 +607,163 @@ string
 string
 string
 EOD;
+
+call(
+    call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    $var->call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    Foo::call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+for (
+    $i = <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0,
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i = 0;
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0;
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10,
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {}
+
+for (
+    $i = 0;
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+    $i++,
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD;
+print <<<'EOD'
+string
+string
+string
+EOD;
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1266,6 +1423,174 @@ string
 string
 string
 EOD;
+
+call(
+    call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    $var->call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    Foo::call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+for (
+    $i = <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0,
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i = 0;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10,
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    $i++,
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
 
 `;
 

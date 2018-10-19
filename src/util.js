@@ -251,6 +251,26 @@ function docShouldHaveTrailingNewline(path) {
     return false;
   }
 
+  if (parentParent && parentParent.kind === "for") {
+    const initIndex = parentParent.init.indexOf(parent);
+
+    if (initIndex !== -1) {
+      return initIndex !== parentParent.init.length - 1;
+    }
+
+    const testIndex = parentParent.test.indexOf(parent);
+
+    if (testIndex !== -1) {
+      return testIndex !== parentParent.test.length - 1;
+    }
+
+    const incrementIndex = parentParent.increment.indexOf(parent);
+
+    if (incrementIndex !== -1) {
+      return incrementIndex !== parentParent.increment.length - 1;
+    }
+  }
+
   if (parent.kind === "case" && parent.test === node) {
     return true;
   }
