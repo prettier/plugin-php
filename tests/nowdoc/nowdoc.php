@@ -504,4 +504,103 @@ string
 TXT;
 }
 
+$var->call(
+    <<<'TXT'
+string
+TXT
+);
 
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+$var->call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var =  <<<'TXT'
+string
+TXT
+    ? <<<'TXT'
+string
+TXT
+    : <<<'TXT'
+string
+TXT;
+
+if (
+<<<'EOD'
+string
+string
+string
+EOD
+) {
+    echo 'test';
+}
+
+do {
+} while (
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+while (
+<<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+switch (
+<<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+function generator()
+{
+    yield <<<'EOD'
+string
+string
+string
+EOD;
+    yield $id => <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+$var = $var ?: <<<'EOD'
+string
+string
+string
+EOD;
+
+$var = $var ?: $var ?: $var ?: $var ?: $var ?: <<<'EOD'
+string
+string
+string
+EOD;

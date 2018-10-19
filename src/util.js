@@ -251,14 +251,6 @@ function docShouldHaveTrailingNewline(path) {
     return false;
   }
 
-  if (
-    parent.kind === "bin" &&
-    (parent.left === node ||
-      (parent.right === node && parentParent.kind === "bin"))
-  ) {
-    return true;
-  }
-
   if (parent.kind === "case" && parent.test === node) {
     return true;
   }

@@ -764,11 +764,12 @@ function printBinaryExpression(
       getNodeKindIncludingLogical(node.right) !==
         getNodeKindIncludingLogical(node);
 
-    parts.push(
+    const shouldHaveHardline =
       isDocNode(node.left) ||
-        (node.left.kind === "bin" && isDocNode(node.left.right))
-        ? ""
-        : " ",
+      (node.left.kind === "bin" && isDocNode(node.left.right));
+
+    parts.push(
+      shouldHaveHardline ? hardline : " ",
       shouldGroup ? group(right) : right
     );
   } else {
