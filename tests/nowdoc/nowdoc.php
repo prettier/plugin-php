@@ -761,3 +761,159 @@ string
 string
 EOD
 ) {}
+
+call(
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var .
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    .
+    $var
+    ,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    .
+    $var .
+    $var .
+    $var .
+    $var,
+    $var
+);
+
+call(
+    $var .
+    $var .
+    <<<'TXT'
+string
+TXT
+    .
+    $var .
+    $var,
+    $var
+);
+
+call(
+    $var .
+    $var .
+    $var .
+    $var .
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var,
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $var
+);
+
+call(
+    $var,
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $var
+);
+
+$array = [
+    <<<'EOD'
+string
+string
+string
+EOD
+    => <<<'EOD'
+string
+string
+string
+EOD
+];
