@@ -189,3 +189,26 @@ string
 string
 string
 EOD;
+
+static $var =  <<<'EOD'
+string
+string
+string
+EOD;
+
+static
+    $var =  <<<'EOD'
+    string
+    string
+    string
+EOD
+    ,
+    $foo;
+
+static
+    $foo,
+    $var =  <<<'EOD'
+string
+string
+string
+EOD;
