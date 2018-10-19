@@ -438,9 +438,7 @@ $class = new class(
     function () {
         return 1;
     }
-)
-{
-};
+) {};
 
 $class = new class(
     $arg,
@@ -451,9 +449,7 @@ $class = new class(
     function () {
         return 1;
     }
-) implements MyOtherClass
-{
-};
+) implements MyOtherClass {};
 
 $class = new class(
     $arg,
@@ -464,9 +460,7 @@ $class = new class(
     function () {
         return 1;
     }
-) implements MyOtherClass, MyOtherClass1, MyOtherClass2
-{
-};
+) implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
 
 $class = new class(
     $arg,
@@ -508,9 +502,7 @@ $class = new class(
     function () {
         return 1;
     }
-) extends MyOtherClass
-{
-};
+) extends MyOtherClass {};
 
 $class = new class(
     $arg,
@@ -535,9 +527,7 @@ $class = new class(
     function () {
         return 1;
     }
-) extends MyOtherClass implements MyI
-{
-};
+) extends MyOtherClass implements MyI {};
 
 $class = new class(
     $arg,
@@ -548,9 +538,7 @@ $class = new class(
     function () {
         return 1;
     }
-) extends MyOtherClass implements MyI, MyII, MyIII
-{
-};
+) extends MyOtherClass implements MyI, MyII, MyIII {};
 
 $class = new class(
     $arg,
