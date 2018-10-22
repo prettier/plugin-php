@@ -317,3 +317,15 @@ $var = $var && ($var ?? true);
 $var = ($var ?? true) && $var;
 $var = $var && ($var ?? null) === true;
 $var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = ($cachesNames === []);
+
+$isNamespaced = strpos($fixture, '\\') !== false;
+$isNamespaced = (strpos($fixture, '\\') !== false);
+
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
+
+$var = $page > 0 || $page == 0 && $this->forcePageParam;
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
