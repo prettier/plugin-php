@@ -291,3 +291,23 @@ if (
 ) {
     $a;
 }
+
+if ($var)// Comment
+{
+    $a = 1;
+}
+
+if ( // Comment
+    $var
+) {
+    $a = 1;
+}
+
+if ($var) // Comment
+    $a = 1;
+else if ($var) // Comment
+    $a = 2;
+else // Comment
+    $a = 3;
+
+if (/* Comment*/ $var /* Comment*/) /* Comment*/ {}

@@ -27,7 +27,7 @@ args:
   isLastComment
 */
 
-function handleOwnLineComment(comment, text, options, ast, isLastComment) {
+function handleOwnLineComment(comment, text, options) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
     handleLastFunctionArgComments(
@@ -51,7 +51,6 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleInlineComments(
       enclosingNode,
       precedingNode,
@@ -68,7 +67,7 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
   );
 }
 
-function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
+function handleEndOfLineComment(comment, text, options) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
     handleArrayComments(
@@ -118,7 +117,6 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
     handleEntryComments(enclosingNode, comment) ||
     handleCallComments(precedingNode, enclosingNode, comment) ||
     handlePropertyComments(enclosingNode, comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleVariableComments(enclosingNode, followingNode, comment) ||
     handleInlineComments(
       enclosingNode,
@@ -142,7 +140,7 @@ function handleEndOfLineComment(comment, text, options, ast, isLastComment) {
   );
 }
 
-function handleRemainingComment(comment, text, options, ast, isLastComment) {
+function handleRemainingComment(comment, text, options) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
     handleIfStatementComments(
@@ -159,7 +157,6 @@ function handleRemainingComment(comment, text, options, ast, isLastComment) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleGoto(enclosingNode, comment) ||
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
-    handleOnlyComments(enclosingNode, ast, comment, isLastComment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment) ||
     handleInlineComments(
       enclosingNode,
@@ -452,16 +449,6 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
       addTrailingComment(enclosingNode.type, comment);
       return true;
     }
-
-    // for empty functions where the body is only made up of comments, we need
-    // to attach this as a dangling comment on the function node itself
-    if (
-      !followingNode && // make sure we're not grabbing inline parameter comments
-      !(enclosingNode.body && enclosingNode.body.children.length > 0)
-    ) {
-      addDanglingComment(enclosingNode, comment);
-      return true;
-    }
   }
   return false;
 }
@@ -582,22 +569,6 @@ function handleInlineComments(
 function handleEntryComments(enclosingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "entry") {
     addLeadingComment(enclosingNode, comment);
-    return true;
-  }
-  return false;
-}
-
-function handleOnlyComments(enclosingNode, ast, comment, isLastComment) {
-  if (
-    enclosingNode &&
-    enclosingNode.kind === "program" &&
-    enclosingNode.children.length === 0
-  ) {
-    if (isLastComment) {
-      addDanglingComment(enclosingNode, comment);
-    } else {
-      addLeadingComment(enclosingNode, comment);
-    }
     return true;
   }
   return false;
