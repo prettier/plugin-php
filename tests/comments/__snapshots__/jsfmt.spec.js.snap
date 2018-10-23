@@ -4611,9 +4611,7 @@ class FlowdockFormatter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-namespace Monolog\\Formatter;
-
-// Comment
+namespace Monolog\\Formatter; // Comment
 
 /**
  * formats the record to be used in the FlowdockHandler
@@ -4639,8 +4637,7 @@ class FlowdockFormatter
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-namespace Monolog\\Formatter;
-// Comment
+namespace Monolog\\Formatter; // Comment
 /**
  * formats the record to be used in the FlowdockHandler
  *
@@ -4665,8 +4662,9 @@ class FlowdockFormatter
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-namespace Monolog\\Formatter;
-/* Comment */ /* Comment */ /* Comment */
+namespace Monolog\\Formatter; /* Comment */
+/* Comment */
+/* Comment */
 /**
  * formats the record to be used in the FlowdockHandler
  *
@@ -4694,9 +4692,9 @@ class FlowdockFormatter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-namespace Monolog\\Formatter;
-
-/* Comment */ /* Comment */ /* Comment */
+namespace Monolog\\Formatter; /* Comment */
+/* Comment */
+/* Comment */
 
 /**
  * formats the record to be used in the FlowdockHandler
@@ -4725,9 +4723,10 @@ class FlowdockFormatter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-namespace Monolog\\Formatter;
-
-/* Comment */ /* Comment */ /* Comment */ // Comment
+namespace Monolog\\Formatter; /* Comment */
+/* Comment */
+/* Comment */
+// Comment
 
 /**
  * formats the record to be used in the FlowdockHandler
@@ -4756,9 +4755,7 @@ namespace Foo; // Comment
 use Foo\\Bar;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-namespace Foo;
-
-// Comment
+namespace Foo; // Comment
 
 use Foo\\Bar;
 

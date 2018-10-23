@@ -1491,6 +1491,9 @@ function printNode(path, options, print) {
           ? concat([node.name, node.withBrackets ? " " : ""])
           : "",
         node.withBrackets ? "{" : ";",
+        hasDanglingComments(node)
+          ? concat([" ", comments.printDanglingComments(path, options, true)])
+          : "",
         node.children.length > 0
           ? node.withBrackets
             ? indent(concat([hardline, printLines(path, options, print)]))

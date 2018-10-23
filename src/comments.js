@@ -58,12 +58,6 @@ function handleOwnLineComment(comment, text, options, ast, isLastComment) {
       followingNode,
       comment
     ) ||
-    handleNamespaceComments(
-      enclosingNode,
-      precedingNode,
-      followingNode,
-      comment
-    ) ||
     handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
@@ -681,6 +675,14 @@ function handleNamespaceComments(
     !enclosingNode.withBrackets
   ) {
     addTrailingComment(enclosingNode, comment);
+    return true;
+  } else if (
+    !precedingNode &&
+    enclosingNode &&
+    enclosingNode.kind === "namespace" &&
+    !enclosingNode.withBrackets
+  ) {
+    addDanglingComment(enclosingNode, comment);
     return true;
   }
 
