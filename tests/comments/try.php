@@ -56,3 +56,13 @@ finally { // Comment 8
     // Comment 9
 }
 // Comment 10
+
+try // Comment
+{
+    $a =  new Foo();
+} catch (Exception $e) {
+    $b = new Bar();
+} finally // Comment 8
+{
+    $a = null;
+}
