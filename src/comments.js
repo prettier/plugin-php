@@ -46,6 +46,14 @@ function handleOwnLineComment(comment, text, options) {
       comment,
       options
     ) ||
+    handleWhileComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
@@ -104,6 +112,14 @@ function handleEndOfLineComment(comment, text, options) {
       comment,
       options
     ) ||
+    handleWhileComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
     handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
@@ -138,6 +154,14 @@ function handleRemainingComment(comment, text, options) {
   const { precedingNode, enclosingNode, followingNode } = comment;
   return (
     handleIfStatementComments(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment,
+      options
+    ) ||
+    handleWhileComments(
       text,
       precedingNode,
       enclosingNode,
@@ -286,11 +310,11 @@ function handleIfStatementComments(
   }
 
   // For comments positioned after the condition parenthesis in an if statement
-  // before the consequent with or without brackets on, such as
-  // if (a) /* comment */ {} or if (a) /* comment */ true,
-  // we look at the next character to see if it is a { or if the following node
+  // before the consequent without brackets on, such as
+  // if (a) /* comment */ true,
+  // we look at the next character to see if the following node
   // is the consequent for the if statement
-  if (nextCharacter === "{" || enclosingNode.body === followingNode) {
+  if (enclosingNode.body === followingNode) {
     addLeadingComment(followingNode, comment);
     return true;
   }
@@ -686,6 +710,43 @@ function handleDeclareComments(
   if (followingNode && precedingNode) {
     addLeadingComment(followingNode, comment);
 
+    return true;
+  }
+
+  return false;
+}
+
+function handleWhileComments(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment,
+  options
+) {
+  if (!enclosingNode || enclosingNode.kind !== "while" || !followingNode) {
+    return false;
+  }
+  // We unfortunately have no way using the AST or location of nodes to know
+  // if the comment is positioned before the condition parenthesis:
+  //   while (a /* comment */) {}
+  // The only workaround I found is to look at the next character to see if
+  // it is a ).
+
+  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    comment,
+    options
+  );
+  const nextCharacter = text.charAt(nextCharIndex);
+
+  if (nextCharacter === ")") {
+    addTrailingComment(precedingNode, comment);
+    return true;
+  }
+
+  if (followingNode.kind === "block") {
+    addBlockStatementFirstComment(followingNode, comment);
     return true;
   }
 
