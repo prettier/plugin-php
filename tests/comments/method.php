@@ -39,3 +39,25 @@ class add_vendor extends request{
         );
     }
 }
+
+class Foo {
+    function foo()
+    // this is a function
+    {
+        return 42;
+    }
+
+    function foo() // this is a function
+    {
+        return 42;
+    }
+
+    function foo() { // this is a function
+        return 42;
+    }
+
+    function foo() {
+        // this is a function
+        return 42;
+    }
+}
