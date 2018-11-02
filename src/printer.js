@@ -974,8 +974,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               "?>"
             ])
           : isProgramLikeNode(node) && isFirstNode
-            ? ""
-            : concat([beforeCloseTagInlineNode, "?>"]);
+          ? ""
+          : concat([beforeCloseTagInlineNode, "?>"]);
       const afterInline =
         childNode.comments && childNode.comments.length
           ? concat([
@@ -985,8 +985,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               "?>"
             ])
           : isProgramLikeNode(node) && isLastNode
-            ? ""
-            : concat([openTag, " "]);
+          ? ""
+          : concat([openTag, " "]);
 
       printed = concat([beforeInline, printed, afterInline]);
     }
@@ -1038,8 +1038,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
         between && between[1] && between[1].includes("\n")
           ? hardline
           : wrappedParts.length > 0
-            ? " "
-            : "";
+          ? " "
+          : "";
     }
 
     return concat([
@@ -1239,7 +1239,7 @@ function printFunction(path, options, print) {
   }
 
   if (node.name) {
-    declaration.push(node.name);
+    declaration.push(path.call(print, "name"));
   }
 
   declaration.push(printArgumentsList(path, options, print));

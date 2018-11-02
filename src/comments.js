@@ -260,7 +260,8 @@ function handleLastFunctionArgComments(
 
   // Real functions
   if (
-    !precedingNode &&
+    precedingNode &&
+    precedingNode.kind === "identifier" &&
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method") &&
     nextCharacter === ")"
@@ -443,6 +444,7 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
           : argumentsLocEnd;
     }
     const commentIsBetweenArgumentsAndBody =
+      enclosingNode.body &&
       options.locStart(comment) > argumentsLocEnd &&
       options.locEnd(comment) < options.locStart(enclosingNode.body);
     const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
