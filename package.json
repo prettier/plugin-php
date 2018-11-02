@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "mem": "^3.0.1",
-    "php-parser": "glayzzle/php-parser#0623335d3e9f46c2e6257db49a7df6ce09688d93"
+    "php-parser": "glayzzle/php-parser#b1429015bcbf24d426cd4611de2aaf5e3c4c7210"
   },
   "devDependencies": {
     "codecov": "3.1.0",
@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "3.0.0",
     "jest": "23.6.0",
     "jest-runner-eslint": "0.6.0",
-    "prettier": "prettier/prettier"
+    "prettier": "prettier/prettier#f6d8be881c6b34235da7c13cfe072727aa71fed8"
   },
   "peerDependencies": {
     "prettier": "^1.12.0"

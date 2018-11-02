@@ -527,9 +527,10 @@ $foo->bar->baz
     ->doOneMoreThing($config)
     ->bar->run(function () {
         $console->log('Bar');
-    }); // Run this
+    });
 
 // Hello world
+// Run this
 ($somethingGood ? $thisIsIt : $maybeNot)
 
     ->doSomething('Hello World')
