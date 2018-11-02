@@ -17,3 +17,20 @@ function foo(
     bool // Comment
     $c
 ) {}
+
+function foo()
+// this is a function
+{
+    return 42;
+}
+function foo() // this is a function
+{
+    return 42;
+}
+function foo() { // this is a function
+    return 42;
+}
+function foo() {
+    // this is a function
+    return 42;
+}

@@ -918,11 +918,43 @@ exports[`closure.php - php-verify: closure.php 1`] = `
 
 $var = function (/* Comment */) {};
 $var = function (/* Comment */ $arg /* Comment */) {};
+$var = function ()
+// this is a function
+{
+    return 42;
+};
+$var = function () // this is a function
+{
+    return 42;
+};
+$var = function () { // this is a function
+    return 42;
+};
+$var = function () {
+    // this is a function
+    return 42;
+};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 $var = function (/* Comment */) {};
 $var = function (/* Comment */ $arg /* Comment */) {};
+$var = function () {
+    // this is a function
+    return 42;
+};
+$var = function () {
+    // this is a function
+    return 42;
+};
+$var = function () {
+    // this is a function
+    return 42;
+};
+$var = function () {
+    // this is a function
+    return 42;
+};
 
 `;
 
@@ -2926,6 +2958,23 @@ function foo(
     bool // Comment
     $c
 ) {}
+
+function foo()
+// this is a function
+{
+    return 42;
+}
+function foo() // this is a function
+{
+    return 42;
+}
+function foo() { // this is a function
+    return 42;
+}
+function foo() {
+    // this is a function
+    return 42;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2956,6 +3005,27 @@ function foo(
     bool $c // Comment
 )
 {
+}
+
+function foo()
+{
+    // this is a function
+    return 42;
+}
+function foo()
+{
+    // this is a function
+    return 42;
+}
+function foo()
+{
+    // this is a function
+    return 42;
+}
+function foo()
+{
+    // this is a function
+    return 42;
 }
 
 `;
@@ -4187,6 +4257,28 @@ class add_vendor extends request{
         );
     }
 }
+
+class Foo {
+    function foo()
+    // this is a function
+    {
+        return 42;
+    }
+
+    function foo() // this is a function
+    {
+        return 42;
+    }
+
+    function foo() { // this is a function
+        return 42;
+    }
+
+    function foo() {
+        // this is a function
+        return 42;
+    }
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -4234,6 +4326,33 @@ class add_vendor extends request
             $vendor->state, // state
             $vendor->zip // state
         );
+    }
+}
+
+class Foo
+{
+    function foo()
+    {
+        // this is a function
+        return 42;
+    }
+
+    function foo()
+    {
+        // this is a function
+        return 42;
+    }
+
+    function foo()
+    {
+        // this is a function
+        return 42;
+    }
+
+    function foo()
+    {
+        // this is a function
+        return 42;
     }
 }
 
