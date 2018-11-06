@@ -269,6 +269,17 @@ function handleLastFunctionArgComments(
     addTrailingComment(enclosingNode, comment);
     return true;
   }
+
+  if (
+    enclosingNode &&
+    (enclosingNode.kind === "function" || enclosingNode.kind === "method") &&
+    followingNode &&
+    followingNode.kind === "block"
+  ) {
+    addBlockStatementFirstComment(followingNode, comment);
+    return true;
+  }
+
   return false;
 }
 
