@@ -17,7 +17,7 @@ const {
   align,
   dedentToRoot
 } = require("prettier").doc.builders;
-const { willBreak, removeLines } = require("prettier").doc.utils;
+const { willBreak } = require("prettier").doc.utils;
 const {
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
@@ -51,7 +51,8 @@ const {
   hasNewline,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
-  isDocNode
+  isDocNode,
+  getAncestorNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -114,7 +115,9 @@ function printStaticLookup(path, options, print) {
 
 function printOffsetLookup(path, options, print) {
   const node = path.getValue();
-  const isOffsetNumberNode = node.offset && node.offset.kind === "number";
+  const shouldInline =
+    (node.offset && node.offset.kind === "number") ||
+    getAncestorNode(path, "encapsed");
 
   return concat([
     "[",
@@ -122,12 +125,9 @@ function printOffsetLookup(path, options, print) {
       ? group(
           concat([
             indent(
-              concat([
-                isOffsetNumberNode ? "" : softline,
-                path.call(print, "offset")
-              ])
+              concat([shouldInline ? "" : softline, path.call(print, "offset")])
             ),
-            isOffsetNumberNode ? "" : softline
+            shouldInline ? "" : softline
           ])
         )
       : "",
@@ -459,9 +459,12 @@ function printMemberChain(path, options, print) {
       .some(node => comments.hasTrailingComment(node.node)) ||
     (groups[cutoff] && comments.hasLeadingComment(groups[cutoff][0].node));
 
+  const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
+
   // If we only have a single `->`, we shouldn't do anything fancy and just
   // render everything concatenated together.
-  if (groups.length <= cutoff && !hasComment) {
+  // In `encapsed` node we always print in one line.
+  if ((groups.length <= cutoff && !hasComment) || hasEncapsedAncestor) {
     return group(oneLine);
   }
 
@@ -1965,7 +1968,9 @@ function printNode(path, options, print) {
         i++;
       } while (firstNonMemberParent && isLookupNode(firstNonMemberParent));
 
+      const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
       const shouldInline =
+        hasEncapsedAncestor ||
         (firstNonMemberParent &&
           (firstNonMemberParent.kind === "new" ||
             (firstNonMemberParent.kind === "assign" &&
@@ -2589,7 +2594,7 @@ function printNode(path, options, print) {
 
                 return concat([
                   hasCurly ? "{" : "",
-                  removeLines(print(valuePath)),
+                  print(valuePath),
                   hasCurly ? "}" : ""
                 ]);
               }, "value")
