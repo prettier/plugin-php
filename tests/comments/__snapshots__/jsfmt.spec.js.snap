@@ -2975,6 +2975,10 @@ function foo() {
     // this is a function
     return 42;
 }
+function foo // this is a function
+() {
+    return 42;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -3012,8 +3016,14 @@ function foo()
     // this is a function
     return 42;
 }
-function foo() // this is a function
+function foo()
 {
+    // this is a function
+    return 42;
+}
+function foo()
+{
+    // this is a function
     return 42;
 }
 function foo()
@@ -4277,6 +4287,11 @@ class Foo {
         // this is a function
         return 42;
     }
+
+    function foo // this is a function
+    () {
+        return 42;
+    }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
@@ -4336,8 +4351,15 @@ class Foo
         return 42;
     }
 
-    function foo() // this is a function
+    function foo()
     {
+        // this is a function
+        return 42;
+    }
+
+    function foo()
+    {
+        // this is a function
         return 42;
     }
 
