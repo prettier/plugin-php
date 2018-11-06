@@ -341,3 +341,27 @@ string
 string
 string
 EOD;
+
+$var = "String {$obj->call()->call()} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->call()->call()} string";
+$var = "String {$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()->call()} string";
+$var = "String {$obj->call()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
+
+$var = "String {$array['offset']['offset']} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['offset']['offset']} string";
+$var = "String {$array['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['offset']} string";
+$var = "String {$array['offset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
+
+$var = "String {$obj::call()::call()} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj::call()::call()} string";
+$var = "String {$obj::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()::call()} string";
+$var = "String {$obj::call()::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
+
+$var = "String string string string string string string string string string string string string {$obj->call()->call()} string";
+$var = "String {$obj->call()->call()} string string string string string string string string string string string string string";
+
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']} string";

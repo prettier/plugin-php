@@ -671,6 +671,23 @@ function shouldPrintHardlineBeforeTrailingComma(lastElem) {
   return false;
 }
 
+function getAncestorCounter(path, typeOrTypes) {
+  const types = [].concat(typeOrTypes);
+  let counter = -1;
+  let ancestorNode;
+  while ((ancestorNode = path.getParentNode(++counter))) {
+    if (types.indexOf(ancestorNode.kind) !== -1) {
+      return counter;
+    }
+  }
+  return -1;
+}
+
+function getAncestorNode(path, typeOrTypes) {
+  const counter = getAncestorCounter(path, typeOrTypes);
+  return counter === -1 ? null : path.getParentNode(counter);
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -703,5 +720,6 @@ module.exports = {
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
-  isDocNode
+  isDocNode,
+  getAncestorNode
 };
