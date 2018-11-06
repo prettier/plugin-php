@@ -2520,6 +2520,11 @@ eval // Comment
 eval('return "1";');
 
 eval('return "1";'); // Comment
+eval( // Call
+$var
+);
+eval // Call
+($var);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2543,6 +2548,14 @@ eval(
 eval('return "1";');
 
 eval('return "1";'); // Comment
+eval(
+    // Call
+    $var
+);
+eval(
+    // Call
+    $var
+);
 
 `;
 
@@ -2554,7 +2567,13 @@ exit(/* Comment */1);
 exit(1/* Comment */);
 exit(/* Comment */1/* Comment */);
 exit()/* Comment */;
-/* Comment */exit/* Comment */()/* Comment */;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* Comment */exit/* Comment */()/* Comment */;
+exit( // Call
+    $var
+);
+exit // Call
+($var);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
 exit(
@@ -2567,6 +2586,14 @@ exit(
 /* Comment */ exit(
     /* Comment */
     /* Comment */);
+exit(
+    // Call
+    $var
+);
+exit(
+    // Call
+    $var
+);
 
 `;
 
