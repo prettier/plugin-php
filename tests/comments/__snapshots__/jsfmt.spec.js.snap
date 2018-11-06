@@ -3012,9 +3012,8 @@ function foo()
     // this is a function
     return 42;
 }
-function foo()
+function foo() // this is a function
 {
-    // this is a function
     return 42;
 }
 function foo()
@@ -4337,9 +4336,8 @@ class Foo
         return 42;
     }
 
-    function foo()
+    function foo() // this is a function
     {
-        // this is a function
         return 42;
     }
 
