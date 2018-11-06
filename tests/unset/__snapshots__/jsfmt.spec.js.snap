@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unset.php - php-verify: unset.php 1`] = `
+<?php
+unset($foo);
+unset($bar['quux']);
+unset($foo1, $foo2, $foo3);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+unset($foo);
+unset($bar['quux']);
+unset($foo1, $foo2, $foo3);
+
+`;

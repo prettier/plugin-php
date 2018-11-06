@@ -52,11 +52,6 @@ function clean(node, newObj) {
     newObj.value = util.printNumber(node.value);
   }
 
-  // All magic constant should be upper case
-  if (node.kind === "magic") {
-    newObj.value = node.value.toUpperCase();
-  }
-
   // All reserved words should be lowercase case
   if (node.kind === "identifier" && typeof node.name === "string") {
     const lowerCasedName = node.name.toLowerCase();
@@ -107,12 +102,9 @@ function clean(node, newObj) {
     newObj.name = newObj.name.replace(/^\\/, "");
   }
 
-  // TODO: remove after resolve https://github.com/glayzzle/php-parser/issues/181
-  if (node.kind === "unary" && ["+", "-"].includes(node.type)) {
-    return {
-      kind: "number",
-      value: `${newObj.type}${newObj.what.value}`
-    };
+  // @TODO: We need special node for `null` value to avoid ast compare problem
+  if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
+    delete newObj.name;
   }
 }
 

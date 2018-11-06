@@ -871,8 +871,8 @@ $var = new class {
 };
 
 $var = new class {
-    // Comment 1
     const CONSTANT =
+        // Comment 1
         // Comment 2
         'string';
 };
@@ -2670,7 +2670,8 @@ for (
 // Comment
 for (;;);
 
-/* Comment */ for (;;);
+/* Comment */
+for (;;);
 
 // Comment
 for ($i = 1; $i <= 10; $i++) {
@@ -3118,7 +3119,7 @@ goto c; // Comment
 /* Comment */ goto a; /* Comment */ /* Comment */
 echo 'Foo';
 
-/* Comment */ /* Comment */ a: /* Comment */
+/* Comment */ a: /* Comment */ /* Comment */
 echo 'Bar';
 
 b:
@@ -3184,7 +3185,7 @@ HERE;
 // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-$str /* Comment */ = <<<EOD
+$str = /* Comment */ <<<EOD
 Example of string
 spanning multiple lines
 using heredoc syntax.
@@ -5143,9 +5144,12 @@ $a = new class() {
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
-$a = new Foo(); // Comment
+$a = new // Comment
+Foo();
 
-$a = new class {}; // Comment
+$a = new class// Comment
+ {
+};
 
 $a = new class {
     // Comment
@@ -5971,9 +5975,9 @@ trait tFoo
 class ImplementingClass
 {
     /* Comment */
-    /* Comment */ /* Comment */ use testTrait /* Comment */,
+    /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ otherTrait /* Comment */;
-    /* Comment */ /* Comment */ use testTrait /* Comment */,
+    /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ implementingTrait /* Comment */ /* Comment */ {
         /* Comment */ A /* Comment */ /* Comment */ /* Comment */::testFunction insteadof /* Comment */ C; /* Comment */ /* Comment */
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */

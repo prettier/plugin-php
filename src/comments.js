@@ -520,7 +520,7 @@ function handleBreakAndContinueStatementComments(enclosingNode, comment) {
 }
 
 function handleGoto(enclosingNode, comment) {
-  if (enclosingNode && enclosingNode.kind === "goto") {
+  if (enclosingNode && ["label", "goto"].includes(enclosingNode.kind)) {
     addTrailingComment(enclosingNode, comment);
     return true;
   }
