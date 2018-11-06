@@ -17,3 +17,8 @@ eval // Comment
 eval('return "1";');
 
 eval('return "1";'); // Comment
+eval( // Call
+$var
+);
+eval // Call
+($var);
