@@ -33,14 +33,6 @@ function needsParens(path) {
     return false;
   }
 
-  // Avoid parens in short control structures like `if (expr) statement`
-  if (
-    ["if", "while", "for", "foreach"].includes(parent.kind) &&
-    (parent.body === node || parent.alternate === node)
-  ) {
-    return false;
-  }
-
   switch (node.kind) {
     case "pre":
     case "post":
@@ -174,11 +166,13 @@ function needsParens(path) {
         (parent.init.includes(node) || parent.increment.includes(node))
       ) {
         return false;
-      } else if (parent.kind === "while" && node.left.kind === "list") {
-        return false;
       } else if (parent.kind === "assign") {
         return false;
       } else if (parent.kind === "static") {
+        return false;
+      } else if (
+        ["if", "do", "while", "foreach", "switch"].includes(parent.kind)
+      ) {
         return false;
       }
 

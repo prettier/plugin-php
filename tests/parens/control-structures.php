@@ -68,12 +68,21 @@ while ($i++ < 5) {
 }
 
 if ($var = 1) {}
+if (($var = 1)) {}
+if ($var = 1) {} else if ($var = 1) {} else {}
+if (($var = 1)) {} else if (($var = 1)) {} else {}
 do {} while ($var = 1);
+do {} while (($var = 1));
 while ($var = 1) {}
+while (($var = 1)) {}
+for ($i = 1; $i <= 10; $i++) {}
 for (($i = 1); ($i <= 10); ($i++)) {}
+foreach (($arr = [1, 2, 3]) as $value) {}
 foreach (($arr) as $value) {}
 foreach (($arr) as $key => $value) {}
+foreach (($arr = [1, 2, 3]) as $key => $value) {}
 switch ($var = 1) {}
+switch (($var = 1)) {}
 
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
