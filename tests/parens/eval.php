@@ -10,3 +10,5 @@ $var = (eval(('return 1;')));
 
 if (eval('return 1;')) {}
 if ((eval('return 1;'))) {}
+
+if ((eval('return 1;')) === 1) {}

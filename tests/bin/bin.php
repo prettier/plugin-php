@@ -237,3 +237,74 @@ $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable 
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? call($someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable, $someOtherReallyReallyLongVariable);
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable;
+
+$var = $var instanceof Arrayable ? $var : $var;
+$var = $someOtherReallyReallyReallyLongVariable instanceof Arrayable ? $var : $var;
+$var = $someOtherReallyReallyReallyReallyLongVariable instanceof Arrayable ? $var : $var;
+$var = $var instanceof Arrayable ? $someOtherReallyReallyReallyLongVariable : $var;
+$var = $var instanceof Arrayable ? $someOtherReallyReallyReallyReallyLongVariable : $var;
+$var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyLongVariable;
+$var = $var instanceof Arrayable ? $var : $someOtherReallyReallyReallyReallyLongVariable;
+$var = $someOtherReallyReallyReallyLongVariable instanceof Arrayable ? $someOtherReallyReallyReallyLongVariable : $someOtherReallyReallyReallyLongVariable;
+
+$callback =
+    $var ??
+    function () {
+        return true;
+    };
+$callback =
+    $var ??
+    function () {
+        return true;
+    } ??
+    function () {
+        return true;
+    };
+$regex =
+    '/
+    (\\\\)?                    # escaped with a backslash?
+    \$
+    (?!\()                     # no opening parenthesis
+    (\{)?                      # optional brace
+    (' .
+    self::VARNAME_REGEX .
+    ')  # var name
+    (\})?                      # optional closing brace
+/x';
+$var = '
+string
+string
+string
+' . '
+string
+string
+string
+';
+
+$var = $var . '
+string
+';
+
+$var = '
+string
+' . $var;
+
+$var = '
+string\n
+string\n
+string\n
+' . '
+string\r\n
+string\r\n
+string\r\n
+';
+
+$var = '
+string\\n
+string\\n
+string\\n
+' . '
+string\\r\\n
+string\\r\\n
+string\\r\\n
+';

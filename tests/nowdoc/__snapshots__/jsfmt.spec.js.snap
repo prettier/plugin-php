@@ -80,6 +80,846 @@ EOD
 ) {
     echo $b;
 }
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . $var;
+
+$var = $var . $var . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . $var;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . <<<'EOF'
+string
+string
+string
+EOF;
+
+$var = $var . <<<'EOF'
+string
+string
+string
+EOF
+    . $var
+    . <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$str = <<<'EOD'
+EOD;
+
+$str = <<<'EOD'
+
+EOD;
+
+$str = <<<'EOD'
+
+
+EOD;
+
+$str = <<<'EOD'
+
+
+
+EOD;
+
+$str = <<<'EOD'
+string
+EOD;
+
+$str = <<<'EOD'
+string
+string
+EOD;
+
+$str = <<<'EOD'
+string
+string
+string
+EOD;
+
+static $var =  <<<'EOD'
+string
+string
+string
+EOD;
+
+static
+    $var =  <<<'EOD'
+    string
+    string
+    string
+EOD
+    ,
+    $foo;
+
+static
+    $foo,
+    $var =  <<<'EOD'
+string
+string
+string
+EOD;
+
+call(
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $b
+);
+
+$var = new class(
+    <<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+$var = new class(
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+$var = new class(
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $b
+) {};
+
+echo <<<'EOD'
+string
+string
+string
+EOD;
+
+echo
+$a,
+<<<'EOD'
+string
+string
+string
+EOD;
+
+echo <<<'EOD'
+string
+string
+string
+EOD
+,
+$a;
+
+print  <<<'EOD'
+string
+string
+string
+EOD;
+
+return  <<<'EOD'
+string
+string
+string
+EOD;
+
+eval(
+<<<'EOD'
+string
+string
+string
+EOD
+);
+
+include <<<'EOD'
+string
+string
+string
+EOD;
+
+exit(
+<<<'EOD'
+string
+string
+string
+EOD
+);
+
+const MIN_VALUE = <<<'EOD'
+string
+string
+string
+EOD;
+
+$var = (bool) <<<'EOD'
+string
+string
+string
+EOD;
+
+class Foo {
+    public $var = <<<'EOD'
+string
+string
+string
+EOD;
+    public const FOO = <<<'EOD'
+string
+string
+string
+EOD;
+
+    public function test($var = <<<'EOD'
+string
+string
+string
+EOD
+    ) {
+    }
+    public function test1($var, $var = <<<'EOD'
+string
+string
+string
+EOD
+    ) {
+    }
+    public function test2($var = <<<'EOD'
+string
+string
+string
+EOD
+        ,
+      $var
+    ) {
+    }
+}
+
+declare(ticks=1) {
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+function foo() {
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+$var = function () {
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+};
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+];
+
+$a = [
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $a
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+    ,
+];
+
+$a = [
+    'other-key' => $a,
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    'other-key' => $a
+];
+
+switch ($i) {
+    case <<<'TXT'
+string
+TXT
+    :
+        print <<<'TXT'
+string
+TXT;
+        break;
+
+    case <<<'TXT'
+other
+TXT
+    :
+        break;
+    default:
+        print <<<'TXT'
+string
+TXT;
+}
+
+$var->call(
+    <<<'TXT'
+string
+TXT
+);
+
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+$var->call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var =  <<<'TXT'
+string
+TXT
+    ? <<<'TXT'
+string
+TXT
+    : <<<'TXT'
+string
+TXT;
+
+if (
+<<<'EOD'
+string
+string
+string
+EOD
+) {
+    echo 'test';
+}
+
+do {
+} while (
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+while (
+<<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+switch (
+<<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+function generator()
+{
+    yield <<<'EOD'
+string
+string
+string
+EOD;
+    yield $id => <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+$var = $var ?: <<<'EOD'
+string
+string
+string
+EOD;
+
+$var = $var ?: $var ?: $var ?: $var ?: $var ?: <<<'EOD'
+string
+string
+string
+EOD;
+
+call(
+    call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    $var->call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    Foo::call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+for (
+    $i = <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0,
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i = 0;
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0;
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10,
+print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {}
+
+for (
+    $i = 0;
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i < 10;
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+print <<<'EOD'
+string
+string
+string
+EOD
+,
+    $i++
+) {}
+
+for (
+    $i = 0;
+    $i < 10;
+    $i++,
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+for (
+print <<<'EOD'
+string
+string
+string
+EOD;
+print <<<'EOD'
+string
+string
+string
+EOD;
+print <<<'EOD'
+string
+string
+string
+EOD
+) {}
+
+call(
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var .
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    .
+    $var
+    ,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    .
+    $var .
+    $var .
+    $var .
+    $var,
+    $var
+);
+
+call(
+    $var .
+    $var .
+    <<<'TXT'
+string
+TXT
+    .
+    $var .
+    $var,
+    $var
+);
+
+call(
+    $var .
+    $var .
+    $var .
+    $var .
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var,
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $var
+);
+
+call(
+    $var,
+    $var ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $var
+);
+
+$array = [
+    <<<'EOD'
+string
+string
+string
+EOD
+    => <<<'EOD'
+string
+string
+string
+EOD
+];
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -175,6 +1015,898 @@ EOD
 {
     echo $b;
 }
+
+$var =
+    <<<'EOF'
+string
+string
+string
+EOF
+    . $var;
+
+$var =
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var =
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var;
+
+$var =
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var .
+    $var;
+
+$var =
+    $var .
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var =
+    $var .
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var .
+    $var;
+
+$var =
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var =
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF;
+
+$var =
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var .
+    <<<'EOF'
+string
+string
+string
+EOF
+    .
+    $var;
+
+$str = <<<'EOD'
+
+EOD;
+
+$str = <<<'EOD'
+
+EOD;
+
+$str = <<<'EOD'
+
+
+EOD;
+
+$str = <<<'EOD'
+
+
+
+EOD;
+
+$str = <<<'EOD'
+string
+EOD;
+
+$str = <<<'EOD'
+string
+string
+EOD;
+
+$str = <<<'EOD'
+string
+string
+string
+EOD;
+
+static $var = <<<'EOD'
+string
+string
+string
+EOD;
+
+static $var = <<<'EOD'
+    string
+    string
+    string
+EOD
+    ,
+    $foo;
+
+static $foo,
+    $var = <<<'EOD'
+string
+string
+string
+EOD;
+
+call(
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $b
+);
+
+$var = new class(
+    <<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+$var = new class(
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+) {};
+
+$var = new class(
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $b
+) {};
+
+echo <<<'EOD'
+string
+string
+string
+EOD;
+
+echo $a,
+    <<<'EOD'
+string
+string
+string
+EOD;
+
+echo <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $a;
+
+print <<<'EOD'
+string
+string
+string
+EOD;
+
+return <<<'EOD'
+string
+string
+string
+EOD;
+
+eval(
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+include <<<'EOD'
+string
+string
+string
+EOD;
+
+exit(
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+const MIN_VALUE = <<<'EOD'
+string
+string
+string
+EOD;
+
+$var = (bool) <<<'EOD'
+string
+string
+string
+EOD;
+
+class Foo
+{
+    public $var = <<<'EOD'
+string
+string
+string
+EOD;
+    public const FOO = <<<'EOD'
+string
+string
+string
+EOD;
+
+    public function test(
+        $var = <<<'EOD'
+string
+string
+string
+EOD
+    )
+    {
+    }
+    public function test1(
+        $var,
+        $var = <<<'EOD'
+string
+string
+string
+EOD
+    )
+    {
+    }
+    public function test2(
+        $var = <<<'EOD'
+string
+string
+string
+EOD
+        ,
+        $var
+    )
+    {
+    }
+}
+
+declare(ticks=1) {
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+function foo()
+{
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+$var = function () {
+    <<<'EOD'
+string
+string
+string
+EOD;
+    $str = <<<'EOD'
+string
+string
+string
+EOD;
+};
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    $a,
+    <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $a
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    'other-key' => $a,
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+];
+
+$a = [
+    'key' => <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    'other-key' => $a
+];
+
+switch ($i) {
+    case <<<'TXT'
+string
+TXT
+    :
+        print <<<'TXT'
+string
+TXT;
+        break;
+
+    case <<<'TXT'
+other
+TXT
+    :
+        break;
+    default:
+        print <<<'TXT'
+string
+TXT;
+}
+
+$var->call(
+    <<<'TXT'
+string
+TXT
+);
+
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+$var->call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var->call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+$var = <<<'TXT'
+string
+TXT
+    ? <<<'TXT'
+string
+TXT
+    : <<<'TXT'
+string
+TXT;
+
+if (
+    <<<'EOD'
+string
+string
+string
+EOD
+) {
+    echo 'test';
+}
+
+do {
+} while (
+    <<<'EOD'
+string
+string
+string
+EOD
+);
+
+while (
+    <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+switch (
+    <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+function generator()
+{
+    yield <<<'EOD'
+string
+string
+string
+EOD;
+    yield $id => <<<'EOD'
+string
+string
+string
+EOD;
+}
+
+$var =
+    $var ?:
+    <<<'EOD'
+string
+string
+string
+EOD;
+
+$var =
+    $var ?:
+    $var ?:
+    $var ?:
+    $var ?:
+    $var ?:
+    <<<'EOD'
+string
+string
+string
+EOD;
+
+call(
+    call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    $var->call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+call(
+    Foo::call(
+        <<<'EOD'
+string
+string
+string
+EOD
+    )
+);
+
+for (
+    $i = <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0,
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i = 0;
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10,
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i < 10;
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    print <<<'EOD'
+string
+string
+string
+EOD
+    ,
+    $i++
+) {
+}
+
+for (
+    $i = 0;
+    $i < 10;
+    $i++,
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+for (
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    print <<<'EOD'
+string
+string
+string
+EOD;
+    print <<<'EOD'
+string
+string
+string
+EOD
+) {
+}
+
+call(
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var,
+    <<<'TXT'
+string
+TXT
+    ,
+    $var
+);
+
+call(
+    $var .
+        <<<'TXT'
+string
+TXT
+        ,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    . $var,
+    $var
+);
+
+call(
+    <<<'TXT'
+string
+TXT
+    .
+        $var .
+        $var .
+        $var .
+        $var,
+    $var
+);
+
+call(
+    $var .
+        $var .
+        <<<'TXT'
+string
+TXT
+        .
+        $var .
+        $var,
+    $var
+);
+
+call(
+    $var .
+        $var .
+        $var .
+        $var .
+        <<<'TXT'
+string
+TXT
+        ,
+    $var
+);
+
+call(
+    $var
+        ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var,
+    $var
+        ? <<<'EOD'
+string
+string
+string
+EOD
+        : <<<'EOD'
+string
+string
+string
+EOD
+);
+
+call(
+    $var
+        ? <<<'EOD'
+string
+string
+string
+EOD
+
+        : <<<'EOD'
+string
+string
+string
+EOD
+        ,
+    $var
+);
+
+call(
+    $var,
+    $var
+        ? <<<'EOD'
+string
+string
+string
+EOD
+
+        : <<<'EOD'
+string
+string
+string
+EOD
+        ,
+    $var
+);
+
+$array = [
+    <<<'EOD'
+string
+string
+string
+EOD
+     => <<<'EOD'
+string
+string
+string
+EOD
+];
 
 `;
 

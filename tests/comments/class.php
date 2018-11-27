@@ -72,3 +72,65 @@ class ResponseMethodFailure
 {
 
 }
+
+// 424 : Method failure
+class ResponseMethodFailure
+    extends // behaves as an error
+        ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+
+// 424 : Method failure
+class ResponseMethodFailure
+    extends
+        // behaves as an error
+        ResponseNotAcceptable
+    implements
+        // Some comment
+        FooBar,
+        // Another comment
+        BarBaz
+{
+
+}
+
+// 424 : Method failure
+class ResponseMethodFailure extends ResponseNotAcceptable implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
+{
+
+}
+
+class MyClass
+{
+}
+
+// Comment
+class MyClass
+{
+
+}
+
+class MyClass
+{
+    // Comment
+}
+
+$var = new class {};
+
+// Comment
+$var = new class {};
+
+$var = new class {
+    // Comment
+};

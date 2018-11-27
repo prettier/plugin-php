@@ -585,6 +585,57 @@ $var = $var % ($var . $var);
 $var = '100' - '100' - '100';
 $var = ('100' - '100') - '100';
 $var = '100' - ('100' - '100');
+
+if (false || true) {};
+if ((false || true)) {};
+if (false or true) {};
+if ((false or true)) {};
+if (true && false) {};
+if ((true && false)) {};
+if (true and false) {};
+if ((true and false)) {};
+
+if (!$foo or $bar == -1) {}
+if ((!$foo or $bar == -1)) {}
+if ((!$foo or $bar) == -1) {}
+if (!$foo or ($bar == -1)) {}
+
+do {} while ($foo and $bar);
+while ($foo or $bar < 10) {}
+for ($foo or $bar;;) {}
+switch ($foo or $bar) {}
+
+$a ** $b ** $c;
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a**$b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;
+
+$var = $var + $var ?? '';
+$var = $var + ($var ?? '');
+$var = ($var + $var) ?? '';
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = ($cachesNames === []);
+
+$isNamespaced = strpos($fixture, '\\\\') !== false;
+$isNamespaced = (strpos($fixture, '\\\\') !== false);
+
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
+
+$var = $page > 0 || $page == 0 && $this->forcePageParam;
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -802,7 +853,7 @@ $var = !(!$var || !$var);
 $var = $var + $var * $var;
 $var = ($var + $var) * $var;
 
-$var = @(foo() || @foo());
+$var = @foo() || @foo();
 $var = @(foo() || foo());
 
 $var += $var += $var += $var;
@@ -868,6 +919,73 @@ $var = '100' - '100' - '100';
 $var = '100' - '100' - '100';
 $var = '100' - ('100' - '100');
 
+if (false || true) {
+}
+if (false || true) {
+}
+if (false or true) {
+}
+if (false or true) {
+}
+if (true && false) {
+}
+if (true && false) {
+}
+if (true and false) {
+}
+if (true and false) {
+}
+
+if (!$foo or $bar == -1) {
+}
+if (!$foo or $bar == -1) {
+}
+if ((!$foo or $bar) == -1) {
+}
+if (!$foo or $bar == -1) {
+}
+
+do {
+} while ($foo and $bar);
+while ($foo or $bar < 10) {
+}
+for ($foo or $bar; ; ) {
+}
+switch ($foo or $bar) {
+}
+
+$a ** ($b ** $c);
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a ** $b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;
+
+$var = $var + $var ?? '';
+$var = $var + ($var ?? '');
+$var = $var + $var ?? '';
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = $cachesNames === [];
+
+$isNamespaced = strpos($fixture, '\\\\') !== false;
+$isNamespaced = strpos($fixture, '\\\\') !== false;
+
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
 `;
 
 exports[`block.php - php-verify: block.php 1`] = `
@@ -917,7 +1035,8 @@ exports[`call.php - php-verify: call.php 1`] = `
 <?php
 
 call();
-(call());
+// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/194#issuecomment-430657284
+// (call());
 
 $var = call();
 $var = (call());
@@ -961,7 +1080,8 @@ $var = ("Foo::bar")();
 <?php
 
 call();
-call();
+// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/194#issuecomment-430657284
+// (call());
 
 $var = call();
 $var = call();
@@ -1040,6 +1160,7 @@ $var = ([((int) 'key') => ((int) '1')]);
 $var = (int) $raw['data'] + $value;
 $var = ((int) $raw['data']) + $value;
 $var = (bool) $var ? 1 : 2;
+$var = (bool) ($var ? 1 : 2);
 $var = (bool) $var + 1 ? 1 : 2;
 $var = ((bool) $var) + 1 ? 1 : 2;
 $var = (bool) ($var + 1) ? 1 : 2;
@@ -1082,6 +1203,16 @@ if ((int) 1 === (int) 1) {}
 if (((int) 1) === (int) 1) {}
 if ((int) 1 === ((int) 1)) {}
 if (((int) (1)) === ((int) 1)) {}
+
+$var = (bool) call();
+$var = $var || (bool) call();
+$var = (bool) call() || $var;
+
+$var = (int) $var === 1;
+$var = ((int) $var) === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1091,20 +1222,20 @@ if (((int) (1)) === ((int) 1)) {}
 (int) '1';
 
 $var = (int) '1';
-$var = (int) '1';
-$var = (int) '1';
-$var = (bool) 2.3e5;
+$var = ((int) '1');
+$var = ((int) '1');
+$var = ((bool) 2.3e5);
 $var = (object) [];
 $var = (object) [];
-$var = (object) [];
-$var = (object) array('1' => 'foo');
-$var = (object) ['1' => 'foo'];
+$var = ((object) []);
+$var = ((object) array('1' => 'foo'));
+$var = ((object) ['1' => 'foo']);
 $var = ((object) 'ciao')->scalar;
 $var = ((object) array('test'))->{'0'};
 $var = ((object) array('test'))->{'0'};
 $var = (array) new B();
 $var = (array) new B();
-$var = (array) new B();
+$var = ((array) new B());
 $var = ((array) new B())['foo'];
 $var = ((string) 1234)[1];
 $var = ((string) 123)();
@@ -1113,29 +1244,30 @@ $var = 'test'[0];
 $var = (array) 'test'[0];
 $var = ((array) 'test')[0];
 $var = [(int) 'key' => (int) '1'];
-$var = [(int) 'key' => (int) '1'];
-$var = [(int) 'key' => (int) '1'];
-$var = (int) ($raw['data'] + $value);
+$var = [((int) 'key') => ((int) '1')];
+$var = [((int) 'key') => ((int) '1')];
+$var = (int) $raw['data'] + $value;
 $var = ((int) $raw['data']) + $value;
-$var = (bool) ($var ? 1 : 2);
-$var = (bool) ($var + 1 ? 1 : 2);
+$var = (bool) $var ? 1 : 2;
+$var = (bool) $var ? 1 : 2;
+$var = (bool) $var + 1 ? 1 : 2;
 $var = ((bool) $var) + 1 ? 1 : 2;
-$var = (bool) ($var + 1 ? 1 : 2);
+$var = (bool) $var + 1 ? 1 : 2;
 $var = ((bool) $var) ? 1 : 2;
 $var = ((bool) $var) ? (bool) 1 : (bool) 2;
-$var = ((bool) $var) ? (bool) 1 : (bool) 2;
-$var = ((bool) $var) ? (bool) (1 + 2) : (bool) (2 + 3);
-$var = ((bool) $var) ? (bool) (1 + 2) : (bool) (2 + 3);
-$var = ((bool) $var) ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
-$var = (((bool) $var) ? (((bool) $var) ? 1 : 2) : (bool) $var) ? 1 : 2;
-$var = ((bool) $var) ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
-$var = (bool) ($var ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2));
+$var = ((bool) $var) ? ((bool) 1) : ((bool) 2);
+$var = ((bool) $var) ? (bool) 1 + 2 : (bool) 2 + 3;
+$var = ((bool) $var) ? ((bool) 1 + 2) : ((bool) 2 + 3);
+$var = ((bool) $var) ? (bool) $var ? 1 : 2 : (bool) $var ? 1 : 2;
+$var = (((bool) $var) ? (((bool) $var) ? 1 : 2) : ((bool) $var)) ? 1 : 2;
+$var = ((bool) $var) ? (bool) $var ? 1 : 2 : (bool) $var ? 1 : 2;
+$var = (bool) $var ? (bool) $var ? 1 : 2 : (bool) $var ? 1 : 2;
 $var = (bool) $var->foo;
 $var = (bool) $var->foo;
-$var = (bool) $var->foo;
+$var = ((bool) $var->foo);
 $var = ((object) $var)->foo;
 $var = ((object) $var)[0];
-$var = (int) ('test' + ((int) 'test'));
+$var = (int) 'test' + (int) 'test';
 $var = ((int) 'test') + ((int) 'test');
 $var = ((int) 'test') * ((int) 'test');
 $var = ((int) 'test') | ((int) 'test');
@@ -1143,31 +1275,41 @@ $var = ((int) 'test') % ((int) 'test');
 $var = @((int) 'test');
 $var = @((int) call());
 $var = (int) (int) 1;
-$var = (int) (int) 1;
-$var = call((int) $var, (int) call(), (int) ($minutes * 60));
-$var = call((int) $var, (int) call(), (int) ($minutes * 60));
-$var = $var + ((int) ($minutes * 60));
-$var = $var + ((int) ($minutes * 60));
+$var = (int) ((int) 1);
+$var = call((int) $var, (int) call(), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
+$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
 
 return (int) $var;
 return (int) $var;
 
-if ((int) (1 === 1)) {
+if ((int) 1 === 1) {
 }
-if (1 === ((int) 1)) {
+if (1 === (int) 1) {
 }
 if (((int) 1) === 1) {
 }
 if (1 === ((int) 1)) {
 }
-if ((int) (1 === ((int) 1))) {
+if ((int) 1 === (int) 1) {
+}
+if (((int) 1) === (int) 1) {
+}
+if ((int) 1 === ((int) 1)) {
 }
 if (((int) 1) === ((int) 1)) {
 }
-if ((int) (1 === ((int) 1))) {
-}
-if (((int) 1) === ((int) 1)) {
-}
+
+$var = (bool) call();
+$var = $var || (bool) call();
+$var = (bool) call() || $var;
+
+$var = (int) $var === 1;
+$var = ((int) $var) === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix . $key, $value, (int) ($minutes * 60));
 
 `;
 
@@ -1178,6 +1320,8 @@ clone $a;
 (clone $a);
 
 $var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
 $var = (clone $a);
 $var = (clone $a)->foo;
 $var = (clone $a->foo);
@@ -1210,6 +1354,8 @@ clone $a;
 clone $a;
 
 $var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
 $var = clone $a;
 $var = (clone $a)->foo;
 $var = clone $a->foo;
@@ -1383,6 +1529,26 @@ while ($i++ < 5) {
     }
     echo "Neither does this.<br />\\n";
 }
+
+if ($var = 1) {}
+if (($var = 1)) {}
+if ($var = 1) {} else if ($var = 1) {} else {}
+if (($var = 1)) {} else if (($var = 1)) {} else {}
+do {} while ($var = 1);
+do {} while (($var = 1));
+while ($var = 1) {}
+while (($var = 1)) {}
+for ($i = 1; $i <= 10; $i++) {}
+for (($i = 1); ($i <= 10); ($i++)) {}
+foreach (($arr = [1, 2, 3]) as $value) {}
+foreach (($arr) as $value) {}
+foreach (($arr) as $key => $value) {}
+foreach (($arr = [1, 2, 3]) as $key => $value) {}
+switch ($var = 1) {}
+switch (($var = 1)) {}
+
+while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1451,6 +1617,48 @@ while ($i++ < 5) {
         continue 2;
     }
     echo "Neither does this.<br />\\n";
+}
+
+if ($var = 1) {
+}
+if ($var = 1) {
+}
+if ($var = 1) {
+} elseif ($var = 1) {
+} else {
+}
+if ($var = 1) {
+} elseif ($var = 1) {
+} else {
+}
+do {
+} while ($var = 1);
+do {
+} while ($var = 1);
+while ($var = 1) {
+}
+while ($var = 1) {
+}
+for ($i = 1; $i <= 10; $i++) {
+}
+for ($i = 1; $i <= 10; $i++) {
+}
+foreach ($arr = [1, 2, 3] as $value) {
+}
+foreach ($arr as $value) {
+}
+foreach ($arr as $key => $value) {
+}
+foreach ($arr = [1, 2, 3] as $key => $value) {
+}
+switch ($var = 1) {
+}
+switch ($var = 1) {
+}
+
+while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
+}
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 }
 
 `;
@@ -1591,6 +1799,8 @@ $var = (eval(('return 1;')));
 
 if (eval('return 1;')) {}
 if ((eval('return 1;'))) {}
+
+if ((eval('return 1;')) === 1) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1605,6 +1815,9 @@ $var = eval('return 1;');
 if (eval('return 1;')) {
 }
 if (eval('return 1;')) {
+}
+
+if (eval('return 1;') === 1) {
 }
 
 `;
@@ -1865,7 +2078,7 @@ $var = $var->bar()->foo();
 $var = $var->bar()->foo();
 $var = $var->bar()->foo();
 
-$var = (object) $var->bar()->foo();
+$var = ((object) $var->bar()->foo());
 $var = (object) $var->bar()->foo();
 
 $var = $var[0];
@@ -1991,6 +2204,13 @@ $var = new $a->b;
 $var = new $a->b();
 $var = (new $a)->b();
 $var = ((new $a)->b());
+
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+
+$var = (new class {})->foo;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Translator(
@@ -2038,6 +2258,11 @@ $var = new $a->b();
 $var = new $a->b();
 $var = (new $a())->b();
 $var = (new $a())->b();
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+$var = (new class {})->foo;
 
 
 `;
@@ -2339,8 +2564,8 @@ $var ? 1 : 2;
 $var = $var ? 1 : 2;
 $var = $var ? 1 : 2;
 
-$var = (int) ($var + 1 === 2 ? '1' : '2');
-$var = (int) ($var + 1 === 2 ? '1' : '2');
+$var = (int) $var + 1 === 2 ? '1' : '2';
+$var = (int) $var + 1 === 2 ? '1' : '2';
 $var = ((int) $var) + 1 === 2 ? '1' : '2';
 
 ($var ? $var : $var)();
@@ -2439,6 +2664,35 @@ exports[`silent.php - php-verify: silent.php 1`] = `
 
 $var = @foo();
 $var = (@foo());
+
+$var = @call() || @other();
+$var = @(call()) || @(other_class());
+$var = @(call() || call());
+
+$var = @$cache[$key];
+$var = @($cache[$key]);
+
+$var = @new MyClass();
+$var = @(new MyClass());
+
+$var = (@include("file.php")) OR die("Could not find file.php!");
+
+$var = @  $_GET['data'];
+
+if (false === @fwrite($this->stream, $message) || ($newline && (false === @fwrite($this->stream, PHP_EOL)))) {
+    // should never happen
+    throw new RuntimeException('Unable to write output.');
+}
+
+try {
+    if (($fp = @fopen($filename, "r")) == false) {
+        throw new Exception;
+    } else {
+        do_file_stuff();
+    }
+} catch (Exception $e) {
+    handle_exception();
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2447,6 +2701,39 @@ $var = (@foo());
 
 $var = @foo();
 $var = @foo();
+
+$var = @call() || @other();
+$var = @call() || @other_class();
+$var = @(call() || call());
+
+$var = @$cache[$key];
+$var = @$cache[$key];
+
+$var = @new MyClass();
+$var = @new MyClass();
+
+($var = @include 'file.php') or die('Could not find file.php!');
+
+$var = @$_GET['data'];
+
+if (
+    false ===
+    @fwrite($this->stream, $message) ||
+        ($newline && false === @fwrite($this->stream, PHP_EOL))
+) {
+    // should never happen
+    throw new RuntimeException('Unable to write output.');
+}
+
+try {
+    if (($fp = @fopen($filename, 'r')) == false) {
+        throw new Exception();
+    } else {
+        do_file_stuff();
+    }
+} catch (Exception $e) {
+    handle_exception();
+}
 
 `;
 
@@ -2552,6 +2839,9 @@ $var = ~($var += 1);
 (+$a->b)[1];
 (+$var)();
 $var = call(+$var->_uuidCounter);
+
+if (!$token = $this->getToken()) {}
+if (!($token = $this->getToken())) {}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -2615,6 +2905,11 @@ $var = ~($var += 1);
 (+$a->b)[1];
 (+$var)();
 $var = call(+$var->_uuidCounter);
+
+if (!($token = $this->getToken())) {
+}
+if (!($token = $this->getToken())) {
+}
 
 `;
 

@@ -81,34 +81,16 @@ function clean(node, newObj) {
     newObj.name = isLowerCase ? lowerCasedName : node.name;
   }
 
-  if (["Location", "Position"].includes(node.constructor.name)) {
-    newObj = "locationNode";
-  }
-
   const statements = ["foreach", "for", "if", "while", "do"];
 
   if (statements.includes(node.kind)) {
-    // need to account for the case of nested block nodes ie
-    // if (true) {{{
-    //   $test = 1;
-    // }}}
-    const getBlockContents = blockNode => {
-      if (
-        blockNode.children &&
-        blockNode.children[0] &&
-        blockNode.children[0].kind === "block"
-      ) {
-        return getBlockContents(blockNode.children[0]);
-      }
-      return blockNode;
-    };
     if (node.body && node.body.kind !== "block") {
       newObj.body = {
         kind: "block",
         children: [newObj.body]
       };
     } else {
-      newObj.body = newObj.body ? getBlockContents(newObj.body) : null;
+      newObj.body = newObj.body ? newObj.body : null;
     }
 
     if (node.alternate && node.alternate.kind !== "block") {
@@ -117,9 +99,7 @@ function clean(node, newObj) {
         children: [newObj.alternate]
       };
     } else {
-      newObj.alternate = newObj.alternate
-        ? getBlockContents(newObj.alternate)
-        : null;
+      newObj.alternate = newObj.alternate ? newObj.alternate : null;
     }
   }
 

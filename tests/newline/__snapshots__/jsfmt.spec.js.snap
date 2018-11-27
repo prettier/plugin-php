@@ -34,6 +34,64 @@ $test = 1;
 
 `;
 
+exports[`comment-block-CRLF.php - php-verify: comment-block-CRLF.php 1`] = `
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+
+`;
+
+exports[`comment-block-LF.php - php-verify: comment-block-LF.php 1`] = `
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+/**
+ * See http://example.com
+ *
+ * Some example code
+ * \`\`\`php
+ * $hello = 'world'; // This is a comment in a comment
+ * \`\`\`
+ */
+
+$a = 1;
+
+`;
+
 exports[`file-terminated-with-multiple-LF.php - php-verify: file-terminated-with-multiple-LF.php 1`] = `
 <?php
 $test = 1;
@@ -50,5 +108,93 @@ exports[`file-terminated-without-line-ending.php - php-verify: file-terminated-w
 $test = 1;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 $test = 1;
+
+`;
+
+exports[`html-CRLF.php - php-verify: html-CRLF.php 1`] = `
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+
+`;
+
+exports[`html-LF.php - php-verify: html-LF.php 1`] = `
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <title>.</title>
+    </head>
+    <body>
+
+        <?php echo 'foo!'; ?>
+
+    </body>
+</html>
+
+`;
+
+exports[`mixed-CRLF.php - php-verify: mixed-CRLF.php 1`] = `
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+
+`;
+
+exports[`mixed-LF.php - php-verify: mixed-LF.php 1`] = `
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Text
+<?php echo 1; ?>
+<?php echo 2; ?>
+Test
 
 `;

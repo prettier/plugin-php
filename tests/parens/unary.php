@@ -60,3 +60,6 @@ $var = ~($var += 1);
 (+$a->b)[1];
 (+$var)();
 $var = call(+$var->_uuidCounter);
+
+if (!$token = $this->getToken()) {}
+if (!($token = $this->getToken())) {}

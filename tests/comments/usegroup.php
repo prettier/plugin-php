@@ -5,3 +5,6 @@ use /* Comment */ some\namespaces\/* Comment */{
     /* Comment */ ClassB/* Comment */,
     /* Comment */ ClassC /* Comment */ as /* Comment */ C
 };
+
+use // Comment
+    My\Full\NSname;

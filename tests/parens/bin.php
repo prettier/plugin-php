@@ -278,3 +278,54 @@ $var = $var % ($var . $var);
 $var = '100' - '100' - '100';
 $var = ('100' - '100') - '100';
 $var = '100' - ('100' - '100');
+
+if (false || true) {};
+if ((false || true)) {};
+if (false or true) {};
+if ((false or true)) {};
+if (true && false) {};
+if ((true && false)) {};
+if (true and false) {};
+if ((true and false)) {};
+
+if (!$foo or $bar == -1) {}
+if ((!$foo or $bar == -1)) {}
+if ((!$foo or $bar) == -1) {}
+if (!$foo or ($bar == -1)) {}
+
+do {} while ($foo and $bar);
+while ($foo or $bar < 10) {}
+for ($foo or $bar;;) {}
+switch ($foo or $bar) {}
+
+$a ** $b ** $c;
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a**$b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;
+
+$var = $var + $var ?? '';
+$var = $var + ($var ?? '');
+$var = ($var + $var) ?? '';
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = ($cachesNames === []);
+
+$isNamespaced = strpos($fixture, '\\') !== false;
+$isNamespaced = (strpos($fixture, '\\') !== false);
+
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
+
+$var = $page > 0 || $page == 0 && $this->forcePageParam;
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);

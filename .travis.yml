@@ -4,6 +4,7 @@ node_js:
   - 6
   - 8
   - 10
+  - 11
 cache:
   yarn: true
   directories:
@@ -12,3 +13,4 @@ install:
   - yarn install
 script:
   - AST_COMPARE=1 yarn test -- --runInBand
+  - yarn codecov

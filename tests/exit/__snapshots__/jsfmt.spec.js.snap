@@ -11,6 +11,47 @@ exit("Very very very very very very very very very very very very very very very
 exit;
 exit();
 exit(0376);
+exit('string
+string
+string');
+exit(
+    'string
+string
+string'
+);
+exit("string
+string
+string
+$var");
+exit(
+"string
+string
+string
+$var"
+);
+exit(\`string
+string
+string
+$var\`);
+exit(
+\`string
+string
+string
+$var\`
+);
+exit(<<<FOO
+string
+string
+string
+$var
+FOO
+);
+exit(<<<'FOO'
+string
+string
+string
+FOO
+);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 exit('exit info');
@@ -25,5 +66,48 @@ exit(
 exit();
 exit();
 exit(0376);
+exit('string
+string
+string');
+exit(
+    'string
+string
+string'
+);
+exit("string
+string
+string
+$var");
+exit(
+    "string
+string
+string
+$var"
+);
+exit(\`string
+string
+string
+$var\`);
+exit(
+    \`string
+string
+string
+$var\`
+);
+exit(
+    <<<FOO
+string
+string
+string
+$var
+FOO
+);
+exit(
+    <<<'FOO'
+string
+string
+string
+FOO
+);
 
 `;

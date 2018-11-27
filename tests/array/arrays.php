@@ -457,3 +457,51 @@ string
     'key' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 ];
+
+$array = [
+'string
+string
+string'
+];
+
+$array = [
+'string
+string
+string',
+'string
+string
+string'
+];
+
+$array = [
+    'key' => 'string
+string
+string',
+    'other-key' => 'string
+string
+string'
+];
+
+$array = [
+    'string
+string
+string' => 'value',
+    'string
+string
+string
+other' => 'other-value'
+];
+
+$array = [
+    'string
+string
+string' => 'string
+string
+string',
+    'string
+string
+string
+other' => 'string
+string
+string'
+];

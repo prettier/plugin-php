@@ -5,7 +5,23 @@ class Foo {
 
     public function emptyMethod(/* comments */) {}
 
+    abstract public function sortByName(/* bool $useNaturalSort = false */);
+
     /* comment */ protected /* comment */ static /* comment */ $foo /* comment */;
+
+    public function foo( // Comment
+    ) {}
+
+    public function foo(
+        // Comment
+    ) {}
+
+    abstract public function foo( // Comment
+    );
+
+    abstract public function foo(
+        // Comment
+    );
 }
 
 
@@ -21,5 +37,32 @@ class add_vendor extends request{
             $vendor->state, // state
             $vendor->zip // state
         );
+    }
+}
+
+class Foo {
+    function foo()
+    // this is a function
+    {
+        return 42;
+    }
+
+    function foo() // this is a function
+    {
+        return 42;
+    }
+
+    function foo() { // this is a function
+        return 42;
+    }
+
+    function foo() {
+        // this is a function
+        return 42;
+    }
+
+    function foo // this is a function
+    () {
+        return 42;
     }
 }

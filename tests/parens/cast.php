@@ -33,6 +33,7 @@ $var = ([((int) 'key') => ((int) '1')]);
 $var = (int) $raw['data'] + $value;
 $var = ((int) $raw['data']) + $value;
 $var = (bool) $var ? 1 : 2;
+$var = (bool) ($var ? 1 : 2);
 $var = (bool) $var + 1 ? 1 : 2;
 $var = ((bool) $var) + 1 ? 1 : 2;
 $var = (bool) ($var + 1) ? 1 : 2;
@@ -75,3 +76,13 @@ if ((int) 1 === (int) 1) {}
 if (((int) 1) === (int) 1) {}
 if ((int) 1 === ((int) 1)) {}
 if (((int) (1)) === ((int) 1)) {}
+
+$var = (bool) call();
+$var = $var || (bool) call();
+$var = (bool) call() || $var;
+
+$var = (int) $var === 1;
+$var = ((int) $var) === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));

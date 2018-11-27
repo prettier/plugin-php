@@ -1,10 +1,10 @@
 ---
 extends:
-- eslint:recommended
-- plugin:prettier/recommended
-- plugin:jest/recommended
+  - eslint:recommended
+  - plugin:prettier/recommended
+  - plugin:jest/recommended
 plugins:
-- import
+  - import
 root: true
 env:
   es6: true
@@ -13,16 +13,15 @@ env:
 rules:
   curly: error
   import/no-extraneous-dependencies:
-  - error
-  - devDependencies: ["tests*/**", "scripts/**"]
+    - error
+    - devDependencies: ["tests*/**", "scripts/**"]
   no-else-return: error
   no-inner-declarations: error
-  no-unneeded-ternary: error
   no-useless-return: error
   no-var: error
   one-var:
-  - error
-  - never
+    - error
+    - never
   object-shorthand: error
   prefer-arrow-callback: error
   prefer-const: error
@@ -32,12 +31,12 @@ rules:
   strict: error
   symbol-description: error
   yoda:
-  - error
-  - never
-  - exceptRange: true
+    - error
+    - never
+    - exceptRange: true
 overrides:
-- files: "tests/**/*.js"
-  rules:
-    strict: off
-  globals:
-    run_spec: true
+  - files: "tests/**/*.js"
+    rules:
+      strict: off
+    globals:
+      run_spec: true

@@ -16,3 +16,183 @@ $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
+
+// nowdoc
+$expected = array(
+    <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'foo',
+    <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'bar',
+);
+
+// heredoc
+$expected = array(
+    <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'foo',
+    <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+    'bar',
+);
+
+// Associative array with nowdoc
+$expected = array(
+    'key' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'foo',
+    'key' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'key' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'bar',
+);
+
+// Associative array with heredoc
+$expected = array(
+    'key' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'foo',
+    'key' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+);
+$expected = array(
+    'key' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+    'bar',
+);
+
+// Nested with nowdoc
+$expected = array(
+    'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+,
+    'collection' => array(
+        array(
+            'one' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+        ),
+        array(
+            'two' => <<<'EOT'
+foo
+# bar
+baz
+EOT
+        )
+    )
+);
+
+// Nested with heredoc
+$expected = array(
+    'test' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+,
+    'collection' => array(
+        array(
+            'one' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+        ),
+        array(
+            'two' => <<<EOT
+foo
+# bar
+baz
+EOT
+        )
+    )
+);

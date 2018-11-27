@@ -38,6 +38,7 @@ const PRECEDENCE = {};
     "<<=",
     ">>="
   ],
+  ["??"],
   ["||"],
   ["&&"],
   ["|"],
@@ -63,7 +64,6 @@ function getPrecedence(op) {
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
-const additiveOperators = ["+", "-"];
 const multiplicativeOperators = ["*", "/", "%"];
 const bitshiftOperators = [">>", "<<"];
 
@@ -78,11 +78,6 @@ function isBitwiseOperator(operator) {
 
 function shouldFlatten(parentOp, nodeOp) {
   if (getPrecedence(nodeOp) !== getPrecedence(parentOp)) {
-    // x + y % z --> (x + y) % z
-    if (nodeOp === "%" && !additiveOperators.includes(parentOp)) {
-      return true;
-    }
-
     return false;
   }
 
@@ -236,6 +231,13 @@ function isFirstChildrenInlineNode(path) {
   return firstChild.kind === "inline";
 }
 
+function isDocNode(node) {
+  return (
+    node.kind === "nowdoc" ||
+    (node.kind === "encapsed" && node.type === "heredoc")
+  );
+}
+
 /**
  * Heredoc/Nowdoc nodes need a trailing linebreak if they
  * appear as function arguments or array elements
@@ -243,12 +245,72 @@ function isFirstChildrenInlineNode(path) {
 function docShouldHaveTrailingNewline(path) {
   const node = path.getValue();
   const parent = path.getParentNode();
+  const parentParent = path.getParentNode(1);
 
   if (!parent) {
     return false;
   }
 
-  if (parent.kind === "echo") {
+  if (
+    (parentParent && ["call", "new", "echo"].includes(parentParent.kind)) ||
+    parent.kind === "parameter"
+  ) {
+    const lastIndex = parentParent.arguments.length - 1;
+    const index = parentParent.arguments.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
+  if (parentParent && parentParent.kind === "for") {
+    const initIndex = parentParent.init.indexOf(parent);
+
+    if (initIndex !== -1) {
+      return initIndex !== parentParent.init.length - 1;
+    }
+
+    const testIndex = parentParent.test.indexOf(parent);
+
+    if (testIndex !== -1) {
+      return testIndex !== parentParent.test.length - 1;
+    }
+
+    const incrementIndex = parentParent.increment.indexOf(parent);
+
+    if (incrementIndex !== -1) {
+      return incrementIndex !== parentParent.increment.length - 1;
+    }
+  }
+
+  if (parent.kind === "bin") {
+    if (parentParent && parentParent.kind === "bin") {
+      return true;
+    }
+
+    return parent.left === node;
+  }
+
+  if (parent.kind === "case" && parent.test === node) {
+    return true;
+  }
+
+  if (
+    (parent.kind === "assign" &&
+      parent.right === node &&
+      parentParent &&
+      parentParent.kind === "static") ||
+    parent.kind === "entry"
+  ) {
+    if (parent.kind === "entry" && parent.key === node) {
+      return true;
+    }
+
+    const lastIndex = parentParent.items.length - 1;
+    const index = parentParent.items.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
+  if (["call", "new", "echo"].includes(parent.kind)) {
     const lastIndex = parent.arguments.length - 1;
     const index = parent.arguments.indexOf(node);
 
@@ -258,14 +320,6 @@ function docShouldHaveTrailingNewline(path) {
   if (parent.kind === "array") {
     const lastIndex = parent.items.length - 1;
     const index = parent.items.indexOf(node);
-
-    return index !== lastIndex;
-  }
-
-  if (parent.kind === "parameter") {
-    const parentParent = path.getParentNode(1);
-    const lastIndex = parentParent.arguments.length - 1;
-    const index = parentParent.arguments.indexOf(parent);
 
     return index !== lastIndex;
   }
@@ -291,17 +345,11 @@ function lineShouldEndWithSemicolon(path) {
   ) {
     return true;
   }
-  if (
-    parentNode.kind === "class" &&
-    parentNode.isAnonymous &&
-    parentNode.arguments.includes(node)
-  ) {
-    return false;
-  }
   if (!nodeHasStatement(parentNode)) {
     return false;
   }
   const semiColonWhitelist = [
+    "expressionstatement",
     "array",
     "assign",
     "return",
@@ -348,7 +396,8 @@ function lineShouldEndWithSemicolon(path) {
     "variable",
     "cast",
     "clone",
-    "do"
+    "do",
+    "constref"
   ];
   if (node.kind === "traituse") {
     return !node.adaptations;
@@ -526,6 +575,7 @@ function skip(chars) {
 }
 
 const skipSpaces = skip(" \t");
+const skipEverythingButNewLine = skip(/[^\r\n]/);
 
 // This one doesn't use the above helper function because it wants to
 // test \r\n in order and `skip` doesn't support ordering and we only
@@ -594,6 +644,60 @@ function hasNewlineInRange(text, start, end) {
   return false;
 }
 
+function hasEmptyBody(path, name = "body") {
+  const node = path.getValue();
+
+  return (
+    node[name] &&
+    node[name].children &&
+    node[name].children.length === 0 &&
+    (!node[name].comments || node[name].comments.length === 0)
+  );
+}
+
+function isNextLineEmptyAfterNamespace(text, node, locStart) {
+  let idx = locStart(node);
+  idx = skipEverythingButNewLine(text, idx);
+  idx = skipNewline(text, idx);
+  return hasNewline(text, idx);
+}
+
+function shouldPrintHardlineBeforeTrailingComma(lastElem) {
+  if (
+    lastElem.kind === "nowdoc" ||
+    (lastElem.kind === "encapsed" && lastElem.type === "heredoc")
+  ) {
+    return true;
+  }
+
+  if (
+    lastElem.kind === "entry" &&
+    (lastElem.value.kind === "nowdoc" ||
+      (lastElem.value.kind === "encapsed" && lastElem.value.type === "heredoc"))
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function getAncestorCounter(path, typeOrTypes) {
+  const types = [].concat(typeOrTypes);
+  let counter = -1;
+  let ancestorNode;
+  while ((ancestorNode = path.getParentNode(++counter))) {
+    if (types.indexOf(ancestorNode.kind) !== -1) {
+      return counter;
+    }
+  }
+  return -1;
+}
+
+function getAncestorNode(path, typeOrTypes) {
+  const counter = getAncestorCounter(path, typeOrTypes);
+  return counter === -1 ? null : path.getParentNode(counter);
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -623,5 +727,10 @@ module.exports = {
   getNodeKindIncludingLogical,
   hasNewline,
   useSingleQuote,
-  hasNewlineInRange
+  hasNewlineInRange,
+  hasEmptyBody,
+  isNextLineEmptyAfterNamespace,
+  shouldPrintHardlineBeforeTrailingComma,
+  isDocNode,
+  getAncestorNode
 };

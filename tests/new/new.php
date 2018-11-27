@@ -125,3 +125,65 @@ class A {
         return new static($arg, $arg, $arg);
     }
 }
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string'
+);
+
+new Foo($a, 'string
+string
+string'
+);
+
+new Foo('string
+string
+string', $b
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+"string
+string
+string
+$var"
+);
+new Foo(`string
+string
+string
+$var`);
+new Foo(
+`string
+string
+string
+$var`
+);
+
+$var = new class('string
+string
+string') {};
+
+$var = new class(
+    'string
+string
+string'
+) {};
+
+$var = new class(10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+};

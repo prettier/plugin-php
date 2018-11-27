@@ -2,12 +2,7 @@
 
 const assert = require("assert");
 
-const {
-  isLookupNode,
-  getPrecedence,
-  shouldFlatten,
-  isBitwiseOperator
-} = require("./util");
+const { getPrecedence, shouldFlatten, isBitwiseOperator } = require("./util");
 
 function needsParens(path) {
   const parent = path.getParentNode();
@@ -23,6 +18,7 @@ function needsParens(path) {
     [
       //  No need parens for top level children of this nodes
       "program",
+      "expressionstatement",
       "namespace",
       "declare",
       "block",
@@ -33,14 +29,6 @@ function needsParens(path) {
       "return",
       "echo"
     ].includes(parent.kind)
-  ) {
-    return false;
-  }
-
-  // Avoid parens in short control structures like `if (expr) statement`
-  if (
-    ["if", "while", "for", "foreach"].includes(parent.kind) &&
-    (parent.body === node || parent.alternate === node)
   ) {
     return false;
   }
@@ -74,19 +62,16 @@ function needsParens(path) {
           return false;
       }
     case "bin": {
-      // $var = false or true;
-      // The constant false is assigned to $f before the "or" operation occurs
-      // Acts like: (($var = false) or true)
-      if (["and", "xor", "or"].includes(node.type)) {
-        return true;
-      }
-
       switch (parent.kind) {
+        case "assign":
+          return ["and", "xor", "or"].includes(node.type);
+        case "silent":
+        case "cast":
+          // TODO: bug https://github.com/glayzzle/php-parser/issues/172
+          return node.parenthesizedExpression;
         case "pre":
         case "post":
         case "unary":
-        case "cast":
-        case "silent":
           return true;
         case "call":
         case "propertylookup":
@@ -118,10 +103,10 @@ function needsParens(path) {
           }
 
           if (pp < np && no === "%") {
-            return !shouldFlatten(po, no);
+            return po === "+" || po === "-";
           }
 
-          // Add parenthesis when working with binary operators
+          // Add parenthesis when working with bitwise operators
           // It's not stricly needed but helps with code understanding
           if (isBitwiseOperator(po)) {
             return true;
@@ -134,9 +119,31 @@ function needsParens(path) {
           return false;
       }
     }
+    case "propertylookup":
+    case "staticlookup": {
+      switch (parent.kind) {
+        case "call":
+          return (
+            name === "what" &&
+            parent.what === node &&
+            node.parenthesizedExpression
+          );
+
+        default:
+          return false;
+      }
+    }
     case "clone":
     case "new": {
-      return isLookupNode(parent);
+      switch (parent.kind) {
+        case "propertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return name === "what" && parent.what === node;
+        default:
+          return false;
+      }
     }
     case "yield": {
       switch (parent.kind) {
@@ -159,14 +166,13 @@ function needsParens(path) {
         (parent.init.includes(node) || parent.increment.includes(node))
       ) {
         return false;
-      } else if (
-        ["if", "while", "do", "switch"].includes(parent.kind) &&
-        name === "test"
-      ) {
-        return false;
       } else if (parent.kind === "assign") {
         return false;
       } else if (parent.kind === "static") {
+        return false;
+      } else if (
+        ["if", "do", "while", "foreach", "switch"].includes(parent.kind)
+      ) {
         return false;
       }
 
@@ -176,8 +182,6 @@ function needsParens(path) {
       switch (parent.kind) {
         case "unary":
         case "bin":
-        case "cast":
-          return true;
         case "retif":
           if (name === "test" && !parent.trueExpr) {
             return false;
@@ -195,18 +199,10 @@ function needsParens(path) {
       }
     case "closure":
       return parent.kind === "call" && name === "what" && parent.what === node;
+    case "silence":
     case "cast":
-      if (parent.kind === "bin") {
-        return true;
-      } else if (
-        parent.kind === "retif" &&
-        name === "test" &&
-        parent.test === node
-      ) {
-        return true;
-      } else if (parent.kind === "silent") {
-        return true;
-      }
+      // TODO: bug https://github.com/glayzzle/php-parser/issues/172
+      return node.parenthesizedExpression;
     // else fallthrough
     case "string":
     case "array":

@@ -128,6 +128,68 @@ class A {
         return new static($arg, $arg, $arg);
     }
 }
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string'
+);
+
+new Foo($a, 'string
+string
+string'
+);
+
+new Foo('string
+string
+string', $b
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+"string
+string
+string
+$var"
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+\`string
+string
+string
+$var\`
+);
+
+$var = new class('string
+string
+string') {};
+
+$var = new class(
+    'string
+string
+string'
+) {};
+
+$var = new class(10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+};
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 new Foo();
@@ -260,8 +322,7 @@ $var = new class(
     function () {
         return 1;
     }
-) extends SomeClass implements SomeInterface
-{
+) extends SomeClass implements SomeInterface {
     public function log($msg)
     {
         echo $msg;
@@ -287,5 +348,73 @@ class A
         return new static($arg, $arg, $arg);
     }
 }
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string'
+);
+
+new Foo(
+    $a,
+    'string
+string
+string'
+);
+
+new Foo(
+    'string
+string
+string',
+    $b
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+    "string
+string
+string
+$var"
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+    \`string
+string
+string
+$var\`
+);
+
+$var = new class(
+    'string
+string
+string'
+) {};
+
+$var = new class(
+    'string
+string
+string'
+) {};
+
+$var = new class(10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+};
 
 `;

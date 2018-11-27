@@ -12,20 +12,26 @@
 <h2 align="center">Prettier PHP Plugin</h2>
 
 <p align="center">
-  <a href="https://gitter.im/jlongster/prettier">
-    <img alt="Gitter" src="https://img.shields.io/gitter/room/jlongster/prettier.svg?style=flat-square">
+  <a href="https://travis-ci.org/prettier/plugin-php/">
+    <img alt="Travis" src="https://img.shields.io/travis/prettier/plugin-php/master.svg?style=flat-square&label=Travis+CI">
   </a>
-  <a href="https://travis-ci.org/prettier/prettier-php">
-    <img alt="Travis" src="https://img.shields.io/travis/prettier/plugin-php/master.svg?style=flat-square">
+  <a href="https://ci.appveyor.com/project/prettier/plugin-php">
+    <img alt="AppVeyor Build Status" src="https://img.shields.io/appveyor/ci/prettier/plugin-php.svg?style=flat-square&label=AppVeyor">
   </a>
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
+  </a>
+  <a href="https://codecov.io/gh/prettier/plugin-php">
+    <img alt="Codecov Coverage Status" src="https://img.shields.io/codecov/c/github/prettier/plugin-php.svg?style=flat-square">
   </a>
   <!-- <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="monthly downloads" src="https://img.shields.io/npm/dm/@prettier/plugin-php.svg?style=flat-square">
   </a> -->
   <a href="#badge">
     <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  </a>
+  <a href="https://gitter.im/jlongster/prettier">
+    <img alt="Gitter" src="https://img.shields.io/gitter/room/jlongster/prettier.svg?style=flat-square">
   </a>
   <a href="https://twitter.com/PrettierCode">
     <img alt="Follow+Prettier+on+Twitter" src="https://img.shields.io/twitter/follow/prettiercode.svg?label=follow+prettier&style=flat-square">
@@ -179,13 +185,6 @@ To test it out on a PHP file:
 <table>
   <tbody>
     <tr>
-      <td align="center">
-        <a href="https://github.com/mgrip">
-          <img width="150" height="150" src="https://github.com/mgrip.png?v=3&s=150">
-          </br>
-          Mike Grip
-        </a>
-      </td>
       <td align="center">
         <a href="https://github.com/czosel">
           <img width="150" height="150" src="https://github.com/czosel.png?v=3&s=150">

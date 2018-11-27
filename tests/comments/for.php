@@ -26,3 +26,42 @@ for($i = 1; $i < 10; $i++)
 
 for (;;) { // Comment
 }
+
+for (
+    // Comment
+    $i = 0;
+    // Comment
+    $i <= 5;
+    // Comment
+    $i++
+) {
+}
+
+for (
+    $i = 0; // Comment
+    $i <= 5; // Comment
+    $i++ // Comment
+) {
+}
+
+for ( // Comment
+    $i = 0;
+    $i <= 5;
+    $i++
+) {
+}
+
+for (
+    // Comment
+    $i = 1,
+    // Comment
+    $j = 0;
+    // Comment
+    $i <= 10;
+    // Comment
+    $j += $i,
+    // Comment
+    print $i,
+    // Comment
+    print $i++
+);

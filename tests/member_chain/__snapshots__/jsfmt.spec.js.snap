@@ -376,6 +376,13 @@ $var = (new Foo())->hotel->orders()->ordered()->with('smith')->get();
 $var = (clone $a)->hotel->orders()->ordered()->with('smith')->get();
 
 $var = Foo::keys($items)->filter(function ($x) { return $x > 2; })->map(function ($x) { return $x * 2; });
+
+(new static(func_get_args()))->push($this)->each(function ($item) {
+    VarDumper::dump($item);
+});
+(new static(func_get_args()))->offset(10)->push($this)->each(function ($item) {
+    VarDumper::dump($item);
+});
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -538,6 +545,16 @@ $var = Foo::keys($items)
     })
     ->map(function ($x) {
         return $x * 2;
+    });
+
+(new static(func_get_args()))->push($this)->each(function ($item) {
+    VarDumper::dump($item);
+});
+(new static(func_get_args()))
+    ->offset(10)
+    ->push($this)
+    ->each(function ($item) {
+        VarDumper::dump($item);
     });
 
 `;
@@ -772,6 +789,53 @@ $component = find('.org-lclp-edit-copy-url-banner__link')[0]
 
 $component = Foo::test(['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoo', 'barfoo' => 'foobar']);
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+static
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+sTaTic
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+self
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+parent
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+
+Foo
+    ::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 DB::table('identity')->insert([
@@ -863,5 +927,47 @@ $component = Foo::test([
 $component =
     Foo
         ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+static::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+static::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+self::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+parent::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
+
+Foo::viewFactory()
+    ->make(
+        $view ?: static::$defaultSimpleView,
+        array_merge($data, [
+            'paginator' => $this
+        ])
+    )
+    ->render();
 
 `;

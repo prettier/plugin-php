@@ -65,3 +65,135 @@ $arr = [
     'step' => $someOtherReallyReallyReallyReallyLongVariable . $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
     'step' => $someOtherReallyReallyReallyReallyLongVariable && $someOtherReallyReallyReallyReallyLongVariable ? (int) $field['sliderStep'] : 1,
 ];
+
+$var = $var ?: $var ?: $var ?: 'string';
+$var = $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: $var ?: 'string';
+
+($var ? 'string' : 'other-string')();
+($var ?: $var ?: $var ?: 'string')();
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')();
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')();
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)();
+
+($var ? $var : $var)->call();
+($var ?: $var ?: $var ?: 'string')->call();
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')->call();
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')->call();
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)->call();
+
+($var ?: $var ?: $var ?: 'string')->foo;
+($var ? $var : $var)->foo;
+($someOtherReallyReallyLongVariable ?: 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString')->foo;
+($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string')->foo;
+($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable)->foo;
+
+call(function () {
+    return 1;
+}, $var ? 1 : 2);
+
+call(function () {
+    return 1;
+}, $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+
+call(function () {
+    return 1;
+}, $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ? :'test');
+
+$var = [
+    'foo' =>  $var ?: $var ?: $var ?: 'string',
+    'other-foo' =>  $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string'
+];
+
+return $var ? 'string' : 'other-string';
+return $var ?: $var ?: $var ?: 'string';
+return $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+return $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+$var = $this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database';
+
+$var = $var ?: $otherVar ?: 'string' . 'string';
+$var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string';
+$var = $var ?: $otherVar ?: 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string' . 'string';
+
+echo $var ? 'string' : 'other-string';
+echo $var ?: $var ?: $var ?: 'string';
+echo $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+echo $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+print $var ? 'string' : 'other-string';
+print $var ?: $var ?: $var ?: 'string';
+print $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+print $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+include $var ? 'string' : 'other-string';
+include $var ?: $var ?: $var ?: 'string';
+include $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+include $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+$var = include $var ? 'string' : 'other-string';
+$var = include $var ?: $var ?: $var ?: 'string';
+$var = include $someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable;
+$var = include $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string';
+
+call($var ? 'string' : 'other-string');
+call($var ?: $var ?: $var ?: 'string');
+call($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+call($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string');
+
+exit($var ? 'string' : 'other-string');
+exit($var ?: $var ?: $var ?: 'string');
+exit($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable);
+exit($someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: $someOtherReallyReallyLongVariable ?: 'string');
+
+$var = $abilities ?: [];
+$var = $abilities ?: ['foo', 'bar', 'bar'];
+$var = $abilities ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: ['view' => 'view'];
+$var = $abilities ?: [
+    'view' => 'view'
+];
+$var = $abilities ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+];
+$var = $abilities ?: ['foo', 'bar', 'bar'] ?: ['foo', 'bar', 'bar'];
+$var = $abilities ?: ['foo', 'bar', 'bar'] ?: ['foo', 'bar', 'bar', 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'];
+$var = $abilities ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+] ?: [
+    'view' => 'view',
+    'create' => 'create',
+    'update' => 'update',
+    'delete' => 'delete'
+];
+
+$callback = $var ?: function () { return true; };
+$callback = $var ?: function () { return true; } ?: function () { return true; };
+
+$var = $delay instanceof DateTimeInterface
+    ? $delay->getTimestamp()
+    : Carbon::now()
+        ->addSeconds($delay)
+        ->getTimestamp();
+
+return $delay instanceof DateTimeInterface
+    ? $delay->getTimestamp()
+    : Carbon::now()
+        ->addSeconds($delay)
+        ->getTimestamp();
+
+$var = true ? 'string
+string
+string' : 'string
+string
+string';
+
+$var = $var ?: 'string
+string
+string';

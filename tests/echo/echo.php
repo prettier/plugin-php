@@ -181,3 +181,10 @@ using nowdoc syntax.
 EOD
     ,
     'test';
+
+echo 'string
+string
+string',
+'string
+string
+string';

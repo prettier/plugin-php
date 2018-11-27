@@ -28,3 +28,21 @@ try {
 throw new VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassException('exception');
 throw $e;
 throw new \Exception('Bad logic in order cancel');
+
+try {} catch (Exception $e) {} finally {}
+
+try {
+
+} catch (Exception $e) {
+
+} finally {
+
+}
+
+try {
+    // Comment
+} catch (Exception $e) {
+    // Comment
+} finally {
+    // Comment
+}

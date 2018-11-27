@@ -7,3 +7,28 @@ while (true) { // Comment 2
 } // Comment
 
 while (/* Comments */ true /* Comments */) {}
+
+while(
+true
+    // Comment
+) {}
+
+while(true)// Comment
+{}
+
+while(true){}// Comment
+
+while(true)/*Comment*/{}
+
+while(
+    true // Comment
+    && true // Comment
+){}
+
+while(true) {} // comment
+
+while(true) /* comment */ ++$x;
+
+while (true) {
+    // Comment
+}
