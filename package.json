@@ -10,7 +10,7 @@
     "src"
   ],
   "dependencies": {
-    "mem": "^3.0.1",
+    "mem": "^4.0.0",
     "php-parser": "glayzzle/php-parser#b1429015bcbf24d426cd4611de2aaf5e3c4c7210"
   },
   "devDependencies": {
