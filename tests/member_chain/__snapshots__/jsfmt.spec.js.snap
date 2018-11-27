@@ -416,7 +416,7 @@ method()
     ->then(function ($x) {
         return $x;
     })
-    ['abc'](function ($x) {
+    ["abc"](function ($x) {
         return $x;
     })
     [$abc](function ($x) {
@@ -693,7 +693,7 @@ $data->forEach(function ($key) {
         });
 });
 
-$window->Data['key']('foo')
+$window->Data['key']("foo")
     ->then(function () {
         return $a;
     })
@@ -702,7 +702,7 @@ $window->Data['key']('foo')
     });
 
 $window->Data['key']
-    ['foo']('foo')
+    ['foo']("foo")
     ->then(function () {
         return $a;
     })

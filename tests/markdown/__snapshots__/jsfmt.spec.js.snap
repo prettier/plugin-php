@@ -107,7 +107,7 @@ function test()
 \`\`\`php
 <?php
 if ($foo) {
-  echo 'bar';
+  echo "bar";
 }
 \`\`\`
 

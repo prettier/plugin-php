@@ -539,11 +539,11 @@ echo 'bar';
 </div>
 <div>
   <?php if ($a > $b): ?>
-    <span><?php echo $a . ' > ' . $b; ?></span>
+    <span><?php echo $a . " > " . $b; ?></span>
   <?php elseif ($a == $b): ?>
-    <span><?php echo $a . ' == ' . $b; ?></span>
+    <span><?php echo $a . " == " . $b; ?></span>
   <?php else: ?>
-    <span><?php echo $a . ' < ' . $b; ?></span>
+    <span><?php echo $a . " < " . $b; ?></span>
   <?php endif; ?>
 </div>
 
@@ -807,21 +807,21 @@ exports[`mixed-8.php - php-verify: mixed-8.php 1`] = `
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <div>
     <?php
-    echo '1';
-    echo '2';
+    echo "1";
+    echo "2";
     ?>
 </div>
 
 <div>
     <?php
-    echo '1';
-    echo '2';
+    echo "1";
+    echo "2";
     ?>
 </div>
 
 <div>
-  <?php echo '1'; ?>
-  <?php echo '2'; ?>
+  <?php echo "1"; ?>
+  <?php echo "2"; ?>
 </div>
 
 <div>
@@ -849,38 +849,38 @@ exports[`mixed-8.php - php-verify: mixed-8.php 1`] = `
 </div>
 
 <div>
-    <?php echo '1'; ?>
+    <?php echo "1"; ?>
 </div>
 <div>
-    <?php echo '1'; ?>
+    <?php echo "1"; ?>
 </div>
 <div>
     <?php
-    echo '1';
-    echo '2';
+    echo "1";
+    echo "2";
     ?>
 </div>
 <div>
     <?php
-    echo '1';
-    echo '2';
-    echo '3';
+    echo "1";
+    echo "2";
+    echo "3";
     ?>
 </div>
 <div>
     <?php
-    echo '1';
-    echo '2';
-    echo '3';
-    echo '4';
-    echo '5';
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
+    echo "5";
     ?>
 </div>
 <div>
   <div>
     <div>
       <div>
-          <?php echo '1'; ?>
+          <?php echo "1"; ?>
       </div>
     </div>
   </div>
@@ -890,8 +890,8 @@ exports[`mixed-8.php - php-verify: mixed-8.php 1`] = `
     <div>
       <div>
           <?php
-          echo '1';
-          echo '2';
+          echo "1";
+          echo "2";
           ?>
       </div>
     </div>

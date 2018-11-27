@@ -194,7 +194,7 @@ string';
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo 'Hello World';
+echo "Hello World";
 
 echo "This spans
 multiple lines. The newlines will be
@@ -205,8 +205,8 @@ echo "This spans\\nmultiple lines. The newlines will be\\noutput as well.";
 echo "Escaping characters is done \\"Like this\\".";
 
 // You can use variables inside of an echo statement
-$foo = 'foobar';
-$bar = 'barbaz';
+$foo = "foobar";
+$bar = "barbaz";
 
 echo "foo is $foo"; // foo is foobar
 
@@ -299,12 +299,12 @@ echo 1;
 echo 1;
 echo 1, 1;
 
-echo ('The sum is ' . 1) | 2; // output: "2". Parentheses needed.
-echo 'The sum is ', 1 | 2; // output: "The sum is 3". Fine.
+echo ("The sum is " . 1) | 2; // output: "2". Parentheses needed.
+echo "The sum is ", 1 | 2; // output: "The sum is 3". Fine.
 
-echo 'Foo' . f('bar') . 'Foo';
+echo "Foo" . f("bar") . "Foo";
 echo "\\n\\n";
-echo 'Foo', f('bar'), 'Foo';
+echo "Foo", f("bar"), "Foo";
 
 echo "Loop start!\\n", sleep(1);
 
@@ -338,7 +338,7 @@ echo esc_html(
         get_option('blogname')
     )
 ) . "\\n\\n",
-    'string';
+    "string";
 echo esc_html(
     sprintf(
         __(
@@ -349,8 +349,8 @@ echo esc_html(
         get_option('blogname')
     )
 ) . "\\n\\n",
-    'string' .
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+    "string" .
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 echo esc_html(
     sprintf(
         __(
@@ -361,8 +361,8 @@ echo esc_html(
         get_option('blogname')
     )
 ),
-    'string',
-    'string';
+    "string",
+    "string";
 echo esc_html(
     sprintf(
         __(
@@ -393,7 +393,7 @@ echo esc_html(
         get_option('blogname')
     )
 ),
-    'string',
+    "string",
     esc_html(
         sprintf(
             __(

@@ -124,15 +124,15 @@ function foo1(&$arg)
     return $arg;
 }
 
-function makecoffee($type = 'cappuccino')
+function makecoffee($type = "cappuccino")
 {
     return "Making a cup of $type.\\n";
 }
 
-function makecoffee1($types = array('cappuccino'), $coffeeMaker = null)
+function makecoffee1($types = array("cappuccino"), $coffeeMaker = null)
 {
-    $device = is_null($coffeeMaker) ? 'hands' : $coffeeMaker;
-    return 'Making a cup of ' . join(', ', $types) . " with $device.\\n";
+    $device = is_null($coffeeMaker) ? "hands" : $coffeeMaker;
+    return "Making a cup of " . join(", ", $types) . " with $device.\\n";
 }
 
 function f(C $c)
@@ -181,9 +181,9 @@ function intArg(
 
 function bar(
     $arg = array(
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     )
 ) {
     return $arg;
@@ -191,11 +191,11 @@ function bar(
 
 function bar1(
     $arg = array(
-        'key1' => 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+        "key1" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
-        'key2' => 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+        "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
-        'key3' => 'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     )
 )
 {
@@ -204,35 +204,35 @@ function bar1(
 
 function bar2(
     $arg =
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-            'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-            'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ) {
     return $arg;
 }
 
 function bar3(
-    $arg = 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        ? '1'
-        : '2'
+    $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+        ? "1"
+        : "2"
 ) {
     return $arg;
 }
 
 function bar4(
-    string $arg = 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        ? '1'
-        : '2'
+    string $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+        ? "1"
+        : "2"
 ) {
     return $arg;
 }
 
 function bar5(
     $arg =
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString' ===
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-            ? '1'
-            : '2'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" ===
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+            ? "1"
+            : "2"
 ) {
     return $arg;
 }

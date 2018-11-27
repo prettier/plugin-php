@@ -433,10 +433,10 @@ $content = array(
 foo
 EOF
     ,
-    'bar'
+    "bar"
 );
 $content = array(
-    'bar',
+    "bar",
     <<<EOF
 foo
 EOF
@@ -527,7 +527,7 @@ STR;
 
 $var = $this->swift->{'set'}($address, $name);
 $var = $this->swift->{'set' . 'Offset'}($address, $name);
-$var = $this->swift->{'set'}($address, $name);
+$var = $this->swift->{"set"}($address, $name);
 $var = $this->swift->{"set{$type}"}($address, $name);
 
 $var = "string \${$var} string";

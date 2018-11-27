@@ -283,7 +283,7 @@ $foo->apply(
 );
 
 $bar->on(
-    'readable',
+    "readable",
 
     function () {
         doStuff();
@@ -308,7 +308,7 @@ $doSomething->apply(
 );
 
 doAnotherThing(
-    'node',
+    "node",
 
     [$solution_type, $time_frame]
 );

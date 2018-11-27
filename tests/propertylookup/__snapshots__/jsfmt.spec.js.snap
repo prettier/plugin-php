@@ -41,9 +41,9 @@ $b = $this->{self::STUFF};
 $object = $this->{'bar' . $foo}->buzz();
 
 $this->loooooooooooongloooooooooooongloooooooooooonglookup =
-    'teeeeeeeeeeeeeeeeeeeeest';
+    "teeeeeeeeeeeeeeeeeeeeest";
 $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
-    'teeeeeeeeeeest';
+    "teeeeeeeeeeest";
 $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
     $other->looooooooooong->stuff;
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(

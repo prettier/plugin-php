@@ -303,7 +303,7 @@ final class MyClass extends Bar implements iTemplate
         $false = false;
         $null = null;
         $other_null = null;
-        $null_string = 'NULL';
+        $null_string = "NULL";
 
         if ($expr1) {
             // IF body
@@ -434,11 +434,11 @@ final class MyClass extends Bar implements iTemplate
     final public static function bar(callable $callback, $coffeeMaker = null)
     {
         if ($a == 5):
-            echo '5';
+            echo "5";
         elseif ($a == 6):
-            echo '6';
+            echo "6";
         else:
-            echo 'other';
+            echo "other";
         endif;
 
         $i = 1;
@@ -464,10 +464,10 @@ final class MyClass extends Bar implements iTemplate
         switch ($var):
             case 1:
             case 2:
-                echo 'Goodbye!';
+                echo "Goodbye!";
                 break;
             default:
-                echo 'I only understand 1 and 2.';
+                echo "I only understand 1 and 2.";
         endswitch;
     }
 

@@ -29,7 +29,9 @@ function clean(node, newObj) {
   });
 
   if (node.kind === "string") {
-    newObj.isDoubleQuote = !util.useSingleQuote(node);
+    // TODO if options are available in this method, replace with
+    // newObj.isDoubleQuote = !util.useSingleQuote(node, options);
+    delete newObj.isDoubleQuote;
   }
 
   // continue ((2)); -> continue 2;

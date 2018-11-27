@@ -2527,7 +2527,7 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
-      const quote = useSingleQuote(node) ? "'" : '"';
+      const quote = useSingleQuote(node, options) ? "'" : '"';
 
       let stringValue = node.raw;
 

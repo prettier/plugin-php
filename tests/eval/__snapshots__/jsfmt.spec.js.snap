@@ -81,9 +81,9 @@ eval(
     "$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableName = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableValue;"
 );
 eval(
-    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText' .
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText' .
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText'
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
+        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
+        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText"
 );
 eval('string
 string

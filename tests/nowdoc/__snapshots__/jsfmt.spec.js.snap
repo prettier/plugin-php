@@ -944,11 +944,11 @@ $str = array(
 foo
 EOF
     ,
-    'bar'
+    "bar"
 );
 
 $str = array(
-    'bar',
+    "bar",
     <<<'EOF'
 foo
 EOF

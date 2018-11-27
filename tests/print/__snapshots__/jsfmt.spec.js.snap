@@ -142,9 +142,9 @@ print (function () {
 })();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-print 'Hello World';
+print "Hello World";
 
-print 'print() also works without parentheses.';
+print "print() also works without parentheses.";
 
 print "This spans
 multiple lines. The newlines will be
@@ -155,8 +155,8 @@ print "This spans\\nmultiple lines. The newlines will be\\noutput as well.";
 print "escaping characters is done \\"Like this\\".";
 
 // You can use variables inside a print statement
-$foo = 'foobar';
-$bar = 'barbaz';
+$foo = "foobar";
+$bar = "barbaz";
 
 print "foo is $foo"; // foo is foobar
 
@@ -321,12 +321,12 @@ print new class {};
 print new class {
     public function __toString()
     {
-        return 'String';
+        return "String";
     }
 };
 
 print (function () {
-    return 'string';
+    return "string";
 })();
 
 `;

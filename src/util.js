@@ -624,10 +624,21 @@ function hasNewline(text, index, opts) {
   return idx !== idx2;
 }
 
-function useSingleQuote(node) {
+/**
+ * Check if string can safely be converted from double to single quotes, i.e.
+ *
+ * - no embedded variables ("foo $bar")
+ * - no linebreaks
+ * - no special characters like \n, \t, ...
+ * - no octal/hex/unicode characters
+ *
+ * See http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+ */
+function useSingleQuote(node, options) {
   return (
     !node.isDoubleQuote ||
-    (!node.raw.match(/\\n|\\t|\\r|\\t|\\v|\\e|\\f/) &&
+    (options.singleQuote &&
+      !node.raw.match(/\\n|\\t|\\r|\\t|\\v|\\e|\\f/) &&
       !node.value.match(
         /["'$\n]|\\[0-7]{1,3}|\\x[0-9A-Fa-f]{1,2}|\\u{[0-9A-Fa-f]+}/
       ))

@@ -50,7 +50,7 @@ $this->test(function ($a, $b) {
 
 function hello($input)
 {
-    return 'hello' + $input;
+    return "hello" + $input;
 }
 
 $i = 0;

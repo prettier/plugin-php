@@ -175,7 +175,7 @@ class Foo
 
 function hello()
 {
-    return 'hello';
+    return "hello";
 }
 
 function return_x($x)
@@ -225,7 +225,7 @@ function type_hinting_test(
 }
 
 $anonymous = function ($name) use ($otherthing, &$reference_test) {
-    printf('Hello %s', $name);
+    printf("Hello %s", $name);
     $reference_test += 1;
 };
 $anonymousLongVariableName = function (
@@ -234,7 +234,7 @@ $anonymousLongVariableName = function (
     $params,
     $looooooooooooooooooooooooooooooooong
 ) use ($all, $kinds, $of, $stuff) {
-    printf('Hello %s', $name);
+    printf("Hello %s", $name);
 };
 
 $arr = [1, 2, 3];
@@ -311,7 +311,7 @@ function the_panel_title(
     $index = 0
 ) {
     if (empty($title) && !is_panel_preview()) {
-        return '';
+        return "";
     }
 
     return $title;

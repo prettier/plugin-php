@@ -62,20 +62,20 @@ $var = array();
 $var = [];
 $var = [];
 
-$var = array('1', '2', '3');
-$var = array('1', '2', '3');
-$var = array(array('1'), array('2'), array('3'));
-$var = array(array('1'), array('2'), array('3'));
-$var = array(array('1'), array('2'), array('3'));
-$var = array(array('1'), array('2'), array('3'));
+$var = array("1", "2", "3");
+$var = array("1", "2", "3");
+$var = array(array("1"), array("2"), array("3"));
+$var = array(array("1"), array("2"), array("3"));
+$var = array(array("1"), array("2"), array("3"));
+$var = array(array("1"), array("2"), array("3"));
 
-$var = (array('foo', 'bar'))();
-$var = (array('foo', 'bar'))();
-$var = (array('foo', 'bar'))();
+$var = (array("foo", "bar"))();
+$var = (array("foo", "bar"))();
+$var = (array("foo", "bar"))();
 
-$var = (['foo', 'bar'])();
-$var = (['foo', 'bar'])();
-$var = (['foo', 'bar'])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
 
 $arr = [$var, $other_var];
 $arr = [$var, $other_var];
@@ -280,25 +280,25 @@ foreach ($arr as &$value) {
 
 switch ($i = 1) {
     case 0:
-        echo 'i equals 0';
+        echo "i equals 0";
         break;
     case 1:
-        echo 'i equals 1';
+        echo "i equals 1";
         break;
     case 2:
-        echo 'i equals 2';
+        echo "i equals 2";
         break;
 }
 
 switch ($i = 1) {
     case 0:
-        echo 'i equals 0';
+        echo "i equals 0";
         break;
     case 1:
-        echo 'i equals 1';
+        echo "i equals 1";
         break;
     case 2:
-        echo 'i equals 2';
+        echo "i equals 2";
         break;
 }
 
@@ -1116,11 +1116,11 @@ $var = $this->$name();
 $var = Foo::call();
 $var = Foo::call();
 
-$var = (array('Foo', 'bar'))();
-$var = (array(new Foo(), 'baz'))();
+$var = (array("Foo", "bar"))();
+$var = (array(new Foo(), "baz"))();
 $var = ((string) 1234)();
-$var = ('Foo::bar')();
-$var = ('Foo::bar')();
+$var = ("Foo::bar")();
+$var = ("Foo::bar")();
 
 `;
 
@@ -1240,9 +1240,9 @@ $var = ((array) new B())['foo'];
 $var = ((string) 1234)[1];
 $var = ((string) 123)();
 $var = ((string) 123)();
-$var = 'test'[0];
-$var = (array) 'test'[0];
-$var = ((array) 'test')[0];
+$var = "test"[0];
+$var = (array) "test"[0];
+$var = ((array) "test")[0];
 $var = [(int) 'key' => (int) '1'];
 $var = [((int) 'key') => ((int) '1')];
 $var = [((int) 'key') => ((int) '1')];
@@ -1553,11 +1553,11 @@ while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
 <?php
 
 if ($a > $b) {
-    echo 'a is bigger than b';
+    echo "a is bigger than b";
 } elseif ($a == $b) {
-    echo 'a is equal to b';
+    echo "a is equal to b";
 } else {
-    echo 'a is smaller than b';
+    echo "a is smaller than b";
 }
 
 while ($i <= 10) {
@@ -1570,25 +1570,25 @@ do {
 
 switch ($i) {
     case 0:
-        echo 'i equals 0';
+        echo "i equals 0";
         break;
     case 1:
-        echo 'i equals 1';
+        echo "i equals 1";
         break;
     case 'test' . (1 > 2 ? 'foo' : 'bar'):
-        echo 'i equals 2';
+        echo "i equals 2";
         break;
 }
 
 switch ($i + 1) {
     case 0:
-        echo 'i equals 0';
+        echo "i equals 0";
         break;
     case 1 + 2:
-        echo 'i equals 1';
+        echo "i equals 1";
         break;
     case 1 + (1 > 2 ? 1 : 3):
-        echo 'i equals 2';
+        echo "i equals 2";
         break;
 }
 
@@ -1720,12 +1720,12 @@ echo ((function () { return 'test'; })());
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo 'Hello World';
-echo 'Hello World';
+echo "Hello World";
+echo "Hello World";
 
-echo 'Sum: ', 1 + 2;
-echo 'Hello ', isset($name) ? $name : 'John Doe', '!';
-echo 'Hello ', isset($name) ? $name : 'John Doe', '!';
+echo "Sum: ", 1 + 2;
+echo "Hello ", isset($name) ? $name : "John Doe", "!";
+echo "Hello ", isset($name) ? $name : "John Doe", "!";
 
 echo 'Sum: ' . (1 + 2);
 echo 'Hello ' . isset($name) ? $name : 'John Doe' . '!';
@@ -1927,7 +1927,7 @@ include __DIR__ . '/../src/includeFile.php';
 
 include dirname(dirname(__FILE__)) . '/prepend.php';
 
-include $_GET['id'] . '.php';
+include $_GET['id'] . ".php";
 
 `;
 
@@ -2447,10 +2447,10 @@ print (($var || $var) && $var);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-print 'Hello World';
-print 'Hello World';
+print "Hello World";
+print "Hello World";
 
-print 'print() also works without parentheses.';
+print "print() also works without parentheses.";
 
 print "This spans
 multiple lines. The newlines will be
@@ -2473,10 +2473,10 @@ that the here document terminator must appear on a
 line with just a semicolon no extra whitespace!
 END;
 
-if (print 'foo' && (print 'bar')) {
+if (print "foo" && (print "bar")) {
 }
 
-if ((print 'foo') && (print 'bar')) {
+if ((print "foo") && (print "bar")) {
 }
 
 $var = $var ? print "$string_message<br />" : print "$string_message\\n";
@@ -2596,9 +2596,9 @@ $var[
     $var ? $var->responseBody($var->currentUser) : $var->responseBody($var)
 ]->map();
 
-$var = $var . $var ? '()' : '';
-$var = $var . $var ? '()' : '';
-$var = $var . ($var ? '()' : '');
+$var = $var . $var ? "()" : "";
+$var = $var . $var ? "()" : "";
+$var = $var . ($var ? "()" : "");
 $var = +($var ? 1 : 2);
 $var = +(+$var ? 1 : 2);
 $var = +($var++ ? 1 : 2);
@@ -2712,7 +2712,7 @@ $var = @$cache[$key];
 $var = @new MyClass();
 $var = @new MyClass();
 
-($var = @include 'file.php') or die('Could not find file.php!');
+($var = @include "file.php") or die("Could not find file.php!");
 
 $var = @$_GET['data'];
 
@@ -2726,7 +2726,7 @@ if (
 }
 
 try {
-    if (($fp = @fopen($filename, 'r')) == false) {
+    if (($fp = @fopen($filename, "r")) == false) {
         throw new Exception();
     } else {
         do_file_stuff();
@@ -2762,16 +2762,16 @@ throw new Exception('Division by zero.');
 throw new Exception('Division by zero.');
 throw $e;
 throw $e;
-throw new \\Exception('Bye');
-throw new \\Exception('Bye');
+throw new \\Exception("Bye");
+throw new \\Exception("Bye");
 
 if (!$var) {
     throw new Exception('Division by zero.');
     throw new Exception('Division by zero.');
     throw $e;
     throw $e;
-    throw new \\Exception('Bye');
-    throw new \\Exception('Bye');
+    throw new \\Exception("Bye");
+    throw new \\Exception("Bye");
 }
 
 `;
@@ -2983,8 +2983,8 @@ $var = true;
 $var = false;
 
 $var = 'string';
-$var = 'string';
-$var = 'string';
+$var = "string";
+$var = "string";
 
 $var = 1234; // decimal number
 $var = -123; // a negative number

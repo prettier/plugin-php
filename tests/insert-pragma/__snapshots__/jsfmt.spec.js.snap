@@ -21,7 +21,7 @@ echo "Hello World";
  * @copyright Doge Inc. 2018 - All Rights Reserved
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -46,7 +46,7 @@ echo "Hello World";
  * @copyright Doge Inc. 2018 - All Rights Reserved
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -61,9 +61,9 @@ echo "Hello World";
 /**
  * @format
  */
-echo 'Hello World';
+echo "Hello World";
 
-echo 'Hello World';
+echo "Hello World";
 
 // non-docblock comment
 
@@ -80,9 +80,9 @@ echo "Hello World";
 /**
  * @format
  */
-echo 'Hello World';
+echo "Hello World";
 
-echo 'Hello World';
+echo "Hello World";
 
 // non-docblock comment
 
@@ -102,7 +102,7 @@ echo "Hello World";
  * @format
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -120,7 +120,7 @@ echo "Hello World";
  * @format
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -136,7 +136,7 @@ echo "Hello World";
  * @format
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -152,7 +152,7 @@ echo "Hello World";
  * @format
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -168,7 +168,7 @@ echo "Hello World";
  * @format
  * case */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -184,7 +184,7 @@ echo "Hello World";
  * @format
  * case */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -208,7 +208,7 @@ echo "Hello World";
  * @copyright Doge Inc. 2018 - All Rights Reserved
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;
 
@@ -232,6 +232,6 @@ echo "Hello World";
  * @copyright Doge Inc. 2018 - All Rights Reserved
  */
 
-echo 'Hello World';
+echo "Hello World";
 
 `;

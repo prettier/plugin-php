@@ -119,8 +119,8 @@ $array = [
 $array = [
     /* comment */
     /* comment */
-    /* comment */ 'foo' /* comment */ => /* comment */ 'bar' /* comment */,
-    /* comment */ 'bar' /* comment */ => /* comment */ 'foo' /* comment */
+    /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
+    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */
     /* comment */
     /* comment */
 ];
@@ -148,7 +148,7 @@ const FOO = [
 
 return [
     // foo
-    'bar'
+    "bar"
 ];
 
 $array = [
@@ -694,7 +694,7 @@ class Foo extends Bar implements Baz, Buzz
 
     function test()
     {
-        return 'test';
+        return "test";
     }
 
     public function &passByReferenceTest()
@@ -1205,14 +1205,14 @@ do {
 $test =
     foo ?:
     bar(function () {
-        $foo = 'bar';
+        $foo = "bar";
         // test
     });
 
 $test = foo
     ? true
     : bar(function () {
-        $foo = 'bar';
+        $foo = "bar";
         // test
     });
 
@@ -2479,7 +2479,7 @@ if (
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
-    echo 'Foo';
+    echo "Foo";
 }
 
 if (
@@ -3521,21 +3521,21 @@ if (/* Comment*/ $var /* Comment*/) /* Comment*/ {}
 if (1) {
     // Comment 2
     // Comment 3
-    echo 'Foo'; // Comment 4
+    echo "Foo"; // Comment 4
     // Comment 5
 }
 // Comment 6
 elseif (2) {
     // Comment 7
     // Comment 8
-    echo 'Bar';
+    echo "Bar";
     // Comment 9
 }
 // Comment 10
 else {
     // Comment 11
     // Comment 12
-    echo 'FooBar';
+    echo "FooBar";
     // Comment 13
 } // Comment 14
 
@@ -3912,13 +3912,13 @@ include /* Comment */ 'string' /* Comment */;
 // Comment
 include // Comment
     // Comment
-    'test.php'; // Comment
+    "test.php"; // Comment
     // Comment // Comment
 
 // Comment
 include // Comment
     // Comment
-    'test.php'; // Comment
+    "test.php"; // Comment
     // Comment // Comment
 
 include /* Comment */ $a /* Comment */;
@@ -4215,7 +4215,7 @@ if (
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
-    echo 'Foo';
+    echo "Foo";
 }
 
 if (
@@ -5636,18 +5636,18 @@ $extractTextPluginOptions = $shouldUseRelativeAssetPaths
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ['publicPath' => (new Foo($cssFilename->split('/')->length))->join('../')]
+    ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
-    ? ['publicPath' => (new Foo($cssFilename->split('/')->length))->join('../')]
+    ? ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
     : [];
 
 $var =
     $process->env->NODE_ENV ===
-    'production' // a
-        ? call('./configureProdStore')
-        : call('./configureDevStore'); // b
+    "production" // a
+        ? call("./configureProdStore")
+        : call("./configureDevStore"); // b
 
 $var = $a
     ? // Comment
@@ -5815,13 +5815,13 @@ switch ($i) {
     // Comment
     case 0: // Comment
         // Comment
-        echo 'i equals 0'; // Comment
+        echo "i equals 0"; // Comment
         // Comment
         break; // Comment
     // Comment
     case 1: // Comment
         // Comment
-        echo 'i equals 1'; // Comment
+        echo "i equals 1"; // Comment
         break; // Comment
     // Comment
 } // Comment
@@ -6346,7 +6346,7 @@ $obj =
 
 $obj =
     // Comment
-    'val';
+    "val";
 
 $obj =
     // Comment

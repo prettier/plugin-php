@@ -393,7 +393,7 @@ $this->something->method(
 $this->something->method(
     $argument,
     $otherArgument,
-    array('foo' => 'bar', 'baz' => 'buzz'),
+    array("foo" => "bar", "baz" => "buzz"),
     $this->even->more->things->complicatedMethod()
 );
 
