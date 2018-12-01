@@ -115,6 +115,20 @@ If you installed globally, run
 prettier path/to/file.php --write
 ```
 
+## Configuration
+
+Prettier for PHP supports the following options:
+
+| Name            | Default  | Description                                                                                                                                                          |
+| --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `printWidth`    | `80`     | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                      |
+| `tabWidth`      | `4`      | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width))                                                                        |
+| `useTabs`       | `false`  | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                             |
+| `singleQuote`   | `false`  | If set to true, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`. |
+| `trailingComma` | `"none"` | If set to `"all"`, trailing commas will be added to multiline arrays.                                                                                                |
+| `requirePragma` | `false`  | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                   |
+| `insertPragma`  | `false`  | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                    |
+
 ## Editor integration
 
 ### Atom
@@ -143,6 +157,7 @@ Alternatively, install [Run on Save](https://marketplace.visualstudio.com/items?
 Regarding plugin support in the official plugin vim-prettier see [this issue](https://github.com/prettier/vim-prettier/issues/119).
 
 #### ALE
+
 The linting plugin ALE has built-in support for prettier and its plugins. Just add prettier to your [list of fixers](https://github.com/w0rp/ale#2ii-fixing). For example:
 
 ```vim
@@ -154,6 +169,7 @@ let g:ale_fixers={
 ```
 
 #### Custom
+
 Alternatively, adding the following to `.vimrc` will define a custom command `:PrettierPhp` that runs the plugin while preserving the cursor position and run it on save.
 
 ```vim
