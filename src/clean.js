@@ -28,6 +28,12 @@ function clean(node, newObj) {
     delete newObj[name];
   });
 
+  if (node.kind === "string") {
+    // TODO if options are available in this method, replace with
+    // newObj.isDoubleQuote = !util.useSingleQuote(node, options);
+    delete newObj.isDoubleQuote;
+  }
+
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
   if ((node.kind === "continue" || node.kind === "break") && node.level) {

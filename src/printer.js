@@ -47,6 +47,7 @@ const {
   getLastNestedChildNode,
   isProgramLikeNode,
   getNodeKindIncludingLogical,
+  useSingleQuote,
   hasEmptyBody,
   hasNewline,
   isNextLineEmptyAfterNamespace,
@@ -2526,7 +2527,7 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
-      const quote = node.isDoubleQuote ? '"' : "'";
+      const quote = useSingleQuote(node, options) ? "'" : '"';
 
       let stringValue = node.raw;
 
