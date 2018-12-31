@@ -19,7 +19,7 @@
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "22.1.2",
-    "eslint-plugin-prettier": "3.0.0",
+    "eslint-plugin-prettier": "3.0.1",
     "jest": "23.6.0",
     "jest-runner-eslint": "0.7.1",
     "prettier": "prettier/prettier#f6d8be881c6b34235da7c13cfe072727aa71fed8"
