@@ -7,12 +7,10 @@ trait tFoo {
 }
 
 // Comment
-trait tFoo extends /* Comment */ ReflectionMethod {}
+trait tFoo /* Comment */ {}
 
 // Comment
-trait tFoo extends
-    // Comment
-    ReflectionMethod {}
+trait tFoo {}
 
 class ImplementingClass {
     /* Comment */

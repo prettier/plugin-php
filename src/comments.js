@@ -707,10 +707,7 @@ function handleDeclareComments(
     return false;
   }
 
-  if (
-    !followingNode ||
-    enclosingNode.what[Object.keys(enclosingNode.what)[0]] === followingNode
-  ) {
+  if (!followingNode || enclosingNode.directives[0] === followingNode) {
     if (enclosingNode.mode === "none") {
       addTrailingComment(enclosingNode, comment);
     } else {
