@@ -5,11 +5,11 @@ const {
   addDanglingComment,
   addTrailingComment,
   getNextNonSpaceNonCommentCharacterIndex,
-  isNextLineEmpty
+  isNextLineEmpty,
+  hasNewline,
+  hasNewlineInRange
 } = require("prettier").util;
 const { concat, join, indent, hardline } = require("prettier").doc.builders;
-// TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
-const { hasNewline, hasNewlineInRange } = require("./util");
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
 with information about where those comment nodes exist in the tree (ie enclosingNode,

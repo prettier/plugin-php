@@ -502,9 +502,9 @@ $var = $array->{int};
 $var = $array->{iNt};
 
 self();
-self();
+sElF();
 parent();
-parent();
+pArEnT();
 
 $var->self();
 $var->sElF();

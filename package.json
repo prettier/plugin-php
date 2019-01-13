@@ -6,9 +6,7 @@
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
   "main": "src",
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "dependencies": {
     "mem": "^3.0.1",
     "php-parser": "glayzzle/php-parser#3.0.0-prerelease.8"
@@ -22,18 +20,16 @@
     "eslint-plugin-prettier": "3.0.0",
     "jest": "23.6.0",
     "jest-runner-eslint": "0.6.0",
-    "prettier": "prettier/prettier#f6d8be881c6b34235da7c13cfe072727aa71fed8"
+    "prettier": "^1.15.0"
   },
   "peerDependencies": {
-    "prettier": "^1.12.0"
+    "prettier": "^1.15.0"
   },
   "scripts": {
     "test": "jest",
     "prettier": "prettier --plugin=. --parser=php"
   },
   "jest": {
-    "projects": [
-      "<rootDir>/jest.*.config.js"
-    ]
+    "projects": ["<rootDir>/jest.*.config.js"]
   }
 }
