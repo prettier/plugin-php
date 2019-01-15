@@ -1,5 +1,4 @@
 <?php
-declare(encoding='ISO-8859-1', strict_types=1);
 declare(ticks=1):
 $test = 1;
 enddeclare;
@@ -8,6 +7,7 @@ $test = 1;
 declare(ticks=1) {
   $test = 1;
 }
+declare(encoding='ISO-8859-1', strict_types=1);
 $test = 1;
 declare( ticks=1 ):
     $test = 1;
