@@ -310,9 +310,16 @@ function docShouldHaveTrailingNewline(path) {
     return index !== lastIndex;
   }
 
-  if (["call", "new", "echo"].includes(parent.kind)) {
+  if (["call", "new"].includes(parent.kind)) {
     const lastIndex = parent.arguments.length - 1;
     const index = parent.arguments.indexOf(node);
+
+    return index !== lastIndex;
+  }
+
+  if (parent.kind === "echo") {
+    const lastIndex = parent.expressions.length - 1;
+    const index = parent.expressions.indexOf(node);
 
     return index !== lastIndex;
   }

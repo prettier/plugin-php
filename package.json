@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "mem": "^4.0.0",
-    "php-parser": "glayzzle/php-parser#b1429015bcbf24d426cd4611de2aaf5e3c4c7210"
+    "php-parser": "glayzzle/php-parser#3.0.0-prerelease.8"
   },
   "devDependencies": {
     "codecov": "3.1.0",

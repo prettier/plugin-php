@@ -2129,15 +2129,15 @@ function printNode(path, options, print) {
     case "echo": {
       const printedArguments = path.map(childPath => {
         return print(childPath);
-      }, "arguments");
+      }, "expressions");
 
       let firstVariable;
 
-      if (printedArguments.length === 1 && !node.arguments[0].comments) {
+      if (printedArguments.length === 1 && !node.expressions[0].comments) {
         [firstVariable] = printedArguments;
       } else if (printedArguments.length > 0) {
         firstVariable =
-          isDocNode(node.arguments[0]) || node.arguments[0].comments
+          isDocNode(node.expressions[0]) || node.expressions[0].comments
             ? indent(printedArguments[0])
             : dedent(printedArguments[0]);
       }
@@ -2551,6 +2551,8 @@ function printNode(path, options, print) {
         quote
       ]);
     }
+    case "encapsedpart":
+      return path.call(print, "expression");
     case "encapsed":
       switch (node.type) {
         case "string":
