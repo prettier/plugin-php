@@ -871,8 +871,8 @@ $var = new class {
 };
 
 $var = new class {
-    // Comment 1
     const CONSTANT =
+        // Comment 1
         // Comment 2
         'string';
 };
@@ -1396,7 +1396,7 @@ declare(ticks=1) {
     // Comment
 }
 
-declare(ticks=/* Comment */ /* Comment */ /* Comment */ /* Comment */ 1 /* Comment */) {
+declare(/* Comment */ /* Comment */ ticks /* Comment */=/* Comment */ 1 /* Comment */) {
 }
 
 declare(strict_types=1); // Comment
@@ -2670,7 +2670,8 @@ for (
 // Comment
 for (;;);
 
-/* Comment */ for (;;);
+/* Comment */
+for (;;);
 
 // Comment
 for ($i = 1; $i <= 10; $i++) {
@@ -3118,7 +3119,7 @@ goto c; // Comment
 /* Comment */ goto a; /* Comment */ /* Comment */
 echo 'Foo';
 
-/* Comment */ /* Comment */ a: /* Comment */
+/* Comment */ a: /* Comment */ /* Comment */
 echo 'Bar';
 
 b:
@@ -3184,7 +3185,7 @@ HERE;
 // Comment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
-$str /* Comment */ = <<<EOD
+$str = /* Comment */ <<<EOD
 Example of string
 spanning multiple lines
 using heredoc syntax.
@@ -5143,9 +5144,12 @@ $a = new class() {
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
-$a = new Foo(); // Comment
+$a = new // Comment
+Foo();
 
-$a = new class {}; // Comment
+$a = new class// Comment
+ {
+};
 
 $a = new class {
     // Comment
@@ -5554,7 +5558,8 @@ echo $a/*Comment*/->/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo /*Comment*/ /*Comment*/ $a->bar();
+echo $a /*Comment*/
+    ->/*Comment*/ bar();
 
 `;
 
@@ -5644,9 +5649,8 @@ $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the
     : [];
 
 $var =
-    $process->env->NODE_ENV ===
-    "production" // a
-        ? call("./configureProdStore")
+    $process->env->NODE_ENV === "production"
+        ? call("./configureProdStore") // a
         : call("./configureDevStore"); // b
 
 $var = $a
@@ -5767,7 +5771,7 @@ echo Foo/*Comment*/::/*Comment*/bar();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
-echo /*Comment*/ /*Comment*/ Foo::bar();
+echo /*Comment*/ Foo::/*Comment*/ bar();
 
 `;
 
@@ -5910,12 +5914,12 @@ trait tFoo {
 }
 
 // Comment
-trait tFoo extends /* Comment */ ReflectionMethod {}
+trait tFoo /* Comment */ {}
 
 // Comment
-trait tFoo extends
+trait tFoo
     // Comment
-    ReflectionMethod {}
+   {}
 
 class ImplementingClass {
     /* Comment */
@@ -5956,24 +5960,22 @@ trait tFoo
 
 // Comment
 trait tFoo
-    /* Comment */
-    extends ReflectionMethod
 {
+    /* Comment */
 }
 
 // Comment
 trait tFoo
-    // Comment
-    extends ReflectionMethod
 {
+    // Comment
 }
 
 class ImplementingClass
 {
     /* Comment */
-    /* Comment */ /* Comment */ use testTrait /* Comment */,
+    /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ otherTrait /* Comment */;
-    /* Comment */ /* Comment */ use testTrait /* Comment */,
+    /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ implementingTrait /* Comment */ /* Comment */ {
         /* Comment */ A /* Comment */ /* Comment */ /* Comment */::testFunction insteadof /* Comment */ C; /* Comment */ /* Comment */
         /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */

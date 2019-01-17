@@ -520,7 +520,7 @@ function handleBreakAndContinueStatementComments(enclosingNode, comment) {
 }
 
 function handleGoto(enclosingNode, comment) {
-  if (enclosingNode && enclosingNode.kind === "goto") {
+  if (enclosingNode && ["label", "goto"].includes(enclosingNode.kind)) {
     addTrailingComment(enclosingNode, comment);
     return true;
   }
@@ -707,10 +707,7 @@ function handleDeclareComments(
     return false;
   }
 
-  if (
-    !followingNode ||
-    enclosingNode.what[Object.keys(enclosingNode.what)[0]] === followingNode
-  ) {
+  if (!followingNode || enclosingNode.directives[0] === followingNode) {
     if (enclosingNode.mode === "none") {
       addTrailingComment(enclosingNode, comment);
     } else {
