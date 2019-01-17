@@ -1983,12 +1983,6 @@ function printNode(path, options, print) {
             )
       ]);
     }
-    case "constref":
-      if (typeof node.name === "object") {
-        return path.call(print, "name");
-      }
-
-      return node.name;
     case "exit":
       return group(
         concat([
@@ -2411,7 +2405,7 @@ function printNode(path, options, print) {
       const shouldIndentIfInlining = [
         "assign",
         "property",
-        "classconstant"
+        "constant"
       ].includes(parent.kind);
 
       const samePrecedenceSubExpression =
@@ -2592,7 +2586,7 @@ function printNode(path, options, print) {
                 const node = valuePath.getValue();
                 const printedValue = print(valuePath);
 
-                if (node.kind !== "constref") {
+                if (node.kind !== "identifier") {
                   return concat([
                     "{",
                     indent(concat([softline, printedValue])),
@@ -2615,8 +2609,7 @@ function printNode(path, options, print) {
         node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split(/\r?\n/g)
       );
     case "magic":
-      // for magic constant we prefer upper case
-      return node.value.toUpperCase();
+      return node.value;
     case "nowdoc":
       // Respect `indent` for `nowdoc` nodes
       return concat([
