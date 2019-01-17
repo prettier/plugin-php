@@ -2642,57 +2642,8 @@ function printNode(path, options, print) {
       return node.name;
     }
     case "identifier": {
-      const parent = path.getParentNode();
-      let normalizedName = node.name.toLowerCase();
-
-      if (
-        ((parent.kind === "staticlookup" || parent.kind === "new") &&
-          parent.what === node &&
-          ["self", "parent", "static"].includes(normalizedName)) ||
-        (parent.kind === "parameter" &&
-          parent.type === node &&
-          ["self", "parent", "static"].includes(normalizedName))
-      ) {
-        return node.name.toLowerCase();
-      }
-
-      if (
-        ((parent.kind === "parameter" && parent.type === node) ||
-          ["function", "closure", "method"].includes(parent.kind)) &&
-        parent.type === node
-      ) {
-        // This is a hack until https://github.com/glayzzle/php-parser/issues/113 is resolved
-        // for reserved words we prefer lowercase case
-        if (normalizedName === "\\array") {
-          normalizedName = "array";
-        } else if (normalizedName === "\\callable") {
-          normalizedName = "callable";
-        }
-
-        return [
-          "int",
-          "float",
-          "bool",
-          "string",
-          "iterable",
-          "object",
-          "array",
-          "callable",
-          "void",
-          "self",
-          "parent"
-        ].includes(normalizedName)
-          ? normalizedName
-          : node.name;
-      }
-
-      // null
-      if (
-        normalizedName === "null" &&
-        parent.kind === "constref" &&
-        parent.name === node
-      ) {
-        return normalizedName;
+      if (typeof node.name !== "string") {
+        return path.call(print, "name");
       }
 
       return node.name;
