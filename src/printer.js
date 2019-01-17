@@ -814,7 +814,7 @@ function getEncapsedQuotes(node, { opening = true } = {}) {
   return `Unimplemented encapsed type ${node.type}`;
 }
 
-function printArrayItems(path, options, printPath, print) {
+function printArrayItems(path, options, print) {
   const printedElements = [];
   let separatorParts = [];
 
@@ -830,7 +830,7 @@ function printArrayItems(path, options, printPath, print) {
     ) {
       separatorParts.push(softline);
     }
-  }, printPath);
+  }, "items");
 
   return concat(printedElements);
 }
@@ -2155,9 +2155,9 @@ function printNode(path, options, print) {
     case "print": {
       return concat([
         "print ",
-        node.arguments.comments
-          ? indent(path.call(print, "arguments"))
-          : path.call(print, "arguments")
+        node.expression.comments
+          ? indent(path.call(print, "expression"))
+          : path.call(print, "expression")
       ]);
     }
     case "return": {
@@ -2182,9 +2182,20 @@ function printNode(path, options, print) {
     }
     case "isset":
     case "unset":
+      return group(
+        concat([
+          node.kind,
+          printArgumentsList(path, options, print, "variables")
+        ])
+      );
     case "empty":
       return group(
-        concat([node.kind, printArgumentsList(path, options, print)])
+        concat([
+          "empty(",
+          indent(concat([softline, path.call(print, "expression")])),
+          softline,
+          ")"
+        ])
       );
     case "variable":
       return concat([
@@ -2228,9 +2239,8 @@ function printNode(path, options, print) {
     case "array": {
       const open = node.shortForm ? "[" : concat([node.kind, "("]);
       const close = node.shortForm ? "]" : ")";
-      const index = node.kind === "array" ? "items" : "arguments";
 
-      if (node[index].length === 0) {
+      if (node.items.length === 0) {
         if (!hasDanglingComments(node)) {
           return concat([open, close]);
         }
@@ -2246,11 +2256,11 @@ function printNode(path, options, print) {
       }
 
       // Todo https://github.com/glayzzle/php-parser/issues/174
-      if (getLast(node[index]) === null) {
-        node[index].pop();
+      if (getLast(node.items) === null) {
+        node.items.pop();
       }
 
-      const lastElem = getLast(node[index]);
+      const lastElem = getLast(node.items);
 
       // PHP allows you to have empty elements in an array which
       // changes its length based on the number of commas. The algorithm
@@ -2264,14 +2274,14 @@ function printNode(path, options, print) {
       // we already check for an empty array just above so we are safe
       const needsForcedTrailingComma = lastElem === null;
 
-      const isAssociative = !!(node[index][0] && node[index][0].key);
+      const isAssociative = !!(node.items[0] && node.items[0].key);
       const shouldBreak = isAssociative && node.loc.source.includes("\n");
 
       return group(
         concat([
           open,
           indent(
-            concat([softline, printArrayItems(path, options, index, print)])
+            concat([softline, printArrayItems(path, options, print)])
           ),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
@@ -2552,7 +2562,11 @@ function printNode(path, options, print) {
       ]);
     }
     case "encapsedpart":
-      return path.call(print, "expression");
+      return concat([
+        node.curly ? "{" : "",
+        path.call(print, "expression"),
+        node.curly ? "}" : ""
+      ]);
     case "encapsed":
       switch (node.type) {
         case "string":
@@ -2562,46 +2576,7 @@ function printNode(path, options, print) {
             getEncapsedQuotes(node),
             // Respect `indent` for `heredoc` nodes
             node.type === "heredoc" ? literalline : "",
-            concat(
-              path.map(valuePath => {
-                const node = valuePath.getValue();
-
-                if (node.kind === "string") {
-                  return join(literalline, node.raw.split(/\r?\n/g));
-                }
-
-                if (node.kind === "variable") {
-                  if (typeof node.name === "object") {
-                    return concat([
-                      node.curly ? "${" : "",
-                      path.call(print, "name"),
-                      node.curly ? "}" : ""
-                    ]);
-                  }
-
-                  if (node.curly) {
-                    return concat(["{$", node.name, "}"]);
-                  }
-
-                  return print(valuePath);
-                }
-
-                const hasCurly =
-                  options.originalText[
-                    getNextNonSpaceNonCommentCharacterIndex(
-                      options.originalText,
-                      node,
-                      options
-                    )
-                  ] === "}";
-
-                return concat([
-                  hasCurly ? "{" : "",
-                  print(valuePath),
-                  hasCurly ? "}" : ""
-                ]);
-              }, "value")
-            ),
+            concat(path.map(print, "value")),
             getEncapsedQuotes(node, { opening: false }),
             node.type === "heredoc" && docShouldHaveTrailingNewline(path)
               ? hardline
