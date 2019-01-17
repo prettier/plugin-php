@@ -5,11 +5,21 @@ const {
   addDanglingComment,
   addTrailingComment,
   getNextNonSpaceNonCommentCharacterIndex,
-  isNextLineEmpty
+  isNextLineEmpty,
+  skipNewline,
+  isPreviousLineEmpty
 } = require("prettier").util;
-const { concat, join, indent, hardline } = require("prettier").doc.builders;
+const {
+  concat,
+  join,
+  indent,
+  hardline,
+  cursor,
+  lineSuffix,
+  breakParent
+} = require("prettier").doc.builders;
 // TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
-const { hasNewline, hasNewlineInRange } = require("./util");
+const { hasNewline, hasNewlineInRange, isLookupNode } = require("./util");
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
 with information about where those comment nodes exist in the tree (ie enclosingNode,
@@ -38,6 +48,7 @@ function handleOwnLineComment(comment, text, options) {
       comment,
       options
     ) ||
+    handleMemberExpressionComments(enclosingNode, followingNode, comment) ||
     handleIfStatementComments(
       text,
       precedingNode,
@@ -277,6 +288,21 @@ function handleLastFunctionArgComments(
     followingNode.kind === "block"
   ) {
     addBlockStatementFirstComment(followingNode, comment);
+    return true;
+  }
+
+  return false;
+}
+
+function handleMemberExpressionComments(enclosingNode, followingNode, comment) {
+  if (
+    enclosingNode &&
+    isLookupNode(enclosingNode) &&
+    followingNode &&
+    ["identifier", "variable", "encapsed"].includes(followingNode.kind)
+  ) {
+    addLeadingComment(enclosingNode, comment);
+
     return true;
   }
 
@@ -868,6 +894,121 @@ function canAttachComment(node) {
   );
 }
 
+// Based on https://github.com/prettier/prettier/blob/master/src/main/comments.js
+// TODO remove after https://github.com/prettier/prettier/issues/5087
+function prependCursorPlaceholder(path, options, printed) {
+  if (path.getNode() === options.cursorNode && path.getValue()) {
+    return concat([cursor, printed, cursor]);
+  }
+
+  return printed;
+}
+
+function printLeadingComment(commentPath, print, options) {
+  const comment = commentPath.getValue();
+  const contents = printComment(commentPath, options);
+
+  if (!contents) {
+    return "";
+  }
+
+  const isBlock =
+    options.printer.isBlockComment && options.printer.isBlockComment(comment);
+
+  // Leading block comments should see if they need to stay on the
+  // same line or not.
+  if (isBlock) {
+    return concat([
+      contents,
+      hasNewline(options.originalText, options.locEnd(comment)) ? hardline : " "
+    ]);
+  }
+
+  return concat([contents, hardline]);
+}
+
+function printTrailingComment(commentPath, print, options) {
+  const comment = commentPath.getValue();
+  const contents = printComment(commentPath, options);
+  if (!contents) {
+    return "";
+  }
+  const isBlock =
+    options.printer.isBlockComment && options.printer.isBlockComment(comment);
+
+  if (
+    hasNewline(options.originalText, options.locStart(comment), {
+      backwards: true
+    })
+  ) {
+    // This allows comments at the end of nested structures:
+    // {
+    //   x: 1,
+    //   y: 2
+    //   // A comment
+    // }
+    // Those kinds of comments are almost always leading comments, but
+    // here it doesn't go "outside" the block and turns it into a
+    // trailing comment for `2`. We can simulate the above by checking
+    // if this a comment on its own line; normal trailing comments are
+    // always at the end of another expression.
+
+    const isLineBeforeEmpty = isPreviousLineEmpty(
+      options.originalText,
+      comment,
+      options
+    );
+
+    return lineSuffix(
+      concat([hardline, isLineBeforeEmpty ? hardline : "", contents])
+    );
+  } else if (isBlock) {
+    // Trailing block comments never need a newline
+    return concat([" ", contents]);
+  }
+
+  return concat([lineSuffix(` ${contents}`), !isBlock ? breakParent : ""]);
+}
+
+function printAllComments(path, print, options, needsSemi) {
+  const value = path.getValue();
+  const printed = print(path);
+  const comments = value && value.comments;
+
+  if (!comments || comments.length === 0) {
+    return prependCursorPlaceholder(path, options, printed);
+  }
+
+  const leadingParts = [];
+  const trailingParts = [needsSemi ? ";" : "", printed];
+
+  path.each(commentPath => {
+    const comment = commentPath.getValue();
+    const { leading, trailing } = comment;
+
+    if (leading) {
+      const contents = printLeadingComment(commentPath, print, options);
+      if (!contents) {
+        return;
+      }
+      leadingParts.push(contents);
+
+      const text = options.originalText;
+      if (hasNewline(text, skipNewline(text, options.locEnd(comment)))) {
+        leadingParts.push(hardline);
+      }
+    } else if (trailing) {
+      trailingParts.push(printTrailingComment(commentPath, print, options));
+    }
+  }, "comments");
+
+  return prependCursorPlaceholder(
+    path,
+    options,
+    concat(leadingParts.concat(trailingParts))
+  );
+}
+
 module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
@@ -879,5 +1020,6 @@ module.exports = {
   hasLeadingComment,
   hasTrailingComment,
   hasLeadingOwnLineComment,
-  printComments
+  printComments,
+  printAllComments
 };

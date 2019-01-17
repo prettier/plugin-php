@@ -211,7 +211,11 @@ function printMemberChain(path, options, print) {
       printedNodes.unshift({
         node,
         printed: concat([
-          printArgumentsList(path, options, print),
+          comments.printAllComments(
+            path,
+            () => concat([printArgumentsList(path, options, print)]),
+            options
+          ),
           shouldInsertEmptyLineAfter(node) ? hardline : ""
         ])
       });
@@ -231,7 +235,11 @@ function printMemberChain(path, options, print) {
       printedNodes.unshift({
         node,
         needsParens: pathNeedsParens(path, options),
-        printed: printedMemberish
+        printed: comments.printAllComments(
+          path,
+          () => printedMemberish,
+          options
+        )
       });
       path.call(what => traverse(what), "what");
     } else {
