@@ -53,7 +53,8 @@ const {
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
-  getAncestorNode
+  getAncestorNode,
+  isReferenceLikeNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -379,10 +380,7 @@ function printMemberChain(path, options, print) {
 
       return (
         (firstNode.kind === "variable" && firstNode.name === "this") ||
-        firstNode.kind === "identifier" ||
-        // TODO: https://github.com/glayzzle/php-parser/issues/183
-        (firstNode.kind === "constref" &&
-          firstNode.name.toLowerCase() === "static")
+        isReferenceLikeNode(firstNode)
       );
     }
 
@@ -390,7 +388,7 @@ function printMemberChain(path, options, print) {
 
     return (
       isLookupNode(lastNode) &&
-      (lastNode.offset.kind === "constref" ||
+      (lastNode.offset.kind === "identifier" ||
         lastNode.offset.kind === "variable" ||
         lastNode.offset.kind === "encapsed") &&
       hasComputed
@@ -1372,11 +1370,7 @@ function isLookupNodeChain(node) {
     return false;
   }
 
-  if (
-    ["variable", "identifier"].includes(node.what.kind) ||
-    // TODO: https://github.com/glayzzle/php-parser/issues/183
-    (node.what.kind === "constref" && node.what.name.toLowerCase() === "static")
-  ) {
+  if (node.what.kind === "variable" || isReferenceLikeNode(node.what)) {
     return true;
   }
 
@@ -1979,12 +1973,8 @@ function printNode(path, options, print) {
             (firstNonMemberParent.kind === "assign" &&
               firstNonMemberParent.left.kind !== "variable"))) ||
         node.kind === "offsetlookup" ||
-        ((node.what.kind === "identifier" ||
-          node.what.kind === "variable" ||
-          // TODO: https://github.com/glayzzle/php-parser/issues/183
-          (node.what.kind === "constref" &&
-            node.what.name.toLowerCase() === "static")) &&
-          (node.offset.kind === "constref" ||
+        ((isReferenceLikeNode(node.what) || node.what.kind === "variable") &&
+          (node.offset.kind === "identifier" ||
             node.offset.kind === "variable" ||
             node.offset.kind === "encapsed") &&
           (parent && !isLookupNode(parent)));

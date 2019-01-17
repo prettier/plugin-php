@@ -535,6 +535,10 @@ function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
 
+function isReferenceLikeNode(node) {
+  return ["program", "declare", "namespace"].includes(node.kind);
+}
+
 // Return `logical` value for `bin` node containing `||` or `&&` type otherwise return kind of node.
 // Require for grouping logical and binary nodes in right way.
 function getNodeKindIncludingLogical(node) {
