@@ -2631,6 +2631,14 @@ function printNode(path, options, print) {
 
       return node.name;
     }
+    case "parentreference":
+      return "parent";
+    case "selfreference":
+      return "self";
+    case "staticreference":
+      return "static";
+    case "typereference":
+      return node.name;
     case "identifier": {
       if (typeof node.name !== "string") {
         return path.call(print, "name");

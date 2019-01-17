@@ -536,7 +536,12 @@ function isProgramLikeNode(node) {
 }
 
 function isReferenceLikeNode(node) {
-  return ["program", "declare", "namespace"].includes(node.kind);
+  return [
+    "classreference",
+    "parentreference",
+    "selfreference",
+    "staticreference"
+  ].includes(node.kind);
 }
 
 // Return `logical` value for `bin` node containing `||` or `&&` type otherwise return kind of node.
@@ -746,6 +751,7 @@ module.exports = {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
+  isReferenceLikeNode,
   getNodeKindIncludingLogical,
   hasNewline,
   useSingleQuote,
