@@ -1125,7 +1125,7 @@ function printClass(path, options, print) {
   declaration.push(isAnonymousClass ? "" : node.kind);
 
   if (node.name) {
-    declaration.push(" ", node.name);
+    declaration.push(" ", path.call(print, "name"));
   }
 
   // Only `class` can have `extends` and `implements`
