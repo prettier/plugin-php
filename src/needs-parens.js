@@ -174,6 +174,8 @@ function needsParens(path) {
         ["if", "do", "while", "foreach", "switch"].includes(parent.kind)
       ) {
         return false;
+      } else if (parent.kind === "silent") {
+        return false;
       }
 
       return true;
