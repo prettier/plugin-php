@@ -1426,14 +1426,7 @@ function isStringOnItsOwnLine(node, text, options) {
       (node.kind === "encapsed" &&
         (node.type === "string" || node.type === "shell"))) &&
     stringHasNewLines(node) &&
-    !hasNewline(
-      text,
-      // TODO: https://github.com/glayzzle/php-parser/issues/204
-      node.kind === "string"
-        ? options.locStart(node)
-        : options.locStart(node) - 1,
-      { backwards: true }
-    )
+    !hasNewline(text, options.locStart(node), { backwards: true })
   );
 }
 
