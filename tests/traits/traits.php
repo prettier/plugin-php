@@ -4,11 +4,11 @@ trait A {
   function otherTestFunction() { /*2*/ }
 }
 
-trait B extends otherTrait {
+trait B {
   function someOtherTestFunction() { /*3*/ }
 }
 
-trait C extends A implements B {
+trait C {
   function someOtherTestFunction() { /*4*/ }
   function testFunction() { /*5*/ }
 }
