@@ -683,6 +683,8 @@ function wrapPropertyLookup(node, doc) {
   if (
     node.offset.kind === "variable" ||
     (node.offset.kind === "constref" && typeof node.offset.name === "string") ||
+    (node.offset.kind === "identifier" &&
+      typeof node.offset.name === "string") ||
     (node.offset.kind === "encapsed" && node.offset.type === "offset")
   ) {
     addCurly = false;
@@ -2280,9 +2282,7 @@ function printNode(path, options, print) {
       return group(
         concat([
           open,
-          indent(
-            concat([softline, printArrayItems(path, options, print)])
-          ),
+          indent(concat([softline, printArrayItems(path, options, print)])),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
             !needsForcedTrailingComma && shouldPrintComma(options)
@@ -2626,6 +2626,15 @@ function printNode(path, options, print) {
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : ""
       ]);
+    case "classreference": {
+      const parent = path.getParentNode();
+
+      if (parent.kind !== "call" && node.name.toLowerCase() === "null") {
+        return node.name.toLowerCase();
+      }
+
+      return node.name;
+    }
     case "identifier": {
       const parent = path.getParentNode();
       let normalizedName = node.name.toLowerCase();
