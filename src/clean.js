@@ -112,6 +112,11 @@ function clean(node, newObj) {
   if (node.kind === "useitem") {
     newObj.name = newObj.name.replace(/^\\/, "");
   }
+
+  // @TODO: We need special node for `null` value to avoid ast compare problem
+  if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
+    delete newObj.name;
+  }
 }
 
 module.exports = clean;
