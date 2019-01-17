@@ -1456,8 +1456,10 @@ function printNode(path, options, print) {
       ]);
     case "declare": {
       const printDeclareArguments = path => {
-        const [directive] = Object.keys(path.getValue().what);
-        return concat([directive, "=", path.call(print, "what", directive)]);
+        return join(
+          ", ",
+          path.map(directive => concat([print(directive)]), "directives")
+        );
       };
 
       if (["block", "short"].includes(node.mode)) {
@@ -1477,6 +1479,8 @@ function printNode(path, options, print) {
 
       return concat(["declare(", printDeclareArguments(path), ");"]);
     }
+    case "declaredirective":
+      return concat([path.call(print, "key"), "=", path.call(print, "value")]);
     case "namespace":
       return concat([
         "namespace ",
