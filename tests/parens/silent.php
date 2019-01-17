@@ -34,3 +34,14 @@ try {
 } catch (Exception $e) {
     handle_exception();
 }
+
+@list($width, $height) = getimagesize($file);
+@(list($width, $height) = getimagesize($file));
+
+@$var += 10;
+@($var += 10);
+
+echo @(1 / 0);
+
+@$i / 0;
+@($i / 0);
