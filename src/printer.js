@@ -2537,6 +2537,12 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
+      const parent = path.getParentNode();
+
+      if (parent.kind === "encapsedpart") {
+        return join(literalline, node.raw.split(/\r?\n/g));
+      }
+
       const quote = useSingleQuote(node, options) ? "'" : '"';
 
       let stringValue = node.raw;
