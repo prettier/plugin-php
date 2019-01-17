@@ -378,7 +378,7 @@ function lineShouldEndWithSemicolon(path) {
     "empty",
     "traitprecedence",
     "traitalias",
-    "constant",
+    "constantstatement",
     "classconstant",
     "exit",
     "global",

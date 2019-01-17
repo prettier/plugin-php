@@ -1634,8 +1634,6 @@ function printNode(path, options, print) {
     case "variadic":
       return concat(["...", path.call(print, "what")]);
     case "property":
-    case "constant":
-    case "classconstant":
       return group(
         concat([
           node.visibility || node.visibility === null
@@ -2197,6 +2195,17 @@ function printNode(path, options, print) {
         path.call(print, "name"),
         node.curly ? "}" : ""
       ]);
+    case "constant":
+      return printAssignment(
+        node.name,
+        path.call(print, "name"),
+        " =",
+        node.value,
+        path.call(print, "value"),
+        options
+      );
+    case "constantstatement":
+    case "classconstant":
     case "static": {
       const printed = path.map(childPath => {
         return print(childPath);
@@ -2215,7 +2224,8 @@ function printNode(path, options, print) {
 
       return group(
         concat([
-          "static",
+          node.visibility ? concat([node.visibility, " "]) : "",
+          node.kind === "static" ? "static" : "const",
           firstVariable ? concat([" ", firstVariable]) : "",
           indent(
             concat(
