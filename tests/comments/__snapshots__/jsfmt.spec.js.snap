@@ -542,6 +542,33 @@ $var = (int) // Comment
 
 `;
 
+exports[`chains.php - php-verify: chains.php 1`] = `
+<?php
+
+$var = $var
+    // Comment
+    ->each() // Comment
+    // Comment
+    ->map() // Comment
+    // Comment
+    ->first() // Comment
+    // Comment
+    ->dump();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$var = $var
+    // Comment
+    ->each() // Comment
+    // Comment
+    ->map() // Comment
+    // Comment
+    ->first() // Comment
+    // Comment
+    ->dump();
+
+`;
+
 exports[`class.php - php-verify: class.php 1`] = `
 <?php
 namespace Test\\test\\test;
