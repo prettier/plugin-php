@@ -22,6 +22,7 @@
     "eslint-plugin-prettier": "3.0.1",
     "jest": "23.6.0",
     "jest-runner-eslint": "0.7.1",
+    "jest-snapshot-serializer-raw": "^1.1.0",
     "prettier": "^1.15.3"
   },
   "peerDependencies": {

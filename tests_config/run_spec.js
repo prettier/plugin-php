@@ -2,13 +2,15 @@
 
 const fs = require("fs");
 const path = require("path");
-const prettier = require("prettier");
+const raw = require("jest-snapshot-serializer-raw").wrap;
 
 const { AST_COMPARE, TEST_CRLF } = process.env;
 
 const CURSOR_PLACEHOLDER = "<|>";
 const RANGE_START_PLACEHOLDER = "<<<PRETTIER_RANGE_START>>>";
 const RANGE_END_PLACEHOLDER = "<<<PRETTIER_RANGE_END>>>";
+
+const prettier = require("prettier");
 
 global.run_spec = function run_spec(dirname, parsers, options) {
   options = Object.assign(
@@ -221,16 +223,4 @@ function omit(obj, fn) {
     }
     return reduced;
   }, {});
-}
-
-/**
- * Wraps a string in a marker object that is used by `./raw-serializer.js` to
- * directly print that string in a snapshot without escaping all double quotes.
- * Backticks will still be escaped.
- */
-function raw(string) {
-  if (typeof string !== "string") {
-    throw new Error("Raw snapshots have to be strings.");
-  }
-  return { [Symbol.for("raw")]: string };
 }
