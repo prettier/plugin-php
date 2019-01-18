@@ -20,7 +20,7 @@ global.run_spec = (dirname, parsers, options) => {
     options
   );
 
-  /* instabul ignore if */
+  // istanbul ignore next
   if (!parsers || !parsers.length) {
     throw new Error(`No parsers were specified for ${dirname}`);
   }
@@ -37,11 +37,11 @@ global.run_spec = (dirname, parsers, options) => {
       return;
     }
 
-    const text = fs.readFileSync(filename, "utf8");
-
     let rangeStart;
     let rangeEnd;
     let cursorOffset;
+
+    const text = fs.readFileSync(filename, "utf8");
 
     const source = (TEST_CRLF ? text.replace(/\n/g, "\r\n") : text)
       .replace(RANGE_START_PLACEHOLDER, (match, offset) => {
@@ -107,7 +107,7 @@ global.run_spec = (dirname, parsers, options) => {
         const parseOptions = Object.assign({}, mainOptions);
         delete parseOptions.cursorOffset;
 
-        const originalAst = parse(source, parseOptions);
+        const originalAst = parse(input, parseOptions);
         let formattedAst;
 
         expect(() => {
@@ -122,8 +122,8 @@ global.run_spec = (dirname, parsers, options) => {
   });
 };
 
-function parse(string, opts) {
-  return prettier.__debug.parse(string, opts, /* massage */ true).ast;
+function parse(source, options) {
+  return prettier.__debug.parse(source, options, /* massage */ true).ast;
 }
 
 function format(source, filename, options) {
@@ -170,7 +170,6 @@ function createSnapshot(input, output, options) {
     options.printWidth > 0 && Number.isFinite(options.printWidth)
       ? `${" ".repeat(options.printWidth)}| printWidth`
       : [];
-
   return []
     .concat(
       printSeparator(separatorWidth, "options"),
@@ -214,7 +213,6 @@ function omit(obj, fn) {
     if (key === "plugins") {
       return reduced;
     }
-
     const value = obj[key];
     if (!fn(key, value)) {
       reduced[key] = value;
