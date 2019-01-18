@@ -129,8 +129,11 @@ $var = ($var[0][1])::foo;
 $var = ($var[0])[1]::foo;
 $var = (($var[0])[1])::foo;
 $var = (new Foo())::bar;
+$var = (Foo::$bar)['baz']();
 $var = Foo::$bar['baz']();
 $var = Foo::{$bar['baz']}();
 $var = Foo::$bar['baz']();
 
 get_class($this->resource)::$wrap;
+
+$var = (Foo::$bar)['baz']();
