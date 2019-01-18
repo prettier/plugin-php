@@ -12,7 +12,7 @@ const RANGE_END_PLACEHOLDER = "<<<PRETTIER_RANGE_END>>>";
 
 const prettier = require("prettier");
 
-global.run_spec = function run_spec(dirname, parsers, options) {
+global.run_spec = (dirname, parsers, options) => {
   options = Object.assign(
     {
       plugins: ["."]
@@ -31,8 +31,8 @@ global.run_spec = function run_spec(dirname, parsers, options) {
     if (
       path.extname(basename) !== ".snap" &&
       fs.lstatSync(filename).isFile() &&
-      filename[0] !== "." &&
-      filename !== "jsfmt.spec.js"
+      basename[0] !== "." &&
+      basename !== "jsfmt.spec.js"
     ) {
       const text = fs.readFileSync(filename, "utf8");
 
@@ -100,24 +100,20 @@ global.run_spec = function run_spec(dirname, parsers, options) {
 
       // this will only work for php tests (since we're in the php repo)
       if (AST_COMPARE && parsers[0] === "php") {
-        const compareOptions = Object.assign({}, mainOptions);
-
-        const astMassaged = parse(source, compareOptions);
-
-        let ppastMassaged = undefined;
-
-        expect(() => {
-          ppastMassaged = parse(
-            format(input, path, compareOptions),
-            compareOptions
-          );
-        }).not.toThrow();
-
-        expect(ppastMassaged).toBeDefined();
         test(`${filename} parse`, () => {
-          if (!astMassaged.errors || astMassaged.errors.length === 0) {
-            expect(astMassaged).toEqual(ppastMassaged);
-          }
+          const parseOptions = Object.assign({}, mainOptions);
+          delete parseOptions.cursorOffset;
+
+          const originalAst = parse(source, parseOptions);
+          let formattedAst;
+
+          expect(() => {
+            formattedAst = parse(
+              output.replace(CURSOR_PLACEHOLDER, ""),
+              parseOptions
+            );
+          }).not.toThrow();
+          expect(originalAst).toEqual(formattedAst);
         });
       }
     }
