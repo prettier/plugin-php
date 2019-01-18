@@ -182,6 +182,8 @@ function needsParens(path) {
     }
     case "retif":
       switch (parent.kind) {
+        case "cast":
+          return true;
         case "unary":
         case "bin":
         case "retif":

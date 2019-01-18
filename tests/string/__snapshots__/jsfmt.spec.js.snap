@@ -278,16 +278,16 @@ $string = "This works: {$arr['key']}";
 $string = "This works: {$arr[4][3]}";
 $string = "This works: " . $arr['foo'][3];
 $string = "This works too: {$obj->values[3]->name}";
-$string = "This is the value of the var named $name: \${$name}";
-$string = "This is the value of the var named by the return value of getName(): \${getName()}";
-$string = "This is the value of the var named by the return value of getName(): \${getName(
+$string = "This is the value of the var named $name: {\${$name}}";
+$string = "This is the value of the var named by the return value of getName(): {\${getName()}}";
+$string = "This is the value of the var named by the return value of getName(): {\${getName(
     $arg1,
     $arg2,
     $arg3
-)}";
-$string = "This is the value of the var named by the return value of \\$object->getName(): \${$object->getName()}";
-$string = "I'd like an \${beers::softdrink}\\n";
-$string = "I'd like an \${beers::$ale}\\n";
+)}}";
+$string = "This is the value of the var named by the return value of \\$object->getName(): {\${$object->getName()}}";
+$string = "I'd like an {\${beers::softdrink}}\\n";
+$string = "I'd like an {\${beers::$ale}}\\n";
 $test = "\\\\";
 $test = '\\\\';
 printf("Query run in $queryTimeTaken seconds.\\n");

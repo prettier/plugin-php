@@ -10,7 +10,8 @@ cache:
   directories:
     - node_modules
 install:
-  - yarn install
+  # TODO: Temporary solution after resolve https://github.com/salesforce/tough-cookie/issues/140
+  - yarn install --ignore-engines
 script:
   - AST_COMPARE=1 yarn test -- --runInBand
   - yarn codecov

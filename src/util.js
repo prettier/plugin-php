@@ -310,9 +310,16 @@ function docShouldHaveTrailingNewline(path) {
     return index !== lastIndex;
   }
 
-  if (["call", "new", "echo"].includes(parent.kind)) {
+  if (["call", "new"].includes(parent.kind)) {
     const lastIndex = parent.arguments.length - 1;
     const index = parent.arguments.indexOf(node);
+
+    return index !== lastIndex;
+  }
+
+  if (parent.kind === "echo") {
+    const lastIndex = parent.expressions.length - 1;
+    const index = parent.expressions.indexOf(node);
 
     return index !== lastIndex;
   }
@@ -371,7 +378,7 @@ function lineShouldEndWithSemicolon(path) {
     "empty",
     "traitprecedence",
     "traitalias",
-    "constant",
+    "constantstatement",
     "classconstant",
     "exit",
     "global",
@@ -526,6 +533,15 @@ function getLastNestedChildNode(node) {
 
 function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
+}
+
+function isReferenceLikeNode(node) {
+  return [
+    "classreference",
+    "parentreference",
+    "selfreference",
+    "staticreference"
+  ].includes(node.kind);
 }
 
 // Return `logical` value for `bin` node containing `||` or `&&` type otherwise return kind of node.
@@ -735,6 +751,7 @@ module.exports = {
   getFirstNestedChildNode,
   getLastNestedChildNode,
   isProgramLikeNode,
+  isReferenceLikeNode,
   getNodeKindIncludingLogical,
   hasNewline,
   useSingleQuote,

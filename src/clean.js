@@ -113,12 +113,9 @@ function clean(node, newObj) {
     newObj.name = newObj.name.replace(/^\\/, "");
   }
 
-  // TODO: remove after resolve https://github.com/glayzzle/php-parser/issues/181
-  if (node.kind === "unary" && ["+", "-"].includes(node.type)) {
-    return {
-      kind: "number",
-      value: `${newObj.type}${newObj.what.value}`
-    };
+  // @TODO: We need special node for `null` value to avoid ast compare problem
+  if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
+    delete newObj.name;
   }
 }
 
