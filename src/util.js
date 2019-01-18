@@ -531,6 +531,23 @@ function getLastNestedChildNode(node) {
   return node;
 }
 
+function getNextNode(path, node) {
+  const parent = path.getParentNode();
+  const children = getNodeListProperty(parent);
+
+  if (!children) {
+    return null;
+  }
+
+  const index = children.indexOf(node);
+
+  if (index === -1) {
+    return null;
+  }
+
+  return parent.children[index + 1];
+}
+
 function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
@@ -760,5 +777,6 @@ module.exports = {
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
-  getAncestorNode
+  getAncestorNode,
+  getNextNode
 };

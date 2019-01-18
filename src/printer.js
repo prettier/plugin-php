@@ -54,7 +54,8 @@ const {
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
   getAncestorNode,
-  isReferenceLikeNode
+  isReferenceLikeNode,
+  getNextNode
 } = require("./util");
 
 function shouldPrintComma(options) {
@@ -1485,7 +1486,14 @@ function printNode(path, options, print) {
         ]);
       }
 
-      return concat(["declare(", printDeclareArguments(path), ");"]);
+      const nextNode = getNextNode(path, node);
+
+      return concat([
+        "declare(",
+        printDeclareArguments(path),
+        ")",
+        nextNode && nextNode.kind === "inline" ? "" : ";"
+      ]);
     }
     case "declaredirective":
       return concat([path.call(print, "key"), "=", path.call(print, "value")]);
