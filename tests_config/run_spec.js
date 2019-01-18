@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require("fs");
-const { extname } = require("path");
+const path = require("path");
 const prettier = require("prettier");
 
 const { AST_COMPARE, TEST_CRLF } = process.env;
@@ -23,16 +23,16 @@ global.run_spec = function run_spec(dirname, parsers, options) {
     throw new Error(`No parsers were specified for ${dirname}`);
   }
 
-  fs.readdirSync(dirname).forEach(filename => {
-    const path = `${dirname}/${filename}`;
+  fs.readdirSync(dirname).forEach(basename => {
+    const filename = path.join(dirname, basename);
 
     if (
-      extname(filename) !== ".snap" &&
-      fs.lstatSync(path).isFile() &&
+      path.extname(basename) !== ".snap" &&
+      fs.lstatSync(filename).isFile() &&
       filename[0] !== "." &&
       filename !== "jsfmt.spec.js"
     ) {
-      const text = fs.readFileSync(path, "utf8");
+      const text = fs.readFileSync(filename, "utf8");
 
       let rangeStart;
       let rangeEnd;
@@ -62,16 +62,16 @@ global.run_spec = function run_spec(dirname, parsers, options) {
         parser: parsers[0]
       });
 
-      const output = format(input, path, mainOptions);
+      const output = format(input, filename, mainOptions);
 
-      test(`${filename}`, () => {
-        expect(raw(`${source}\n${output}`)).toMatchSnapshot(filename);
+      test(basename, () => {
+        expect(raw(`${source}\n${output}`)).toMatchSnapshot();
       });
 
       parsers.slice(1).forEach(parser => {
         const verifyOptions = Object.assign({}, baseOptions, { parser });
-        test(`${filename} - ${parser}-verify`, () => {
-          const verifyOutput = format(input, path, verifyOptions);
+        test(`${basename} - ${parser}-verify`, () => {
+          const verifyOutput = format(input, filename, verifyOptions);
           expect(output).toEqual(verifyOutput);
         });
       });
@@ -92,7 +92,7 @@ global.run_spec = function run_spec(dirname, parsers, options) {
         }).not.toThrow();
 
         expect(ppastMassaged).toBeDefined();
-        test(`${path} parse`, () => {
+        test(`${filename} parse`, () => {
           if (!astMassaged.errors || astMassaged.errors.length === 0) {
             expect(astMassaged).toEqual(ppastMassaged);
           }
