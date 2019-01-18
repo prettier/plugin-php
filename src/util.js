@@ -355,6 +355,9 @@ function lineShouldEndWithSemicolon(path) {
   if (!nodeHasStatement(parentNode)) {
     return false;
   }
+  if (node.kind === "echo" && node.shortForm) {
+    return false;
+  }
   const semiColonWhitelist = [
     "expressionstatement",
     "array",

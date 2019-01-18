@@ -694,8 +694,8 @@ exports[`mixed-6.php - php-verify: mixed-6.php 1`] = `
   ]); ?>
 </section>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<section class="<?= $sectionClass; ?>">
-  <header class="<?= $headerClass; ?>">
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
     <?php echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
         'small_title' => $item->small_title,
@@ -706,8 +706,8 @@ exports[`mixed-6.php - php-verify: mixed-6.php 1`] = `
   </header>
 </section>
 
-<section class="<?= $sectionClass; ?>">
-  <header class="<?= $headerClass; ?>">
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
     <?php echo $this->element('collection/item-title', [
         'class' => $itemTitleClass,
         'small_title' => $item->small_title,
@@ -721,7 +721,7 @@ exports[`mixed-6.php - php-verify: mixed-6.php 1`] = `
       'title' => $item->title,
       'url' => $url,
       'color' => $item->title_color ?: 'primary'
-  ]); ?>
+  ]) ?>
 </section>
 
 `;
@@ -731,7 +731,7 @@ There are <?= $variable; ?> examples
 
 There are <?php echo $variable; ?> examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There are <?= $variable; ?> examples
+There are <?= $variable ?> examples
 
 There are <?php echo $variable; ?> examples
 
@@ -1011,8 +1011,8 @@ exports[`mixed-16.php - php-verify: mixed-16.php 1`] = `
   </div>
 </section>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<section class="<?= $sectionClass; ?>">
-  <header class="<?= $headerClass; ?>">
+<section class="<?= $sectionClass ?>">
+  <header class="<?= $headerClass ?>">
   <?php echo $someOtherVar()->element(
       'collection/item-title',
       [
@@ -1928,5 +1928,18 @@ exports[`only-html.php - php-verify: only-html.php 1`] = `
     <p>My first paragraph.</p>
   </body>
 </html>
+
+`;
+
+exports[`semicolon.php - php-verify: semicolon.php 1`] = `
+<div><?= $name ?></div>
+<div><?= $name, $foo ?></div>
+<div><?= $name; ?></div>
+<div><?= $name, $foo; ?></div>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div><?= $name ?></div>
+<div><?= $name, $foo ?></div>
+<div><?= $name ?></div>
+<div><?= $name, $foo ?></div>
 
 `;
