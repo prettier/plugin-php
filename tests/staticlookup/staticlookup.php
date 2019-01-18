@@ -123,3 +123,12 @@ $var = Order::{(string) $var = 1111}();
 $var = Order::{(string)["test"]}();
 $var = Order::{$var}();
 $var = Order::{$$var}();
+
+$var = ($var[0])::foo;
+$var = ($var[0][1])::foo;
+$var = ($var[0])[1]::foo;
+$var = (($var[0])[1])::foo;
+$var = (new Foo())::bar;
+
+get_class($var)::$$$$$property;
+get_class($this->resource)::$wrap;
