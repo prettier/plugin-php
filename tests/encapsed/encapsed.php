@@ -370,3 +370,5 @@ echo "This is my array value: $anArray[key]";
 echo "This is my array value: $anArray[$key]";
 echo "This is my array value: {$anArray[key]}";
 echo "This is my array value: {$anArray[$var]}";
+
+$message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
