@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`case.php - php-verify: case.php 1`] = `
+exports[`case.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 DECLARE(ticks=1);
 
@@ -239,7 +244,8 @@ FINAL CLASS MyClass EXTENDS Bar IMPLEMENTS iTemplate
 }
 
 __HALT_COMPILER();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 declare(ticks=1);
 
@@ -488,4 +494,5 @@ final class MyClass extends Bar implements iTemplate
 
 __halt_compiler();
 
+================================================================================
 `;

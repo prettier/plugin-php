@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ignore.php - php-verify: ignore.php 1`] = `
+exports[`ignore.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // prettier-ignore
 $var1   =   1;
@@ -28,7 +33,8 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
                 "php"
                        ]
 ];}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // prettier-ignore
 $var1   =   1;
@@ -57,4 +63,5 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
                        ]
 ];}
 
+================================================================================
 `;

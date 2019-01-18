@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`do.php - php-verify: do.php 1`] = `
+exports[`do.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $i = 1;
 do {
@@ -23,7 +28,8 @@ while ($var < 10);
 do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
 
 do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $i = 1;
 do {
@@ -58,4 +64,5 @@ do {
     $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
 );
 
+================================================================================
 `;

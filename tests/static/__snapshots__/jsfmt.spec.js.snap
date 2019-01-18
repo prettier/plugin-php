@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`static.php - php-verify: static.php 1`] = `
+exports[`static.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 static $a, $b;
 static $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable, $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable;
@@ -38,7 +43,8 @@ string
 string', $b = 'string
 string
 string';
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 static $a, $b;
 static $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
@@ -116,4 +122,5 @@ string',
 string
 string';
 
+================================================================================
 `;

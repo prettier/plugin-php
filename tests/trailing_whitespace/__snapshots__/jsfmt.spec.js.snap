@@ -1,39 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`trailing_whitespace.php - php-verify: trailing_whitespace.php 1`] = `
+exports[`trailing_whitespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php   
 $test = 'string';   
    
 $test1 = 'string';   
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+=====================================output=====================================
 <?php
 $test = 'string';
 
 $test1 = 'string';
 
+================================================================================
 `;
 
-exports[`trailing_whitespace_after_tag.php - php-verify: trailing_whitespace_after_tag.php 1`] = `
+exports[`trailing_whitespace_after_tag.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $code = true;
 ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $code = true;
 ?>
 
+================================================================================
 `;
 
-exports[`trailing_whitespace_comment.php - php-verify: trailing_whitespace_comment.php 1`] = `
+exports[`trailing_whitespace_comment.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 class test{
 } // some comment
 ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 class test
 {
 } // some comment
 ?>
 
+================================================================================
 `;

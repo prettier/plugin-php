@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`variadic.php - php-verify: variadic.php 1`] = `
+exports[`variadic.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function f($req, $opt = null, ...$params) {
@@ -25,7 +30,8 @@ interface DB {
     public function query3($query, array ...$params);
     public function query4($query, array $extraParam = null, array ...$params);
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function f($req, $opt = null, ...$params)
@@ -58,4 +64,5 @@ interface DB
     public function query4($query, array $extraParam = null, array ...$params);
 }
 
+================================================================================
 `;

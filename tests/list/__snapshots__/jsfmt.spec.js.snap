@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`list.php - php-verify: list.php 1`] = `
+exports[`list.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $info = array('coffee', 'brown', 'caffeine');
@@ -118,7 +123,8 @@ foreach ($array as list(&$a, $b)) {
 }
 foreach ($array as [&$a, $b]) {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $info = array('coffee', 'brown', 'caffeine');
@@ -314,4 +320,5 @@ foreach ($array as list(&$a, $b)) {
 foreach ($array as [&$a, $b]) {
 }
 
+================================================================================
 `;

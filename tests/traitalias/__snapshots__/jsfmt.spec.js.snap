@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`traitalias.php - php-verify: traitalias.php 1`] = `
+exports[`traitalias.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 class MyClass1 {
@@ -25,7 +30,8 @@ class MyClass1 {
         Foo::foo as private bar;
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 class MyClass1
@@ -52,4 +58,5 @@ class MyClass1
     }
 }
 
+================================================================================
 `;

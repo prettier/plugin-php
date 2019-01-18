@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`yield.php - php-verify: yield.php 1`] = `
+exports[`yield.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 function from() {
   yield;
@@ -54,7 +59,8 @@ function count_to_ten() {
 
     return yield from nine_ten();
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 function from()
 {
@@ -115,4 +121,5 @@ function count_to_ten()
     return yield from nine_ten();
 }
 
+================================================================================
 `;

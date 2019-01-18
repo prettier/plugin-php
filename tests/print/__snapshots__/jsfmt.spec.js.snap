@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`print.php - php-verify: print.php 1`] = `
+exports[`print.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 print("Hello World");
 
@@ -140,7 +145,8 @@ print new class {
 print (function () {
     return "string";
 })();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 print "Hello World";
 
@@ -329,4 +335,5 @@ print (function () {
     return "string";
 })();
 
+================================================================================
 `;

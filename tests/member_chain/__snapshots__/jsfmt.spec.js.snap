@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`break-last-call.php - php-verify: break-last-call.php 1`] = `
+exports[`break-last-call.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 function call($store) {
     return callApi($endpoint, $schema)->then(
@@ -18,7 +23,8 @@ function call($store) {
         }
   );
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 function call($store)
 {
@@ -42,9 +48,15 @@ function call($store)
     );
 }
 
+================================================================================
 `;
 
-exports[`break-last-member.php - php-verify: break-last-member.php 1`] = `
+exports[`break-last-member.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()->some_very_long_member_expression;
@@ -60,7 +72,8 @@ new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupe
 (new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong)->superSupersuperSupersuperSupersuperSupersuperSuperLong;
 $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
 $test = $test = $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $SomeVeryLongUpperCaseConstant->someVeryLongCallExpression()
@@ -84,9 +97,15 @@ $test =
 $test = $test =
     $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
 
+================================================================================
 `;
 
-exports[`break-multiple.php - php-verify: break-multiple.php 1`] = `
+exports[`break-multiple.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $object->foo()->bar()->baz();
@@ -94,7 +113,8 @@ $object->foo()->bar()->baz();
 foo()->bar()->baz();
 
 foo()->bar->baz();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $object
@@ -108,9 +128,15 @@ foo()
 
 foo()->bar->baz();
 
+================================================================================
 `;
 
-exports[`conditional.php - php-verify: conditional.php 1`] = `
+exports[`conditional.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 
@@ -157,7 +183,8 @@ $object[$valid
 
 ($testThingWithReallyLongName = new SomeObjectWithReallyReallyReallyReallyReallyReallyReallyReallyLongName())
 ->map()->filter();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 ($a ? $b : $c)->d();
@@ -228,9 +255,15 @@ $object[
     ->map()
     ->filter();
 
+================================================================================
 `;
 
-exports[`logical.php - php-verify: logical.php 1`] = `
+exports[`logical.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $someLongVariableName = (idx(
@@ -253,7 +286,8 @@ $someLongVariableName = (idx(
 ($veryLongVeryLongVeryLong || $anotherVeryLongVeryLongVeryLong || $veryVeryVeryLongError)->map(function ($tickets) {
   $TicketRecord->createFromSomeLongString();
 })->filter(function ($obj) { return !!$obj; });
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $someLongVariableName = (
@@ -294,9 +328,15 @@ $someLongVariableName = (
         return !!$obj;
     });
 
+================================================================================
 `;
 
-exports[`member_chain.php - php-verify: member_chain.php 1`] = `
+exports[`member_chain.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 one()->two();
@@ -383,7 +423,8 @@ $var = Foo::keys($items)->filter(function ($x) { return $x > 2; })->map(function
 (new static(func_get_args()))->offset(10)->push($this)->each(function ($item) {
     VarDumper::dump($item);
 });
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 one()->two();
@@ -557,9 +598,15 @@ $var = Foo::keys($items)
         VarDumper::dump($item);
     });
 
+================================================================================
 `;
 
-exports[`multiple-members.php - php-verify: multiple-members.php 1`] = `
+exports[`multiple-members.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(function() {
@@ -577,7 +624,8 @@ $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName', 'second arg
 $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(function() {
     doSomething();
 });
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $wrapper
@@ -611,9 +659,15 @@ $wrapper
         doSomething();
     });
 
+================================================================================
 `;
 
-exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
+exports[`offsetlookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $version = $someLongString
@@ -651,7 +705,8 @@ $window->Data['key']("foo")
 $window->Data['key']['foo']("foo")
     ->then(function () { return $a; })
     ->catch(function () { return $b; });
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $version = $someLongString
@@ -710,9 +765,15 @@ $window->Data['key']
         return $b;
     });
 
+================================================================================
 `;
 
-exports[`staticlookup.php - php-verify: staticlookup.php 1`] = `
+exports[`staticlookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 DB::table('identity')->insert([
     'ref' => $ref,
@@ -836,7 +897,8 @@ Foo
         ])
     )
     ->render();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 DB::table('identity')->insert([
     'ref' => $ref,
@@ -970,4 +1032,5 @@ Foo::viewFactory()
     )
     ->render();
 
+================================================================================
 `;
