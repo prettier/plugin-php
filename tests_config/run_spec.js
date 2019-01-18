@@ -4,7 +4,11 @@ const fs = require("fs");
 const { extname } = require("path");
 const prettier = require("prettier");
 
-const { AST_COMPARE } = process.env;
+const { AST_COMPARE, TEST_CRLF } = process.env;
+
+const CURSOR_PLACEHOLDER = "<|>";
+const RANGE_START_PLACEHOLDER = "<<<PRETTIER_RANGE_START>>>";
+const RANGE_END_PLACEHOLDER = "<<<PRETTIER_RANGE_END>>>";
 
 global.run_spec = function run_spec(dirname, parsers, options) {
   options = Object.assign(
@@ -21,39 +25,60 @@ global.run_spec = function run_spec(dirname, parsers, options) {
 
   fs.readdirSync(dirname).forEach(filename => {
     const path = `${dirname}/${filename}`;
+
     if (
       extname(filename) !== ".snap" &&
       fs.lstatSync(path).isFile() &&
       filename[0] !== "." &&
       filename !== "jsfmt.spec.js"
     ) {
-      let source = fs.readFileSync(filename, "utf8");
+      const text = fs.readFileSync(path, "utf8");
 
-      if (!options.keepEOL) {
-        source = source.replace(/\r\n/g, "\n");
-      }
+      let rangeStart;
+      let rangeEnd;
+      let cursorOffset;
 
-      const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
+      const source = (TEST_CRLF ? text.replace(/\n/g, "\r\n") : text)
+        .replace(RANGE_START_PLACEHOLDER, (match, offset) => {
+          rangeStart = offset;
+          return "";
+        })
+        .replace(RANGE_END_PLACEHOLDER, (match, offset) => {
+          rangeEnd = offset;
+          return "";
+        });
+
+      const input = source.replace(CURSOR_PLACEHOLDER, (match, offset) => {
+        cursorOffset = offset;
+        return "";
+      });
+
+      const baseOptions = Object.assign({ printWidth: 80 }, options, {
+        rangeStart,
+        rangeEnd,
+        cursorOffset
+      });
+      const mainOptions = Object.assign({}, baseOptions, {
         parser: parsers[0]
       });
-      const output = prettyprint(source, path, mergedOptions);
-      test(`${filename} - ${mergedOptions.parser}-verify`, () => {
-        expect(
-          raw(`${source + "~".repeat(mergedOptions.printWidth)}\n${output}`)
-        ).toMatchSnapshot(filename);
+
+      const output = format(input, path, mainOptions);
+
+      test(`${filename}`, () => {
+        expect(raw(`${source}\n${output}`)).toMatchSnapshot(filename);
       });
 
       parsers.slice(1).forEach(parser => {
-        const verifyOptions = Object.assign(mergedOptions, { parser });
+        const verifyOptions = Object.assign({}, baseOptions, { parser });
         test(`${filename} - ${parser}-verify`, () => {
-          const verifyOutput = prettyprint(source, path, verifyOptions);
+          const verifyOutput = format(input, path, verifyOptions);
           expect(output).toEqual(verifyOutput);
         });
       });
 
       // this will only work for php tests (since we're in the php repo)
       if (AST_COMPARE && parsers[0] === "php") {
-        const compareOptions = Object.assign({}, mergedOptions);
+        const compareOptions = Object.assign({}, mainOptions);
 
         const astMassaged = parse(source, compareOptions);
 
@@ -61,7 +86,7 @@ global.run_spec = function run_spec(dirname, parsers, options) {
 
         expect(() => {
           ppastMassaged = parse(
-            prettyprint(source, path, compareOptions),
+            format(input, path, compareOptions),
             compareOptions
           );
         }).not.toThrow();
@@ -81,16 +106,17 @@ function parse(string, opts) {
   return prettier.__debug.parse(string, opts, /* massage */ true).ast;
 }
 
-function prettyprint(src, filename, options) {
-  return prettier.format(
-    src,
-    Object.assign(
-      {
-        filepath: filename
-      },
-      options
-    )
+function format(source, filename, options) {
+  const result = prettier.formatWithCursor(
+    source,
+    Object.assign({ filepath: filename }, options)
   );
+
+  return options.cursorOffset >= 0
+    ? result.formatted.slice(0, result.cursorOffset) +
+        CURSOR_PLACEHOLDER +
+        result.formatted.slice(result.cursorOffset)
+    : result.formatted;
 }
 
 /**
