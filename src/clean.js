@@ -58,31 +58,6 @@ function clean(node, newObj) {
     newObj.value = util.printNumber(node.value);
   }
 
-  // All magic constant should be upper case
-  if (node.kind === "magic") {
-    newObj.value = node.value.toUpperCase();
-  }
-
-  // All reserved words should be lowercase case
-  if (node.kind === "identifier" && typeof node.name === "string") {
-    const lowerCasedName = node.name.toLowerCase();
-    const isLowerCase =
-      [
-        "int",
-        "float",
-        "bool",
-        "string",
-        "null",
-        "void",
-        "iterable",
-        "object",
-        "self",
-        "parent"
-      ].indexOf(lowerCasedName) !== -1;
-
-    newObj.name = isLowerCase ? lowerCasedName : node.name;
-  }
-
   const statements = ["foreach", "for", "if", "while", "do"];
 
   if (statements.includes(node.kind)) {
