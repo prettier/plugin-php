@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "3.0.1",
     "jest": "23.6.0",
     "jest-runner-eslint": "0.7.1",
-    "prettier": "prettier/prettier#f6d8be881c6b34235da7c13cfe072727aa71fed8"
+    "prettier": "^1.15.3"
   },
   "peerDependencies": {
     "prettier": "^1.12.0"
