@@ -10,7 +10,26 @@ exports[`declare.php - php-verify: declare.php 1`] = `
     </body>
 </html>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php declare(strict_types=1); ?>
+<?php declare(strict_types=1) ?>
+<html>
+    <body>
+        <?php $a = 1; ?>
+    </body>
+</html>
+
+`;
+
+exports[`declare-1.php - php-verify: declare-1.php 1`] = `
+<?php declare(strict_types=1) ?>
+<html>
+    <body>
+        <?php
+          $a = 1;
+        ?>
+    </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php declare(strict_types=1) ?>
 <html>
     <body>
         <?php $a = 1; ?>
