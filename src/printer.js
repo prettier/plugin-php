@@ -58,10 +58,24 @@ const {
   getNextNode
 } = require("./util");
 
-function shouldPrintComma(options) {
+function shouldPrintComma(options, level) {
+  level = level || "none";
+
   switch (options.trailingComma) {
     case "all":
-      return true;
+      if (level === "all") {
+        return true;
+      }
+    // fallthrough
+    case "php7.2":
+      if (level === "php7.2") {
+        return true;
+      }
+    // fallthrough
+    case "php5":
+      if (level === "php5") {
+        return true;
+      }
     // fallthrough
     case "none":
     default:
@@ -1552,7 +1566,7 @@ function printNode(path, options, print) {
           ),
           node.name
             ? concat([
-                ifBreak(shouldPrintComma(options) ? "," : ""),
+                ifBreak(shouldPrintComma(options, "php7.2") ? "," : ""),
                 softline,
                 "}"
               ])
@@ -2306,7 +2320,7 @@ function printNode(path, options, print) {
           indent(concat([softline, printArrayItems(path, options, print)])),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
-            !needsForcedTrailingComma && shouldPrintComma(options)
+            !needsForcedTrailingComma && shouldPrintComma(options, "php5")
               ? concat([
                   lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
                     ? hardline
