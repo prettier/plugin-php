@@ -2637,7 +2637,7 @@ function printNode(path, options, print) {
         return node.name.toLowerCase();
       }
 
-      return node.name;
+      return concat([node.resolution === "rn" ? "namespace\\" : "", node.name]);
     }
     case "parentreference":
       return "parent";
