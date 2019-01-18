@@ -6,7 +6,7 @@ const prettier = require("prettier");
 
 const { AST_COMPARE } = process.env;
 
-function run_spec(dirname, parsers, options) {
+global.run_spec = function run_spec(dirname, parsers, options) {
   options = Object.assign(
     {
       plugins: ["."]
@@ -27,7 +27,7 @@ function run_spec(dirname, parsers, options) {
       filename[0] !== "." &&
       filename !== "jsfmt.spec.js"
     ) {
-      let source = read(path);
+      let source = fs.readFileSync(filename, "utf8");
 
       if (!options.keepEOL) {
         source = source.replace(/\r\n/g, "\n");
@@ -75,9 +75,7 @@ function run_spec(dirname, parsers, options) {
       }
     }
   });
-}
-
-global.run_spec = run_spec;
+};
 
 function parse(string, opts) {
   return prettier.__debug.parse(string, opts, /* massage */ true).ast;
@@ -93,10 +91,6 @@ function prettyprint(src, filename, options) {
       options
     )
   );
-}
-
-function read(filename) {
-  return fs.readFileSync(filename, "utf8");
 }
 
 /**
