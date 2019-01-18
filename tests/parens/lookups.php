@@ -62,8 +62,7 @@ $var = $var[0]->foo()->baz;
 $var = ((($var[0])->foo())->baz);
 
 $var = (new Foo())->bar;
-// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/185
-// $var = (new Foo())::bar;
+$var = (new Foo())::bar;
 $var = (new Foo())->bar();
 $var = (new Foo())::bar();
 $var = (new Foo())[1];
