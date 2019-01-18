@@ -1,0 +1,25 @@
+<?php
+
+empty($var);
+empty($expected_array_got_string['some_key']);
+empty($expected_array_got_string[0]);
+empty($expected_array_got_string['0']);
+empty($expected_array_got_string[0.5]);
+empty($expected_array_got_string['0.5']);
+empty($expected_array_got_string['0 Mostel']);
+empty($registry->notExisting);
+empty($registry->notExisting->foo);
+empty($this->_items[$key]);
+
+if (empty($var)) {
+    echo '$var is either 0, empty, or not set at all';
+}
+
+function is_blank($value) {
+    return empty($value) && !is_numeric($value);
+}
+
+if(is_empty(NULL)) {
+}
+
+
