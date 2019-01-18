@@ -43,6 +43,12 @@ EOD;
     const CONST_12 = ['value', 'other-value', 'other-other-value', 'other-other-other-value'];
     const CONST_13 = ['key' => 'value', 'other-key' => 'other-value'];
     const CONST_14 = ['key' => 'value', 'other-key' => 'other-value', 'other-other-key' => 'other-other-value'];
+
+    const FIRST = "Hello", SECOND = "world", THIRD = "!";
+    const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST = "Hello", SECOND_1 = "world", THIRD_1 = "!";
+    const FIRST_1 = "Hello", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND = "world", THIRD_2 = "!";
+    const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_FIRST = "Hello", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND_1 = "world", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_THIRD = "!";
+    const CONST_15 = ['key' => 'value', 'other-key' => 'other-value', 'other-other-key' => 'other-other-value'], FOO_BAR = "test", BAR_FOOR = ['value', 'other-value'];
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
@@ -119,6 +125,24 @@ EOD;
         'other-key' => 'other-value',
         'other-other-key' => 'other-other-value'
     ];
+
+    const FIRST = "Hello", SECOND = "world", THIRD = "!";
+    const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST = "Hello",
+        SECOND_1 = "world",
+        THIRD_1 = "!";
+    const FIRST_1 = "Hello",
+        VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND = "world",
+        THIRD_2 = "!";
+    const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_FIRST = "Hello",
+        VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND_1 = "world",
+        VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_THIRD = "!";
+    const CONST_15 = [
+            'key' => 'value',
+            'other-key' => 'other-value',
+            'other-other-key' => 'other-other-value'
+        ],
+        FOO_BAR = "test",
+        BAR_FOOR = ['value', 'other-value'];
 }
 
 `;
