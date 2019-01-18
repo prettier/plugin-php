@@ -107,14 +107,28 @@ function genericPrint(path, options, print) {
 function printPropertyLookup(path, options, print) {
   const node = path.getValue();
 
-  return group(
-    concat(["->", wrapPropertyLookup(node, path.call(print, "offset"))])
-  );
+  let needCurly = true;
+
+  if (
+    node.offset.kind === "variable" ||
+    (node.offset.kind === "identifier" &&
+      typeof node.offset.name === "string") ||
+    (node.offset.kind === "encapsed" && node.offset.type === "offset")
+  ) {
+    needCurly = false;
+  }
+
+  return concat([
+    "->",
+    needCurly ? "{" : "",
+    path.call(print, "offset"),
+    needCurly ? "}" : ""
+  ]);
 }
 
 function printStaticLookup(path, options, print) {
   const node = path.getValue();
-  const needCurly = node.offset.kind === "magic";
+  const needCurly = !["variable", "identifier"].includes(node.offset.kind);
 
   return concat([
     "::",
@@ -690,22 +704,6 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
       shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine
     }
   );
-}
-
-function wrapPropertyLookup(node, doc) {
-  let addCurly = true;
-
-  if (
-    node.offset.kind === "variable" ||
-    (node.offset.kind === "constref" && typeof node.offset.name === "string") ||
-    (node.offset.kind === "identifier" &&
-      typeof node.offset.name === "string") ||
-    (node.offset.kind === "encapsed" && node.offset.type === "offset")
-  ) {
-    addCurly = false;
-  }
-
-  return addCurly ? concat(["{", doc, "}"]) : doc;
 }
 
 function shouldInlineRetifFalseExpression(node) {

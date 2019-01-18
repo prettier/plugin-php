@@ -110,3 +110,16 @@ MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVe
 $var = static::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];
 $var = self::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];
 $var = parent::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][$arrayStub->baz];
+
+$var = Order::{camel_case($name)}();
+$var = Order::{"string"}();
+$var = Order::{1}();
+$var = Order::{__FILE__}();
+$var = Order::{true}();
+$var = Order::{$var ? "foo" : "bar"}();
+$var = Order::{"foo" . "bar"}();
+$var = Order::{$var = "test"}();
+$var = Order::{(string) $var = 1111}();
+$var = Order::{(string)["test"]}();
+$var = Order::{$var}();
+$var = Order::{$$var}();
