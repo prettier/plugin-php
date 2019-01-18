@@ -113,7 +113,15 @@ function printPropertyLookup(path, options, print) {
 }
 
 function printStaticLookup(path, options, print) {
-  return concat(["::", path.call(print, "offset")]);
+  const node = path.getValue();
+  const needCurly = node.offset.kind === "magic";
+
+  return concat([
+    "::",
+    needCurly ? "{" : "",
+    path.call(print, "offset"),
+    needCurly ? "}" : ""
+  ]);
 }
 
 function printOffsetLookup(path, options, print) {
