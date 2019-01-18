@@ -34,6 +34,14 @@ function clean(node, newObj) {
     delete newObj.isDoubleQuote;
   }
 
+  if (node.kind === "inline") {
+    if (node.value.includes("___PSEUDO_INLINE_PLACEHOLDER___")) {
+      return null;
+    }
+
+    newObj.value = newObj.value.replace(/\r\n?|\n/g, "");
+  }
+
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
   if ((node.kind === "continue" || node.kind === "break") && node.level) {

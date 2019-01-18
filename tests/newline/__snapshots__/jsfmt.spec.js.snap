@@ -5,7 +5,6 @@ exports[`CRLF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -20,16 +19,16 @@ class Foo<CRLF>
 }<CRLF>
 
 =====================================output=====================================
-<?php<CRLF>
-$test = 1;<CRLF>
-<CRLF>
-class Foo<CRLF>
-{<CRLF>
-    /**<CRLF>
-     * Comment indented with tabs in file with utf-8[dos]<CRLF>
-     */<CRLF>
-    private $foo;<CRLF>
-}<CRLF>
+<?php<CR>
+$test = 1;<CR>
+<CR>
+class Foo<CR>
+{<CR>
+    /**<CR>
+     * Comment indented with tabs in file with utf-8[dos]<CR>
+     */<CR>
+    private $foo;<CR>
+}<CR>
 
 ================================================================================
 `;
@@ -39,7 +38,6 @@ exports[`CRLF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -73,7 +71,6 @@ exports[`CRLF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -88,16 +85,16 @@ class Foo<CRLF>
 }<CRLF>
 
 =====================================output=====================================
-<?php<CRLF>
-$test = 1;<CRLF>
-<CRLF>
-class Foo<CRLF>
-{<CRLF>
-    /**<CRLF>
-     * Comment indented with tabs in file with utf-8[dos]<CRLF>
-     */<CRLF>
-    private $foo;<CRLF>
-}<CRLF>
+<?php<LF>
+$test = 1;<LF>
+<LF>
+class Foo<LF>
+{<LF>
+    /**<LF>
+     * Comment indented with tabs in file with utf-8[dos]<LF>
+     */<LF>
+    private $foo;<LF>
+}<LF>
 
 ================================================================================
 `;
@@ -107,15 +104,14 @@ exports[`LF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
 $test = 1;<LF>
 
 =====================================output=====================================
-<?php<LF>
-$test = 1;<LF>
+<?php<CR>
+$test = 1;<CR>
 
 ================================================================================
 `;
@@ -125,15 +121,14 @@ exports[`LF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
 $test = 1;<LF>
 
 =====================================output=====================================
-<?php<LF>
-$test = 1;<LF>
+<?php<CRLF>
+$test = 1;<CRLF>
 
 ================================================================================
 `;
@@ -143,7 +138,6 @@ exports[`LF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -161,7 +155,6 @@ exports[`comment-block-CRLF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -178,18 +171,18 @@ requirePragma: true
 $a = 1;<CRLF>
 
 =====================================output=====================================
-<?php<CRLF>
-<CRLF>
-/**<CRLF>
- * See http://example.com<CRLF>
- *<CRLF>
- * Some example code<CRLF>
- * \`\`\`php<CRLF>
- * $hello = 'world'; // This is a comment in a comment<CRLF>
- * \`\`\`<CRLF>
- */<CRLF>
-<CRLF>
-$a = 1;<CRLF>
+<?php<CR>
+<CR>
+/**<CR>
+ * See http://example.com<CR>
+ *<CR>
+ * Some example code<CR>
+ * \`\`\`php<CR>
+ * $hello = 'world'; // This is a comment in a comment<CR>
+ * \`\`\`<CR>
+ */<CR>
+<CR>
+$a = 1;<CR>
 
 ================================================================================
 `;
@@ -199,7 +192,6 @@ exports[`comment-block-CRLF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -237,7 +229,6 @@ exports[`comment-block-CRLF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<CRLF>
@@ -254,18 +245,18 @@ requirePragma: true
 $a = 1;<CRLF>
 
 =====================================output=====================================
-<?php<CRLF>
-<CRLF>
-/**<CRLF>
- * See http://example.com<CRLF>
- *<CRLF>
- * Some example code<CRLF>
- * \`\`\`php<CRLF>
- * $hello = 'world'; // This is a comment in a comment<CRLF>
- * \`\`\`<CRLF>
- */<CRLF>
-<CRLF>
-$a = 1;<CRLF>
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
 
 ================================================================================
 `;
@@ -275,7 +266,6 @@ exports[`comment-block-LF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -292,18 +282,18 @@ requirePragma: true
 $a = 1;<LF>
 
 =====================================output=====================================
-<?php<LF>
-<LF>
-/**<LF>
- * See http://example.com<LF>
- *<LF>
- * Some example code<LF>
- * \`\`\`php<LF>
- * $hello = 'world'; // This is a comment in a comment<LF>
- * \`\`\`<LF>
- */<LF>
-<LF>
-$a = 1;<LF>
+<?php<CR>
+<CR>
+/**<CR>
+ * See http://example.com<CR>
+ *<CR>
+ * Some example code<CR>
+ * \`\`\`php<CR>
+ * $hello = 'world'; // This is a comment in a comment<CR>
+ * \`\`\`<CR>
+ */<CR>
+<CR>
+$a = 1;<CR>
 
 ================================================================================
 `;
@@ -313,7 +303,6 @@ exports[`comment-block-LF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -330,18 +319,18 @@ requirePragma: true
 $a = 1;<LF>
 
 =====================================output=====================================
-<?php<LF>
-<LF>
-/**<LF>
- * See http://example.com<LF>
- *<LF>
- * Some example code<LF>
- * \`\`\`php<LF>
- * $hello = 'world'; // This is a comment in a comment<LF>
- * \`\`\`<LF>
- */<LF>
-<LF>
-$a = 1;<LF>
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
 
 ================================================================================
 `;
@@ -351,7 +340,6 @@ exports[`comment-block-LF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -389,7 +377,6 @@ exports[`file-terminated-with-multiple-LF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -398,10 +385,8 @@ $test = 1;<LF>
 <LF>
 
 =====================================output=====================================
-<?php<LF>
-$test = 1;<LF>
-<LF>
-<LF>
+<?php<CR>
+$test = 1;<CR>
 
 ================================================================================
 `;
@@ -411,7 +396,6 @@ exports[`file-terminated-with-multiple-LF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -420,10 +404,8 @@ $test = 1;<LF>
 <LF>
 
 =====================================output=====================================
-<?php<LF>
-$test = 1;<LF>
-<LF>
-<LF>
+<?php<CRLF>
+$test = 1;<CRLF>
 
 ================================================================================
 `;
@@ -433,7 +415,6 @@ exports[`file-terminated-with-multiple-LF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
@@ -444,8 +425,6 @@ $test = 1;<LF>
 =====================================output=====================================
 <?php<LF>
 $test = 1;<LF>
-<LF>
-<LF>
 
 ================================================================================
 `;
@@ -455,14 +434,14 @@ exports[`file-terminated-without-line-ending.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
 $test = 1;
 =====================================output=====================================
-<?php<LF>
-$test = 1;
+<?php<CR>
+$test = 1;<CR>
+
 ================================================================================
 `;
 
@@ -471,14 +450,14 @@ exports[`file-terminated-without-line-ending.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
 $test = 1;
 =====================================output=====================================
-<?php<LF>
-$test = 1;
+<?php<CRLF>
+$test = 1;<CRLF>
+
 ================================================================================
 `;
 
@@ -487,14 +466,14 @@ exports[`file-terminated-without-line-ending.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <?php<LF>
 $test = 1;
 =====================================output=====================================
 <?php<LF>
-$test = 1;
+$test = 1;<LF>
+
 ================================================================================
 `;
 
@@ -503,7 +482,6 @@ exports[`html-CRLF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><CRLF>
@@ -521,19 +499,19 @@ requirePragma: true
 </html><CRLF>
 
 =====================================output=====================================
-<!DOCTYPE html><CRLF>
-<html lang="de"><CRLF>
-    <head><CRLF>
-        <meta charset="utf-8" /><CRLF>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
-        <title>.</title><CRLF>
-    </head><CRLF>
-    <body><CRLF>
-<CRLF>
-        <?php echo 'foo!'; ?><CRLF>
-<CRLF>
-    </body><CRLF>
-</html><CRLF>
+<!DOCTYPE html><CR>
+<html lang="de"><CR>
+    <head><CR>
+        <meta charset="utf-8" /><CR>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CR>
+        <title>.</title><CR>
+    </head><CR>
+    <body><CR>
+<CR>
+        <?php echo 'foo!'; ?><CR>
+<CR>
+    </body><CR>
+</html><CR>
 
 ================================================================================
 `;
@@ -543,7 +521,6 @@ exports[`html-CRLF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><CRLF>
@@ -583,7 +560,6 @@ exports[`html-CRLF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><CRLF>
@@ -601,19 +577,19 @@ requirePragma: true
 </html><CRLF>
 
 =====================================output=====================================
-<!DOCTYPE html><CRLF>
-<html lang="de"><CRLF>
-    <head><CRLF>
-        <meta charset="utf-8" /><CRLF>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
-        <title>.</title><CRLF>
-    </head><CRLF>
-    <body><CRLF>
-<CRLF>
-        <?php echo 'foo!'; ?><CRLF>
-<CRLF>
-    </body><CRLF>
-</html><CRLF>
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
 ================================================================================
 `;
@@ -623,7 +599,6 @@ exports[`html-LF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><LF>
@@ -641,19 +616,19 @@ requirePragma: true
 </html><LF>
 
 =====================================output=====================================
-<!DOCTYPE html><LF>
-<html lang="de"><LF>
-    <head><LF>
-        <meta charset="utf-8" /><LF>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
-        <title>.</title><LF>
-    </head><LF>
-    <body><LF>
-<LF>
-        <?php echo 'foo!'; ?><LF>
-<LF>
-    </body><LF>
-</html><LF>
+<!DOCTYPE html><CR>
+<html lang="de"><CR>
+    <head><CR>
+        <meta charset="utf-8" /><CR>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CR>
+        <title>.</title><CR>
+    </head><CR>
+    <body><CR>
+<CR>
+        <?php echo 'foo!'; ?><CR>
+<CR>
+    </body><CR>
+</html><CR>
 
 ================================================================================
 `;
@@ -663,7 +638,6 @@ exports[`html-LF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><LF>
@@ -681,19 +655,19 @@ requirePragma: true
 </html><LF>
 
 =====================================output=====================================
-<!DOCTYPE html><LF>
-<html lang="de"><LF>
-    <head><LF>
-        <meta charset="utf-8" /><LF>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
-        <title>.</title><LF>
-    </head><LF>
-    <body><LF>
-<LF>
-        <?php echo 'foo!'; ?><LF>
-<LF>
-    </body><LF>
-</html><LF>
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
 ================================================================================
 `;
@@ -703,7 +677,6 @@ exports[`html-LF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 <!DOCTYPE html><LF>
@@ -743,7 +716,6 @@ exports[`mixed-CRLF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<CRLF>
@@ -752,10 +724,10 @@ Text<CRLF>
 Test<CRLF>
 
 =====================================output=====================================
-Text<CRLF>
-<?php echo 1; ?><CRLF>
-<?php echo 2; ?><CRLF>
-Test<CRLF>
+Text<CR>
+<?php echo 1; ?><CR>
+<?php echo 2; ?><CR>
+Test<CR>
 
 ================================================================================
 `;
@@ -765,7 +737,6 @@ exports[`mixed-CRLF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<CRLF>
@@ -787,7 +758,6 @@ exports[`mixed-CRLF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<CRLF>
@@ -796,10 +766,10 @@ Text<CRLF>
 Test<CRLF>
 
 =====================================output=====================================
-Text<CRLF>
-<?php echo 1; ?><CRLF>
-<?php echo 2; ?><CRLF>
-Test<CRLF>
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
 
 ================================================================================
 `;
@@ -809,7 +779,6 @@ exports[`mixed-LF.php 1`] = `
 endOfLine: "cr"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<LF>
@@ -818,10 +787,10 @@ Text<LF>
 Test<LF>
 
 =====================================output=====================================
-Text<LF>
-<?php echo 1; ?><LF>
-<?php echo 2; ?><LF>
-Test<LF>
+Text<CR>
+<?php echo 1; ?><CR>
+<?php echo 2; ?><CR>
+Test<CR>
 
 ================================================================================
 `;
@@ -831,7 +800,6 @@ exports[`mixed-LF.php 2`] = `
 endOfLine: "crlf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<LF>
@@ -840,10 +808,10 @@ Text<LF>
 Test<LF>
 
 =====================================output=====================================
-Text<LF>
-<?php echo 1; ?><LF>
-<?php echo 2; ?><LF>
-Test<LF>
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
 
 ================================================================================
 `;
@@ -853,7 +821,6 @@ exports[`mixed-LF.php 3`] = `
 endOfLine: "lf"
 parsers: ["php"]
 printWidth: 80
-requirePragma: true
                                                                                 | printWidth
 =====================================input======================================
 Text<LF>
