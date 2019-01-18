@@ -29,93 +29,95 @@ global.run_spec = (dirname, parsers, options) => {
     const filename = path.join(dirname, basename);
 
     if (
-      path.extname(basename) !== ".snap" &&
-      fs.lstatSync(filename).isFile() &&
-      basename[0] !== "." &&
-      basename !== "jsfmt.spec.js"
+      path.extname(basename) === ".snap" ||
+      !fs.lstatSync(filename).isFile() ||
+      basename[0] === "." ||
+      basename === "jsfmt.spec.js"
     ) {
-      const text = fs.readFileSync(filename, "utf8");
+      return;
+    }
 
-      let rangeStart;
-      let rangeEnd;
-      let cursorOffset;
+    const text = fs.readFileSync(filename, "utf8");
 
-      const source = (TEST_CRLF ? text.replace(/\n/g, "\r\n") : text)
-        .replace(RANGE_START_PLACEHOLDER, (match, offset) => {
-          rangeStart = offset;
-          return "";
-        })
-        .replace(RANGE_END_PLACEHOLDER, (match, offset) => {
-          rangeEnd = offset;
-          return "";
-        });
+    let rangeStart;
+    let rangeEnd;
+    let cursorOffset;
 
-      const input = source.replace(CURSOR_PLACEHOLDER, (match, offset) => {
-        cursorOffset = offset;
+    const source = (TEST_CRLF ? text.replace(/\n/g, "\r\n") : text)
+      .replace(RANGE_START_PLACEHOLDER, (match, offset) => {
+        rangeStart = offset;
+        return "";
+      })
+      .replace(RANGE_END_PLACEHOLDER, (match, offset) => {
+        rangeEnd = offset;
         return "";
       });
 
-      const baseOptions = Object.assign({ printWidth: 80 }, options, {
-        rangeStart,
-        rangeEnd,
-        cursorOffset
-      });
-      const mainOptions = Object.assign({}, baseOptions, {
-        parser: parsers[0]
-      });
+    const input = source.replace(CURSOR_PLACEHOLDER, (match, offset) => {
+      cursorOffset = offset;
+      return "";
+    });
 
-      const hasEndOfLine = "endOfLine" in mainOptions;
+    const baseOptions = Object.assign({ printWidth: 80 }, options, {
+      rangeStart,
+      rangeEnd,
+      cursorOffset
+    });
+    const mainOptions = Object.assign({}, baseOptions, {
+      parser: parsers[0]
+    });
 
-      const output = format(input, filename, mainOptions);
-      const visualizedOutput = visualizeEndOfLine(output);
+    const hasEndOfLine = "endOfLine" in mainOptions;
 
-      test(basename, () => {
-        expect(visualizedOutput).toEqual(
-          visualizeEndOfLine(consistentEndOfLine(output))
-        );
-        expect(
-          raw(
-            createSnapshot(
-              hasEndOfLine
-                ? visualizeEndOfLine(
-                    text
-                      .replace(RANGE_START_PLACEHOLDER, "")
-                      .replace(RANGE_END_PLACEHOLDER, "")
-                  )
-                : source,
-              hasEndOfLine ? visualizedOutput : output,
-              Object.assign({}, baseOptions, { parsers })
-            )
+    const output = format(input, filename, mainOptions);
+    const visualizedOutput = visualizeEndOfLine(output);
+
+    test(basename, () => {
+      expect(visualizedOutput).toEqual(
+        visualizeEndOfLine(consistentEndOfLine(output))
+      );
+      expect(
+        raw(
+          createSnapshot(
+            hasEndOfLine
+              ? visualizeEndOfLine(
+                  text
+                    .replace(RANGE_START_PLACEHOLDER, "")
+                    .replace(RANGE_END_PLACEHOLDER, "")
+                )
+              : source,
+            hasEndOfLine ? visualizedOutput : output,
+            Object.assign({}, baseOptions, { parsers })
           )
-        ).toMatchSnapshot();
+        )
+      ).toMatchSnapshot();
+    });
+
+    for (const parser of parsers.slice(1)) {
+      const verifyOptions = Object.assign({}, baseOptions, { parser });
+      test(`${basename} - ${parser}-verify`, () => {
+        const verifyOutput = format(input, filename, verifyOptions);
+        expect(visualizedOutput).toEqual(visualizeEndOfLine(verifyOutput));
       });
+    }
 
-      for (const parser of parsers.slice(1)) {
-        const verifyOptions = Object.assign({}, baseOptions, { parser });
-        test(`${basename} - ${parser}-verify`, () => {
-          const verifyOutput = format(input, filename, verifyOptions);
-          expect(visualizedOutput).toEqual(visualizeEndOfLine(verifyOutput));
-        });
-      }
+    // this will only work for php tests (since we're in the php repo)
+    if (AST_COMPARE && parsers[0] === "php") {
+      test(`${filename} parse`, () => {
+        const parseOptions = Object.assign({}, mainOptions);
+        delete parseOptions.cursorOffset;
 
-      // this will only work for php tests (since we're in the php repo)
-      if (AST_COMPARE && parsers[0] === "php") {
-        test(`${filename} parse`, () => {
-          const parseOptions = Object.assign({}, mainOptions);
-          delete parseOptions.cursorOffset;
+        const originalAst = parse(source, parseOptions);
+        let formattedAst;
 
-          const originalAst = parse(source, parseOptions);
-          let formattedAst;
-
-          expect(() => {
-            formattedAst = parse(
-              output.replace(CURSOR_PLACEHOLDER, ""),
-              parseOptions
-            );
-          }).not.toThrow();
-          expect(originalAst).toEqual(formattedAst);
-        });
-      }
+        expect(() => {
+          formattedAst = parse(
+            output.replace(CURSOR_PLACEHOLDER, ""),
+            parseOptions
+          );
+        }).not.toThrow();
+        expect(originalAst).toEqual(formattedAst);
+      });
     }
   });
 };
