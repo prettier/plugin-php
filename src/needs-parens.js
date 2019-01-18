@@ -176,6 +176,8 @@ function needsParens(path) {
         return false;
       } else if (parent.kind === "silent") {
         return false;
+      } else if (parent.kind === "call") {
+        return false;
       }
 
       return true;
