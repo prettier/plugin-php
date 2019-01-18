@@ -569,3 +569,23 @@ $sel = $this->connections
     });
 
 `;
+
+exports[`open-php-tag.php - php-verify: open-php-tag.php 1`] = `
+<?php
+
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+
+$a = 1;
+
+`;
+
+exports[`open-php-tag-1.php - php-verify: open-php-tag-1.php 1`] = `
+<?php
+$a = 1;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?php
+$a = 1;
+
+`;
