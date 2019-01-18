@@ -1035,8 +1035,7 @@ exports[`call.php - php-verify: call.php 1`] = `
 <?php
 
 call();
-// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/194#issuecomment-430657284
-// (call());
+(call());
 
 $var = call();
 $var = (call());
@@ -1080,8 +1079,7 @@ $var = ("Foo::bar")();
 <?php
 
 call();
-// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/194#issuecomment-430657284
-// (call());
+call();
 
 $var = call();
 $var = call();
@@ -2005,11 +2003,10 @@ $var = ($var[0][1])->foo;
 $var = ($var[0])[1]->foo;
 $var = (($var[0])[1])->foo;
 $var = $var[0]::foo;
-// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/185
-// $var = ($var[0])::foo;
-// $var = ($var[0][1])::foo;
-// $var = ($var[0])[1]::foo;
-// $var = (($var[0])[1])::foo;
+$var = ($var[0])::foo;
+$var = ($var[0][1])::foo;
+$var = ($var[0])[1]::foo;
+$var = (($var[0])[1])::foo;
 $var = $var[0]->foo();
 $var = ($var[0])->foo();
 $var = ($var[0][1])->foo();
@@ -2091,11 +2088,10 @@ $var = $var[0][1]->foo;
 $var = $var[0][1]->foo;
 $var = $var[0][1]->foo;
 $var = $var[0]::foo;
-// TODO: uncomment after resolve https://github.com/glayzzle/php-parser/issues/185
-// $var = ($var[0])::foo;
-// $var = ($var[0][1])::foo;
-// $var = ($var[0])[1]::foo;
-// $var = (($var[0])[1])::foo;
+$var = $var[0]::foo;
+$var = $var[0][1]::foo;
+$var = $var[0][1]::foo;
+$var = $var[0][1]::foo;
 $var = $var[0]->foo();
 $var = $var[0]->foo();
 $var = $var[0][1]->foo();
