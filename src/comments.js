@@ -7,7 +7,9 @@ const {
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
   skipNewline,
-  isPreviousLineEmpty
+  isPreviousLineEmpty,
+  hasNewline,
+  hasNewlineInRange
 } = require("prettier").util;
 const {
   concat,
@@ -18,8 +20,8 @@ const {
   lineSuffix,
   breakParent
 } = require("prettier").doc.builders;
-// TODO: remove after resolve https://github.com/prettier/prettier/pull/5049
-const { hasNewline, hasNewlineInRange, isLookupNode } = require("./util");
+const { isLookupNode } = require("./util");
+
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
 with information about where those comment nodes exist in the tree (ie enclosingNode,
