@@ -365,3 +365,8 @@ $var = "String {$obj->call()->call()} string string string string string string 
 
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']} string";
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']} string";
+
+echo "This is my array value: $anArray[key]";
+echo "This is my array value: $anArray[$key]";
+echo "This is my array value: {$anArray[key]}";
+echo "This is my array value: {$anArray[$var]}";
