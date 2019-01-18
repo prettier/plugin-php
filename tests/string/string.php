@@ -43,8 +43,7 @@ $string = "encapsed variable {$value}.";
 $string = "encapsed offset {$value[0]}.";
 $string = "encapsed {$method->call()}.";
 $string = "combined ${$encapsed}.";
-// Todo https://github.com/glayzzle/php-parser/issues/175
-// $string = "He drank some $juices[koolaid1] juice.";
+$string = "He drank some $juices[koolaid1] juice.";
 $string = "$people->john drank some $juices[0] juice.";
 $string = "This is { $great}";
 $string = "This is {$great}";
