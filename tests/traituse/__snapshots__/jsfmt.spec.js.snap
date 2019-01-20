@@ -53,8 +53,7 @@ class Foo
     use HelloWorld {
         sayHello as private myPrivateHello;
     }
-    use EmptyTrait {
-    }
+    use EmptyTrait {}
 }
 
 `;

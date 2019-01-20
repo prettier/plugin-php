@@ -184,6 +184,7 @@ function handleRemainingComment(comment, text, options) {
     ) ||
     handleCommentInEmptyParens(text, enclosingNode, comment, options) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
+    handleTraitUseComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleGoto(enclosingNode, comment) ||
@@ -411,6 +412,19 @@ function handleForComments(
     return true;
   }
 
+  return false;
+}
+
+function handleTraitUseComments(enclosingNode, followingNode, comment) {
+  if (
+    enclosingNode &&
+    enclosingNode.kind == "traituse" &&
+    enclosingNode.adaptations &&
+    !enclosingNode.adaptations.length
+  ) {
+    addDanglingComment(enclosingNode, comment);
+    return true;
+  }
   return false;
 }
 
