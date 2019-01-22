@@ -1075,6 +1075,16 @@ $var = (array(new Foo, "baz"))();
 $var = ((string) 1234)();
 $var = "Foo::bar"();
 $var = ("Foo::bar")();
+
+call(($a), (($b)), ((($c))));
+call($a = $b);
+call(($a = $b));
+call($a = new Foo());
+call(($a = new Foo()));
+call($a = (new Foo()));
+call(($a = (new Foo())));
+$foo->call(($a = (new Foo())));
+Foo::call(($a = (new Foo())));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1119,6 +1129,16 @@ $var = (array(new Foo(), "baz"))();
 $var = ((string) 1234)();
 $var = ("Foo::bar")();
 $var = ("Foo::bar")();
+
+call($a, $b, $c);
+call($a = $b);
+call($a = $b);
+call($a = new Foo());
+call($a = new Foo());
+call($a = new Foo());
+call($a = new Foo());
+$foo->call($a = new Foo());
+Foo::call($a = new Foo());
 
 `;
 
@@ -1547,6 +1567,12 @@ switch (($var = 1)) {}
 
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
+
+if (($foo = $bar) && count($foo) > 0) {}
+if( false !== ($file = readdir($dh)) && 0 !== strpos($file,'.')){}
+while (($a = foo()) !== 5) {}
+while( false !== ($file = readdir($dh))){}
+do {} while( false !== ($file = readdir($dh)));
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <?php
 
@@ -1658,6 +1684,17 @@ while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
 }
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 }
+
+if (($foo = $bar) && count($foo) > 0) {
+}
+if (false !== ($file = readdir($dh)) && 0 !== strpos($file, '.')) {
+}
+while (($a = foo()) !== 5) {
+}
+while (false !== ($file = readdir($dh))) {
+}
+do {
+} while (false !== ($file = readdir($dh)));
 
 `;
 

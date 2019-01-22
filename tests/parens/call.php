@@ -41,3 +41,13 @@ $var = (array(new Foo, "baz"))();
 $var = ((string) 1234)();
 $var = "Foo::bar"();
 $var = ("Foo::bar")();
+
+call(($a), (($b)), ((($c))));
+call($a = $b);
+call(($a = $b));
+call($a = new Foo());
+call(($a = new Foo()));
+call($a = (new Foo()));
+call(($a = (new Foo())));
+$foo->call(($a = (new Foo())));
+Foo::call(($a = (new Foo())));

@@ -86,3 +86,9 @@ switch (($var = 1)) {}
 
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
+
+if (($foo = $bar) && count($foo) > 0) {}
+if( false !== ($file = readdir($dh)) && 0 !== strpos($file,'.')){}
+while (($a = foo()) !== 5) {}
+while( false !== ($file = readdir($dh))){}
+do {} while( false !== ($file = readdir($dh)));
