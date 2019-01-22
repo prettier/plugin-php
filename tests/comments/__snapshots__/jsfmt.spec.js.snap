@@ -6688,6 +6688,11 @@ trait MyTrait
     // Comment
 }
 
+class ImplementingClass
+{
+    use TraitUseWithComments { /* Comments */ }
+}
+
 =====================================output=====================================
 <?php
 
@@ -6738,6 +6743,11 @@ trait MyTrait
 trait MyTrait
 {
     // Comment
+}
+
+class ImplementingClass
+{
+    use TraitUseWithComments { /* Comments */ }
 }
 
 ================================================================================
