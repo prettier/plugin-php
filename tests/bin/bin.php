@@ -308,3 +308,10 @@ string\\r\\n
 string\\r\\n
 string\\r\\n
 ';
+
+$var = __DIR__ instanceof \Exception;
+$var = 'string' instanceof \Exception;
+$var = "string" instanceof \Exception;
+$var = 2244 instanceof \Exception;
+$var = true instanceof \Exception;
+$var = 100 + 1 instanceof \Exception;
