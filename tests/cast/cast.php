@@ -1,21 +1,80 @@
 <?php
 
-$bar = (int) $foo;
-$bar = (integer) $foo;
-$bar = (bool) $foo;
-$bar = (boolean) $foo;
-$bar = (float) $foo;
-$bar = (double) $foo;
-$bar = (real) $foo;
-$bar = (array) $foo;
-$bar = (object) $foo;
-$bar = (unset) $foo;
+$var = (bool) 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+$string = (bool) 'this is a simple string';
+$string = (bool) 'You can also have embedded\n newlines in
+strings this way as it is
+okay to do';
+$string = (bool) "You can also have embedded\n newlines in
+strings this way as it is
+okay to do";
 
-$bar = ( int ) $foo;
-$bar = (  int  )  $foo;
+$var = (int) $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
+$var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = (int) $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
 
-$binary = (binary) $string;
-$binary = b"binary string";
-$binary = b'binary string';
-$binary = "b'binary string'";
-$binary = 'b"binary string"';
+$this->reallyLong->testPropertyName = (bool) 'a' .
+    $someOtherTest .
+    'n' .
+    $oneLastOneToMakeLineLong;
+
+$var = (array) ["test"] + ["test"];
+$var = (array) ["very-very-very-very-very-very-very-long-value-1", "very-very-very-very-very-very-very-long-value-2"] + ["test"];
+$var = (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable + (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable + (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable;
+$var = (int) ($veryVeryVeryVeryVeryVeryVeryVeryLongVariable + $veryVeryVeryVeryVeryVeryVeryVeryLongVariable + $veryVeryVeryVeryVeryVeryVeryVeryLongVariable);
+
+$category_color = (int) get_field(Category_Meta::COLOR, 'category_' . $term_id) ?:
+    'gold';
+
+$var = (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable ? $veryVeryVeryVeryVeryVeryVeryVeryLongVariable : $veryVeryVeryVeryVeryVeryVeryVeryLongVariable;
+$var = (int) ($veryVeryVeryVeryVeryVeryVeryVeryLongVariable ? $veryVeryVeryVeryVeryVeryVeryVeryLongVariable : $veryVeryVeryVeryVeryVeryVeryVeryLongVariable);
+
+$str = (bool) <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+$str = (bool) <<<'EOD'
+Example of string spanning multiple lines
+using nowdoc syntax. Backslashes are always treated literally,
+e.g. \\ and \'.
+EOD;
+
+$array = [
+    'foo' => (bool) $var,
+    'bar' => (bool) $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+];
+
+$var =
+    $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
+
+$var = (int)
+    $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
+
+((object) ($var ? $var : $var))->call();
+((bool) $veryVeryVeryVeryVeryLongVariable ? $veryVeryVeryVeryVeryLongVariable : $veryVeryVeryVeryVeryLongVariable)->call();
+((object) ($veryVeryVeryVeryVeryLongVariable ? $veryVeryVeryVeryVeryLongVariable : $veryVeryVeryVeryVeryLongVariable))->call();
+
+
+((bool) $veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable)->call();
+((object) ($veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable))->call();
+
+function foo()
+{
+    return (int) $var ?: $var ?: $var;
+}
+
+function bar()
+{
+    return (int) $veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable ?: $veryVeryVeryVeryVeryLongVariable;
+}
+
+
+$var = (string) $this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database';
+$var = $this->databasePath ?: (string) $this->basePath . DIRECTORY_SEPARATOR . 'database';
+$var = (string) ($this->databasePath ?: $this->basePath . DIRECTORY_SEPARATOR . 'database');
+
+print (bool) $someOtherReallyReallyLongVariable ?:
+    (bool) $someOtherReallyReallyLongVariable ?:
+    (bool) $someOtherReallyReallyLongVariable ?:
+    'string';
