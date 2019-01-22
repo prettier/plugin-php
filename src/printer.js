@@ -1413,18 +1413,21 @@ function printAssignmentRight(leftNode, rightNode, printedRight, options) {
     return indent(concat([hardline, printedRight]));
   }
 
+  const pureRightNode = rightNode.kind === "cast" ? rightNode.what : rightNode;
+
   const canBreak =
-    (rightNode.kind === "bin" && !shouldInlineLogicalExpression(rightNode)) ||
-    (rightNode.kind === "retif" &&
-      ((!rightNode.trueExpr &&
-        !shouldInlineRetifFalseExpression(rightNode.falseExpr)) ||
-        (rightNode.test.kind === "bin" &&
-          !shouldInlineLogicalExpression(rightNode.test)))) ||
+    (pureRightNode.kind === "bin" &&
+      !shouldInlineLogicalExpression(pureRightNode)) ||
+    (pureRightNode.kind === "retif" &&
+      ((!pureRightNode.trueExpr &&
+        !shouldInlineRetifFalseExpression(pureRightNode.falseExpr)) ||
+        (pureRightNode.test.kind === "bin" &&
+          !shouldInlineLogicalExpression(pureRightNode.test)))) ||
     ((leftNode.kind === "variable" ||
       leftNode.kind === "string" ||
       isLookupNode(leftNode)) &&
-      ((rightNode.kind === "string" && !stringHasNewLines(rightNode)) ||
-        isLookupNodeChain(rightNode)));
+      ((pureRightNode.kind === "string" && !stringHasNewLines(pureRightNode)) ||
+        isLookupNodeChain(pureRightNode)));
 
   if (canBreak) {
     return group(indent(concat([line, printedRight])));
@@ -2525,15 +2528,18 @@ function printNode(path, options, print) {
       //   ? $b
       //   : $c
       // )->call()
+      const parentParent = path.getParentNode(1);
+      const pureParent =
+        parent.kind === "cast" && parentParent ? parentParent : parent;
       const breakLookupNodes = ["propertylookup", "staticlookup"];
-      const breakClosingParens = breakLookupNodes.includes(parent.kind);
+      const breakClosingParens = breakLookupNodes.includes(pureParent.kind);
 
       const printedTest = path.call(print, "test");
 
       if (!node.trueExpr) {
         const printed = concat([
           printedTest,
-          parent.kind === "bin" ||
+          pureParent.kind === "bin" ||
           ["print", "echo", "return", "include"].includes(
             firstNonRetifParent.kind
           )
@@ -2549,9 +2555,9 @@ function printNode(path, options, print) {
         //     c
         //   )->call()
         if (
-          (parent.kind === "call" && parent.what === node) ||
-          parent.kind === "unary" ||
-          (isLookupNode(parent) && parent.kind !== "offsetlookup")
+          (pureParent.kind === "call" && pureParent.what === node) ||
+          pureParent.kind === "unary" ||
+          (isLookupNode(pureParent) && pureParent.kind !== "offsetlookup")
         ) {
           return group(concat([indent(concat([softline, printed])), softline]));
         }
