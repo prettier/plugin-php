@@ -38,3 +38,8 @@ trait MyTrait
 {
     // Comment
 }
+
+class ImplementingClass
+{
+    use TraitUseWithComments { /* Comments */ }
+}

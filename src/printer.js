@@ -1599,14 +1599,22 @@ function printNode(path, options, print) {
             ? concat([
                 " {",
                 node.adaptations.length > 0
-                  ? indent(
-                      concat([
-                        hardline,
-                        printLines(path, options, print, "adaptations")
-                      ])
-                    )
+                  ? concat([
+                      indent(
+                        concat([
+                          hardline,
+                          printLines(path, options, print, "adaptations")
+                        ])
+                      ),
+                      hardline
+                    ])
+                  : hasDanglingComments(node)
+                  ? concat([
+                      line,
+                      comments.printDanglingComments(path, options, true),
+                      line
+                    ])
                   : "",
-                hardline,
                 "}"
               ])
             : ""
