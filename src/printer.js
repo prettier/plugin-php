@@ -21,7 +21,8 @@ const { willBreak } = require("prettier").doc.utils;
 const {
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
-  getNextNonSpaceNonCommentCharacterIndex
+  getNextNonSpaceNonCommentCharacterIndex,
+  hasNewline
 } = require("prettier").util;
 const comments = require("./comments");
 const pathNeedsParens = require("./needs-parens");
@@ -49,7 +50,6 @@ const {
   getNodeKindIncludingLogical,
   useSingleQuote,
   hasEmptyBody,
-  hasNewline,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
