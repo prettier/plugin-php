@@ -41,6 +41,7 @@ const {
   docShouldHaveTrailingNewline,
   isLookupNode,
   isFirstChildrenInlineNode,
+  shouldPrintHardLineAfterStartInControlStructure,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
   getFirstNestedChildNode,
@@ -1353,7 +1354,7 @@ function printBodyControlStructure(
           node[bodyProperty].children.length > 0) ||
         (node[bodyProperty].comments && node[bodyProperty].comments.length > 0)
           ? concat([
-              isFirstChildrenInlineNode(path)
+              shouldPrintHardLineAfterStartInControlStructure(path)
                 ? node.kind === "switch"
                   ? " "
                   : ""
@@ -1886,6 +1887,42 @@ function printNode(path, options, print) {
         )
       ]);
     }
+    case "try": {
+      const parts = [];
+
+      parts.push(
+        "try",
+        printBodyControlStructure(path, options, print, "body")
+      );
+
+      if (node.catches) {
+        parts.push(concat(path.map(print, "catches")));
+      }
+
+      if (node.always) {
+        parts.push(
+          " finally",
+          printBodyControlStructure(path, options, print, "always")
+        );
+      }
+
+      return concat(parts);
+    }
+    case "catch": {
+      return concat([
+        " catch",
+        node.what
+          ? concat([
+              " (",
+              join(" | ", path.map(print, "what")),
+              " ",
+              path.call(print, "variable"),
+              ")"
+            ])
+          : "",
+        printBodyControlStructure(path, options, print, "body")
+      ]);
+    }
     case "switch":
       return concat([
         group(
@@ -2066,57 +2103,6 @@ function printNode(path, options, print) {
       return concat([node.name, ":"]);
     case "goto":
       return concat(["goto ", node.label]);
-    case "try":
-      return concat([
-        "try {",
-        indent(
-          concat([
-            hasEmptyBody(path) ? "" : hardline,
-            path.call(print, "body"),
-            comments.printDanglingComments(path, options, true)
-          ])
-        ),
-        hardline,
-        "}",
-        node.catches ? concat(path.map(print, "catches")) : "",
-        node.always
-          ? concat([
-              " finally {",
-              indent(
-                concat([
-                  hasEmptyBody(path, "always") ? "" : hardline,
-                  path.call(print, "always")
-                ])
-              ),
-              hardline,
-              "}"
-            ])
-          : ""
-      ]);
-    case "catch": {
-      return concat([
-        " catch",
-        node.what
-          ? concat([
-              " (",
-              join(" | ", path.map(print, "what")),
-              " ",
-              path.call(print, "variable"),
-              ")"
-            ])
-          : "",
-        " {",
-        indent(
-          concat([
-            hasEmptyBody(path) ? "" : hardline,
-            path.call(print, "body"),
-            comments.printDanglingComments(path, options, true)
-          ])
-        ),
-        hardline,
-        "}"
-      ]);
-    }
     case "throw":
       return concat([
         "throw ",

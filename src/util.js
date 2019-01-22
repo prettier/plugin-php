@@ -483,8 +483,22 @@ function isLookupNode(node) {
   );
 }
 
+function shouldPrintHardLineAfterStartInControlStructure(path) {
+  const node = path.getValue();
+
+  if (["try", "catch"].includes(node.kind)) {
+    return false;
+  }
+
+  return isFirstChildrenInlineNode(path);
+}
+
 function shouldPrintHardLineBeforeEndInControlStructure(path) {
   const node = path.getValue();
+
+  if (["try", "catch"].includes(node.kind)) {
+    return true;
+  }
 
   if (node.kind === "switch") {
     const children = getNodeListProperty(node.body);
@@ -766,6 +780,7 @@ module.exports = {
   docShouldHaveTrailingNewline,
   isLookupNode,
   isFirstChildrenInlineNode,
+  shouldPrintHardLineAfterStartInControlStructure,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
   getFirstNestedChildNode,
