@@ -86,3 +86,5 @@ $var = ((int) $var) === 1;
 $var = (int) ($var === 1);
 
 $this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));
+
+$timeout = (int) ($server->timeout / 1000) + (($server->timeout % 1000 > 0) ? 1 : 0);
