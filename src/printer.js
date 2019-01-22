@@ -1923,7 +1923,7 @@ function printNode(path, options, print) {
     case "break":
     case "continue":
       if (node.level) {
-        if (node.level.kind == "number" && node.level.value != 1) {
+        if (node.level.kind === "number" && node.level.value !== "1") {
           return concat([`${node.kind} `, path.call(print, "level")]);
         }
 

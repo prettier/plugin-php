@@ -48,7 +48,7 @@ function clean(node, newObj) {
     const { level } = newObj;
 
     if (level.kind === "number") {
-      newObj.level = level.value == 1 ? null : level;
+      newObj.level = level.value === "1" ? null : level;
     }
   }
 
