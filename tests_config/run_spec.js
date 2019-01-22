@@ -1,12 +1,18 @@
 "use strict";
 
 const fs = require("fs");
-const { extname } = require("path");
+const path = require("path");
+const raw = require("jest-snapshot-serializer-raw").wrap;
+
+const { AST_COMPARE, TEST_CRLF } = process.env;
+
+const CURSOR_PLACEHOLDER = "<|>";
+const RANGE_START_PLACEHOLDER = "<<<PRETTIER_RANGE_START>>>";
+const RANGE_END_PLACEHOLDER = "<<<PRETTIER_RANGE_END>>>";
+
 const prettier = require("prettier");
 
-const { AST_COMPARE } = process.env;
-
-function run_spec(dirname, parsers, options) {
+global.run_spec = (dirname, parsers, options) => {
   options = Object.assign(
     {
       plugins: ["."]
@@ -14,108 +20,203 @@ function run_spec(dirname, parsers, options) {
     options
   );
 
-  /* instabul ignore if */
+  // istanbul ignore next
   if (!parsers || !parsers.length) {
     throw new Error(`No parsers were specified for ${dirname}`);
   }
 
-  fs.readdirSync(dirname).forEach(filename => {
-    const path = `${dirname}/${filename}`;
+  fs.readdirSync(dirname).forEach(basename => {
+    const filename = path.join(dirname, basename);
+
     if (
-      extname(filename) !== ".snap" &&
-      fs.lstatSync(path).isFile() &&
-      filename[0] !== "." &&
-      filename !== "jsfmt.spec.js"
+      path.extname(basename) === ".snap" ||
+      !fs.lstatSync(filename).isFile() ||
+      basename[0] === "." ||
+      basename === "jsfmt.spec.js"
     ) {
-      let source = read(path);
+      return;
+    }
 
-      if (!options.keepEOL) {
-        source = source.replace(/\r\n/g, "\n");
-      }
+    let rangeStart;
+    let rangeEnd;
+    let cursorOffset;
 
-      const mergedOptions = Object.assign(mergeDefaultOptions(options || {}), {
-        parser: parsers[0]
-      });
-      const output = prettyprint(source, path, mergedOptions);
-      test(`${filename} - ${mergedOptions.parser}-verify`, () => {
-        expect(
-          raw(`${source + "~".repeat(mergedOptions.printWidth)}\n${output}`)
-        ).toMatchSnapshot(filename);
-      });
+    const text = fs.readFileSync(filename, "utf8");
 
-      parsers.slice(1).forEach(parser => {
-        const verifyOptions = Object.assign(mergedOptions, { parser });
-        test(`${filename} - ${parser}-verify`, () => {
-          const verifyOutput = prettyprint(source, path, verifyOptions);
-          expect(output).toEqual(verifyOutput);
-        });
+    const source = (TEST_CRLF ? text.replace(/\n/g, "\r\n") : text)
+      .replace(RANGE_START_PLACEHOLDER, (match, offset) => {
+        rangeStart = offset;
+        return "";
+      })
+      .replace(RANGE_END_PLACEHOLDER, (match, offset) => {
+        rangeEnd = offset;
+        return "";
       });
 
-      // this will only work for php tests (since we're in the php repo)
-      if (AST_COMPARE && parsers[0] === "php") {
-        const compareOptions = Object.assign({}, mergedOptions);
+    const input = source.replace(CURSOR_PLACEHOLDER, (match, offset) => {
+      cursorOffset = offset;
+      return "";
+    });
 
-        const astMassaged = parse(source, compareOptions);
+    const baseOptions = Object.assign({ printWidth: 80 }, options, {
+      rangeStart,
+      rangeEnd,
+      cursorOffset
+    });
+    const mainOptions = Object.assign({}, baseOptions, {
+      parser: parsers[0]
+    });
 
-        let ppastMassaged = undefined;
+    const hasEndOfLine = "endOfLine" in mainOptions;
+
+    const output = format(input, filename, mainOptions);
+    const visualizedOutput = visualizeEndOfLine(output);
+
+    test(basename, () => {
+      expect(visualizedOutput).toEqual(
+        visualizeEndOfLine(consistentEndOfLine(output))
+      );
+      expect(
+        raw(
+          createSnapshot(
+            hasEndOfLine
+              ? visualizeEndOfLine(
+                  text
+                    .replace(RANGE_START_PLACEHOLDER, "")
+                    .replace(RANGE_END_PLACEHOLDER, "")
+                )
+              : source,
+            hasEndOfLine ? visualizedOutput : output,
+            Object.assign({}, baseOptions, { parsers })
+          )
+        )
+      ).toMatchSnapshot();
+    });
+
+    for (const parser of parsers.slice(1)) {
+      const verifyOptions = Object.assign({}, baseOptions, { parser });
+      test(`${basename} - ${parser}-verify`, () => {
+        const verifyOutput = format(input, filename, verifyOptions);
+        expect(visualizedOutput).toEqual(visualizeEndOfLine(verifyOutput));
+      });
+    }
+
+    // this will only work for php tests (since we're in the php repo)
+    if (AST_COMPARE && parsers[0] === "php") {
+      test(`${filename} parse`, () => {
+        const parseOptions = Object.assign({}, mainOptions);
+        delete parseOptions.cursorOffset;
+
+        const originalAst = parse(input, parseOptions);
+        let formattedAst;
 
         expect(() => {
-          ppastMassaged = parse(
-            prettyprint(source, path, compareOptions),
-            compareOptions
+          formattedAst = parse(
+            output.replace(CURSOR_PLACEHOLDER, ""),
+            parseOptions
           );
         }).not.toThrow();
+        expect(originalAst).toEqual(formattedAst);
+      });
+    }
+  });
+};
 
-        expect(ppastMassaged).toBeDefined();
-        test(`${path} parse`, () => {
-          if (!astMassaged.errors || astMassaged.errors.length === 0) {
-            expect(astMassaged).toEqual(ppastMassaged);
-          }
-        });
-      }
+function parse(source, options) {
+  return prettier.__debug.parse(source, options, /* massage */ true).ast;
+}
+
+function format(source, filename, options) {
+  const result = prettier.formatWithCursor(
+    source,
+    Object.assign({ filepath: filename }, options)
+  );
+
+  return options.cursorOffset >= 0
+    ? result.formatted.slice(0, result.cursorOffset) +
+        CURSOR_PLACEHOLDER +
+        result.formatted.slice(result.cursorOffset)
+    : result.formatted;
+}
+
+function consistentEndOfLine(text) {
+  let firstEndOfLine;
+  return text.replace(/\r\n?|\n/g, endOfLine => {
+    if (!firstEndOfLine) {
+      firstEndOfLine = endOfLine;
+    }
+    return firstEndOfLine;
+  });
+}
+
+function visualizeEndOfLine(text) {
+  return text.replace(/\r\n?|\n/g, endOfLine => {
+    switch (endOfLine) {
+      case "\n":
+        return "<LF>\n";
+      case "\r\n":
+        return "<CRLF>\n";
+      case "\r":
+        return "<CR>\n";
+      default:
+        throw new Error(`Unexpected end of line ${JSON.stringify(endOfLine)}`);
     }
   });
 }
 
-global.run_spec = run_spec;
-
-function parse(string, opts) {
-  return prettier.__debug.parse(string, opts, /* massage */ true).ast;
-}
-
-function prettyprint(src, filename, options) {
-  return prettier.format(
-    src,
-    Object.assign(
-      {
-        filepath: filename
-      },
-      options
+function createSnapshot(input, output, options) {
+  const separatorWidth = 80;
+  const printWidthIndicator =
+    options.printWidth > 0 && Number.isFinite(options.printWidth)
+      ? `${" ".repeat(options.printWidth)}| printWidth`
+      : [];
+  return []
+    .concat(
+      printSeparator(separatorWidth, "options"),
+      printOptions(
+        omit(
+          options,
+          k => k === "rangeStart" || k === "rangeEnd" || k === "cursorOffset"
+        )
+      ),
+      printWidthIndicator,
+      printSeparator(separatorWidth, "input"),
+      input,
+      printSeparator(separatorWidth, "output"),
+      output,
+      printSeparator(separatorWidth)
     )
-  );
+    .join("\n");
 }
 
-function read(filename) {
-  return fs.readFileSync(filename, "utf8");
+function printSeparator(width, description) {
+  description = description || "";
+  const leftLength = Math.floor((width - description.length) / 2);
+  const rightLength = width - leftLength - description.length;
+  return "=".repeat(leftLength) + description + "=".repeat(rightLength);
 }
 
-/**
- * Wraps a string in a marker object that is used by `./raw-serializer.js` to
- * directly print that string in a snapshot without escaping all double quotes.
- * Backticks will still be escaped.
- */
-function raw(string) {
-  if (typeof string !== "string") {
-    throw new Error("Raw snapshots have to be strings.");
+function printOptions(options) {
+  const keys = Object.keys(options).sort();
+  return keys.map(key => `${key}: ${stringify(options[key])}`).join("\n");
+  function stringify(value) {
+    return value === Infinity
+      ? "Infinity"
+      : Array.isArray(value)
+      ? `[${value.map(v => JSON.stringify(v)).join(", ")}]`
+      : JSON.stringify(value);
   }
-  return { [Symbol.for("raw")]: string };
 }
 
-function mergeDefaultOptions(parserConfig) {
-  return Object.assign(
-    {
-      printWidth: 80
-    },
-    parserConfig
-  );
+function omit(obj, fn) {
+  return Object.keys(obj).reduce((reduced, key) => {
+    if (key === "plugins") {
+      return reduced;
+    }
+    const value = obj[key];
+    if (!fn(key, value)) {
+      reduced[key] = value;
+    }
+    return reduced;
+  }, {});
 }

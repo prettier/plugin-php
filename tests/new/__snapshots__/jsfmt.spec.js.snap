@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`new.php - php-verify: new.php 1`] = `
+exports[`new.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 new Foo;
 new Foo();
@@ -190,7 +195,8 @@ $var = new class(10) extends SomeClass implements SomeInterface {
 
     use SomeTrait;
 };
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 new Foo();
 new Foo();
@@ -417,4 +423,5 @@ $var = new class(10) extends SomeClass implements SomeInterface {
     use SomeTrait;
 };
 
+================================================================================
 `;

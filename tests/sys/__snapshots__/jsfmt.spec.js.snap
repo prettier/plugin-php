@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sys.php - php-verify: sys.php 1`] = `
+exports[`sys.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 echo "test echo";
 echo $test, $other;
@@ -28,7 +33,8 @@ isset($expected_array_got_string['0']);
 isset($expected_array_got_string[0.5]);
 isset($expected_array_got_string['0.5']);
 isset($expected_array_got_string['0 Mostel']);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 echo "test echo";
 echo $test, $other;
@@ -74,4 +80,5 @@ isset($expected_array_got_string[0.5]);
 isset($expected_array_got_string['0.5']);
 isset($expected_array_got_string['0 Mostel']);
 
+================================================================================
 `;

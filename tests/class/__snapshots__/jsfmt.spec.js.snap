@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`anonymous.php - php-verify: anonymous.php 1`] = `
+exports[`anonymous.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 interface Logger {
     public function log(string $msg);
@@ -268,7 +273,8 @@ $class = new class(
         return 1;
     }
 ) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 interface Logger
 {
@@ -618,9 +624,15 @@ $class = new class(
 {
 };
 
+================================================================================
 `;
 
-exports[`class.php - php-verify: class.php 1`] = `
+exports[`class.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 class Foo extends Bar implements Baz, Buzz {
@@ -903,7 +915,8 @@ abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass
 final class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
 
 abstract class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 class Foo extends Bar implements Baz, Buzz
@@ -1393,4 +1406,5 @@ abstract class BaseClass extends MyOtherClass implements
 {
 }
 
+================================================================================
 `;

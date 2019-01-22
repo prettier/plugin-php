@@ -1,200 +1,838 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CRLF.php - php-verify: CRLF.php 1`] = `
-<?php
+exports[`CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+$test = 1;<CRLF>
+<CRLF>
+class Foo<CRLF>
+{<CRLF>
+    /**<CRLF>
+     * Comment indented with tabs in file with utf-8[dos]<CRLF>
+     */<CRLF>
+    private $foo;<CRLF>
+}<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+$test = 1;<CR>
+<CR>
+class Foo<CR>
+{<CR>
+    /**<CR>
+     * Comment indented with tabs in file with utf-8[dos]<CR>
+     */<CR>
+    private $foo;<CR>
+}<CR>
+
+================================================================================
+`;
+
+exports[`CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+$test = 1;<CRLF>
+<CRLF>
+class Foo<CRLF>
+{<CRLF>
+    /**<CRLF>
+     * Comment indented with tabs in file with utf-8[dos]<CRLF>
+     */<CRLF>
+    private $foo;<CRLF>
+}<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+$test = 1;<CRLF>
+<CRLF>
+class Foo<CRLF>
+{<CRLF>
+    /**<CRLF>
+     * Comment indented with tabs in file with utf-8[dos]<CRLF>
+     */<CRLF>
+    private $foo;<CRLF>
+}<CRLF>
+
+================================================================================
+`;
+
+exports[`CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+$test = 1;<CRLF>
+<CRLF>
+class Foo<CRLF>
+{<CRLF>
+    /**<CRLF>
+     * Comment indented with tabs in file with utf-8[dos]<CRLF>
+     */<CRLF>
+    private $foo;<CRLF>
+}<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+$test = 1;<LF>
+<LF>
+class Foo<LF>
+{<LF>
+    /**<LF>
+     * Comment indented with tabs in file with utf-8[dos]<LF>
+     */<LF>
+    private $foo;<LF>
+}<LF>
+
+================================================================================
+`;
+
+exports[`LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+
+=====================================output=====================================
+<?php<CR>
+$test = 1;<CR>
+
+================================================================================
+`;
+
+exports[`LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+$test = 1;<CRLF>
+
+================================================================================
+`;
+
+exports[`LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+
+=====================================output=====================================
+<?php<LF>
+$test = 1;<LF>
+
+================================================================================
+`;
+
+exports[`comment-block-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+<CR>
+/**<CR>
+ * See http://example.com<CR>
+ *<CR>
+ * Some example code<CR>
+ * \`\`\`php<CR>
+ * $hello = 'world'; // This is a comment in a comment<CR>
+ * \`\`\`<CR>
+ */<CR>
+<CR>
+$a = 1;<CR>
+
+================================================================================
+`;
+
+exports[`comment-block-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
+
+================================================================================
+`;
+
+exports[`comment-block-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
+
+================================================================================
+`;
+
+exports[`comment-block-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
+
+=====================================output=====================================
+<?php<CR>
+<CR>
+/**<CR>
+ * See http://example.com<CR>
+ *<CR>
+ * Some example code<CR>
+ * \`\`\`php<CR>
+ * $hello = 'world'; // This is a comment in a comment<CR>
+ * \`\`\`<CR>
+ */<CR>
+<CR>
+$a = 1;<CR>
+
+================================================================================
+`;
+
+exports[`comment-block-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+<CRLF>
+/**<CRLF>
+ * See http://example.com<CRLF>
+ *<CRLF>
+ * Some example code<CRLF>
+ * \`\`\`php<CRLF>
+ * $hello = 'world'; // This is a comment in a comment<CRLF>
+ * \`\`\`<CRLF>
+ */<CRLF>
+<CRLF>
+$a = 1;<CRLF>
+
+================================================================================
+`;
+
+exports[`comment-block-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
+
+=====================================output=====================================
+<?php<LF>
+<LF>
+/**<LF>
+ * See http://example.com<LF>
+ *<LF>
+ * Some example code<LF>
+ * \`\`\`php<LF>
+ * $hello = 'world'; // This is a comment in a comment<LF>
+ * \`\`\`<LF>
+ */<LF>
+<LF>
+$a = 1;<LF>
+
+================================================================================
+`;
+
+exports[`file-terminated-with-multiple-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+<LF>
+<LF>
+
+=====================================output=====================================
+<?php<CR>
+$test = 1;<CR>
+
+================================================================================
+`;
+
+exports[`file-terminated-with-multiple-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+<LF>
+<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+$test = 1;<CRLF>
+
+================================================================================
+`;
+
+exports[`file-terminated-with-multiple-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+$test = 1;<LF>
+<LF>
+<LF>
+
+=====================================output=====================================
+<?php<LF>
+$test = 1;<LF>
+
+================================================================================
+`;
+
+exports[`file-terminated-without-line-ending.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
 $test = 1;
+=====================================output=====================================
+<?php<CR>
+$test = 1;<CR>
 
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
+================================================================================
+`;
+
+exports[`file-terminated-without-line-ending.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
 $test = 1;
+=====================================output=====================================
+<?php<CRLF>
+$test = 1;<CRLF>
 
-class Foo
-{
-    /**
-     * Comment indented with tabs in file with utf-8[dos]
-     */
-    private $foo;
-}
-
+================================================================================
 `;
 
-exports[`LF.php - php-verify: LF.php 1`] = `
-<?php
+exports[`file-terminated-without-line-ending.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
 $test = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$test = 1;
+=====================================output=====================================
+<?php<LF>
+$test = 1;<LF>
 
+================================================================================
 `;
 
-exports[`comment-block-CRLF.php - php-verify: comment-block-CRLF.php 1`] = `
-<?php
+exports[`html-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
-/**
- * See http://example.com
- *
- * Some example code
- * \`\`\`php
- * $hello = 'world'; // This is a comment in a comment
- * \`\`\`
- */
+=====================================output=====================================
+<!DOCTYPE html><CR>
+<html lang="de"><CR>
+    <head><CR>
+        <meta charset="utf-8" /><CR>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CR>
+        <title>.</title><CR>
+    </head><CR>
+    <body><CR>
+<CR>
+        <?php echo 'foo!'; ?><CR>
+<CR>
+    </body><CR>
+</html><CR>
 
-$a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-
-/**
- * See http://example.com
- *
- * Some example code
- * \`\`\`php
- * $hello = 'world'; // This is a comment in a comment
- * \`\`\`
- */
-
-$a = 1;
-
+================================================================================
 `;
 
-exports[`comment-block-LF.php - php-verify: comment-block-LF.php 1`] = `
-<?php
+exports[`html-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
-/**
- * See http://example.com
- *
- * Some example code
- * \`\`\`php
- * $hello = 'world'; // This is a comment in a comment
- * \`\`\`
- */
+=====================================output=====================================
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
-$a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-
-/**
- * See http://example.com
- *
- * Some example code
- * \`\`\`php
- * $hello = 'world'; // This is a comment in a comment
- * \`\`\`
- */
-
-$a = 1;
-
+================================================================================
 `;
 
-exports[`file-terminated-with-multiple-LF.php - php-verify: file-terminated-with-multiple-LF.php 1`] = `
-<?php
-$test = 1;
+exports[`html-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
+=====================================output=====================================
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$test = 1;
-
+================================================================================
 `;
 
-exports[`file-terminated-without-line-ending.php - php-verify: file-terminated-without-line-ending.php 1`] = `
-<?php
-$test = 1;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-$test = 1;
+exports[`html-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
+=====================================output=====================================
+<!DOCTYPE html><CR>
+<html lang="de"><CR>
+    <head><CR>
+        <meta charset="utf-8" /><CR>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CR>
+        <title>.</title><CR>
+    </head><CR>
+    <body><CR>
+<CR>
+        <?php echo 'foo!'; ?><CR>
+<CR>
+    </body><CR>
+</html><CR>
+
+================================================================================
 `;
 
-exports[`html-CRLF.php - php-verify: html-CRLF.php 1`] = `
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <title>.</title>
-    </head>
-    <body>
+exports[`html-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
-        <?php echo 'foo!'; ?>
+=====================================output=====================================
+<!DOCTYPE html><CRLF>
+<html lang="de"><CRLF>
+    <head><CRLF>
+        <meta charset="utf-8" /><CRLF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><CRLF>
+        <title>.</title><CRLF>
+    </head><CRLF>
+    <body><CRLF>
+<CRLF>
+        <?php echo 'foo!'; ?><CRLF>
+<CRLF>
+    </body><CRLF>
+</html><CRLF>
 
-    </body>
-</html>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <title>.</title>
-    </head>
-    <body>
-
-        <?php echo 'foo!'; ?>
-
-    </body>
-</html>
-
+================================================================================
 `;
 
-exports[`html-LF.php - php-verify: html-LF.php 1`] = `
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <title>.</title>
-    </head>
-    <body>
+exports[`html-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
-        <?php echo 'foo!'; ?>
+=====================================output=====================================
+<!DOCTYPE html><LF>
+<html lang="de"><LF>
+    <head><LF>
+        <meta charset="utf-8" /><LF>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" /><LF>
+        <title>.</title><LF>
+    </head><LF>
+    <body><LF>
+<LF>
+        <?php echo 'foo!'; ?><LF>
+<LF>
+    </body><LF>
+</html><LF>
 
-    </body>
-</html>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <title>.</title>
-    </head>
-    <body>
-
-        <?php echo 'foo!'; ?>
-
-    </body>
-</html>
-
+================================================================================
 `;
 
-exports[`mixed-CRLF.php - php-verify: mixed-CRLF.php 1`] = `
-Text
-<?php echo 1; ?>
-<?php echo 2; ?>
-Test
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Text
-<?php echo 1; ?>
-<?php echo 2; ?>
-Test
+exports[`mixed-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
 
+=====================================output=====================================
+Text<CR>
+<?php echo 1; ?><CR>
+<?php echo 2; ?><CR>
+Test<CR>
+
+================================================================================
 `;
 
-exports[`mixed-LF.php - php-verify: mixed-LF.php 1`] = `
-Text
-<?php echo 1; ?>
-<?php echo 2; ?>
-Test
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Text
-<?php echo 1; ?>
-<?php echo 2; ?>
-Test
+exports[`mixed-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
 
+=====================================output=====================================
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
+
+================================================================================
+`;
+
+exports[`mixed-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
+
+=====================================output=====================================
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
+
+================================================================================
+`;
+
+exports[`mixed-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
+
+=====================================output=====================================
+Text<CR>
+<?php echo 1; ?><CR>
+<?php echo 2; ?><CR>
+Test<CR>
+
+================================================================================
+`;
+
+exports[`mixed-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
+
+=====================================output=====================================
+Text<CRLF>
+<?php echo 1; ?><CRLF>
+<?php echo 2; ?><CRLF>
+Test<CRLF>
+
+================================================================================
+`;
+
+exports[`mixed-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
+
+=====================================output=====================================
+Text<LF>
+<?php echo 1; ?><LF>
+<?php echo 2; ?><LF>
+Test<LF>
+
+================================================================================
 `;

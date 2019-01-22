@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`quoting.php - php-verify: quoting.php 1`] = `
+exports[`quoting.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+singleQuote: true
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // rewrite simple strings
 "rewrite me";
@@ -30,7 +36,8 @@ exports[`quoting.php - php-verify: quoting.php 1`] = `
 "\\u{9999}";
 "multi
 line";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // rewrite simple strings
 'rewrite me';
@@ -61,4 +68,5 @@ line";
 "multi
 line";
 
+================================================================================
 `;

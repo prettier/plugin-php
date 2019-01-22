@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
+exports[`offsetlookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $variable['data']['title'] = html_entity_decode(wp_get_document_title());
@@ -18,7 +23,8 @@ $variable[1111111111111111111111111111111111111111111111111111111111111111111111
 $variable['string'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $variable['data']['title'] = html_entity_decode(wp_get_document_title());
@@ -59,13 +65,21 @@ $variable[
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
 ];
 
+================================================================================
 `;
 
-exports[`single.php - php-verify: single.php 1`] = `
-<?php
-$arr[1];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`single.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $arr[1];
 
+=====================================output=====================================
+<?php
+$arr[1];
+
+================================================================================
 `;

@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`nowdoc.php - php-verify: nowdoc.php 1`] = `
+exports[`nowdoc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $str = <<<'EOD'
@@ -920,7 +925,8 @@ string
 string
 EOD
 ];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $str = <<<'EOD'
@@ -1908,16 +1914,15 @@ string
 EOD
 ];
 
+================================================================================
 `;
 
-exports[`single.php - php-verify: single.php 1`] = `
-<?php
-<<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`single.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 <<<'EOD'
 Example of string
@@ -1925,4 +1930,13 @@ spanning multiple lines
 using nowdoc syntax.
 EOD;
 
+=====================================output=====================================
+<?php
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+
+================================================================================
 `;

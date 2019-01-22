@@ -1,237 +1,1033 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pragma-alreadyinserted-CRLF.php - php-verify: pragma-alreadyinserted-CRLF.php 1`] = `
-<?php
-/**
- * This already has the pragma, it shouldn't get another.
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+exports[`pragma-alreadyinserted-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This already has the pragma, it shouldn't get another.<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This already has the pragma, it shouldn't get another.
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This already has the pragma, it shouldn't get another.<CR>
+ *<CR>
+ * @format<CR>
+ * @author    Bob Bobberson<CR>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-alreadyinserted-LF.php - php-verify: pragma-alreadyinserted-LF.php 1`] = `
-<?php
-/**
- * This already has the pragma, it shouldn't get another.
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+exports[`pragma-alreadyinserted-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This already has the pragma, it shouldn't get another.<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This already has the pragma, it shouldn't get another.
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This already has the pragma, it shouldn't get another.<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-nodocblock-CRLF.php - php-verify: pragma-nodocblock-CRLF.php 1`] = `
-<?php echo "Hello World";
+exports[`pragma-alreadyinserted-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This already has the pragma, it shouldn't get another.<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
 
-echo "Hello World";
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This already has the pragma, it shouldn't get another.<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
 
-// non-docblock comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * @format
- */
-echo "Hello World";
-
-echo "Hello World";
-
-// non-docblock comment
-
+================================================================================
 `;
 
-exports[`pragma-nodocblock-LF.php - php-verify: pragma-nodocblock-LF.php 1`] = `
-<?php echo "Hello World";
+exports[`pragma-alreadyinserted-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This already has the pragma, it shouldn't get another.<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
 
-echo "Hello World";
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This already has the pragma, it shouldn't get another.<CR>
+ *<CR>
+ * @format<CR>
+ * @author    Bob Bobberson<CR>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
 
-// non-docblock comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * @format
- */
-echo "Hello World";
-
-echo "Hello World";
-
-// non-docblock comment
-
+================================================================================
 `;
 
-exports[`pragma-sparsedocblock-CRLF.php - php-verify: pragma-sparsedocblock-CRLF.php 1`] = `
-<?php
-/**
- * This docblock doesn't have any pragma in it yet.
- */
+exports[`pragma-alreadyinserted-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This already has the pragma, it shouldn't get another.<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This docblock doesn't have any pragma in it yet.
- * @format
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This already has the pragma, it shouldn't get another.<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-sparsedocblock-LF.php - php-verify: pragma-sparsedocblock-LF.php 1`] = `
-<?php
-/**
- * This docblock doesn't have any pragma in it yet.
- */
+exports[`pragma-alreadyinserted-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This already has the pragma, it shouldn't get another.<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This docblock doesn't have any pragma in it yet.
- * @format
- */
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This already has the pragma, it shouldn't get another.<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-weirddocblock-CRLF.php - php-verify: pragma-weirddocblock-CRLF.php 1`] = `
-<?php
-/** edge case docblock */
+exports[`pragma-nodocblock-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+// non-docblock comment<CRLF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * edge case docblock
- * @format
- */
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * @format<CR>
+ */<CR>
+echo "Hello World";<CR>
+<CR>
+echo "Hello World";<CR>
+<CR>
+// non-docblock comment<CR>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-weirddocblock-LF.php - php-verify: pragma-weirddocblock-LF.php 1`] = `
-<?php
-/** edge case docblock */
+exports[`pragma-nodocblock-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+// non-docblock comment<CRLF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * edge case docblock
- * @format
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+// non-docblock comment<CRLF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-weirddocblock-alt-CRLF.php - php-verify: pragma-weirddocblock-alt-CRLF.php 1`] = `
-<?php
-/** @edge 
- * case */
+exports[`pragma-nodocblock-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+// non-docblock comment<CRLF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/** @edge
- * @format
- * case */
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * @format<LF>
+ */<LF>
+echo "Hello World";<LF>
+<LF>
+echo "Hello World";<LF>
+<LF>
+// non-docblock comment<LF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-weirddocblock-alt-LF.php - php-verify: pragma-weirddocblock-alt-LF.php 1`] = `
-<?php
-/** @edge 
- * case */
+exports[`pragma-nodocblock-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<LF>
+<LF>
+echo "Hello World";<LF>
+<LF>
+// non-docblock comment<LF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/** @edge
- * @format
- * case */
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * @format<CR>
+ */<CR>
+echo "Hello World";<CR>
+<CR>
+echo "Hello World";<CR>
+<CR>
+// non-docblock comment<CR>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-withdocblock-CRLF.php - php-verify: pragma-withdocblock-CRLF.php 1`] = `
-<?php
-/**
- * This is a preexisting docblock which will receive a "format" pragma
- *
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+exports[`pragma-nodocblock-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<LF>
+<LF>
+echo "Hello World";<LF>
+<LF>
+// non-docblock comment<LF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This is a preexisting docblock which will receive a "format" pragma
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+<CRLF>
+// non-docblock comment<CRLF>
 
-echo "Hello World";
-
+================================================================================
 `;
 
-exports[`pragma-withdocblock-LF.php - php-verify: pragma-withdocblock-LF.php 1`] = `
-<?php
-/**
- * This is a preexisting docblock which will receive a "format" pragma
- *
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+exports[`pragma-nodocblock-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php echo "Hello World";<LF>
+<LF>
+echo "Hello World";<LF>
+<LF>
+// non-docblock comment<LF>
 
-echo "Hello World";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This is a preexisting docblock which will receive a "format" pragma
- *
- * @format
- * @author    Bob Bobberson
- * @copyright Doge Inc. 2018 - All Rights Reserved
- */
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * @format<LF>
+ */<LF>
+echo "Hello World";<LF>
+<LF>
+echo "Hello World";<LF>
+<LF>
+// non-docblock comment<LF>
 
-echo "Hello World";
+================================================================================
+`;
 
+exports[`pragma-sparsedocblock-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This docblock doesn't have any pragma in it yet.<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This docblock doesn't have any pragma in it yet.<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-sparsedocblock-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This docblock doesn't have any pragma in it yet.<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This docblock doesn't have any pragma in it yet.<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-sparsedocblock-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This docblock doesn't have any pragma in it yet.<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This docblock doesn't have any pragma in it yet.<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-sparsedocblock-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This docblock doesn't have any pragma in it yet.<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This docblock doesn't have any pragma in it yet.<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-sparsedocblock-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This docblock doesn't have any pragma in it yet.<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This docblock doesn't have any pragma in it yet.<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-sparsedocblock-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This docblock doesn't have any pragma in it yet.<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This docblock doesn't have any pragma in it yet.<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** edge case docblock */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * edge case docblock<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** edge case docblock */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * edge case docblock<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** edge case docblock */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * edge case docblock<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** edge case docblock */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * edge case docblock<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** edge case docblock */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * edge case docblock<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** edge case docblock */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * edge case docblock<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** @edge <CRLF>
+ * case */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+/** @edge<CR>
+ * @format<CR>
+ * case */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** @edge <CRLF>
+ * case */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/** @edge<CRLF>
+ * @format<CRLF>
+ * case */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/** @edge <CRLF>
+ * case */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+/** @edge<LF>
+ * @format<LF>
+ * case */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** @edge <LF>
+ * case */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CR>
+/** @edge<CR>
+ * @format<CR>
+ * case */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** @edge <LF>
+ * case */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/** @edge<CRLF>
+ * @format<CRLF>
+ * case */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-weirddocblock-alt-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/** @edge <LF>
+ * case */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/** @edge<LF>
+ * @format<LF>
+ * case */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This is a preexisting docblock which will receive a "format" pragma<CRLF>
+ *<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This is a preexisting docblock which will receive a "format" pragma<CR>
+ *<CR>
+ * @format<CR>
+ * @author    Bob Bobberson<CR>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This is a preexisting docblock which will receive a "format" pragma<CRLF>
+ *<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This is a preexisting docblock which will receive a "format" pragma<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This is a preexisting docblock which will receive a "format" pragma<CRLF>
+ *<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This is a preexisting docblock which will receive a "format" pragma<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This is a preexisting docblock which will receive a "format" pragma<LF>
+ *<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This is a preexisting docblock which will receive a "format" pragma<CR>
+ *<CR>
+ * @format<CR>
+ * @author    Bob Bobberson<CR>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CR>
+ */<CR>
+<CR>
+echo "Hello World";<CR>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This is a preexisting docblock which will receive a "format" pragma<LF>
+ *<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This is a preexisting docblock which will receive a "format" pragma<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ * @author    Bob Bobberson<CRLF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<CRLF>
+ */<CRLF>
+<CRLF>
+echo "Hello World";<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-withdocblock-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This is a preexisting docblock which will receive a "format" pragma<LF>
+ *<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This is a preexisting docblock which will receive a "format" pragma<LF>
+ *<LF>
+ * @format<LF>
+ * @author    Bob Bobberson<LF>
+ * @copyright Doge Inc. 2018 - All Rights Reserved<LF>
+ */<LF>
+<LF>
+echo "Hello World";<LF>
+
+================================================================================
 `;

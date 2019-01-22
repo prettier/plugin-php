@@ -1,193 +1,793 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`file-with-alt-pragma-CRLF.php - php-verify: file-with-alt-pragma-CRLF.php 1`] = `
-<?php
-/**
- * This works too
- *
- * @prettier
- */
+exports[`file-with-alt-pragma-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This works too<CRLF>
+ *<CRLF>
+ * @prettier<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This works too
- *
- * @prettier
- */
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This works too<CR>
+ *<CR>
+ * @prettier<CR>
+ */<CR>
+<CR>
+echo 'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    "\\n";<CR>
 
-echo 'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    "\\n";
-
+================================================================================
 `;
 
-exports[`file-with-alt-pragma-LF.php - php-verify: file-with-alt-pragma-LF.php 1`] = `
-<?php
-/**
- * This works too
- *
- * @prettier
- */
+exports[`file-with-alt-pragma-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This works too<CRLF>
+ *<CRLF>
+ * @prettier<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This works too
- *
- * @prettier
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This works too<CRLF>
+ *<CRLF>
+ * @prettier<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    "\\n";<CRLF>
 
-echo 'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    "\\n";
-
+================================================================================
 `;
 
-exports[`file-with-pragma-CRLF.php - php-verify: file-with-pragma-CRLF.php 1`] = `
-<?php
-/**
- * This turns on prettier formatting if --require-pragma is passed
- *
- * @format
- */
+exports[`file-with-alt-pragma-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This works too<CRLF>
+ *<CRLF>
+ * @prettier<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This turns on prettier formatting if --require-pragma is passed
- *
- * @format
- */
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This works too<LF>
+ *<LF>
+ * @prettier<LF>
+ */<LF>
+<LF>
+echo 'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    "\\n";<LF>
 
-echo 'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    "\\n";
-
+================================================================================
 `;
 
-exports[`file-with-pragma-LF.php - php-verify: file-with-pragma-LF.php 1`] = `
-<?php
-/**
- * This turns on prettier formatting if --require-pragma is passed
- *
- * @format
- */
+exports[`file-with-alt-pragma-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This works too<LF>
+ *<LF>
+ * @prettier<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * This turns on prettier formatting if --require-pragma is passed
- *
- * @format
- */
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This works too<CR>
+ *<CR>
+ * @prettier<CR>
+ */<CR>
+<CR>
+echo 'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    "\\n";<CR>
 
-echo 'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    "\\n";
-
+================================================================================
 `;
 
-exports[`file-without-pragma-CRLF.php - php-verify: file-without-pragma-CRLF.php 1`] = `
-<?php
-/**
- * No pragma, no prettier (assuming --require-pragma)
- */
+exports[`file-with-alt-pragma-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This works too<LF>
+ *<LF>
+ * @prettier<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * No pragma, no prettier (assuming --require-pragma)
- */
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This works too<CRLF>
+ *<CRLF>
+ * @prettier<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-
+================================================================================
 `;
 
-exports[`file-without-pragma-LF.php - php-verify: file-without-pragma-LF.php 1`] = `
-<?php
-/**
- * No pragma, no prettier (assuming --require-pragma)
- */
+exports[`file-with-alt-pragma-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This works too<LF>
+ *<LF>
+ * @prettier<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-/**
- * No pragma, no prettier (assuming --require-pragma)
- */
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This works too<LF>
+ *<LF>
+ * @prettier<LF>
+ */<LF>
+<LF>
+echo 'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    "\\n";<LF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-
+================================================================================
 `;
 
-exports[`file-without-pragma-and-no-docblock-CRLF.php - php-verify: file-without-pragma-and-no-docblock-CRLF.php 1`] = `
-<?php
+exports[`file-with-pragma-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This turns on prettier formatting if --require-pragma is passed<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This turns on prettier formatting if --require-pragma is passed<CR>
+ *<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo 'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    "\\n";<CR>
 
-// @prettier
-// @format
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
-
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-
-// @prettier
-// @format
-
+================================================================================
 `;
 
-exports[`file-without-pragma-and-no-docblock-LF.php.php - php-verify: file-without-pragma-and-no-docblock-LF.php.php 1`] = `
-<?php
+exports[`file-with-pragma-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This turns on prettier formatting if --require-pragma is passed<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This turns on prettier formatting if --require-pragma is passed<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    "\\n";<CRLF>
 
-// @prettier
-// @format
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<?php
+================================================================================
+`;
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+exports[`file-with-pragma-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * This turns on prettier formatting if --require-pragma is passed<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
 
-// @prettier
-// @format
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This turns on prettier formatting if --require-pragma is passed<LF>
+ *<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo 'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    "\\n";<LF>
 
+================================================================================
+`;
+
+exports[`file-with-pragma-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This turns on prettier formatting if --require-pragma is passed<LF>
+ *<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * This turns on prettier formatting if --require-pragma is passed<CR>
+ *<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+echo 'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    'This ' .<CR>
+    'string ' .<CR>
+    'was ' .<CR>
+    'made ' .<CR>
+    'with concatenation.' .<CR>
+    "\\n";<CR>
+
+================================================================================
+`;
+
+exports[`file-with-pragma-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This turns on prettier formatting if --require-pragma is passed<LF>
+ *<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * This turns on prettier formatting if --require-pragma is passed<CRLF>
+ *<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    'This ' .<CRLF>
+    'string ' .<CRLF>
+    'was ' .<CRLF>
+    'made ' .<CRLF>
+    'with concatenation.' .<CRLF>
+    "\\n";<CRLF>
+
+================================================================================
+`;
+
+exports[`file-with-pragma-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * This turns on prettier formatting if --require-pragma is passed<LF>
+ *<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * This turns on prettier formatting if --require-pragma is passed<LF>
+ *<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+echo 'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    'This ' .<LF>
+    'string ' .<LF>
+    'was ' .<LF>
+    'made ' .<LF>
+    'with concatenation.' .<LF>
+    "\\n";<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * No pragma, no prettier (assuming --require-pragma)<CRLF>
+ */<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-LF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-LF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-LF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * No pragma, no prettier (assuming --require-pragma)<LF>
+ */<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-CRLF.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-CRLF.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-CRLF.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+=====================================output=====================================
+<?php<CRLF>
+<CRLF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<CRLF>
+<CRLF>
+// @prettier<CRLF>
+// @format<CRLF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-LF.php.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+=====================================output=====================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-LF.php.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+=====================================output=====================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+================================================================================
+`;
+
+exports[`file-without-pragma-and-no-docblock-LF.php.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+parsers: ["php"]
+printWidth: 80
+requirePragma: true
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+=====================================output=====================================
+<?php<LF>
+<LF>
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";<LF>
+<LF>
+// @prettier<LF>
+// @format<LF>
+
+================================================================================
 `;

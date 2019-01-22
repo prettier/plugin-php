@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`interface.php - php-verify: interface.php 1`] = `
+exports[`interface.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 interface testInterface {
@@ -29,7 +34,8 @@ interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCl
 interface Foo extends MyClass, MyOtherClass, MyOtherOtherOtherClass, MyVeryVeryVeryLongClassName {}
 
 interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName extends MyClass, MyOtherClass, MyOtherOtherOtherClass, MyVeryVeryVeryLongClassName {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 interface testInterface
@@ -92,4 +98,5 @@ interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCl
 {
 }
 
+================================================================================
 `;

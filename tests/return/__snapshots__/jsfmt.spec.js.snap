@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`return.php - php-verify: return.php 1`] = `
+exports[`return.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function sum($a, $b) {
@@ -235,7 +240,8 @@ return in_array('odbc', $this->getAvailableDrivers()) &&
 return ($map[$name] ?? $name).(! is_null($parameters) ? ':'.$parameters : '');
 return ($map[$name] ?? $name) .
     (!is_null($parameters) ? ':' . $parameters : '');
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function sum($a, $b)
@@ -571,4 +577,5 @@ return ($map[$name] ?? $name) .
 return ($map[$name] ?? $name) .
     (!is_null($parameters) ? ':' . $parameters : '');
 
+================================================================================
 `;

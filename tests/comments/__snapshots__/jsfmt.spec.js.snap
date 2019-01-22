@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`array.php - php-verify: array.php 1`] = `
+exports[`array.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $array = [/* comment */];
 $array = [
@@ -93,7 +98,8 @@ call(
     array // Comment
     ('string', 'other-string')
 );
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $array = [
     /* comment */
@@ -207,9 +213,15 @@ call(array(
     'other-string'
 ));
 
+================================================================================
 `;
 
-exports[`assign.php - php-verify: assign.php 1`] = `
+exports[`assign.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $var =
     // Comment
@@ -276,7 +288,8 @@ $var1 =
 $var2 =
 // Comment
 $var3;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $var =
     // Comment
@@ -350,9 +363,15 @@ $var =
             // Comment
             $var3;
 
+================================================================================
 `;
 
-exports[`bin.php - php-verify: bin.php 1`] = `
+exports[`bin.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $variable = FormUtil::isEmpty($this->modelData) ||
@@ -366,7 +385,8 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 }
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $variable =
@@ -384,9 +404,15 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
+================================================================================
 `;
 
-exports[`blank_lines.php - php-verify: blank_lines.php 1`] = `
+exports[`blank_lines.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // The first line of a comment
@@ -396,7 +422,8 @@ exports[`blank_lines.php - php-verify: blank_lines.php 1`] = `
 
 
 // Other comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 
@@ -408,9 +435,15 @@ exports[`blank_lines.php - php-verify: blank_lines.php 1`] = `
 // Other comment
 
 
+================================================================================
 `;
 
-exports[`break.php - php-verify: break.php 1`] = `
+exports[`break.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 for (;;) {
@@ -421,7 +454,8 @@ loop: for (;;) {
     break /* Comment */ 1;
     break 1 /* Comment */;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 for (;;) {
@@ -434,9 +468,15 @@ for (;;) {
     break; /* Comment */
 }
 
+================================================================================
 `;
 
-exports[`call.php - php-verify: call.php 1`] = `
+exports[`call.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 foo(/* Comment */ $a /* Comment */, /* Comment */ [] /* Comment */, /* Comment */ ($a + 2) /* Comment */);
@@ -472,7 +512,8 @@ $var->render(
     $var
     // Comment
 );
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 foo(
@@ -515,9 +556,15 @@ $var->render(
     // Comment
 );
 
+================================================================================
 `;
 
-exports[`cast.php - php-verify: cast.php 1`] = `
+exports[`cast.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
@@ -528,7 +575,8 @@ $var = (int) // Comment
 $var = (int) // Comment
     // Comment
     $a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
@@ -540,9 +588,15 @@ $var = (int) // Comment
     // Comment
     $a;
 
+================================================================================
 `;
 
-exports[`chains.php - php-verify: chains.php 1`] = `
+exports[`chains.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $var = $var
@@ -564,7 +618,8 @@ $a /* Comment*/./*Comment*/ bar/* Comment */;
 $a/* Comment */['test'];
 $a /* Comment */./* Comment */ bar();
 $a /* Comment */::/* Comment */ bar();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $var = $var
@@ -588,9 +643,15 @@ $a /* Comment*/ . /*Comment*/ bar /* Comment */;
 $a /* Comment */ . /* Comment */ bar();
 /* Comment */ $a::/* Comment */ bar();
 
+================================================================================
 `;
 
-exports[`class.php - php-verify: class.php 1`] = `
+exports[`class.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace Test\\test\\test;
 
@@ -727,7 +788,8 @@ $var = new class {};
 $var = new class {
     // Comment
 };
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 namespace Test\\test\\test;
 
@@ -869,9 +931,15 @@ $var = new class {
     // Comment
 };
 
+================================================================================
 `;
 
-exports[`classconstant.php - php-verify: classconstant.php 1`] = `
+exports[`classconstant.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $var = new class {
@@ -908,7 +976,8 @@ $var = new class {
         // Comment 4
         'string';
 };
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $var = new class {
@@ -942,16 +1011,23 @@ $var = new class {
         'string';
 };
 
+================================================================================
 `;
 
-exports[`clone.php - php-verify: clone.php 1`] = `
+exports[`clone.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $obj2 = clone /* Comments */ $obj /* Comments */;
 
 $obj2 = clone // Comment
     $obj;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $obj2 = clone /* Comments */ $obj /* Comments */;
@@ -959,9 +1035,15 @@ $obj2 = clone /* Comments */ $obj /* Comments */;
 $obj2 = clone // Comment
     $obj;
 
+================================================================================
 `;
 
-exports[`closure.php - php-verify: closure.php 1`] = `
+exports[`closure.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $var = function (/* Comment */) {};
@@ -998,7 +1080,8 @@ $this
 
         return $arg;
     });
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $var = function (/* Comment */) {};
@@ -1035,9 +1118,15 @@ $this
         return $arg;
     });
 
+================================================================================
 `;
 
-exports[`comments.php - php-verify: comments.php 1`] = `
+exports[`comments.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /** @var int $int This is a counter. */
 $int = 0;
@@ -1191,7 +1280,8 @@ class Test {
  * $hello = 'world'; // This is a comment in a comment
  * \`\`\`
  */
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 /** @var int $int This is a counter. */
 $int = 0;
@@ -1348,9 +1438,15 @@ class Test
  * \`\`\`
  */
 
+================================================================================
 `;
 
-exports[`continue.php - php-verify: continue.php 1`] = `
+exports[`continue.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 for (;;) {
@@ -1361,7 +1457,8 @@ loop: for (;;) {
     continue /* comment */ 1;
     continue 1 /* comment */;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 for (;;) {
@@ -1374,9 +1471,15 @@ for (;;) {
     continue; /* comment */
 }
 
+================================================================================
 `;
 
-exports[`declare.php - php-verify: declare.php 1`] = `
+exports[`declare.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1) {
@@ -1427,7 +1530,8 @@ declare /* Comment */ (/* Comment */ticks/* Comment */=/* Comment */1/* Comment 
 
 declare // Comment
 (strict_types=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1) {
@@ -1480,9 +1584,15 @@ declare(/* Comment */ /* Comment */ ticks /* Comment */=/* Comment */ 1 /* Comme
 
 declare(strict_types=1); // Comment
 
+================================================================================
 `;
 
-exports[`declare-1.php - php-verify: declare-1.php 1`] = `
+exports[`declare-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /*
@@ -1503,7 +1613,8 @@ declare(strict_types=1);
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /*
@@ -1525,26 +1636,15 @@ namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
 
+================================================================================
 `;
 
-exports[`declare-2.php - php-verify: declare-2.php 1`] = `
-<?php
-/*
- * This file is part of the php-formatter package
- *
- * Copyright (c) >=2014 Marc Morera
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- */
-declare(strict_types=1);
-namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
-use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`declare-2.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /*
  * This file is part of the php-formatter package
@@ -1562,9 +1662,33 @@ declare(strict_types=1);
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 use PHPUnit_Framework_TestCase;
 
+=====================================output=====================================
+<?php
+/*
+ * This file is part of the php-formatter package
+ *
+ * Copyright (c) >=2014 Marc Morera
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Feel free to edit as you please, and have fun.
+ *
+ * @author Marc Morera <yuhu@mmoreram.com>
+ */
+declare(strict_types=1);
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+
+================================================================================
 `;
 
-exports[`declare-3.php - php-verify: declare-3.php 1`] = `
+exports[`declare-3.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 
@@ -1589,7 +1713,8 @@ namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 
 use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /*
@@ -1611,9 +1736,15 @@ namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
 
+================================================================================
 `;
 
-exports[`declare-4.php - php-verify: declare-4.php 1`] = `
+exports[`declare-4.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment
@@ -1623,7 +1754,8 @@ declare(strict_types=1); // Comment
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment
@@ -1634,16 +1766,23 @@ namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
 
+================================================================================
 `;
 
-exports[`declare-5.php - php-verify: declare-5.php 1`] = `
+exports[`declare-5.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 declare(strict_types=1); // Comment
 // Comment
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 declare(strict_types=1); // Comment
@@ -1651,29 +1790,43 @@ declare(strict_types=1); // Comment
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 use PHPUnit_Framework_TestCase;
 
+================================================================================
 `;
 
-exports[`declare-6.php - php-verify: declare-6.php 1`] = `
-<?php declare(strict_types=1); // Comment
-// Comment
-namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
-use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`declare-6.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1); // Comment
 // Comment
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 use PHPUnit_Framework_TestCase;
 
+=====================================output=====================================
+<?php declare(strict_types=1); // Comment
+// Comment
+namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
+use PHPUnit_Framework_TestCase;
+
+================================================================================
 `;
 
-exports[`declare-7.php - php-verify: declare-7.php 1`] = `
+exports[`declare-7.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1); // Comment
 
 // Comment
 namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1); // Comment
 
 // Comment
@@ -1681,9 +1834,15 @@ namespace Mmoreram\\PHPFormatter\\Tests\\Fixer;
 
 use PHPUnit_Framework_TestCase;
 
+================================================================================
 `;
 
-exports[`declare-8.php - php-verify: declare-8.php 1`] = `
+exports[`declare-8.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1);
 /**
  * QueryBuilder for PHP
@@ -1695,7 +1854,8 @@ exports[`declare-8.php - php-verify: declare-8.php 1`] = `
  */
 
 namespace QueryBuilder\\QueryBuilders;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1);
 /**
  * QueryBuilder for PHP
@@ -1708,26 +1868,15 @@ namespace QueryBuilder\\QueryBuilders;
 
 namespace QueryBuilder\\QueryBuilders;
 
+================================================================================
 `;
 
-exports[`declare-9.php - php-verify: declare-9.php 1`] = `
-<?php
-/**
- * webtrees: online genealogy
- * Copyright (C) 2018 webtrees development team
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-declare(strict_types=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`declare-9.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /**
  * webtrees: online genealogy
@@ -1745,9 +1894,33 @@ declare(strict_types=1);
  */
 declare(strict_types=1);
 
+=====================================output=====================================
+<?php
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2018 webtrees development team
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+declare(strict_types=1);
+
+================================================================================
 `;
 
-exports[`declare-10.php - php-verify: declare-10.php 1`] = `
+exports[`declare-10.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /**
@@ -1766,7 +1939,8 @@ exports[`declare-10.php - php-verify: declare-10.php 1`] = `
  */
 
 declare(strict_types=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /**
@@ -1786,9 +1960,15 @@ declare(strict_types=1);
 
 declare(strict_types=1);
 
+================================================================================
 `;
 
-exports[`do.php - php-verify: do.php 1`] = `
+exports[`do.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 do { // Comment
@@ -1799,7 +1979,8 @@ do { // Comment
 
 do {
 } while (/* Comments */ true /* Comments */);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 do {
@@ -1812,9 +1993,15 @@ do {
 do {
 } while (/* Comments */ true /* Comments */);
 
+================================================================================
 `;
 
-exports[`doc.php - php-verify: doc.php 1`] = `
+exports[`doc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
@@ -2056,7 +2243,8 @@ class Net_Sample
  */
 
 ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
@@ -2298,9 +2486,15 @@ class Net_Sample
  */
 ?>
 
+================================================================================
 `;
 
-exports[`doc-1.php - php-verify: doc-1.php 1`] = `
+exports[`doc-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /** @var int $int This is a counter. */
@@ -2356,7 +2550,8 @@ foreach($connections as $sqlite) {
 function test($parameter1, $e)
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /** @var int $int This is a counter. */
@@ -2413,9 +2608,15 @@ function test($parameter1, $e)
 {
 }
 
+================================================================================
 `;
 
-exports[`echo.php - php-verify: echo.php 1`] = `
+exports[`echo.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment
@@ -2450,7 +2651,8 @@ using heredoc syntax.
 EOD
     ,
     $a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment
@@ -2490,9 +2692,15 @@ EOD
     ,
     $a;
 
+================================================================================
 `;
 
-exports[`edge_cases.php - php-verify: edge_cases.php 1`] = `
+exports[`edge_cases.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 class Test{
   public function testFunction (/* inline */ $arg) {
@@ -2512,7 +2720,8 @@ function testFunction ($arg1, /* inline */ $arg2) {
 
 }
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 class Test
 {
@@ -2535,9 +2744,15 @@ function testFunction($arg1, /* inline */ $arg2)
 {
 }
 
+================================================================================
 `;
 
-exports[`empty.php - php-verify: empty.php 1`] = `
+exports[`empty.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
@@ -2554,7 +2769,8 @@ if (
     empty // Comment
     ($a)
 ) {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
@@ -2577,9 +2793,15 @@ if (
 ) {
 }
 
+================================================================================
 `;
 
-exports[`eval.php - php-verify: eval.php 1`] = `
+exports[`eval.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 eval(
@@ -2604,7 +2826,8 @@ $var
 );
 eval // Call
 ($var);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 eval(
@@ -2636,9 +2859,15 @@ eval(
     $var
 );
 
+================================================================================
 `;
 
-exports[`exit.php - php-verify: exit.php 1`] = `
+exports[`exit.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 exit(/* Comment */);
@@ -2652,7 +2881,8 @@ exit( // Call
 );
 exit // Call
 ($var);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 exit(
@@ -2674,9 +2904,15 @@ exit(
     $var
 );
 
+================================================================================
 `;
 
-exports[`for.php - php-verify: for.php 1`] = `
+exports[`for.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 for // Comment
 (;;);
@@ -2744,7 +2980,8 @@ for (
     // Comment
     print $i++
 );
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 for (;;);
@@ -2822,9 +3059,15 @@ for (
     print $i++
 );
 
+================================================================================
 `;
 
-exports[`foreach.php - php-verify: foreach.php 1`] = `
+exports[`foreach.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 foreach ($iterable as $value) { // Comment
@@ -2870,7 +3113,8 @@ foreach (
         $value
 ) {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 foreach ($iterable as $value) {
@@ -2938,9 +3182,15 @@ foreach (
 ) {
 }
 
+================================================================================
 `;
 
-exports[`full.php - php-verify: full.php 1`] = `
+exports[`full.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment
@@ -2991,7 +3241,8 @@ class Foo extends Bar implements FooInterface
     }
 }
 // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment
@@ -3043,9 +3294,15 @@ class Foo extends Bar implements FooInterface
 }
 // Comment
 
+================================================================================
 `;
 
-exports[`functions.php - php-verify: functions.php 1`] = `
+exports[`functions.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
@@ -3086,7 +3343,8 @@ function foo // this is a function
 () {
     return 42;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */)
@@ -3144,9 +3402,15 @@ function foo()
     return 42;
 }
 
+================================================================================
 `;
 
-exports[`global.php - php-verify: global.php 1`] = `
+exports[`global.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
@@ -3158,7 +3422,8 @@ global
 global // Comment
     $a,
     $b;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
@@ -3170,9 +3435,15 @@ global // Comment
     $a,
     $b;
 
+================================================================================
 `;
 
-exports[`goto.php - php-verify: goto.php 1`] = `
+exports[`goto.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /* Comment */goto/* Comment */a/* Comment */;
@@ -3192,7 +3463,8 @@ c: // Comment
 echo 'test';
 
 goto c; // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /* Comment */ goto a; /* Comment */ /* Comment */
@@ -3212,21 +3484,34 @@ echo 'test';
 
 goto c; // Comment
 
+================================================================================
 `;
 
-exports[`halt.php - php-verify: halt.php 1`] = `
+exports[`halt.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
-/*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*Comment*/__halt_compiler/*Comment*/(/*Comment*/)/*Comment*/;
+=====================================output=====================================
 <?php
 
 /*Comment*/ /*Comment*/
 /*Comment*/
 /*Comment*/
 __halt_compiler();
+================================================================================
 `;
 
-exports[`halt-1.php - php-verify: halt-1.php 1`] = `
+exports[`halt-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment 1
@@ -3235,7 +3520,8 @@ __halt_compiler
 ( // Comment 3
 // Comment 4
 );
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment 1
@@ -3244,9 +3530,15 @@ __halt_compiler
 // Comment 4
 __halt_compiler();
 
+================================================================================
 `;
 
-exports[`heredoc.php - php-verify: heredoc.php 1`] = `
+exports[`heredoc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $str = /* Comment */<<<EOD
 Example of string
@@ -3262,7 +3554,8 @@ $var = <<<HERE
 string
 HERE;
 // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $str = /* Comment */ <<<EOD
 Example of string
@@ -3279,9 +3572,15 @@ string
 HERE;
 // Comment
 
+================================================================================
 `;
 
-exports[`if.php - php-verify: if.php 1`] = `
+exports[`if.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment 1
 if (1) { // Comment 2
@@ -3595,7 +3894,8 @@ else // Comment
     $a = 3;
 
 if (/* Comment*/ $var /* Comment*/) /* Comment*/ {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment 1
 if (1) {
@@ -3967,9 +4267,15 @@ if (/* Comment*/ $var /* Comment*/) {
     /* Comment*/
 }
 
+================================================================================
 `;
 
-exports[`include.php - php-verify: include.php 1`] = `
+exports[`include.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 include // Comment
@@ -3987,7 +4293,8 @@ include (// Comment
 
 include /* Comment */ $a /* Comment */;
 include /* Comment */ 'string' /* Comment */;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 include // Comment
@@ -4004,50 +4311,77 @@ include // Comment
 include /* Comment */ $a /* Comment */;
 include /* Comment */ 'string' /* Comment */;
 
+================================================================================
 `;
 
-exports[`inline.php - php-verify: inline.php 1`] = `
+exports[`inline.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 some text
 /**
 * A comment
 */
 <?php
 $thing = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 some text
 /**
 * A comment
 */
 <?php $thing = 1;
 
+================================================================================
 `;
 
-exports[`inline2.php - php-verify: inline2.php 1`] = `
-<?php
-// test
-?>
-<h1>Test</h1>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`inline2.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // test
 ?>
 <h1>Test</h1>
 
+=====================================output=====================================
+<?php
+// test
+?>
+<h1>Test</h1>
+
+================================================================================
 `;
 
-exports[`inline3.php - php-verify: inline3.php 1`] = `
+exports[`inline3.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <h1>Test</h1>
 <?php
 // test
 ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <h1>Test</h1>
 <?php
 // test
 ?>
+================================================================================
 `;
 
-exports[`inline4.php - php-verify: inline4.php 1`] = `
+exports[`inline4.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /**
  * A
@@ -4060,7 +4394,8 @@ exports[`inline4.php - php-verify: inline4.php 1`] = `
  */
 ?>
 <h1>Test</h1>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 /**
  * A
@@ -4074,24 +4409,37 @@ exports[`inline4.php - php-verify: inline4.php 1`] = `
 ?>
 <h1>Test</h1>
 
+================================================================================
 `;
 
-exports[`inline5.php - php-verify: inline5.php 1`] = `
+exports[`inline5.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <h1>Test</h1>
 <?php
 // test
 ?>
 <h1>Test</h1>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <h1>Test</h1>
 <?php
 // test
 ?>
 <h1>Test</h1>
 
+================================================================================
 `;
 
-exports[`inline6.php - php-verify: inline6.php 1`] = `
+exports[`inline6.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <h1>Test</h1>
 <?php
 
@@ -4101,7 +4449,8 @@ exports[`inline6.php - php-verify: inline6.php 1`] = `
 
 ?>
 <h1>Test</h1>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <h1>Test</h1>
 <?php
 /**
@@ -4110,16 +4459,29 @@ exports[`inline6.php - php-verify: inline6.php 1`] = `
 ?>
 <h1>Test</h1>
 
+================================================================================
 `;
 
-exports[`inline7.php - php-verify: inline7.php 1`] = `
-<?php echo 1; // comment ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`inline7.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php echo 1; // comment ?>
 
+=====================================output=====================================
+<?php echo 1; // comment ?>
+
+================================================================================
 `;
 
-exports[`inline8.php - php-verify: inline8.php 1`] = `
+exports[`inline8.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <h1 <?php echo $var; // Comment ?>></h1>
 
 <h1 <?php echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar; // Comment ?>></h1>
@@ -4151,7 +4513,8 @@ $a = 1;
 <?php // test ?>
 <?php echo 1; ?>
 <?php echo 2; ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <h1 <?php echo $var;
 // Comment
 ?>></h1>
@@ -4190,9 +4553,15 @@ $a = 1; ?>
 <?php echo 1; ?>
 <?php echo 2; ?>
 
+================================================================================
 `;
 
-exports[`interface.php - php-verify: interface.php 1`] = `
+exports[`interface.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 interface IFoo { /* Comments */ }
@@ -4228,7 +4597,8 @@ interface MyInterface
 {
     // Comment
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 interface IFoo
@@ -4272,9 +4642,15 @@ interface MyInterface
     // Comment
 }
 
+================================================================================
 `;
 
-exports[`isset.php - php-verify: isset.php 1`] = `
+exports[`isset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 if (isset(/* Comment */ $a[1]/* Comment */)) {
@@ -4291,7 +4667,8 @@ if (
     isset // Comment
     ($a)
 ) {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
@@ -4314,13 +4691,20 @@ if (
 ) {
 }
 
+================================================================================
 `;
 
-exports[`list.php - php-verify: list.php 1`] = `
+exports[`list.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /* Comment */ $power /* Comment */) = $info;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 list(
@@ -4329,9 +4713,15 @@ list(
     /* Comment */ $power /* Comment */
 ) = $info;
 
+================================================================================
 `;
 
-exports[`method.php - php-verify: method.php 1`] = `
+exports[`method.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 class Foo {
@@ -4400,7 +4790,8 @@ class Foo {
         return 42;
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 class Foo
@@ -4483,9 +4874,15 @@ class Foo
     }
 }
 
+================================================================================
 `;
 
-exports[`namespace.php - php-verify: namespace.php 1`] = `
+exports[`namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 namespace foo {
@@ -4498,7 +4895,8 @@ namespace foo {
     // Comment
 }
 // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 namespace foo {
@@ -4513,32 +4911,52 @@ namespace foo {
 }
 // Comment
 
+================================================================================
 `;
 
-exports[`namespace-1.php - php-verify: namespace-1.php 1`] = `
+exports[`namespace-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace /* Comment */ Foo1 /* Comment */;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Foo1; /* Comment */ /* Comment */
 
+================================================================================
 `;
 
-exports[`namespace-2.php - php-verify: namespace-2.php 1`] = `
+exports[`namespace-2.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace // Comment
     Foo1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Foo1; // Comment
 
+================================================================================
 `;
 
-exports[`namespace-3.php - php-verify: namespace-3.php 1`] = `
+exports[`namespace-3.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace Foo;
@@ -4548,7 +4966,8 @@ namespace Foo;
 // Comment
 
 // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Foo;
@@ -4559,9 +4978,15 @@ namespace Foo;
 
 // Comment
 
+================================================================================
 `;
 
-exports[`namespace-4.php - php-verify: namespace-4.php 1`] = `
+exports[`namespace-4.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /*
@@ -4578,7 +5003,8 @@ namespace Acme;
 class Foo
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /*
@@ -4596,9 +5022,15 @@ class Foo
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-5.php - php-verify: namespace-5.php 1`] = `
+exports[`namespace-5.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1);
 
 /*
@@ -4615,7 +5047,8 @@ namespace Acme;
 class Foo
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1);
 
 /*
@@ -4633,9 +5066,15 @@ class Foo
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-6.php - php-verify: namespace-6.php 1`] = `
+exports[`namespace-6.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 /*
@@ -4650,7 +5089,8 @@ exports[`namespace-6.php - php-verify: namespace-6.php 1`] = `
 namespace Monolog\\Formatter;
 
 use Monolog\\Logger;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /*
@@ -4666,21 +5106,15 @@ namespace Monolog\\Formatter;
 
 use Monolog\\Logger;
 
+================================================================================
 `;
 
-exports[`namespace-7.php - php-verify: namespace-7.php 1`] = `
-<?php
-/*
- * This file is part of the Monolog package.
- *
- * (c) Jordi Boggiano <j.boggiano@seld.be>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace Monolog\\Formatter;
-use Monolog\\Logger;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`namespace-7.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /*
  * This file is part of the Monolog package.
@@ -4693,9 +5127,28 @@ use Monolog\\Logger;
 namespace Monolog\\Formatter;
 use Monolog\\Logger;
 
+=====================================output=====================================
+<?php
+/*
+ * This file is part of the Monolog package.
+ *
+ * (c) Jordi Boggiano <j.boggiano@seld.be>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+namespace Monolog\\Formatter;
+use Monolog\\Logger;
+
+================================================================================
 `;
 
-exports[`namespace-8.php - php-verify: namespace-8.php 1`] = `
+exports[`namespace-8.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1);
 
 /*
@@ -4714,7 +5167,8 @@ namespace Monolog\\Handler;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1);
 
 /*
@@ -4734,9 +5188,15 @@ namespace Monolog\\Handler;
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
 
+================================================================================
 `;
 
-exports[`namespace-9.php - php-verify: namespace-9.php 1`] = `
+exports[`namespace-9.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1);
 /*
  * This file is part of the Monolog package.
@@ -4752,7 +5212,8 @@ namespace Monolog\\Handler;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1);
 /*
  * This file is part of the Monolog package.
@@ -4769,9 +5230,15 @@ namespace Monolog\\Handler;
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
 
+================================================================================
 `;
 
-exports[`namespace-10.php - php-verify: namespace-10.php 1`] = `
+exports[`namespace-10.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace Monolog\\Formatter;
@@ -4784,7 +5251,8 @@ namespace Monolog\\Formatter;
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Monolog\\Formatter;
@@ -4798,9 +5266,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-11.php - php-verify: namespace-11.php 1`] = `
+exports[`namespace-11.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace Monolog\\Formatter;
@@ -4812,7 +5286,8 @@ namespace Monolog\\Formatter;
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Monolog\\Formatter;
@@ -4825,9 +5300,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-12.php - php-verify: namespace-12.php 1`] = `
+exports[`namespace-12.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment
@@ -4842,7 +5323,8 @@ namespace Monolog\\Formatter;
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment
@@ -4858,22 +5340,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-13.php - php-verify: namespace-13.php 1`] = `
-<?php
-// Comment
-namespace Monolog\\Formatter;
-// Comment
-/**
- * formats the record to be used in the FlowdockHandler
- *
- * @author Dominik Liebler <liebler.dominik@gmail.com>
- */
-class FlowdockFormatter
-{
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`namespace-13.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 namespace Monolog\\Formatter;
@@ -4887,9 +5362,29 @@ class FlowdockFormatter
 {
 }
 
+=====================================output=====================================
+<?php
+// Comment
+namespace Monolog\\Formatter;
+// Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+================================================================================
 `;
 
-exports[`namespace-14.php - php-verify: namespace-14.php 1`] = `
+exports[`namespace-14.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace Monolog\\Formatter; // Comment
@@ -4902,7 +5397,8 @@ namespace Monolog\\Formatter; // Comment
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Monolog\\Formatter; // Comment
@@ -4916,20 +5412,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-15.php - php-verify: namespace-15.php 1`] = `
-<?php
-namespace Monolog\\Formatter; // Comment
-/**
- * formats the record to be used in the FlowdockHandler
- *
- * @author Dominik Liebler <liebler.dominik@gmail.com>
- */
-class FlowdockFormatter
-{
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`namespace-15.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace Monolog\\Formatter; // Comment
 /**
@@ -4941,9 +5432,27 @@ class FlowdockFormatter
 {
 }
 
+=====================================output=====================================
+<?php
+namespace Monolog\\Formatter; // Comment
+/**
+ * formats the record to be used in the FlowdockHandler
+ *
+ * @author Dominik Liebler <liebler.dominik@gmail.com>
+ */
+class FlowdockFormatter
+{
+}
+
+================================================================================
 `;
 
-exports[`namespace-16.php - php-verify: namespace-16.php 1`] = `
+exports[`namespace-16.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
 /**
@@ -4954,7 +5463,8 @@ namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 namespace Monolog\\Formatter; /* Comment */
 /* Comment */
@@ -4968,9 +5478,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-17.php - php-verify: namespace-17.php 1`] = `
+exports[`namespace-17.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
@@ -4983,7 +5499,8 @@ namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Monolog\\Formatter; /* Comment */
@@ -4999,9 +5516,15 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-18.php - php-verify: namespace-18.php 1`] = `
+exports[`namespace-18.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */ // Comment
@@ -5014,7 +5537,8 @@ namespace /* Comment */ Monolog\\Formatter /* Comment */; /* Comment */ // Comme
 class FlowdockFormatter
 {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 namespace Monolog\\Formatter; /* Comment */
@@ -5031,31 +5555,51 @@ class FlowdockFormatter
 {
 }
 
+================================================================================
 `;
 
-exports[`namespace-19.php - php-verify: namespace-19.php 1`] = `
-<?php
-namespace Foo; // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`namespace-19.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace Foo; // Comment
 
+=====================================output=====================================
+<?php
+namespace Foo; // Comment
+
+================================================================================
 `;
 
-exports[`namespace-20.php - php-verify: namespace-20.php 1`] = `
+exports[`namespace-20.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace Foo; // Comment
 
 use Foo\\Bar;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 namespace Foo; // Comment
 
 use Foo\\Bar;
 
+================================================================================
 `;
 
-exports[`new.php - php-verify: new.php 1`] = `
+exports[`new.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
@@ -5219,7 +5763,8 @@ $a = new class() {
 
     // }}}
 };
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
@@ -5390,9 +5935,15 @@ $a = new class {
     // }}}
 };
 
+================================================================================
 `;
 
-exports[`no_code.php - php-verify: no_code.php 1`] = `
+exports[`no_code.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 /**
  * Product Loop Start
@@ -5402,7 +5953,8 @@ exports[`no_code.php - php-verify: no_code.php 1`] = `
  * @version 2.0.0
  */
 ?>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 /**
@@ -5415,9 +5967,15 @@ exports[`no_code.php - php-verify: no_code.php 1`] = `
 
 ?>
 
+================================================================================
 `;
 
-exports[`nowdoc.php - php-verify: nowdoc.php 1`] = `
+exports[`nowdoc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $str = /* Comment */<<<'EOD'
 Example of string
@@ -5433,7 +5991,8 @@ $var = <<<'NOW'
 string
 NOW;
 // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $str = /* Comment */ <<<'EOD'
 Example of string
@@ -5450,26 +6009,40 @@ string
 NOW;
 // Comment
 
+================================================================================
 `;
 
-exports[`offsetlookup.php - php-verify: offsetlookup.php 1`] = `
+exports[`offsetlookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
+================================================================================
 `;
 
-exports[`parameter.php - php-verify: parameter.php 1`] = `
+exports[`parameter.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function foo(/* Comment */ $a, /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */) {};
 
 function bar(/* Comment */ &$a /* Comment */) {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function foo(
@@ -5482,31 +6055,51 @@ function bar(/* Comment */ &$a /* Comment */)
 {
 }
 
+================================================================================
 `;
 
-exports[`post.php - php-verify: post.php 1`] = `
+exports[`post.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $a/* Comment */++;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $a /* Comment */++;
 
+================================================================================
 `;
 
-exports[`pre.php - php-verify: pre.php 1`] = `
+exports[`pre.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 ++/*Comment */$a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 ++/*Comment */ $a;
 
+================================================================================
 `;
 
-exports[`print.php - php-verify: print.php 1`] = `
+exports[`print.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 print // Comment
@@ -5531,7 +6124,8 @@ print call(
 print // Comment
     // Comment
     $a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 print // Comment
@@ -5555,9 +6149,15 @@ print // Comment
     // Comment
     $a;
 
+================================================================================
 `;
 
-exports[`property.php - php-verify: property.php 1`] = `
+exports[`property.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $var = new class {
@@ -5594,7 +6194,8 @@ $var = new class {
         // Comment 4
         'string';
 };
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $var = new class {
@@ -5628,21 +6229,34 @@ $var = new class {
         'string';
 };
 
+================================================================================
 `;
 
-exports[`propertylookup.php - php-verify: propertylookup.php 1`] = `
+exports[`propertylookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 echo $a/*Comment*/->/*Comment*/bar();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 echo $a /*Comment*/
     ->/*Comment*/ bar();
 
+================================================================================
 `;
 
-exports[`retif.php - php-verify: retif.php 1`] = `
+exports[`retif.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $inspect = $condition
@@ -5700,7 +6314,8 @@ $var = $a
 $var = $a
     ? $b // Comment
     : $c; // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $inspect = $condition
@@ -5758,9 +6373,15 @@ $var = $a
     ? $b // Comment
     : $c; // Comment
 
+================================================================================
 `;
 
-exports[`return.php - php-verify: return.php 1`] = `
+exports[`return.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function f() {
@@ -5788,7 +6409,8 @@ return /* Comment */ $a /* Comment */ = /* Comment */ $b /* Comment */;
 
 return // Comment
     new Foo();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function f()
@@ -5815,46 +6437,73 @@ return /* Comment */ $a /* Comment */ = /* Comment */ $b /* Comment */;
 return // Comment
     new Foo();
 
+================================================================================
 `;
 
-exports[`silent.php - php-verify: silent.php 1`] = `
+exports[`silent.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 @/*comment*/test();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 @/*comment*/ test();
 
+================================================================================
 `;
 
-exports[`static.php - php-verify: static.php 1`] = `
+exports[`static.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 static // Comment
 $a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 static // Comment
     $a;
 
+================================================================================
 `;
 
-exports[`staticlookup.php - php-verify: staticlookup.php 1`] = `
+exports[`staticlookup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 echo Foo/*Comment*/::/*Comment*/bar();
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 echo /*Comment*/ Foo::/*Comment*/ bar();
 
+================================================================================
 `;
 
-exports[`switch.php - php-verify: switch.php 1`] = `
+exports[`switch.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment
 switch ($i) { // Comment
@@ -5890,7 +6539,8 @@ switch($i) {
         :
         break;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment
 switch ($i) {
@@ -5928,9 +6578,15 @@ switch ($i) {
         break;
 }
 
+================================================================================
 `;
 
-exports[`throw.php - php-verify: throw.php 1`] = `
+exports[`throw.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // Comment
@@ -5955,7 +6611,8 @@ throw
     new Exception();
 
 throw /* Comment */ new Foo() /* Comment */; // Comment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // Comment
@@ -5981,9 +6638,15 @@ throw // Comment
 
 throw /* Comment */ new Foo() /* Comment */; // Comment
 
+================================================================================
 `;
 
-exports[`trait.php - php-verify: trait.php 1`] = `
+exports[`trait.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 trait tFoo { /* Comment */ }
@@ -6029,7 +6692,8 @@ class ImplementingClass
 {
     use TraitUseWithComments { /* Comments */ }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 trait tFoo
@@ -6086,9 +6750,15 @@ class ImplementingClass
     use TraitUseWithComments { /* Comments */ }
 }
 
+================================================================================
 `;
 
-exports[`try.php - php-verify: try.php 1`] = `
+exports[`try.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 // comment 1
@@ -6157,7 +6827,8 @@ try // Comment
 {
     $a = null;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 // comment 1
@@ -6222,20 +6893,33 @@ try {
     $a = null;
 }
 
+================================================================================
 `;
 
-exports[`unary.php - php-verify: unary.php 1`] = `
+exports[`unary.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 +/* Comment */$a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 +/* Comment */ $a;
 
+================================================================================
 `;
 
-exports[`unset.php - php-verify: unset.php 1`] = `
+exports[`unset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
@@ -6246,7 +6930,8 @@ unset( // Comment
 
 unset // Comment
 ($var);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 unset(/* Comment */ $foo /* Comment */);
@@ -6261,9 +6946,15 @@ unset(
     $var
 );
 
+================================================================================
 `;
 
-exports[`usegroup.php - php-verify: usegroup.php 1`] = `
+exports[`usegroup.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 use /* Comment */ some\\namespaces\\/* Comment */{
@@ -6274,7 +6965,8 @@ use /* Comment */ some\\namespaces\\/* Comment */{
 
 use // Comment
     My\\Full\\NSname;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 use some\\namespaces\\{
@@ -6287,9 +6979,15 @@ use some\\namespaces\\{
 use // Comment
     My\\Full\\NSname;
 
+================================================================================
 `;
 
-exports[`variable.php - php-verify: variable.php 1`] = `
+exports[`variable.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $obj = // Comment
@@ -6374,7 +7072,8 @@ $obj = // Comment
     val 
     \${$var}
     ";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $obj =
@@ -6471,20 +7170,33 @@ $obj =
     \${$var}
     ";
 
+================================================================================
 `;
 
-exports[`variadic.php - php-verify: variadic.php 1`] = `
+exports[`variadic.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 foo(.../*Comment*/$foo);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 foo(.../*Comment*/ $foo);
 
+================================================================================
 `;
 
-exports[`while.php - php-verify: while.php 1`] = `
+exports[`while.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 // Comment 1
 while (true) { // Comment 2
@@ -6519,7 +7231,8 @@ while(true) /* comment */ ++$x;
 while (true) {
     // Comment
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 // Comment 1
 while (true) {
@@ -6566,9 +7279,15 @@ while (true) {
     // Comment
 }
 
+================================================================================
 `;
 
-exports[`yield.php - php-verify: yield.php 1`] = `
+exports[`yield.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function gen_one_to_three() {
@@ -6585,7 +7304,8 @@ function gen_one_to_three() {
         $var
         ;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function gen_one_to_three()
@@ -6600,9 +7320,15 @@ function gen_one_to_three()
         $var;
 }
 
+================================================================================
 `;
 
-exports[`yieldfrom.php - php-verify: yieldfrom.php 1`] = `
+exports[`yieldfrom.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 function gen() {
@@ -6613,7 +7339,8 @@ function gen() {
         from(); // Comment 3
     yield 4;
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 function gen()
@@ -6626,4 +7353,5 @@ function gen()
     yield 4;
 }
 
+================================================================================
 `;

@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`traits.php - php-verify: traits.php 1`] = `
+exports[`traits.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 trait A {
   function testFunction() { /*1*/ }
@@ -40,7 +45,8 @@ class Partial {
 trait emptyTrait {}
 
 trait EmptyTraitWithComment { /* Comment */ }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 trait A
 {
@@ -109,4 +115,5 @@ trait EmptyTraitWithComment
     /* Comment */
 }
 
+================================================================================
 `;

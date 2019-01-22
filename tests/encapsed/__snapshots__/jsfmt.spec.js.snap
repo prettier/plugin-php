@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`encapsed.php - php-verify: encapsed.php 1`] = `
+exports[`encapsed.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $encapsShell = \`a $b\`;
 $encaps = "one $b";
@@ -375,7 +380,8 @@ echo "This is my array value: {$anArray[key]}";
 echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $encapsShell = \`a $b\`;
 $encaps = "one $b";
@@ -798,25 +804,39 @@ echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
+================================================================================
 `;
 
-exports[`single.php - php-verify: single.php 1`] = `
-<?php
-"one $b";
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`single.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 "one $b";
 
+=====================================output=====================================
+<?php
+"one $b";
+
+================================================================================
 `;
 
-exports[`single-heredoc.php - php-verify: single-heredoc.php 1`] = `
+exports[`single-heredoc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 <<<EOD
 Example of string
 spanning multiple lines
 using heredoc syntax.
 EOD;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 <<<EOD
 Example of string
@@ -824,4 +844,5 @@ spanning multiple lines
 using heredoc syntax.
 EOD;
 
+================================================================================
 `;

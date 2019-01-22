@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`global.php - php-verify: global.php 1`] = `
+exports[`global.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 global $a, $b;
 global $c;
 global $testReallyReallyLong, $someOtherReallyReallyLongVariable, $oneMoreReallyLongVariable;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 global $a, $b;
 global $c;
@@ -13,4 +19,5 @@ global $testReallyReallyLong,
     $someOtherReallyReallyLongVariable,
     $oneMoreReallyLongVariable;
 
+================================================================================
 `;

@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`use.php - php-verify: use.php 1`] = `
+exports[`use.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace foo;
 
@@ -38,7 +43,8 @@ use \\Vendor\\Package\\SomeNamespace\\{
 };
 use Exception;
 use \\Exception;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 namespace foo;
 
@@ -76,9 +82,15 @@ use Vendor\\Package\\SomeNamespace\\{SubnamespaceOne\\ClassA};
 use Exception;
 use \\Exception;
 
+================================================================================
 `;
 
-exports[`without-namespace.php - php-verify: without-namespace.php 1`] = `
+exports[`without-namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 use NamespaceA\\ClassA;
@@ -87,7 +99,8 @@ use NamespaceA\\ClassC;
 use NamespaceB\\ClassC,
     NamespaceB\\ClassB,
     NamespaceB\\ClassC;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 use NamespaceA\\ClassA;
@@ -95,4 +108,5 @@ use NamespaceA\\ClassB;
 use NamespaceA\\ClassC;
 use NamespaceB\\ClassC, NamespaceB\\ClassB, NamespaceB\\ClassC;
 
+================================================================================
 `;

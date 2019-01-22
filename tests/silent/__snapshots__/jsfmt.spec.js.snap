@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`silent.php - php-verify: silent.php 1`] = `
+exports[`silent.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $variable = @foo();
 /* Intentional file error */
@@ -14,7 +19,8 @@ $variable = @foo()->veryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryLongMe
 $variable = @foo('VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument');
 @trigger_error($error, E_USER_DEPRECATED);
 $value = @     $cache[$key];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $variable = @foo();
 /* Intentional file error */
@@ -39,4 +45,5 @@ $variable = @foo(
 @trigger_error($error, E_USER_DEPRECATED);
 $value = @$cache[$key];
 
+================================================================================
 `;

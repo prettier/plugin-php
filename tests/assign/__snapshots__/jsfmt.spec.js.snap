@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`assign.php - php-verify: assign.php 1`] = `
+exports[`assign.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $var = 1;
 $var = 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111;
@@ -94,7 +99,8 @@ $component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongNam
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $var = 1;
 $var = 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111;
@@ -268,4 +274,5 @@ $component =
     Foo
         ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
+================================================================================
 `;

@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`declare.php - php-verify: declare.php 1`] = `
+exports[`declare.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 declare(ticks=1):
 $test = 1;
@@ -28,7 +33,8 @@ declare(ticks=1) {
 
 declare(ticks=1):
 enddeclare;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 declare(ticks=1):
     $test = 1;
@@ -57,20 +63,33 @@ declare(ticks=1) {
 declare(ticks=1):
 enddeclare;
 
+================================================================================
 `;
 
-exports[`declare-invalid.php - php-verify: declare-invalid.php 1`] = `
+exports[`declare-invalid.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(unknown=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(unknown=1);
 
+================================================================================
 `;
 
-exports[`declare-multiple-statements.php - php-verify: declare-multiple-statements.php 1`] = `
+exports[`declare-multiple-statements.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1) {
@@ -83,7 +102,8 @@ declare(ticks=2) {
         $a = 1;
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1) {
@@ -98,9 +118,15 @@ declare(ticks=2) {
     }
 }
 
+================================================================================
 `;
 
-exports[`declare-multiple-statements-2.php - php-verify: declare-multiple-statements-2.php 1`] = `
+exports[`declare-multiple-statements-2.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(strict_types=1);
@@ -112,7 +138,8 @@ function test() {
     $a = 1;
 }
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(strict_types=1);
@@ -125,87 +152,135 @@ function test()
     $a = 1;
 }
 
+================================================================================
 `;
 
-exports[`declare-newline-after.php - php-verify: declare-newline-after.php 1`] = `
+exports[`declare-newline-after.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 declare(ticks=1);
 
 $a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 declare(ticks=1);
 
 $a = 1;
 
+================================================================================
 `;
 
-exports[`declare-newline-after-and-before.php - php-verify: declare-newline-after-and-before.php 1`] = `
+exports[`declare-newline-after-and-before.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1);
 
 $a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
 
 $a = 1;
 
+================================================================================
 `;
 
-exports[`declare-newline-after-with-namespace.php - php-verify: declare-newline-after-with-namespace.php 1`] = `
+exports[`declare-newline-after-with-namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1);
 
 namespace Foo;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
 
 namespace Foo;
 
+================================================================================
 `;
 
-exports[`declare-newline-before.php - php-verify: declare-newline-before.php 1`] = `
+exports[`declare-newline-before.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
 
+================================================================================
 `;
 
-exports[`declare-no-newline-after-with-namespace.php - php-verify: declare-no-newline-after-with-namespace.php 1`] = `
+exports[`declare-no-newline-after-with-namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(ticks=1);
 namespace Foo;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
 namespace Foo;
 
+================================================================================
 `;
 
-exports[`declare-no-newline-before-and-after-with-namespace.php - php-verify: declare-no-newline-before-and-after-with-namespace.php 1`] = `
-<?php
-declare(ticks=1);
-namespace Foo;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`declare-no-newline-before-and-after-with-namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 declare(ticks=1);
 namespace Foo;
 
+=====================================output=====================================
+<?php
+declare(ticks=1);
+namespace Foo;
+
+================================================================================
 `;
 
-exports[`declare-no-newlines.php - php-verify: declare-no-newlines.php 1`] = `
+exports[`declare-no-newlines.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(strict_types=1);
 $header = <<<'EOF'
 This file is part of sebastian/diff.
@@ -213,7 +288,8 @@ This file is part of sebastian/diff.
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(strict_types=1);
 $header = <<<'EOF'
 This file is part of sebastian/diff.
@@ -222,34 +298,61 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF;
 
+================================================================================
 `;
 
-exports[`declare-on-next-line-after-open-php-tag.php - php-verify: declare-on-next-line-after-open-php-tag.php 1`] = `
+exports[`declare-on-next-line-after-open-php-tag.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 declare(ticks=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 declare(ticks=1);
 
+================================================================================
 `;
 
-exports[`declare-on-same-line-with-open-php-tag.php - php-verify: declare-on-same-line-with-open-php-tag.php 1`] = `
-<?php declare(ticks=1);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exports[`declare-on-same-line-with-open-php-tag.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(ticks=1);
 
+=====================================output=====================================
+<?php declare(ticks=1);
+
+================================================================================
 `;
 
-exports[`declare-on-same-line-with-open-php-tag-with-namespace.php - php-verify: declare-on-same-line-with-open-php-tag-with-namespace.php 1`] = `
+exports[`declare-on-same-line-with-open-php-tag-with-namespace.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php declare(ticks=1);
 namespace Foo;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php declare(ticks=1);
 namespace Foo;
 
+================================================================================
 `;
 
-exports[`declare-with-multiple-space.php - php-verify: declare-with-multiple-space.php 1`] = `
+exports[`declare-with-multiple-space.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 
@@ -257,16 +360,23 @@ declare(ticks=1);
 
 
 namespace Foo;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
 
 namespace Foo;
 
+================================================================================
 `;
 
-exports[`declare-with-multiple-space-1.php - php-verify: declare-with-multiple-space-1.php 1`] = `
+exports[`declare-with-multiple-space-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 
@@ -277,7 +387,8 @@ namespace Foo;
 
 
 $a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
@@ -286,9 +397,15 @@ namespace Foo;
 
 $a = 1;
 
+================================================================================
 `;
 
-exports[`declare-with-multiple-space-2.php - php-verify: declare-with-multiple-space-2.php 1`] = `
+exports[`declare-with-multiple-space-2.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 
@@ -302,7 +419,8 @@ use Bar;
 
 
 $a = 1;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(ticks=1);
@@ -313,9 +431,15 @@ use Bar;
 
 $a = 1;
 
+================================================================================
 `;
 
-exports[`multiple.php - php-verify: multiple.php 1`] = `
+exports[`multiple.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare (strict_types=1);
@@ -324,7 +448,8 @@ declare (ticks=1) {
 }
 declare (ticks=2) {
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(strict_types=1);
@@ -334,9 +459,15 @@ declare(ticks=1) {
 declare(ticks=2) {
 }
 
+================================================================================
 `;
 
-exports[`multiple-directives.php - php-verify: multiple-directives.php 1`] = `
+exports[`multiple-directives.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 declare(encoding='ISO-8859-1', strict_types=1);
@@ -349,7 +480,8 @@ declare (A='B', C='D') {}
 
 declare (A='B', C='D'):
 enddeclare;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 declare(encoding='ISO-8859-1', strict_types=1);
@@ -364,4 +496,5 @@ declare(A='B', C='D') {
 declare(A='B', C='D'):
 enddeclare;
 
+================================================================================
 `;

@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`closure.php - php-verify: closure.php 1`] = `
+exports[`closure.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 $closureWithArgs = function ($arg1, $arg2) {
@@ -137,7 +142,8 @@ $func = static function() {};
 $fn = function &() use (&$value) { return $value; };
 
 $var = function () {};
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 $closureWithArgs = function ($arg1, $arg2) {
@@ -275,4 +281,5 @@ $fn = function &() use (&$value) {
 
 $var = function () {};
 
+================================================================================
 `;

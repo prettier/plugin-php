@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`traituse.php - php-verify: traituse.php 1`] = `
+exports[`traituse.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 class Foo
@@ -25,7 +30,8 @@ class Foo
     use HelloWorld { sayHello as private myPrivateHello; }
     use EmptyTrait {}
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 class Foo
@@ -56,4 +62,5 @@ class Foo
     use EmptyTrait {}
 }
 
+================================================================================
 `;

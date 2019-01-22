@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`classconstant.php - php-verify: classconstant.php 1`] = `
+exports[`classconstant.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 class ConstDemo
 {
@@ -50,7 +55,8 @@ EOD;
     const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_FIRST = "Hello", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND_1 = "world", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_THIRD = "!";
     const CONST_15 = ['key' => 'value', 'other-key' => 'other-value', 'other-other-key' => 'other-other-value'], FOO_BAR = "test", BAR_FOOR = ['value', 'other-value'];
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 class ConstDemo
 {
@@ -145,4 +151,5 @@ EOD;
         BAR_FOOR = ['value', 'other-value'];
 }
 
+================================================================================
 `;

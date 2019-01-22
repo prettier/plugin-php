@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`clone.php - php-verify: clone.php 1`] = `
+exports[`clone.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 $obj2 = clone $obj1;
 $obj2 = clone  $obj;
@@ -9,7 +14,8 @@ $obj;
 $obj2 = clone $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClass;
 $obj2 = clone $this->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLeadDeveloper;
 $OneSecAgo = (clone $Now)->veryVeryVeryVeryVeryVeryVeryVeryLongMethod(new \\DateInterval("PT1S"));
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 $obj2 = clone $obj1;
 $obj2 = clone $obj;
@@ -20,15 +26,23 @@ $OneSecAgo = (clone $Now)->veryVeryVeryVeryVeryVeryVeryVeryLongMethod(
     new \\DateInterval("PT1S")
 );
 
+================================================================================
 `;
 
-exports[`single.php - php-verify: single.php 1`] = `
+exports[`single.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 
 clone $a;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 
 clone $a;
 
+================================================================================
 `;

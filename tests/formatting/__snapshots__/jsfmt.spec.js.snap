@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`formatting.php - php-verify: formatting.php 1`] = `
+exports[`formatting.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
 <?php
 namespace Vendor\\Package;
 
@@ -26,7 +31,8 @@ class Foo extends Bar implements FooInterface
         // method body
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=====================================output=====================================
 <?php
 namespace Vendor\\Package;
 
@@ -53,4 +59,5 @@ class Foo extends Bar implements FooInterface
     }
 }
 
+================================================================================
 `;
