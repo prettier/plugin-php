@@ -2055,7 +2055,8 @@ function printNode(path, options, print) {
         ((isReferenceLikeNode(node.what) || node.what.kind === "variable") &&
           (node.offset.kind === "identifier" ||
             node.offset.kind === "variable" ||
-            node.offset.kind === "encapsed") &&
+            node.offset.kind === "encapsed" ||
+            node.offset.kind === "literal") &&
           (parent && !isLookupNode(parent)));
 
       return concat([
@@ -2698,6 +2699,8 @@ function printNode(path, options, print) {
 
       return concat([node.resolution === "rn" ? "namespace\\" : "", node.name]);
     }
+    case "literal":
+      return path.call(print, "value");
     case "parentreference":
       return "parent";
     case "selfreference":
@@ -2707,11 +2710,7 @@ function printNode(path, options, print) {
     case "typereference":
       return node.name;
     case "identifier": {
-      if (typeof node.name !== "string") {
-        return path.call(print, "name");
-      }
-
-      return node.name;
+      return path.call(print, "name");
     }
     case "error":
     default:
