@@ -2219,23 +2219,11 @@ function printNode(path, options, print) {
         path.call(print, "name"),
         node.curly ? "}" : ""
       ]);
-    case "constant":
-      return printAssignment(
-        node.name,
-        path.call(print, "name"),
-        " =",
-        node.value,
-        path.call(print, "value"),
-        options
-      );
     case "constantstatement":
-    case "classconstant":
-    case "static": {
+    case "classconstant": {
       const printed = path.map(childPath => {
         return print(childPath);
       }, "items");
-
-      const hasValue = node.items.some(item => item.kind === "assign");
 
       let firstVariable;
 
@@ -2249,7 +2237,40 @@ function printNode(path, options, print) {
       return group(
         concat([
           node.visibility ? concat([node.visibility, " "]) : "",
-          node.kind === "static" ? "static" : "const",
+          "const",
+          firstVariable ? concat([" ", firstVariable]) : "",
+          indent(concat(printed.slice(1).map(p => concat([",", hardline, p]))))
+        ])
+      );
+    }
+    case "constant":
+      return printAssignment(
+        node.name,
+        path.call(print, "name"),
+        " =",
+        node.value,
+        path.call(print, "value"),
+        options
+      );
+    case "static": {
+      const printed = path.map(childPath => {
+        return print(childPath);
+      }, "variables");
+
+      const hasValue = node.variables.some(item => item.defaultValue);
+
+      let firstVariable;
+
+      if (printed.length === 1 && !node.variables[0].comments) {
+        [firstVariable] = printed;
+      } else if (printed.length > 0) {
+        // Indent first item
+        firstVariable = indent(printed[0]);
+      }
+
+      return group(
+        concat([
+          "static",
           firstVariable ? concat([" ", firstVariable]) : "",
           indent(
             concat(
@@ -2259,6 +2280,16 @@ function printNode(path, options, print) {
             )
           )
         ])
+      );
+    }
+    case "staticvariable": {
+      return printAssignment(
+        node.variable,
+        path.call(print, "variable"),
+        " =",
+        node.defaultValue,
+        path.call(print, "defaultValue"),
+        options
       );
     }
     case "list":
@@ -2374,8 +2405,7 @@ function printNode(path, options, print) {
       return printAssignment(
         node.left,
         path.call(print, "left"),
-        // Assignments nested inside a static declaration doesn't have the operator set, so printing manually
-        concat([" ", node.operator ? node.operator : "="]),
+        concat([" ", node.operator]),
         node.right,
         path.call(print, "right"),
         options
@@ -2438,7 +2468,8 @@ function printNode(path, options, print) {
       const shouldIndentIfInlining = [
         "assign",
         "property",
-        "constant"
+        "constant",
+        "staticvariable"
       ].includes(parent.kind);
 
       const samePrecedenceSubExpression =

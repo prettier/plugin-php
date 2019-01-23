@@ -46,4 +46,20 @@ EOD;
     const FIRST_1 = "Hello", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND = "world", THIRD_2 = "!";
     const VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_FIRST = "Hello", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_SECOND_1 = "world", VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_FIRST_THIRD = "!";
     const CONST_15 = ['key' => 'value', 'other-key' => 'other-value', 'other-other-key' => 'other-other-value'], FOO_BAR = "test", BAR_FOOR = ['value', 'other-value'];
+
+    const ARRAY_1 = ['value', 'other-value'], ARRAY_2 = ['value', 'other-value'];
+    const STRING =
+        'string' .
+        'string' .
+        'string' .
+        'string' .
+        'string' .
+        'string' .
+        'string' .
+        'string';
+    const FOOF = 'string
+string
+string', BAAR = 'string
+string
+string';
 }

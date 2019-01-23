@@ -11,14 +11,15 @@ build: off
 deploy: off
 
 cache:
-  - node_modules
-  - "%LOCALAPPDATA%/Yarn"
+  - node_modules -> appveyor.yml, package.json, yarn.lock
+  - "%LOCALAPPDATA%/Yarn -> appveyor.yml, package.json, yarn.lock"
 
 install:
   - ps: Install-Product node $env:nodejs_version
   - cmd: npm -v
   - cmd: node -v
   - cmd: npm install -g yarn
+  - cmd: yarn --version
   - cmd: yarn
 
 test_script:
