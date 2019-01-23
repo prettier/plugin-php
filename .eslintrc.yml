@@ -11,6 +11,7 @@ env:
   node: true
   jest: true
 rules:
+  eqeqeq: error
   curly: error
   import/no-extraneous-dependencies:
     - error

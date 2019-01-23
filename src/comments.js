@@ -418,7 +418,7 @@ function handleForComments(
 function handleTraitUseComments(enclosingNode, followingNode, comment) {
   if (
     enclosingNode &&
-    enclosingNode.kind == "traituse" &&
+    enclosingNode.kind === "traituse" &&
     enclosingNode.adaptations &&
     !enclosingNode.adaptations.length
   ) {
