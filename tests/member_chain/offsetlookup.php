@@ -35,3 +35,21 @@ $window->Data['key']("foo")
 $window->Data['key']['foo']("foo")
     ->then(function () { return $a; })
     ->catch(function () { return $b; });
+
+$window->foo_{'bar' . 'baz'}
+    ['key']("foo")
+    ->then(function () {
+        return $a;
+    })
+    ->catch(function () {
+        return $b;
+    });
+
+$window->{call()}
+    ['key']("foo")
+    ->then(function () {
+        return $a;
+    })
+    ->catch(function () {
+        return $b;
+    });

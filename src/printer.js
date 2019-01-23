@@ -126,8 +126,7 @@ function printPropertyLookup(path, options, print) {
 
   if (
     node.offset.kind === "variable" ||
-    (node.offset.kind === "identifier" &&
-      typeof node.offset.name === "string") ||
+    node.offset.kind === "identifier" ||
     (node.offset.kind === "encapsed" && node.offset.type === "offset")
   ) {
     needCurly = false;
@@ -435,8 +434,7 @@ function printMemberChain(path, options, print) {
     return (
       isLookupNode(lastNode) &&
       (lastNode.offset.kind === "identifier" ||
-        lastNode.offset.kind === "variable" ||
-        lastNode.offset.kind === "encapsed") &&
+        lastNode.offset.kind === "variable") &&
       hasComputed
     );
   }
@@ -2053,10 +2051,9 @@ function printNode(path, options, print) {
               firstNonMemberParent.left.kind !== "variable"))) ||
         node.kind === "offsetlookup" ||
         ((isReferenceLikeNode(node.what) || node.what.kind === "variable") &&
-          (node.offset.kind === "identifier" ||
-            node.offset.kind === "variable" ||
-            node.offset.kind === "encapsed" ||
-            node.offset.kind === "literal") &&
+          ["identifier", "variable", "literal", "encapsed"].includes(
+            node.offset.kind
+          ) &&
           (parent && !isLookupNode(parent)));
 
       return concat([
