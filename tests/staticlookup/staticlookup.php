@@ -137,3 +137,15 @@ $var = Foo::$bar['baz']();
 get_class($this->resource)::$wrap;
 
 $var = (Foo::$bar)['baz']();
+
+$var = get_class($var)::property;
+$var = get_class($var)::$property;
+$var = get_class($var)::$$property;
+$var = get_class($var)::$$$property;
+$var = get_class($var)::$$$$property;
+$var = get_class($var)::$$$$$property;
+
+$var = $bar->{$property->foo};
+// TODO https://github.com/glayzzle/php-parser/issues/254
+// $var = $bar->${$property};
+$var =  $bar->foo_{$property};
