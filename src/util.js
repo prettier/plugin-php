@@ -299,14 +299,15 @@ function docShouldHaveTrailingNewline(path) {
     return true;
   }
 
-  if (
-    (parent.kind === "assign" &&
-      parent.right === node &&
-      parentParent &&
-      parentParent.kind === "static") ||
-    parent.kind === "entry"
-  ) {
-    if (parent.kind === "entry" && parent.key === node) {
+  if (parent.kind === "staticvariable") {
+    const lastIndex = parentParent.variables.length - 1;
+    const index = parentParent.variables.indexOf(parent);
+
+    return index !== lastIndex;
+  }
+
+  if (parent.kind === "entry") {
+    if (parent.key === node) {
       return true;
     }
 

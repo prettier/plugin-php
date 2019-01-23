@@ -13,5 +13,5 @@ install:
   # TODO: Temporary solution after resolve https://github.com/salesforce/tough-cookie/issues/140
   - yarn install --ignore-engines
 script:
-  - AST_COMPARE=1 yarn test -- --runInBand
+  - AST_COMPARE=1 yarn test
   - yarn codecov
