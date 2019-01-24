@@ -2007,20 +2007,28 @@ function printNode(path, options, print) {
         ]);
       }
 
-      const printedWhat = isAnonymousClassNode
-        ? concat([
-            "class",
-            node.arguments.length > 0
-              ? printArgumentsList(path, options, print)
-              : "",
-            group(path.call(print, "what"))
-          ])
-        : concat([
-            path.call(print, "what"),
-            printArgumentsList(path, options, print)
-          ]);
+      const parts = [];
 
-      return concat(["new ", printedWhat]);
+      parts.push("new ");
+
+      if (isAnonymousClassNode) {
+        parts.push(
+          "class",
+          node.arguments.length > 0
+            ? printArgumentsList(path, options, print)
+            : "",
+          group(path.call(print, "what"))
+        );
+      } else {
+        const printed = concat([
+          path.call(print, "what"),
+          printArgumentsList(path, options, print)
+        ]);
+
+        parts.push(hasLeadingComment(node.what) ? indent(printed) : printed);
+      }
+
+      return concat(parts);
     }
     case "clone":
       return concat([
