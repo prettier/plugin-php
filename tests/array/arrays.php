@@ -400,9 +400,9 @@ $multiline = [
     'not' => 'collapse'
   ]
 ];
-$multiline = ['don\'t' => 'collapse'
+$multiline = ['do' => 'collapse'
 ];
-$multiline = array('don\'t' => 'collapse'
+$multiline = array('do' => 'collapse'
 );
 
 $mixed = [
