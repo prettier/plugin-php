@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`classes.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz {}
+
+class ClassName extends ParentClass implements InterfaceClass {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
+
+$class = new class implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+=====================================output=====================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz
+{
+}
+
+class ClassName extends ParentClass implements InterfaceClass
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    InterfaceClass
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements InterfaceClass
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    extends ParentClass
+    implements InterfaceClass
+{
+}
+
+$class = new class implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+{
+};
+
+$class = new class implements
+    MyOtherClass,
+    MyOtherClass,
+    MyOtherOtherOtherClass,
+    MyOtherOtherOtherOtherClass
+{
+};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+};
+
+================================================================================
+`;
+
+exports[`classes.php 2`] = `
+====================================options=====================================
+braceStyle: "psr-2"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz {}
+
+class ClassName extends ParentClass implements InterfaceClass {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
+
+$class = new class implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+=====================================output=====================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz
+{
+}
+
+class ClassName extends ParentClass implements InterfaceClass
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    InterfaceClass
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements InterfaceClass
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+{
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+{
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    extends ParentClass
+    implements InterfaceClass
+{
+}
+
+$class = new class implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+{
+};
+
+$class = new class implements
+    MyOtherClass,
+    MyOtherClass,
+    MyOtherOtherOtherClass,
+    MyOtherOtherOtherOtherClass
+{
+};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+{
+};
+
+================================================================================
+`;
+
+exports[`classes.php 3`] = `
+====================================options=====================================
+braceStyle: "1tbs"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz {}
+
+class ClassName extends ParentClass implements InterfaceClass {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements InterfaceClass {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
+
+class ClassName extends ParentClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2, VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 extends ParentClass implements InterfaceClass {}
+
+$class = new class implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
+
+$class = new class implements MyOtherClass, MyOtherClass, MyOtherOtherOtherClass, MyOtherOtherOtherOtherClass {};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+=====================================output=====================================
+<?php
+
+class Foo extends Bar implements Baz, Buzz {
+}
+
+class ClassName extends ParentClass implements InterfaceClass {
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    InterfaceClass {
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements InterfaceClass {
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+}
+
+class ClassName extends ParentClass implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+}
+
+class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+}
+
+class ClassName
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    implements
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+}
+
+class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+    extends ParentClass
+    implements InterfaceClass {
+}
+
+$class = new class implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {
+};
+
+$class = new class implements
+    MyOtherClass,
+    MyOtherClass,
+    MyOtherOtherOtherClass,
+    MyOtherOtherOtherOtherClass {
+};
+
+$class = new class extends MyOtherClass {};
+
+$class = new class extends
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {
+};
+
+================================================================================
+`;
+
+exports[`functions.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+function hello()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+{
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+    return $int_test;
+}
+
+$anonymous = function($name) use ($otherthing, &$reference_test){
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooooooooooooooooooong) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+=====================================output=====================================
+<?php
+
+function hello()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+{
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+) {
+    return $int_test;
+}
+
+$anonymous = function ($name) use ($otherthing, &$reference_test) {
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function (
+    $name,
+    $more,
+    $params,
+    $looooooooooooooooooooooooooooooooong
+) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+================================================================================
+`;
+
+exports[`functions.php 2`] = `
+====================================options=====================================
+braceStyle: "psr-2"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+function hello()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+{
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+    return $int_test;
+}
+
+$anonymous = function($name) use ($otherthing, &$reference_test){
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooooooooooooooooooong) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+=====================================output=====================================
+<?php
+
+function hello()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+{
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+) {
+    return $int_test;
+}
+
+$anonymous = function ($name) use ($otherthing, &$reference_test) {
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function (
+    $name,
+    $more,
+    $params,
+    $looooooooooooooooooooooooooooooooong
+) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+================================================================================
+`;
+
+exports[`functions.php 3`] = `
+====================================options=====================================
+braceStyle: "1tbs"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+function hello()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+{
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+{
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+    return $int_test;
+}
+
+$anonymous = function($name) use ($otherthing, &$reference_test){
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooooooooooooooooooong) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+=====================================output=====================================
+<?php
+
+function hello() {
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
+    return "hello";
+}
+
+function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string {
+    return "hello";
+}
+
+function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+) {
+    return $soooooooooooo_looooooooonnnng;
+}
+
+function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+) {
+    return $int_test;
+}
+
+$anonymous = function ($name) use ($otherthing, &$reference_test) {
+    printf("Hello %s", $name);
+    $reference_test += 1;
+};
+$anonymousLongVariableName = function (
+    $name,
+    $more,
+    $params,
+    $looooooooooooooooooooooooooooooooong
+) use ($all, $kinds, $of, $stuff) {
+    printf("Hello %s", $name);
+};
+
+================================================================================
+`;
+
+exports[`methods.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo
+{
+    function hello()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+    {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+        return $int_test;
+    }
+}
+
+=====================================output=====================================
+<?php
+
+class Foo
+{
+    function hello()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+    {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+        $soooooooooooo_looooooooonnnng,
+        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+    ) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(
+        array $array_test,
+        callable $callable_test,
+        bool $bool_test,
+        float $float_test,
+        iterable $iterable_test,
+        int $int_test,
+        string $string_test = ''
+    ) {
+        return $int_test;
+    }
+}
+
+================================================================================
+`;
+
+exports[`methods.php 2`] = `
+====================================options=====================================
+braceStyle: "psr-2"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo
+{
+    function hello()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+    {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+        return $int_test;
+    }
+}
+
+=====================================output=====================================
+<?php
+
+class Foo
+{
+    function hello()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+    {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+        $soooooooooooo_looooooooonnnng,
+        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+    ) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(
+        array $array_test,
+        callable $callable_test,
+        bool $bool_test,
+        float $float_test,
+        iterable $iterable_test,
+        int $int_test,
+        string $string_test = ''
+    ) {
+        return $int_test;
+    }
+}
+
+================================================================================
+`;
+
+exports[`methods.php 3`] = `
+====================================options=====================================
+braceStyle: "1tbs"
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class Foo
+{
+    function hello()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+    {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+    {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg($soooooooooooo_looooooooonnnng, $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(array $array_test, callable $callable_test, bool $bool_test, float $float_test, iterable $iterable_test, int $int_test, string $string_test = '') {
+        return $int_test;
+    }
+}
+
+=====================================output=====================================
+<?php
+
+class Foo {
+    function hello() {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
+        return "hello";
+    }
+
+    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string {
+        return "hello";
+    }
+
+    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+        $soooooooooooo_looooooooonnnng,
+        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+    ) {
+        return $soooooooooooo_looooooooonnnng;
+    }
+
+    function type_hinting_test(
+        array $array_test,
+        callable $callable_test,
+        bool $bool_test,
+        float $float_test,
+        iterable $iterable_test,
+        int $int_test,
+        string $string_test = ''
+    ) {
+        return $int_test;
+    }
+}
+
+================================================================================
+`;

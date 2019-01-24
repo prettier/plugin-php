@@ -84,6 +84,16 @@ function shouldPrintComma(options, level) {
   }
 }
 
+function shouldPrintHardlineForOpenBrace(options) {
+  switch (options.braceStyle) {
+    case "1tbs":
+      return false;
+    case "psr-2":
+    default:
+      return true;
+  }
+}
+
 function genericPrint(path, options, print) {
   const node = path.getValue();
 
@@ -1223,7 +1233,14 @@ function printClass(path, options, print) {
   }
 
   const printedDeclaration = group(
-    concat([group(concat(declaration)), isAnonymousClass ? line : hardline])
+    concat([
+      group(concat(declaration)),
+      shouldPrintHardlineForOpenBrace(options)
+        ? isAnonymousClass
+          ? line
+          : hardline
+        : " "
+    ])
   );
 
   const hasEmptyClassBody =
@@ -1320,10 +1337,24 @@ function printFunction(path, options, print) {
   }
 
   return conditionalGroup([
-    concat([printedDeclaration, node.body ? hardline : "", printedBody]),
     concat([
       printedDeclaration,
-      node.body ? (node.arguments.length === 0 ? hardline : " ") : "",
+      node.body
+        ? shouldPrintHardlineForOpenBrace(options)
+          ? hardline
+          : " "
+        : "",
+      printedBody
+    ]),
+    concat([
+      printedDeclaration,
+      node.body
+        ? shouldPrintHardlineForOpenBrace(options)
+          ? node.arguments.length === 0
+            ? hardline
+            : " "
+          : " "
+        : "",
       printedBody
     ])
   ]);

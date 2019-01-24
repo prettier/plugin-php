@@ -25,12 +25,17 @@ module.exports = {
         description: "Trailing commas wherever possible."
       }
     ]
+  },
+  braceStyle: {
+    since: "0.10.0",
+    category: CATEGORY_PHP,
+    type: "choice",
+    default: "psr-2",
+    description:
+      "Print one space or newline for code blocks (classes and functions).",
+    choices: [
+      { value: "psr-2", description: "Use PSR-2 brace style." },
+      { value: "1tbs", description: "Use 1tbs brace style." }
+    ]
   }
-  // see https://github.com/prettier/plugin-php/issues/107
-  // openingBraceNewLine: {
-  //   type: "boolean",
-  //   category: "Global",
-  //   default: true,
-  //   description: "Move open brace for code blocks onto new line."
-  // }
 };
