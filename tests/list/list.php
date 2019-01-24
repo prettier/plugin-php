@@ -115,3 +115,32 @@ foreach ($array as list(&$a, $b)) {
 }
 foreach ($array as [&$a, $b]) {
 }
+
+list(0 => $var) = $arr;
+list(0 => $var,) = $arr;
+list(, 0 => $var) = $arr;
+list(0 => $var
+    ) = $arr;
+list(
+    0 => $var) = $arr;
+list(
+    ,0 => $var) = $arr;
+list(
+    ,0 => $var,) = $arr;
+list(
+    ,0 => $var,,) = $arr;
+list(
+    0 => $var, 1 => $other_var) = $arr;
+list(
+    ,0 => $var, 1 => $other_var) = $arr;
+list(
+    ,0 => $var, 1 => $other_var,) = $arr;
+list(
+    ,0 => $var, 1 => $other_var,,) = $arr;
+list(0
+    => $var) = $arr;
+list(
+    0
+    =>
+    $var
+) = $arr;

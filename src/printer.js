@@ -22,7 +22,8 @@ const {
   isNextLineEmpty,
   isNextLineEmptyAfterIndex,
   getNextNonSpaceNonCommentCharacterIndex,
-  hasNewline
+  hasNewline,
+  hasNewlineInRange
 } = require("prettier").util;
 const comments = require("./comments");
 const pathNeedsParens = require("./needs-parens");
@@ -2329,8 +2330,18 @@ function printNode(path, options, print) {
       // we already check for an empty array just above so we are safe
       const needsForcedTrailingComma = lastElem === null;
 
-      const isAssociative = !!(node.items[0] && node.items[0].key);
-      const shouldBreak = isAssociative && node.loc.source.includes("\n");
+      const [firstProperty] = node.items
+        .filter(node => node !== null)
+        .sort((a, b) => options.locStart(a) - options.locStart(b));
+      const isAssociative = !!(firstProperty && firstProperty.key);
+      const shouldBreak =
+        isAssociative &&
+        firstProperty &&
+        hasNewlineInRange(
+          options.originalText,
+          options.locStart(node),
+          options.locStart(firstProperty)
+        );
 
       return group(
         concat([
