@@ -1651,7 +1651,29 @@ function printNode(path, options, print) {
                       indent(
                         concat([
                           hardline,
-                          printLines(path, options, print, "adaptations")
+                          concat(
+                            path.map(childPath => {
+                              const parts = [];
+
+                              parts.push(print(childPath));
+
+                              if (!isLastStatement(childPath)) {
+                                parts.push(hardline);
+
+                                if (
+                                  isNextLineEmpty(
+                                    options.originalText,
+                                    childPath.getValue(),
+                                    options
+                                  )
+                                ) {
+                                  parts.push(hardline);
+                                }
+                              }
+
+                              return concat(parts);
+                            }, "adaptations")
+                          )
                         ])
                       ),
                       hardline
