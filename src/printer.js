@@ -1251,7 +1251,29 @@ function printClass(path, options, print) {
     indent(
       concat([
         hasEmptyClassBody ? "" : hardline,
-        printLines(path, options, print, "body")
+        concat(
+          path.map(childPath => {
+            const parts = [];
+
+            parts.push(print(childPath));
+
+            if (!isLastStatement(childPath)) {
+              parts.push(hardline);
+
+              if (
+                isNextLineEmpty(
+                  options.originalText,
+                  childPath.getValue(),
+                  options
+                )
+              ) {
+                parts.push(hardline);
+              }
+            }
+
+            return concat(parts);
+          }, "body")
+        )
       ])
     ),
     comments.printDanglingComments(path, options, true),
