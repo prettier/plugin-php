@@ -54,6 +54,7 @@ const printers = {
     massageAstNode: clean,
     getCommentChildNodes: comments.getCommentChildNodes,
     canAttachComment: comments.canAttachComment,
+    willPrintOwnComments: comments.willPrintOwnComments,
     isBlockComment: comments.isBlockComment,
     handleComments: {
       ownLine: comments.handleOwnLineComment,

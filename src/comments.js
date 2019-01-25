@@ -72,12 +72,6 @@ function handleOwnLineComment(comment, text, options) {
     handleFunctionParameter(text, enclosingNode, comment, options) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
-    handleInlineComments(
-      enclosingNode,
-      precedingNode,
-      followingNode,
-      comment
-    ) ||
     handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
@@ -141,12 +135,6 @@ function handleEndOfLineComment(comment, text, options) {
     handleCallComments(precedingNode, enclosingNode, comment) ||
     handlePropertyComments(enclosingNode, comment) ||
     handleVariableComments(enclosingNode, followingNode, comment) ||
-    handleInlineComments(
-      enclosingNode,
-      precedingNode,
-      followingNode,
-      comment
-    ) ||
     handleNamespaceComments(
       enclosingNode,
       precedingNode,
@@ -190,12 +178,6 @@ function handleRemainingComment(comment, text, options) {
     handleGoto(enclosingNode, comment) ||
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment) ||
-    handleInlineComments(
-      enclosingNode,
-      precedingNode,
-      followingNode,
-      comment
-    ) ||
     handleNamespaceComments(
       enclosingNode,
       precedingNode,
@@ -611,34 +593,6 @@ function handleCommentInEmptyParens(text, enclosingNode, comment, options) {
   return false;
 }
 
-function handleInlineComments(
-  enclosingNode,
-  precedingNode,
-  followingNode,
-  comment
-) {
-  if (followingNode && followingNode.kind === "inline") {
-    if (!followingNode.leadingComments) {
-      followingNode.leadingComments = [];
-    }
-
-    if (!followingNode.leadingComments.includes(comment)) {
-      followingNode.leadingComments.push(comment);
-    }
-
-    return true;
-  } else if (
-    !enclosingNode &&
-    !followingNode &&
-    precedingNode &&
-    precedingNode.kind === "inline"
-  ) {
-    addDanglingComment(precedingNode, comment);
-    return true;
-  }
-  return false;
-}
-
 function handleEntryComments(enclosingNode, comment) {
   if (enclosingNode && enclosingNode.kind === "entry") {
     addLeadingComment(enclosingNode, comment);
@@ -910,6 +864,12 @@ function canAttachComment(node) {
   );
 }
 
+function willPrintOwnComments(path) {
+  const node = path.getValue();
+
+  return node && node.kind === "inline";
+}
+
 // Based on https://github.com/prettier/prettier/blob/master/src/main/comments.js
 // TODO remove after https://github.com/prettier/prettier/issues/5087
 function prependCursorPlaceholder(path, options, printed) {
@@ -1031,6 +991,7 @@ module.exports = {
   handleRemainingComment,
   getCommentChildNodes,
   canAttachComment,
+  willPrintOwnComments,
   isBlockComment,
   printDanglingComments,
   hasLeadingComment,
