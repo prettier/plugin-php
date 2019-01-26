@@ -1095,6 +1095,28 @@ function printLines(path, options, print, childrenAttribute = "children") {
   return concat(wrappedParts);
 }
 
+function printStatements(path, options, print, childrenAttribute) {
+  return concat(
+    path.map(childPath => {
+      const parts = [];
+
+      parts.push(print(childPath));
+
+      if (!isLastStatement(childPath)) {
+        parts.push(hardline);
+
+        if (
+          isNextLineEmpty(options.originalText, childPath.getValue(), options)
+        ) {
+          parts.push(hardline);
+        }
+      }
+
+      return concat(parts);
+    }, childrenAttribute)
+  );
+}
+
 function printClassPart(
   path,
   options,
@@ -1251,29 +1273,7 @@ function printClass(path, options, print) {
     indent(
       concat([
         hasEmptyClassBody ? "" : hardline,
-        concat(
-          path.map(childPath => {
-            const parts = [];
-
-            parts.push(print(childPath));
-
-            if (!isLastStatement(childPath)) {
-              parts.push(hardline);
-
-              if (
-                isNextLineEmpty(
-                  options.originalText,
-                  childPath.getValue(),
-                  options
-                )
-              ) {
-                parts.push(hardline);
-              }
-            }
-
-            return concat(parts);
-          }, "body")
-        )
+        printStatements(path, options, print, "body")
       ])
     ),
     comments.printDanglingComments(path, options, true),
@@ -1673,29 +1673,7 @@ function printNode(path, options, print) {
                       indent(
                         concat([
                           hardline,
-                          concat(
-                            path.map(childPath => {
-                              const parts = [];
-
-                              parts.push(print(childPath));
-
-                              if (!isLastStatement(childPath)) {
-                                parts.push(hardline);
-
-                                if (
-                                  isNextLineEmpty(
-                                    options.originalText,
-                                    childPath.getValue(),
-                                    options
-                                  )
-                                ) {
-                                  parts.push(hardline);
-                                }
-                              }
-
-                              return concat(parts);
-                            }, "adaptations")
-                          )
+                          printStatements(path, options, print, "adaptations")
                         ])
                       ),
                       hardline
