@@ -100,6 +100,14 @@ $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongNam
 $component = $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component = Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
+$blablah =
+    "aldkfkladfskladklsfkladklfkaldfadfkdaf" .
+    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" .
+    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf";
+
+$somethingThatsAReallyLongPropName =
+    $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST;
+
 =====================================output=====================================
 <?php
 $var = 1;
@@ -273,6 +281,14 @@ $component =
 $component =
     Foo
         ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+
+$blablah =
+    "aldkfkladfskladklsfkladklfkaldfadfkdaf" .
+    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" .
+    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf";
+
+$somethingThatsAReallyLongPropName =
+    $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST;
 
 ================================================================================
 `;
