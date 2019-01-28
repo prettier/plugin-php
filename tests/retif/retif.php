@@ -197,3 +197,9 @@ string';
 $var = $var ?: 'string
 string
 string';
+
+$var = [
+    'foo' => is_my() || !current_user_can("read") ? call_1() : call_2(),
+    'bar' => is_my_very_long() || !current_user_can("read") ? call_1() : call_2(),
+    'bar' => is_my_very_very_very_long() || !current_user_can("read") ? call_1() : call_2()
+];
