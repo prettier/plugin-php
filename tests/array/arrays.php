@@ -505,3 +505,24 @@ other' => 'string
 string
 string'
 ];
+
+$wp_admin_bar->add_menu(array(
+    'id' => 'menu-toggle',
+    'title' =>
+        '<span class="ab-icon"></span><span class="screen-reader-text">' .
+        __('Menu') .
+        '</span>',
+    'href' => '#'
+));
+
+$k = [
+    "blablah" => "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
+    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
+    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf"
+];
+
+$o = [
+    "somethingThatsAReallyLongPropName" =>
+        $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
+];
+

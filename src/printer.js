@@ -2539,7 +2539,8 @@ function printNode(path, options, print) {
         "assign",
         "property",
         "constant",
-        "staticvariable"
+        "staticvariable",
+        "entry"
       ].includes(parent.kind);
 
       const samePrecedenceSubExpression =
