@@ -670,6 +670,39 @@ function getAncestorNode(path, typeOrTypes) {
   return counter === -1 ? null : path.getParentNode(counter);
 }
 
+const magicMethods = [
+  "__construct",
+  "__destruct",
+  "__call",
+  "__callStatic",
+  "__get",
+  "__set",
+  "__isset",
+  "__unset",
+  "__sleep",
+  "__wakeup",
+  "__toString",
+  "__invoke",
+  "__set_state",
+  "__clone",
+  "__debugInfo"
+];
+const MagicMethodsMap = magicMethods.reduce((map, obj) => {
+  map[obj.toLowerCase()] = obj;
+
+  return map;
+}, {});
+
+function normalizeMagicMethodName(name) {
+  const loweredName = name.toLowerCase();
+
+  if (MagicMethodsMap[loweredName]) {
+    return MagicMethodsMap[loweredName];
+  }
+
+  return name;
+}
+
 module.exports = {
   printNumber,
   getPrecedence,
@@ -705,5 +738,6 @@ module.exports = {
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
   getAncestorNode,
-  getNextNode
+  getNextNode,
+  normalizeMagicMethodName
 };
