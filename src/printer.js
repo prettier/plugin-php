@@ -1350,19 +1350,25 @@ function printFunction(path, options, print) {
   }
 
   const isClosure = node.kind === "closure";
-  const printedBody = node.body
-    ? concat([
-        "{",
-        indent(
-          concat([hasEmptyBody(path) ? "" : hardline, path.call(print, "body")])
-        ),
-        isClosure && hasEmptyBody(path) ? "" : hardline,
-        "}"
-      ])
-    : "";
+  const printedBody = concat([
+    "{",
+    indent(
+      concat([hasEmptyBody(path) ? "" : hardline, path.call(print, "body")])
+    ),
+    isClosure && hasEmptyBody(path) ? "" : hardline,
+    "}"
+  ]);
 
   if (isClosure) {
     return concat([printedDeclaration, " ", printedBody]);
+  }
+
+  if (node.arguments.length === 0) {
+    return concat([
+      printedDeclaration,
+      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+      printedBody
+    ]);
   }
 
   return conditionalGroup([
@@ -1371,15 +1377,7 @@ function printFunction(path, options, print) {
       shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
       printedBody
     ]),
-    concat([
-      printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options)
-        ? node.arguments.length === 0
-          ? hardline
-          : " "
-        : " ",
-      printedBody
-    ])
+    concat([printedDeclaration, " ", printedBody])
   ]);
 }
 
