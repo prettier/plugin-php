@@ -1039,13 +1039,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
   const wrappedParts = wrapPartsIntoGroups(parts, groupIndexes);
 
   if (node.kind === "program" && !node.extra.parseAsEval) {
-    if (!wrappedParts.length && node.comments) {
-      wrappedParts.push(
-        hardline,
-        comments.printComments(node.comments, options)
-      );
-    }
-
     const parts = [];
 
     const [firstNode] = node.children;
@@ -1054,12 +1047,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
     if (hasStartTag) {
       const between = options.originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
       const afterOpenTag = concat([
-        between && between[2].includes("\n") && wrappedParts.length > 0
+        between && between[2].includes("\n")
           ? concat([
               hardline,
               between[2].split("\n").length > 2 ? hardline : ""
             ])
-          : " "
+          : " ",
+        node.comments ? comments.printComments(node.comments, options) : ""
       ]);
 
       parts.push(concat(["<?php", afterOpenTag]));

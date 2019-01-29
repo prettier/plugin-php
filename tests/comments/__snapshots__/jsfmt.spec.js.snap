@@ -426,7 +426,6 @@ printWidth: 80
 =====================================output=====================================
 <?php
 
-
 // The first line of a comment
 // The second line of a comment
 
@@ -5945,6 +5944,37 @@ printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
 <?php
+/**
+ * Product Loop Start
+ *
+ * @author  WooThemes
+ * @package WooCommerce/Templates
+ * @version 2.0.0
+ */
+?>
+
+=====================================output=====================================
+<?php
+/**
+ * Product Loop Start
+ *
+ * @author  WooThemes
+ * @package WooCommerce/Templates
+ * @version 2.0.0
+ */
+?>
+
+================================================================================
+`;
+
+exports[`no_code-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
 /**
  * Product Loop Start
  *
