@@ -464,8 +464,7 @@ using nowdoc syntax.
 EOF
     ,
     $c = 1
-)
-{
+) {
     echo $b;
 }
 
@@ -478,8 +477,7 @@ using nowdoc syntax.
 EOF
     ,
     $c = 1
-)
-{
+) {
     echo $b;
 }
 
@@ -490,8 +488,7 @@ Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOF
-)
-{
+) {
     echo $b;
 }
 

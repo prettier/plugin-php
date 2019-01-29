@@ -203,8 +203,7 @@ function bar1(
 
         "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     )
-)
-{
+) {
     return $arg;
 }
 
@@ -247,8 +246,7 @@ function foo(
     $arg = 'string
 string
 string'
-)
-{
+) {
 }
 
 function foo(
@@ -258,8 +256,7 @@ string',
     $arg = 'string
 string
 string'
-)
-{
+) {
 }
 
 function foo(
@@ -268,8 +265,7 @@ function foo(
 string
 string',
     $c
-)
-{
+) {
 }
 
 ================================================================================
