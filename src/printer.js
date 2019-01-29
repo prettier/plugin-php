@@ -1344,6 +1344,11 @@ function printFunction(path, options, print) {
   }
 
   const printedDeclaration = concat(declaration);
+
+  if (!node.body) {
+    return printedDeclaration;
+  }
+
   const isClosure = node.kind === "closure";
   const printedBody = node.body
     ? concat([
@@ -1363,22 +1368,16 @@ function printFunction(path, options, print) {
   return conditionalGroup([
     concat([
       printedDeclaration,
-      node.body
-        ? shouldPrintHardlineForOpenBrace(options)
-          ? hardline
-          : " "
-        : "",
+      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
       printedBody
     ]),
     concat([
       printedDeclaration,
-      node.body
-        ? shouldPrintHardlineForOpenBrace(options)
-          ? node.arguments.length === 0
-            ? hardline
-            : " "
+      shouldPrintHardlineForOpenBrace(options)
+        ? node.arguments.length === 0
+          ? hardline
           : " "
-        : "",
+        : " ",
       printedBody
     ])
   ]);
