@@ -539,22 +539,6 @@ function getAlignment(text) {
   return lastLine.length - lastLine.trimLeft().length + 1;
 }
 
-function getFirstNestedChildNode(node) {
-  if (node.children && node.children.length > 0) {
-    return getFirstNestedChildNode(node.children[0]);
-  }
-
-  return node;
-}
-
-function getLastNestedChildNode(node) {
-  if (node.children && node.children.length > 0) {
-    return getFirstNestedChildNode(node.children[node.children.length - 1]);
-  }
-
-  return node;
-}
-
 function getNextNode(path, node) {
   const parent = path.getParentNode();
   const children = getNodeListProperty(parent);
@@ -727,8 +711,6 @@ module.exports = {
   shouldPrintHardLineAfterStartInControlStructure,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
-  getFirstNestedChildNode,
-  getLastNestedChildNode,
   isProgramLikeNode,
   isReferenceLikeNode,
   getNodeKindIncludingLogical,
