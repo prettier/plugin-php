@@ -57,7 +57,8 @@ const {
   isDocNode,
   getAncestorNode,
   isReferenceLikeNode,
-  getNextNode
+  getNextNode,
+  normalizeMagicMethodName
 } = require("./util");
 
 function shouldPrintComma(options, level) {
@@ -2780,6 +2781,12 @@ function printNode(path, options, print) {
     case "typereference":
       return node.name;
     case "identifier": {
+      const parent = path.getParentNode();
+
+      if (parent.kind === "method") {
+        node.name = normalizeMagicMethodName(node.name);
+      }
+
       return path.call(print, "name");
     }
     case "error":
