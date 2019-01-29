@@ -46,8 +46,6 @@ const {
   shouldPrintHardLineAfterStartInControlStructure,
   shouldPrintHardLineBeforeEndInControlStructure,
   getAlignment,
-  getFirstNestedChildNode,
-  getLastNestedChildNode,
   isProgramLikeNode,
   getNodeKindIncludingLogical,
   useSingleQuote,
@@ -1048,49 +1046,50 @@ function printLines(path, options, print, childrenAttribute = "children") {
       );
     }
 
-    const originalText = node.loc.source;
-    const firstNestedChildNode = getFirstNestedChildNode(node);
-    const lastNestedChildNode = getLastNestedChildNode(node);
-    const hasStartTag =
-      firstNestedChildNode && firstNestedChildNode.kind !== "inline";
-    const hasEndTag =
-      lastNestedChildNode &&
-      lastNestedChildNode.kind !== "inline" &&
-      originalText.trim().endsWith("?>");
+    const parts = [];
 
-    let afterOpenTag = " ";
-    let beforeCloseTag = " ";
+    const [firstNode] = node.children;
+    const hasStartTag = !firstNode || firstNode.kind !== "inline";
 
     if (hasStartTag) {
-      const between = originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
+      const between = options.originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
+      const afterOpenTag = concat([
+        between && between[2].includes("\n") && wrappedParts.length > 0
+          ? concat([
+              hardline,
+              between[2].split("\n").length > 2 ? hardline : ""
+            ])
+          : " "
+      ]);
 
-      if (between && between[2]) {
-        afterOpenTag =
-          between[2].includes("\n") && wrappedParts.length > 0
-            ? concat([
-                hardline,
-                between[2].split("\n").length > 2 ? hardline : ""
-              ])
-            : " ";
-      }
+      parts.push(concat(["<?php", afterOpenTag]));
     }
+
+    parts.push(concat(wrappedParts));
+
+    const hasEndTag = options.originalText.trim().endsWith("?>");
 
     if (hasEndTag) {
-      const between = originalText.trim().match(/\S(\s*)?\?>$/);
+      const lastNode = getLast(node.children);
+      const beforeCloseTag = lastNode
+        ? concat([
+            hasNewlineInRange(
+              options.originalText,
+              options.locEnd(lastNode),
+              options.locEnd(node)
+            )
+              ? hardline
+              : " ",
+            isNextLineEmpty(options.originalText, lastNode, options)
+              ? hardline
+              : ""
+          ])
+        : "";
 
-      beforeCloseTag =
-        between && between[1] && between[1].includes("\n")
-          ? hardline
-          : wrappedParts.length > 0
-          ? " "
-          : "";
+      parts.push(lineSuffix(concat([beforeCloseTag, "?>"])));
     }
 
-    return concat([
-      hasStartTag ? concat(["<?php", afterOpenTag]) : "",
-      concat(wrappedParts),
-      hasEndTag ? lineSuffix(concat([beforeCloseTag, "?>"])) : ""
-    ]);
+    return concat(parts);
   }
 
   return concat(wrappedParts);
