@@ -1371,6 +1371,12 @@ function printFunction(path, options, print) {
     ]);
   }
 
+  const willBreakDeclaration = declaration.some(willBreak);
+
+  if (willBreakDeclaration) {
+    return concat([printedDeclaration, " ", printedBody]);
+  }
+
   return conditionalGroup([
     concat([
       printedDeclaration,

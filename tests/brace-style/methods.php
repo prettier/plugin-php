@@ -56,4 +56,42 @@ class Foo
     }
 
     static function staticmethod() {}
+
+    public static function ellipsizeMiddle(
+        $string,
+        $max_length,
+        // @codingStandardsIgnoreLine
+        $ellipses = ' … ', // the spaces are non-breaking spaces
+        &$flag = null
+    ) {
+        $string = trim($string);
+    }
+
+    public static function hello_2() {}
+
+    public static function hello_3($var = 1) {}
+
+    public static function hello_4($var = 1, $other_var = 2, $other_other_other_var = 3) {}
+
+    public static function hello_5($var = 1, $other_var = 2, $other_other_other_var = 3): ?string {}
+
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
+
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName($var = 1) {}
+
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName($var = 1, $other_var = 2, $other_other_other_var = 3) {}
+
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName($var = 1, $other_var = 2, $other_other_other_var = 3) : ?string {}
+
+    public static function newlines(
+        $var = 1,
+
+        $other_var = 2
+    ) {}
+
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+        $var = 1,
+
+        $other_var = 2
+    ) {}
 }

@@ -3372,8 +3372,7 @@ function foo(
     // Comment
     string $b,
     bool $c // Comment
-)
-{
+) {
 }
 
 function foo()
