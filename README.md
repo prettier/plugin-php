@@ -190,6 +190,12 @@ command PrettierPhp call PrettierPhpCursor()
 autocmd BufwritePre *.php PrettierPhp
 ```
 
+
+## Integration for other tools
+
+### PHP-CS-Fixer
+See `docs/recipes/php-cs-fixer` for integration help, code can also be found in https://gist.github.com/Billz95/9d5fad3af728b88540fa831b73261733
+
 ## Contributing
 
 If you're interested in contributing to the development of Prettier for PHP, you can follow the [CONTRIBUTING guide from Prettier](https://github.com/prettier/prettier/blob/master/CONTRIBUTING.md), as it all applies to this repository too.
