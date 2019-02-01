@@ -12,7 +12,7 @@ final class PrettierPHPFixer implements FixerInterface {
      * {@inheritdoc}
      */
     public function getPriority() {
-        // should be absolute first
+        // Allow prettier to pre-process the code before php-cs-fixer
         return 999;
     }
 
@@ -62,7 +62,7 @@ final class PrettierPHPFixer implements FixerInterface {
      */
     private function applyFix(SplFileInfo $file, Tokens $tokens) {
         $tmpFile = $this->getTmpFile($file);
-        exec("yarn exec -- prettier --write --brace-style=1tbs $tmpFile");
+        exec("yarn exec -- prettier --write $tmpFile");
 
         $content = file_get_contents($tmpFile);
         $tokens->setCode($content);
@@ -79,7 +79,7 @@ final class PrettierPHPFixer implements FixerInterface {
      */
     private function getTmpFile(SplFileInfo $file): string {
         $fileSys = new Filesystem();
-        $tmpFolderPath = __DIR__.'/tmp';
+        $tmpFolderPath = __DIR__.DIRECTORY_SEPARATOR.'tmp';
         $fileSys->mkdir($tmpFolderPath);
 
         $tmpFileName = str_replace(
@@ -87,7 +87,7 @@ final class PrettierPHPFixer implements FixerInterface {
             '_',
             $file->getRealPath()
         );
-        $tmpFilePath = $tmpFolderPath.'/__'.$tmpFileName;
+        $tmpFilePath = $tmpFolderPath.DIRECTORY_SEPARATOR.'__'.$tmpFileName;
         $fileSys->copy($file->getRealPath(), $tmpFilePath, true);
         return $tmpFilePath;
     }

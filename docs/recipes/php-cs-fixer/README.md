@@ -14,15 +14,15 @@
   can decrease the priority value of this fixer by decreasing the value returned
   by `getPriority` function to something like `-999`
 
-### Prettier's native configuration
+### Configure Prettier's setting
 
    If you would like to add configuration settings for `prettier` to this Fixer,
    you can modify the `exec` line in `applyFix` function.
 
    For example,
    ```diff
-     - exec("yarn exec -- prettier --write --brace-style=1tbs $tmpFile");
-     + exec("yarn exec -- prettier --write --brace-style=psr-2 $tmpFile");
+     - exec("yarn exec -- prettier --write $tmpFile");
+     + exec("yarn exec -- prettier --write --brace-style=1tbs $tmpFile");
    ```
    will allow you to change the `braceSytle` for this fixer
 
