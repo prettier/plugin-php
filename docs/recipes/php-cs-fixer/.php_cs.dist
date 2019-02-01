@@ -1,0 +1,11 @@
+<?php
+
+require_once __DIR__.'Relative/Path/To/PrettierPHPFixer/File';
+
+return PhpCsFixer\Config::create()
+    ->registerCustomFixers([
+        (new PrettierPHPFixer()),
+    ])
+    ->setRules([
+        'Prettier/php' => true,
+    ]);
