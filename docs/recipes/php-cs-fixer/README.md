@@ -24,7 +24,7 @@
      - exec("yarn exec -- prettier --write $tmpFile");
      + exec("yarn exec -- prettier --write --brace-style=1tbs $tmpFile");
    ```
-   will allow you to change the `braceSytle` for this fixer
+   will allow you to change the `braceStyle` for this fixer
 
 ## Possible Improvement
   - the configuration can be modified from `php-cs-fixer` configuration
