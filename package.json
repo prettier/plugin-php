@@ -23,14 +23,21 @@
     "jest": "24.0.0",
     "jest-runner-eslint": "0.7.3",
     "jest-snapshot-serializer-raw": "^1.1.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "rollup": "^1.1.2",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-inject": "^2.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.1.0"
   },
   "peerDependencies": {
     "prettier": "^1.15.0"
   },
   "scripts": {
     "test": "jest",
-    "prettier": "prettier --plugin=. --parser=php"
+    "prettier": "prettier --plugin=. --parser=php",
+    "build-standalone": "rollup -c build/rollup.config.js"
   },
   "jest": {
     "projects": [
