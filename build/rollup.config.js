@@ -15,7 +15,7 @@ export default {
   output: {
     file: "standalone.js",
     format: "umd",
-    name: "prettierPluginPhp",
+    name: "prettierPlugins.php",
     exports: "named",
     globals: {
       prettier: "prettier"
