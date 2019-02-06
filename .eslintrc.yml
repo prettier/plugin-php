@@ -41,6 +41,6 @@ overrides:
       strict: off
     globals:
       run_spec: true
-  - files: "build/rollup.config.js"
+  - files: "build/*.js"
     parserOptions:
       sourceType: module

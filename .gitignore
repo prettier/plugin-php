@@ -9,3 +9,5 @@ __pycache__/
 *.pyc
 *.swp
 /standalone.js
+/standalone.esm.js
+/standalone.cjs.js
