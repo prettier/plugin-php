@@ -16,12 +16,9 @@ const plugin = global.STANDALONE
   : ".";
 
 global.run_spec = (dirname, parsers, options) => {
-  options = Object.assign(
-    {
-      plugins: [plugin]
-    },
-    options
-  );
+  options = Object.assign({}, options, {
+    plugins: [plugin, ...((options && options.plugins) || [])]
+  });
 
   // istanbul ignore next
   if (!parsers || !parsers.length) {
