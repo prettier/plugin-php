@@ -5,6 +5,8 @@ import commonjs from "rollup-plugin-commonjs";
 import alias from "rollup-plugin-alias";
 import inject from "rollup-plugin-inject";
 import replace from "rollup-plugin-replace";
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
 
 const PROJECT_DIR = resolve(__dirname, "..");
 const SRC_DIR = resolve(PROJECT_DIR, "src");
@@ -33,6 +35,21 @@ export default {
     }),
     replace({
       "process.arch": JSON.stringify("x32")
-    })
+    }),
+    babel({
+      babelrc: false,
+      plugins: [],
+      compact: false,
+      presets: [
+        [
+          require.resolve("@babel/preset-env"),
+          {
+            targets: { browsers: [">0.25%", "not ie 11", "not op_mini all"] },
+            modules: false
+          }
+        ]
+      ]
+    }),
+    terser()
   ]
 };
