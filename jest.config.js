@@ -23,7 +23,7 @@ module.exports = {
     {
       displayName: "test-standalone",
       setupFiles: ["<rootDir>/tests_config/run_spec.js"],
-      testRegex: "(?<!markdown/)jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
+      testRegex: "jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
       snapshotSerializers: ["jest-snapshot-serializer-raw"],
       testEnvironment: "jsdom",
       globals: {
