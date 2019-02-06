@@ -93,6 +93,7 @@ npm install --global prettier @prettier/plugin-php
 
 ## Use
 
+### With Node.js
 If you installed prettier as a local dependency, you can add prettier as a script in your `package.json`,
 
 ```json
@@ -115,6 +116,40 @@ If you installed globally, run
 
 ```bash
 prettier path/to/file.php --write
+```
+
+### In the Browser
+This package exposes a `standalone.js` that can be used alongside Prettier's own `standalone.js` to make the PHP plugin work in browsers without a compile step.
+
+First, grab both standalone scripts from an npm CDN like [unpkg](https://unpkg.com/):
+
+```html
+<script src="https://unpkg.com/prettier/standalone.js"></script>
+<script src="https://unpkg.com/@prettier/plugin-php/standalone.js"></script>
+```
+
+Then use Prettier with PHP, just like this:
+
+```js
+prettier.format(YOUR_CODE, {
+  plugins: [prettierPlugins.php],
+  parser: "php"
+});
+```
+
+See this code in action [in this basic demo](https://jsbin.com/butoruw/edit?html,output).
+
+### With Bundlers
+Bundlers like webpack, Rollup or browserify automatically recognize how to handle the PHP plugin. Remember that even when using a bundler, you still need to use the standalone build of Prettier:
+
+```js
+import prettier from "prettier/standalone";
+import phpPlugin from "@prettier/plugin-php";
+
+prettier.format(YOUR_CODE, {
+  plugins: [phpPlugin],
+  parser: "php"
+});
 ```
 
 ## Configuration
