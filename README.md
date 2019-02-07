@@ -132,7 +132,7 @@ Then use Prettier with PHP, just like this:
 
 ```js
 prettier.format(YOUR_CODE, {
-  plugins: [prettierPlugins.php],
+  plugins: prettierPlugins,
   parser: "php"
 });
 ```
