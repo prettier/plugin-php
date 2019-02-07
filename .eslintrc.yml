@@ -15,7 +15,7 @@ rules:
   curly: error
   import/no-extraneous-dependencies:
     - error
-    - devDependencies: ["tests*/**", "scripts/**"]
+    - devDependencies: ["tests*/**", "scripts/**", "build/**"]
   no-else-return: error
   no-inner-declarations: error
   no-useless-return: error
@@ -41,3 +41,6 @@ overrides:
       strict: off
     globals:
       run_spec: true
+  - files: "build/*.js"
+    parserOptions:
+      sourceType: module

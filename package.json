@@ -7,13 +7,15 @@
   "license": "MIT",
   "main": "src",
   "files": [
-    "src"
+    "src",
+    "standalone.js"
   ],
   "dependencies": {
     "mem": "^4.0.0",
     "php-parser": "glayzzle/php-parser#71485979b688d12fb130d3e853fdc00348671e00"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
     "codecov": "3.1.0",
     "eslint": "5.13.0",
     "eslint-config-prettier": "4.0.0",
@@ -23,14 +25,25 @@
     "jest": "24.1.0",
     "jest-runner-eslint": "0.7.3",
     "jest-snapshot-serializer-raw": "^1.1.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "rollup": "^1.1.2",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-inject": "^2.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-terser": "^4.0.4"
   },
   "peerDependencies": {
     "prettier": "^1.15.0"
   },
   "scripts": {
+    "pretest": "npm run build-standalone",
     "test": "jest",
-    "prettier": "prettier --plugin=. --parser=php"
+    "prepublishOnly": "npm run build-standalone",
+    "prettier": "prettier --plugin=. --parser=php",
+    "build-standalone": "rollup -c build/rollup.config.js"
   },
   "jest": {
     "projects": [
