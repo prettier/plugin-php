@@ -5,12 +5,14 @@ import commonjs from "rollup-plugin-commonjs";
 import alias from "rollup-plugin-alias";
 import inject from "rollup-plugin-inject";
 import replace from "rollup-plugin-replace";
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
 
-export const PROJECT_DIR = resolve(__dirname, "..");
-export const SRC_DIR = resolve(PROJECT_DIR, "src");
-export const BUILD_DIR = resolve(PROJECT_DIR, "build");
+const SRC_DIR = resolve(__dirname, "..", "src");
+const BUILD_DIR = resolve(__dirname, "..", "build");
 
-export const config = {
+export default {
+  input: resolve(SRC_DIR, "index.js"),
   output: {
     file: "standalone.js",
     format: "umd",
@@ -18,6 +20,9 @@ export const config = {
     exports: "named",
     globals: {
       prettier: "prettier"
+    },
+    paths: {
+      prettier: "prettier/standalone"
     }
   },
   external: ["prettier"],
@@ -32,6 +37,21 @@ export const config = {
     }),
     replace({
       "process.arch": JSON.stringify("x32")
-    })
+    }),
+    babel({
+      babelrc: false,
+      plugins: [],
+      compact: false,
+      presets: [
+        [
+          require.resolve("@babel/preset-env"),
+          {
+            targets: { browsers: [">0.25%", "not ie 11", "not op_mini all"] },
+            modules: false
+          }
+        ]
+      ]
+    }),
+    terser()
   ]
 };

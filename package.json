@@ -6,13 +6,9 @@
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
   "main": "src",
-  "module": "./standalone.esm.js",
-  "browser": "./standalone.cjs.js",
   "files": [
     "src",
-    "standalone.js",
-    "standalone.esm.js",
-    "standalone.cjs.js"
+    "standalone.js"
   ],
   "dependencies": {
     "mem": "^4.0.0",
@@ -21,7 +17,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.3.1",
     "codecov": "3.1.0",
-    "deepmerge": "^3.1.0",
     "eslint": "5.13.0",
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-import": "2.16.0",
@@ -46,12 +41,9 @@
   "scripts": {
     "pretest": "npm run build-standalone",
     "test": "jest",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build-standalone",
     "prettier": "prettier --plugin=. --parser=php",
-    "build": "npm run build-standalone && npm run build-standalone-esm && npm run build-standalone-cjs",
-    "build-standalone": "rollup -c build/rollup-umd.config.js",
-    "build-standalone-esm": "rollup -c build/rollup-esm.config.js",
-    "build-standalone-cjs": "rollup -c build/rollup-cjs.config.js"
+    "build-standalone": "rollup -c build/rollup.config.js"
   },
   "jest": {
     "projects": [

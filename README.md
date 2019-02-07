@@ -140,11 +140,11 @@ prettier.format(YOUR_CODE, {
 See this code in action [in this basic demo](https://jsbin.com/butoruw/edit?html,output).
 
 ### With Bundlers
-Bundlers like webpack, Rollup or browserify automatically recognize how to handle the PHP plugin. Remember that even when using a bundler, you still need to use the standalone build of Prettier:
+Bundlers like webpack, Rollup or browserify automatically recognize how to handle the PHP plugin. Remember that even when using a bundler, you still have to use the standalone builds:
 
 ```js
 import prettier from "prettier/standalone";
-import phpPlugin from "@prettier/plugin-php";
+import phpPlugin from "@prettier/plugin-php/standalone";
 
 prettier.format(YOUR_CODE, {
   plugins: [phpPlugin],
