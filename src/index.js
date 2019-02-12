@@ -21,6 +21,7 @@ const languages = [
       ".ctp",
       ".fcgi",
       ".inc",
+      ".phtml",
       ".php3",
       ".php4",
       ".php5",
