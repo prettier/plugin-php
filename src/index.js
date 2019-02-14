@@ -8,29 +8,35 @@ const comments = require("./comments");
 const { join, hardline } = require("prettier").doc.builders;
 const { hasPragma, insertPragma } = require("./pragma");
 
-const languages = [
-  {
-    name: "PHP",
-    parsers: ["php"],
-    tmScope: "text.html.php",
-    aceMode: "php",
-    codemirrorMode: "php",
-    extensions: [
-      ".php",
-      ".aw",
-      ".ctp",
-      ".fcgi",
-      ".inc",
-      ".php3",
-      ".php4",
-      ".php5",
-      ".phps",
-      ".phpt"
-    ],
-    filenames: [".php_cs", ".php_cs.dist", "Phakefile"],
-    vscodeLanguageIds: ["php"],
-    linguistLanguageId: 272
+// TODO: remove after resolve https://github.com/prettier/prettier/pull/5854
+function createLanguage(linguistData, { extend, override }) {
+  const language = {};
+
+  for (const key in linguistData) {
+    const newKey = key === "languageId" ? "linguistLanguageId" : key;
+    language[newKey] = linguistData[key];
   }
+
+  if (extend) {
+    for (const key in extend) {
+      language[key] = (language[key] || []).concat(extend[key]);
+    }
+  }
+
+  for (const key in override) {
+    language[key] = override[key];
+  }
+
+  return language;
+}
+
+const languages = [
+  createLanguage(require("linguist-languages/data/php"), {
+    override: {
+      parsers: ["php"],
+      vscodeLanguageIds: ["php"]
+    }
+  })
 ];
 
 const loc = prop => node => {
