@@ -6,6 +6,7 @@ import alias from "rollup-plugin-alias";
 import inject from "rollup-plugin-inject";
 import replace from "rollup-plugin-replace";
 import babel from "rollup-plugin-babel";
+import json from "rollup-plugin-json";
 import { terser } from "rollup-plugin-terser";
 
 const SRC_DIR = resolve(__dirname, "..", "src");
@@ -38,6 +39,7 @@ export default {
     replace({
       "process.arch": JSON.stringify("x32")
     }),
+    json(),
     babel({
       babelrc: false,
       plugins: [],

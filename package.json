@@ -11,12 +11,13 @@
     "standalone.js"
   ],
   "dependencies": {
+    "linguist-languages": "^6.3.0",
     "mem": "^4.0.0",
     "php-parser": "glayzzle/php-parser#71485979b688d12fb130d3e853fdc00348671e00"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.3.1",
-    "codecov": "3.1.0",
+    "codecov": "3.2.0",
     "eslint": "5.13.0",
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-import": "2.16.0",
@@ -31,9 +32,11 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-inject": "^2.2.0",
+    "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "strip-ansi": "^5.0.0"
   },
   "peerDependencies": {
     "prettier": "^1.15.0"
