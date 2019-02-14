@@ -24,7 +24,25 @@ function parse(text, parsers, opts) {
 
   const hasOpenPHPTag = text.indexOf("<?php") !== -1;
   const parseAsEval = inMarkdown && !hasOpenPHPTag;
-  const ast = parseAsEval ? parser.parseEval(text) : parser.parseCode(text);
+
+  let ast;
+  try {
+    ast = parseAsEval ? parser.parseEval(text) : parser.parseCode(text);
+  } catch (err) {
+    if (err instanceof SyntaxError && "lineNumber" in err) {
+      err.loc = {
+        start: {
+          line: err.lineNumber,
+          column: err.columnNumber
+        }
+      };
+
+      delete err.lineNumber;
+      delete err.columnNumber;
+    }
+
+    throw err;
+  }
 
   ast.extra = {
     parseAsEval
