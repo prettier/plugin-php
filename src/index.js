@@ -36,6 +36,12 @@ const languages = [
       parsers: ["php"],
       vscodeLanguageIds: ["php"]
     }
+  }),
+  createLanguage(require("linguist-languages/data/html+php"), {
+    override: {
+      parsers: ["php"],
+      vscodeLanguageIds: ["php"]
+    }
   })
 ];
 
