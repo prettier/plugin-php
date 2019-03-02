@@ -1633,7 +1633,7 @@ function printNode(path, options, print) {
         hasDanglingComments(node)
           ? concat([" ", comments.printDanglingComments(path, options, true)])
           : "",
-        node.alias ? concat([" as ", node.alias]) : ""
+        node.alias ? concat([" as ", path.call(print, "alias")]) : ""
       ]);
     case "class":
     case "interface":
@@ -1643,18 +1643,18 @@ function printNode(path, options, print) {
       return concat([
         path.call(print, "trait"),
         "::",
-        node.method,
+        path.call(print, "method"),
         " insteadof ",
         join(", ", path.map(print, "instead"))
       ]);
     case "traitalias":
       return concat([
         node.trait ? concat([path.call(print, "trait"), "::"]) : "",
-        node.method || "",
+        node.method ? path.call(print, "method") : "",
         " as ",
         join(" ", [
           ...(node.visibility ? [node.visibility] : []),
-          ...(node.as ? [node.as] : [])
+          ...(node.as ? [path.call(print, "as")] : [])
         ])
       ]);
     case "traituse":
@@ -1698,7 +1698,7 @@ function printNode(path, options, print) {
         node.byref ? "&" : "",
         node.variadic ? "..." : "",
         "$",
-        node.name
+        path.call(print, "name")
       ]);
 
       if (node.value) {
@@ -1730,12 +1730,8 @@ function printNode(path, options, print) {
     case "property":
       return group(
         concat([
-          node.visibility || node.visibility === null
-            ? concat([node.visibility === null ? "var" : node.visibility, " "])
-            : "",
-          node.isStatic ? "static " : "",
           node.kind === "property" ? "$" : "const ",
-          node.name,
+          path.call(print, "name"),
           node.value
             ? concat([
                 " =",
@@ -1747,6 +1743,16 @@ function printNode(path, options, print) {
                 )
               ])
             : ""
+        ])
+      );
+    case "propertystatement":
+      return group(
+        concat([
+          node.visibility || node.visibility === null
+            ? concat([node.visibility === null ? "var" : node.visibility, " "])
+            : "",
+          node.isStatic ? "static " : "",
+          join(concat([", ", line]), path.map(print, "properties"))
         ])
       );
     case "if": {
@@ -2280,11 +2286,11 @@ function printNode(path, options, print) {
     case "classconstant": {
       const printed = path.map(childPath => {
         return print(childPath);
-      }, "items");
+      }, "constants");
 
       let firstVariable;
 
-      if (printed.length === 1 && !node.items[0].comments) {
+      if (printed.length === 1 && !node.constants[0].comments) {
         [firstVariable] = printed;
       } else if (printed.length > 0) {
         // Indent first item

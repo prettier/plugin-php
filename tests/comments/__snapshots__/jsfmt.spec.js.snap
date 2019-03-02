@@ -632,15 +632,17 @@ $var = $var
     ->dump();
 
 $var = $a /* Comment*/->/*Comment*/ bar;
-$var = /* Comment */ $a['test'];
+$var = $a /* Comment */['test'];
 $var = $a /* Comment */
     ->/* Comment */ bar();
-$var = /* Comment */ $a::/* Comment */ bar();
+$var = $a /* Comment */
+    ::/* Comment */ bar();
 
 $a /* Comment*/ . /*Comment*/ bar /* Comment */;
-/* Comment */ $a['test'];
+$a /* Comment */['test'];
 $a /* Comment */ . /* Comment */ bar();
-/* Comment */ $a::/* Comment */ bar();
+$a /* Comment */
+    ::/* Comment */ bar();
 
 ================================================================================
 `;
@@ -987,8 +989,7 @@ $var = new class {
 };
 
 $var = new class {
-    const CONSTANT =
-        // Comment 1
+    const CONSTANT = // Comment 1
         // Comment 2
         'string';
 };
@@ -6054,7 +6055,7 @@ echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
 ================================================================================
 `;
@@ -6076,7 +6077,7 @@ function bar(/* Comment */ &$a /* Comment */) {}
 
 function foo(
     /* Comment */ $a,
-    /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */
+    /* Comment */ array $/* Comment */ b /* Comment */ = /* Comment */ [] /* Comment */
 ) {
 }
 
@@ -6235,8 +6236,8 @@ $var = new class {
 };
 
 $var = new class {
-    // Comment 1
-    public $name =
+    public // Comment 1
+    $name =
         // Comment 2
         'string';
 };
@@ -6538,7 +6539,7 @@ echo Foo/*Comment*/::/*Comment*/bar();
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ Foo::/*Comment*/ bar();
+echo Foo /*Comment*/::/*Comment*/ bar();
 
 ================================================================================
 `;
@@ -6770,9 +6771,9 @@ class ImplementingClass
         /* Comment */ otherTrait /* Comment */;
     /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ implementingTrait /* Comment */ /* Comment */ {
-        /* Comment */ A /* Comment */ /* Comment */ /* Comment */::testFunction insteadof /* Comment */ C; /* Comment */ /* Comment */
-        /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
-        /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
+        /* Comment */ A /* Comment */::/* Comment */ testFunction /* Comment */ insteadof /* Comment */ C; /* Comment */ /* Comment */
+        /* Comment */ B /* Comment */::/* Comment */ someOtherTestFunction /* Comment */ as /* Comment */ aliasedFunctionName; /* Comment */ /* Comment */
+        /* Comment */ C /* Comment */::/* Comment */ testFunction /* Comment */ /* Comment */ as private /* Comment */ testVisibility; /* Comment */
     }
 }
 
@@ -7017,8 +7018,7 @@ use // Comment
 use some\\namespaces\\{
     /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
     /* Comment */ ClassB /* Comment */,
-    /* Comment */ ClassC /* Comment */
-    /* Comment */ as C
+    /* Comment */ ClassC as /* Comment */ /* Comment */ C
 };
 
 use // Comment

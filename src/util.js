@@ -404,7 +404,7 @@ function lineShouldEndWithSemicolon(path) {
     "offsetlookup",
     "silent",
     "usegroup",
-    "property",
+    "propertystatement",
     "string",
     "boolean",
     "number",

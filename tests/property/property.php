@@ -39,4 +39,6 @@ string
 string' . 'string
 string
 string';
+    private $a, $b, $c;
+    private $aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, $bbbbbbbbbbbbbbbbbbbbbbbbbbbbb, $cccccccccccccccccccccccccc;
 }

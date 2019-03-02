@@ -2961,9 +2961,8 @@ $var = @new MyClass();
 $var = @$_GET['data'];
 
 if (
-    false ===
-    @fwrite($this->stream, $message) ||
-        ($newline && false === @fwrite($this->stream, PHP_EOL))
+    false === @fwrite($this->stream, $message) ||
+    ($newline && false === @fwrite($this->stream, PHP_EOL))
 ) {
     // should never happen
     throw new RuntimeException('Unable to write output.');
