@@ -175,22 +175,15 @@ The official [prettier plugin for atom](https://github.com/prettier/prettier-ato
 
 ### VScode
 
-Regarding plugin support in the official plugin prettier-vscode see [this issue](https://github.com/prettier/prettier-vscode/issues/395).
+The official plugin `prettier-vscode` doesn't support plugins out of the box yet, see [this issue](https://github.com/prettier/prettier-vscode/issues/395). You can use the following workaround to enable PHP support anyway:
 
-Alternatively, install [Run on Save](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) and add the following section to your settings:
-
-```json
-{
-  "emeraldwalk.runonsave": {
-    "commands": [
-      {
-        "match": "\\.php$",
-        "cmd": "prettier ${file} --write"
-      }
-    ]
-  }
-}
+```bash
+cd ~/.vscode/extensions/esbenp.prettier-vscode-1.8.1/
+npm install @prettier/plugin-php
 ```
+
+After restarting VScode the plugin should work as expected.
+
 
 ### Vim
 
