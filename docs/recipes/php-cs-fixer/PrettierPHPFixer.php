@@ -83,7 +83,7 @@ final class PrettierPHPFixer implements FixerInterface {
         $fileSys->mkdir($tmpFolderPath);
 
         $tmpFileName = str_replace(
-            DIRECTORY_SEPARATOR,
+            array(DIRECTORY_SEPARATOR, ':'),
             '_',
             $file->getRealPath()
         );
