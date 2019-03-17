@@ -184,14 +184,13 @@ npm install @prettier/plugin-php
 
 After restarting VScode the plugin should work as expected.
 
+### Sublime Text
+
+Sublime Text support is available through Package Control and the [JsPrettier](https://packagecontrol.io/packages/JsPrettier) plug-in.
 
 ### Vim
 
 Regarding plugin support in the official plugin vim-prettier see [this issue](https://github.com/prettier/vim-prettier/issues/119).
-
-### Sublime Text
-
-Sublime Text support is available through Package Control and the [JsPrettier](https://packagecontrol.io/packages/JsPrettier) plug-in.
 
 #### ALE
 
