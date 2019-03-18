@@ -186,7 +186,7 @@ After restarting VScode the plugin should work as expected.
 
 ### Sublime Text
 
-Sublime Text support is available through Package Control and the [JsPrettier](https://packagecontrol.io/packages/JsPrettier) plug-in.
+Sublime Text support is available through Package Control and the [JsPrettier](https://packagecontrol.io/packages/JsPrettier) plugin.
 
 ### Vim
 
