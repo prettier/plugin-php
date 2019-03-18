@@ -22,7 +22,7 @@ BEFORE SUBMITTING AN ISSUE:
 
 **Prettier 1.16.4**
 
-**PHP Plugin 0.10.0**
+**PHP Plugin 0.10.2**
 
 ```sh
 # Options (if any):
