@@ -73,6 +73,10 @@ array_map(
 );
 ```
 
+## Playground
+
+You can give the plugin a try in our [playground](https://loilo.github.io/prettier-php-playground/)!
+
 ## Install
 
 yarn:
