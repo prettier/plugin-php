@@ -11,7 +11,7 @@
     "standalone.js"
   ],
   "dependencies": {
-    "linguist-languages": "^6.3.0",
+    "linguist-languages": "^7.4.0",
     "mem": "^4.0.0",
     "php-parser": "glayzzle/php-parser#71485979b688d12fb130d3e853fdc00348671e00"
   },
