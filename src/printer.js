@@ -62,7 +62,7 @@ const {
 function shouldPrintComma(options, level) {
   level = level || "none";
 
-  switch (options.trailingComma) {
+  switch (options.trailingCommaPHP) {
     case "all":
       if (level === "all") {
         return true;

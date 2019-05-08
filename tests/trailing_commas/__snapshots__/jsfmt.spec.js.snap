@@ -428,7 +428,7 @@ exports[`array.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php5"
+trailingCommaPHP: "php5"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -865,7 +865,7 @@ exports[`array.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php7.2"
+trailingCommaPHP: "php7.2"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1302,7 +1302,7 @@ exports[`array.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "all"
+trailingCommaPHP: "all"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1837,7 +1837,7 @@ exports[`list.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php5"
+trailingCommaPHP: "php5"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1936,7 +1936,7 @@ exports[`list.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php7.2"
+trailingCommaPHP: "php7.2"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2035,7 +2035,7 @@ exports[`list.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "all"
+trailingCommaPHP: "all"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2184,7 +2184,7 @@ exports[`use.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php5"
+trailingCommaPHP: "php5"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2235,7 +2235,7 @@ exports[`use.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "php7.2"
+trailingCommaPHP: "php7.2"
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2286,7 +2286,7 @@ exports[`use.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
 printWidth: 80
-trailingComma: "all"
+trailingCommaPHP: "all"
                                                                                 | printWidth
 =====================================input======================================
 <?php

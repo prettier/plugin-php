@@ -3,7 +3,7 @@
 const CATEGORY_PHP = "PHP";
 
 module.exports = {
-  trailingComma: {
+  trailingCommaPHP: {
     since: "0.0.0",
     category: CATEGORY_PHP,
     type: "choice",
