@@ -79,7 +79,12 @@ function shouldPrintComma(options, level) {
       }
     // fallthrough
     case "none":
+      return false;
+    // fallthrough
     default:
+      if (options.trailingComma === "all") {
+        return true;
+      }
       return false;
   }
 }
