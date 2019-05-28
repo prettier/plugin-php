@@ -62,7 +62,7 @@ const {
 function shouldPrintComma(options, level) {
   level = level || "none";
 
-  switch (options.trailingComma) {
+  switch (options.trailingCommaPHP) {
     case "all":
       if (level === "all") {
         return true;
@@ -79,7 +79,12 @@ function shouldPrintComma(options, level) {
       }
     // fallthrough
     case "none":
+      return false;
+    // fallthrough
     default:
+      if (options.trailingComma === "all") {
+        return true;
+      }
       return false;
   }
 }
