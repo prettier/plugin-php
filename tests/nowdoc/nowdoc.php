@@ -54,6 +54,16 @@ foo
 END
 , true));
 
+$str = array(array(<<<END
+foo
+END
+, true));
+
+$str = array(call(<<<END
+foo
+END
+, true));
+
 function foo($a = 1, $b = <<<'EOD'
 Example of string
 spanning multiple lines
