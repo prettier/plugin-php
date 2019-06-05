@@ -44,6 +44,11 @@ foo
 EOD
 , true);
 
+$str = sprintf(sprintf(<<<END
+foo
+END
+, true));
+
 function foo($a = 1, $b = <<<'EOD'
 Example of string
 spanning multiple lines
