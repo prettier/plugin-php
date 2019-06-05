@@ -258,7 +258,9 @@ function docShouldHaveTrailingNewline(path) {
   }
 
   if (
-    (parentParent && ["call", "new", "echo"].includes(parentParent.kind)) ||
+    (parentParent &&
+      ["call", "new", "echo"].includes(parentParent.kind) &&
+      parent.kind !== "call") ||
     parent.kind === "parameter"
   ) {
     const lastIndex = parentParent.arguments.length - 1;
