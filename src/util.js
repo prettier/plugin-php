@@ -260,7 +260,7 @@ function docShouldHaveTrailingNewline(path) {
   if (
     (parentParent &&
       ["call", "new", "echo"].includes(parentParent.kind) &&
-      parent.kind !== "call") ||
+      !["call", "array"].includes(parent.kind)) ||
     parent.kind === "parameter"
   ) {
     const lastIndex = parentParent.arguments.length - 1;
