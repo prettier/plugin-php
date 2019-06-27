@@ -182,7 +182,7 @@ The official [prettier plugin for atom](https://github.com/prettier/prettier-ato
 The official plugin `prettier-vscode` doesn't support plugins out of the box yet, see [this issue](https://github.com/prettier/prettier-vscode/issues/395). You can use the following workaround to enable PHP support anyway:
 
 ```bash
-cd ~/.vscode/extensions/esbenp.prettier-vscode-1.8.1/
+cd ~/.vscode/extensions/esbenp.prettier-vscode-1.9.0/
 npm install @prettier/plugin-php
 ```
 
