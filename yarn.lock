@@ -1550,12 +1550,13 @@ cosmiconfig@^5.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-create-jest-runner@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.4.1.tgz#eeda15bc0f9dc622ef2de5a7fd9a0f1a2c2eb62d"
-  integrity sha512-JOy675JMZ3b05F3VfAAi6Igme3pVBWu7Rt+gbW9ujAiX/Dua7+G47O7IbfiUU/FZjXhtipu/tz930b++UMGQEA==
+create-jest-runner@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.5.3.tgz#1387e2ce70b08e4c989ae55f677005b64f9ba97b"
+  integrity sha512-a9VY2doMBmzRollJB3Ft3/Y5fBceSWJ4gdyVsg4/d7nP1S4715VG939s2VnITDj79YBmRgKhjGjNRv1c+Kre1g==
   dependencies:
-    jest-worker "^23.2.0"
+    chalk "^2.4.2"
+    jest-worker "^24.0.0"
     throat "^4.1.0"
 
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
@@ -2938,14 +2939,14 @@ jest-resolve@^24.8.0:
     jest-pnp-resolver "^1.2.1"
     realpath-native "^1.1.0"
 
-jest-runner-eslint@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.7.3.tgz#1dd876115eb2c779c6726d4cc18f0ed526ff9954"
-  integrity sha512-MywU/1Fm+0PisAyYSeJ0MsmSD3oGfWyCbkgvBWu7xEChCIiCMaQ+3Cm3AvAIJZPvVlDtQtKN6lEa2QcMyF3DGQ==
+jest-runner-eslint@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.7.4.tgz#8cbe693638f6a1efb1887a11dc118e6092b829a7"
+  integrity sha512-vGmJwmXHi/p8uQksm2B+QhVazoh/fCQdn2R52n+F2RBzEnccIOL6gL5kSE5vkwis9d903VJjEsA+rKg6fEoRPg==
   dependencies:
     chalk "^2.4.1"
     cosmiconfig "^5.0.0"
-    create-jest-runner "^0.4.1"
+    create-jest-runner "^0.5.3"
     eslint "^5.6.0"
 
 jest-runner@^24.8.0:
@@ -3072,13 +3073,6 @@ jest-watcher@^24.8.0:
     chalk "^2.0.1"
     jest-util "^24.8.0"
     string-length "^2.0.0"
-
-jest-worker@^23.2.0:
-  version "23.2.0"
-  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-23.2.0.tgz#faf706a8da36fae60eb26957257fa7b5d8ea02b9"
-  integrity sha1-+vcGqNo2+uYOsmlXJX+ntdjqArk=
-  dependencies:
-    merge-stream "^1.0.1"
 
 jest-worker@^24.0.0:
   version "24.0.0"
