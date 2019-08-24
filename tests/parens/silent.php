@@ -36,10 +36,12 @@ try {
 }
 
 @list($width, $height) = getimagesize($file);
-@(list($width, $height) = getimagesize($file));
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
 
 @$var += 10;
-@($var += 10);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
 
 echo @(1 / 0);
 
