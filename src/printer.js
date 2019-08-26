@@ -1648,18 +1648,18 @@ function printNode(path, options, print) {
       return concat([
         path.call(print, "trait"),
         "::",
-        node.method,
+        path.call(print, "method"),
         " insteadof ",
         join(", ", path.map(print, "instead"))
       ]);
     case "traitalias":
       return concat([
         node.trait ? concat([path.call(print, "trait"), "::"]) : "",
-        node.method || "",
+        node.method ? path.call(print, "method") : "",
         " as ",
         join(" ", [
           ...(node.visibility ? [node.visibility] : []),
-          ...(node.as ? [node.as] : [])
+          ...(node.as ? [path.call(print, "as")] : [])
         ])
       ]);
     case "traituse":
