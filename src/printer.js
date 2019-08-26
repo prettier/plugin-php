@@ -1735,12 +1735,8 @@ function printNode(path, options, print) {
     case "property":
       return group(
         concat([
-          node.visibility || node.visibility === null
-            ? concat([node.visibility === null ? "var" : node.visibility, " "])
-            : "",
-          node.isStatic ? "static " : "",
-          node.kind === "property" ? "$" : "const ",
-          node.name,
+          "$",
+          path.call(print, "name"),
           node.value
             ? concat([
                 " =",
@@ -1754,6 +1750,41 @@ function printNode(path, options, print) {
             : ""
         ])
       );
+    case "propertystatement": {
+      const printed = path.map(childPath => {
+        return print(childPath);
+      }, "properties");
+
+      const hasValue = node.properties.some(property => property.value);
+
+      let firstProperty;
+
+      if (printed.length === 1 && !node.properties[0].comments) {
+        [firstProperty] = printed;
+      } else if (printed.length > 0) {
+        // Indent first property
+        firstProperty = indent(printed[0]);
+      }
+
+      const hasVisibility = node.visibility || node.visibility === null;
+
+      return group(
+        concat([
+          hasVisibility
+            ? concat([node.visibility === null ? "var" : node.visibility, ""])
+            : "",
+          node.isStatic ? concat([hasVisibility ? " " : "", "static"]) : "",
+          firstProperty ? concat([" ", firstProperty]) : "",
+          indent(
+            concat(
+              printed
+                .slice(1)
+                .map(p => concat([",", hasValue ? hardline : line, p]))
+            )
+          )
+        ])
+      );
+    }
     case "if": {
       const parts = [];
       const body = printBodyControlStructure(path, options, print, "body");
