@@ -7016,8 +7016,7 @@ use // Comment
 use some\\namespaces\\{
     /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
     /* Comment */ ClassB /* Comment */,
-    /* Comment */ ClassC /* Comment */
-    /* Comment */ as C
+    /* Comment */ ClassC as /* Comment */ /* Comment */ C
 };
 
 use // Comment
