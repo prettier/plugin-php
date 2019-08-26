@@ -987,8 +987,7 @@ $var = new class {
 };
 
 $var = new class {
-    const CONSTANT =
-        // Comment 1
+    const CONSTANT = // Comment 1
         // Comment 2
         'string';
 };
