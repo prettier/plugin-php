@@ -1638,7 +1638,7 @@ function printNode(path, options, print) {
         hasDanglingComments(node)
           ? concat([" ", comments.printDanglingComments(path, options, true)])
           : "",
-        node.alias ? concat([" as ", node.alias]) : ""
+        node.alias ? concat([" as ", path.call(print, "alias")]) : ""
       ]);
     case "class":
     case "interface":
