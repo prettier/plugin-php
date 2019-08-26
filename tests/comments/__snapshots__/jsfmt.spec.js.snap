@@ -632,15 +632,17 @@ $var = $var
     ->dump();
 
 $var = $a /* Comment*/->/*Comment*/ bar;
-$var = /* Comment */ $a['test'];
+$var = $a /* Comment */['test'];
 $var = $a /* Comment */
     ->/* Comment */ bar();
-$var = /* Comment */ $a::/* Comment */ bar();
+$var = $a /* Comment */
+    ::/* Comment */ bar();
 
 $a /* Comment*/ . /*Comment*/ bar /* Comment */;
-/* Comment */ $a['test'];
+$a /* Comment */['test'];
 $a /* Comment */ . /* Comment */ bar();
-/* Comment */ $a::/* Comment */ bar();
+$a /* Comment */
+    ::/* Comment */ bar();
 
 ================================================================================
 `;
@@ -6050,10 +6052,34 @@ printWidth: 80
 
 echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 
+$var = $var
+    // Comment
+    ['foo'] // Comment
+    // Comment
+    ['bar'] // Comment
+    // Comment
+    ['baz'] // Comment
+    // Comment
+    ['qqq'];
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+
+$var =
+    $var[
+        // Comment
+        'foo'
+    ][ // Comment
+        // Comment
+        'bar'
+    ][ // Comment
+        // Comment
+        'baz'
+    ][ // Comment
+        // Comment
+        'qqq'
+    ];
 
 ================================================================================
 `;
@@ -6568,10 +6594,29 @@ printWidth: 80
 
 echo Foo/*Comment*/::/*Comment*/bar();
 
+$var = $var
+    // Comment
+    ::each() // Comment
+    // Comment
+    ::map() // Comment
+    // Comment
+    ::first() // Comment
+    // Comment
+    ::dump();
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ Foo::/*Comment*/ bar();
+echo Foo /*Comment*/::/*Comment*/ bar();
+
+$var = $var
+    // Comment
+    ::each() // Comment
+    // Comment
+    ::map() // Comment
+    // Comment
+    ::first() // Comment
+    // Comment
+    ::dump();
 
 ================================================================================
 `;
