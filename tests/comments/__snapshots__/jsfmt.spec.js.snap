@@ -6234,10 +6234,10 @@ $var = new class {
 };
 
 $var = new class {
-    // Comment 1
-    public $name =
-        // Comment 2
-        'string';
+    public // Comment 1
+        $name =
+            // Comment 2
+            'string';
 };
 
 $var = new class {

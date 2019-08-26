@@ -13,7 +13,7 @@
   "dependencies": {
     "linguist-languages": "^7.5.1",
     "mem": "^5.1.1",
-    "php-parser": "glayzzle/php-parser#29ea3b2ba33a7b3371b083a500a776da20e00069"
+    "php-parser": "glayzzle/php-parser#d639a5a76cc593074e4eb3752f18c40252d1ba32"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.3.1",
