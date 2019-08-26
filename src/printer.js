@@ -1703,7 +1703,7 @@ function printNode(path, options, print) {
         node.byref ? "&" : "",
         node.variadic ? "..." : "",
         "$",
-        node.name
+        path.call(print, "name")
       ]);
 
       if (node.value) {
