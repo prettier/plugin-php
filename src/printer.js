@@ -2285,11 +2285,11 @@ function printNode(path, options, print) {
     case "classconstant": {
       const printed = path.map(childPath => {
         return print(childPath);
-      }, "items");
+      }, "constants");
 
       let firstVariable;
 
-      if (printed.length === 1 && !node.items[0].comments) {
+      if (printed.length === 1 && !node.constants[0].comments) {
         [firstVariable] = printed;
       } else if (printed.length > 0) {
         // Indent first item
