@@ -656,6 +656,27 @@ $var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
 $var = $page > 0 || $page == 0 && $this->forcePageParam;
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 
+@foo() || @foo();
+(@foo()) || (@foo());
+$var = @foo() || @foo();
+$var = (@foo() || @foo());
+
+@$i / 0;
+@($i) / 0;
+
+$a = (false && foo());
+$b = (true  || foo());
+$c = (false and foo());
+$d = (true  or  foo());
+
+$f = false or true;
+$h = true and false;
+
+$my_file = call('non_existent_file') or die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or die("Failed opening file: error was '$php_errormsg'");
+
+$my_file = call('non_existent_file') and die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and die("Failed opening file: error was '$php_errormsg'");
 =====================================output=====================================
 <?php
 
@@ -1005,6 +1026,32 @@ $var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
 
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
+@foo() || @foo();
+@foo() || @foo();
+$var = @foo() || @foo();
+$var = @foo() || @foo();
+
+@$i / 0;
+@$i / 0;
+
+$a = false && foo();
+$b = true || foo();
+$c = (false and foo());
+$d = (true or foo());
+
+($f = false) or true;
+($h = true) and false;
+
+($my_file = call('non_existent_file')) or
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or
+    die("Failed opening file: error was '$php_errormsg'");
+
+($my_file = call('non_existent_file')) and
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and
+    die("Failed opening file: error was '$php_errormsg'");
 
 ================================================================================
 `;
@@ -2927,10 +2974,12 @@ try {
 }
 
 @list($width, $height) = getimagesize($file);
-@(list($width, $height) = getimagesize($file));
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
 
 @$var += 10;
-@($var += 10);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
 
 echo @(1 / 0);
 
@@ -2961,9 +3010,8 @@ $var = @new MyClass();
 $var = @$_GET['data'];
 
 if (
-    false ===
-    @fwrite($this->stream, $message) ||
-        ($newline && false === @fwrite($this->stream, PHP_EOL))
+    false === @fwrite($this->stream, $message) ||
+    ($newline && false === @fwrite($this->stream, PHP_EOL))
 ) {
     // should never happen
     throw new RuntimeException('Unable to write output.');
@@ -2980,10 +3028,12 @@ try {
 }
 
 @list($width, $height) = getimagesize($file);
-@list($width, $height) = getimagesize($file);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
 
 @$var += 10;
-@$var += 10;
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
 
 echo @(1 / 0);
 
