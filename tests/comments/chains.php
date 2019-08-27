@@ -15,7 +15,7 @@ $var = $a/* Comment */['test'];
 $var = $a /* Comment */->/* Comment */ bar();
 $var = $a /* Comment */::/* Comment */ bar();
 
-$a /* Comment*/./*Comment*/ bar/* Comment */;
+$a /* Comment*/->/*Comment*/ bar/* Comment */;
 $a/* Comment */['test'];
-$a /* Comment */./* Comment */ bar();
+$a /* Comment */->/* Comment */ bar();
 $a /* Comment */::/* Comment */ bar();
