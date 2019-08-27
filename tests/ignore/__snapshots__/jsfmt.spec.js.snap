@@ -37,31 +37,54 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
 =====================================output=====================================
 <?php
 // prettier-ignore
-$var1   =   1;
+$var1 = 1;
 
 /* prettier-ignore */
-$var2   =   1;
+$var2 = 1;
 
 // prettier-ignore
-$var3 = array(
-    1, 2, 3,
-    4, 5, 6,
-    7, 8, 9
-);
+$var3 = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
 /**
  * big doc comment
  * prettier-ignore
  * other stuff
  */
-function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { return [
-  "the ugliest" =>
-              "array",
-        "in" => function($all) { return "history"; },
-    "of" => [
-                "php"
-                       ]
-];}
+function Foo($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong)
+{
+    return [
+        "the ugliest" => "array",
+        "in" => function ($all) {
+            return "history";
+        },
+        "of" => ["php"]
+    ];
+}
+
+================================================================================
+`;
+
+exports[`ignore-1.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+// prettier-ignore-start
+foo();
+?>
+    <span>OK</span>
+<?php
+bar();
+// prettier-ignore-end
+=====================================output=====================================
+<?php
+// prettier-ignore-start
+foo(); ?>
+    <span>OK</span>
+<?php bar();
+// prettier-ignore-end
 
 ================================================================================
 `;
