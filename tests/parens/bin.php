@@ -351,3 +351,11 @@ $my_file = call('non_existent_file') or die("Failed opening file: error was '$ph
 
 $my_file = call('non_existent_file') and die("Failed opening file: error was '$php_errormsg'");
 ($my_file = call('non_existent_file')) and die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = ($foo && $baz) ?? $baz;
+$var = $foo && ($baz ?? $baz);
