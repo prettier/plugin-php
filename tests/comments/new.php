@@ -161,3 +161,14 @@ $a = new class() {
 
     // }}}
 };
+
+$a = new // Comment
+Foo();
+$a = new class // Comment
+{
+};
+$a = new // Comment
+    Foo();
+$a = new class // Comment
+{
+};
