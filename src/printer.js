@@ -2405,8 +2405,13 @@ function printNode(path, options, print) {
         );
       }
 
-      // Todo https://github.com/glayzzle/php-parser/issues/174
-      if (getLast(node.items) === null) {
+      const maybeUnnecessaryNoopNode = getLast(node.items);
+
+      // Todo https://github.com/glayzzle/php-parser/issues/358
+      if (
+        maybeUnnecessaryNoopNode &&
+        maybeUnnecessaryNoopNode.kind === "noop"
+      ) {
         node.items.pop();
       }
 
@@ -2422,10 +2427,10 @@ function printNode(path, options, print) {
       //
       // Note that getLast returns null if the array is empty, but
       // we already check for an empty array just above so we are safe
-      const needsForcedTrailingComma = lastElem === null;
+      const needsForcedTrailingComma = lastElem && lastElem.kind === "noop";
 
       const [firstProperty] = node.items
-        .filter(node => node !== null)
+        .filter(node => node.kind !== "noop")
         .sort((a, b) => options.locStart(a) - options.locStart(b));
       const isAssociative = !!(firstProperty && firstProperty.key);
       const shouldBreak =
@@ -2821,6 +2826,8 @@ function printNode(path, options, print) {
 
       return path.call(print, "name");
     }
+    case "noop":
+      return "";
     case "error":
     default:
       // istanbul ignore next

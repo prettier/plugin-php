@@ -104,6 +104,16 @@ function clean(node, newObj) {
   if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
     delete newObj.name;
   }
+
+  if (["array", "list"].includes(node.kind)) {
+    const maybeUnnecessaryNoopNode = util.getLast(newObj.items);
+
+    if (maybeUnnecessaryNoopNode && maybeUnnecessaryNoopNode.kind === "noop") {
+      newObj.items = newObj.items.splice(-1, 1);
+    }
+
+    delete newObj.items;
+  }
 }
 
 module.exports = clean;
