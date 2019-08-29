@@ -591,15 +591,16 @@ function getNodeKindIncludingLogical(node) {
  *
  * See http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
  */
-function useSingleQuote(node, options) {
-  return (
-    !node.isDoubleQuote ||
-    (options.singleQuote &&
-      !node.raw.match(/\\n|\\t|\\r|\\t|\\v|\\e|\\f/) &&
-      !node.value.match(
-        /["'$\n]|\\[0-7]{1,3}|\\x[0-9A-Fa-f]{1,2}|\\u{[0-9A-Fa-f]+}/
-      ))
-  );
+function useDoubleQuote(node, options) {
+  if (node.isDoubleQuote && options.singleQuote) {
+    const rawValue = node.raw.slice(node.raw[0] === "b" ? 2 : 1, -1);
+
+    return rawValue.match(
+      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{([0-9a-fA-F]+)})|\r?\n|'|"/
+    );
+  }
+
+  return node.isDoubleQuote;
 }
 
 function hasEmptyBody(path, name = "body") {
@@ -716,7 +717,7 @@ module.exports = {
   isProgramLikeNode,
   isReferenceLikeNode,
   getNodeKindIncludingLogical,
-  useSingleQuote,
+  useDoubleQuote,
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,

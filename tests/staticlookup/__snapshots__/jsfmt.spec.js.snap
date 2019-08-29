@@ -368,7 +368,7 @@ $var = get_class($var)::$$$$$property;
 $var = $bar->{$property->foo};
 // TODO https://github.com/glayzzle/php-parser/issues/254
 // $var = $bar->\${$property};
-$var = $bar->foo_{$property};
+$var = $bar->foo_[$property];
 
 ================================================================================
 `;
