@@ -189,7 +189,7 @@ cd ~/.vscode/extensions/esbenp.prettier-vscode-1.9.0/
 npm install @prettier/plugin-php
 ```
 
-But if your prettier-vscode version is upper than 2.0.0, you should install this plugin in your project folder.
+But if your prettier-vscode version is upper than 2.0.0, you should install this plugin in your project folder. You should change to use the following workaround to enable PHP support anyway:
 
 ```bash
 cd ~/your project folder/
