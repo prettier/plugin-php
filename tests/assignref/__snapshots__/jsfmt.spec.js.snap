@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`assignref.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$var = &$var;
+
+class Foo {
+    public function test() {
+        $var = &self::$darwinCache[$k];
+    }
+}
+
+=====================================output=====================================
+<?php
+
+$var = &$var;
+
+class Foo
+{
+    public function test()
+    {
+        $var = &self::$darwinCache[$k];
+    }
+}
+
+================================================================================
+`;
