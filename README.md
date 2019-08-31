@@ -179,14 +179,7 @@ The official [prettier plugin for atom](https://github.com/prettier/prettier-ato
 
 ### VScode
 
-The official plugin `prettier-vscode` doesn't support plugins out of the box yet, see [this issue](https://github.com/prettier/prettier-vscode/issues/395). You can use the following workaround to enable PHP support anyway:
-
-```bash
-cd ~/.vscode/extensions/esbenp.prettier-vscode-1.9.0/
-npm install @prettier/plugin-php
-```
-
-After restarting VScode the plugin should work as expected.
+The official [prettier plugin for vscode](https://github.com/prettier/prettier-vscode) supports plugins since Version 1.10.0. To enable it, install the extension and make sure the plugin is installed _locally_ (in your project folder). After restarting VScode the plugin should work as expected.
 
 ### Sublime Text
 
