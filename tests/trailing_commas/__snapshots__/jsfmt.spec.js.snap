@@ -2160,6 +2160,529 @@ EOT
 ================================================================================
 `;
 
+exports[`call.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$var = strlen($var,);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new class('constructor', 'bar') {};
+
+$foo->bar('method', 'bar');
+
+$foo('invoke', 'bar');
+
+$var = strlen($var);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+================================================================================
+`;
+
+exports[`call.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php5"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$var = strlen($var,);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new class('constructor', 'bar') {};
+
+$foo->bar('method', 'bar');
+
+$foo('invoke', 'bar');
+
+$var = strlen($var);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+================================================================================
+`;
+
+exports[`call.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php7.2"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$var = strlen($var,);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new class('constructor', 'bar') {};
+
+$foo->bar('method', 'bar');
+
+$foo('invoke', 'bar');
+
+$var = strlen($var);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+================================================================================
+`;
+
+exports[`call.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$var = strlen($var,);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new class('constructor', 'bar') {};
+
+$foo->bar('method', 'bar');
+
+$foo('invoke', 'bar');
+
+$var = strlen($var);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+================================================================================
+`;
+
+exports[`call.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$var = strlen($var,);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new class('constructor', 'bar') {};
+
+$foo->bar('method', 'bar');
+
+$foo('invoke', 'bar');
+
+$var = strlen($var);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+================================================================================
+`;
+
+exports[`isset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+
+================================================================================
+`;
+
+exports[`isset.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php5"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+
+================================================================================
+`;
+
+exports[`isset.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php7.2"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+
+================================================================================
+`;
+
+exports[`isset.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+
+================================================================================
+`;
+
+exports[`isset.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+
+================================================================================
+`;
+
 exports[`list.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -2650,6 +3173,100 @@ list(
     ,
     ,
 ) = $arr;
+
+================================================================================
+`;
+
+exports[`unset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+
+================================================================================
+`;
+
+exports[`unset.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php5"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+
+================================================================================
+`;
+
+exports[`unset.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "php7.2"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+
+================================================================================
+`;
+
+exports[`unset.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingCommaPHP: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+
+================================================================================
+`;
+
+exports[`unset.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
 
 ================================================================================
 `;
