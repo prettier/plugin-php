@@ -6,6 +6,7 @@ $_4site = 'not yet';
 $täyte = 'mansikka';
 $bar = &$foo;
 $bar = "My name is $bar";
+$id = $element->$id_field;
 $id = $element->{$id_field};
 $id = $element[$id_field];
 $var = <<<EOT

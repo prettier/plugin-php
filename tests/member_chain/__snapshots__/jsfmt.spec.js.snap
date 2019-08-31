@@ -783,7 +783,7 @@ $window->Data['key']
         return $b;
     });
 
-$window->foo_{'bar' . 'baz'}
+$window->foo_['bar' . 'baz']
     ['key']("foo")
     ->then(function () {
         return $a;

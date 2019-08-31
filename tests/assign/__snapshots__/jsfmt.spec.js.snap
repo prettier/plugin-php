@@ -246,7 +246,7 @@ $obj->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
 $component =
     $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $var->insertReallyReallyReally{$ReallyReallyReallyReallyReallyLongName};
+    $var->insertReallyReallyReally[$ReallyReallyReallyReallyReallyLongName];
 $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
@@ -259,9 +259,9 @@ $component = (clone $a)
 $component =
     $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReally{
+    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReally[
         $ReallyReallyReallyReallyReallyReallyLongName
-    };
+    ];
 $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
