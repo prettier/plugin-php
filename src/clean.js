@@ -99,11 +99,6 @@ function clean(node, newObj) {
   if (node.kind === "method" && node.name.kind === "identifier") {
     newObj.name.name = util.normalizeMagicMethodName(newObj.name.name);
   }
-
-  // @TODO: We need special node for `null` value to avoid ast compare problem
-  if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
-    delete newObj.name;
-  }
 }
 
 module.exports = clean;
