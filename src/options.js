@@ -21,6 +21,11 @@ module.exports = {
           "Trailing commas where valid in PHP 7.2 (arrays, lists and uses)."
       },
       {
+        value: "php7.3",
+        description:
+          "Trailing commas where valid in PHP 7.3 (arrays, lists, uses and function calls)."
+      },
+      {
         value: "all",
         description: "Trailing commas wherever possible."
       }
