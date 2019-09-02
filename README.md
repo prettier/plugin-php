@@ -98,6 +98,7 @@ npm install --global prettier @prettier/plugin-php
 ## Use
 
 ### With Node.js
+
 If you installed prettier as a local dependency, you can add prettier as a script in your `package.json`,
 
 ```json
@@ -123,6 +124,7 @@ prettier path/to/file.php --write
 ```
 
 ### In the Browser
+
 This package exposes a `standalone.js` that can be used alongside Prettier's own `standalone.js` to make the PHP plugin work in browsers without a compile step.
 
 First, grab both standalone scripts from an npm CDN like [unpkg](https://unpkg.com/):
@@ -144,6 +146,7 @@ prettier.format(YOUR_CODE, {
 See this code in action [in this basic demo](https://jsbin.com/butoruw/edit?html,output).
 
 ### With Bundlers
+
 Bundlers like webpack, Rollup or browserify automatically recognize how to handle the PHP plugin. Remember that even when using a bundler, you still have to use the standalone builds:
 
 ```js
@@ -160,16 +163,16 @@ prettier.format(YOUR_CODE, {
 
 Prettier for PHP supports the following options:
 
-| Name            | Default   | Description                                                                                                                                                                                                                                                                                                                |
-| --------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `printWidth`    | `80`      | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                                                                                                            |
-| `tabWidth`      | `4`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width))                                                                                                                                                                                                                              |
-| `useTabs`       | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                                                                                                   |
-| `singleQuote`   | `false`   | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                                                                                                   |
-| `trailingCommaPHP` | `"none"`  | If set to `"all"`, trailing commas will be added wherever possible. <br> If set to `"php7.2"`, trailing commas will be added to multiline arrays, lists and uses. <br> If set to `"php5"`, trailing commas will be added to multiline arrays and lists. <br> if set to `"none"`, no trailing commas.                       |
-| `braceStyle`    | `"psr-2"` | If set to `"psr-2"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line. |
-| `requirePragma` | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                                                         |
-| `insertPragma`  | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                                                          |
+| Name               | Default   | Description                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `printWidth`       | `80`      | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                                                                                                                                                                       |
+| `tabWidth`         | `4`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width))                                                                                                                                                                                                                                                                                         |
+| `useTabs`          | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                                                                                                                                                              |
+| `singleQuote`      | `false`   | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                                                                                                                                                              |
+| `trailingCommaPHP` | `"none"`  | If set to `"all"`, trailing commas will be added wherever possible. <br> If set to `"php7.3"`, trailing commas will be added to multiline arrays, lists, uses and function calls. <br> If set to `"php7.2"`, trailing commas will be added to multiline arrays, lists and uses. <br> If set to `"php5"`, trailing commas will be added to multiline arrays and lists. <br> if set to `"none"`, no trailing commas. |
+| `braceStyle`       | `"psr-2"` | If set to `"psr-2"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line.                                                                                                                                            |
+| `requirePragma`    | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                                                                                                                    |
+| `insertPragma`     | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                                                                                                                     |
 
 ## Editor integration
 
@@ -218,10 +221,10 @@ command PrettierPhp call PrettierPhpCursor()
 autocmd BufwritePre *.php PrettierPhp
 ```
 
-
 ## Integration for other tools
 
 ### PHP-CS-Fixer
+
 See `docs/recipes/php-cs-fixer` for integration help, code can also be found in https://gist.github.com/Billz95/9d5fad3af728b88540fa831b73261733
 
 ## Contributing

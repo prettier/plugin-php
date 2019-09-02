@@ -68,6 +68,11 @@ function shouldPrintComma(options, level) {
         return true;
       }
     // fallthrough
+    case "php7.3":
+      if (level === "php7.3") {
+        return true;
+      }
+    // fallthrough
     case "php7.2":
       if (level === "php7.2") {
         return true;
@@ -626,6 +631,35 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     return concat(parts);
   }, argumentsKey);
 
+  const node = path.getValue();
+  const lastArg = getLast(args);
+
+  const maybeTrailingComma =
+    ["call", "new", "unset", "isset"].includes(node.kind) &&
+    shouldPrintComma(options, "php7.3")
+      ? indent(
+          concat([
+            lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
+              ? hardline
+              : "",
+            ","
+          ])
+        )
+      : "";
+
+  function allArgsBrokenOut() {
+    return group(
+      concat([
+        "(",
+        indent(concat([line, concat(printedArguments)])),
+        maybeTrailingComma,
+        line,
+        ")"
+      ]),
+      { shouldBreak: true }
+    );
+  }
+
   const shouldGroupFirst = shouldGroupFirstArg(args);
   const shouldGroupLast = shouldGroupLastArg(args);
 
@@ -661,19 +695,15 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     }, argumentsKey);
 
     const somePrintedArgumentsWillBreak = printedArguments.some(willBreak);
+    const simpleConcat = concat(["(", concat(printedExpanded), ")"]);
 
     return concat([
       somePrintedArgumentsWillBreak ? breakParent : "",
       conditionalGroup(
         [
-          concat([
-            ifBreak(
-              indent(concat(["(", softline, concat(printedExpanded)])),
-              concat(["(", concat(printedExpanded)])
-            ),
-            somePrintedArgumentsWillBreak ? softline : "",
-            ")"
-          ]),
+          !somePrintedArgumentsWillBreak
+            ? simpleConcat
+            : ifBreak(allArgsBrokenOut(), simpleConcat),
           shouldGroupFirst
             ? concat([
                 "(",
@@ -693,6 +723,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
             concat([
               "(",
               indent(concat([line, concat(printedArguments)])),
+              ifBreak(maybeTrailingComma),
               line,
               ")"
             ]),
@@ -708,6 +739,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     concat([
       "(",
       indent(concat([softline, concat(printedArguments)])),
+      ifBreak(maybeTrailingComma),
       softline,
       ")"
     ]),
