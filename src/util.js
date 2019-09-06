@@ -367,57 +367,6 @@ function lineShouldEndWithSemicolon(path) {
   if (node.kind === "echo" && node.shortForm) {
     return false;
   }
-  const semiColonWhitelist = [
-    "expressionstatement",
-    "array",
-    "assign",
-    "return",
-    "break",
-    "continue",
-    "call",
-    "pre",
-    "post",
-    "bin",
-    "unary",
-    "yield",
-    "yieldfrom",
-    "echo",
-    "list",
-    "print",
-    "isset",
-    "retif",
-    "unset",
-    "empty",
-    "traitprecedence",
-    "traitalias",
-    "constantstatement",
-    "classconstant",
-    "exit",
-    "global",
-    "static",
-    "include",
-    "goto",
-    "throw",
-    "magic",
-    "new",
-    "eval",
-    "propertylookup",
-    "staticlookup",
-    "offsetlookup",
-    "silent",
-    "usegroup",
-    "propertystatement",
-    "string",
-    "boolean",
-    "number",
-    "nowdoc",
-    "encapsed",
-    "variable",
-    "cast",
-    "clone",
-    "do",
-    "constref"
-  ];
   if (node.kind === "traituse") {
     return !node.adaptations;
   }
@@ -430,7 +379,25 @@ function lineShouldEndWithSemicolon(path) {
       return true;
     }
   }
-  return semiColonWhitelist.includes(node.kind);
+  return [
+    "expressionstatement",
+    "do",
+    "usegroup",
+    "classconstant",
+    "propertystatement",
+    "traitprecedence",
+    "traitalias",
+    "goto",
+    "constantstatement",
+    "global",
+    "static",
+    "echo",
+    "unset",
+    "return",
+    "break",
+    "continue",
+    "throw"
+  ].includes(node.kind);
 }
 
 function fileShouldEndWithHardline(path) {
