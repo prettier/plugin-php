@@ -830,6 +830,13 @@ function printBinaryExpression(
       shouldNotHaveWhitespace ? "" : " ",
       shouldGroup ? group(right) : right
     );
+
+    // The root comments are already printed, but we need to manually print
+    // the other ones since we don't call the normal print on bin,
+    // only for the left and right parts
+    if (isNested && node.comments) {
+      parts = comments.printAllComments(path, () => concat(parts), options);
+    }
   } else {
     // Our stopping case. Simply print the node normally.
     parts.push(path.call(print));
