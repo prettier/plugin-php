@@ -18,8 +18,8 @@ function printNumber(rawNumber) {
       .replace(/^([+-])?\./, "$10.")
       // Remove extraneous trailing decimal zeroes.
       .replace(/(\.\d+?)0+(?=e|$)/, "$1")
-      // Remove trailing dot.
-      .replace(/\.(?=e|$)/, "")
+      // Remove unnecessary .e notation
+      .replace(/\.(?=e)/, "")
   );
 }
 
