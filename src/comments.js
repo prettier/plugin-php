@@ -151,7 +151,6 @@ function handleEndOfLineComment(comment, text, options) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleEntryComments(enclosingNode, comment) ||
     handleCallComments(precedingNode, enclosingNode, comment) ||
-    handlePropertyComments(enclosingNode, comment) ||
     handleVariableComments(enclosingNode, followingNode, comment) ||
     handleInlineComments(
       enclosingNode,
@@ -700,18 +699,6 @@ function handleTryComments(enclosingNode, followingNode, comment) {
     return true;
   }
 
-  return false;
-}
-
-function handlePropertyComments(enclosingNode, comment) {
-  if (
-    enclosingNode &&
-    (enclosingNode.kind === "property" ||
-      enclosingNode.kind === "classconstant")
-  ) {
-    addLeadingComment(enclosingNode, comment);
-    return true;
-  }
   return false;
 }
 
