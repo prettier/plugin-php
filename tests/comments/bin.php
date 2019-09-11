@@ -38,3 +38,10 @@ if (
     $this->hasResult = false;
     $this->removedReason = 'State Mismatch';
 }
+
+if ($bool0
+    || $bool1 // if condition 1
+    || $bool2 // if condition 2
+) {
+    $ok = true;
+}
