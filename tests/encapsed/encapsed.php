@@ -411,3 +411,27 @@ echo "text {$var} text";
 echo "text {$var['test']} text";
 echo "text {$var->test} text";
 echo "text {$var::$test} text";
+
+echo <<<   END
+  a
+ b
+c
+END;
+
+echo <<<	END
+  a
+ b
+c
+END;
+
+echo <<<   'END'
+  a
+ b
+c
+END;
+
+echo <<<	'END'
+  a
+ b
+c
+END;
