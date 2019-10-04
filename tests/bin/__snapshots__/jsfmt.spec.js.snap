@@ -324,6 +324,22 @@ $var = 2244 instanceof \\Exception;
 $var = true instanceof \\Exception;
 $var = 100 + 1 instanceof \\Exception;
 
+// Fetches the value of $_GET['user'] and returns 'nobody'
+// if it does not exist.
+$username = $_GET['user'] ?? 'nobody';
+// This is equivalent to:
+$username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+
+// Coalescing can be chained: this will return the first
+// defined value out of $_GET['user'], $_POST['user'], and
+// 'nobody'.
+$username = $_GET['user'] ?? $_POST['user'] ?? 'nobody';
+
+// The following lines are doing the same
+$this->request->data['comments']['user_id'] = $this->request->data['comments']['user_id'] ?? 'value';
+// Instead of repeating variables with long names, the equal coalesce operator is used
+$this->request->data['comments']['user_id'] ??= 'value';
+
 =====================================output=====================================
 <?php
 $a++;
@@ -818,6 +834,23 @@ $var = "string" instanceof \\Exception;
 $var = 2244 instanceof \\Exception;
 $var = true instanceof \\Exception;
 $var = 100 + 1 instanceof \\Exception;
+
+// Fetches the value of $_GET['user'] and returns 'nobody'
+// if it does not exist.
+$username = $_GET['user'] ?? 'nobody';
+// This is equivalent to:
+$username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+
+// Coalescing can be chained: this will return the first
+// defined value out of $_GET['user'], $_POST['user'], and
+// 'nobody'.
+$username = $_GET['user'] ?? $_POST['user'] ?? 'nobody';
+
+// The following lines are doing the same
+$this->request->data['comments']['user_id'] =
+    $this->request->data['comments']['user_id'] ?? 'value';
+// Instead of repeating variables with long names, the equal coalesce operator is used
+$this->request->data['comments']['user_id'] ??= 'value';
 
 ================================================================================
 `;

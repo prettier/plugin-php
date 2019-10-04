@@ -381,6 +381,44 @@ echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
+$var = "string \${juices['FOO']} string";
+
+// T_VARIABLE
+echo "text $foo text.";
+
+// T_VARIABLE '[' encaps_var_offset ']'
+echo "text $foo[name] text.";
+echo "text $foo[1] text.";
+// echo "text $foo[-1] text.";
+echo "text $foo[$var] text.";
+echo "text $foo[koolaid1] text.";
+
+// T_VARIABLE T_OBJECT_OPERATOR T_STRING
+echo "text $foo->bar text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES expr '}'
+echo "text \${$test} text.";
+echo "text \${$$$test} text.";
+echo "text \${call()} text.";
+echo "text \${true || false} text.";
+echo "text \${$var ? 'foo' : 'bar'} text.";
+echo "text \${'test' + 'test'} text.";
+echo "text \${'test'} text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
+echo "text \${foo} text";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
+echo "text \${foo['foo']} text";
+echo "text \${foo[foo]} text";
+echo "text \${foo[call()]} text";
+echo "text \${foo[$var ? 'foo' : 'bar']} text";
+
+// T_CURLY_OPEN variable '}'
+echo "text {$var} text";
+echo "text {$var['test']} text";
+echo "text {$var->test} text";
+echo "text {$var::$test} text";
 =====================================output=====================================
 <?php
 $encapsShell = \`a $b\`;
@@ -800,6 +838,45 @@ echo "This is my array value: {$anArray[key]}";
 echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
+
+$var = "string \${juices['FOO']} string";
+
+// T_VARIABLE
+echo "text $foo text.";
+
+// T_VARIABLE '[' encaps_var_offset ']'
+echo "text $foo[name] text.";
+echo "text $foo[1] text.";
+// echo "text $foo[-1] text.";
+echo "text $foo[$var] text.";
+echo "text $foo[koolaid1] text.";
+
+// T_VARIABLE T_OBJECT_OPERATOR T_STRING
+echo "text $foo->bar text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES expr '}'
+echo "text \${$test} text.";
+echo "text \${$$$test} text.";
+echo "text \${call()} text.";
+echo "text \${true || false} text.";
+echo "text \${$var ? 'foo' : 'bar'} text.";
+echo "text \${'test' + 'test'} text.";
+echo "text \${'test'} text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
+echo "text \${foo} text";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
+echo "text \${foo['foo']} text";
+echo "text \${foo[foo]} text";
+echo "text \${foo[call()]} text";
+echo "text \${foo[$var ? 'foo' : 'bar']} text";
+
+// T_CURLY_OPEN variable '}'
+echo "text {$var} text";
+echo "text {$var['test']} text";
+echo "text {$var->test} text";
+echo "text {$var::$test} text";
 
 ================================================================================
 `;

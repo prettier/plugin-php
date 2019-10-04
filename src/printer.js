@@ -2344,13 +2344,28 @@ function printNode(path, options, print) {
       );
     case "variable": {
       const parent = path.getParentNode();
+      const parentParent = path.getParentNode(1);
+      const ampersand = parent.kind === "assign" ? "" : node.byref ? "&" : "";
+      const dollar =
+        (parent.kind === "encapsedpart" &&
+          parent.syntax === "simple" &&
+          parent.curly) ||
+        (parentParent &&
+          parent.kind === "offsetlookup" &&
+          parentParent.kind === "encapsedpart" &&
+          parentParent.syntax === "simple" &&
+          parentParent.curly)
+          ? ""
+          : "$";
+      const openCurly = node.curly ? "{" : "";
+      const closeCurly = node.curly ? "}" : "";
 
       return concat([
-        parent.kind === "assign" ? "" : node.byref ? "&" : "",
-        "$",
-        node.curly ? "{" : "",
+        ampersand,
+        dollar,
+        openCurly,
         path.call(print, "name"),
-        node.curly ? "}" : ""
+        closeCurly
       ]);
     }
     case "constantstatement":
@@ -2772,12 +2787,18 @@ function printNode(path, options, print) {
         quote
       ]);
     }
-    case "encapsedpart":
-      return concat([
-        node.curly ? "{" : "",
-        path.call(print, "expression"),
-        node.curly ? "}" : ""
-      ]);
+    case "encapsedpart": {
+      const open =
+        (node.syntax === "simple" && node.curly) || node.syntax === "complex"
+          ? concat([node.curly ? "$" : "", "{"])
+          : "";
+      const close =
+        (node.syntax === "simple" && node.curly) || node.syntax === "complex"
+          ? "}"
+          : "";
+
+      return concat([open, path.call(print, "expression"), close]);
+    }
     case "encapsed":
       switch (node.type) {
         case "string":
