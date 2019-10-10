@@ -29,3 +29,5 @@ $test =
 
 $this->long->expression->before->array->statesArray[$state->getCirculationStateId()] = $state->getName();
 $this->long->expression->before->array->statesArray[$state->getCirculationStateId()] = &$state->getName();
+
+$cached_var = &drupal_static(__FUNCTION__);
