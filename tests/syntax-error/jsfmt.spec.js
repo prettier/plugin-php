@@ -22,6 +22,7 @@ test("Syntax errors have the expected structure", () => {
       codeFrame: stripAnsi(err.codeFrame)
     });
 
+    // eslint-disable-next-line jest/no-try-expect
     expect(errObject).toMatchSnapshot();
   }
 });
