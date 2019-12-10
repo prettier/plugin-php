@@ -20,7 +20,7 @@
     "codecov": "3.6.1",
     "eslint": "6.7.2",
     "eslint-config-prettier": "6.7.0",
-    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-import": "2.19.1",
     "eslint-plugin-jest": "23.1.1",
     "eslint-plugin-prettier": "3.1.1",
     "jest": "24.9.0",
