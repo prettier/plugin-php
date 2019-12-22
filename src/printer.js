@@ -1891,9 +1891,11 @@ function printNode(path, options, print) {
         ")"
       ]);
     case "while":
+    case "switch":
       return group(
         concat([
-          "while (",
+          node.kind,
+          " (",
           group(
             concat([
               indent(concat([softline, path.call(print, "test")])),
@@ -2042,18 +2044,6 @@ function printNode(path, options, print) {
         printBodyControlStructure(path, options, print, "body")
       ]);
     }
-    case "switch":
-      return concat([
-        group(
-          concat([
-            "switch (",
-            indent(concat([softline, path.call(print, "test")])),
-            softline,
-            ")"
-          ])
-        ),
-        printBodyControlStructure(path, options, print, "body")
-      ]);
     case "case":
       return concat([
         node.test
@@ -2579,6 +2569,7 @@ function printNode(path, options, print) {
         node !== parent.body &&
         (parent.kind === "if" ||
           parent.kind === "while" ||
+          parent.kind === "switch" ||
           parent.kind === "do");
 
       const parts = printBinaryExpression(
