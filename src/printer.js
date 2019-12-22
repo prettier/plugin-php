@@ -2173,7 +2173,8 @@ function printNode(path, options, print) {
           ["identifier", "variable", "encapsedpart"].includes(
             node.offset.kind
           ) &&
-          (parent && !isLookupNode(parent)));
+          parent &&
+          !isLookupNode(parent));
 
       return concat([
         path.call(print, "what"),
@@ -2615,7 +2616,8 @@ function printNode(path, options, print) {
       const shouldNotIndent =
         (node !== parent.body && parent.kind === "for") ||
         (parent.kind === "retif" &&
-          (parentParent && parentParent.kind !== "return"));
+          parentParent &&
+          parentParent.kind !== "return");
 
       const shouldIndentIfInlining = [
         "assign",

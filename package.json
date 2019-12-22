@@ -13,7 +13,7 @@
   "dependencies": {
     "linguist-languages": "^7.5.1",
     "mem": "^6.0.1",
-    "php-parser": "glayzzle/php-parser#prettier"
+    "php-parser": "glayzzle/php-parser#8ddd319ff32fe56afc3fdb0bd82a65ad0943c747"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.7.5",
@@ -26,7 +26,7 @@
     "jest": "24.9.0",
     "jest-runner-eslint": "0.7.5",
     "jest-snapshot-serializer-raw": "^1.1.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.19.1",
     "rollup": "^1.1.2",
     "rollup-plugin-alias": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
