@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.5",
     "codecov": "3.6.1",
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-import": "2.19.1",
     "eslint-plugin-jest": "23.1.1",
