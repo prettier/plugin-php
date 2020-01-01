@@ -1074,7 +1074,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
     if (hasStartTag) {
       const between = options.originalText.trim().match(/^<\?(php|=)(\s+)?\S/);
       const afterOpenTag = concat([
-        between && between[2].includes("\n")
+        between && between[2] && between[2].includes("\n")
           ? concat([
               hardline,
               between[2].split("\n").length > 2 ? hardline : ""
@@ -1083,7 +1083,9 @@ function printLines(path, options, print, childrenAttribute = "children") {
         node.comments ? comments.printComments(node.comments, options) : ""
       ]);
 
-      parts.push(concat(["<?php", afterOpenTag]));
+      const shortEcho =
+        firstNode && firstNode.kind === "echo" && firstNode.shortForm;
+      parts.push(concat([shortEcho ? "<?=" : "<?php", afterOpenTag]));
     }
 
     parts.push(concat(wrappedParts));
