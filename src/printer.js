@@ -1037,12 +1037,12 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const beforeInline =
         childNode.leadingComments && childNode.leadingComments.length
           ? concat([
-              isFirstNode ? openTag : "",
+              isFirstNode && node.kind !== "namespace" ? openTag : "",
               hardline,
               comments.printComments(childNode.leadingComments, options),
               "?>"
             ])
-          : isProgramLikeNode(node) && isFirstNode
+          : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
           ? ""
           : concat([beforeCloseTagInlineNode, "?>"]);
       const afterInline =
@@ -1623,14 +1623,18 @@ function printNode(path, options, print) {
           ? node.withBrackets
             ? indent(concat([hardline, printLines(path, options, print)]))
             : concat([
-                hardline,
-                isNextLineEmptyAfterNamespace(
-                  options.originalText,
-                  node,
-                  options.locStart
-                )
-                  ? hardline
-                  : "",
+                node.children[0].kind === "inline"
+                  ? ""
+                  : concat([
+                      hardline,
+                      isNextLineEmptyAfterNamespace(
+                        options.originalText,
+                        node,
+                        options.locStart
+                      )
+                        ? hardline
+                        : ""
+                    ]),
                 printLines(path, options, print)
               ])
           : "",
