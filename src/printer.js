@@ -2505,16 +2505,21 @@ function printNode(path, options, print) {
         { shouldBreak }
       );
     }
-    case "entry":
-      return printAssignment(
-        node.key,
-        path.call(print, "key"),
-        " =>",
-        node.value,
-        path.call(print, "value"),
-        false,
-        options
-      );
+    case "entry": {
+      const ref = node.byRef ? "&" : "";
+      const unpack = node.unpack ? "..." : "";
+      return node.key
+        ? printAssignment(
+            node.key,
+            path.call(print, "key"),
+            " =>",
+            node.value,
+            path.call(print, "value"),
+            false,
+            options
+          )
+        : concat([ref, unpack, path.call(print, "value")]);
+    }
     case "yield": {
       const printedKeyAndValue = concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
