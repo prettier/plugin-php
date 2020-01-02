@@ -1502,7 +1502,7 @@ function printAssignmentRight(
     return indent(concat([hardline, ref, printedRight]));
   }
 
-  const pureRightNode = rightNode.kind === "cast" ? rightNode.what : rightNode;
+  const pureRightNode = rightNode.kind === "cast" ? rightNode.expr : rightNode;
 
   const canBreak =
     (pureRightNode.kind === "bin" &&
@@ -2505,16 +2505,21 @@ function printNode(path, options, print) {
         { shouldBreak }
       );
     }
-    case "entry":
-      return printAssignment(
-        node.key,
-        path.call(print, "key"),
-        " =>",
-        node.value,
-        path.call(print, "value"),
-        false,
-        options
-      );
+    case "entry": {
+      const ref = node.byRef ? "&" : "";
+      const unpack = node.unpack ? "..." : "";
+      return node.key
+        ? printAssignment(
+            node.key,
+            path.call(print, "key"),
+            " =>",
+            node.value,
+            path.call(print, "value"),
+            false,
+            options
+          )
+        : concat([ref, unpack, path.call(print, "value")]);
+    }
     case "yield": {
       const printedKeyAndValue = concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
@@ -2547,9 +2552,9 @@ function printNode(path, options, print) {
         "(",
         node.type,
         ") ",
-        node.what.comments
-          ? indent(path.call(print, "what"))
-          : path.call(print, "what")
+        node.expr.comments
+          ? indent(path.call(print, "expr"))
+          : path.call(print, "expr")
       ]);
     case "assignref":
     case "assign": {
