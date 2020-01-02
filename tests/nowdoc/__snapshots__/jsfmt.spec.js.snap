@@ -946,11 +946,11 @@ string
 EOD
 ];
 
-$newInPhp73 = <<<'EOD'
-              Example of string
-              spanning multiple lines
-              using nowdoc syntax.
-              EOD;
+$php73FlexibleNowdoc = <<<'EOD'
+      Example of string
+      spanning multiple lines
+      using nowdoc syntax.
+      EOD;
 
 =====================================output=====================================
 <?php
@@ -1972,7 +1972,7 @@ string
 EOD
 ];
 
-$newInPhp73 = <<<'EOD'
+$php73FlexibleNowdoc = <<<'EOD'
 Example of string
 spanning multiple lines
 using nowdoc syntax.
