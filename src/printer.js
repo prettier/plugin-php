@@ -1734,6 +1734,13 @@ function printNode(path, options, print) {
     case "closure":
     case "method":
       return printFunction(path, options, print);
+    case "arrowfunc":
+      return concat([
+        "fn",
+        printArgumentsList(path, options, print),
+        " => ",
+        path.call(print, "body")
+      ]);
     case "parameter": {
       const name = concat([
         node.nullable ? "?" : "",

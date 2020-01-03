@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`arrowfunc.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+$var = fn() => "something";
+$var = fn($arg) =>  "something";
+$var = fn(&$arg) => "something";
+$var = fn($arg, $arg, $arg) => "something";
+// $var = fn(): ?string => "something";
+
+call(fn($arg) => $arg);
+
+=====================================output=====================================
+<?php
+$var = fn() => "something";
+$var = fn($arg) => "something";
+$var = fn(&$arg) => "something";
+$var = fn($arg, $arg, $arg) => "something";
+// $var = fn(): ?string => "something";
+
+call(fn($arg) => $arg);
+
+================================================================================
+`;
