@@ -338,6 +338,8 @@ $var = (@foo() || @foo());
 @$i / 0;
 @($i) / 0;
 
+$var = "a" . (@$b ? 'bar' : "baz");
+
 $a = (false && foo());
 $b = (true  || foo());
 $c = (false and foo());
