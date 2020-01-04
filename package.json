@@ -18,6 +18,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.5",
     "codecov": "3.6.1",
+    "cross-env": "^6.0.3",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.9.0",
     "eslint-plugin-import": "2.19.1",
@@ -36,15 +37,15 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-terser": "^5.1.1",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^6.0.0",
+    "yarpm": "^0.2.1"
   },
   "peerDependencies": {
     "prettier": "^1.15.0"
   },
   "scripts": {
-    "pretest": "npm run build-standalone",
     "test": "jest",
-    "prepublishOnly": "npm run build-standalone",
+    "prepublishOnly": "yarpm run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarpm test",
     "prettier": "prettier --plugin=. --parser=php",
     "build-standalone": "rollup -c build/rollup.config.js"
   },
