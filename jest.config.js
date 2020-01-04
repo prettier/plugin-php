@@ -20,9 +20,8 @@ module.exports = {
         STANDALONE: false
       }
     },
-    ...(process.env.SKIP_STANDALONE_TESTS === "true"
-      ? []
-      : [
+    ...(/^true$/i.test(process.env.RUN_STANDALONE_TESTS)
+      ? [
           {
             displayName: "test-standalone",
             setupFiles: ["<rootDir>/tests_config/run_spec.js"],
@@ -33,7 +32,8 @@ module.exports = {
               STANDALONE: true
             }
           }
-        ]),
+        ]
+      : []),
     {
       runner: "jest-runner-eslint",
       displayName: "lint",
