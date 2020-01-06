@@ -2764,7 +2764,16 @@ function printNode(path, options, print) {
       const parent = path.getParentNode();
 
       if (parent.kind === "encapsedpart") {
-        return join(literalline, node.raw.split(/\r?\n/g));
+        const parentParent = path.getParentNode(1);
+        let closingTagIndentation = 0;
+        if (parentParent.type === "heredoc") {
+          const lines = parentParent.raw.split(/\r?\n/g);
+          closingTagIndentation = lines[lines.length - 1].search(/\S/);
+        }
+        return join(
+          literalline,
+          node.raw.split(/\r?\n/g).map(s => s.substring(closingTagIndentation))
+        );
       }
 
       const quote = useDoubleQuote(node, options) ? '"' : "'";

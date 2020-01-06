@@ -435,3 +435,15 @@ echo <<<	'END'
  b
 c
 END;
+
+$php73FlexibleHeredoc = <<<EOD
+       $a
+      b
+     c
+     EOD;
+
+$php73FlexibleHeredoc2 = <<<EOD
+      $a
+     b
+    c
+  EOD;
