@@ -216,7 +216,7 @@ return $var > $someOtherReallyReallyLongVariable ? true : false;
 return $someOtherReallyReallyLongVariable > $someOtherReallyReallyLongVariable ? true : false;
 return $someOtherReallyReallyReallyReallyReallyReallyLongVariable > $someOtherReallyReallyReallyReallyReallyReallyLongVariable ? true : false;
 
-fn(
+func(
     $bifornCringerMoshedPerplexSawder,
     $askTrovenaBeenaDependsRowans,
     $glimseGlyphsHazardNoopsTieTie === averredBathersBoxroomBuggyNurl &&
