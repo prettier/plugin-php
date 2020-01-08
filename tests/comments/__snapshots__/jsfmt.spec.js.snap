@@ -111,14 +111,14 @@ $array = [
     // comment
     // comment
     1, // comment
-    2 // comment
+    2, // comment
     // comment
 ];
 $array = [
     /* comment */
     /* comment */
     /* comment */ 1 /* comment */ /* comment */,
-    /* comment */ 2 /* comment */
+    /* comment */ 2 /* comment */,
     /* comment */
     /* comment */
 ];
@@ -126,7 +126,7 @@ $array = [
     /* comment */
     /* comment */
     /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
-    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */
+    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */,
     /* comment */
     /* comment */
 ];
@@ -137,7 +137,7 @@ $array = [
     3,
     4,
     5,
-    6
+    6,
 ];
 $array = [
     1,
@@ -145,25 +145,25 @@ $array = [
     3,
     4,
     5,
-    6 // test
+    6, // test
 ];
 const FOO = [
     //testing
-    1
+    1,
 ];
 
 return [
     // foo
-    "bar"
+    "bar",
 ];
 
 $array = [
     'type' => [],
     'config' => [
         // comments in nested arrays break things
-        'key' => 1
+        'key' => 1,
     ],
-    'accepted' => []
+    'accepted' => [],
 ];
 
 // Comment
@@ -178,19 +178,19 @@ $array = [
     'key' =>
         // Comment A
         // Comment B
-        'string'
+        'string',
 ];
 
 $array = [
     // Comment A
     'key' =>
         // Comment B
-        'string'
+        'string',
 ];
 
 $array = [
     // Comment A
-    'key' => 'string'
+    'key' => 'string',
 ];
 
 array(); // Comment
@@ -200,7 +200,7 @@ $array = array(); // Comment
 $array = array(
     // Comment
     'string',
-    'other-string'
+    'other-string',
 );
 
 call(
@@ -210,7 +210,7 @@ call(
 call(array(
     // Comment
     'string',
-    'other-string'
+    'other-string',
 ));
 
 ================================================================================
@@ -1451,7 +1451,7 @@ $test = foo
     });
 
 $constraint = new UniqueEntity(array(
-    'message' => 'myMessage'
+    'message' => 'myMessage',
     // no "em" option set
 ));
 
@@ -4775,7 +4775,7 @@ list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /*
 list(
     /* Comment */ $drink /* Comment */,
     /* Comment */ $color /* Comment */,
-    /* Comment */ $power /* Comment */
+    /* Comment */ $power /* Comment */,
 ) = $info;
 
 ================================================================================
@@ -7356,23 +7356,23 @@ $obj = // Comment
 $obj =
     // Comment
     [
-        'key' => 'val'
+        'key' => 'val',
     ];
 
 $obj =
     // Comment
     [
-        'key' => 'val'
+        'key' => 'val',
     ];
 
 $obj = [
     // Comment
-    'key' => 'val'
+    'key' => 'val',
 ];
 
 $obj = [
     // Comment
-    'key' => 'val'
+    'key' => 'val',
 ];
 
 $obj =
@@ -7385,12 +7385,12 @@ $obj =
 
 $obj = [
     // Comment
-    'val'
+    'val',
 ];
 
 $obj = [
     // Comment
-    'val'
+    'val',
 ];
 
 $obj =

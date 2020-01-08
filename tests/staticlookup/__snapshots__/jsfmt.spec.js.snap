@@ -200,7 +200,7 @@ Foo::method([
     'foo' => 'bar',
     'bar' => 'foo',
     'foobar' => 'barfoo',
-    'barfoo' => 'foobar'
+    'barfoo' => 'foobar',
 ]);
 MyClass::$aStaticProp;
 MyClass::$aStaticProp = 1;

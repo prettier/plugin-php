@@ -44,7 +44,7 @@ list($drink, $color, $power) = $info;
 list(
     $reallyReallyReallyReallyLongName,
     $otherReallyReallyReallyLongName,
-    $lastOne
+    $lastOne,
 ) = $info;
 
 print "test print";

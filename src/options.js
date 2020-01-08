@@ -28,7 +28,7 @@ module.exports = {
     since: "0.0.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "none",
+    default: "all",
     description: "Print trailing commas wherever possible when multi-line.",
     choices: [
       { value: "none", description: "No trailing commas." },

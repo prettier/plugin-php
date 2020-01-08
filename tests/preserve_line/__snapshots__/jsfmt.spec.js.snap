@@ -252,7 +252,7 @@ moreArgTypes(
 
     [
         'name' => 'Hello World',
-        'age' => 29
+        'age' => 29,
     ],
 
     doSomething(
@@ -326,7 +326,7 @@ $stuff->doThing(
     [
         'accept' => function ($node) {
             doSomething($node);
-        }
+        },
     ]
 );
 
@@ -338,7 +338,7 @@ doThing(
     [
         'decline' => function ($creditCard) {
             takeMoney($creditCard);
-        }
+        },
     ]
 );
 

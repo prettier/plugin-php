@@ -212,37 +212,37 @@ $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = array('foo', 'bar');
 $foo = array('foo', 'bar');
 $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $packages = array_merge(
     idx($composer, 'require', []),
@@ -257,6 +257,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'foo',
@@ -266,6 +267,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     <<<'EOT'
@@ -275,7 +277,7 @@ baz
 
 EOT
     ,
-    'bar'
+    'bar',
 );
 
 // heredoc
@@ -286,6 +288,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'foo',
@@ -295,6 +298,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     <<<EOT
@@ -304,7 +308,7 @@ baz
 
 EOT
     ,
-    'bar'
+    'bar',
 );
 
 // Associative array with nowdoc
@@ -315,6 +319,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'foo',
@@ -324,6 +329,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'key' => <<<'EOT'
@@ -333,7 +339,7 @@ baz
 
 EOT
     ,
-    'bar'
+    'bar',
 );
 
 // Associative array with heredoc
@@ -344,6 +350,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'foo',
@@ -353,6 +360,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'key' => <<<EOT
@@ -362,7 +370,7 @@ baz
 
 EOT
     ,
-    'bar'
+    'bar',
 );
 
 // Nested with nowdoc
@@ -382,6 +390,7 @@ foo
 baz
 
 EOT
+        ,
         ),
         array(
             'two' => <<<'EOT'
@@ -389,8 +398,9 @@ foo
 # bar
 baz
 EOT
-        )
-    )
+        ,
+        ),
+    ),
 );
 
 // Nested with heredoc
@@ -410,6 +420,7 @@ foo
 baz
 
 EOT
+        ,
         ),
         array(
             'two' => <<<EOT
@@ -417,8 +428,9 @@ foo
 # bar
 baz
 EOT
-        )
-    )
+        ,
+        ),
+    ),
 );
 
 ================================================================================
@@ -2412,10 +2424,10 @@ $text = sprintf(
 
 call(
     [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
     ],
     [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
     ]
 );
 
@@ -3803,14 +3815,14 @@ list(
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,

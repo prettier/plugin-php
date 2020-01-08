@@ -521,13 +521,14 @@ $content = array(
 foo
 EOF
     ,
-    "bar"
+    "bar",
 );
 $content = array(
     "bar",
     <<<EOF
 foo
 EOF
+,
 );
 
 function foo(
@@ -597,7 +598,7 @@ $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->ba
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "My name is {\${getName($arg, 'string', 1024, $var ? true : false, [
     'foo' => 'bar',
-    'bar' => 'foo'
+    'bar' => 'foo',
 ])}}";
 $var = "My name is {\${getName(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
@@ -651,7 +652,7 @@ baz
 
 EOT
     ,
-    'foo' => 'bar'
+    'foo' => 'bar',
 );
 $expected = array(
     'foo' => 'bar',
@@ -661,6 +662,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'foo' => <<<'EOT'
@@ -683,6 +685,7 @@ foo
 baz
 
 EOT
+,
 );
 $expected = array(
     'test' => <<<'EOT'
@@ -700,6 +703,7 @@ foo
 baz
 
 EOT
+        ,
         ),
         array(
             'two' => <<<'EOT'
@@ -707,8 +711,9 @@ foo
 # bar
 baz
 EOT
-        )
-    )
+        ,
+        ),
+    ),
 );
 
 $var =
