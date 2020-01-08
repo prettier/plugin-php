@@ -27,36 +27,9 @@ module.exports = {
   trailingCommaPHP: {
     since: "0.0.0",
     category: CATEGORY_PHP,
-    type: "choice",
-    default: "all",
-    description: "Print trailing commas wherever possible when multi-line.",
-    choices: [
-      { value: "none", description: "No trailing commas." },
-      {
-        value: "php5",
-        description: "Trailing commas where valid in PHP 5 (arrays and lists).",
-        deprecated: "0.13.0",
-        redirect: "all"
-      },
-      {
-        value: "php7.2",
-        description:
-          "Trailing commas where valid in PHP 7.2 (arrays, lists and uses).",
-        deprecated: "0.13.0",
-        redirect: "all"
-      },
-      {
-        value: "php7.3",
-        description:
-          "Trailing commas where valid in PHP 7.3 (arrays, lists, uses and function calls).",
-        deprecated: "0.13.0",
-        redirect: "all"
-      },
-      {
-        value: "all",
-        description: "Trailing commas wherever possible."
-      }
-    ]
+    type: "boolean",
+    default: true,
+    description: "Print trailing commas wherever possible when multi-line."
   },
   braceStyle: {
     since: "0.10.0",

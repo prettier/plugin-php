@@ -441,7 +441,7 @@ exports[`array.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -879,7 +879,7 @@ exports[`array.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1317,7 +1317,7 @@ exports[`array.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1755,7 +1755,7 @@ exports[`array.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2474,7 +2474,7 @@ exports[`call.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2769,7 +2769,7 @@ exports[`call.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3064,7 +3064,7 @@ exports[`call.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3361,7 +3361,7 @@ exports[`call.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3680,7 +3680,7 @@ exports[`isset.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3706,7 +3706,7 @@ exports[`isset.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3732,7 +3732,7 @@ exports[`isset.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3758,7 +3758,7 @@ exports[`isset.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3882,7 +3882,7 @@ exports[`list.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -3982,7 +3982,7 @@ exports[`list.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4082,7 +4082,7 @@ exports[`list.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4182,7 +4182,7 @@ exports[`list.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4305,7 +4305,7 @@ exports[`unset.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4330,7 +4330,7 @@ exports[`unset.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4355,7 +4355,7 @@ exports[`unset.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4380,7 +4380,7 @@ exports[`unset.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4455,7 +4455,7 @@ exports[`use.php 2`] = `
 parsers: ["php"]
 phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4507,7 +4507,7 @@ exports[`use.php 3`] = `
 parsers: ["php"]
 phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4559,7 +4559,7 @@ exports[`use.php 4`] = `
 parsers: ["php"]
 phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -4611,7 +4611,7 @@ exports[`use.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
-trailingCommaPHP: "none"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php

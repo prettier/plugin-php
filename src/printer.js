@@ -60,7 +60,7 @@ const {
 } = require("./util");
 
 function shouldPrintComma(options, requiredVersion) {
-  if (options.trailingCommaPHP === "none") {
+  if (!options.trailingCommaPHP) {
     return false;
   }
 
