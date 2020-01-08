@@ -259,7 +259,7 @@ return [
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
     $veryVeryVeryVeryVeryVeryLongKey =>
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-    3
+    3,
 ];
 return $a + $b;
 return $a / $b;
@@ -470,22 +470,22 @@ return ['foo', 'bar'];
 return ['key' => 'foo', 'other-key' => 'bar'];
 return [
     'key' => 'foo',
-    'other-key' => 'bar'
+    'other-key' => 'bar',
 ];
 return [
     'foo',
     'bar',
-    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine'
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine',
 ];
 return [
     'bootstrap' => '^4.0.0',
     'jquery' => '^3.2',
-    'popper.js' => '^1.12'
+    'popper.js' => '^1.12',
 ] || $packages;
 return $packages || [
     'bootstrap' => '^4.0.0',
     'jquery' => '^3.2',
-    'popper.js' => '^1.12'
+    'popper.js' => '^1.12',
 ];
 
 return $this->events->until(
@@ -532,13 +532,13 @@ return $this->hasEncodingOption(JSON_PARTIAL_OUTPUT_ON_ERROR) &&
     in_array($jsonError, [
         JSON_ERROR_RECURSION,
         JSON_ERROR_INF_OR_NAN,
-        JSON_ERROR_UNSUPPORTED_TYPE
+        JSON_ERROR_UNSUPPORTED_TYPE,
     ]);
 
 return in_array($jsonError, [
     JSON_ERROR_RECURSION,
     JSON_ERROR_INF_OR_NAN,
-    JSON_ERROR_UNSUPPORTED_TYPE
+    JSON_ERROR_UNSUPPORTED_TYPE,
 ]) && $this->hasEncodingOption(JSON_PARTIAL_OUTPUT_ON_ERROR);
 
 return $this->guards[$name] ?? ($this->guards[$name] = $this->resolve($name));

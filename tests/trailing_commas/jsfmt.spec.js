@@ -1,6 +1,8 @@
 run_spec(__dirname, ["php"]);
-run_spec(__dirname, ["php"], { trailingCommaPHP: "php5" });
-run_spec(__dirname, ["php"], { trailingCommaPHP: "php7.2" });
-run_spec(__dirname, ["php"], { trailingCommaPHP: "php7.3" });
-run_spec(__dirname, ["php"], { trailingCommaPHP: "all" });
-run_spec(__dirname, ["php"], { trailingComma: "all" });
+run_spec(__dirname, ["php"], { trailingCommaPHP: true, phpVersion: "5.0" });
+run_spec(__dirname, ["php"], { trailingCommaPHP: true, phpVersion: "7.2" });
+run_spec(__dirname, ["php"], { trailingCommaPHP: true, phpVersion: "7.3" });
+run_spec(__dirname, ["php"], {
+  trailingCommaPHP: false,
+  trailingComma: "all"
+});

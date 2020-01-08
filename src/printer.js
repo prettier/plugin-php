@@ -59,39 +59,12 @@ const {
   normalizeMagicMethodName
 } = require("./util");
 
-function shouldPrintComma(options, level) {
-  level = level || "none";
-
-  switch (options.trailingCommaPHP) {
-    case "all":
-      if (level === "all") {
-        return true;
-      }
-    // fallthrough
-    case "php7.3":
-      if (level === "php7.3") {
-        return true;
-      }
-    // fallthrough
-    case "php7.2":
-      if (level === "php7.2") {
-        return true;
-      }
-    // fallthrough
-    case "php5":
-      if (level === "php5") {
-        return true;
-      }
-    // fallthrough
-    case "none":
-      return false;
-    // fallthrough
-    default:
-      if (options.trailingComma === "all") {
-        return true;
-      }
-      return false;
+function shouldPrintComma(options, requiredVersion) {
+  if (!options.trailingCommaPHP) {
+    return false;
   }
+
+  return parseFloat(options.phpVersion) >= parseFloat(requiredVersion);
 }
 
 function shouldPrintHardlineForOpenBrace(options) {
@@ -636,7 +609,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
   const maybeTrailingComma =
     ["call", "new", "unset", "isset"].includes(node.kind) &&
-    shouldPrintComma(options, "php7.3")
+    shouldPrintComma(options, "7.3")
       ? indent(
           concat([
             lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
@@ -1662,7 +1635,7 @@ function printNode(path, options, print) {
           ),
           node.name
             ? concat([
-                ifBreak(shouldPrintComma(options, "php7.2") ? "," : ""),
+                ifBreak(shouldPrintComma(options, "7.2") ? "," : ""),
                 softline,
                 "}"
               ])
@@ -2500,7 +2473,7 @@ function printNode(path, options, print) {
           indent(concat([softline, printArrayItems(path, options, print)])),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
-            !needsForcedTrailingComma && shouldPrintComma(options, "php5")
+            !needsForcedTrailingComma && shouldPrintComma(options, "5.0")
               ? concat([
                   lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
                     ? hardline
@@ -2771,7 +2744,16 @@ function printNode(path, options, print) {
       const parent = path.getParentNode();
 
       if (parent.kind === "encapsedpart") {
-        return join(literalline, node.raw.split(/\r?\n/g));
+        const parentParent = path.getParentNode(1);
+        let closingTagIndentation = 0;
+        if (parentParent.type === "heredoc") {
+          const lines = parentParent.raw.split(/\r?\n/g);
+          closingTagIndentation = lines[lines.length - 1].search(/\S/);
+        }
+        return join(
+          literalline,
+          node.raw.split(/\r?\n/g).map(s => s.substring(closingTagIndentation))
+        );
       }
 
       const quote = useDoubleQuote(node, options) ? '"' : "'";

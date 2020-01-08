@@ -64,34 +64,34 @@ static $a = ['value', 'other-value'];
 static $a = [
     'value',
     'other-value',
-    'other-other-other-other-other-other-other-other-value'
+    'other-other-other-other-other-other-other-other-value',
 ];
 static $a = ['value', 'other-value'],
     $b = ['value', 'other-value'];
 static $a = [
         'value',
         'other-value',
-        'other-other-other-other-other-other-other-other-value'
+        'other-other-other-other-other-other-other-other-value',
     ],
     $b = [
         'value',
         'other-value',
-        'other-other-other-other-other-other-other-other-value'
+        'other-other-other-other-other-other-other-other-value',
     ];
 static $a = ['key' => 'value', 'other-key' => 'other-value'];
 static $a = [
     'key' => 'value',
-    'other-key' => 'other-value'
+    'other-key' => 'other-value',
 ];
 static $a = ['key' => 'value', 'other-key' => 'other-value'],
     $b = ['key' => 'value', 'other-key' => 'other-value'];
 static $a = [
         'key' => 'value',
-        'other-key' => 'other-value'
+        'other-key' => 'other-value',
     ],
     $b = [
         'key' => 'value',
-        'other-key' => 'other-value'
+        'other-key' => 'other-value',
     ];
 static $a =
     'string' .

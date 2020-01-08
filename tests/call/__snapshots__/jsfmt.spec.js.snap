@@ -367,7 +367,7 @@ $db->Execute($sql, [
     $foobar,
     $somewhatLongParameter,
     $somewhatLongParameterX,
-    $somewhatLongParameterXYZ
+    $somewhatLongParameterXYZ,
 ]);
 
 $db->Execute(
@@ -377,7 +377,7 @@ $db->Execute(
         $foobar,
         $somewhatLongParameter,
         $somewhatLongParameterX,
-        $somewhatLongParameterXYZ
+        $somewhatLongParameterXYZ,
     ],
     $sql
 );
@@ -420,7 +420,7 @@ $this->filter([
     'Mohamed',
     $this->mergeWhen(false, ['Adam', 'Matt']),
     'Jeffrey',
-    new MergeValue(['Abigail', 'Lydia'])
+    new MergeValue(['Abigail', 'Lydia']),
 ]);
 
 $this->assertEquals(
@@ -435,14 +435,14 @@ $some->other->thing(array(
     'buzz' => $this->is->nested(array(
         'complex' => 'stuff',
         'foo' => 'bar',
-        'buzz' => 'bazz'
-    ))
+        'buzz' => 'bazz',
+    )),
 ));
 
 $some->other->thing(
     array(
         'foo' => 'bar',
-        'buzz' => $this->is->nested(array(12, 34, 45, 67, 89))
+        'buzz' => $this->is->nested(array(12, 34, 45, 67, 89)),
     ),
     array(11323123, 1231, 13231233243, 324234234)
 );

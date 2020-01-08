@@ -568,50 +568,50 @@ $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array(
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 );
 $keyed_test = array(
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 );
 $keyed_test = array(
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 );
 $keyed_test = array(
     'one' => 123,
 
-    'two' => $other
+    'two' => $other,
 );
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = [
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 ];
 $keyed_test = [
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 ];
 $keyed_test = [
     'one' => 123,
-    'two' => $other
+    'two' => $other,
 ];
 $keyed_test = [
     'one' => 123,
 
-    'two' => $other
+    'two' => $other,
 ];
 $short_keyed_test = array(
     'reallyreallyreallyreallylongkey' => 1248,
     'otherkey' => 234,
-    'one more' => $hi
+    'one more' => $hi,
 );
 $short_keyed_test = [
     'reallyreallyreallyreallylongkey' => 1248,
     'otherkey' => 234,
-    'one more' => $hi
+    'one more' => $hi,
 ];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
@@ -622,7 +622,7 @@ $array = array(
     1 => "a",
     "1" => "b",
     1.5 => "c",
-    true => "d"
+    true => "d",
 );
 $array = array("a", "b", 6 => "c", "d");
 $array = array(
@@ -630,9 +630,9 @@ $array = array(
     42 => 24,
     "multi" => array(
         "dimensional" => array(
-            "array" => "foo"
-        )
-    )
+            "array" => "foo",
+        ),
+    ),
 );
 $secondElement = getArray()[1];
 $arr[] = 56;
@@ -667,10 +667,10 @@ $helpers = [
         'templates' => 'app_form',
         'widgets' => [
             'select' => ['App\\View\\Widget\\SelectBoxWidget'],
-            'nestingLabel' => ['App\\View\\Widget\\NestingLabelWidget']
-        ]
+            'nestingLabel' => ['App\\View\\Widget\\NestingLabelWidget'],
+        ],
     ],
-    'MagicMenu.MagicMenu'
+    'MagicMenu.MagicMenu',
 ];
 
 $data = [
@@ -679,7 +679,7 @@ $data = [
 
     // a comment
     'value',
-    'value'
+    'value',
 ];
 
 $arr = [
@@ -689,23 +689,23 @@ $arr = [
 
     'tiposLeis' => app(TiposLeisRepository::class)
         ->allOrderBy('nome')
-        ->pluck('nome', 'id')
+        ->pluck('nome', 'id'),
 ];
 [[$id1, $name1]] = $data;
 [[$id1], [$id2], [$id]] = $data;
 [
     [
         $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue
-    ]
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
+    ],
 ] = $data;
 ["id" => $id1, "name" => $name1] = $data;
 [["id" => $id1, "name" => $name1]] = $data;
 [
     [
         "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue
-    ]
+        "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
+    ],
 ] = $data;
 $arr = [
     'niveisFederativos' => function () {
@@ -714,7 +714,7 @@ $arr = [
 
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
         return "other-value";
-    }
+    },
 ];
 
 $singleLine = ['do' => ['collapse' => 'this']];
@@ -722,19 +722,19 @@ $singleLine = array('do' => array('collapse' => 'this'));
 
 $multiline = [
     'do' => [
-        'not' => 'collapse'
-    ]
+        'not' => 'collapse',
+    ],
 ];
 $multiline = ['do' => 'collapse'];
 $multiline = array('do' => 'collapse');
 
 $mixed = [
-    'only' => ['partly' => 'collapsed']
+    'only' => ['partly' => 'collapsed'],
 ];
 $mixed = [
     'only' => [
-        'partly' => ['coll', 'apsed']
-    ]
+        'partly' => ['coll', 'apsed'],
+    ],
 ];
 
 $arr = array($var);
@@ -764,7 +764,7 @@ $array = [
             ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
                 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
             : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 ];
 
 $array = [
@@ -779,13 +779,13 @@ string
     'key' => 'string' . 'other-string',
     'key' =>
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 ];
 
 $array = [
     'string
 string
-string'
+string',
 ];
 
 $array = [
@@ -794,7 +794,7 @@ string
 string',
     'string
 string
-string'
+string',
 ];
 
 $array = [
@@ -803,7 +803,7 @@ string
 string',
     'other-key' => 'string
 string
-string'
+string',
 ];
 
 $array = [
@@ -813,7 +813,7 @@ string' => 'value',
     'string
 string
 string
-other' => 'other-value'
+other' => 'other-value',
 ];
 
 $array = [
@@ -827,7 +827,7 @@ string
 string
 other' => 'string
 string
-string'
+string',
 ];
 
 $wp_admin_bar->add_menu(array(
@@ -836,19 +836,19 @@ $wp_admin_bar->add_menu(array(
         '<span class="ab-icon"></span><span class="screen-reader-text">' .
         __('Menu') .
         '</span>',
-    'href' => '#'
+    'href' => '#',
 ));
 
 $k = [
     "blablah" =>
         "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
         "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
-        "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf"
+        "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf",
 ];
 
 $o = [
     "somethingThatsAReallyLongPropName" =>
-        $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST
+        $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
 ];
 
 // spread

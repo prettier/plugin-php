@@ -31,7 +31,8 @@ $variable = @foo();
 $value = @$cache[$key];
 // will not issue a notice if the index $key doesn't exist.
 $variable = @foo([
-    'veryVeryVeryVeryVeryVeryVeryLongKey' => 'veryVeryVeryVeryVeryVeryLongValue'
+    'veryVeryVeryVeryVeryVeryVeryLongKey' =>
+        'veryVeryVeryVeryVeryVeryLongValue',
 ]);
 $variable = @foo()
     ->veryVeryVeryVeryVeryLongMethod()

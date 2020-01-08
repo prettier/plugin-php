@@ -219,7 +219,7 @@ abstract class A
 $class = (new Foo())->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
 $class = (new Foo([
     'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue'
+        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue',
 ]))->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
 $class = (new PendingDispatch(new $this->class(...func_get_args())))->chain(
     $this->chain

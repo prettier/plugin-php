@@ -770,7 +770,7 @@ printWidth: 80
         'small_title' => $item->small_title,
         'title' => $item->title,
         'url' => $url,
-        'color' => $item->title_color ?: 'primary'
+        'color' => $item->title_color ?: 'primary',
     ]); ?>
   </header>
 </section>
@@ -782,14 +782,14 @@ printWidth: 80
         'small_title' => $item->small_title,
         'title' => $item->title,
         'url' => $url,
-        'color' => $item->title_color ?: 'primary'
+        'color' => $item->title_color ?: 'primary',
     ]); ?>
   </header> <?= $someOtherVar()->element('collection/item-title', [
       'class' => $itemTitleClass,
       'small_title' => $item->small_title,
       'title' => $item->title,
       'url' => $url,
-      'color' => $item->title_color ?: 'primary'
+      'color' => $item->title_color ?: 'primary',
   ]) ?>
 </section>
 
@@ -1159,13 +1159,13 @@ printWidth: 80
           'small_title' => $item->small_title,
           'title' => $item->title,
           'url' => $url,
-          'color' => $item->title_color ?: 'primary'
+          'color' => $item->title_color ?: 'primary',
       ],
       [
           'foo' => 'bar',
           'bar' => 'foo',
           'barfoo' => 'foobar',
-          'foobar' => 'barfoo'
+          'foobar' => 'barfoo',
       ]
   ); ?>
   </header>
@@ -1176,13 +1176,13 @@ printWidth: 80
           'small_title' => $item->small_title,
           'title' => $item->title,
           'url' => $url,
-          'color' => $item->title_color ?: 'primary'
+          'color' => $item->title_color ?: 'primary',
       ],
       [
           'foo' => 'bar',
           'bar' => 'foo',
           'barfoo' => 'foobar',
-          'foobar' => 'barfoo'
+          'foobar' => 'barfoo',
       ]
   ); ?>
   </div>

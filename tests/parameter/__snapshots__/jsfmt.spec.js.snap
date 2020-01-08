@@ -189,7 +189,7 @@ function bar(
     $arg = array(
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
     )
 ) {
     return $arg;
@@ -201,7 +201,7 @@ function bar1(
 
         "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
-        "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+        "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
     )
 ) {
     return $arg;

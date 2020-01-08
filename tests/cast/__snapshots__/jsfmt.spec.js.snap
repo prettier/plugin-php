@@ -111,7 +111,7 @@ $this->reallyLong->testPropertyName =
 $var = (array) ["test"] + ["test"];
 $var = (array) [
     "very-very-very-very-very-very-very-long-value-1",
-    "very-very-very-very-very-very-very-long-value-2"
+    "very-very-very-very-very-very-very-long-value-2",
 ] + ["test"];
 $var =
     (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable +
@@ -146,7 +146,7 @@ EOD;
 
 $array = [
     'foo' => (bool) $var,
-    'bar' => (bool) $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+    'bar' => (bool) $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
 
 $var =

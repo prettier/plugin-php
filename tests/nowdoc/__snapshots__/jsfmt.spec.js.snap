@@ -947,10 +947,16 @@ EOD
 ];
 
 $php73FlexibleNowdoc = <<<'EOD'
-      Example of string
-      spanning multiple lines
-      using nowdoc syntax.
-      EOD;
+       $a
+      b
+     c
+     EOD;
+
+$php73FlexibleNowdoc2 = <<<'EOD'
+      $a
+     b
+    c
+  EOD;
 
 =====================================output=====================================
 <?php
@@ -976,7 +982,7 @@ $str = array(
 foo
 EOF
     ,
-    "bar"
+    "bar",
 );
 
 $str = array(
@@ -984,6 +990,7 @@ $str = array(
     <<<'EOF'
 foo
 EOF
+,
 );
 
 $str = sprintf(
@@ -1023,7 +1030,7 @@ $str = call(array(
 foo
 END
     ,
-    true
+    true,
 ));
 
 $str = array(
@@ -1032,8 +1039,8 @@ $str = array(
 foo
 END
         ,
-        true
-    )
+        true,
+    ),
 );
 
 $str = array(
@@ -1043,7 +1050,7 @@ foo
 END
         ,
         true
-    )
+    ),
 );
 
 function foo(
@@ -1448,6 +1455,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1456,6 +1464,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1465,6 +1474,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1474,7 +1484,7 @@ string
 string
 EOD
     ,
-    $a
+    $a,
 ];
 
 $a = [
@@ -1483,6 +1493,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1491,6 +1502,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1500,6 +1512,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1509,7 +1522,7 @@ string
 string
 EOD
     ,
-    'other-key' => $a
+    'other-key' => $a,
 ];
 
 switch ($i) {
@@ -1970,12 +1983,20 @@ string
 string
 string
 EOD
+,
 ];
 
 $php73FlexibleNowdoc = <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
+  $a
+ b
+c
+
+EOD;
+
+$php73FlexibleNowdoc2 = <<<'EOD'
+    $a
+   b
+  c
 
 EOD;
 

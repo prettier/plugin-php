@@ -956,7 +956,7 @@ abstract class ReallyReallyReallyLongClassName
         'requester_id',
         'type',
         'summary',
-        'proof'
+        'proof',
     ];
     protected $test = [
         //test
