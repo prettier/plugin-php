@@ -7,7 +7,7 @@ module.exports = {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "7.1",
+    default: "5.4",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },
