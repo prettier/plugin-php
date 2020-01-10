@@ -228,7 +228,7 @@ class Bar extends Foo
 abstract class DataRecord
 {
     private static $db; // MySQLi-Connection, same for all subclasses
-    private static $table = array(); // Array of tables for subclasses
+    private static $table = []; // Array of tables for subclasses
 
     public static function init($classname, $table, $db = false)
     {

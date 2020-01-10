@@ -59,12 +59,16 @@ const {
   normalizeMagicMethodName
 } = require("./util");
 
+function isMinVersion(actualVersion, requiredVersion) {
+  return parseFloat(actualVersion) >= parseFloat(requiredVersion);
+}
+
 function shouldPrintComma(options, requiredVersion) {
   if (!options.trailingCommaPHP) {
     return false;
   }
 
-  return parseFloat(options.phpVersion) >= parseFloat(requiredVersion);
+  return isMinVersion(options.phpVersion, requiredVersion);
 }
 
 function shouldPrintHardlineForOpenBrace(options) {
@@ -2422,8 +2426,11 @@ function printNode(path, options, print) {
     }
     case "list":
     case "array": {
-      const open = node.shortForm ? "[" : concat([node.kind, "("]);
-      const close = node.shortForm ? "]" : ")";
+      const useShortForm =
+        (node.kind === "array" && isMinVersion(options.phpVersion, "5.4")) ||
+        (node.kind === "list" && node.shortForm);
+      const open = useShortForm ? "[" : concat([node.kind, "("]);
+      const close = useShortForm ? "]" : ")";
 
       if (node.items.length === 0) {
         if (!hasDanglingComments(node)) {

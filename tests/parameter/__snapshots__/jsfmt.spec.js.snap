@@ -135,7 +135,7 @@ function makecoffee($type = "cappuccino")
     return "Making a cup of $type.\\n";
 }
 
-function makecoffee1($types = array("cappuccino"), $coffeeMaker = null)
+function makecoffee1($types = ["cappuccino"], $coffeeMaker = null)
 {
     $device = is_null($coffeeMaker) ? "hands" : $coffeeMaker;
     return "Making a cup of " . join(", ", $types) . " with $device.\\n";
@@ -186,23 +186,23 @@ function intArg(
 }
 
 function bar(
-    $arg = array(
+    $arg = [
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    )
+    ]
 ) {
     return $arg;
 }
 
 function bar1(
-    $arg = array(
+    $arg = [
         "key1" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
         "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
         "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    )
+    ]
 ) {
     return $arg;
 }

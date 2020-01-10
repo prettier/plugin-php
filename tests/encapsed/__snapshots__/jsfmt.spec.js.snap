@@ -516,20 +516,20 @@ $content = sprintf(
 foo
 EOF
 );
-$content = array(
+$content = [
     <<<EOF
 foo
 EOF
     ,
     "bar",
-);
-$content = array(
+];
+$content = [
     "bar",
     <<<EOF
 foo
 EOF
 ,
-);
+];
 
 function foo(
     $a = 1,
@@ -644,7 +644,7 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -653,8 +653,8 @@ baz
 EOT
     ,
     'foo' => 'bar',
-);
-$expected = array(
+];
+$expected = [
     'foo' => 'bar',
     'test' => <<<'EOT'
 foo
@@ -663,8 +663,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo' => <<<'EOT'
 foo
 # bar
@@ -686,8 +686,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -695,8 +695,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -704,17 +704,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 $var =
     <<<EOF
