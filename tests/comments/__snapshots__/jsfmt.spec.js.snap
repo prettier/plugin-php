@@ -193,25 +193,25 @@ $array = [
     'key' => 'string',
 ];
 
-array(); // Comment
+[]; // Comment
 
-$array = array(); // Comment
+$array = []; // Comment
 
-$array = array(
+$array = [
     // Comment
     'string',
     'other-string',
-);
+];
 
 call(
-    array() // Comment
+    [] // Comment
 );
 
-call(array(
+call([
     // Comment
     'string',
     'other-string',
-));
+]);
 
 ================================================================================
 `;
@@ -1450,10 +1450,10 @@ $test = foo
         // test
     });
 
-$constraint = new UniqueEntity(array(
+$constraint = new UniqueEntity([
     'message' => 'myMessage',
     // no "em" option set
-));
+]);
 
 return // parens test
     // some comment

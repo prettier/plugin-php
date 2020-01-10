@@ -977,21 +977,21 @@ $str = <<<'EOL'
 "test" foo 'test'
 EOL;
 
-$str = array(
+$str = [
     <<<'EOF'
 foo
 EOF
     ,
     "bar",
-);
+];
 
-$str = array(
+$str = [
     "bar",
     <<<'EOF'
 foo
 EOF
 ,
-);
+];
 
 $str = sprintf(
     <<<'EOF'
@@ -1025,25 +1025,25 @@ END
     )
 );
 
-$str = call(array(
+$str = call([
     <<<END
 foo
 END
     ,
     true,
-));
+]);
 
-$str = array(
-    array(
+$str = [
+    [
         <<<END
 foo
 END
         ,
         true,
-    ),
-);
+    ],
+];
 
-$str = array(
+$str = [
     call(
         <<<END
 foo
@@ -1051,7 +1051,7 @@ END
         ,
         true
     ),
-);
+];
 
 function foo(
     $a = 1,

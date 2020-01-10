@@ -226,31 +226,31 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -258,8 +258,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -268,8 +268,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -278,10 +278,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
@@ -289,8 +289,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -299,8 +299,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -309,10 +309,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -320,8 +320,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -330,8 +330,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -340,10 +340,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -351,8 +351,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -361,8 +361,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -371,10 +371,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -382,8 +382,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -391,20 +391,20 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -412,8 +412,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
@@ -421,17 +421,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -646,24 +646,24 @@ EOT
 =====================================output=====================================
 <?php
 
-$foo = ['foo', 'bar'];
-$foo = ['foo', 'bar'];
-$foo = [
+$foo = array('foo', 'bar');
+$foo = array('foo', 'bar');
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-];
+);
 $foo = array('foo', 'bar');
 $foo = array('foo', 'bar');
 $foo = array(
@@ -683,8 +683,8 @@ $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+    idx($composer, 'require', array()),
+    idx($composer, 'require-dev', array())
 );
 
 // nowdoc
@@ -1102,31 +1102,31 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1134,8 +1134,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -1144,8 +1144,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1154,10 +1154,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1165,8 +1165,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -1175,8 +1175,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1185,10 +1185,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1196,8 +1196,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -1206,8 +1206,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1216,10 +1216,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1227,8 +1227,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -1237,8 +1237,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1247,10 +1247,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -1258,8 +1258,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -1267,20 +1267,20 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -1288,8 +1288,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
@@ -1297,17 +1297,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -1540,31 +1540,31 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', []),
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1572,8 +1572,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -1582,8 +1582,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1592,10 +1592,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1603,8 +1603,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -1613,8 +1613,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1623,10 +1623,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1634,8 +1634,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -1644,8 +1644,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1654,10 +1654,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1665,8 +1665,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -1675,8 +1675,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1685,10 +1685,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -1696,8 +1696,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -1705,20 +1705,20 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -1726,8 +1726,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
@@ -1735,17 +1735,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -1978,39 +1978,39 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -2018,8 +2018,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -2028,18 +2028,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -2047,8 +2047,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -2057,18 +2057,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -2076,8 +2076,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -2086,18 +2086,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -2105,8 +2105,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -2115,10 +2115,10 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -2126,27 +2126,27 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ]
+    ]
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -2154,24 +2154,24 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ]
+    ]
+];
 
 ================================================================================
 `;
@@ -2695,7 +2695,7 @@ echo $twig->render(
     )
 );
 
-$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+$newArray = array_merge($arrayOne, $arrayTwo, array('foo', 'bar'));
 
 $newArray = array_merge(
     $arrayOne,
@@ -2704,7 +2704,7 @@ $newArray = array_merge(
     $arrayTwo,
     $arrayTwo,
     $arrayTwo,
-    ['foo', 'bar']
+    array('foo', 'bar')
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
@@ -2718,12 +2718,12 @@ $text = sprintf(
 );
 
 call(
-    [
+    array(
         'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ],
-    [
+    ),
+    array(
         'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ]
+    )
 );
 
 call(

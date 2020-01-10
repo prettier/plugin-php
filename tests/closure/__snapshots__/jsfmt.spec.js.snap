@@ -269,7 +269,7 @@ $rTDWLU = function (array $array) use (
 };
 
 $var = function &() {
-    static $collection = array();
+    static $collection = [];
 
     return $collection;
 };

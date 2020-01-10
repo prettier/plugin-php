@@ -156,7 +156,7 @@ list(
 =====================================output=====================================
 <?php
 
-$info = array('coffee', 'brown', 'caffeine');
+$info = ['coffee', 'brown', 'caffeine'];
 
 // Listing all the variables
 list($drink, $color, $power) = $info;
@@ -177,9 +177,9 @@ var_dump($bar); // NULL
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
 }
 
-list($a, list($b, $c)) = array(1, array(2, 3));
+list($a, list($b, $c)) = [1, [2, 3]];
 
-$info = array('coffee', 'brown', 'caffeine');
+$info = ['coffee', 'brown', 'caffeine'];
 list($a[0], $a[1], $a[2]) = $info;
 
 list("id" => $id1, "name" => $name1) = $data[0];
@@ -226,7 +226,7 @@ while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
         " </tr>\\n";
 }
 
-list($a, list($b, $c)) = array(1, array(2, 3));
+list($a, list($b, $c)) = [1, [2, 3]];
 
 list($a[0], $a[1], $a[2]) = $info;
 

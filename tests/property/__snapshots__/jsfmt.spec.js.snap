@@ -66,7 +66,7 @@ hello world
 EOD;
     public $var3 = 1 + 2;
     public $var6 = myConstant;
-    public $var7 = array(true, false);
+    public $var7 = [true, false];
     public $var7_1 = [true, false];
     public $var7_2 = ['key' => 'value', 'other_key' => 'other_value'];
     public $var7_3 = [

@@ -56,28 +56,28 @@ $var = ([(new stdClass())])[0];
 =====================================output=====================================
 <?php
 
-array();
-array();
+[];
+[];
 
 [];
 [];
 
-$var = array();
-$var = array();
+$var = [];
+$var = [];
 
 $var = [];
 $var = [];
 
-$var = array("1", "2", "3");
-$var = array("1", "2", "3");
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
+$var = ["1", "2", "3"];
+$var = ["1", "2", "3"];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
 
-$var = (array("foo", "bar"))();
-$var = (array("foo", "bar"))();
-$var = (array("foo", "bar"))();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
 
 $var = (["foo", "bar"])();
 $var = (["foo", "bar"])();
@@ -92,12 +92,12 @@ $arr = ['key' => $var, 'other-key' => $other_var];
 [$var, $other_var] = $arr;
 ['key' => $var, 'other-key' => $other_var] = $arr;
 
-$var = array(1, 2, 3)[1];
-$var = array(1, 2, 3)[1];
 $var = [1, 2, 3][1];
 $var = [1, 2, 3][1];
-$var = array(new stdClass())[0];
-$var = array(new stdClass())[0];
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
 $var = [new stdClass()][0];
 $var = [new stdClass()][0];
 
@@ -1281,8 +1281,8 @@ $var = $this->$name();
 $var = Foo::call();
 $var = Foo::call();
 
-$var = (array("Foo", "bar"))();
-$var = (array(new Foo(), "baz"))();
+$var = (["Foo", "bar"])();
+$var = ([new Foo(), "baz"])();
 $var = ((string) 1234)();
 $var = ("Foo::bar")();
 $var = ("Foo::bar")();
@@ -1412,11 +1412,11 @@ $var = ((bool) 2.3e5);
 $var = (object) [];
 $var = (object) [];
 $var = ((object) []);
-$var = ((object) array('1' => 'foo'));
+$var = ((object) ['1' => 'foo']);
 $var = ((object) ['1' => 'foo']);
 $var = ((object) 'ciao')->scalar;
-$var = ((object) array('test'))->{'0'};
-$var = ((object) array('test'))->{'0'};
+$var = ((object) ['test'])->{'0'};
+$var = ((object) ['test'])->{'0'};
 $var = (array) new B();
 $var = (array) new B();
 $var = ((array) new B());
@@ -2515,18 +2515,12 @@ new Translator(
     $container,
     new MessageFormatter(),
     'en',
-    array(),
-    array('foo' => 'bar')
+    [],
+    ['foo' => 'bar']
 ); ?>
-<?php new Translator(
-    $container,
-    new MessageFormatter(),
-    'en',
-    $someOtherVar,
-    array(
-        'foo' => 'bar',
-    )
-); ?>
+<?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
+    'foo' => 'bar',
+]); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
     'foo' => 'bar',
 ]); ?>
