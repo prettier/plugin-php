@@ -38,7 +38,7 @@ Add the following configuration to `.vscode/launch.json`:
         "<node_internals>/**"
     ],
     "program": "${workspaceRoot}/node_modules/.bin/prettier",
-    "args": ["--plugin=.", "--parser=php", "foo.php"],
+    "args": ["--plugin=.", "--parser=php", "test.php"],
     "cwd": "${workspaceRoot}",
     "outputCapture": "std"
 }

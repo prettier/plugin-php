@@ -2840,18 +2840,20 @@ function printNode(path, options, print) {
       );
     case "magic":
       return node.value;
-    case "nowdoc":
-      // Respect `indent` for `nowdoc` nodes
+    case "nowdoc": {
+      const flexible = isMinVersion(options.phpVersion, "7.3");
+      const linebreak = flexible ? hardline : literalline;
       return concat([
         "<<<'",
         node.label,
         "'",
-        literalline,
-        join(literalline, node.value.split(/\r?\n/g)),
-        literalline,
+        linebreak,
+        join(linebreak, node.value.split(/\r?\n/g)),
+        linebreak,
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : "",
       ]);
+    }
     case "name":
       return concat([node.resolution === "rn" ? "namespace\\" : "", node.name]);
     case "literal":

@@ -1566,30 +1566,30 @@ $packages = array_merge(
 // nowdoc
 $expected = [
     <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
 ,
 ];
 $expected = [
     'foo',
     <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
 ,
 ];
 $expected = [
     <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
     ,
     'bar',
 ];
@@ -1628,30 +1628,30 @@ EOT
 // Associative array with nowdoc
 $expected = [
     'key' => <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
 ,
 ];
 $expected = [
     'foo',
     'key' => <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
 ,
 ];
 $expected = [
     'key' => <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
     ,
     'bar',
 ];
@@ -1690,28 +1690,28 @@ EOT
 // Nested with nowdoc
 $expected = [
     'test' => <<<'EOT'
-foo
-# bar
-baz
+    foo
+    # bar
+    baz
 
-EOT
+    EOT
     ,
     'collection' => [
         [
             'one' => <<<'EOT'
-foo
-# bar
-baz
+            foo
+            # bar
+            baz
 
-EOT
+            EOT
         ,
         ],
         [
             'two' => <<<'EOT'
-foo
-# bar
-baz
-EOT
+            foo
+            # bar
+            baz
+            EOT
         ,
         ],
     ],
@@ -3318,10 +3318,10 @@ call(
 
 call(
     <<<'EOT'
-My name is "$name". I am printing some $foo->foo.
-Now, I am printing some {$foo->bar[1]}.
-This should not print a capital 'A': \\x41
-EOT
+    My name is "$name". I am printing some $foo->foo.
+    Now, I am printing some {$foo->bar[1]}.
+    This should not print a capital 'A': \\x41
+    EOT
     ,
 );
 
