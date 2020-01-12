@@ -921,8 +921,7 @@ string
 string
 string
 EOD
-    ,
-    $var
+    , $var
 );
 
 $array = [
@@ -949,3 +948,31 @@ $php73FlexibleNowdoc2 = <<<'EOD'
      b
     c
   EOD;
+
+[
+    $var ? "foo" : <<<'EOD'
+string
+EOD
+    , "bar"
+];
+
+[
+    $var ? "foo" : $var2 ? "bar" : <<<'EOD'
+string
+EOD
+    , "bar"
+];
+
+[
+    $var ??  <<<'EOD'
+string
+EOD
+    , "bar"
+];
+
+[
+    $a ?? $b ??  <<<'EOD'
+string
+EOD
+    , "bar"
+];
