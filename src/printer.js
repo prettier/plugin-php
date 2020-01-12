@@ -2506,7 +2506,7 @@ function printNode(path, options, print) {
             " =>",
             node.value,
             path.call(print, "value"),
-            false,
+            ref,
             options
           )
         : concat([ref, unpack, path.call(print, "value")]);
