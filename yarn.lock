@@ -4089,9 +4089,9 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-php-parser@glayzzle/php-parser#6e372bac9497c3d2576d9dc22c3ca1c7946a78d2:
+php-parser@glayzzle/php-parser#5813bde750922158f463ea64f597a86d1f1369bd:
   version "3.0.0-prerelease.9"
-  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/6e372bac9497c3d2576d9dc22c3ca1c7946a78d2"
+  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/5813bde750922158f463ea64f597a86d1f1369bd"
 
 pify@^2.0.0:
   version "2.3.0"
