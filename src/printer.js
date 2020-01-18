@@ -2837,7 +2837,7 @@ function printNode(path, options, print) {
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : ""
       ]);
-    case "classreference":
+    case "name":
       return concat([node.resolution === "rn" ? "namespace\\" : "", node.name]);
     case "literal":
       return path.call(print, "value");

@@ -531,7 +531,7 @@ function isProgramLikeNode(node) {
 
 function isReferenceLikeNode(node) {
   return [
-    "classreference",
+    "name",
     "parentreference",
     "selfreference",
     "staticreference"
