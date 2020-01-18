@@ -9,7 +9,14 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
+"@babel/code-frame@^7.5.5":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.0.tgz#8c98d4ac29d6f80f28127b1bc50970a72086c5ac"
+  integrity sha512-AN2IR/wCUYsM+PdErq6Bp3RFTXl8W0p9Nmymm7zkpsCmh+r/YYcckaCGpU8Q/mEKmST19kkGRaG42A/jxOWwBA==
+  dependencies:
+    "@babel/highlight" "^7.8.0"
+
+"@babel/code-frame@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"
   integrity sha512-a9gxpmdXtZEInkCSHUJDLHZVBgb1QS0jhss4cPP93EW7s+uC5bikET2twEF3KV+7rDblJcmNvTR7VJejqd2C2g==
@@ -4173,9 +4180,9 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-php-parser@glayzzle/php-parser#5813bde750922158f463ea64f597a86d1f1369bd:
+php-parser@glayzzle/php-parser#816a605861e400a18cfb1b890b096da60136c275:
   version "3.0.0-prerelease.9"
-  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/5813bde750922158f463ea64f597a86d1f1369bd"
+  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/816a605861e400a18cfb1b890b096da60136c275"
 
 picomatch@^2.0.5:
   version "2.2.1"
