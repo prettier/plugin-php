@@ -84,7 +84,13 @@ function handleOwnLineComment(comment, text, options) {
       followingNode,
       comment
     ) ||
-    handleDeclareComments(enclosingNode, precedingNode, followingNode, comment)
+    handleDeclareComments(
+      enclosingNode,
+      precedingNode,
+      followingNode,
+      comment
+    ) ||
+    handleNoopComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
 
@@ -218,7 +224,8 @@ function handleRemainingComment(comment, text, options) {
       precedingNode,
       followingNode,
       comment
-    )
+    ) ||
+    handleNoopComments(enclosingNode, precedingNode, followingNode, comment)
   );
 }
 
@@ -754,6 +761,15 @@ function handleDeclareComments(
     return false;
   }
 
+  if (precedingNode && precedingNode.kind === "noop") {
+    addDanglingComment(precedingNode, comment);
+    return true;
+  }
+  if (followingNode && followingNode.kind === "noop") {
+    addDanglingComment(followingNode, comment);
+    return true;
+  }
+
   if (!followingNode || enclosingNode.directives[0] === followingNode) {
     if (enclosingNode.mode === "none") {
       addTrailingComment(enclosingNode, comment);
@@ -767,6 +783,24 @@ function handleDeclareComments(
   if (followingNode && precedingNode) {
     addLeadingComment(followingNode, comment);
 
+    return true;
+  }
+
+  return false;
+}
+
+function handleNoopComments(
+  enclosingNode,
+  precedingNode,
+  followingNode,
+  comment
+) {
+  if (!enclosingNode || enclosingNode.kind !== "block") {
+    return false;
+  }
+
+  if (precedingNode && precedingNode.kind === "noop") {
+    addDanglingComment(precedingNode, comment);
     return true;
   }
 

@@ -490,13 +490,14 @@ printWidth: 80
 =====================================output=====================================
 <?php
 
+
+
 // The first line of a comment
 // The second line of a comment
 
 // A third line which has a blank line before it
 
 // Other comment
-
 
 ================================================================================
 `;
@@ -3082,7 +3083,7 @@ for ($i = 1; $i < 10; $i++) {
 }
 
 for (;;) {
-    // Comment
+     // Comment
 }
 
 for (
@@ -7148,16 +7149,13 @@ try {
 
 // Comment 1
 try {
-    // Comment 2
-    // Comment 3
+    // Comment 3 // Comment 2
 } catch (Exception $e) {
     // Comment 4
-    // Comment 5
-    // Comment 6
+    // Comment 6 // Comment 5
 } finally {
     // Comment 7
-    // Comment 8
-    // Comment 9
+    // Comment 9 // Comment 8
 }
 // Comment 10
 
