@@ -3083,7 +3083,7 @@ for ($i = 1; $i < 10; $i++) {
 }
 
 for (;;) {
-     // Comment
+    // Comment
 }
 
 for (
@@ -7149,13 +7149,16 @@ try {
 
 // Comment 1
 try {
-    // Comment 3 // Comment 2
+    // Comment 2
+    // Comment 3
 } catch (Exception $e) {
     // Comment 4
-    // Comment 6 // Comment 5
+    // Comment 5
+    // Comment 6
 } finally {
     // Comment 7
-    // Comment 9 // Comment 8
+    // Comment 8
+    // Comment 9
 }
 // Comment 10
 

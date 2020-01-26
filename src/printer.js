@@ -1552,9 +1552,7 @@ function printNode(path, options, print) {
     case "block":
       return concat([
         printLines(path, options, print),
-        !node.children.length
-          ? comments.printDanglingComments(path, options, true)
-          : 0
+        comments.printDanglingComments(path, options, true)
       ]);
     case "declare": {
       const printDeclareArguments = path => {
@@ -2865,7 +2863,10 @@ function printNode(path, options, print) {
       return path.call(print, "name");
     }
     case "noop":
-      return comments.printDanglingComments(path, options, true);
+      return node.comments
+        ? comments.printComments(path.getValue().comments, options)
+        : "";
+
     case "error":
     default:
       // istanbul ignore next

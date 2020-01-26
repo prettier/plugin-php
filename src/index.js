@@ -72,6 +72,11 @@ const printers = {
       endOfLine: comments.handleEndOfLineComment,
       remaining: comments.handleRemainingComment
     },
+    willPrintOwnComments(path) {
+      const node = path.getValue();
+
+      return node && node.kind === "noop";
+    },
     printComment(commentPath) {
       const comment = commentPath.getValue();
 
