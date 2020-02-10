@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.7.5",
-    "codecov": "3.6.4",
+    "codecov": "3.6.5",
     "cross-env": "^6.0.3",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
