@@ -156,7 +156,7 @@ list(
 =====================================output=====================================
 <?php
 
-$info = array('coffee', 'brown', 'caffeine');
+$info = ['coffee', 'brown', 'caffeine'];
 
 // Listing all the variables
 list($drink, $color, $power) = $info;
@@ -177,19 +177,19 @@ var_dump($bar); // NULL
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
 }
 
-list($a, list($b, $c)) = array(1, array(2, 3));
+list($a, list($b, $c)) = [1, [2, 3]];
 
-$info = array('coffee', 'brown', 'caffeine');
+$info = ['coffee', 'brown', 'caffeine'];
 list($a[0], $a[1], $a[2]) = $info;
 
 list("id" => $id1, "name" => $name1) = $data[0];
 list(
     "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
-    "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue
+    "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
 ) = $data[0];
 list(
     "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
 ) = $data[0];
 
 foreach ($data as list("id" => $id, "name" => $name)) {
@@ -200,7 +200,7 @@ foreach (
     $data
     as list(
         "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue
+        "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
     )
 ) {
     // logic here with $id and $name
@@ -210,7 +210,7 @@ foreach (
     $data
     as list(
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
     )
 ) {
     // logic here with $id and $name
@@ -226,7 +226,7 @@ while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
         " </tr>\\n";
 }
 
-list($a, list($b, $c)) = array(1, array(2, 3));
+list($a, list($b, $c)) = [1, [2, 3]];
 
 list($a[0], $a[1], $a[2]) = $info;
 
@@ -239,7 +239,7 @@ list(
     0 => $first,
     1 => $second,
     2 => $three,
-    3 => $fourth
+    3 => $fourth,
 ) = $arr;
 
 list($first, $second, $three, $fourth) = $arr;
@@ -253,14 +253,14 @@ list(
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,
@@ -319,7 +319,7 @@ list(
 
     2 => $threeVeryVeryVeryVeryLong,
 
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 
 list("id" => $id1, "name" => $name1) = $data[0];
@@ -354,15 +354,15 @@ list(0 => $var) = $arr;
 list(, 0 => $var) = $arr;
 list(0 => $var) = $arr;
 list(
-    0 => $var
+    0 => $var,
 ) = $arr;
 list(
     ,
-    0 => $var
+    0 => $var,
 ) = $arr;
 list(
     ,
-    0 => $var
+    0 => $var,
 ) = $arr;
 list(
     ,
@@ -371,17 +371,17 @@ list(
 ) = $arr;
 list(
     0 => $var,
-    1 => $other_var
+    1 => $other_var,
 ) = $arr;
 list(
     ,
     0 => $var,
-    1 => $other_var
+    1 => $other_var,
 ) = $arr;
 list(
     ,
     0 => $var,
-    1 => $other_var
+    1 => $other_var,
 ) = $arr;
 list(
     ,
@@ -391,7 +391,7 @@ list(
 ) = $arr;
 list(0 => $var) = $arr;
 list(
-    0 => $var
+    0 => $var,
 ) = $arr;
 
 ================================================================================

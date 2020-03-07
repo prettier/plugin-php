@@ -367,7 +367,7 @@ $db->Execute($sql, [
     $foobar,
     $somewhatLongParameter,
     $somewhatLongParameterX,
-    $somewhatLongParameterXYZ
+    $somewhatLongParameterXYZ,
 ]);
 
 $db->Execute(
@@ -377,7 +377,7 @@ $db->Execute(
         $foobar,
         $somewhatLongParameter,
         $somewhatLongParameterX,
-        $somewhatLongParameterXYZ
+        $somewhatLongParameterXYZ,
     ],
     $sql
 );
@@ -399,7 +399,7 @@ $this->something->method(
 $this->something->method(
     $argument,
     $otherArgument,
-    array("foo" => "bar", "baz" => "buzz"),
+    ["foo" => "bar", "baz" => "buzz"],
     $this->even->more->things->complicatedMethod()
 );
 
@@ -420,7 +420,7 @@ $this->filter([
     'Mohamed',
     $this->mergeWhen(false, ['Adam', 'Matt']),
     'Jeffrey',
-    new MergeValue(['Abigail', 'Lydia'])
+    new MergeValue(['Abigail', 'Lydia']),
 ]);
 
 $this->assertEquals(
@@ -430,21 +430,21 @@ $this->assertEquals(
 
 $this->assertEquals(['First'], $results);
 
-$some->other->thing(array(
+$some->other->thing([
     'foo' => 'bar',
-    'buzz' => $this->is->nested(array(
+    'buzz' => $this->is->nested([
         'complex' => 'stuff',
         'foo' => 'bar',
-        'buzz' => 'bazz'
-    ))
-));
+        'buzz' => 'bazz',
+    ]),
+]);
 
 $some->other->thing(
-    array(
+    [
         'foo' => 'bar',
-        'buzz' => $this->is->nested(array(12, 34, 45, 67, 89))
-    ),
-    array(11323123, 1231, 13231233243, 324234234)
+        'buzz' => $this->is->nested([12, 34, 45, 67, 89]),
+    ],
+    [11323123, 1231, 13231233243, 324234234]
 );
 
 $foo->bar(

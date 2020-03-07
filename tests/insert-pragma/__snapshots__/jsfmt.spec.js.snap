@@ -204,6 +204,129 @@ echo "Hello World";<LF>
 ================================================================================
 `;
 
+exports[`pragma-firstdocblockmidfile.php 1`] = `
+====================================options=====================================
+endOfLine: "cr"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+class Something<LF>
+{<LF>
+    function whatever ()<LF>
+    {<LF>
+        /**<LF>
+         * Some mid-file docblock<LF>
+         */<LF>
+        $variable = 3;<LF>
+    }<LF>
+}<LF>
+
+=====================================output=====================================
+<?php<CR>
+/**<CR>
+ * @format<CR>
+ */<CR>
+<CR>
+class Something<CR>
+{<CR>
+    function whatever()<CR>
+    {<CR>
+        /**<CR>
+         * Some mid-file docblock<CR>
+         */<CR>
+        $variable = 3;<CR>
+    }<CR>
+}<CR>
+
+================================================================================
+`;
+
+exports[`pragma-firstdocblockmidfile.php 2`] = `
+====================================options=====================================
+endOfLine: "crlf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+class Something<LF>
+{<LF>
+    function whatever ()<LF>
+    {<LF>
+        /**<LF>
+         * Some mid-file docblock<LF>
+         */<LF>
+        $variable = 3;<LF>
+    }<LF>
+}<LF>
+
+=====================================output=====================================
+<?php<CRLF>
+/**<CRLF>
+ * @format<CRLF>
+ */<CRLF>
+<CRLF>
+class Something<CRLF>
+{<CRLF>
+    function whatever()<CRLF>
+    {<CRLF>
+        /**<CRLF>
+         * Some mid-file docblock<CRLF>
+         */<CRLF>
+        $variable = 3;<CRLF>
+    }<CRLF>
+}<CRLF>
+
+================================================================================
+`;
+
+exports[`pragma-firstdocblockmidfile.php 3`] = `
+====================================options=====================================
+endOfLine: "lf"
+insertPragma: true
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php<LF>
+<LF>
+class Something<LF>
+{<LF>
+    function whatever ()<LF>
+    {<LF>
+        /**<LF>
+         * Some mid-file docblock<LF>
+         */<LF>
+        $variable = 3;<LF>
+    }<LF>
+}<LF>
+
+=====================================output=====================================
+<?php<LF>
+/**<LF>
+ * @format<LF>
+ */<LF>
+<LF>
+class Something<LF>
+{<LF>
+    function whatever()<LF>
+    {<LF>
+        /**<LF>
+         * Some mid-file docblock<LF>
+         */<LF>
+        $variable = 3;<LF>
+    }<LF>
+}<LF>
+
+================================================================================
+`;
+
 exports[`pragma-nodocblock-CRLF.php 1`] = `
 ====================================options=====================================
 endOfLine: "cr"

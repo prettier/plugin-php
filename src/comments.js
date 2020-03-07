@@ -69,7 +69,13 @@ function handleOwnLineComment(comment, text, options) {
     ) ||
     handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
-    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunctionParameter(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment
+    ) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleForComments(enclosingNode, precedingNode, followingNode, comment) ||
     handleInlineComments(
@@ -135,11 +141,16 @@ function handleEndOfLineComment(comment, text, options) {
     ) ||
     handleTryComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
-    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunctionParameter(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment
+    ) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleEntryComments(enclosingNode, comment) ||
     handleCallComments(precedingNode, enclosingNode, comment) ||
-    handlePropertyComments(enclosingNode, comment) ||
     handleVariableComments(enclosingNode, followingNode, comment) ||
     handleInlineComments(
       enclosingNode,
@@ -185,7 +196,13 @@ function handleRemainingComment(comment, text, options) {
     handleCommentInEmptyParens(text, enclosingNode, comment, options) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleTraitUseComments(enclosingNode, followingNode, comment) ||
-    handleFunctionParameter(text, enclosingNode, comment, options) ||
+    handleFunctionParameter(
+      text,
+      precedingNode,
+      enclosingNode,
+      followingNode,
+      comment
+    ) ||
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleGoto(enclosingNode, comment) ||
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
@@ -526,24 +543,24 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
   return false;
 }
 
-function handleFunctionParameter(text, enclosingNode, comment, options) {
+function handleFunctionParameter(
+  text,
+  precedingNode,
+  enclosingNode,
+  followingNode,
+  comment
+) {
   if (
     !enclosingNode ||
     !["function", "method", "parameter"].includes(enclosingNode.kind)
   ) {
     return false;
   }
-  // for function parameters that are assignments, we have no node to assign comments
-  // that fall in between the var being assigned and the "=" character. To get around this,
-  // we'll store any comments falling here as dangling comments on the parameter node,
-  // and let the printer handle them accordingly
-  const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
-    text,
-    comment,
-    options
-  );
-  if (text.charAt(nextCharIndex) + text.charAt(nextCharIndex + 1) === "= ") {
-    addDanglingComment(enclosingNode, comment);
+  if (
+    precedingNode.kind === "typereference" &&
+    followingNode.kind === "identifier"
+  ) {
+    addTrailingComment(precedingNode, comment);
     return true;
   }
   return false;
@@ -682,18 +699,6 @@ function handleTryComments(enclosingNode, followingNode, comment) {
     return true;
   }
 
-  return false;
-}
-
-function handlePropertyComments(enclosingNode, comment) {
-  if (
-    enclosingNode &&
-    (enclosingNode.kind === "property" ||
-      enclosingNode.kind === "classconstant")
-  ) {
-    addLeadingComment(enclosingNode, comment);
-    return true;
-  }
   return false;
 }
 

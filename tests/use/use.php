@@ -35,3 +35,5 @@ use \Vendor\Package\SomeNamespace\{
 };
 use Exception;
 use \Exception;
+use \Exception\My;
+use \Carbon\Carbon, \App, \Response, \Input, \Auth, \URL;

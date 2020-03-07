@@ -39,12 +39,12 @@ isset($expected_array_got_string['0 Mostel']);
 echo "test echo";
 echo $test, $other;
 
-$info = array('coffee', 'brown', 'caffeine');
+$info = ['coffee', 'brown', 'caffeine'];
 list($drink, $color, $power) = $info;
 list(
     $reallyReallyReallyReallyLongName,
     $otherReallyReallyReallyLongName,
-    $lastOne
+    $lastOne,
 ) = $info;
 
 print "test print";

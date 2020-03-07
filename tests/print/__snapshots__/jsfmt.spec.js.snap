@@ -285,13 +285,13 @@ print [$var, $var, $var];
 print [
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
 print ['key' => $var, 'foo' => $var, 'bar' => $var];
 print [
     'key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
     'other-key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    'ohter-other-key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+    'ohter-other-key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
 
 print $var->foo->bar->baz;

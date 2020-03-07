@@ -269,7 +269,7 @@ $test =
     $foo ?:
     bar([
         'foo' => $someOtherReallyReallyLongVariable,
-        'bar' => $someOtherReallyReallyLongVariable
+        'bar' => $someOtherReallyReallyLongVariable,
     ]);
 $var =
     ($this->databasePath ?:
@@ -287,11 +287,11 @@ return ($this->databasePath ?:
 $test = $foo
     ? foo([
         'foo' => $someOtherReallyReallyLongVariable,
-        'bar' => $someOtherReallyReallyLongVariable
+        'bar' => $someOtherReallyReallyLongVariable,
     ])
     : bar([
         'foo' => $someOtherReallyReallyLongVariable,
-        'bar' => $someOtherReallyReallyLongVariable
+        'bar' => $someOtherReallyReallyLongVariable,
     ]);
 
 $var =
@@ -372,7 +372,7 @@ $arr = [
         $someOtherReallyReallyReallyReallyLongVariable &&
         $someOtherReallyReallyReallyReallyLongVariable
             ? (int) $field['sliderStep']
-            : 1
+            : 1,
 ];
 
 $var = $var ?: $var ?: $var ?: 'string';
@@ -473,7 +473,7 @@ $var = [
         $someOtherReallyReallyLongVariable ?:
         $someOtherReallyReallyLongVariable ?:
         $someOtherReallyReallyLongVariable ?:
-        'string'
+        'string',
 ];
 
 return $var ? 'string' : 'other-string';
@@ -582,41 +582,41 @@ $var = $abilities ?: [
     'foo',
     'bar',
     'bar',
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey',
 ];
 $var = $abilities ?: [
     'foo',
     'bar',
     'bar',
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey',
 ];
 $var = $abilities ?: ['view' => 'view'];
 $var = $abilities ?: [
-    'view' => 'view'
+    'view' => 'view',
 ];
 $var = $abilities ?: [
     'view' => 'view',
     'create' => 'create',
     'update' => 'update',
-    'delete' => 'delete'
+    'delete' => 'delete',
 ];
 $var = $abilities ?: ['foo', 'bar', 'bar'] ?: ['foo', 'bar', 'bar'];
 $var = $abilities ?: ['foo', 'bar', 'bar'] ?: [
     'foo',
     'bar',
     'bar',
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey'
+    'veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey',
 ];
 $var = $abilities ?: [
     'view' => 'view',
     'create' => 'create',
     'update' => 'update',
-    'delete' => 'delete'
+    'delete' => 'delete',
 ] ?: [
     'view' => 'view',
     'create' => 'create',
     'update' => 'update',
-    'delete' => 'delete'
+    'delete' => 'delete',
 ];
 
 $callback =
@@ -667,7 +667,7 @@ $var = [
     'bar' =>
         is_my_very_very_very_long() || !current_user_can("read")
             ? call_1()
-            : call_2()
+            : call_2(),
 ];
 
 ================================================================================

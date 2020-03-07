@@ -937,3 +937,15 @@ string
 string
 EOD
 ];
+
+$php73FlexibleNowdoc = <<<'EOD'
+       $a
+      b
+     c
+     EOD;
+
+$php73FlexibleNowdoc2 = <<<'EOD'
+      $a
+     b
+    c
+  EOD;

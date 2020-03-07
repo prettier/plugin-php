@@ -381,6 +381,81 @@ echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
+$var = "string \${juices['FOO']} string";
+
+// T_VARIABLE
+echo "text $foo text.";
+
+// T_VARIABLE '[' encaps_var_offset ']'
+echo "text $foo[name] text.";
+echo "text $foo[1] text.";
+// echo "text $foo[-1] text.";
+echo "text $foo[$var] text.";
+echo "text $foo[koolaid1] text.";
+
+// T_VARIABLE T_OBJECT_OPERATOR T_STRING
+echo "text $foo->bar text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES expr '}'
+echo "text \${$test} text.";
+echo "text \${$$$test} text.";
+echo "text \${call()} text.";
+echo "text \${true || false} text.";
+echo "text \${$var ? 'foo' : 'bar'} text.";
+echo "text \${'test' + 'test'} text.";
+echo "text \${'test'} text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
+echo "text \${foo} text";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
+echo "text \${foo['foo']} text";
+echo "text \${foo[foo]} text";
+echo "text \${foo[call()]} text";
+echo "text \${foo[$var ? 'foo' : 'bar']} text";
+
+// T_CURLY_OPEN variable '}'
+echo "text {$var} text";
+echo "text {$var['test']} text";
+echo "text {$var->test} text";
+echo "text {$var::$test} text";
+
+echo <<<   END
+  a
+ b
+c
+END;
+
+echo <<<	END
+  a
+ b
+c
+END;
+
+echo <<<   'END'
+  a
+ b
+c
+END;
+
+echo <<<	'END'
+  a
+ b
+c
+END;
+
+$php73FlexibleHeredoc = <<<EOD
+       $a
+      b
+     c
+     EOD;
+
+$php73FlexibleHeredoc2 = <<<EOD
+      $a
+     b
+    c
+  EOD;
+
 =====================================output=====================================
 <?php
 $encapsShell = \`a $b\`;
@@ -441,19 +516,20 @@ $content = sprintf(
 foo
 EOF
 );
-$content = array(
+$content = [
     <<<EOF
 foo
 EOF
     ,
-    "bar"
-);
-$content = array(
+    "bar",
+];
+$content = [
     "bar",
     <<<EOF
 foo
 EOF
-);
+,
+];
 
 function foo(
     $a = 1,
@@ -493,23 +569,23 @@ EOF
 }
 
 $var = "string {$string} string"[1];
-$var = $foo->bzr_{1};
-$var = $foo->bzr_{'string'};
-$var = $foo->bzr_{$baz};
-$var = $foo->bzr_{$baz->foo};
-$var = $foo->bzr_{$var ? 'one' : 'two'};
+$var = $foo->bzr_[1];
+$var = $foo->bzr_['string'];
+$var = $foo->bzr_[$baz];
+$var = $foo->bzr_[$baz->foo];
+$var = $foo->bzr_[$var ? 'one' : 'two'];
 $var =
-    $foo->bzr_{
+    $foo->bzr_[
         $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
             ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
             : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-    };
+    ];
 $var =
-    $foo->bzr_{
+    $foo->bzr_[
         (function () {
             return 1;
         })($var)
-    };
+    ];
 
 $var = "{$this->target->resource->binary}";
 $var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
@@ -522,7 +598,7 @@ $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->ba
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "My name is {\${getName($arg, 'string', 1024, $var ? true : false, [
     'foo' => 'bar',
-    'bar' => 'foo'
+    'bar' => 'foo',
 ])}}";
 $var = "My name is {\${getName(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
@@ -568,7 +644,7 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -576,9 +652,9 @@ baz
 
 EOT
     ,
-    'foo' => 'bar'
-);
-$expected = array(
+    'foo' => 'bar',
+];
+$expected = [
     'foo' => 'bar',
     'test' => <<<'EOT'
 foo
@@ -586,8 +662,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'foo' => <<<'EOT'
 foo
 # bar
@@ -608,8 +685,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -617,24 +695,26 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ,
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ,
+        ],
+    ],
+];
 
 $var =
     <<<EOF
@@ -800,6 +880,81 @@ echo "This is my array value: {$anArray[key]}";
 echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
+
+$var = "string \${juices['FOO']} string";
+
+// T_VARIABLE
+echo "text $foo text.";
+
+// T_VARIABLE '[' encaps_var_offset ']'
+echo "text $foo[name] text.";
+echo "text $foo[1] text.";
+// echo "text $foo[-1] text.";
+echo "text $foo[$var] text.";
+echo "text $foo[koolaid1] text.";
+
+// T_VARIABLE T_OBJECT_OPERATOR T_STRING
+echo "text $foo->bar text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES expr '}'
+echo "text \${$test} text.";
+echo "text \${$$$test} text.";
+echo "text \${call()} text.";
+echo "text \${true || false} text.";
+echo "text \${$var ? 'foo' : 'bar'} text.";
+echo "text \${'test' + 'test'} text.";
+echo "text \${'test'} text.";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
+echo "text \${foo} text";
+
+// T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
+echo "text \${foo['foo']} text";
+echo "text \${foo[foo]} text";
+echo "text \${foo[call()]} text";
+echo "text \${foo[$var ? 'foo' : 'bar']} text";
+
+// T_CURLY_OPEN variable '}'
+echo "text {$var} text";
+echo "text {$var['test']} text";
+echo "text {$var->test} text";
+echo "text {$var::$test} text";
+
+echo <<<END
+  a
+ b
+c
+END;
+
+echo <<<END
+  a
+ b
+c
+END;
+
+echo <<<'END'
+  a
+ b
+c
+END;
+
+echo <<<'END'
+  a
+ b
+c
+END;
+
+$php73FlexibleHeredoc = <<<EOD
+  $a
+ b
+c
+EOD;
+
+$php73FlexibleHeredoc2 = <<<EOD
+    $a
+   b
+  c
+EOD;
 
 ================================================================================
 `;

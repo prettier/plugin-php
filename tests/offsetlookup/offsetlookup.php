@@ -15,3 +15,8 @@ $variable[1111111111111111111111111111111111111111111111111111111111111111111111
 $variable['string'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
+
+$var = $a{$b};
+$var = $a{$b}{$c};
+$var = $a[$b]{$c};
+$var = $a{$b}[$c];

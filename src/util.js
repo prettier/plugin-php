@@ -18,8 +18,8 @@ function printNumber(rawNumber) {
       .replace(/^([+-])?\./, "$10.")
       // Remove extraneous trailing decimal zeroes.
       .replace(/(\.\d+?)0+(?=e|$)/, "$1")
-      // Remove trailing dot.
-      .replace(/\.(?=e|$)/, "")
+      // Remove unnecessary .e notation
+      .replace(/\.(?=e)/, "")
   );
 }
 
@@ -367,57 +367,6 @@ function lineShouldEndWithSemicolon(path) {
   if (node.kind === "echo" && node.shortForm) {
     return false;
   }
-  const semiColonWhitelist = [
-    "expressionstatement",
-    "array",
-    "assign",
-    "return",
-    "break",
-    "continue",
-    "call",
-    "pre",
-    "post",
-    "bin",
-    "unary",
-    "yield",
-    "yieldfrom",
-    "echo",
-    "list",
-    "print",
-    "isset",
-    "retif",
-    "unset",
-    "empty",
-    "traitprecedence",
-    "traitalias",
-    "constantstatement",
-    "classconstant",
-    "exit",
-    "global",
-    "static",
-    "include",
-    "goto",
-    "throw",
-    "magic",
-    "new",
-    "eval",
-    "propertylookup",
-    "staticlookup",
-    "offsetlookup",
-    "silent",
-    "usegroup",
-    "property",
-    "string",
-    "boolean",
-    "number",
-    "nowdoc",
-    "encapsed",
-    "variable",
-    "cast",
-    "clone",
-    "do",
-    "constref"
-  ];
   if (node.kind === "traituse") {
     return !node.adaptations;
   }
@@ -430,7 +379,25 @@ function lineShouldEndWithSemicolon(path) {
       return true;
     }
   }
-  return semiColonWhitelist.includes(node.kind);
+  return [
+    "expressionstatement",
+    "do",
+    "usegroup",
+    "classconstant",
+    "propertystatement",
+    "traitprecedence",
+    "traitalias",
+    "goto",
+    "constantstatement",
+    "global",
+    "static",
+    "echo",
+    "unset",
+    "return",
+    "break",
+    "continue",
+    "throw"
+  ].includes(node.kind);
 }
 
 function fileShouldEndWithHardline(path) {
@@ -564,7 +531,7 @@ function isProgramLikeNode(node) {
 
 function isReferenceLikeNode(node) {
   return [
-    "classreference",
+    "name",
     "parentreference",
     "selfreference",
     "staticreference"
@@ -591,15 +558,16 @@ function getNodeKindIncludingLogical(node) {
  *
  * See http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
  */
-function useSingleQuote(node, options) {
-  return (
-    !node.isDoubleQuote ||
-    (options.singleQuote &&
-      !node.raw.match(/\\n|\\t|\\r|\\t|\\v|\\e|\\f/) &&
-      !node.value.match(
-        /["'$\n]|\\[0-7]{1,3}|\\x[0-9A-Fa-f]{1,2}|\\u{[0-9A-Fa-f]+}/
-      ))
-  );
+function useDoubleQuote(node, options) {
+  if (node.isDoubleQuote && options.singleQuote) {
+    const rawValue = node.raw.slice(node.raw[0] === "b" ? 2 : 1, -1);
+
+    return rawValue.match(
+      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{([0-9a-fA-F]+)})|\r?\n|'|"/
+    );
+  }
+
+  return node.isDoubleQuote;
 }
 
 function hasEmptyBody(path, name = "body") {
@@ -716,7 +684,7 @@ module.exports = {
   isProgramLikeNode,
   isReferenceLikeNode,
   getNodeKindIncludingLogical,
-  useSingleQuote,
+  useDoubleQuote,
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,

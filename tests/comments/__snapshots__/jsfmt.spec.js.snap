@@ -111,14 +111,14 @@ $array = [
     // comment
     // comment
     1, // comment
-    2 // comment
+    2, // comment
     // comment
 ];
 $array = [
     /* comment */
     /* comment */
     /* comment */ 1 /* comment */ /* comment */,
-    /* comment */ 2 /* comment */
+    /* comment */ 2 /* comment */,
     /* comment */
     /* comment */
 ];
@@ -126,7 +126,7 @@ $array = [
     /* comment */
     /* comment */
     /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
-    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */
+    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */,
     /* comment */
     /* comment */
 ];
@@ -137,7 +137,7 @@ $array = [
     3,
     4,
     5,
-    6
+    6,
 ];
 $array = [
     1,
@@ -145,25 +145,25 @@ $array = [
     3,
     4,
     5,
-    6 // test
+    6, // test
 ];
 const FOO = [
     //testing
-    1
+    1,
 ];
 
 return [
     // foo
-    "bar"
+    "bar",
 ];
 
 $array = [
     'type' => [],
     'config' => [
         // comments in nested arrays break things
-        'key' => 1
+        'key' => 1,
     ],
-    'accepted' => []
+    'accepted' => [],
 ];
 
 // Comment
@@ -178,40 +178,40 @@ $array = [
     'key' =>
         // Comment A
         // Comment B
-        'string'
+        'string',
 ];
 
 $array = [
     // Comment A
     'key' =>
         // Comment B
-        'string'
+        'string',
 ];
 
 $array = [
     // Comment A
-    'key' => 'string'
+    'key' => 'string',
 ];
 
-array(); // Comment
+[]; // Comment
 
-$array = array(); // Comment
+$array = []; // Comment
 
-$array = array(
+$array = [
     // Comment
     'string',
-    'other-string'
-);
+    'other-string',
+];
 
 call(
-    array() // Comment
+    [] // Comment
 );
 
-call(array(
+call([
     // Comment
     'string',
-    'other-string'
-));
+    'other-string',
+]);
 
 ================================================================================
 `;
@@ -386,12 +386,45 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
+$a = 1
+    * // A
+    2
+    * // B
+    3;
+
+//check if the offer applies to this site
+//state mismatch
+if (
+    !$this->pricingQueryOfferResult->offer ||
+    !$this->pricingQueryOfferResult->offer->offerGroup ||
+    //!$this->pricingQuerySite->postcode ||
+    ( // offer has a state but we don't
+        $this->pricingQueryOfferResult->offer->offerGroup->state_id
+        && !$this->pricingQuerySite->postcode->state_id
+    ) ||
+    ( // if we have a state and the offer has a state and they don't match, reject
+        $this->pricingQuerySite->postcode
+        && $this->pricingQuerySite->postcode->state_id
+        && $this->pricingQueryOfferResult->offer->offerGroup->state_id
+        && $this->pricingQuerySite->postcode->state_id != $this->pricingQueryOfferResult->offer->offerGroup->state_id
+    )
+) {
+    $this->hasResult = false;
+    $this->removedReason = 'State Mismatch';
+}
+
+if ($bool0
+    || $bool1 // if condition 1
+    || $bool2 // if condition 2
+) {
+    $ok = true;
+}
 =====================================output=====================================
 <?php
 
 $variable =
-    // arrays, countables
     FormUtil::isEmpty($this->modelData) ||
+    // arrays, countables
     ((is_array($this->modelData) || $this->modelData instanceof \\Countable) &&
         0 === count($this->modelData)) ||
     // traversables that are not countable
@@ -403,6 +436,37 @@ if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
 }
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
+
+$a =
+    1 * // A
+    2 * // B
+    3;
+
+//check if the offer applies to this site
+//state mismatch
+if (
+    !$this->pricingQueryOfferResult->offer ||
+    !$this->pricingQueryOfferResult->offer->offerGroup || // offer has a state but we don't
+    //!$this->pricingQuerySite->postcode ||
+    ($this->pricingQueryOfferResult->offer->offerGroup->state_id &&
+        !$this->pricingQuerySite->postcode->state_id) || // if we have a state and the offer has a state and they don't match, reject
+    ($this->pricingQuerySite->postcode &&
+        $this->pricingQuerySite->postcode->state_id &&
+        $this->pricingQueryOfferResult->offer->offerGroup->state_id &&
+        $this->pricingQuerySite->postcode->state_id !=
+            $this->pricingQueryOfferResult->offer->offerGroup->state_id)
+) {
+    $this->hasResult = false;
+    $this->removedReason = 'State Mismatch';
+}
+
+if (
+    $bool0 ||
+    $bool1 || // if condition 1
+    $bool2 // if condition 2
+) {
+    $ok = true;
+}
 
 ================================================================================
 `;
@@ -613,9 +677,9 @@ $var = $a/* Comment */['test'];
 $var = $a /* Comment */->/* Comment */ bar();
 $var = $a /* Comment */::/* Comment */ bar();
 
-$a /* Comment*/./*Comment*/ bar/* Comment */;
+$a /* Comment*/->/*Comment*/ bar/* Comment */;
 $a/* Comment */['test'];
-$a /* Comment */./* Comment */ bar();
+$a /* Comment */->/* Comment */ bar();
 $a /* Comment */::/* Comment */ bar();
 
 =====================================output=====================================
@@ -632,15 +696,18 @@ $var = $var
     ->dump();
 
 $var = $a /* Comment*/->/*Comment*/ bar;
-$var = /* Comment */ $a['test'];
+$var = $a /* Comment */['test'];
 $var = $a /* Comment */
     ->/* Comment */ bar();
-$var = /* Comment */ $a::/* Comment */ bar();
+$var = $a /* Comment */
+    ::/* Comment */ bar();
 
-$a /* Comment*/ . /*Comment*/ bar /* Comment */;
-/* Comment */ $a['test'];
-$a /* Comment */ . /* Comment */ bar();
-/* Comment */ $a::/* Comment */ bar();
+$a /* Comment*/->/*Comment*/ bar /* Comment */;
+$a /* Comment */['test'];
+$a /* Comment */
+    ->/* Comment */ bar();
+$a /* Comment */
+    ::/* Comment */ bar();
 
 ================================================================================
 `;
@@ -987,8 +1054,7 @@ $var = new class {
 };
 
 $var = new class {
-    const CONSTANT =
-        // Comment 1
+    const CONSTANT = // Comment 1
         // Comment 2
         'string';
 };
@@ -1384,10 +1450,10 @@ $test = foo
         // test
     });
 
-$constraint = new UniqueEntity(array(
-    'message' => 'myMessage'
+$constraint = new UniqueEntity([
+    'message' => 'myMessage',
     // no "em" option set
-));
+]);
 
 return // parens test
     // some comment
@@ -3309,9 +3375,9 @@ function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
 function foo($a): /* 5 */ ?string /* 6 */ {}
 function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
 function emptyFn(/*Comment */) {}
-function fn( // Comment
+function func( // Comment
 ) {}
-function fn(
+function func(
     // Comment
 ) {}
 function foo(
@@ -3359,10 +3425,10 @@ function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
 function emptyFn(/*Comment */)
 {
 }
-function fn()
+function func()
 {
 } // Comment
-function fn()
+function func()
 {
 }
 // Comment
@@ -4709,7 +4775,7 @@ list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /*
 list(
     /* Comment */ $drink /* Comment */,
     /* Comment */ $color /* Comment */,
-    /* Comment */ $power /* Comment */
+    /* Comment */ $power /* Comment */,
 ) = $info;
 
 ================================================================================
@@ -5763,6 +5829,16 @@ $a = new class() {
     // }}}
 };
 
+$a = new // Comment
+Foo();
+$a = new class // Comment
+{
+};
+$a = new // Comment
+    Foo();
+$a = new class // Comment
+{
+};
 =====================================output=====================================
 <?php
 $a = new Foo(/*Comment*/);
@@ -5934,6 +6010,17 @@ $a = new class {
     // }}}
 };
 
+$a = new // Comment
+    Foo();
+$a = new class {
+    // Comment
+};
+$a = new // Comment
+    Foo();
+$a = new class {
+    // Comment
+};
+
 ================================================================================
 `;
 
@@ -6051,10 +6138,34 @@ printWidth: 80
 
 echo /*Comment*/$a/*Comment*/[/*Comment*/1/*Comment*/]/*Comment*/;
 
+$var = $var
+    // Comment
+    ['foo'] // Comment
+    // Comment
+    ['bar'] // Comment
+    // Comment
+    ['baz'] // Comment
+    // Comment
+    ['qqq'];
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ /*Comment*/ $a[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
+
+$var =
+    $var[
+        // Comment
+        'foo'
+    ][ // Comment
+        // Comment
+        'bar'
+    ][ // Comment
+        // Comment
+        'baz'
+    ][ // Comment
+        // Comment
+        'qqq'
+    ];
 
 ================================================================================
 `;
@@ -6067,21 +6178,55 @@ printWidth: 80
 =====================================input======================================
 <?php
 
-function foo(/* Comment */ $a, /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */) {};
+function foo(/* Comment */ $a, /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */) {}
 
 function bar(/* Comment */ &$a /* Comment */) {}
 
+function baz(/* Comment */ $a, /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */) {}
+
+class MyClass {
+    public function foo(/* Comment */ $a, /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */) {}
+
+    public function bar(/* Comment */ &$a /* Comment */) {}
+
+    public function baz(/* Comment */ $a, /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */) {}
+}
 =====================================output=====================================
 <?php
 
 function foo(
     /* Comment */ $a,
-    /* Comment */ array /* Comment */ $b /* Comment */ = /* Comment */ [] /* Comment */
+    /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
 ) {
 }
 
 function bar(/* Comment */ &$a /* Comment */)
 {
+}
+
+function baz(
+    /* Comment */ $a,
+    /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+) {
+}
+
+class MyClass
+{
+    public function foo(
+        /* Comment */ $a,
+        /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
+    ) {
+    }
+
+    public function bar(/* Comment */ &$a /* Comment */)
+    {
+    }
+
+    public function baz(
+        /* Comment */ $a,
+        /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+    ) {
+    }
 }
 
 ================================================================================
@@ -6224,6 +6369,40 @@ $var = new class {
         'string';
 };
 
+class Foo {
+    var $name1 = // Comment 1
+        // Comment 2
+        'string';
+    private $name2 = // Comment 1
+        // Comment 2
+        'string';
+    protected $name3 = // Comment 1
+        // Comment 2
+        'string';
+    public $name4 = // Comment 1
+        // Comment 2
+        'string';
+
+    public $bar = // Comment 1
+        // Comment 2
+        <<<'EOT'
+bar
+EOT;
+
+    public $baz = // Comment 1
+        // Comment 2
+        <<<EOT
+baz
+EOT;
+
+    public $var1 = // Comment 1
+        // Comment 2
+        'hello ' . 'world';
+
+    public static $my_static = // Comment 1
+        // Comment 2
+        'foo';
+}
 =====================================output=====================================
 <?php
 
@@ -6235,8 +6414,7 @@ $var = new class {
 };
 
 $var = new class {
-    // Comment 1
-    public $name =
+    public $name = // Comment 1
         // Comment 2
         'string';
 };
@@ -6257,6 +6435,42 @@ $var = new class {
         // Comment 4
         'string';
 };
+
+class Foo
+{
+    var $name1 = // Comment 1
+        // Comment 2
+        'string';
+    private $name2 = // Comment 1
+        // Comment 2
+        'string';
+    protected $name3 = // Comment 1
+        // Comment 2
+        'string';
+    public $name4 = // Comment 1
+        // Comment 2
+        'string';
+
+    public $bar = // Comment 1
+        // Comment 2
+        <<<'EOT'
+bar
+EOT;
+
+    public $baz = // Comment 1
+        // Comment 2
+        <<<EOT
+baz
+EOT;
+
+    public $var1 = // Comment 1
+        // Comment 2
+        'hello ' . 'world';
+
+    public static $my_static = // Comment 1
+        // Comment 2
+        'foo';
+}
 
 ================================================================================
 `;
@@ -6535,10 +6749,29 @@ printWidth: 80
 
 echo Foo/*Comment*/::/*Comment*/bar();
 
+$var = $var
+    // Comment
+    ::each() // Comment
+    // Comment
+    ::map() // Comment
+    // Comment
+    ::first() // Comment
+    // Comment
+    ::dump();
 =====================================output=====================================
 <?php
 
-echo /*Comment*/ Foo::/*Comment*/ bar();
+echo Foo /*Comment*/::/*Comment*/ bar();
+
+$var = $var
+    // Comment
+    ::each() // Comment
+    // Comment
+    ::map() // Comment
+    // Comment
+    ::first() // Comment
+    // Comment
+    ::dump();
 
 ================================================================================
 `;
@@ -6770,9 +7003,9 @@ class ImplementingClass
         /* Comment */ otherTrait /* Comment */;
     /* Comment */ use /* Comment */ testTrait /* Comment */,
         /* Comment */ implementingTrait /* Comment */ /* Comment */ {
-        /* Comment */ A /* Comment */ /* Comment */ /* Comment */::testFunction insteadof /* Comment */ C; /* Comment */ /* Comment */
-        /* Comment */ B /* Comment */ /* Comment */ /* Comment */ /* Comment */::someOtherTestFunction as aliasedFunctionName; /* Comment */ /* Comment */
-        /* Comment */ C /* Comment */ /* Comment */ /* Comment */ /* Comment */ /* Comment */::testFunction as private testVisibility; /* Comment */
+        /* Comment */ A /* Comment */::/* Comment */ testFunction /* Comment */ insteadof /* Comment */ C; /* Comment */ /* Comment */
+        /* Comment */ B /* Comment */::/* Comment */ someOtherTestFunction /* Comment */ as /* Comment */ aliasedFunctionName; /* Comment */ /* Comment */
+        /* Comment */ C /* Comment */::/* Comment */ testFunction /* Comment */ /* Comment */ as private /* Comment */ testVisibility; /* Comment */
     }
 }
 
@@ -7017,8 +7250,7 @@ use // Comment
 use some\\namespaces\\{
     /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
     /* Comment */ ClassB /* Comment */,
-    /* Comment */ ClassC /* Comment */
-    /* Comment */ as C
+    /* Comment */ ClassC as /* Comment */ /* Comment */ C
 };
 
 use // Comment
@@ -7124,23 +7356,23 @@ $obj = // Comment
 $obj =
     // Comment
     [
-        'key' => 'val'
+        'key' => 'val',
     ];
 
 $obj =
     // Comment
     [
-        'key' => 'val'
+        'key' => 'val',
     ];
 
 $obj = [
     // Comment
-    'key' => 'val'
+    'key' => 'val',
 ];
 
 $obj = [
     // Comment
-    'key' => 'val'
+    'key' => 'val',
 ];
 
 $obj =
@@ -7153,12 +7385,12 @@ $obj =
 
 $obj = [
     // Comment
-    'val'
+    'val',
 ];
 
 $obj = [
     // Comment
-    'val'
+    'val',
 ];
 
 $obj =

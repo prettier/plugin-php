@@ -34,3 +34,38 @@ $var = new class {
         // Comment 4
         'string';
 };
+
+class Foo {
+    var $name1 = // Comment 1
+        // Comment 2
+        'string';
+    private $name2 = // Comment 1
+        // Comment 2
+        'string';
+    protected $name3 = // Comment 1
+        // Comment 2
+        'string';
+    public $name4 = // Comment 1
+        // Comment 2
+        'string';
+
+    public $bar = // Comment 1
+        // Comment 2
+        <<<'EOT'
+bar
+EOT;
+
+    public $baz = // Comment 1
+        // Comment 2
+        <<<EOT
+baz
+EOT;
+
+    public $var1 = // Comment 1
+        // Comment 2
+        'hello ' . 'world';
+
+    public static $my_static = // Comment 1
+        // Comment 2
+        'foo';
+}

@@ -1,6 +1,6 @@
 {
   "name": "@prettier/plugin-php",
-  "version": "0.11.2",
+  "version": "0.12.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
@@ -11,40 +11,41 @@
     "standalone.js"
   ],
   "dependencies": {
-    "linguist-languages": "^6.3.0",
-    "mem": "^4.0.0",
-    "php-parser": "glayzzle/php-parser#71485979b688d12fb130d3e853fdc00348671e00"
+    "linguist-languages": "^7.5.1",
+    "mem": "^6.0.1",
+    "php-parser": "glayzzle/php-parser#816a605861e400a18cfb1b890b096da60136c275"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.3.1",
-    "codecov": "3.3.0",
-    "eslint": "5.15.1",
-    "eslint-config-prettier": "4.1.0",
-    "eslint-plugin-import": "2.17.2",
-    "eslint-plugin-jest": "22.4.1",
-    "eslint-plugin-prettier": "3.0.1",
-    "jest": "24.7.1",
-    "jest-runner-eslint": "0.7.3",
+    "@babel/preset-env": "^7.7.5",
+    "codecov": "3.6.5",
+    "cross-env": "^7.0.2",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-prettier": "3.1.2",
+    "jest": "24.9.0",
+    "jest-runner-eslint": "0.7.6",
     "jest-snapshot-serializer-raw": "^1.1.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.19.1",
     "rollup": "^1.1.2",
-    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-alias": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-inject": "^2.2.0",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-inject": "^3.0.1",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-terser": "^4.0.4",
-    "strip-ansi": "^5.0.0"
+    "rollup-plugin-terser": "^5.1.1",
+    "strip-ansi": "^6.0.0",
+    "yarpm": "^0.2.1"
   },
   "peerDependencies": {
     "prettier": "^1.15.0"
   },
   "scripts": {
-    "pretest": "npm run build-standalone",
     "test": "jest",
-    "prepublishOnly": "npm run build-standalone",
+    "prepublishOnly": "yarpm run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarpm test",
     "prettier": "prettier --plugin=. --parser=php",
     "build-standalone": "rollup -c build/rollup.config.js"
   },

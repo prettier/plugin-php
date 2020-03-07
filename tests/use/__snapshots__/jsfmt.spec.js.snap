@@ -43,7 +43,8 @@ use \\Vendor\\Package\\SomeNamespace\\{
 };
 use Exception;
 use \\Exception;
-
+use \\Exception\\My;
+use \\Carbon\\Carbon, \\App, \\Response, \\Input, \\Auth, \\URL;
 =====================================output=====================================
 <?php
 namespace foo;
@@ -81,6 +82,8 @@ use const My\\Full\\CONSTANT;
 use Vendor\\Package\\SomeNamespace\\{SubnamespaceOne\\ClassA};
 use Exception;
 use \\Exception;
+use Exception\\My;
+use Carbon\\Carbon, \\App, \\Response, \\Input, \\Auth, \\URL;
 
 ================================================================================
 `;

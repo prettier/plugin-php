@@ -31,13 +31,13 @@ function createLanguage(linguistData, { extend, override }) {
 }
 
 const languages = [
-  createLanguage(require("linguist-languages/data/php"), {
+  createLanguage(require("linguist-languages/data/PHP"), {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"]
     }
   }),
-  createLanguage(require("linguist-languages/data/html+php"), {
+  createLanguage(require("linguist-languages/data/HTML+PHP"), {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"]

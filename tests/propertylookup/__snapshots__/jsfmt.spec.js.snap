@@ -42,7 +42,7 @@ $obj->{$var};
 // literal with call
 $obj->{call()};
 // encapsed (offset type)
-$obj->foo_{'test' . 'bar'};
+$obj->foo_['test' . 'bar'];
 // variable with literal with call
 // TODO https://github.com/glayzzle/php-parser/issues/254
 // $obj->\${call()};
@@ -60,6 +60,8 @@ printWidth: 80
 
 $a = $obj->value;
 $a = &$obj->getValue();
+$a = &$obj->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue();
+$var = &$var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
 $obj->value = 2;
 
 $b = $this->foo;
@@ -87,6 +89,18 @@ $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 $a = $obj->value;
 $a = &$obj->getValue();
+$a = &$obj
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue()
+    ->getValue();
+$var =
+    &$var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
 $obj->value = 2;
 
 $b = $this->foo;

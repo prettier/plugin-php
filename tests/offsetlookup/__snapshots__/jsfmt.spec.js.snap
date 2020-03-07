@@ -24,6 +24,11 @@ $variable['string'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
 $variable['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
 
+$var = $a{$b};
+$var = $a{$b}{$c};
+$var = $a[$b]{$c};
+$var = $a{$b}[$c];
+
 =====================================output=====================================
 <?php
 
@@ -65,6 +70,11 @@ $variable[
     'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
 ];
 
+$var = $a[$b];
+$var = $a[$b][$c];
+$var = $a[$b][$c];
+$var = $a[$b][$c];
+
 ================================================================================
 `;
 
@@ -80,6 +90,23 @@ $arr[1];
 =====================================output=====================================
 <?php
 $arr[1];
+
+================================================================================
+`;
+
+exports[`single-multiple.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$a[$b]{$c};
+=====================================output=====================================
+<?php
+
+$a[$b][$c];
 
 ================================================================================
 `;

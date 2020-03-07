@@ -329,3 +329,35 @@ $var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
 
 $var = $page > 0 || $page == 0 && $this->forcePageParam;
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
+@foo() || @foo();
+(@foo()) || (@foo());
+$var = @foo() || @foo();
+$var = (@foo() || @foo());
+
+@$i / 0;
+@($i) / 0;
+
+$var = "a" . (@$b ? 'bar' : "baz");
+
+$a = (false && foo());
+$b = (true  || foo());
+$c = (false and foo());
+$d = (true  or  foo());
+
+$f = false or true;
+$h = true and false;
+
+$my_file = call('non_existent_file') or die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or die("Failed opening file: error was '$php_errormsg'");
+
+$my_file = call('non_existent_file') and die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = ($foo && $baz) ?? $baz;
+$var = $foo && ($baz ?? $baz);
