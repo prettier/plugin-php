@@ -5,10 +5,21 @@ const memoize = require("mem");
 
 const reHasPragma = /@prettier|@format/;
 
-const extractDocBlocks = memoize(text => {
+const getPageLevelDocBlock = memoize(text => {
   const parsed = parse(text);
 
-  return parsed.comments.filter(el => el.kind === "commentblock");
+  const [firstChild] = parsed.children;
+  const [firstDocBlock] = parsed.comments.filter(
+    el => el.kind === "commentblock"
+  );
+
+  if (
+    firstChild &&
+    firstDocBlock &&
+    firstDocBlock.loc.start.line < firstChild.loc.start.line
+  ) {
+    return firstDocBlock;
+  }
 });
 
 function guessLineEnding(text) {
@@ -27,10 +38,10 @@ function hasPragma(text) {
     return false;
   }
 
-  const [firstDocBlock] = extractDocBlocks(text);
+  const pageLevelDocBlock = getPageLevelDocBlock(text);
 
-  if (firstDocBlock) {
-    const { value } = firstDocBlock;
+  if (pageLevelDocBlock) {
+    const { value } = pageLevelDocBlock;
 
     return reHasPragma.test(value);
   }
@@ -59,17 +70,17 @@ function injectPragma(docblock, text) {
 }
 
 function insertPragma(text) {
-  const [firstDocBlock] = extractDocBlocks(text);
+  const pageLevelDocBlock = getPageLevelDocBlock(text);
 
-  if (firstDocBlock) {
+  if (pageLevelDocBlock) {
     const {
       start: { offset: startOffset },
       end: { offset: endOffset }
-    } = firstDocBlock.loc;
+    } = pageLevelDocBlock.loc;
     const before = text.substring(0, startOffset);
     const after = text.substring(endOffset);
 
-    return `${before}${injectPragma(firstDocBlock.value, text)}${after}`;
+    return `${before}${injectPragma(pageLevelDocBlock.value, text)}${after}`;
   }
 
   const openTag = "<?php";

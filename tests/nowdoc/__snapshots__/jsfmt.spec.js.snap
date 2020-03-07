@@ -946,6 +946,18 @@ string
 EOD
 ];
 
+$php73FlexibleNowdoc = <<<'EOD'
+       $a
+      b
+     c
+     EOD;
+
+$php73FlexibleNowdoc2 = <<<'EOD'
+      $a
+     b
+    c
+  EOD;
+
 =====================================output=====================================
 <?php
 
@@ -965,20 +977,21 @@ $str = <<<'EOL'
 "test" foo 'test'
 EOL;
 
-$str = array(
+$str = [
     <<<'EOF'
 foo
 EOF
     ,
-    "bar"
-);
+    "bar",
+];
 
-$str = array(
+$str = [
     "bar",
     <<<'EOF'
 foo
 EOF
-);
+,
+];
 
 $str = sprintf(
     <<<'EOF'
@@ -1012,33 +1025,33 @@ END
     )
 );
 
-$str = call(array(
+$str = call([
     <<<END
 foo
 END
     ,
-    true
-));
+    true,
+]);
 
-$str = array(
-    array(
+$str = [
+    [
         <<<END
 foo
 END
         ,
-        true
-    )
-);
+        true,
+    ],
+];
 
-$str = array(
+$str = [
     call(
         <<<END
 foo
 END
         ,
         true
-    )
-);
+    ),
+];
 
 function foo(
     $a = 1,
@@ -1442,6 +1455,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1450,6 +1464,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1459,6 +1474,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1468,7 +1484,7 @@ string
 string
 EOD
     ,
-    $a
+    $a,
 ];
 
 $a = [
@@ -1477,6 +1493,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1485,6 +1502,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1494,6 +1512,7 @@ string
 string
 string
 EOD
+,
 ];
 
 $a = [
@@ -1503,7 +1522,7 @@ string
 string
 EOD
     ,
-    'other-key' => $a
+    'other-key' => $a,
 ];
 
 switch ($i) {
@@ -1964,7 +1983,20 @@ string
 string
 string
 EOD
+,
 ];
+
+$php73FlexibleNowdoc = <<<'EOD'
+  $a
+ b
+c
+EOD;
+
+$php73FlexibleNowdoc2 = <<<'EOD'
+    $a
+   b
+  c
+EOD;
 
 ================================================================================
 `;

@@ -526,3 +526,11 @@ $o = [
         $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
 ];
 
+// spread
+$var = ['banana', 'orange', ...$parts, 'watermelon'];
+$var = [...$arr1];
+$var = [0, ...$arr1];
+$var = array(...$arr1, ...$arr2, 111);
+$var = [...$arr1, ...$arr1];
+$var = [...getArr(), 'c'];
+$var = [...new ArrayIterator(['a', 'b', 'c'])];

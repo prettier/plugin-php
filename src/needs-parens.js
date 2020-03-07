@@ -64,6 +64,7 @@ function needsParens(path) {
     case "bin": {
       switch (parent.kind) {
         case "assign":
+        case "retif":
           return ["and", "xor", "or"].includes(node.type);
         case "silent":
         case "cast":

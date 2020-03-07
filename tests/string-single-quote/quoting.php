@@ -27,3 +27,11 @@
 "\u{9999}";
 "multi
 line";
+"\\";
+'\\';
+'"';
+"'";
+b'binary string';
+b"binary string";
+b'binary string\n';
+b"binary string\n";

@@ -33,7 +33,7 @@ function call($store)
             return next(
                 actionWith([
                     'response' => $response,
-                    'type' => $successType
+                    'type' => $successType,
                 ])
             );
         },
@@ -41,7 +41,7 @@ function call($store)
             return next(
                 actionWith([
                     'type' => $failureType,
-                    'error' => $error->message || 'Something bad happened'
+                    'error' => $error->message || 'Something bad happened',
                 ])
             );
         }
@@ -443,7 +443,7 @@ Route::prefix('api')
 return tap(
     $this->forceFill([
         'approver_id' => $user instanceof User ? $user->id : $user,
-        'approved_at' => $this->freshTimestamp()
+        'approved_at' => $this->freshTimestamp(),
     ])
 )->save();
 
@@ -741,7 +741,7 @@ nock('test')
     ->matchHeader('Accept', 'application/json')
     ['string']('/foo')
     ->reply(200, [
-        'foo' => 'bar'
+        'foo' => 'bar',
     ]);
 
 $data->forEach(function ($key) {
@@ -783,7 +783,7 @@ $window->Data['key']
         return $b;
     });
 
-$window->foo_{'bar' . 'baz'}
+$window->foo_['bar' . 'baz']
     ['key']("foo")
     ->then(function () {
         return $a;
@@ -938,14 +938,14 @@ Foo
 <?php
 DB::table('identity')->insert([
     'ref' => $ref,
-    'handle' => $handle
+    'handle' => $handle,
 ]);
 
 DB::table('identity')->insert([
     'ref' => $ref,
     'handle' => $handle,
     'foo' => $bar,
-    'bar' => $foo
+    'bar' => $foo,
 ]);
 
 DB::table(
@@ -954,7 +954,7 @@ DB::table(
     'ref' => $ref,
     'handle' => $handle,
     'foo' => $bar,
-    'bar' => $foo
+    'bar' => $foo,
 ]);
 
 $page = TableRegistry::get('Pages')
@@ -968,7 +968,7 @@ Logger::use_logger('albus')->info(
     'Albus: failed to find active version for albus object',
     [
         'uuid' => $uuid,
-        'requested_date' => $date
+        'requested_date' => $date,
     ]
 );
 
@@ -1020,7 +1020,7 @@ $component = Foo::test([
     'foo' => 'bar',
     'bar' => 'foo',
     'foobar' => 'barfoo',
-    'barfoo' => 'foobar'
+    'barfoo' => 'foobar',
 ]);
 $component =
     Foo
@@ -1030,7 +1030,7 @@ static::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this
+            'paginator' => $this,
         ])
     )
     ->render();
@@ -1038,7 +1038,7 @@ static::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this
+            'paginator' => $this,
         ])
     )
     ->render();
@@ -1046,7 +1046,7 @@ self::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this
+            'paginator' => $this,
         ])
     )
     ->render();
@@ -1054,7 +1054,7 @@ parent::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this
+            'paginator' => $this,
         ])
     )
     ->render();
@@ -1063,7 +1063,7 @@ Foo::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this
+            'paginator' => $this,
         ])
     )
     ->render();

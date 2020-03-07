@@ -50,3 +50,13 @@ $var = ((($var ?: $var) ?: $var) ?: 'string');
 $var = ($var ?: ($var ?: $var)) ?: 'string';
 $var = ($var ?: (($var ?: $var) ?: 'string'));
 $var = ($var ?: ($var ?: ($var ?: 'string')));
+
+$var = ($foo and $bar) ? true : false;
+$var = ($foo or $bar) ? true : false;
+$var = ($foo xor $bar) ? true : false;
+$var = ($foo = "bar") ? true : false;
+
+$var = ($foo && $bar) ? true : false;
+$var = ($foo || $bar) ? true : false;
+$var = (!$foo) ? true : false;
+$var = (new $foo) ? true : false;

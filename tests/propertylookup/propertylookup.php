@@ -2,6 +2,8 @@
 
 $a = $obj->value;
 $a = &$obj->getValue();
+$a = &$obj->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue()->getValue();
+$var = &$var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
 $obj->value = 2;
 
 $b = $this->foo;

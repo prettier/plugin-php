@@ -139,13 +139,13 @@ EOD;
         'value',
         'other-value',
         'other-other-value',
-        'other-other-other-value'
+        'other-other-other-value',
     ];
     const CONST_13 = ['key' => 'value', 'other-key' => 'other-value'];
     const CONST_14 = [
         'key' => 'value',
         'other-key' => 'other-value',
-        'other-other-key' => 'other-other-value'
+        'other-other-key' => 'other-other-value',
     ];
 
     const FIRST = "Hello",
@@ -163,7 +163,7 @@ EOD;
     const CONST_15 = [
             'key' => 'value',
             'other-key' => 'other-value',
-            'other-other-key' => 'other-other-value'
+            'other-other-key' => 'other-other-value',
         ],
         FOO_BAR = "test",
         BAR_FOOR = ['value', 'other-value'];

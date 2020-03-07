@@ -34,6 +34,11 @@ function clean(node, newObj) {
     delete newObj.isDoubleQuote;
   }
 
+  if (node.kind === "array") {
+    // TODO if options are available in this method, assign instead of delete
+    delete newObj.shortForm;
+  }
+
   if (node.kind === "inline") {
     if (node.value.includes("___PSEUDO_INLINE_PLACEHOLDER___")) {
       return null;
@@ -98,11 +103,6 @@ function clean(node, newObj) {
 
   if (node.kind === "method" && node.name.kind === "identifier") {
     newObj.name.name = util.normalizeMagicMethodName(newObj.name.name);
-  }
-
-  // @TODO: We need special node for `null` value to avoid ast compare problem
-  if (node.kind === "classreference" && node.name.toLowerCase() === "null") {
-    delete newObj.name;
   }
 }
 

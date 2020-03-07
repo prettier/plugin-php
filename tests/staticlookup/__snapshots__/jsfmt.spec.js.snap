@@ -200,7 +200,7 @@ Foo::method([
     'foo' => 'bar',
     'bar' => 'foo',
     'foobar' => 'barfoo',
-    'barfoo' => 'foobar'
+    'barfoo' => 'foobar',
 ]);
 MyClass::$aStaticProp;
 MyClass::$aStaticProp = 1;
@@ -228,7 +228,7 @@ class Bar extends Foo
 abstract class DataRecord
 {
     private static $db; // MySQLi-Connection, same for all subclasses
-    private static $table = array(); // Array of tables for subclasses
+    private static $table = []; // Array of tables for subclasses
 
     public static function init($classname, $table, $db = false)
     {
@@ -368,7 +368,7 @@ $var = get_class($var)::$$$$$property;
 $var = $bar->{$property->foo};
 // TODO https://github.com/glayzzle/php-parser/issues/254
 // $var = $bar->\${$property};
-$var = $bar->foo_{$property};
+$var = $bar->foo_[$property];
 
 ================================================================================
 `;

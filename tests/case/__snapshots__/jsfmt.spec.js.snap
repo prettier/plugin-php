@@ -393,7 +393,7 @@ final class MyClass extends Bar implements iTemplate
         $d = (true or foo());
         $c = (false xor foo());
 
-        $array = array(1, 1, 1);
+        $array = [1, 1, 1];
 
         if ($step <= 0) {
             throw new LogicException('Logic');

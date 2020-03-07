@@ -28,10 +28,14 @@ export default {
   },
   external: ["prettier"],
   plugins: [
-    nodeResolve(),
+    nodeResolve({
+      preferBuiltins: true
+    }),
     commonjs(),
     alias({
-      assert: resolve(BUILD_DIR, "shims/assert.js")
+      entries: [
+        { find: "assert", replacement: resolve(BUILD_DIR, "shims/assert.js") }
+      ]
     }),
     inject({
       Buffer: resolve(BUILD_DIR, "shims/buffer.js")

@@ -89,3 +89,20 @@ $a = -INF;
 $a = NAN;
 $a = PHP_INT_MIN;
 $a = PHP_INT_MAX;
+
+$a = 1.000;
+$a = 1.001;
+$a = 1.0;
+// 1. === 1.0, but 1. !== 1
+$a = 1.;
+$a = 1;
+
+// numeric literal separator, added in 7.4
+$threshold = 1_000_000_000;
+$testValue = 107_925_284.88;
+$discount = 135_00;
+6.674_083e-11; // float
+299_792_458;   // decimal
+0xCAFE_F00D;   // hexadecimal
+0b0101_1111;   // binary
+0137_041;      // octal

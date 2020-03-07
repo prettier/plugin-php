@@ -56,28 +56,28 @@ $var = ([(new stdClass())])[0];
 =====================================output=====================================
 <?php
 
-array();
-array();
+[];
+[];
 
 [];
 [];
 
-$var = array();
-$var = array();
+$var = [];
+$var = [];
 
 $var = [];
 $var = [];
 
-$var = array("1", "2", "3");
-$var = array("1", "2", "3");
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
-$var = array(array("1"), array("2"), array("3"));
+$var = ["1", "2", "3"];
+$var = ["1", "2", "3"];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
 
-$var = (array("foo", "bar"))();
-$var = (array("foo", "bar"))();
-$var = (array("foo", "bar"))();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
 
 $var = (["foo", "bar"])();
 $var = (["foo", "bar"])();
@@ -92,12 +92,12 @@ $arr = ['key' => $var, 'other-key' => $other_var];
 [$var, $other_var] = $arr;
 ['key' => $var, 'other-key' => $other_var] = $arr;
 
-$var = array(1, 2, 3)[1];
-$var = array(1, 2, 3)[1];
 $var = [1, 2, 3][1];
 $var = [1, 2, 3][1];
-$var = array(new stdClass())[0];
-$var = array(new stdClass())[0];
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
 $var = [new stdClass()][0];
 $var = [new stdClass()][0];
 
@@ -314,6 +314,54 @@ switch ($i = 1) {
         echo "i equals 2";
         break;
 }
+
+================================================================================
+`;
+
+exports[`assignref.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$test = $var = $test;
+$test = ($var = $test);
+$test = $var = &$test;
+$test = ($var = &$test);
+
+$a = ($b = $var) + 5;
+$a = ($b = &$var) + 5;
+
+$a = ($b = $var) || 5;
+$a = ($b = &$var) || 5;
+
+if (($foo = &$bar) && count($foo) > 0) {}
+if (($foo = &test1()) && test2($foo) > 0) {}
+
+call(($a =& $b));
+
+=====================================output=====================================
+<?php
+
+$test = $var = $test;
+$test = $var = $test;
+$test = $var = &$test;
+$test = $var = &$test;
+
+$a = ($b = $var) + 5;
+$a = $b = &$var + 5;
+
+$a = ($b = $var) || 5;
+$a = $b = &$var || 5;
+
+if ($foo = &$bar && count($foo) > 0) {
+}
+if ($foo = &test1() && test2($foo) > 0) {
+}
+
+call($a = &$b);
 
 ================================================================================
 `;
@@ -655,6 +703,38 @@ $var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
 
 $var = $page > 0 || $page == 0 && $this->forcePageParam;
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
+@foo() || @foo();
+(@foo()) || (@foo());
+$var = @foo() || @foo();
+$var = (@foo() || @foo());
+
+@$i / 0;
+@($i) / 0;
+
+$var = "a" . (@$b ? 'bar' : "baz");
+
+$a = (false && foo());
+$b = (true  || foo());
+$c = (false and foo());
+$d = (true  or  foo());
+
+$f = false or true;
+$h = true and false;
+
+$my_file = call('non_existent_file') or die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or die("Failed opening file: error was '$php_errormsg'");
+
+$my_file = call('non_existent_file') and die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = ($foo && $baz) ?? $baz;
+$var = $foo && ($baz ?? $baz);
 
 =====================================output=====================================
 <?php
@@ -1006,6 +1086,42 @@ $var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 
+@foo() || @foo();
+@foo() || @foo();
+$var = @foo() || @foo();
+$var = @foo() || @foo();
+
+@$i / 0;
+@$i / 0;
+
+$var = "a" . (@$b ? 'bar' : "baz");
+
+$a = false && foo();
+$b = true || foo();
+$c = (false and foo());
+$d = (true or foo());
+
+($f = false) or true;
+($h = true) and false;
+
+($my_file = call('non_existent_file')) or
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or
+    die("Failed opening file: error was '$php_errormsg'");
+
+($my_file = call('non_existent_file')) and
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and
+    die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = $foo && $baz ?? $baz;
+$var = $foo && ($baz ?? $baz);
+
 ================================================================================
 `;
 
@@ -1165,8 +1281,8 @@ $var = $this->$name();
 $var = Foo::call();
 $var = Foo::call();
 
-$var = (array("Foo", "bar"))();
-$var = (array(new Foo(), "baz"))();
+$var = (["Foo", "bar"])();
+$var = ([new Foo(), "baz"])();
 $var = ((string) 1234)();
 $var = ("Foo::bar")();
 $var = ("Foo::bar")();
@@ -1296,11 +1412,11 @@ $var = ((bool) 2.3e5);
 $var = (object) [];
 $var = (object) [];
 $var = ((object) []);
-$var = ((object) array('1' => 'foo'));
+$var = ((object) ['1' => 'foo']);
 $var = ((object) ['1' => 'foo']);
 $var = ((object) 'ciao')->scalar;
-$var = ((object) array('test'))->{'0'};
-$var = ((object) array('test'))->{'0'};
+$var = ((object) ['test'])->{'0'};
+$var = ((object) ['test'])->{'0'};
 $var = (array) new B();
 $var = (array) new B();
 $var = ((array) new B());
@@ -2399,20 +2515,14 @@ new Translator(
     $container,
     new MessageFormatter(),
     'en',
-    array(),
-    array('foo' => 'bar')
-); ?>
-<?php new Translator(
-    $container,
-    new MessageFormatter(),
-    'en',
-    $someOtherVar,
-    array(
-        'foo' => 'bar'
-    )
+    [],
+    ['foo' => 'bar']
 ); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
-    'foo' => 'bar'
+    'foo' => 'bar',
+]); ?>
+<?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
+    'foo' => 'bar',
 ]); ?>
 <?php
 $var = new Foo();
@@ -2774,6 +2884,16 @@ $var = ($var ?: ($var ?: $var)) ?: 'string';
 $var = ($var ?: (($var ?: $var) ?: 'string'));
 $var = ($var ?: ($var ?: ($var ?: 'string')));
 
+$var = ($foo and $bar) ? true : false;
+$var = ($foo or $bar) ? true : false;
+$var = ($foo xor $bar) ? true : false;
+$var = ($foo = "bar") ? true : false;
+
+$var = ($foo && $bar) ? true : false;
+$var = ($foo || $bar) ? true : false;
+$var = (!$foo) ? true : false;
+$var = (new $foo) ? true : false;
+
 =====================================output=====================================
 <?php
 
@@ -2839,6 +2959,16 @@ $var = $var ?: $var ?: $var ?: 'string';
 $var = $var ?: ($var ?: $var) ?: 'string';
 $var = $var ?: ($var ?: $var ?: 'string');
 $var = $var ?: ($var ?: ($var ?: 'string'));
+
+$var = ($foo and $bar) ? true : false;
+$var = ($foo or $bar) ? true : false;
+$var = ($foo xor $bar) ? true : false;
+$var = ($foo = "bar") ? true : false;
+
+$var = $foo && $bar ? true : false;
+$var = $foo || $bar ? true : false;
+$var = !$foo ? true : false;
+$var = new $foo() ? true : false;
 
 ================================================================================
 `;
@@ -2927,10 +3057,12 @@ try {
 }
 
 @list($width, $height) = getimagesize($file);
-@(list($width, $height) = getimagesize($file));
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
 
 @$var += 10;
-@($var += 10);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
 
 echo @(1 / 0);
 
@@ -2961,9 +3093,8 @@ $var = @new MyClass();
 $var = @$_GET['data'];
 
 if (
-    false ===
-    @fwrite($this->stream, $message) ||
-        ($newline && false === @fwrite($this->stream, PHP_EOL))
+    false === @fwrite($this->stream, $message) ||
+    ($newline && false === @fwrite($this->stream, PHP_EOL))
 ) {
     // should never happen
     throw new RuntimeException('Unable to write output.');
@@ -2980,10 +3111,12 @@ try {
 }
 
 @list($width, $height) = getimagesize($file);
-@list($width, $height) = getimagesize($file);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
 
 @$var += 10;
-@$var += 10;
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
 
 echo @(1 / 0);
 

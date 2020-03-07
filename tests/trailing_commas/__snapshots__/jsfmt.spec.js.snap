@@ -212,53 +212,54 @@ $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+    'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+    'very-very-very-very-very-very-very-very-very-long-item-2',
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+    'very-very-very-very-very-very-very-very-very-long-item-2',
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
-$foo = array(
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
+    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -266,8 +267,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -275,19 +277,20 @@ baz
 
 EOT
     ,
-    'bar'
-);
+    'bar',
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -295,8 +298,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -304,19 +308,20 @@ baz
 
 EOT
     ,
-    'bar'
-);
+    'bar',
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -324,8 +329,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -333,19 +339,20 @@ baz
 
 EOT
     ,
-    'bar'
-);
+    'bar',
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -353,8 +360,9 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+,
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -362,11 +370,11 @@ baz
 
 EOT
     ,
-    'bar'
-);
+    'bar',
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -374,27 +382,29 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ,
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ,
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -402,24 +412,26 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ,
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ,
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -427,8 +439,9 @@ EOT
 exports[`array.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "php5"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -633,24 +646,24 @@ EOT
 =====================================output=====================================
 <?php
 
-$foo = ['foo', 'bar'];
-$foo = ['foo', 'bar'];
-$foo = [
+$foo = array('foo', 'bar');
+$foo = array('foo', 'bar');
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-];
-$foo = [
+);
+$foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-];
+);
 $foo = array('foo', 'bar');
 $foo = array('foo', 'bar');
 $foo = array(
@@ -670,8 +683,8 @@ $foo = array(
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+    idx($composer, 'require', array()),
+    idx($composer, 'require-dev', array())
 );
 
 // nowdoc
@@ -864,8 +877,9 @@ EOT
 exports[`array.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "php7.2"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1088,31 +1102,31 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1120,8 +1134,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -1130,8 +1144,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1140,10 +1154,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1151,8 +1165,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -1161,8 +1175,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1171,10 +1185,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1182,8 +1196,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -1192,8 +1206,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1202,10 +1216,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1213,8 +1227,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -1223,8 +1237,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1233,10 +1247,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -1244,8 +1258,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -1253,20 +1267,20 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -1274,8 +1288,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
@@ -1283,17 +1297,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -1301,8 +1315,9 @@ EOT
 exports[`array.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1525,31 +1540,31 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+    idx($composer, 'require-dev', []),
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1557,8 +1572,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -1567,8 +1582,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -1577,10 +1592,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1588,8 +1603,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -1598,8 +1613,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -1608,10 +1623,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1619,8 +1634,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -1629,8 +1644,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -1639,10 +1654,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1650,8 +1665,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -1660,8 +1675,8 @@ baz
 
 EOT
 ,
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -1670,10 +1685,10 @@ baz
 EOT
     ,
     'bar',
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -1681,8 +1696,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
@@ -1690,20 +1705,20 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -1711,8 +1726,8 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
@@ -1720,17 +1735,17 @@ baz
 
 EOT
         ,
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
         ,
-        ),
-    ),
-);
+        ],
+    ],
+];
 
 ================================================================================
 `;
@@ -1740,6 +1755,7 @@ exports[`array.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -1962,39 +1978,39 @@ $foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
-$foo = array('foo', 'bar');
-$foo = array('foo', 'bar');
-$foo = array(
+$foo = ['foo', 'bar'];
+$foo = ['foo', 'bar'];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1',
     'very-very-very-very-very-very-very-very-very-long-item-2'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
-$foo = array(
+];
+$foo = [
     'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
     'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
-);
+];
 $packages = array_merge(
     idx($composer, 'require', []),
     idx($composer, 'require-dev', [])
 );
 
 // nowdoc
-$expected = array(
+$expected = [
     <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<'EOT'
 foo
@@ -2002,8 +2018,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     <<<'EOT'
 foo
 # bar
@@ -2012,18 +2028,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // heredoc
-$expected = array(
+$expected = [
     <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     <<<EOT
 foo
@@ -2031,8 +2047,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     <<<EOT
 foo
 # bar
@@ -2041,18 +2057,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Associative array with nowdoc
-$expected = array(
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<'EOT'
 foo
@@ -2060,8 +2076,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<'EOT'
 foo
 # bar
@@ -2070,18 +2086,18 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Associative array with heredoc
-$expected = array(
+$expected = [
     'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'foo',
     'key' => <<<EOT
 foo
@@ -2089,8 +2105,8 @@ foo
 baz
 
 EOT
-);
-$expected = array(
+];
+$expected = [
     'key' => <<<EOT
 foo
 # bar
@@ -2099,10 +2115,10 @@ baz
 EOT
     ,
     'bar'
-);
+];
 
 // Nested with nowdoc
-$expected = array(
+$expected = [
     'test' => <<<'EOT'
 foo
 # bar
@@ -2110,27 +2126,27 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ],
+        [
             'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
-        )
-    )
-);
+        ]
+    ]
+];
 
 // Nested with heredoc
-$expected = array(
+$expected = [
     'test' => <<<EOT
 foo
 # bar
@@ -2138,22 +2154,1625 @@ baz
 
 EOT
     ,
-    'collection' => array(
-        array(
+    'collection' => [
+        [
             'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-        ),
-        array(
+        ],
+        [
             'two' => <<<EOT
 foo
 # bar
 baz
 EOT
-        )
+        ]
+    ]
+];
+
+================================================================================
+`;
+
+exports[`call.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var,);
+
+$var = strlen($var,  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar',],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],);
+
+call(<<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(<<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; }, function ($x) { return $x->selected; },);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new class('constructor', 'bar') {};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+) {};
+
+$foo->bar('method', 'bar');
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo('invoke', 'bar');
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$var = strlen($var);
+
+$var = strlen(
+    $var,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    )
+);
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar']
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+call(
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ],
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ]
+);
+
+call(
+    <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+call(
+    <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) {
+        return $x->selected;
+    });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(
+        function ($x) {
+            return $x->selected;
+        },
+        function ($x) {
+            return $x->selected;
+        }
+    );
+
+================================================================================
+`;
+
+exports[`call.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "5.0"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var,);
+
+$var = strlen($var,  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar',],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],);
+
+call(<<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(<<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; }, function ($x) { return $x->selected; },);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new class('constructor', 'bar') {};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+) {};
+
+$foo->bar('method', 'bar');
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo('invoke', 'bar');
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$var = strlen($var);
+
+$var = strlen(
+    $var,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    )
+);
+
+$newArray = array_merge($arrayOne, $arrayTwo, array('foo', 'bar'));
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    array('foo', 'bar')
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+call(
+    array(
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ),
+    array(
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+call(
+    <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+call(
+    <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) {
+        return $x->selected;
+    });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(
+        function ($x) {
+            return $x->selected;
+        },
+        function ($x) {
+            return $x->selected;
+        }
+    );
+
+================================================================================
+`;
+
+exports[`call.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.2"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var,);
+
+$var = strlen($var,  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar',],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],);
+
+call(<<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(<<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; }, function ($x) { return $x->selected; },);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new class('constructor', 'bar') {};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+) {};
+
+$foo->bar('method', 'bar');
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo('invoke', 'bar');
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$var = strlen($var);
+
+$var = strlen(
+    $var,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    )
+);
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar']
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+call(
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ],
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ]
+);
+
+call(
+    <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+call(
+    <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) {
+        return $x->selected;
+    });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(
+        function ($x) {
+            return $x->selected;
+        },
+        function ($x) {
+            return $x->selected;
+        }
+    );
+
+================================================================================
+`;
+
+exports[`call.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.3"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var,);
+
+$var = strlen($var,  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar',],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],);
+
+call(<<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(<<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; }, function ($x) { return $x->selected; },);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar') {};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+) {};
+
+$foo->bar('method', 'bar');
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo('invoke', 'bar');
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var);
+
+$var = strlen(
+    $var,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ),
+);
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ],
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    ],
+);
+
+call(
+    <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(
+    <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) {
+        return $x->selected;
+    });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(
+        function ($x) {
+            return $x->selected;
+        },
+        function ($x) {
+            return $x->selected;
+        },
+    );
+
+================================================================================
+`;
+
+exports[`call.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+trailingCommaPHP: false
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foo(
+    'constructor',
+    'bar',
+);
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+);
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo = new class('constructor', 'bar',){};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+){};
+
+$foo->bar(
+    'method',
+    'bar',
+);
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$foo(
+    'invoke',
+    'bar',
+);
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+$var = strlen($var,);
+
+$var = strlen($var,  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+    )
+);
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+    )
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    ['foo', 'bar'],
+);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar',],
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+);
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],['very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',],);
+
+call(<<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+call(<<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+    ,
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) { return $x->selected; }, function ($x) { return $x->selected; },);
+=====================================output=====================================
+<?php
+
+foo('constructor', 'bar');
+
+foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new Foo('constructor', 'bar');
+
+$foo = new Foo(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo = new class('constructor', 'bar') {};
+
+$foo = new class(
+    'constructor',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+) {};
+
+$foo->bar('method', 'bar');
+
+$foo->bar(
+    'method',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$foo('invoke', 'bar');
+
+$foo(
+    'invoke',
+    'bar',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+$var = strlen($var);
+
+$var = strlen(
+    $var,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
+
+var_dump(
+    $whatIsInThere,
+    $probablyABugInThisOne,
+    $oneMoreToCheck,
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+echo $twig->render('index.html', compact('title', 'body', 'comments'));
+
+echo $twig->render(
+    'index.html',
+    compact(
+        'title',
+        'body',
+        'comments',
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    )
+);
+
+$newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
+
+$newArray = array_merge(
+    $arrayOne,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    $arrayTwo,
+    ['foo', 'bar']
+);
+
+$en = 'A trailing %s makes %s a happy developer.';
+$text = sprintf($en, 'comma', 'Jane');
+
+$text = sprintf(
+    $en,
+    'comma',
+    'Jane',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+call(
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    ],
+    [
+        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+    ]
+);
+
+call(
+    <<<'EOT'
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+call(
+    <<<EOT
+My name is "$name". I am printing some $foo->foo.
+Now, I am printing some {$foo->bar[1]}.
+This should not print a capital 'A': \\x41
+EOT
+);
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(function ($x) {
+        return $x->selected;
+    });
+
+$sel = $this->connections
+
+    ->concat($this->activities->concat($this->operators))
+    ->filter(
+        function ($x) {
+            return $x->selected;
+        },
+        function ($x) {
+            return $x->selected;
+        }
+    );
+
+================================================================================
+`;
+
+exports[`isset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+var_dump(
+    isset(
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+    )
+);
+
+================================================================================
+`;
+
+exports[`isset.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "5.0"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+var_dump(
+    isset(
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+    )
+);
+
+================================================================================
+`;
+
+exports[`isset.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.2"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+var_dump(
+    isset(
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+    )
+);
+
+================================================================================
+`;
+
+exports[`isset.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.3"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+var_dump(
+    isset(
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    ),
+);
+
+================================================================================
+`;
+
+exports[`isset.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+trailingCommaPHP: false
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+var_dump(isset($foo, $bar,));
+var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,));
+=====================================output=====================================
+<?php
+
+var_dump(isset($foo, $bar));
+var_dump(
+    isset(
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
     )
 );
 
@@ -2196,14 +3815,14 @@ list(
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+    3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
     ,
@@ -2261,8 +3880,9 @@ list(
 exports[`list.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "php5"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2360,8 +3980,9 @@ list(
 exports[`list.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "php7.2"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2459,8 +4080,9 @@ list(
 exports[`list.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2560,6 +4182,7 @@ exports[`list.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2654,6 +4277,129 @@ list(
 ================================================================================
 `;
 
+exports[`unset.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+unset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+);
+
+================================================================================
+`;
+
+exports[`unset.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "5.0"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+unset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+);
+
+================================================================================
+`;
+
+exports[`unset.php 3`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.2"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+unset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+);
+
+================================================================================
+`;
+
+exports[`unset.php 4`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "7.3"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+unset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+);
+
+================================================================================
+`;
+
+exports[`unset.php 5`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+trailingComma: "all"
+trailingCommaPHP: false
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+unset($foo, $bar,);
+unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,);
+
+=====================================output=====================================
+<?php
+
+unset($foo, $bar);
+unset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+);
+
+================================================================================
+`;
+
 exports[`use.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -2707,8 +4453,9 @@ use other_foo\\bar\\{
 exports[`use.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "5.0"
 printWidth: 80
-trailingCommaPHP: "php5"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2758,8 +4505,9 @@ use other_foo\\bar\\{
 exports[`use.php 3`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.2"
 printWidth: 80
-trailingCommaPHP: "php7.2"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2809,8 +4557,9 @@ use other_foo\\bar\\{
 exports[`use.php 4`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.3"
 printWidth: 80
-trailingCommaPHP: "all"
+trailingCommaPHP: true
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -2862,6 +4611,7 @@ exports[`use.php 5`] = `
 parsers: ["php"]
 printWidth: 80
 trailingComma: "all"
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
