@@ -1014,8 +1014,10 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const beforeInline =
         childNode.leadingComments && childNode.leadingComments.length
           ? concat([
-              isFirstNode && node.kind !== "namespace" ? openTag : "",
-              hardline,
+              isFirstNode && node.kind !== "namespace" && !isBlockNestedNode
+                ? openTag
+                : "",
+              node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
               comments.printComments(childNode.leadingComments, options),
               "?>"
             ])
