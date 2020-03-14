@@ -500,9 +500,9 @@ return false !==
 return $this->getOptions()['endpoint'] ??
     'https://api.sparkpost.com/api/v1/transmissions';
 return $this->getOptions()['endpoint'] ??
-    'https://api.sparkpost.com/api/v1/transmissions' ??
-    'https://api.sparkpost.com/api/v1/transmissions' ??
-    'https://api.sparkpost.com/api/v1/transmissions';
+    ('https://api.sparkpost.com/api/v1/transmissions' ??
+        ('https://api.sparkpost.com/api/v1/transmissions' ??
+            'https://api.sparkpost.com/api/v1/transmissions'));
 
 return $this->channels[$name] ??
     with($this->resolve($name), function ($logger) use ($name) {
