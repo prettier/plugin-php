@@ -690,47 +690,46 @@ func(
 );
 
 $var = $a ?? $b;
-$var = $a ?? $b ?? $c;
-$var = $a ?? $b ?? $c ?? $d;
-$var = $a ?? $b ?? $c ?? $d ?? call($a, $b, $c);
-$var = $a ?? $b ?? $c ?? $d ?? $var ? 1 : 2;
+$var = $a ?? ($b ?? $c);
+$var = $a ?? ($b ?? ($c ?? $d));
+$var = $a ?? ($b ?? ($c ?? ($d ?? call($a, $b, $c))));
+$var = $a ?? ($b ?? ($c ?? ($d ?? $var))) ? 1 : 2;
 $var = $someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable;
 $var =
     $someOtherReallyReallyReallyLongVariable ??
     $someOtherReallyReallyReallyLongVariable;
 $var =
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable;
+    ($someOtherReallyReallyLongVariable ?? $someOtherReallyReallyLongVariable);
 $var =
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable;
+    ($someOtherReallyReallyLongVariable ??
+        ($someOtherReallyReallyLongVariable ??
+            $someOtherReallyReallyLongVariable));
 $var =
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    call(
-        $someOtherReallyReallyLongVariable,
-        $someOtherReallyReallyLongVariable,
-        $someOtherReallyReallyLongVariable
-    );
+    ($someOtherReallyReallyLongVariable ??
+        ($someOtherReallyReallyLongVariable ??
+            ($someOtherReallyReallyLongVariable ??
+                call(
+                    $someOtherReallyReallyLongVariable,
+                    $someOtherReallyReallyLongVariable,
+                    $someOtherReallyReallyLongVariable
+                ))));
 $var =
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable
+    ($someOtherReallyReallyLongVariable ??
+        ($someOtherReallyReallyLongVariable ??
+            ($someOtherReallyReallyLongVariable ??
+                $someOtherReallyReallyLongVariable)))
         ? $someOtherReallyReallyLongVariable
         : $someOtherReallyReallyLongVariable;
 $var =
     $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ??
-    $someOtherReallyReallyLongVariable ?:
+    ($someOtherReallyReallyLongVariable ??
+        ($someOtherReallyReallyLongVariable ??
+            ($someOtherReallyReallyLongVariable ??
+                $someOtherReallyReallyLongVariable))) ?:
     $someOtherReallyReallyLongVariable;
 
 $var = $var instanceof Arrayable ? $var : $var;
@@ -764,12 +763,12 @@ $callback =
     };
 $callback =
     $var ??
-    function () {
+    (function () {
         return true;
     } ??
-    function () {
-        return true;
-    };
+        function () {
+            return true;
+        });
 $regex =
     '/
     (\\\\\\\\)?                    # escaped with a backslash?
@@ -844,7 +843,7 @@ $username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
 // Coalescing can be chained: this will return the first
 // defined value out of $_GET['user'], $_POST['user'], and
 // 'nobody'.
-$username = $_GET['user'] ?? $_POST['user'] ?? 'nobody';
+$username = $_GET['user'] ?? ($_POST['user'] ?? 'nobody');
 
 // The following lines are doing the same
 $this->request->data['comments']['user_id'] =

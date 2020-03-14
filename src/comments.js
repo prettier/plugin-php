@@ -754,6 +754,10 @@ function handleDeclareComments(
     return false;
   }
 
+  if (precedingNode && precedingNode.kind === "noop") {
+    return false;
+  }
+
   if (!followingNode || enclosingNode.directives[0] === followingNode) {
     if (enclosingNode.mode === "none") {
       addTrailingComment(enclosingNode, comment);
@@ -869,11 +873,14 @@ function printComments(comments, options) {
   const parts = [];
   comments.forEach((comment, index, comments) => {
     comment.printed = true;
+    const isLastComment = comments.length === index + 1;
     parts.push(comment.value);
-    parts.push(hardline);
+    if (!isLastComment) {
+      parts.push(hardline);
+    }
     if (
       isNextLineEmpty(options.originalText, comment, options) &&
-      comments.length > index + 1
+      !isLastComment
     ) {
       parts.push(hardline);
     }
