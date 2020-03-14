@@ -916,6 +916,16 @@ final class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterf
 
 abstract class BaseClass extends MyOtherClass implements MyInterface, MyOtherInterface, MyOtherOtherInterface {}
 
+class User {
+    public int $id;
+    public string $name;
+
+    public function __construct(int $id, string $name) {
+        $this->id = $id;
+        $this->name = $name;
+    }
+}
+
 =====================================output=====================================
 <?php
 
@@ -1404,6 +1414,18 @@ abstract class BaseClass extends MyOtherClass implements
     MyOtherInterface,
     MyOtherOtherInterface
 {
+}
+
+class User
+{
+    public int $id;
+    public string $name;
+
+    public function __construct(int $id, string $name)
+    {
+        $this->id = $id;
+        $this->name = $name;
+    }
 }
 
 ================================================================================
