@@ -1019,6 +1019,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
                 : "",
               node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
               comments.printComments(childNode.leadingComments, options),
+              hardline,
               "?>"
             ])
           : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
@@ -1030,6 +1031,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
               openTag,
               hardline,
               comments.printComments(childNode.comments, options),
+              hardline,
               "?>"
             ])
           : isProgramLikeNode(node) && isLastNode
@@ -1086,6 +1088,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               ? hardline
               : ""
           ])
+        : node.comments
+        ? hardline
         : "";
 
       parts.push(lineSuffix(concat([beforeCloseTag, "?>"])));

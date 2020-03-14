@@ -873,15 +873,19 @@ function printComments(comments, options) {
   const parts = [];
   comments.forEach((comment, index, comments) => {
     comment.printed = true;
+    const isLastComment = comments.length === index + 1;
     parts.push(comment.value);
+    if (!isLastComment) {
+      parts.push(hardline);
+    }
     if (
       isNextLineEmpty(options.originalText, comment, options) &&
-      comments.length > index + 1
+      !isLastComment
     ) {
       parts.push(hardline);
     }
   });
-  return join(hardline, parts);
+  return concat(parts);
 }
 
 function isBlockComment(comment) {

@@ -104,6 +104,10 @@ function clean(node, newObj) {
   if (node.kind === "method" && node.name.kind === "identifier") {
     newObj.name.name = util.normalizeMagicMethodName(newObj.name.name);
   }
+
+  if (node.kind === "noop") {
+    return null;
+  }
 }
 
 module.exports = clean;
