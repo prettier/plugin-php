@@ -919,6 +919,9 @@ abstract class BaseClass extends MyOtherClass implements MyInterface, MyOtherInt
 class User {
     public int $id;
     public string $name;
+    public ?string $b = 'foo';
+    private Foo $prop;
+    protected static string $static = 'default';
 
     public function __construct(int $id, string $name) {
         $this->id = $id;
@@ -1420,6 +1423,9 @@ class User
 {
     public int $id;
     public string $name;
+    public ?string $b = 'foo';
+    private Foo $prop;
+    protected static string $static = 'default';
 
     public function __construct(int $id, string $name)
     {

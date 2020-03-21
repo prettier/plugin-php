@@ -1764,7 +1764,9 @@ function printNode(path, options, print) {
     case "property":
       return group(
         concat([
-          node.type ? concat([path.call(print, "type"), " "]) : "",
+          node.type
+            ? concat([node.nullable ? "?" : "", path.call(print, "type"), " "])
+            : "",
           "$",
           path.call(print, "name"),
           node.value
