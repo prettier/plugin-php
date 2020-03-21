@@ -34,7 +34,7 @@ function clean(node, newObj) {
     delete newObj.isDoubleQuote;
   }
 
-  if (node.kind === "array") {
+  if (["array", "list"].includes(node.kind)) {
     // TODO if options are available in this method, assign instead of delete
     delete newObj.shortForm;
   }

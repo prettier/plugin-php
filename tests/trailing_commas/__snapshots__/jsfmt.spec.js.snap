@@ -4004,49 +4004,27 @@ list(,,,0 => $firstVeryVeryVeryVeryLong,,, 1 => $secondVeryVeryVeryVeryLong,,, 2
 =====================================output=====================================
 <?php
 
-list($first, $second, $three, $fourth) = $arr;
-list(, $first, $second, $three, $fourth) = $arr;
-list(, , $first, $second, $three, $fourth, ,) = $arr;
-list(, , $first, , $second, , $three, , $fourth, ,) = $arr;
-list(, , , $first, $second, $three, $fourth, , ,) = $arr;
-list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
+[$first, $second, $three, $fourth] = $arr;
+[, $first, $second, $three, $fourth] = $arr;
+[, , $first, $second, $three, $fourth, ,] = $arr;
+[, , $first, , $second, , $three, , $fourth, ,] = $arr;
+[, , , $first, $second, $three, $fourth, , ,] = $arr;
+[, , , $first, , , $second, , , $three, , , $fourth, , ,] = $arr;
 
-list(
+[
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     ,
     0 => $firstVeryVeryVeryVeryLong,
@@ -4054,9 +4032,31 @@ list(
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
     ,
+] = $arr;
+[
     ,
-) = $arr;
-list(
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+] = $arr;
+[
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+] = $arr;
+[
     ,
     ,
     ,
@@ -4072,7 +4072,7 @@ list(
     3 => $fourthVeryVeryVeryVeryLong,
     ,
     ,
-) = $arr;
+] = $arr;
 
 ================================================================================
 `;
@@ -4104,49 +4104,27 @@ list(,,,0 => $firstVeryVeryVeryVeryLong,,, 1 => $secondVeryVeryVeryVeryLong,,, 2
 =====================================output=====================================
 <?php
 
-list($first, $second, $three, $fourth) = $arr;
-list(, $first, $second, $three, $fourth) = $arr;
-list(, , $first, $second, $three, $fourth, ,) = $arr;
-list(, , $first, , $second, , $three, , $fourth, ,) = $arr;
-list(, , , $first, $second, $three, $fourth, , ,) = $arr;
-list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
+[$first, $second, $three, $fourth] = $arr;
+[, $first, $second, $three, $fourth] = $arr;
+[, , $first, $second, $three, $fourth, ,] = $arr;
+[, , $first, , $second, , $three, , $fourth, ,] = $arr;
+[, , , $first, $second, $three, $fourth, , ,] = $arr;
+[, , , $first, , , $second, , , $three, , , $fourth, , ,] = $arr;
 
-list(
+[
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     ,
     0 => $firstVeryVeryVeryVeryLong,
@@ -4154,9 +4132,31 @@ list(
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
     ,
+] = $arr;
+[
     ,
-) = $arr;
-list(
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+] = $arr;
+[
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+] = $arr;
+[
     ,
     ,
     ,
@@ -4172,7 +4172,7 @@ list(
     3 => $fourthVeryVeryVeryVeryLong,
     ,
     ,
-) = $arr;
+] = $arr;
 
 ================================================================================
 `;

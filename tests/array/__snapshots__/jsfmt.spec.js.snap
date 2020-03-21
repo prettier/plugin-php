@@ -1555,21 +1555,21 @@ $arr = array(
         ->allOrderBy('nome')
         ->pluck('nome', 'id'),
 );
-[array($id1, $name1)] = $data;
-[array($id1), array($id2), array($id)] = $data;
+[[$id1, $name1]] = $data;
+[[$id1], [$id2], [$id]] = $data;
 [
-    array(
+    [
         $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
         $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
-    ),
+    ],
 ] = $data;
 ["id" => $id1, "name" => $name1] = $data;
-[array("id" => $id1, "name" => $name1)] = $data;
+[["id" => $id1, "name" => $name1]] = $data;
 [
-    array(
+    [
         "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
         "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
-    ),
+    ],
 ] = $data;
 $arr = array(
     'niveisFederativos' => function () {
