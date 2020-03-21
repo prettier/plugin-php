@@ -117,11 +117,15 @@ const printers = {
     },
     hasPrettierIgnore(path) {
       const node = path.getNode();
+      const isSimpleIgnore = comment =>
+        comment.value.includes("prettier-ignore") &&
+        !comment.value.includes("prettier-ignore-start") &&
+        !comment.value.includes("prettier-ignore-end");
       return (
         node &&
         node.comments &&
         node.comments.length > 0 &&
-        node.comments.some(comment => comment.value.includes("prettier-ignore"))
+        node.comments.some(isSimpleIgnore)
       );
     }
   }
