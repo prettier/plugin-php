@@ -25,3 +25,8 @@ function Foo ($veryLongVeryLongVeryLongVeryLongVeryLongVeryLongVeryLong) { retur
                 "php"
                        ]
 ];}
+
+
+// prettier-ignore-start
+$info =    "prettier-ignore-start and -end is currently not supported"  ;
+// prettier-ignore-end

@@ -171,6 +171,40 @@ Prettier for PHP supports the following options:
 | `requirePragma`    | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                                                                                                                    |
 | `insertPragma`     | `false`   | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                                                                                                                     |
 
+## Ignoring code
+
+A comment `// prettier-ignore` will exclude the next node in the abstract syntax tree from formatting.
+
+For example:
+
+```php
+matrix(
+  1, 0, 0,
+  0, 1, 0,
+  0, 0, 1
+);
+
+// prettier-ignore
+matrix(
+  1, 0, 0,
+  0, 1, 0,
+  0, 0, 1
+);
+```
+
+will be transformed to
+
+```php
+matrix(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+// prettier-ignore
+matrix(
+  1, 0, 0,
+  0, 1, 0,
+  0, 0, 1
+)
+```
+
 ## Editor integration
 
 ### Atom
