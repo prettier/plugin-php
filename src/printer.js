@@ -15,15 +15,13 @@ const {
   softline,
   literalline,
   align,
-  dedentToRoot
+  dedentToRoot,
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
 const {
-  isNextLineEmpty,
   isNextLineEmptyAfterIndex,
-  getNextNonSpaceNonCommentCharacterIndex,
   hasNewline,
-  hasNewlineInRange
+  hasNewlineInRange,
 } = require("prettier").util;
 const comments = require("./comments");
 const pathNeedsParens = require("./needs-parens");
@@ -56,7 +54,9 @@ const {
   getAncestorNode,
   isReferenceLikeNode,
   getNextNode,
-  normalizeMagicMethodName
+  normalizeMagicMethodName,
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
 } = require("./util");
 
 function isMinVersion(actualVersion, requiredVersion) {
@@ -128,7 +128,7 @@ function printStaticLookup(path, options, print) {
     "::",
     needCurly ? "{" : "",
     path.call(print, "offset"),
-    needCurly ? "}" : ""
+    needCurly ? "}" : "",
   ]);
 }
 
@@ -146,11 +146,11 @@ function printOffsetLookup(path, options, print) {
             indent(
               concat([shouldInline ? "" : softline, path.call(print, "offset")])
             ),
-            shouldInline ? "" : softline
+            shouldInline ? "" : softline,
           ])
         )
       : "",
-    "]"
+    "]",
   ]);
 }
 
@@ -233,10 +233,10 @@ function printMemberChain(path, options, print) {
             () => concat([printArgumentsList(path, options, print)]),
             options
           ),
-          shouldInsertEmptyLineAfter(node) ? hardline : ""
-        ])
+          shouldInsertEmptyLineAfter(node) ? hardline : "",
+        ]),
       });
-      path.call(what => traverse(what), "what");
+      path.call((what) => traverse(what), "what");
     } else if (isLookupNode(node)) {
       // Print *lookup nodes as we standard print them outside member chain
       let printedMemberish = null;
@@ -256,13 +256,13 @@ function printMemberChain(path, options, print) {
           path,
           () => printedMemberish,
           options
-        )
+        ),
       });
-      path.call(what => traverse(what), "what");
+      path.call((what) => traverse(what), "what");
     } else {
       printedNodes.unshift({
         node,
-        printed: path.call(print)
+        printed: path.call(print),
       });
     }
   }
@@ -271,9 +271,9 @@ function printMemberChain(path, options, print) {
 
   printedNodes.unshift({
     node,
-    printed: printArgumentsList(path, options, print)
+    printed: printArgumentsList(path, options, print),
   });
-  path.call(what => traverse(what), "what");
+  path.call((what) => traverse(what), "what");
 
   // Restore parens around `propertylookup` and `staticlookup` nodes with call.
   // $value = ($object->foo)();
@@ -476,10 +476,10 @@ function printMemberChain(path, options, print) {
   const hasComment =
     flatGroups
       .slice(1, -1)
-      .some(node => comments.hasLeadingComment(node.node)) ||
+      .some((node) => comments.hasLeadingComment(node.node)) ||
     flatGroups
       .slice(0, -1)
-      .some(node => comments.hasTrailingComment(node.node)) ||
+      .some((node) => comments.hasTrailingComment(node.node)) ||
     (groups[cutoff] && comments.hasLeadingComment(groups[cutoff][0].node));
 
   const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
@@ -504,11 +504,11 @@ function printMemberChain(path, options, print) {
     printGroup(groups[0]),
     shouldMerge ? concat(groups.slice(1, 2).map(printGroup)) : "",
     shouldHaveEmptyLineBeforeIndent ? hardline : "",
-    printIndentedGroup(groups.slice(shouldMerge ? 2 : 1))
+    printIndentedGroup(groups.slice(shouldMerge ? 2 : 1)),
   ]);
 
   const callExpressionCount = printedNodes.filter(
-    tuple => tuple.node.kind === "call"
+    (tuple) => tuple.node.kind === "call"
   ).length;
 
   // We don't want to print in one line if there's:
@@ -529,7 +529,7 @@ function printMemberChain(path, options, print) {
     // that means that the parent group has already been broken
     // naturally
     willBreak(oneLine) || shouldHaveEmptyLineBeforeIndent ? breakParent : "",
-    conditionalGroup([oneLine, expanded])
+    conditionalGroup([oneLine, expanded]),
   ]);
 }
 
@@ -580,7 +580,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     return concat([
       "(",
       comments.printDanglingComments(path, options, /* sameIndent */ true),
-      ")"
+      ")",
     ]);
   }
 
@@ -619,7 +619,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
             lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
               ? hardline
               : "",
-            ","
+            ",",
           ])
         )
       : "";
@@ -631,7 +631,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
         indent(concat([line, concat(printedArguments)])),
         maybeTrailingComma,
         line,
-        ")"
+        ")",
       ]),
       { shouldBreak: true }
     );
@@ -650,22 +650,22 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     let printedExpanded;
     let i = 0;
 
-    path.each(argPath => {
+    path.each((argPath) => {
       if (shouldGroupFirst && i === 0) {
         printedExpanded = [
           concat([
-            argPath.call(p => print(p, { expandFirstArg: true })),
+            argPath.call((p) => print(p, { expandFirstArg: true })),
             printedArguments.length > 1 ? "," : "",
             hasEmptyLineFollowingFirstArg ? hardline : line,
-            hasEmptyLineFollowingFirstArg ? hardline : ""
-          ])
+            hasEmptyLineFollowingFirstArg ? hardline : "",
+          ]),
         ].concat(printedArguments.slice(1));
       }
 
       if (shouldGroupLast && i === args.length - 1) {
         printedExpanded = printedArguments
           .slice(0, -1)
-          .concat(argPath.call(p => print(p, { expandLastArg: true })));
+          .concat(argPath.call((p) => print(p, { expandLastArg: true })));
       }
 
       i++;
@@ -686,15 +686,15 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
                 "(",
                 group(printedExpanded[0], { shouldBreak: true }),
                 concat(printedExpanded.slice(1)),
-                ")"
+                ")",
               ])
             : concat([
                 "(",
                 concat(printedArguments.slice(0, -1)),
                 group(getLast(printedExpanded), {
-                  shouldBreak: true
+                  shouldBreak: true,
                 }),
-                ")"
+                ")",
               ]),
           group(
             concat([
@@ -702,13 +702,13 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
               indent(concat([line, concat(printedArguments)])),
               ifBreak(maybeTrailingComma),
               line,
-              ")"
+              ")",
             ]),
             { shouldBreak: true }
-          )
+          ),
         ],
         { shouldBreak }
-      )
+      ),
     ]);
   }
 
@@ -718,10 +718,10 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
       indent(concat([softline, concat(printedArguments)])),
       ifBreak(maybeTrailingComma),
       softline,
-      ")"
+      ")",
     ]),
     {
-      shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine
+      shouldBreak: printedArguments.some(willBreak) || anyArgEmptyLine,
     }
   );
 }
@@ -766,7 +766,7 @@ function printBinaryExpression(
       // Flatten them out by recursively calling this function.
       parts = parts.concat(
         path.call(
-          left =>
+          (left) =>
             printBinaryExpression(
               left,
               print,
@@ -845,7 +845,7 @@ function getEncapsedQuotes(node, { opening = true } = {}) {
 
   const quotes = {
     string: '"',
-    shell: "`"
+    shell: "`",
   };
 
   if (quotes[node.type]) {
@@ -860,7 +860,7 @@ function printArrayItems(path, options, print) {
   const printedElements = [];
   let separatorParts = [];
 
-  path.each(childPath => {
+  path.each((childPath) => {
     printedElements.push(concat(separatorParts));
     printedElements.push(group(print(childPath)));
 
@@ -901,7 +901,7 @@ function wrapPartsIntoGroups(parts, indexes) {
     const printedPartsForGrouping = concat([
       before || "",
       concat(parts.slice(start, end)),
-      after || ""
+      after || "",
     ]);
     const newArray = accumulator.concat(
       parts.slice(lastEnd, start),
@@ -909,7 +909,7 @@ function wrapPartsIntoGroups(parts, indexes) {
         ? dedentToRoot(
             group(
               concat([
-                align(new Array(alignment).join(" "), printedPartsForGrouping)
+                align(new Array(alignment).join(" "), printedPartsForGrouping),
               ])
             )
           )
@@ -951,7 +951,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
       canPrintBlankLine &&
       isNextLineEmpty(options.originalText, childNode, options)
         ? hardline
-        : ""
+        : "",
     ]);
 
     const isFirstNode = index === 0;
@@ -1020,7 +1020,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
               node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
               comments.printComments(childNode.leadingComments, options),
               hardline,
-              "?>"
+              "?>",
             ])
           : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
           ? ""
@@ -1032,7 +1032,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
               hardline,
               comments.printComments(childNode.comments, options),
               hardline,
-              "?>"
+              "?>",
             ])
           : isProgramLikeNode(node) && isLastNode
           ? ""
@@ -1058,10 +1058,10 @@ function printLines(path, options, print, childrenAttribute = "children") {
         between && between[2] && between[2].includes("\n")
           ? concat([
               hardline,
-              between[2].split("\n").length > 2 ? hardline : ""
+              between[2].split("\n").length > 2 ? hardline : "",
             ])
           : " ",
-        node.comments ? comments.printComments(node.comments, options) : ""
+        node.comments ? comments.printComments(node.comments, options) : "",
       ]);
 
       const shortEcho =
@@ -1086,7 +1086,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
               : " ",
             isNextLineEmpty(options.originalText, lastNode, options)
               ? hardline
-              : ""
+              : "",
           ])
         : node.comments
         ? hardline
@@ -1103,7 +1103,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
 
 function printStatements(path, options, print, childrenAttribute) {
   return concat(
-    path.map(childPath => {
+    path.map((childPath) => {
       const parts = [];
 
       parts.push(print(childPath));
@@ -1136,10 +1136,10 @@ function printClassPart(
     ? concat([
         hardline,
         path.call(
-          partPath => comments.printDanglingComments(partPath, options, true),
+          (partPath) => comments.printDanglingComments(partPath, options, true),
           part
         ),
-        hardline
+        hardline,
       ])
     : beforePart;
   const printedPartItems = Array.isArray(node[part])
@@ -1147,7 +1147,7 @@ function printClassPart(
         concat([
           join(
             ",",
-            path.map(itemPartPath => {
+            path.map((itemPartPath) => {
               const printedPart = print(itemPartPath);
               // Check if any of the implements nodes have comments
               return hasDanglingComments(itemPartPath.getValue())
@@ -1155,11 +1155,11 @@ function printClassPart(
                     hardline,
                     comments.printDanglingComments(itemPartPath, options, true),
                     hardline,
-                    printedPart
+                    printedPart,
                   ])
                 : concat([afterPart, printedPart]);
             }, part)
-          )
+          ),
         ])
       )
     : concat([afterPart, path.call(print, part)]);
@@ -1168,7 +1168,9 @@ function printClassPart(
     concat([
       printedBeforePart,
       part,
-      willBreak(printedBeforePart) ? indent(printedPartItems) : printedPartItems
+      willBreak(printedBeforePart)
+        ? indent(printedPartItems)
+        : printedPartItems,
     ])
   );
 }
@@ -1202,11 +1204,11 @@ function printClass(path, options, print) {
         [
           concat([
             printClassPart(path, options, print, "extends"),
-            printClassPart(path, options, print, "implements")
+            printClassPart(path, options, print, "implements"),
           ]),
           concat([
             printClassPart(path, options, print, "extends"),
-            printClassPart(path, options, print, "implements", " ", hardline)
+            printClassPart(path, options, print, "implements", " ", hardline),
           ]),
           concat([
             printClassPart(path, options, print, "extends", hardline, " "),
@@ -1217,11 +1219,11 @@ function printClass(path, options, print) {
               "implements",
               hardline,
               node.implements.length > 1 ? hardline : " "
-            )
-          ])
+            ),
+          ]),
         ],
         {
-          shouldBreak: hasDanglingComments(node.extends)
+          shouldBreak: hasDanglingComments(node.extends),
         }
       )
     );
@@ -1238,7 +1240,7 @@ function printClass(path, options, print) {
             "extends",
             hardline,
             node.extends.length > 1 ? hardline : " "
-          )
+          ),
         ])
       );
     }
@@ -1255,7 +1257,7 @@ function printClass(path, options, print) {
             "implements",
             hardline,
             node.implements.length > 1 ? hardline : " "
-          )
+          ),
         ])
       );
     }
@@ -1268,7 +1270,7 @@ function printClass(path, options, print) {
         ? isAnonymousClass
           ? line
           : hardline
-        : " "
+        : " ",
     ])
   );
 
@@ -1279,12 +1281,12 @@ function printClass(path, options, print) {
     indent(
       concat([
         hasEmptyClassBody ? "" : hardline,
-        printStatements(path, options, print, "body")
+        printStatements(path, options, print, "body"),
       ])
     ),
     comments.printDanglingComments(path, options, true),
     isAnonymousClass && hasEmptyClassBody ? softline : hardline,
-    "}"
+    "}",
   ]);
 
   return concat([printedDeclaration, printedBody]);
@@ -1335,15 +1337,15 @@ function printFunction(path, options, print) {
         hasDanglingComments(node.type)
           ? concat([
               path.call(
-                typePath =>
+                (typePath) =>
                   comments.printDanglingComments(typePath, options, true),
                 "type"
               ),
-              " "
+              " ",
             ])
           : "",
         node.nullable ? "?" : "",
-        path.call(print, "type")
+        path.call(print, "type"),
       ])
     );
   }
@@ -1361,7 +1363,7 @@ function printFunction(path, options, print) {
       concat([hasEmptyBody(path) ? "" : hardline, path.call(print, "body")])
     ),
     isClosure && hasEmptyBody(path) ? "" : hardline,
-    "}"
+    "}",
   ]);
 
   if (isClosure) {
@@ -1372,7 +1374,7 @@ function printFunction(path, options, print) {
     return concat([
       printedDeclaration,
       shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
-      printedBody
+      printedBody,
     ]);
   }
 
@@ -1386,9 +1388,9 @@ function printFunction(path, options, print) {
     concat([
       printedDeclaration,
       shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
-      printedBody
+      printedBody,
     ]),
-    concat([printedDeclaration, " ", printedBody])
+    concat([printedDeclaration, " ", printedBody]),
   ]);
 }
 
@@ -1420,17 +1422,17 @@ function printBodyControlStructure(
                   ? " "
                   : ""
                 : hardline,
-              printedBody
+              printedBody,
             ])
-          : ""
+          : "",
       ])
     ),
     node.kind === "if" && bodyProperty === "body"
       ? ""
       : concat([
           shouldPrintHardLineBeforeEndInControlStructure(path) ? hardline : "",
-          node.shortForm ? concat(["end", node.kind, ";"]) : "}"
-        ])
+          node.shortForm ? concat(["end", node.kind, ";"]) : "}",
+        ]),
   ]);
 }
 
@@ -1514,7 +1516,7 @@ function needsHardlineAfterDanglingComment(node) {
   }
 
   const lastDanglingComment = getLast(
-    node.comments.filter(comment => !comment.leading && !comment.trailing)
+    node.comments.filter((comment) => !comment.leading && !comment.trailing)
   );
 
   return lastDanglingComment && !comments.isBlockComment(lastDanglingComment);
@@ -1546,8 +1548,8 @@ function printNode(path, options, print) {
             path,
             options,
             /* sameIndent */ true,
-            c => !c.printed
-          )
+            (c) => !c.printed
+          ),
         ])
       );
     }
@@ -1556,13 +1558,13 @@ function printNode(path, options, print) {
     case "block":
       return concat([
         printLines(path, options, print),
-        comments.printDanglingComments(path, options, true)
+        comments.printDanglingComments(path, options, true),
       ]);
     case "declare": {
-      const printDeclareArguments = path => {
+      const printDeclareArguments = (path) => {
         return join(
           ", ",
-          path.map(directive => concat([print(directive)]), "directives")
+          path.map((directive) => concat([print(directive)]), "directives")
         );
       };
 
@@ -1577,7 +1579,7 @@ function printNode(path, options, print) {
             : "",
           comments.printDanglingComments(path, options),
           hardline,
-          node.mode === "block" ? "}" : "enddeclare;"
+          node.mode === "block" ? "}" : "enddeclare;",
         ]);
       }
 
@@ -1587,7 +1589,7 @@ function printNode(path, options, print) {
         "declare(",
         printDeclareArguments(path),
         ")",
-        nextNode && nextNode.kind === "inline" ? "" : ";"
+        nextNode && nextNode.kind === "inline" ? "" : ";",
       ]);
     }
     case "declaredirective":
@@ -1616,12 +1618,12 @@ function printNode(path, options, print) {
                         options.locStart
                       )
                         ? hardline
-                        : ""
+                        : "",
                     ]),
-                printLines(path, options, print)
+                printLines(path, options, print),
               ])
           : "",
-        node.withBrackets ? concat([hardline, "}"]) : ""
+        node.withBrackets ? concat([hardline, "}"]) : "",
       ]);
     case "usegroup":
       return group(
@@ -1634,22 +1636,22 @@ function printNode(path, options, print) {
                 ? concat([
                     maybeStripLeadingSlashFromUse(node.name),
                     "\\{",
-                    softline
+                    softline,
                   ])
                 : "",
               join(
                 concat([",", line]),
-                path.map(item => concat([print(item)]), "items")
-              )
+                path.map((item) => concat([print(item)]), "items")
+              ),
             ])
           ),
           node.name
             ? concat([
                 ifBreak(shouldPrintComma(options, "7.2") ? "," : ""),
                 softline,
-                "}"
+                "}",
               ])
-            : ""
+            : "",
         ])
       );
     case "useitem":
@@ -1659,7 +1661,7 @@ function printNode(path, options, print) {
         hasDanglingComments(node)
           ? concat([" ", comments.printDanglingComments(path, options, true)])
           : "",
-        node.alias ? concat([" as ", path.call(print, "alias")]) : ""
+        node.alias ? concat([" as ", path.call(print, "alias")]) : "",
       ]);
     case "class":
     case "interface":
@@ -1671,7 +1673,7 @@ function printNode(path, options, print) {
         "::",
         path.call(print, "method"),
         " insteadof ",
-        join(", ", path.map(print, "instead"))
+        join(", ", path.map(print, "instead")),
       ]);
     case "traitalias":
       return concat([
@@ -1680,8 +1682,8 @@ function printNode(path, options, print) {
         " as ",
         join(" ", [
           ...(node.visibility ? [node.visibility] : []),
-          ...(node.as ? [path.call(print, "as")] : [])
-        ])
+          ...(node.as ? [path.call(print, "as")] : []),
+        ]),
       ]);
     case "traituse":
       return group(
@@ -1696,21 +1698,21 @@ function printNode(path, options, print) {
                       indent(
                         concat([
                           hardline,
-                          printStatements(path, options, print, "adaptations")
+                          printStatements(path, options, print, "adaptations"),
                         ])
                       ),
-                      hardline
+                      hardline,
                     ])
                   : hasDanglingComments(node)
                   ? concat([
                       line,
                       comments.printDanglingComments(path, options, true),
-                      line
+                      line,
                     ])
                   : "",
-                "}"
+                "}",
               ])
-            : ""
+            : "",
         ])
       );
     case "function":
@@ -1722,7 +1724,7 @@ function printNode(path, options, print) {
         "fn",
         printArgumentsList(path, options, print),
         " => ",
-        path.call(print, "body")
+        path.call(print, "body"),
       ]);
     case "parameter": {
       const name = concat([
@@ -1731,7 +1733,7 @@ function printNode(path, options, print) {
         node.byref ? "&" : "",
         node.variadic ? "..." : "",
         "$",
-        path.call(print, "name")
+        path.call(print, "name"),
       ]);
 
       if (node.value) {
@@ -1751,8 +1753,8 @@ function printNode(path, options, print) {
                 path.call(print, "value"),
                 false,
                 options
-              )
-            ])
+              ),
+            ]),
           ])
         );
       }
@@ -1778,17 +1780,17 @@ function printNode(path, options, print) {
                   path.call(print, "value"),
                   false,
                   options
-                )
+                ),
               ])
-            : ""
+            : "",
         ])
       );
     case "propertystatement": {
-      const printed = path.map(childPath => {
+      const printed = path.map((childPath) => {
         return print(childPath);
       }, "properties");
 
-      const hasValue = node.properties.some(property => property.value);
+      const hasValue = node.properties.some((property) => property.value);
 
       let firstProperty;
 
@@ -1812,9 +1814,9 @@ function printNode(path, options, print) {
             concat(
               printed
                 .slice(1)
-                .map(p => concat([",", hasValue ? hardline : line, p]))
+                .map((p) => concat([",", hasValue ? hardline : line, p]))
             )
-          )
+          ),
         ])
       );
     }
@@ -1827,11 +1829,11 @@ function printNode(path, options, print) {
           group(
             concat([
               indent(concat([softline, path.call(print, "test")])),
-              softline
+              softline,
             ])
           ),
           ")",
-          body
+          body,
         ])
       );
 
@@ -1846,7 +1848,7 @@ function printNode(path, options, print) {
         const commentOnOwnLine =
           (hasTrailingComment(node.body) &&
             node.body.comments.some(
-              comment => comment.trailing && !comments.isBlockComment(comment)
+              (comment) => comment.trailing && !comments.isBlockComment(comment)
             )) ||
           needsHardlineAfterDanglingComment(node);
         const elseOnSameLine = !commentOnOwnLine;
@@ -1884,10 +1886,10 @@ function printNode(path, options, print) {
         group(
           concat([
             indent(concat([softline, path.call(print, "test")])),
-            softline
+            softline,
           ])
         ),
-        ")"
+        ")",
       ]);
     case "while":
     case "switch":
@@ -1898,11 +1900,11 @@ function printNode(path, options, print) {
           group(
             concat([
               indent(concat([softline, path.call(print, "test")])),
-              softline
+              softline,
             ])
           ),
           ")",
-          printBodyControlStructure(path, options, print, "body")
+          printBodyControlStructure(path, options, print, "body"),
         ])
       );
     case "for": {
@@ -1934,30 +1936,30 @@ function printNode(path, options, print) {
                     softline,
                     group(
                       concat([
-                        join(concat([",", line]), path.map(print, "init"))
+                        join(concat([",", line]), path.map(print, "init")),
                       ])
                     ),
                     ";",
                     line,
                     group(
                       concat([
-                        join(concat([",", line]), path.map(print, "test"))
+                        join(concat([",", line]), path.map(print, "test")),
                       ])
                     ),
                     ";",
                     line,
                     group(
                       join(concat([",", line]), path.map(print, "increment"))
-                    )
+                    ),
                   ])
                 ),
-                softline
+                softline,
               ])
             ),
             ")",
-            body
+            body,
           ])
-        )
+        ),
       ]);
     }
     case "foreach": {
@@ -1991,20 +1993,20 @@ function printNode(path, options, print) {
                         ? indent(
                             join(concat([" =>", line]), [
                               path.call(print, "key"),
-                              path.call(print, "value")
+                              path.call(print, "value"),
                             ])
                           )
                         : path.call(print, "value")
-                    )
+                    ),
                   ])
                 ),
-                softline
+                softline,
               ])
             ),
             ")",
-            body
+            body,
           ])
-        )
+        ),
       ]);
     }
     case "try": {
@@ -2037,10 +2039,10 @@ function printNode(path, options, print) {
               join(" | ", path.map(print, "what")),
               " ",
               path.call(print, "variable"),
-              ")"
+              ")",
             ])
           : "",
-        printBodyControlStructure(path, options, print, "body")
+        printBodyControlStructure(path, options, print, "body"),
       ]);
     }
     case "case":
@@ -2051,7 +2053,7 @@ function printNode(path, options, print) {
               node.test.comments
                 ? indent(path.call(print, "test"))
                 : path.call(print, "test"),
-              ":"
+              ":",
             ])
           : "default:",
         node.body
@@ -2059,11 +2061,11 @@ function printNode(path, options, print) {
             ? indent(
                 concat([
                   isFirstChildrenInlineNode(path) ? "" : hardline,
-                  path.call(print, "body")
+                  path.call(print, "body"),
                 ])
               )
             : ""
-          : ""
+          : "",
       ]);
     case "break":
     case "continue":
@@ -2084,7 +2086,7 @@ function printNode(path, options, print) {
       ) {
         return concat([
           path.call(print, "what"),
-          concat(["(", join(", ", path.map(print, "arguments")), ")"])
+          concat(["(", join(", ", path.map(print, "arguments")), ")"]),
         ]);
       }
 
@@ -2095,7 +2097,7 @@ function printNode(path, options, print) {
 
       return concat([
         path.call(print, "what"),
-        printArgumentsList(path, options, print)
+        printArgumentsList(path, options, print),
       ]);
     }
     case "new": {
@@ -2113,7 +2115,7 @@ function printNode(path, options, print) {
           path.call(print, "what"),
           "(",
           join(", ", path.map(print, "arguments")),
-          ")"
+          ")",
         ]);
       }
 
@@ -2132,7 +2134,7 @@ function printNode(path, options, print) {
       } else {
         const printed = concat([
           path.call(print, "what"),
-          printArgumentsList(path, options, print)
+          printArgumentsList(path, options, print),
         ]);
 
         parts.push(hasLeadingComment(node.what) ? indent(printed) : printed);
@@ -2145,7 +2147,7 @@ function printNode(path, options, print) {
         "clone ",
         node.what.comments
           ? indent(path.call(print, "what"))
-          : path.call(print, "what")
+          : path.call(print, "what"),
       ]);
     case "propertylookup":
     case "staticlookup":
@@ -2181,7 +2183,7 @@ function printNode(path, options, print) {
           ? printLookupNodes(path, options, print)
           : group(
               indent(concat([softline, printLookupNodes(path, options, print)]))
-            )
+            ),
       ]);
     }
     case "exit":
@@ -2198,17 +2200,17 @@ function printNode(path, options, print) {
               ? path.call(print, "expression")
               : concat([
                   indent(concat([softline, path.call(print, "expression")])),
-                  softline
+                  softline,
                 ])
             : comments.printDanglingComments(path, options),
-          ")"
+          ")",
         ])
       );
     case "global":
       return group(
         concat([
           "global ",
-          indent(concat([join(concat([",", line]), path.map(print, "items"))]))
+          indent(concat([join(concat([",", line]), path.map(print, "items"))])),
         ])
       );
     case "include":
@@ -2218,7 +2220,7 @@ function printNode(path, options, print) {
         " ",
         node.target.comments
           ? indent(path.call(print, "target"))
-          : path.call(print, "target")
+          : path.call(print, "target"),
       ]);
     case "label":
       return concat([path.call(print, "name"), ":"]);
@@ -2229,7 +2231,7 @@ function printNode(path, options, print) {
         "throw ",
         node.what.comments
           ? indent(path.call(print, "what"))
-          : path.call(print, "what")
+          : path.call(print, "what"),
       ]);
     case "silent":
       return concat(["@", path.call(print, "expr")]);
@@ -2242,11 +2244,11 @@ function printNode(path, options, print) {
                 options,
                 /* sameIndent */ true
               ),
-              hardline
+              hardline,
             ])
           : "",
         "__halt_compiler();",
-        node.after
+        node.after,
       ]);
     case "eval":
       return group(
@@ -2256,13 +2258,13 @@ function printNode(path, options, print) {
             ? path.call(print, "source")
             : concat([
                 indent(concat([softline, path.call(print, "source")])),
-                softline
+                softline,
               ]),
-          ")"
+          ")",
         ])
       );
     case "echo": {
-      const printedArguments = path.map(childPath => {
+      const printedArguments = path.map((childPath) => {
         return print(childPath);
       }, "expressions");
 
@@ -2282,8 +2284,8 @@ function printNode(path, options, print) {
           node.shortForm ? "" : "echo ",
           firstVariable ? firstVariable : "",
           indent(
-            concat(printedArguments.slice(1).map(p => concat([",", line, p])))
-          )
+            concat(printedArguments.slice(1).map((p) => concat([",", line, p])))
+          ),
         ])
       );
     }
@@ -2292,7 +2294,7 @@ function printNode(path, options, print) {
         "print ",
         node.expression.comments
           ? indent(path.call(print, "expression"))
-          : path.call(print, "expression")
+          : path.call(print, "expression"),
       ]);
     }
     case "return": {
@@ -2320,7 +2322,7 @@ function printNode(path, options, print) {
       return group(
         concat([
           node.kind,
-          printArgumentsList(path, options, print, "variables")
+          printArgumentsList(path, options, print, "variables"),
         ])
       );
     case "empty":
@@ -2329,7 +2331,7 @@ function printNode(path, options, print) {
           "empty(",
           indent(concat([softline, path.call(print, "expression")])),
           softline,
-          ")"
+          ")",
         ])
       );
     case "variable": {
@@ -2355,12 +2357,12 @@ function printNode(path, options, print) {
         dollar,
         openCurly,
         path.call(print, "name"),
-        closeCurly
+        closeCurly,
       ]);
     }
     case "constantstatement":
     case "classconstant": {
-      const printed = path.map(childPath => {
+      const printed = path.map((childPath) => {
         return print(childPath);
       }, "constants");
 
@@ -2378,7 +2380,9 @@ function printNode(path, options, print) {
           node.visibility ? concat([node.visibility, " "]) : "",
           "const",
           firstVariable ? concat([" ", firstVariable]) : "",
-          indent(concat(printed.slice(1).map(p => concat([",", hardline, p]))))
+          indent(
+            concat(printed.slice(1).map((p) => concat([",", hardline, p])))
+          ),
         ])
       );
     }
@@ -2393,11 +2397,11 @@ function printNode(path, options, print) {
         options
       );
     case "static": {
-      const printed = path.map(childPath => {
+      const printed = path.map((childPath) => {
         return print(childPath);
       }, "variables");
 
-      const hasValue = node.variables.some(item => item.defaultValue);
+      const hasValue = node.variables.some((item) => item.defaultValue);
 
       let firstVariable;
 
@@ -2416,9 +2420,9 @@ function printNode(path, options, print) {
             concat(
               printed
                 .slice(1)
-                .map(p => concat([",", hasValue ? hardline : line, p]))
+                .map((p) => concat([",", hasValue ? hardline : line, p]))
             )
-          )
+          ),
         ])
       );
     }
@@ -2451,7 +2455,7 @@ function printNode(path, options, print) {
             open,
             comments.printDanglingComments(path, options),
             softline,
-            close
+            close,
           ])
         );
       }
@@ -2471,7 +2475,7 @@ function printNode(path, options, print) {
       const needsForcedTrailingComma = lastElem && lastElem.kind === "noop";
 
       const [firstProperty] = node.items
-        .filter(node => node.kind !== "noop")
+        .filter((node) => node.kind !== "noop")
         .sort((a, b) => options.locStart(a) - options.locStart(b));
       const isAssociative = !!(firstProperty && firstProperty.key);
       const shouldBreak =
@@ -2494,13 +2498,13 @@ function printNode(path, options, print) {
                   lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
                     ? hardline
                     : "",
-                  ","
+                  ",",
                 ])
               : ""
           ),
           comments.printDanglingComments(path, options, true),
           softline,
-          close
+          close,
         ]),
         { shouldBreak }
       );
@@ -2523,7 +2527,7 @@ function printNode(path, options, print) {
     case "yield": {
       const printedKeyAndValue = concat([
         node.key ? concat([path.call(print, "key"), " => "]) : "",
-        path.call(print, "value")
+        path.call(print, "value"),
       ]);
 
       return concat([
@@ -2531,7 +2535,7 @@ function printNode(path, options, print) {
         node.key || node.value ? " " : "",
         node.value && node.value.comments
           ? indent(printedKeyAndValue)
-          : printedKeyAndValue
+          : printedKeyAndValue,
       ]);
     }
     case "yieldfrom":
@@ -2539,7 +2543,7 @@ function printNode(path, options, print) {
         "yield from ",
         node.value.comments
           ? indent(path.call(print, "value"))
-          : path.call(print, "value")
+          : path.call(print, "value"),
       ]);
     case "unary":
       return concat([node.type, path.call(print, "what")]);
@@ -2554,7 +2558,7 @@ function printNode(path, options, print) {
         ") ",
         node.expr.comments
           ? indent(path.call(print, "expr"))
-          : path.call(print, "expr")
+          : path.call(print, "expr"),
       ]);
     case "assignref":
     case "assign": {
@@ -2631,7 +2635,7 @@ function printNode(path, options, print) {
         "property",
         "constant",
         "staticvariable",
-        "entry"
+        "entry",
       ].includes(parent.kind);
 
       const samePrecedenceSubExpression =
@@ -2653,7 +2657,7 @@ function printNode(path, options, print) {
           // level. The first item is guaranteed to be the first
           // left-most expression.
           parts.length > 0 ? parts[0] : "",
-          indent(rest)
+          indent(rest),
         ])
       );
     }
@@ -2684,7 +2688,7 @@ function printNode(path, options, print) {
               node.trueExpr.kind === "bin"
                 ? indent(path.call(print, "trueExpr"))
                 : path.call(print, "trueExpr"),
-              line
+              line,
             ])
           : "",
         ":",
@@ -2692,14 +2696,14 @@ function printNode(path, options, print) {
           ? concat([" ", printedFalseExpr])
           : concat([
               shouldInlineRetifFalseExpression(node.falseExpr) ? " " : line,
-              printedFalseExpr
-            ])
+              printedFalseExpr,
+            ]),
       ]);
 
       parts.push(part);
 
       // We want a whole chain of retif to all break if any of them break.
-      const maybeGroup = doc =>
+      const maybeGroup = (doc) =>
         parent === firstNonRetifParent ? group(doc) : doc;
 
       // Break the closing parens to keep the chain right after it:
@@ -2723,7 +2727,7 @@ function printNode(path, options, print) {
             firstNonRetifParent.kind
           )
             ? indent(concat(parts))
-            : concat(parts)
+            : concat(parts),
         ]);
 
         // Break between the parens in unaries or in a lookup nodes, i.e.
@@ -2748,7 +2752,7 @@ function printNode(path, options, print) {
         concat([
           node.test.kind === "retif" ? indent(printedTest) : printedTest,
           indent(concat(parts)),
-          breakClosingParens ? softline : ""
+          breakClosingParens ? softline : "",
         ])
       );
     }
@@ -2768,7 +2772,9 @@ function printNode(path, options, print) {
         }
         return join(
           literalline,
-          node.raw.split(/\r?\n/g).map(s => s.substring(closingTagIndentation))
+          node.raw
+            .split(/\r?\n/g)
+            .map((s) => s.substring(closingTagIndentation))
         );
       }
 
@@ -2793,7 +2799,7 @@ function printNode(path, options, print) {
         node.raw[0] === "b" ? "b" : "",
         quote,
         join(literalline, stringValue.split(/\r?\n/g)),
-        quote
+        quote,
       ]);
     }
     case "encapsedpart": {
@@ -2821,7 +2827,7 @@ function printNode(path, options, print) {
             getEncapsedQuotes(node, { opening: false }),
             node.type === "heredoc" && docShouldHaveTrailingNewline(path)
               ? hardline
-              : ""
+              : "",
           ]);
         // istanbul ignore next
         default:
@@ -2844,7 +2850,7 @@ function printNode(path, options, print) {
         join(literalline, node.value.split(/\r?\n/g)),
         literalline,
         node.label,
-        docShouldHaveTrailingNewline(path) ? hardline : ""
+        docShouldHaveTrailingNewline(path) ? hardline : "",
       ]);
     case "name":
       return concat([node.resolution === "rn" ? "namespace\\" : "", node.name]);

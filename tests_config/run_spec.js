@@ -14,7 +14,7 @@ const { prettier, plugin } = require("./get_engine");
 
 global.run_spec = (dirname, parsers, options) => {
   options = Object.assign({}, options, {
-    plugins: [plugin, ...((options && options.plugins) || [])]
+    plugins: [plugin, ...((options && options.plugins) || [])],
   });
 
   // istanbul ignore next
@@ -22,7 +22,7 @@ global.run_spec = (dirname, parsers, options) => {
     throw new Error(`No parsers were specified for ${dirname}`);
   }
 
-  fs.readdirSync(dirname).forEach(basename => {
+  fs.readdirSync(dirname).forEach((basename) => {
     const filename = path.join(dirname, basename);
 
     if (
@@ -58,10 +58,10 @@ global.run_spec = (dirname, parsers, options) => {
     const baseOptions = Object.assign({ printWidth: 80 }, options, {
       rangeStart,
       rangeEnd,
-      cursorOffset
+      cursorOffset,
     });
     const mainOptions = Object.assign({}, baseOptions, {
-      parser: parsers[0]
+      parser: parsers[0],
     });
 
     const hasEndOfLine = "endOfLine" in mainOptions;
@@ -138,7 +138,7 @@ function format(source, filename, options) {
 
 function consistentEndOfLine(text) {
   let firstEndOfLine;
-  return text.replace(/\r\n?|\n/g, endOfLine => {
+  return text.replace(/\r\n?|\n/g, (endOfLine) => {
     if (!firstEndOfLine) {
       firstEndOfLine = endOfLine;
     }
@@ -147,7 +147,7 @@ function consistentEndOfLine(text) {
 }
 
 function visualizeEndOfLine(text) {
-  return text.replace(/\r\n?|\n/g, endOfLine => {
+  return text.replace(/\r\n?|\n/g, (endOfLine) => {
     switch (endOfLine) {
       case "\n":
         return "<LF>\n";
@@ -173,7 +173,7 @@ function createSnapshot(input, output, options) {
       printOptions(
         omit(
           options,
-          k => k === "rangeStart" || k === "rangeEnd" || k === "cursorOffset"
+          (k) => k === "rangeStart" || k === "rangeEnd" || k === "cursorOffset"
         )
       ),
       printWidthIndicator,
@@ -195,12 +195,12 @@ function printSeparator(width, description) {
 
 function printOptions(options) {
   const keys = Object.keys(options).sort();
-  return keys.map(key => `${key}: ${stringify(options[key])}`).join("\n");
+  return keys.map((key) => `${key}: ${stringify(options[key])}`).join("\n");
   function stringify(value) {
     return value === Infinity
       ? "Infinity"
       : Array.isArray(value)
-      ? `[${value.map(v => JSON.stringify(v)).join(", ")}]`
+      ? `[${value.map((v) => JSON.stringify(v)).join(", ")}]`
       : JSON.stringify(value);
   }
 }

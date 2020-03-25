@@ -4,7 +4,7 @@ const stripAnsi = require("strip-ansi");
 function raiseSyntaxError() {
   prettier.format(`<?php _`, {
     plugins: [plugin],
-    parser: "php"
+    parser: "php",
   });
 }
 
@@ -19,7 +19,7 @@ test("Syntax errors have the expected structure", () => {
     // Convert error to plain object since additional properties are not snapshotted otherwise
     const errObject = Object.assign({}, err, {
       // Strip ANSI from code frame since not all test environments may support it
-      codeFrame: stripAnsi(err.codeFrame)
+      codeFrame: stripAnsi(err.codeFrame),
     });
 
     // eslint-disable-next-line jest/no-try-expect

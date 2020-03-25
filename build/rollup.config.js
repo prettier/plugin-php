@@ -20,28 +20,28 @@ export default {
     name: "prettierPlugins.php",
     exports: "named",
     globals: {
-      prettier: "prettier"
+      prettier: "prettier",
     },
     paths: {
-      prettier: "prettier/standalone"
-    }
+      prettier: "prettier/standalone",
+    },
   },
   external: ["prettier"],
   plugins: [
     nodeResolve({
-      preferBuiltins: true
+      preferBuiltins: true,
     }),
     commonjs(),
     alias({
       entries: [
-        { find: "assert", replacement: resolve(BUILD_DIR, "shims/assert.js") }
-      ]
+        { find: "assert", replacement: resolve(BUILD_DIR, "shims/assert.js") },
+      ],
     }),
     inject({
-      Buffer: resolve(BUILD_DIR, "shims/buffer.js")
+      Buffer: resolve(BUILD_DIR, "shims/buffer.js"),
     }),
     replace({
-      "process.arch": JSON.stringify("x32")
+      "process.arch": JSON.stringify("x32"),
     }),
     json(),
     babel({
@@ -53,11 +53,11 @@ export default {
           require.resolve("@babel/preset-env"),
           {
             targets: { browsers: [">0.25%", "not ie 11", "not op_mini all"] },
-            modules: false
-          }
-        ]
-      ]
+            modules: false,
+          },
+        ],
+      ],
     }),
-    terser()
-  ]
+    terser(),
+  ],
 };
