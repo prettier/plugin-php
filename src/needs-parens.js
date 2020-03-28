@@ -27,7 +27,7 @@ function needsParens(path) {
       "include",
       "print",
       "return",
-      "echo"
+      "echo",
     ].includes(parent.kind)
   ) {
     return false;

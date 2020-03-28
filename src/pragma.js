@@ -5,12 +5,12 @@ const memoize = require("mem");
 
 const reHasPragma = /@prettier|@format/;
 
-const getPageLevelDocBlock = memoize(text => {
+const getPageLevelDocBlock = memoize((text) => {
   const parsed = parse(text);
 
   const [firstChild] = parsed.children;
   const [firstDocBlock] = parsed.comments.filter(
-    el => el.kind === "commentblock"
+    (el) => el.kind === "commentblock"
   );
 
   if (
@@ -61,7 +61,7 @@ function injectPragma(docblock, text) {
 
   // find the first @pragma
   // if there happens to be one on the opening line, just put it on the next line.
-  const pragmaIndex = lines.findIndex(line => /@\S/.test(line)) || 1;
+  const pragmaIndex = lines.findIndex((line) => /@\S/.test(line)) || 1;
 
   // not found => index == -1, which conveniently will splice 1 from the end.
   lines.splice(pragmaIndex, 0, " * @format");
@@ -75,7 +75,7 @@ function insertPragma(text) {
   if (pageLevelDocBlock) {
     const {
       start: { offset: startOffset },
-      end: { offset: endOffset }
+      end: { offset: endOffset },
     } = pageLevelDocBlock.loc;
     const before = text.substring(0, startOffset);
     const after = text.substring(endOffset);
@@ -103,5 +103,5 @@ ${after}`;
 
 module.exports = {
   hasPragma,
-  insertPragma
+  insertPragma,
 };

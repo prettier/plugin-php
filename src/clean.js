@@ -23,8 +23,8 @@ function clean(node, newObj) {
     "end",
     "tokens",
     "errors",
-    "extra"
-  ].forEach(name => {
+    "extra",
+  ].forEach((name) => {
     delete newObj[name];
   });
 
@@ -77,7 +77,7 @@ function clean(node, newObj) {
     if (node.body && node.body.kind !== "block") {
       newObj.body = {
         kind: "block",
-        children: [newObj.body]
+        children: [newObj.body],
       };
     } else {
       newObj.body = newObj.body ? newObj.body : null;
@@ -86,7 +86,7 @@ function clean(node, newObj) {
     if (node.alternate && node.alternate.kind !== "block") {
       newObj.alternate = {
         kind: "block",
-        children: [newObj.alternate]
+        children: [newObj.alternate],
       };
     } else {
       newObj.alternate = newObj.alternate ? newObj.alternate : null;

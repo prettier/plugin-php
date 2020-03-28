@@ -34,18 +34,18 @@ const languages = [
   createLanguage(require("linguist-languages/data/PHP"), {
     override: {
       parsers: ["php"],
-      vscodeLanguageIds: ["php"]
-    }
+      vscodeLanguageIds: ["php"],
+    },
   }),
   createLanguage(require("linguist-languages/data/HTML+PHP"), {
     override: {
       parsers: ["php"],
-      vscodeLanguageIds: ["php"]
-    }
-  })
+      vscodeLanguageIds: ["php"],
+    },
+  }),
 ];
 
-const loc = prop => node => {
+const loc = (prop) => (node) => {
   return node.loc && node.loc[prop] && node.loc[prop].offset;
 };
 
@@ -55,8 +55,8 @@ const parsers = {
     astFormat: "php",
     locStart: loc("start"),
     locEnd: loc("end"),
-    hasPragma
-  }
+    hasPragma,
+  },
 };
 
 const printers = {
@@ -70,7 +70,7 @@ const printers = {
     handleComments: {
       ownLine: comments.handleOwnLineComment,
       endOfLine: comments.handleEndOfLineComment,
-      remaining: comments.handleRemainingComment
+      remaining: comments.handleRemainingComment,
     },
     willPrintOwnComments(path) {
       const node = path.getValue();
@@ -92,7 +92,7 @@ const printers = {
           if (
             lines
               .slice(1, lines.length - 1)
-              .every(line => line.trim()[0] === "*")
+              .every((line) => line.trim()[0] === "*")
           ) {
             return join(
               hardline,
@@ -117,7 +117,7 @@ const printers = {
     },
     hasPrettierIgnore(path) {
       const node = path.getNode();
-      const isSimpleIgnore = comment =>
+      const isSimpleIgnore = (comment) =>
         comment.value.includes("prettier-ignore") &&
         !comment.value.includes("prettier-ignore-start") &&
         !comment.value.includes("prettier-ignore-end");
@@ -127,8 +127,8 @@ const printers = {
         node.comments.length > 0 &&
         node.comments.some(isSimpleIgnore)
       );
-    }
-  }
+    },
+  },
 };
 
 module.exports = {
@@ -137,6 +137,6 @@ module.exports = {
   parsers,
   options,
   defaultOptions: {
-    tabWidth: 4
-  }
+    tabWidth: 4,
+  },
 };

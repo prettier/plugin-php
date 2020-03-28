@@ -7,7 +7,7 @@ module.exports = {
   collectCoverageFrom: [
     "<rootDir>/src/**/*.js",
     "!<rootDir>/node_modules/",
-    "!<rootDir>/tests_config/"
+    "!<rootDir>/tests_config/",
   ],
   projects: [
     {
@@ -17,8 +17,8 @@ module.exports = {
       snapshotSerializers: ["jest-snapshot-serializer-raw"],
       testEnvironment: "node",
       globals: {
-        STANDALONE: false
-      }
+        STANDALONE: false,
+      },
     },
     ...(/^true$/i.test(process.env.RUN_STANDALONE_TESTS)
       ? [
@@ -29,16 +29,19 @@ module.exports = {
             snapshotSerializers: ["jest-snapshot-serializer-raw"],
             testEnvironment: "jsdom",
             globals: {
-              STANDALONE: true
-            }
-          }
+              STANDALONE: true,
+            },
+          },
         ]
       : []),
     {
       runner: "jest-runner-eslint",
       displayName: "lint",
       testMatch: ["<rootDir>/**/*.js"],
-      testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/coverage/"]
-    }
-  ]
+      testPathIgnorePatterns: [
+        "<rootDir>/node_modules/",
+        "<rootDir>/coverage/",
+      ],
+    },
+  ],
 };

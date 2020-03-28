@@ -3,8 +3,37 @@
 const {
   hasNewline,
   skipEverythingButNewLine,
-  skipNewline
+  skipNewline,
+  isNextLineEmpty: _isNextLineEmpty,
+  isPreviousLineEmpty: _isPreviousLineEmpty,
+  getNextNonSpaceNonCommentCharacterIndex: _getNextNonSpaceNonCommentCharacterIndex,
 } = require("prettier").util;
+
+const prettierVersion = require("prettier").version;
+
+function lookupIfPrettier2(options, prop) {
+  return parseInt(prettierVersion[0]) > 1 ? options[prop] : options;
+}
+
+function isPreviousLineEmpty(text, node, options) {
+  return _isPreviousLineEmpty(
+    text,
+    node,
+    lookupIfPrettier2(options, "locStart")
+  );
+}
+
+function isNextLineEmpty(text, node, options) {
+  return _isNextLineEmpty(text, node, lookupIfPrettier2(options, "locEnd"));
+}
+
+function getNextNonSpaceNonCommentCharacterIndex(text, node, options) {
+  return _getNextNonSpaceNonCommentCharacterIndex(
+    text,
+    node,
+    lookupIfPrettier2(options, "locEnd")
+  );
+}
 
 function printNumber(rawNumber) {
   return (
@@ -42,7 +71,7 @@ const PRECEDENCE = {};
     "|=",
     "^=",
     "<<=",
-    ">>="
+    ">>=",
   ],
   ["??"],
   ["||"],
@@ -58,9 +87,9 @@ const PRECEDENCE = {};
   ["!"],
   ["instanceof"],
   ["++", "--", "~"],
-  ["**"]
+  ["**"],
 ].forEach((tier, i) => {
-  tier.forEach(op => {
+  tier.forEach((op) => {
     PRECEDENCE[op] = i;
   });
 });
@@ -139,7 +168,7 @@ function nodeHasStatement(node) {
     "interface",
     "trait",
     "traituse",
-    "declare"
+    "declare",
   ].includes(node.kind);
 }
 
@@ -396,7 +425,7 @@ function lineShouldEndWithSemicolon(path) {
     "return",
     "break",
     "continue",
-    "throw"
+    "throw",
   ].includes(node.kind);
 }
 
@@ -439,16 +468,16 @@ function maybeStripLeadingSlashFromUse(name) {
 function hasDanglingComments(node) {
   return (
     node.comments &&
-    node.comments.some(comment => !comment.leading && !comment.trailing)
+    node.comments.some((comment) => !comment.leading && !comment.trailing)
   );
 }
 
 function hasLeadingComment(node) {
-  return node.comments && node.comments.some(comment => comment.leading);
+  return node.comments && node.comments.some((comment) => comment.leading);
 }
 
 function hasTrailingComment(node) {
-  return node.comments && node.comments.some(comment => comment.trailing);
+  return node.comments && node.comments.some((comment) => comment.trailing);
 }
 
 function isLookupNode(node) {
@@ -534,7 +563,7 @@ function isReferenceLikeNode(node) {
     "name",
     "parentreference",
     "selfreference",
-    "staticreference"
+    "staticreference",
   ].includes(node.kind);
 }
 
@@ -639,7 +668,7 @@ const magicMethods = [
   "__invoke",
   "__set_state",
   "__clone",
-  "__debugInfo"
+  "__debugInfo",
 ];
 const MagicMethodsMap = magicMethods.reduce((map, obj) => {
   map[obj.toLowerCase()] = obj;
@@ -691,5 +720,8 @@ module.exports = {
   isDocNode,
   getAncestorNode,
   getNextNode,
-  normalizeMagicMethodName
+  normalizeMagicMethodName,
+  isPreviousLineEmpty,
+  isNextLineEmpty,
+  getNextNonSpaceNonCommentCharacterIndex,
 };

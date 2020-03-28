@@ -4,12 +4,9 @@ const {
   addLeadingComment,
   addDanglingComment,
   addTrailingComment,
-  getNextNonSpaceNonCommentCharacterIndex,
-  isNextLineEmpty,
   skipNewline,
-  isPreviousLineEmpty,
   hasNewline,
-  hasNewlineInRange
+  hasNewlineInRange,
 } = require("prettier").util;
 const {
   concat,
@@ -18,9 +15,14 @@ const {
   hardline,
   cursor,
   lineSuffix,
-  breakParent
+  breakParent,
 } = require("prettier").doc.builders;
-const { isLookupNode } = require("./util");
+const {
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
+  isPreviousLineEmpty,
+  isLookupNode,
+} = require("./util");
 
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
@@ -461,7 +463,7 @@ function handleClassComments(enclosingNode, followingNode, comment) {
         }
       } else {
         if (
-          enclosingNode.extends.some(extendsNode => {
+          enclosingNode.extends.some((extendsNode) => {
             if (followingNode && followingNode === extendsNode) {
               addDanglingComment(followingNode, comment);
               return true;
@@ -477,7 +479,7 @@ function handleClassComments(enclosingNode, followingNode, comment) {
     // them as dangling comments and handle them in the printer
     if (followingNode && enclosingNode.implements) {
       if (
-        enclosingNode.implements.some(implementsNode => {
+        enclosingNode.implements.some((implementsNode) => {
           if (followingNode && followingNode === implementsNode) {
             addDanglingComment(followingNode, comment);
             return true;
@@ -830,7 +832,7 @@ function printDanglingComments(path, options, sameIndent, filter) {
     return "";
   }
 
-  path.each(commentPath => {
+  path.each((commentPath) => {
     const comment = commentPath.getValue();
     if (
       comment &&
@@ -853,18 +855,18 @@ function printDanglingComments(path, options, sameIndent, filter) {
 }
 
 function hasLeadingComment(node) {
-  return node.comments && node.comments.some(comment => comment.leading);
+  return node.comments && node.comments.some((comment) => comment.leading);
 }
 
 function hasTrailingComment(node) {
-  return node.comments && node.comments.some(comment => comment.trailing);
+  return node.comments && node.comments.some((comment) => comment.trailing);
 }
 
 function hasLeadingOwnLineComment(text, node, options) {
   return (
     node.comments &&
     node.comments.some(
-      comment => comment.leading && hasNewline(text, options.locEnd(comment))
+      (comment) => comment.leading && hasNewline(text, options.locEnd(comment))
     )
   );
 }
@@ -897,10 +899,10 @@ function getCommentChildNodes(node) {
     return [];
   }
 
-  const getChildNodes = node =>
+  const getChildNodes = (node) =>
     Object.keys(node)
       .filter(
-        n =>
+        (n) =>
           n !== "kind" &&
           n !== "loc" &&
           n !== "errors" &&
@@ -911,7 +913,7 @@ function getCommentChildNodes(node) {
           n !== "precedingNode" &&
           n !== "followingNode"
       )
-      .map(n => node[n]);
+      .map((n) => node[n]);
 
   return getChildNodes(node);
 }
@@ -948,7 +950,9 @@ function printLeadingComment(commentPath, print, options) {
   if (isBlock) {
     return concat([
       contents,
-      hasNewline(options.originalText, options.locEnd(comment)) ? hardline : " "
+      hasNewline(options.originalText, options.locEnd(comment))
+        ? hardline
+        : " ",
     ]);
   }
 
@@ -966,7 +970,7 @@ function printTrailingComment(commentPath, print, options) {
 
   if (
     hasNewline(options.originalText, options.locStart(comment), {
-      backwards: true
+      backwards: true,
     })
   ) {
     // This allows comments at the end of nested structures:
@@ -997,7 +1001,7 @@ function printTrailingComment(commentPath, print, options) {
 
   return concat([
     lineSuffix(concat([" ", contents])),
-    !isBlock ? breakParent : ""
+    !isBlock ? breakParent : "",
   ]);
 }
 
@@ -1013,7 +1017,7 @@ function printAllComments(path, print, options, needsSemi) {
   const leadingParts = [];
   const trailingParts = [needsSemi ? ";" : "", printed];
 
-  path.each(commentPath => {
+  path.each((commentPath) => {
     const comment = commentPath.getValue();
     const { leading, trailing } = comment;
 
@@ -1052,5 +1056,5 @@ module.exports = {
   hasTrailingComment,
   hasLeadingOwnLineComment,
   printComments,
-  printAllComments
+  printAllComments,
 };

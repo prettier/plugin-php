@@ -14,12 +14,12 @@ function parse(text, parsers, opts) {
   // initialize a new parser instance
   const parser = new engine({
     parser: {
-      extractDoc: true
+      extractDoc: true,
     },
     ast: {
       withPositions: true,
-      withSource: true
-    }
+      withSource: true,
+    },
   });
 
   const hasOpenPHPTag = text.indexOf("<?php") !== -1;
@@ -33,8 +33,8 @@ function parse(text, parsers, opts) {
       err.loc = {
         start: {
           line: err.lineNumber,
-          column: err.columnNumber
-        }
+          column: err.columnNumber,
+        },
       };
 
       delete err.lineNumber;
@@ -45,13 +45,13 @@ function parse(text, parsers, opts) {
   }
 
   ast.extra = {
-    parseAsEval
+    parseAsEval,
   };
 
   // https://github.com/glayzzle/php-parser/issues/155
   // currently inline comments include the line break at the end, we need to
   // strip those out and update the end location for each comment manually
-  ast.comments.forEach(comment => {
+  ast.comments.forEach((comment) => {
     if (comment.value[comment.value.length - 1] === "\r") {
       comment.value = comment.value.slice(0, -1);
       comment.loc.end.offset = comment.loc.end.offset - 1;

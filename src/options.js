@@ -21,15 +21,15 @@ module.exports = {
       { value: "7.1" },
       { value: "7.2" },
       { value: "7.3" },
-      { value: "7.4" }
-    ]
+      { value: "7.4" },
+    ],
   },
   trailingCommaPHP: {
     since: "0.0.0",
     category: CATEGORY_PHP,
     type: "boolean",
     default: true,
-    description: "Print trailing commas wherever possible when multi-line."
+    description: "Print trailing commas wherever possible when multi-line.",
   },
   braceStyle: {
     since: "0.10.0",
@@ -40,7 +40,7 @@ module.exports = {
       "Print one space or newline for code blocks (classes and functions).",
     choices: [
       { value: "psr-2", description: "Use PSR-2 brace style." },
-      { value: "1tbs", description: "Use 1tbs brace style." }
-    ]
-  }
+      { value: "1tbs", description: "Use 1tbs brace style." },
+    ],
+  },
 };
