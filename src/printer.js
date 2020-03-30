@@ -1724,6 +1724,9 @@ function printNode(path, options, print) {
         node.isStatic ? "static " : "",
         "fn",
         printArgumentsList(path, options, print),
+        node.type
+          ? concat([": ", node.nullable ? "?" : "", path.call(print, "type")])
+          : "",
         " => ",
         path.call(print, "body"),
       ]);
