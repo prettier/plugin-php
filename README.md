@@ -45,7 +45,7 @@ This plugin adds support for the PHP language to Prettier.
 
 We're considering the plugin to be stable when pure PHP files are formatted. Formatting of files that contain mixed PHP and HTML is still considered unstable - please see [open issues with the tag "inline"](https://github.com/prettier/plugin-php/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Ainline) for details.
 
-If you want to use the plugin in production, we recommend limiting it's scope to pure PHP files.
+If you want to use the plugin in production, we recommend limiting its scope to pure PHP files.
 
 ### Input
 
