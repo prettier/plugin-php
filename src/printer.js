@@ -1721,6 +1721,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
+        node.isStatic ? "static " : "",
         "fn",
         printArgumentsList(path, options, print),
         " => ",
