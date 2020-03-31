@@ -35,15 +35,17 @@
   </a>
 </p>
 
-## WORK IN PROGRESS
-
-Please note that this plugin is currently in alpha stage and still under active development. We encourage everyone to try it and give feedback, but we don't recommend it for production use yet.
-
 ## Intro
 
 Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
 
 This plugin adds support for the PHP language to Prettier.
+
+### Can this be used in production?
+
+We're considering the plugin to be stable when pure PHP files are formatted. Formatting of files that contain mixed PHP and HTML is still considered unstable - please see [open issues with the tag "inline"](https://github.com/prettier/plugin-php/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Ainline) for details.
+
+If you want to use the plugin in production, we recommend limiting its scope to pure PHP files.
 
 ### Input
 
