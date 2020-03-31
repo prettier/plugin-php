@@ -277,10 +277,10 @@ function isDocNode(node) {
  * Heredoc/Nowdoc nodes need a trailing linebreak if they
  * appear as function arguments or array elements
  */
-function docShouldHaveTrailingNewline(path) {
-  const node = path.getValue();
-  const parent = path.getParentNode();
-  const parentParent = path.getParentNode(1);
+function docShouldHaveTrailingNewline(path, recurse = 0) {
+  const node = path.getNode(recurse);
+  const parent = path.getNode(recurse + 1);
+  const parentParent = path.getNode(recurse + 2);
 
   if (!parent) {
     return false;
@@ -319,11 +319,9 @@ function docShouldHaveTrailingNewline(path) {
   }
 
   if (parent.kind === "bin") {
-    if (parentParent && parentParent.kind === "bin") {
-      return true;
-    }
-
-    return parent.left === node;
+    return (
+      parent.left === node || docShouldHaveTrailingNewline(path, recurse + 1)
+    );
   }
 
   if (parent.kind === "case" && parent.test === node) {
@@ -367,6 +365,10 @@ function docShouldHaveTrailingNewline(path) {
     const index = parent.items.indexOf(node);
 
     return index !== lastIndex;
+  }
+
+  if (parent.kind === "retif") {
+    return docShouldHaveTrailingNewline(path, recurse + 1);
   }
 
   return false;
