@@ -1,7 +1,3 @@
-<p align="center">
-    :construction: Work in Progress! :construction:
-</p>
-
 <div align="center">
 <img alt="Prettier"
   src="https://raw.githubusercontent.com/prettier/prettier-logo/master/images/prettier-icon-light.png">
