@@ -51,3 +51,8 @@ function count_to_ten() {
 
     return yield from nine_ten();
 }
+
+function foo() {
+  $test = 123;
+  yield "bar {$test}" => 123;
+}

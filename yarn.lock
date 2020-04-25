@@ -4035,10 +4035,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-php-parser@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.0.tgz#7e0abef4941cabbf10f25f1445bca0f758f5102f"
-  integrity sha512-WqGNf8Y5LBOXKJz9eKMwxjqfJ7KnwVU7DH3ebPTaOLlPtVrig++zG8KoOXywY9V9jQxY+wOY0EtC/e+wamaxsQ==
+php-parser@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.1.tgz#69ae957362717cfefbc58eb208d12e48dab2e809"
+  integrity sha512-m6CBPHOoMkzEHoXG0rhEg/VegSNemUNQepHnYtrRgTAh8rsqoO65KqQ32KJ5xe2iplhO0jdwd1UJ9Ea0yHsgYQ==
 
 picomatch@^2.0.4, picomatch@^2.0.5:
   version "2.2.2"
