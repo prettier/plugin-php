@@ -137,6 +137,6 @@ module.exports = {
   parsers,
   options,
   defaultOptions: {
-    tabWidth: 4,
+    tabWidth: 2,
   },
 };
