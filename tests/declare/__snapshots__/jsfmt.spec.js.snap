@@ -37,24 +37,24 @@ enddeclare;
 =====================================output=====================================
 <?php
 declare(ticks=1):
-    $test = 1;
+  $test = 1;
 enddeclare;
 declare(ticks=1);
 $test = 1;
 declare(ticks=1) {
-    $test = 1;
+  $test = 1;
 }
 declare(encoding='ISO-8859-1');
 $test = 1;
 declare(ticks=1):
-    $test = 1;
+  $test = 1;
 enddeclare;
 
 declare(ticks=1);
 $test = 1;
 
 if ($var) {
-    declare(ticks=1);
+  declare(ticks=1);
 }
 
 declare(ticks=1) {
@@ -107,15 +107,15 @@ declare(ticks=2) {
 <?php
 
 declare(ticks=1) {
-    $a = 1;
-    $b = 2;
+  $a = 1;
+  $b = 2;
 }
 
 declare(ticks=2) {
-    function test()
-    {
-        $a = 1;
-    }
+  function test()
+  {
+    $a = 1;
+  }
 }
 
 ================================================================================
@@ -149,7 +149,7 @@ $b = 2;
 
 function test()
 {
-    $a = 1;
+  $a = 1;
 }
 
 ================================================================================
@@ -454,7 +454,7 @@ declare (ticks=2) {
 
 declare(strict_types=1);
 declare(ticks=1) {
-    foo();
+  foo();
 }
 declare(ticks=2) {
 }

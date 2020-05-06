@@ -75,43 +75,43 @@ foreach ($test as &$i) {
 =====================================output=====================================
 <?php
 foreach ($test as $i) {
-    $test2 = $i;
+  $test2 = $i;
 }
 
 foreach (
-    $really_really_really_really_really_long_array
-    as $key => $really_really_really_long_value
+  $really_really_really_really_really_long_array
+  as $key => $really_really_really_long_value
 ) {
-    $test3 = $really_really_really_long_value;
+  $test3 = $really_really_really_long_value;
 }
 
 foreach ($test as $i):
-    $test2 = $i;
+  $test2 = $i;
 endforeach;
 
 foreach ($test as $i) {
-    $test2 = $i;
+  $test2 = $i;
 }
 
 foreach ($test as $i) {
-    $test2 = $i;
+  $test2 = $i;
 }
 
 foreach (
-    [
-        'foo' => ['very-very-very-long-value'],
-        'bar' => ['very-very-very-long-value'],
-    ]
-    as $veryVeryVeryVeryVeryVeryVeryVeryLongKey
+  [
+    'foo' => ['very-very-very-long-value'],
+    'bar' => ['very-very-very-long-value'],
+  ]
+  as $veryVeryVeryVeryVeryVeryVeryVeryLongKey
 ) {
 }
 foreach (
-    [
-        'foo' => ['very-very-very-long-value'],
-        'bar' => ['very-very-very-long-value'],
-    ]
-    as $veryVeryVeryVeryVeryVeryVeryVeryLongKey =>
-        $veryVeryVeryVeryVeryVeryVeryVeryLongValue
+  [
+    'foo' => ['very-very-very-long-value'],
+    'bar' => ['very-very-very-long-value'],
+  ]
+  as $veryVeryVeryVeryVeryVeryVeryVeryLongKey =>
+    $veryVeryVeryVeryVeryVeryVeryVeryLongValue
 ) {
 }
 
@@ -124,50 +124,50 @@ foreach ($test as $i) {
 }
 
 foreach ($points as ["x" => $x, "y" => $y]) {
-    var_dump($x, $y);
+  var_dump($x, $y);
 }
 
 foreach (
-    $points
-    as [
-        "veryVeryVeryVeryVeryVeryVeryLongKey" => $x,
-        "veryVeryVeryVeryVeryVeryVeryLongKey" => $y,
-    ]
+  $points
+  as [
+    "veryVeryVeryVeryVeryVeryVeryLongKey" => $x,
+    "veryVeryVeryVeryVeryVeryVeryLongKey" => $y,
+  ]
 ) {
-    var_dump($x, $y);
+  var_dump($x, $y);
 }
 
 foreach (
-    $points
-    as [
-        "x" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        "y" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue,
-    ]
+  $points
+  as [
+    "x" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue,
+    "y" => $veryVeryVeryVeryVeryVeryVeryVeryLongValue,
+  ]
 ) {
-    var_dump($x, $y);
+  var_dump($x, $y);
 }
 
 foreach (
-    $points
-    as [
-        "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongX,
-        "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongY,
-    ]
+  $points
+  as [
+    "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongX,
+    "veryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryLongY,
+  ]
 ) {
-    var_dump($x, $y);
+  var_dump($x, $y);
 }
 
 foreach (
-    [
-        'one' => ['string', 'other-string'],
-        'two' => ['string', 'other-string'],
-    ]
-    as $key => $aliases
+  [
+    'one' => ['string', 'other-string'],
+    'two' => ['string', 'other-string'],
+  ]
+  as $key => $aliases
 ) {
 }
 
 foreach ($test as &$i) {
-    $test2 = $i;
+  $test2 = $i;
 }
 
 ================================================================================

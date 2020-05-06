@@ -197,10 +197,10 @@ $classname = 'Foo';
 $classname::aStaticMethod();
 print $classname::$my_static . "\\n";
 Foo::method([
-    'foo' => 'bar',
-    'bar' => 'foo',
-    'foobar' => 'barfoo',
-    'barfoo' => 'foobar',
+  'foo' => 'bar',
+  'bar' => 'foo',
+  'foobar' => 'barfoo',
+  'barfoo' => 'foobar',
 ]);
 MyClass::$aStaticProp;
 MyClass::$aStaticProp = 1;
@@ -209,75 +209,75 @@ MyClass::$$b;
 
 class Foo
 {
-    public static $my_static = 'foo';
+  public static $my_static = 'foo';
 
-    public function staticValue()
-    {
-        return self::$my_static;
-    }
+  public function staticValue()
+  {
+    return self::$my_static;
+  }
 }
 
 class Bar extends Foo
 {
-    public function fooStatic()
-    {
-        return parent::$my_static;
-    }
+  public function fooStatic()
+  {
+    return parent::$my_static;
+  }
 }
 
 abstract class DataRecord
 {
-    private static $db; // MySQLi-Connection, same for all subclasses
-    private static $table = []; // Array of tables for subclasses
+  private static $db; // MySQLi-Connection, same for all subclasses
+  private static $table = []; // Array of tables for subclasses
 
-    public static function init($classname, $table, $db = false)
-    {
-        if (!($db === false)) {
-            self::$db = $db;
-        }
-        self::$table[$classname] = $table;
+  public static function init($classname, $table, $db = false)
+  {
+    if (!($db === false)) {
+      self::$db = $db;
     }
+    self::$table[$classname] = $table;
+  }
 
-    public static function getDB()
-    {
-        return self::$db;
-    }
-    public static function getTable($classname)
-    {
-        return self::$table[$classname];
-    }
+  public static function getDB()
+  {
+    return self::$db;
+  }
+  public static function getTable($classname)
+  {
+    return self::$table[$classname];
+  }
 }
 
 abstract class Singleton
 {
-    protected static $_instance = null;
+  protected static $_instance = null;
 
-    /**
-     * Prevent direct object creation
-     */
-    final private function __construct()
-    {
-    }
+  /**
+   * Prevent direct object creation
+   */
+  final private function __construct()
+  {
+  }
 
-    /**
-     * Prevent object cloning
-     */
-    final private function __clone()
-    {
-    }
+  /**
+   * Prevent object cloning
+   */
+  final private function __clone()
+  {
+  }
 
-    /**
-     * Returns new or existing Singleton instance
-     * @return Singleton
-     */
-    final public static function getInstance()
-    {
-        if (null !== static::$_instance) {
-            return static::$_instance;
-        }
-        static::$_instance = new static();
-        return static::$_instance;
+  /**
+   * Returns new or existing Singleton instance
+   * @return Singleton
+   */
+  final public static function getInstance()
+  {
+    if (null !== static::$_instance) {
+      return static::$_instance;
     }
+    static::$_instance = new static();
+    return static::$_instance;
+  }
 }
 
 MyClass::$table[$classname] = 1;
@@ -289,29 +289,29 @@ $obj::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 
 class Foo
 {
-    public static function staticFoo()
-    {
-        static::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        static::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        static::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-        static::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-    }
+  public static function staticFoo()
+  {
+    static::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    static::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    static::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+    static::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+  }
 
-    public static function selfFoo()
-    {
-        self::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        self::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        self::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-        self::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-    }
+  public static function selfFoo()
+  {
+    self::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    self::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    self::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+    self::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+  }
 
-    public static function parentFoo()
-    {
-        parent::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        parent::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
-        parent::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-        parent::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
-    }
+  public static function parentFoo()
+  {
+    parent::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    parent::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
+    parent::veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+    parent::$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty();
+  }
 }
 
 $var = $this->modelClass::where('name', 'like', strtoupper("%\${key}%"))->get();
@@ -319,17 +319,17 @@ $var = $this->modelClass::where('name', 'like', strtoupper("%\${key}%"))->get();
 MyVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClass::class;
 
 $var =
-    static::$arrayCache[$arrayStub->class][$arrayStub->position][
-        $arrayStub->foo
-    ][$arrayStub->baz];
+  static::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][
+    $arrayStub->baz
+  ];
 $var =
-    self::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][
-        $arrayStub->baz
-    ];
+  self::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][
+    $arrayStub->baz
+  ];
 $var =
-    parent::$arrayCache[$arrayStub->class][$arrayStub->position][
-        $arrayStub->foo
-    ][$arrayStub->baz];
+  parent::$arrayCache[$arrayStub->class][$arrayStub->position][$arrayStub->foo][
+    $arrayStub->baz
+  ];
 
 $var = Order::{camel_case($name)}();
 $var = Order::{"string"}();

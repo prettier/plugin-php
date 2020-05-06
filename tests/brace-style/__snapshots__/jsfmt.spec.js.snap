@@ -52,84 +52,84 @@ class ClassName extends ParentClass implements InterfaceClass
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
+  InterfaceClass
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements InterfaceClass
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    extends ParentClass
-    implements InterfaceClass
+  extends ParentClass
+  implements InterfaceClass
 {
 }
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
 {
 };
 
 $class = new class implements
-    MyOtherClass,
-    MyOtherClass,
-    MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
+  MyOtherClass,
+  MyOtherClass,
+  MyOtherOtherOtherClass,
+  MyOtherOtherOtherOtherClass
 {
 };
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
 {
 };
 
@@ -189,84 +189,84 @@ class ClassName extends ParentClass implements InterfaceClass
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
+  InterfaceClass
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements InterfaceClass
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
 {
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    extends ParentClass
-    implements InterfaceClass
+  extends ParentClass
+  implements InterfaceClass
 {
 }
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
 {
 };
 
 $class = new class implements
-    MyOtherClass,
-    MyOtherClass,
-    MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
+  MyOtherClass,
+  MyOtherClass,
+  MyOtherOtherOtherClass,
+  MyOtherOtherOtherOtherClass
 {
 };
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
 {
 };
 
@@ -324,72 +324,72 @@ class ClassName extends ParentClass implements InterfaceClass {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass {
+  InterfaceClass {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass {
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements InterfaceClass {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
 }
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
 }
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
 }
 
 class ClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
+  extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
+  implements
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
 }
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    extends ParentClass
-    implements InterfaceClass {
+  extends ParentClass
+  implements InterfaceClass {
 }
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {
 };
 
 $class = new class implements
-    MyOtherClass,
-    MyOtherClass,
-    MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass {
+  MyOtherClass,
+  MyOtherClass,
+  MyOtherOtherOtherClass,
+  MyOtherOtherOtherOtherClass {
 };
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {
+  VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {
 };
 
 ================================================================================
@@ -439,49 +439,49 @@ $anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooo
 
 function hello()
 {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
 {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
 {
-    return "hello";
+  return "hello";
 }
 
 function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-    $soooooooooooo_looooooooonnnng,
-    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  $soooooooooooo_looooooooonnnng,
+  $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
 ) {
-    return $soooooooooooo_looooooooonnnng;
+  return $soooooooooooo_looooooooonnnng;
 }
 
 function type_hinting_test(
-    array $array_test,
-    callable $callable_test,
-    bool $bool_test,
-    float $float_test,
-    iterable $iterable_test,
-    int $int_test,
-    string $string_test = ''
+  array $array_test,
+  callable $callable_test,
+  bool $bool_test,
+  float $float_test,
+  iterable $iterable_test,
+  int $int_test,
+  string $string_test = ''
 ) {
-    return $int_test;
+  return $int_test;
 }
 
 $anonymous = function ($name) use ($otherthing, &$reference_test) {
-    printf("Hello %s", $name);
-    $reference_test += 1;
+  printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function (
-    $name,
-    $more,
-    $params,
-    $looooooooooooooooooooooooooooooooong
+  $name,
+  $more,
+  $params,
+  $looooooooooooooooooooooooooooooooong
 ) use ($all, $kinds, $of, $stuff) {
-    printf("Hello %s", $name);
+  printf("Hello %s", $name);
 };
 
 ================================================================================
@@ -532,49 +532,49 @@ $anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooo
 
 function hello()
 {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
 {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
 {
-    return "hello";
+  return "hello";
 }
 
 function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-    $soooooooooooo_looooooooonnnng,
-    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  $soooooooooooo_looooooooonnnng,
+  $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
 ) {
-    return $soooooooooooo_looooooooonnnng;
+  return $soooooooooooo_looooooooonnnng;
 }
 
 function type_hinting_test(
-    array $array_test,
-    callable $callable_test,
-    bool $bool_test,
-    float $float_test,
-    iterable $iterable_test,
-    int $int_test,
-    string $string_test = ''
+  array $array_test,
+  callable $callable_test,
+  bool $bool_test,
+  float $float_test,
+  iterable $iterable_test,
+  int $int_test,
+  string $string_test = ''
 ) {
-    return $int_test;
+  return $int_test;
 }
 
 $anonymous = function ($name) use ($otherthing, &$reference_test) {
-    printf("Hello %s", $name);
-    $reference_test += 1;
+  printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function (
-    $name,
-    $more,
-    $params,
-    $looooooooooooooooooooooooooooooooong
+  $name,
+  $more,
+  $params,
+  $looooooooooooooooooooooooooooooooong
 ) use ($all, $kinds, $of, $stuff) {
-    printf("Hello %s", $name);
+  printf("Hello %s", $name);
 };
 
 ================================================================================
@@ -624,47 +624,47 @@ $anonymousLongVariableName = function($name, $more, $params, $looooooooooooooooo
 <?php
 
 function hello() {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
-    return "hello";
+  return "hello";
 }
 
 function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string {
-    return "hello";
+  return "hello";
 }
 
 function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-    $soooooooooooo_looooooooonnnng,
-    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  $soooooooooooo_looooooooonnnng,
+  $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
 ) {
-    return $soooooooooooo_looooooooonnnng;
+  return $soooooooooooo_looooooooonnnng;
 }
 
 function type_hinting_test(
-    array $array_test,
-    callable $callable_test,
-    bool $bool_test,
-    float $float_test,
-    iterable $iterable_test,
-    int $int_test,
-    string $string_test = ''
+  array $array_test,
+  callable $callable_test,
+  bool $bool_test,
+  float $float_test,
+  iterable $iterable_test,
+  int $int_test,
+  string $string_test = ''
 ) {
-    return $int_test;
+  return $int_test;
 }
 
 $anonymous = function ($name) use ($otherthing, &$reference_test) {
-    printf("Hello %s", $name);
-    $reference_test += 1;
+  printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function (
-    $name,
-    $more,
-    $params,
-    $looooooooooooooooooooooooooooooooong
+  $name,
+  $more,
+  $params,
+  $looooooooooooooooooooooooooooooooong
 ) use ($all, $kinds, $of, $stuff) {
-    printf("Hello %s", $name);
+  printf("Hello %s", $name);
 };
 
 ================================================================================
@@ -779,143 +779,143 @@ class Foo
 
 abstract class AbstractClass
 {
-    abstract protected function getValue();
-    abstract protected function prefixValue($prefix);
+  abstract protected function getValue();
+  abstract protected function prefixValue($prefix);
 
-    public function printOut()
-    {
-        print $this->getValue() . "\\n";
-    }
+  public function printOut()
+  {
+    print $this->getValue() . "\\n";
+  }
 }
 
 class Foo
 {
-    function hello()
-    {
-        return "hello";
-    }
+  function hello()
+  {
+    return "hello";
+  }
 
-    function hello_1($arg)
-    {
-        return "hello";
-    }
+  function hello_1($arg)
+  {
+    return "hello";
+  }
 
-    function bar($arg = '')
-    {
-        echo "In bar(); argument was '$arg'.<br />\\n";
-    }
+  function bar($arg = '')
+  {
+    echo "In bar(); argument was '$arg'.<br />\\n";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+    return "hello";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
-    {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+  {
+    return "hello";
+  }
 
-    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-        $soooooooooooo_looooooooonnnng,
-        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
-    ) {
-        return $soooooooooooo_looooooooonnnng;
-    }
+  function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  ) {
+    return $soooooooooooo_looooooooonnnng;
+  }
 
-    function type_hinting_test(
-        array $array_test,
-        callable $callable_test,
-        bool $bool_test,
-        float $float_test,
-        iterable $iterable_test,
-        int $int_test,
-        string $string_test = ''
-    ) {
-        return $int_test;
-    }
+  function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+  ) {
+    return $int_test;
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    return "hello";
+  }
 
-    static function staticmethod()
-    {
-    }
+  static function staticmethod()
+  {
+  }
 
-    public static function ellipsizeMiddle(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        $string = trim($string);
-    }
+  public static function ellipsizeMiddle(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    $string = trim($string);
+  }
 
-    public static function hello_2()
-    {
-    }
+  public static function hello_2()
+  {
+  }
 
-    public static function hello_3($var = 1)
-    {
-    }
+  public static function hello_3($var = 1)
+  {
+  }
 
-    public static function hello_4(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function hello_4(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function hello_5(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function hello_5(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function newlines(
-        $var = 1,
+  public static function newlines(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 }
 
 ================================================================================
@@ -1031,143 +1031,143 @@ class Foo
 
 abstract class AbstractClass
 {
-    abstract protected function getValue();
-    abstract protected function prefixValue($prefix);
+  abstract protected function getValue();
+  abstract protected function prefixValue($prefix);
 
-    public function printOut()
-    {
-        print $this->getValue() . "\\n";
-    }
+  public function printOut()
+  {
+    print $this->getValue() . "\\n";
+  }
 }
 
 class Foo
 {
-    function hello()
-    {
-        return "hello";
-    }
+  function hello()
+  {
+    return "hello";
+  }
 
-    function hello_1($arg)
-    {
-        return "hello";
-    }
+  function hello_1($arg)
+  {
+    return "hello";
+  }
 
-    function bar($arg = '')
-    {
-        echo "In bar(); argument was '$arg'.<br />\\n";
-    }
+  function bar($arg = '')
+  {
+    echo "In bar(); argument was '$arg'.<br />\\n";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+    return "hello";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
-    {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string
+  {
+    return "hello";
+  }
 
-    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-        $soooooooooooo_looooooooonnnng,
-        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
-    ) {
-        return $soooooooooooo_looooooooonnnng;
-    }
+  function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  ) {
+    return $soooooooooooo_looooooooonnnng;
+  }
 
-    function type_hinting_test(
-        array $array_test,
-        callable $callable_test,
-        bool $bool_test,
-        float $float_test,
-        iterable $iterable_test,
-        int $int_test,
-        string $string_test = ''
-    ) {
-        return $int_test;
-    }
+  function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+  ) {
+    return $int_test;
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    return "hello";
+  }
 
-    static function staticmethod()
-    {
-    }
+  static function staticmethod()
+  {
+  }
 
-    public static function ellipsizeMiddle(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        $string = trim($string);
-    }
+  public static function ellipsizeMiddle(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    $string = trim($string);
+  }
 
-    public static function hello_2()
-    {
-    }
+  public static function hello_2()
+  {
+  }
 
-    public static function hello_3($var = 1)
-    {
-    }
+  public static function hello_3($var = 1)
+  {
+  }
 
-    public static function hello_4(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function hello_4(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function hello_5(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function hello_5(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function newlines(
-        $var = 1,
+  public static function newlines(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 }
 
 ================================================================================
@@ -1282,132 +1282,132 @@ class Foo
 <?php
 
 abstract class AbstractClass {
-    abstract protected function getValue();
-    abstract protected function prefixValue($prefix);
+  abstract protected function getValue();
+  abstract protected function prefixValue($prefix);
 
-    public function printOut() {
-        print $this->getValue() . "\\n";
-    }
+  public function printOut() {
+    print $this->getValue() . "\\n";
+  }
 }
 
 class Foo {
-    function hello() {
-        return "hello";
-    }
+  function hello() {
+    return "hello";
+  }
 
-    function hello_1($arg) {
-        return "hello";
-    }
+  function hello_1($arg) {
+    return "hello";
+  }
 
-    function bar($arg = '') {
-        echo "In bar(); argument was '$arg'.<br />\\n";
-    }
+  function bar($arg = '') {
+    echo "In bar(); argument was '$arg'.<br />\\n";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
+    return "hello";
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): ?string {
+    return "hello";
+  }
 
-    function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-        $soooooooooooo_looooooooonnnng,
-        $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
-    ) {
-        return $soooooooooooo_looooooooonnnng;
-    }
+  function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
+    $soooooooooooo_looooooooonnnng,
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  ) {
+    return $soooooooooooo_looooooooonnnng;
+  }
 
-    function type_hinting_test(
-        array $array_test,
-        callable $callable_test,
-        bool $bool_test,
-        float $float_test,
-        iterable $iterable_test,
-        int $int_test,
-        string $string_test = ''
-    ) {
-        return $int_test;
-    }
+  function type_hinting_test(
+    array $array_test,
+    callable $callable_test,
+    bool $bool_test,
+    float $float_test,
+    iterable $iterable_test,
+    int $int_test,
+    string $string_test = ''
+  ) {
+    return $int_test;
+  }
 
-    function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        return "hello";
-    }
+  function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameOther(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    return "hello";
+  }
 
-    static function staticmethod() {
-    }
+  static function staticmethod() {
+  }
 
-    public static function ellipsizeMiddle(
-        $string,
-        $max_length,
-        // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
-        &$flag = null
-    ) {
-        $string = trim($string);
-    }
+  public static function ellipsizeMiddle(
+    $string,
+    $max_length,
+    // @codingStandardsIgnoreLine
+    $ellipses = ' … ', // the spaces are non-breaking spaces
+    &$flag = null
+  ) {
+    $string = trim($string);
+  }
 
-    public static function hello_2() {
-    }
+  public static function hello_2() {
+  }
 
-    public static function hello_3($var = 1) {
-    }
+  public static function hello_3($var = 1) {
+  }
 
-    public static function hello_4(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function hello_4(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function hello_5(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function hello_5(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ) {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
-        $other_var = 2,
-        $other_other_other_var = 3
-    ): ?string {
-    }
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
+    $other_var = 2,
+    $other_other_other_var = 3
+  ): ?string {
+  }
 
-    public static function newlines(
-        $var = 1,
+  public static function newlines(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $var = 1,
+  public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $var = 1,
 
-        $other_var = 2
-    ) {
-    }
+    $other_var = 2
+  ) {
+  }
 }
 
 ================================================================================

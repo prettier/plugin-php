@@ -84,18 +84,18 @@ $obj = eval('return new class($value)
 eval('return 1;');
 eval("return $a;");
 eval(
-    "$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableName = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableValue;"
+  "$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableName = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableValue;"
 );
 eval(
+  "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
     "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
-        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText" .
-        "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText"
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongText"
 );
 eval('string
 string
 string');
 eval(
-    'string
+  'string
 string
 string'
 );
@@ -104,7 +104,7 @@ string
 string
 $var");
 eval(
-    "string
+  "string
 string
 string
 $var"
@@ -114,13 +114,13 @@ string
 string
 $var\`);
 eval(
-    \`string
+  \`string
 string
 string
 $var\`
 );
 eval(
-    <<<FOO
+  <<<FOO
 string
 string
 string
@@ -128,7 +128,7 @@ $var
 FOO
 );
 eval(
-    <<<'FOO'
+  <<<'FOO'
 string
 string
 string

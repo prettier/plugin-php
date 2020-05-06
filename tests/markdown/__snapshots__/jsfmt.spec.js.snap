@@ -5,7 +5,7 @@ exports[`markdown.md 1`] = `
 parsers: ["markdown"]
 printWidth: 80
 proseWrap: "always"
-tabWidth: 4
+tabWidth: 2
                                                                                 | printWidth
 =====================================input======================================
 # PHP in Markdown
@@ -108,14 +108,14 @@ $foo = 'bar';
 \`\`\`php
 function test()
 {
-    $a = 1;
+  $a = 1;
 }
 \`\`\`
 
 \`\`\`php
 <?php
 if ($foo) {
-    echo "bar";
+  echo "bar";
 }
 \`\`\`
 
@@ -165,7 +165,7 @@ test
 <?php
 echo 'foo';
 if (true) {
-    echo 'test';
+  echo 'test';
 }
 echo 'bar';
 ?>

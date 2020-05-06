@@ -102,68 +102,68 @@ call(
 =====================================output=====================================
 <?php
 $array = [
-    /* comment */
+  /* comment */
 ];
 $array = [
-    // comment
+  // comment
 ];
 $array = [
-    // comment
-    // comment
-    1, // comment
-    2, // comment
-    // comment
+  // comment
+  // comment
+  1, // comment
+  2, // comment
+  // comment
 ];
 $array = [
-    /* comment */
-    /* comment */
-    /* comment */ 1 /* comment */ /* comment */,
-    /* comment */ 2 /* comment */,
-    /* comment */
-    /* comment */
+  /* comment */
+  /* comment */
+  /* comment */ 1 /* comment */ /* comment */,
+  /* comment */ 2 /* comment */,
+  /* comment */
+  /* comment */
 ];
 $array = [
-    /* comment */
-    /* comment */
-    /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
-    /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */,
-    /* comment */
-    /* comment */
+  /* comment */
+  /* comment */
+  /* comment */ "foo" /* comment */ => /* comment */ "bar" /* comment */,
+  /* comment */ "bar" /* comment */ => /* comment */ "foo" /* comment */,
+  /* comment */
+  /* comment */
 ];
 $array = [
-    // test
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
+  // test
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
 ];
 $array = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6, // test
+  1,
+  2,
+  3,
+  4,
+  5,
+  6, // test
 ];
 const FOO = [
-    //testing
-    1,
+  //testing
+  1,
 ];
 
 return [
-    // foo
-    "bar",
+  // foo
+  "bar",
 ];
 
 $array = [
-    'type' => [],
-    'config' => [
-        // comments in nested arrays break things
-        'key' => 1,
-    ],
-    'accepted' => [],
+  'type' => [],
+  'config' => [
+    // comments in nested arrays break things
+    'key' => 1,
+  ],
+  'accepted' => [],
 ];
 
 // Comment
@@ -175,22 +175,22 @@ $array /* Comment */ = /* Comment */ []; /* Comment */
 /* Comment */
 
 $array = [
-    'key' =>
-        // Comment A
-        // Comment B
-        'string',
+  'key' =>
+    // Comment A
+    // Comment B
+    'string',
 ];
 
 $array = [
-    // Comment A
-    'key' =>
-        // Comment B
-        'string',
+  // Comment A
+  'key' =>
+    // Comment B
+    'string',
 ];
 
 $array = [
-    // Comment A
-    'key' => 'string',
+  // Comment A
+  'key' => 'string',
 ];
 
 []; // Comment
@@ -198,19 +198,19 @@ $array = [
 $array = []; // Comment
 
 $array = [
-    // Comment
-    'string',
-    'other-string',
+  // Comment
+  'string',
+  'other-string',
 ];
 
 call(
-    [] // Comment
+  [] // Comment
 );
 
 call([
-    // Comment
-    'string',
-    'other-string',
+  // Comment
+  'string',
+  'other-string',
 ]);
 
 ================================================================================
@@ -292,76 +292,76 @@ $var3;
 =====================================output=====================================
 <?php
 $var =
-    // Comment
-    'some' . 'long' . 'string';
+  // Comment
+  'some' . 'long' . 'string';
 
 $var =
-    // Comment
+  // Comment
 
-    'some' . 'long' . 'string';
-
-$var =
-    // Comment
-
-    'some' . 'long' . 'string';
+  'some' . 'long' . 'string';
 
 $var =
-    /* comment */
-    'some' . 'long' . 'string';
+  // Comment
+
+  'some' . 'long' . 'string';
 
 $var =
-    /**
-     * multi-line
-     */
-    'some' . 'long' . 'string';
+  /* comment */
+  'some' . 'long' . 'string';
 
 $var =
-    /* inline */ 'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string';
+  /**
+   * multi-line
+   */
+  'some' . 'long' . 'string';
+
+$var =
+  /* inline */ 'some' .
+  'long' .
+  'string' .
+  'some' .
+  'long' .
+  'string' .
+  'some' .
+  'long' .
+  'string' .
+  'some' .
+  'long' .
+  'string';
 
 $var = // Comment
-    // Comment
-    'some' . 'long' . 'string';
+  // Comment
+  'some' . 'long' . 'string';
 
 $var = 'some' . 'long' . 'string'; // Comment
 
 $var /* Comment */ =
-    // Comment
-    'some' . 'long' . 'string';
+  // Comment
+  'some' . 'long' . 'string';
 
 $var = // Comment/
-    /* Comment */
-    'some' . 'long' . 'string';
+  /* Comment */
+  'some' . 'long' . 'string';
 
 $var /* Comment */ = /* Comment */ 'some' . 'long' . 'string';
 
 // Comment
 $var =
+  // Comment
+  $var1 =
     // Comment
-    $var1 =
-        // Comment
-        $var2 =
-            // Comment
-            $var3;
+    $var2 =
+      // Comment
+      $var3;
 
 // Comment
 $var =
+  // Comment
+  $var1 =
     // Comment
-    $var1 =
-        // Comment
-        $var2 =
-            // Comment
-            $var3;
+    $var2 =
+      // Comment
+      $var3;
 
 ================================================================================
 `;
@@ -423,49 +423,49 @@ if ($bool0
 <?php
 
 $variable =
-    FormUtil::isEmpty($this->modelData) ||
-    // arrays, countables
-    ((is_array($this->modelData) || $this->modelData instanceof \\Countable) &&
-        0 === count($this->modelData)) ||
-    // traversables that are not countable
-    ($this->modelData instanceof \\Traversable &&
-        0 === iterator_count($this->modelData));
+  FormUtil::isEmpty($this->modelData) ||
+  // arrays, countables
+  ((is_array($this->modelData) || $this->modelData instanceof \\Countable) &&
+    0 === count($this->modelData)) ||
+  // traversables that are not countable
+  ($this->modelData instanceof \\Traversable &&
+    0 === iterator_count($this->modelData));
 
 if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
-    mb_internal_encoding('ASCII');
+  mb_internal_encoding('ASCII');
 }
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
 
 $a =
-    1 * // A
-    2 * // B
-    3;
+  1 * // A
+  2 * // B
+  3;
 
 //check if the offer applies to this site
 //state mismatch
 if (
-    !$this->pricingQueryOfferResult->offer ||
-    !$this->pricingQueryOfferResult->offer->offerGroup || // offer has a state but we don't
-    //!$this->pricingQuerySite->postcode ||
-    ($this->pricingQueryOfferResult->offer->offerGroup->state_id &&
-        !$this->pricingQuerySite->postcode->state_id) || // if we have a state and the offer has a state and they don't match, reject
-    ($this->pricingQuerySite->postcode &&
-        $this->pricingQuerySite->postcode->state_id &&
-        $this->pricingQueryOfferResult->offer->offerGroup->state_id &&
-        $this->pricingQuerySite->postcode->state_id !=
-            $this->pricingQueryOfferResult->offer->offerGroup->state_id)
+  !$this->pricingQueryOfferResult->offer ||
+  !$this->pricingQueryOfferResult->offer->offerGroup || // offer has a state but we don't
+  //!$this->pricingQuerySite->postcode ||
+  ($this->pricingQueryOfferResult->offer->offerGroup->state_id &&
+    !$this->pricingQuerySite->postcode->state_id) || // if we have a state and the offer has a state and they don't match, reject
+  ($this->pricingQuerySite->postcode &&
+    $this->pricingQuerySite->postcode->state_id &&
+    $this->pricingQueryOfferResult->offer->offerGroup->state_id &&
+    $this->pricingQuerySite->postcode->state_id !=
+      $this->pricingQueryOfferResult->offer->offerGroup->state_id)
 ) {
-    $this->hasResult = false;
-    $this->removedReason = 'State Mismatch';
+  $this->hasResult = false;
+  $this->removedReason = 'State Mismatch';
 }
 
 if (
-    $bool0 ||
-    $bool1 || // if condition 1
-    $bool2 // if condition 2
+  $bool0 ||
+  $bool1 || // if condition 1
+  $bool2 // if condition 2
 ) {
-    $ok = true;
+  $ok = true;
 }
 
 ================================================================================
@@ -521,13 +521,13 @@ loop: for (;;) {
 <?php
 
 for (;;) {
-    break; /* Comment */
+  break; /* Comment */
 }
 
 loop:
 for (;;) {
-    break; /* Comment */
-    break; /* Comment */
+  break; /* Comment */
+  break; /* Comment */
 }
 
 ================================================================================
@@ -579,43 +579,43 @@ $var->render(
 <?php
 
 foo(
-    /* Comment */ $a /* Comment */,
-    /* Comment */ [] /* Comment */,
-    /* Comment */ $a + 2 /* Comment */
+  /* Comment */ $a /* Comment */,
+  /* Comment */ [] /* Comment */,
+  /* Comment */ $a + 2 /* Comment */
 );
 foo(/* A */);
 $foo->bar(/* B */);
 
 render(
-    // Comment
-    'string',
-    $container
+  // Comment
+  'string',
+  $container
 );
 
 $var->render(
-    // Comment
-    'string',
-    $var
+  // Comment
+  'string',
+  $var
 );
 
 render(
-    'string',
-    $container
-    // Comment
+  'string',
+  $container
+  // Comment
 );
 
 $var->render(
-    'string',
-    $var
-    // Comment
+  'string',
+  $var
+  // Comment
 );
 
 $var->render(
-    // Comment
-    'string',
-    // Comment
-    $var
-    // Comment
+  // Comment
+  'string',
+  // Comment
+  $var
+  // Comment
 );
 
 ================================================================================
@@ -644,11 +644,11 @@ $var = (int) // Comment
 $var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
 
 $var = (int) // Comment
-    $a;
+  $a;
 
 $var = (int) // Comment
-    // Comment
-    $a;
+  // Comment
+  $a;
 
 ================================================================================
 `;
@@ -685,28 +685,28 @@ $a /* Comment */::/* Comment */ bar();
 <?php
 
 $var = $var
-    // Comment
-    ->each() // Comment
-    // Comment
-    ->map() // Comment
-    // Comment
-    ->first() // Comment
-    // Comment
-    ->dump();
+  // Comment
+  ->each() // Comment
+  // Comment
+  ->map() // Comment
+  // Comment
+  ->first() // Comment
+  // Comment
+  ->dump();
 
 $var = $a /* Comment*/->/*Comment*/ bar;
 $var = $a /* Comment */['test'];
 $var = $a /* Comment */
-    ->/* Comment */ bar();
+  ->/* Comment */ bar();
 $var = $a /* Comment */
-    ::/* Comment */ bar();
+  ::/* Comment */ bar();
 
 $a /* Comment*/->/*Comment*/ bar /* Comment */;
 $a /* Comment */['test'];
 $a /* Comment */
-    ->/* Comment */ bar();
+  ->/* Comment */ bar();
 $a /* Comment */
-    ::/* Comment */ bar();
+  ::/* Comment */ bar();
 
 ================================================================================
 `;
@@ -865,111 +865,111 @@ use Some\\other\\test;
  */
 class Foo extends Bar implements Baz, Buzz
 {
-    public $test;
+  public $test;
 
-    function test()
-    {
-        return "test";
-    }
+  function test()
+  {
+    return "test";
+  }
 
-    public function &passByReferenceTest()
-    {
-        $a = 1;
-        return $a;
-    }
+  public function &passByReferenceTest()
+  {
+    $a = 1;
+    return $a;
+  }
 }
 
 return new class($this->taxonomy, $this->post_types) extends Taxonomy_Config {
-    // body of anonymous class
-    public function get_args()
-    {
-        // body of member function of anonymous class
-        return []; // after return in member function of anonymous class
-    } // after member function on anonymous class
+  // body of anonymous class
+  public function get_args()
+  {
+    // body of member function of anonymous class
+    return []; // after return in member function of anonymous class
+  } // after member function on anonymous class
 };
 
 $test = new class($arg1) extends Test {
-    // some comment
+  // some comment
 };
 
 $test = new class {
-    //some comment
+  //some comment
 };
 
 namespace Tribe\\Project\\Twig;
 
 interface Template_Interface
 {
-    /**
-     * Build the data that will be available to the template
-     *
-     * @return array
-     */
-    public function get_data(): array;
+  /**
+   * Build the data that will be available to the template
+   *
+   * @return array
+   */
+  public function get_data(): array;
 
-    /**
-     * Render the template and return it as a string
-     *
-     * @return string The rendered template
-     */
-    public function render(): string;
+  /**
+   * Render the template and return it as a string
+   *
+   * @return string The rendered template
+   */
+  public function render(): string;
 }
 
 class Foo
 {
-    /* Comment */
+  /* Comment */
 }
 interface FooI
 {
-    /* Comment */
+  /* Comment */
 }
 trait FooT
 {
-    /* Comment */
+  /* Comment */
 }
 
 // 424 : Method failure
 class ResponseMethodFailure
-    // behaves as an error
-    extends ResponseNotAcceptable
-    implements
-        // Some comment
-        FooBar,
-        // Another comment
-        BarBaz
+  // behaves as an error
+  extends ResponseNotAcceptable
+  implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
 {
 }
 
 // 424 : Method failure
 class ResponseMethodFailure
-    // behaves as an error
-    extends ResponseNotAcceptable
-    implements
-        // Some comment
-        FooBar,
-        // Another comment
-        BarBaz
+  // behaves as an error
+  extends ResponseNotAcceptable
+  implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
 {
 }
 
 // 424 : Method failure
 class ResponseMethodFailure
-    // behaves as an error
-    extends ResponseNotAcceptable
-    implements
-        // Some comment
-        FooBar,
-        // Another comment
-        BarBaz
+  // behaves as an error
+  extends ResponseNotAcceptable
+  implements
+    // Some comment
+    FooBar,
+    // Another comment
+    BarBaz
 {
 }
 
 // 424 : Method failure
 class ResponseMethodFailure extends ResponseNotAcceptable implements
-    // Some comment
-    FooBar,
-    // Another comment
-    BarBaz
+  // Some comment
+  FooBar,
+  // Another comment
+  BarBaz
 {
 }
 
@@ -984,7 +984,7 @@ class MyClass
 
 class MyClass
 {
-    // Comment
+  // Comment
 }
 
 $var = new class {};
@@ -993,7 +993,7 @@ $var = new class {};
 $var = new class {};
 
 $var = new class {
-    // Comment
+  // Comment
 };
 
 ================================================================================
@@ -1046,33 +1046,33 @@ $var = new class {
 <?php
 
 $var = new class {
-    const CONSTANT =
-        // Comment 1
-        // Comment 2
-        'string';
-};
-
-$var = new class {
-    const CONSTANT = // Comment 1
-        // Comment 2
-        'string';
-};
-
-$var = new class {
-    // Comment 1
-    const CONSTANT =
-        // Comment 2
-        // Comment 3
-        'string';
-};
-
-$var = new class {
+  const CONSTANT =
     // Comment 1
     // Comment 2
-    public const CONSTANT =
-        // Comment 3
-        // Comment 4
-        'string';
+    'string';
+};
+
+$var = new class {
+  const CONSTANT = // Comment 1
+    // Comment 2
+    'string';
+};
+
+$var = new class {
+  // Comment 1
+  const CONSTANT =
+    // Comment 2
+    // Comment 3
+    'string';
+};
+
+$var = new class {
+  // Comment 1
+  // Comment 2
+  public const CONSTANT =
+    // Comment 3
+    // Comment 4
+    'string';
 };
 
 ================================================================================
@@ -1097,7 +1097,7 @@ $obj2 = clone // Comment
 $obj2 = clone /* Comments */ $obj /* Comments */;
 
 $obj2 = clone // Comment
-    $obj;
+  $obj;
 
 ================================================================================
 `;
@@ -1151,36 +1151,36 @@ $this
 $var = function (/* Comment */) {};
 $var = function (/* Comment */ $arg /* Comment */) {};
 $var = function () {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 };
 $var = function () {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 };
 $var = function () {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 };
 $var = function () {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 };
 
 $this
+  // Comment
+  ->map(function ($protocol) {
     // Comment
-    ->map(function ($protocol) {
-        // Comment
 
-        return $protocol;
-    })
+    return $protocol;
+  })
+  // Comment
+  // Comment
+  ->call(function ($arg) {
     // Comment
-    // Comment
-    ->call(function ($arg) {
-        // Comment
 
-        return $arg;
-    });
+    return $arg;
+  });
 
 ================================================================================
 `;
@@ -1382,21 +1382,21 @@ $hi = 1;
  */
 class Foo
 {
-    /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */
-    protected $title = null;
+  /** @var string|null $title contains a title for the Foo with a max. length of 24 characters */
+  protected $title = null;
 
-    /**
-     * Sets a single-line title.
-     *
-     * @param string $title A text with a maximum of 24 characters.
-     *
-     * @return void
-     */
-    public function setTitle($title)
-    {
-        // there should be no docblock here
-        $this->title = $title;
-    }
+  /**
+   * Sets a single-line title.
+   *
+   * @param string $title A text with a maximum of 24 characters.
+   *
+   * @return void
+   */
+  public function setTitle($title)
+  {
+    // there should be no docblock here
+    $this->title = $title;
+  }
 }
 
 /*********************
@@ -1417,46 +1417,46 @@ lines
 # This is a one-line shell-style comment
 
 for ($i = 0; $i < 10; $i++) {
-    // some comment
-    $a = 1;
-    $b = 2;
+  // some comment
+  $a = 1;
+  $b = 2;
 
-    while (true) {
-        // Some comment
-        $test = 1;
-    }
+  while (true) {
+    // Some comment
+    $test = 1;
+  }
 }
 
 while (true) {
-    // some comment
+  // some comment
 }
 
 do {
-    // some comment
+  // some comment
 } while (true);
 
 $test =
-    foo ?:
-    bar(function () {
-        $foo = "bar";
-        // test
-    });
+  foo ?:
+  bar(function () {
+    $foo = "bar";
+    // test
+  });
 
 $test = foo
-    ? true
-    : bar(function () {
-        $foo = "bar";
-        // test
-    });
+  ? true
+  : bar(function () {
+    $foo = "bar";
+    // test
+  });
 
 $constraint = new UniqueEntity([
-    'message' => 'myMessage',
-    // no "em" option set
+  'message' => 'myMessage',
+  // no "em" option set
 ]);
 
 return // parens test
-    // some comment
-    $test;
+  // some comment
+  $test;
 
 /***
  * Configures the tasks tabs (sub_menu)
@@ -1464,10 +1464,10 @@ return // parens test
 
 class Test
 {
-    /******************************************
-     * ORIGINAL SHIPPING DATA
-     *****************************************/
-    public $test;
+  /******************************************
+   * ORIGINAL SHIPPING DATA
+   *****************************************/
+  public $test;
 }
 
 /*
@@ -1526,13 +1526,13 @@ loop: for (;;) {
 <?php
 
 for (;;) {
-    continue; /* comment */
+  continue; /* comment */
 }
 
 loop:
 for (;;) {
-    continue; /* comment */
-    continue; /* comment */
+  continue; /* comment */
+  continue; /* comment */
 }
 
 ================================================================================
@@ -1599,14 +1599,14 @@ declare // Comment
 <?php
 
 declare(ticks=1) {
-    // Comment
+  // Comment
 }
 
 // Comment
 declare(ticks=1) {
-    // Comment
-    $a = 1;
-    // Comment
+  // Comment
+  $a = 1;
+  // Comment
 }
 
 // Comment
@@ -1615,32 +1615,32 @@ declare(ticks=1);
 
 // Comment
 declare(ticks=1):
-    // Comment
-    $test = 1;
-    // Comment
+  // Comment
+  $test = 1;
+  // Comment
 enddeclare;
 // Comment
 
 declare(ticks=1) {
-    // Comment
+  // Comment
 }
 
 declare(ticks=1) {
-    // Comment
+  // Comment
 }
 
 declare(ticks=1) {
-    // Comment
-    $a = 1;
+  // Comment
+  $a = 1;
 }
 
 declare(ticks=1) {
-    // Comment
-    $a = 1;
+  // Comment
+  $a = 1;
 }
 
 declare(ticks=1) {
-    // Comment
+  // Comment
 }
 
 declare(/* Comment */ /* Comment */ ticks /* Comment */=/* Comment */ 1 /* Comment */) {
@@ -2048,10 +2048,10 @@ do {
 <?php
 // Comment
 do {
-    // Comment
-    // Comment
-    echo $i; // Comment
-    // Comment
+  // Comment
+  // Comment
+  echo $i; // Comment
+  // Comment
 } while ($i > 0); // Comment
 
 do {
@@ -2412,131 +2412,131 @@ $GLOBALS['_NET_SAMPLE_Count'] = 0;
  */
 class Net_Sample
 {
-    // {{{ properties
+  // {{{ properties
 
-    /**
-     * The status of foo's universe
-     *
-     * Potential values are 'good', 'fair', 'poor' and 'unknown'.
-     *
-     * @var string
+  /**
+   * The status of foo's universe
+   *
+   * Potential values are 'good', 'fair', 'poor' and 'unknown'.
+   *
+   * @var string
+   */
+  var $foo = 'unknown';
+
+  /**
+   * The status of life
+   *
+   * Note that names of private properties or methods must be
+   * preceeded by an underscore.
+   *
+   * @var bool
+   * @access private
+   */
+  var $_good = true;
+
+  // }}}
+  // {{{ setFoo()
+
+  /**
+   * Registers the status of foo's universe
+   *
+   * Summaries for methods should use 3rd person declarative rather
+   * than 2nd person imperative, beginning with a verb phrase.
+   *
+   * Summaries should add description beyond the method's name. The
+   * best method names are "self-documenting", meaning they tell you
+   * basically what the method does.  If the summary merely repeats
+   * the method name in sentence form, it is not providing more
+   * information.
+   *
+   * Summary Examples:
+   *   + Sets the label              (preferred)
+   *   + Set the label               (avoid)
+   *   + This method sets the label  (avoid)
+   *
+   * Below are the tags commonly used for methods.  A @param tag is
+   * required for each parameter the method has.  The @return
+   * and @access tags are mandatory.  The @throws tag is required if
+   * the method uses exceptions.  @static is required if the method can
+   * be called statically.  The remainder should only be used when
+   * necessary.  Please use them in the order they appear here.
+   * phpDocumentor has several other tags available, feel free to use
+   * them.
+   *
+   * The @param tag contains the data type, then the parameter's
+   * name, followed by a description.  By convention, the first noun in
+   * the description is the data type of the parameter.  Articles like
+   * "a", "an", and  "the" can precede the noun.  The descriptions
+   * should start with a phrase.  If further description is necessary,
+   * follow with sentences.  Having two spaces between the name and the
+   * description aids readability.
+   *
+   * When writing a phrase, do not capitalize and do not end with a
+   * period:
+   *   + the string to be tested
+   *
+   * When writing a phrase followed by a sentence, do not capitalize the
+   * phrase, but end it with a period to distinguish it from the start
+   * of the next sentence:
+   *   + the string to be tested. Must use UTF-8 encoding.
+   *
+   * Return tags should contain the data type then a description of
+   * the data returned.  The data type can be any of PHP's data types
+   * (int, float, bool, string, array, object, resource, mixed)
+   * and should contain the type primarily returned.  For example, if
+   * a method returns an object when things work correctly but false
+   * when an error happens, say 'object' rather than 'mixed.'  Use
+   * 'void' if nothing is returned.
+   *
+   * Here's an example of how to format examples:
+   * <code>
+   * require_once 'Net/Sample.php';
+   *
+   * $s = new Net_Sample();
+   * if (PEAR::isError($s)) {
+   *     echo $s->getMessage() . "\\n";
+   * }
+   * </code>
+   *
+   * Here is an example for non-php example or sample:
+   * <samp>
+   * pear install net_sample
+   * </samp>
+   *
+   * @param string $arg1 the string to quote
+   * @param int    $arg2 an integer of how many problems happened.
+   *                     Indent to the description's starting point
+   *                     for long ones.
+   *
+   * @return int the integer of the set mode used. FALSE if foo
+   *             foo could not be set.
+   * @throws exceptionclass [description]
+   *
+   * @access public
+   * @static
+   * @see Net_Sample::$foo, Net_Other::someMethod()
+   * @since Method available since Release 1.2.0
+   * @deprecated Method deprecated in Release 2.0.0
+   */
+  function setFoo($arg1, $arg2 = 0)
+  {
+    /*
+     * This is a "Block Comment."  The format is the same as
+     * Docblock Comments except there is only one asterisk at the
+     * top.  phpDocumentor doesn't parse these.
      */
-    var $foo = 'unknown';
-
-    /**
-     * The status of life
-     *
-     * Note that names of private properties or methods must be
-     * preceeded by an underscore.
-     *
-     * @var bool
-     * @access private
-     */
-    var $_good = true;
-
-    // }}}
-    // {{{ setFoo()
-
-    /**
-     * Registers the status of foo's universe
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * Summaries should add description beyond the method's name. The
-     * best method names are "self-documenting", meaning they tell you
-     * basically what the method does.  If the summary merely repeats
-     * the method name in sentence form, it is not providing more
-     * information.
-     *
-     * Summary Examples:
-     *   + Sets the label              (preferred)
-     *   + Set the label               (avoid)
-     *   + This method sets the label  (avoid)
-     *
-     * Below are the tags commonly used for methods.  A @param tag is
-     * required for each parameter the method has.  The @return
-     * and @access tags are mandatory.  The @throws tag is required if
-     * the method uses exceptions.  @static is required if the method can
-     * be called statically.  The remainder should only be used when
-     * necessary.  Please use them in the order they appear here.
-     * phpDocumentor has several other tags available, feel free to use
-     * them.
-     *
-     * The @param tag contains the data type, then the parameter's
-     * name, followed by a description.  By convention, the first noun in
-     * the description is the data type of the parameter.  Articles like
-     * "a", "an", and  "the" can precede the noun.  The descriptions
-     * should start with a phrase.  If further description is necessary,
-     * follow with sentences.  Having two spaces between the name and the
-     * description aids readability.
-     *
-     * When writing a phrase, do not capitalize and do not end with a
-     * period:
-     *   + the string to be tested
-     *
-     * When writing a phrase followed by a sentence, do not capitalize the
-     * phrase, but end it with a period to distinguish it from the start
-     * of the next sentence:
-     *   + the string to be tested. Must use UTF-8 encoding.
-     *
-     * Return tags should contain the data type then a description of
-     * the data returned.  The data type can be any of PHP's data types
-     * (int, float, bool, string, array, object, resource, mixed)
-     * and should contain the type primarily returned.  For example, if
-     * a method returns an object when things work correctly but false
-     * when an error happens, say 'object' rather than 'mixed.'  Use
-     * 'void' if nothing is returned.
-     *
-     * Here's an example of how to format examples:
-     * <code>
-     * require_once 'Net/Sample.php';
-     *
-     * $s = new Net_Sample();
-     * if (PEAR::isError($s)) {
-     *     echo $s->getMessage() . "\\n";
-     * }
-     * </code>
-     *
-     * Here is an example for non-php example or sample:
-     * <samp>
-     * pear install net_sample
-     * </samp>
-     *
-     * @param string $arg1 the string to quote
-     * @param int    $arg2 an integer of how many problems happened.
-     *                     Indent to the description's starting point
-     *                     for long ones.
-     *
-     * @return int the integer of the set mode used. FALSE if foo
-     *             foo could not be set.
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     * @static
-     * @see Net_Sample::$foo, Net_Other::someMethod()
-     * @since Method available since Release 1.2.0
-     * @deprecated Method deprecated in Release 2.0.0
-     */
-    function setFoo($arg1, $arg2 = 0)
-    {
-        /*
-         * This is a "Block Comment."  The format is the same as
-         * Docblock Comments except there is only one asterisk at the
-         * top.  phpDocumentor doesn't parse these.
-         */
-        if ($arg1 == 'good' || $arg1 == 'fair') {
-            $this->foo = $arg1;
-            return 1;
-        } elseif ($arg1 == 'poor' && $arg2 > 1) {
-            $this->foo = 'poor';
-            return 2;
-        } else {
-            return false;
-        }
+    if ($arg1 == 'good' || $arg1 == 'fair') {
+      $this->foo = $arg1;
+      return 1;
+    } elseif ($arg1 == 'poor' && $arg2 > 1) {
+      $this->foo = 'poor';
+      return 2;
+    } else {
+      return false;
     }
+  }
 
-    // }}}
+  // }}}
 }
 
 // }}}
@@ -2630,27 +2630,27 @@ $int++;
  */
 class Foo
 {
-    /** @var string|null $title contains a title for the Foo */
-    protected $title = null;
+  /** @var string|null $title contains a title for the Foo */
+  protected $title = null;
 
-    /**
-     * Sets a single-line title.
-     *
-     * @param string $title A text for the title.
-     *
-     * @return void
-     */
-    public function setTitle($title)
-    {
-        // there should be no docblock here
-        $this->title = $title;
-    }
+  /**
+   * Sets a single-line title.
+   *
+   * @param string $title A text for the title.
+   *
+   * @return void
+   */
+  public function setTitle($title)
+  {
+    // there should be no docblock here
+    $this->title = $title;
+  }
 }
 
 /** @var \\Sqlite3 $sqlite */
 foreach ($connections as $sqlite) {
-    // there should be no docblock here
-    $sqlite->open('/my/database/path');
+  // there should be no docblock here
+  $sqlite->open('/my/database/path');
 }
 
 /**
@@ -2722,40 +2722,40 @@ EOD
 
 // Comment
 echo // Comment
-    $foo, // Comment
-    $bar; // Comment // Comment
+  $foo, // Comment
+  $bar; // Comment // Comment
 
 /* Comment */ echo /* Comment */ $foo /* Comment */,
-    /* Comment */ $bar /* Comment */; /* Comment */
+  /* Comment */ $bar /* Comment */; /* Comment */
 
 echo // Comment
-    $a;
+  $a;
 
 echo // Comment
-    call();
+  call();
 
 echo // Comment
-    call(
-        $veryVeryVeryVeryVeryVeryVeryLongArg,
-        $veryVeryVeryVeryVeryVeryVeryLongArg,
-        $veryVeryVeryVeryVeryVeryVeryLongArg
-    );
+  call(
+    $veryVeryVeryVeryVeryVeryVeryLongArg,
+    $veryVeryVeryVeryVeryVeryVeryLongArg,
+    $veryVeryVeryVeryVeryVeryVeryLongArg
+  );
 
 echo // Comment
-    <<<EOD
+  <<<EOD
 Example of string
 spanning multiple lines
 using heredoc syntax.
 EOD;
 
 echo // Comment
-    <<<EOD
+  <<<EOD
 Example of string
 spanning multiple lines
 using heredoc syntax.
 EOD
-    ,
-    $a;
+  ,
+  $a;
 
 ================================================================================
 `;
@@ -2790,19 +2790,19 @@ function testFunction ($arg1, /* inline */ $arg2) {
 <?php
 class Test
 {
-    public function testFunction(/* inline */ $arg)
-    {
-        // body
-    }
+  public function testFunction(/* inline */ $arg)
+  {
+    // body
+  }
 
-    function testFunction($arg1, /* inline */ $arg2)
-    {
-    }
+  function testFunction($arg1, /* inline */ $arg2)
+  {
+  }
 }
 
 function testFunction(/* inline */ $arg)
 {
-    // body
+  // body
 }
 
 function testFunction($arg1, /* inline */ $arg2)
@@ -2839,22 +2839,22 @@ if (
 <?php
 
 if (empty(/* Comment */ [] /* Comment */)) {
-    echo "Foo";
+  echo "Foo";
 }
 
 if (
-    empty(
-        // Comment
-        $a
-    )
+  empty(
+    // Comment
+    $a
+  )
 ) {
 }
 
 if (
-    empty(
-        // Comment
-        $a
-    )
+  empty(
+    // Comment
+    $a
+  )
 ) {
 }
 
@@ -2896,19 +2896,19 @@ eval // Call
 <?php
 
 eval(
-    /* Comment */
-    "echo 'test';"
-    /* Comment */
+  /* Comment */
+  "echo 'test';"
+  /* Comment */
 );
 
 eval(
-    // Comment
-    $a
+  // Comment
+  $a
 );
 
 eval(
-    // Comment
-    'return "1";'
+  // Comment
+  'return "1";'
 );
 
 // Comment
@@ -2916,12 +2916,12 @@ eval('return "1";');
 
 eval('return "1";'); // Comment
 eval(
-    // Call
-    $var
+  // Call
+  $var
 );
 eval(
-    // Call
-    $var
+  // Call
+  $var
 );
 
 ================================================================================
@@ -2951,22 +2951,22 @@ exit // Call
 <?php
 
 exit(
-    /* Comment */);
+  /* Comment */);
 exit(/* Comment */ 1);
 exit(1 /* Comment */);
 exit(/* Comment */ 1 /* Comment */);
 exit(
-    /* Comment */);
+  /* Comment */);
 /* Comment */ exit(
-    /* Comment */
-    /* Comment */);
+  /* Comment */
+  /* Comment */);
 exit(
-    // Call
-    $var
+  // Call
+  $var
 );
 exit(
-    // Call
-    $var
+  // Call
+  $var
 );
 
 ================================================================================
@@ -3056,72 +3056,72 @@ for (;;);
 
 // Comment
 for ($i = 1; $i <= 10; $i++) {
-    // Comment
-    // Comment
-    echo $i; // Comment
-    // Comment
+  // Comment
+  // Comment
+  echo $i; // Comment
+  // Comment
 } // Comment
 
 for (
-    /* Comments */ $i /* Comments */ = /* Comments */ 1 /* Comments */;
-    /* Comments */ $i /* Comments */ <= /* Comments */ 10 /* Comments */;
-    /* Comments */ $i++ /* Comments */
+  /* Comments */ $i /* Comments */ = /* Comments */ 1 /* Comments */;
+  /* Comments */ $i /* Comments */ <= /* Comments */ 10 /* Comments */;
+  /* Comments */ $i++ /* Comments */
 ) {
-    echo $i;
+  echo $i;
 }
 
 foreach ([1, 2, 3] as $i) {
-    // this comment will screw things up
-    echo $i;
+  // this comment will screw things up
+  echo $i;
 }
 
 for ($i = 1; $i < 10; $i++) {
-    // this comment will screw things up
-    echo $i;
+  // this comment will screw things up
+  echo $i;
 }
 
 for (;;) {
-    // Comment
+  // Comment
 }
 
 for (
-    // Comment
-    $i = 0;
-    // Comment
-    $i <= 5;
-    // Comment
-    $i++
+  // Comment
+  $i = 0;
+  // Comment
+  $i <= 5;
+  // Comment
+  $i++
 ) {
 }
 
 for (
-    $i = 0; // Comment
-    $i <= 5; // Comment
-    $i++ // Comment
+  $i = 0; // Comment
+  $i <= 5; // Comment
+  $i++ // Comment
 ) {
 }
 
 for (
-    // Comment
-    $i = 0;
-    $i <= 5;
-    $i++
+  // Comment
+  $i = 0;
+  $i <= 5;
+  $i++
 ) {
 }
 
 for (
-    // Comment
-    $i = 1,
-    // Comment
-    $j = 0;
-    // Comment
-    $i <= 10;
-    // Comment
-    $j += $i,
-    // Comment
-    print $i,
-    // Comment
-    print $i++
+  // Comment
+  $i = 1,
+  // Comment
+  $j = 0;
+  // Comment
+  $i <= 10;
+  // Comment
+  $j += $i,
+  // Comment
+  print $i,
+  // Comment
+  print $i++
 );
 
 ================================================================================
@@ -3183,35 +3183,34 @@ foreach (
 <?php
 // Comment
 foreach ($iterable as $value) {
-    // Comment
-    // Comment
-    echo 'Foo'; // Comment
-    // Comment
+  // Comment
+  // Comment
+  echo 'Foo'; // Comment
+  // Comment
 } // Comment
 
 foreach (
-    /* Comments */ $iterable /* Comments */
-    as /* Comments */ $value /* Comments */
+  /* Comments */ $iterable /* Comments */
+  as /* Comments */ $value /* Comments */
 ) {
 }
 
 foreach (
-    /* Comments */ $iterable /* Comments */
-    as /* Comments */ $key /* Comments */ =>
-        /* Comments */ $value /* Comments */
+  /* Comments */ $iterable /* Comments */
+  as /* Comments */ $key /* Comments */ => /* Comments */ $value /* Comments */
 ) {
 }
 
 foreach (
-    $x //b
-    as /*a*/
-    $y //c
+  $x //b
+  as /*a*/
+  $y //c
 ) {
 }
 
 foreach (
-    $x /*a*/ //b
-    as $y
+  $x /*a*/ //b
+  as $y
 ) {
 } //c
 
@@ -3219,31 +3218,31 @@ foreach ($x /*a*/ as $y) {
 } //b //c
 
 foreach (
-    $x
-    as //a
-    $y
+  $x
+  as //a
+  $y
 ) {
 }
 
 foreach (
-    $x
-    as //a
-    $y
+  $x
+  as //a
+  $y
 ) {
 }
 
 foreach (
+  // Comment
+  $arr
+  as &$value
+) {
+}
+
+foreach (
+  $arr
+  as $key =>
     // Comment
-    $arr
-    as &$value
-) {
-}
-
-foreach (
-    $arr
-    as $key =>
-        // Comment
-        $value
+    $value
 ) {
 }
 
@@ -3336,26 +3335,26 @@ use const Vendor\\Package\\{ConstantA, ConstantB, ConstantC};
 // Comment
 class Foo extends Bar implements FooInterface
 {
+  // Comment
+  public function sampleFunction(int $a, int $b = null): array
+  {
     // Comment
-    public function sampleFunction(int $a, int $b = null): array
-    {
-        // Comment
-        if ($a === $b) {
-            // Comment
-            bar();
-        } elseif ($a > $b) {
-            $foo->bar($arg1);
-        } else {
-            BazClass::bar($arg2, $arg3);
-        }
-        // Comment
+    if ($a === $b) {
+      // Comment
+      bar();
+    } elseif ($a > $b) {
+      $foo->bar($arg1);
+    } else {
+      BazClass::bar($arg2, $arg3);
     }
+    // Comment
+  }
 
-    // Comment
-    final public static function bar()
-    {
-        // method body
-    }
+  // Comment
+  final public static function bar()
+  {
+    // method body
+  }
 }
 // Comment
 
@@ -3432,38 +3431,38 @@ function func()
 }
 // Comment
 function foo(
-    // Comment
-    int $a,
-    // Comment
-    string $b,
-    bool $c // Comment
+  // Comment
+  int $a,
+  // Comment
+  string $b,
+  bool $c // Comment
 ) {
 }
 
 function foo()
 {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 }
 function foo()
 {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 }
 function foo()
 {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 }
 function foo()
 {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 }
 function foo()
 {
-    // this is a function
-    return 42;
+  // this is a function
+  return 42;
 }
 
 ================================================================================
@@ -3492,12 +3491,12 @@ global // Comment
 
 global /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 global // Comment
-    $a;
+  $a;
 global // Comment
-    $a;
+  $a;
 global // Comment
-    $a,
-    $b;
+  $a,
+  $b;
 
 ================================================================================
 `;
@@ -3963,24 +3962,24 @@ if (/* Comment*/ $var /* Comment*/) /* Comment*/ {}
 <?php
 // Comment 1
 if (1) {
-    // Comment 2
-    // Comment 3
-    echo "Foo"; // Comment 4
-    // Comment 5
+  // Comment 2
+  // Comment 3
+  echo "Foo"; // Comment 4
+  // Comment 5
 }
 // Comment 6
 elseif (2) {
-    // Comment 7
-    // Comment 8
-    echo "Bar";
-    // Comment 9
+  // Comment 7
+  // Comment 8
+  echo "Bar";
+  // Comment 9
 }
 // Comment 10
 else {
-    // Comment 11
-    // Comment 12
-    echo "FooBar";
-    // Comment 13
+  // Comment 11
+  // Comment 12
+  echo "FooBar";
+  // Comment 13
 } // Comment 14
 
 if (/* Comments */ true /* Comments */) {
@@ -3989,299 +3988,299 @@ if (/* Comments */ true /* Comments */) {
 }
 
 if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
-    mb_internal_encoding('ASCII');
+  mb_internal_encoding('ASCII');
 }
 
 // this is a comment on an if
 if (false) {
-    do_nothing();
+  do_nothing();
 }
 
 // and this is a comment on an elseif
 elseif (false) {
-    also_do_nothing();
+  also_do_nothing();
 }
 
 if (1) {
-    // comment
-    false;
+  // comment
+  false;
 }
 // comment
 elseif (2) {
-    true;
+  true;
 }
 // multi
 // ple
 // lines
 elseif (3) {
-    // existing comment
-    true;
+  // existing comment
+  true;
 }
 // okay?
 elseif (4) {
-    // empty with existing comment
+  // empty with existing comment
 }
 // comment
 else {
 }
 
 if (5) {
-    // comment
-    true;
+  // comment
+  true;
 }
 
 if (6) {
-    // comment
-    true;
+  // comment
+  true;
 } elseif (7) {
-    // comment
-    true;
+  // comment
+  true;
 }
 // comment
 else {
-    true;
+  true;
 }
 
 if (8) {
-    // comment
-    // comment
-    true;
+  // comment
+  // comment
+  true;
 } elseif (9) {
-    // comment
-    // comment
-    true;
+  // comment
+  // comment
+  true;
 }
 // comment
 // comment
 else {
-    true;
+  true;
 }
 
 if (10) {
-    /* comment */ // comment
-    true;
+  /* comment */ // comment
+  true;
 } elseif (11) {
-    /* comment */
-    true;
+  /* comment */
+  true;
 } elseif (12) {
-    // comment /* comment */ // comment
-    true;
+  // comment /* comment */ // comment
+  true;
 } elseif (13) {
-    /* comment */ /* comment */ // comment
-    true;
+  /* comment */ /* comment */ // comment
+  true;
 } /* comment */ else {
-    true;
+  true;
 }
 
 if (14) {
-    // comment
-    /* comment */
-    // comment
-    true;
+  // comment
+  /* comment */
+  // comment
+  true;
 } elseif (15) {
-    // comment
-    /* comment */
-    /* comment */ // comment
-    true;
+  // comment
+  /* comment */
+  /* comment */ // comment
+  true;
 }
 
 if ($cond) {
-    stuff();
+  stuff();
 } /* comment */ elseif ($cond) {
-    stuff();
+  stuff();
 }
 // comment
 else {
-    stuff();
+  stuff();
 }
 
 if ($cond) {
-    stuff();
+  stuff();
 }
 // comment
 else {
-    stuff();
+  stuff();
 }
 
 function f()
 {
-    if ($untrackedChoice === 0) {
-        /* Cancel */ return null;
-    } elseif ($untrackedChoice === 1) {
-        /* Add */ yield $repository->addAll($args);
-        $shouldAmend = true;
-    } elseif ($untrackedChoice === 2) {
-        /* Allow Untracked */ $allowUntracked = true;
-    }
+  if ($untrackedChoice === 0) {
+    /* Cancel */ return null;
+  } elseif ($untrackedChoice === 1) {
+    /* Add */ yield $repository->addAll($args);
+    $shouldAmend = true;
+  } elseif ($untrackedChoice === 2) {
+    /* Allow Untracked */ $allowUntracked = true;
+  }
 }
 
 function f()
 {
-    if ($untrackedChoice === 0) {
-        /* Cancel */
-        null;
-    } elseif ($untrackedChoice === 1) {
-        /* Add */
-        $shouldAmend = true;
-    } elseif ($untrackedChoice === 2) {
-        /* Allow Untracked */
-        $allowUntracked = true;
-    }
+  if ($untrackedChoice === 0) {
+    /* Cancel */
+    null;
+  } elseif ($untrackedChoice === 1) {
+    /* Add */
+    $shouldAmend = true;
+  } elseif ($untrackedChoice === 2) {
+    /* Allow Untracked */
+    $allowUntracked = true;
+  }
 }
 
 function f()
 {
-    if ($untrackedChoice === 0) {
-        /* Cancel */ // Cancel
-        null;
-    } elseif ($untrackedChoice === 1) {
-        /* Add */ // Add
-        $shouldAmend = true;
-    } elseif ($untrackedChoice === 2) {
-        /* Allow Untracked */ // Allow Untracked
-        $allowUntracked = true;
-    }
+  if ($untrackedChoice === 0) {
+    /* Cancel */ // Cancel
+    null;
+  } elseif ($untrackedChoice === 1) {
+    /* Add */ // Add
+    $shouldAmend = true;
+  } elseif ($untrackedChoice === 2) {
+    /* Allow Untracked */ // Allow Untracked
+    $allowUntracked = true;
+  }
 }
 
 function f()
 {
-    if ($untrackedChoice === 0) {
-        /* Cancel */ return null;
-    } elseif ($untrackedChoice === 1) {
-        /* Add */ yield $repository->addAll($args);
-        $shouldAmend = true;
-    } elseif ($untrackedChoice === 2) {
-        /* Allow Untracked */ $allowUntracked = true;
-    }
+  if ($untrackedChoice === 0) {
+    /* Cancel */ return null;
+  } elseif ($untrackedChoice === 1) {
+    /* Add */ yield $repository->addAll($args);
+    $shouldAmend = true;
+  } elseif ($untrackedChoice === 2) {
+    /* Allow Untracked */ $allowUntracked = true;
+  }
 }
 
 function f()
 {
-    if ($untrackedChoice === 0) {
-        /* Cancel */ return null;
-    } elseif ($untrackedChoice === 1) {
-        /* Add */ yield $repository->addAll($args);
-        $shouldAmend = true;
-    } elseif ($untrackedChoice === 2) {
-        /* Allow Untracked */ $allowUntracked = true;
-    }
+  if ($untrackedChoice === 0) {
+    /* Cancel */ return null;
+  } elseif ($untrackedChoice === 1) {
+    /* Add */ yield $repository->addAll($args);
+    $shouldAmend = true;
+  } elseif ($untrackedChoice === 2) {
+    /* Allow Untracked */ $allowUntracked = true;
+  }
 }
 
 if (true) {
-    // Comment
-    echo 'foo';
+  // Comment
+  echo 'foo';
 } elseif (false) {
-    // Comment
-    echo 'bar';
+  // Comment
+  echo 'bar';
 }
 // Comment
 else {
-    echo 'baz';
+  echo 'baz';
 }
 
 if (true) {
-    // Comment
-    echo 'foo';
+  // Comment
+  echo 'foo';
 } elseif (false) {
-    // Comment
-    echo 'bar';
+  // Comment
+  echo 'bar';
 }
 // Comment
 else {
-    echo 'baz';
+  echo 'baz';
 }
 
 // If the values implements the Arrayable interface we can just call this
 // toArray method on the instances which will convert both models and
 // collections to their proper array form and we'll set the values.
 if ($value instanceof Arrayable) {
-    $relation = $value->toArray();
+  $relation = $value->toArray();
 }
 // If the value is null, we'll still go ahead and set it in this list of
 // attributes since null is used to represent empty relationships if
 // if it a has one or belongs to type relationships on the models.
 elseif (is_null($value)) {
-    $relation = $value;
+  $relation = $value;
 }
 
 // Comment
 if (true) {
-    call();
+  call();
 }
 // Comment
 elseif (false) {
-    call();
+  call();
 }
 
 // Comment
 if (true) {
-    call();
+  call();
 }
 
 // Comment
 elseif (false) {
-    call();
+  call();
 }
 
 // Comment
 if (true) {
-    call();
+  call();
 }
 // Comment
 elseif (false) {
-    call();
+  call();
 }
 // Comment
 else {
-    call();
+  call();
 }
 
 // Comment
 if (true) {
-    call();
+  call();
 }
 
 // Comment
 elseif (false) {
-    call();
-}
-
-// Comment
-else {
-    call();
-}
-
-// Comment
-if (true) {
-    call();
-}
-
-// Comment
-elseif (false) {
-    call();
+  call();
 }
 
 // Comment
 else {
-    call();
+  call();
+}
+
+// Comment
+if (true) {
+  call();
+}
+
+// Comment
+elseif (false) {
+  call();
+}
+
+// Comment
+else {
+  call();
 }
 
 if (true) {
-    echo 'test';
+  echo 'test';
 } /* comment */ elseif (false) {
-    echo 'test';
+  echo 'test';
 }
 // comment
 else {
-    echo 'test';
+  echo 'test';
 }
 
 if (true) {
-    echo 'test';
+  echo 'test';
 }
 // comment
 else {
-    echo 'test';
+  echo 'test';
 }
 
 if ($code === 92 /* '\\' */) {
@@ -4290,45 +4289,45 @@ if ($code === 92 /* '\\' */ /* '\\' */) {
 }
 
 if ($code === 92) {
-    /* '\\' */
+  /* '\\' */
 }
 if ($code === 92) {
-    /* '\\' */
+  /* '\\' */
 }
 
 if (
-    1
-    // Comment
+  1
+  // Comment
 ) {
-    $a;
+  $a;
 }
 
 if ($var) {
-    // Comment
-    $a = 1;
+  // Comment
+  $a = 1;
 }
 
 if (
-    // Comment
-    $var
+  // Comment
+  $var
 ) {
-    $a = 1;
+  $a = 1;
 }
 
 if ($var) {
-    // Comment
-    $a = 1;
+  // Comment
+  $a = 1;
 } elseif ($var) {
-    // Comment
-    $a = 2;
+  // Comment
+  $a = 2;
 }
 // Comment
 else {
-    $a = 3;
+  $a = 3;
 }
 
 if (/* Comment*/ $var /* Comment*/) {
-    /* Comment*/
+  /* Comment*/
 }
 
 ================================================================================
@@ -4362,15 +4361,15 @@ include /* Comment */ 'string' /* Comment */;
 <?php
 // Comment
 include // Comment
-    // Comment
-    "test.php"; // Comment
-    // Comment // Comment
+  // Comment
+  "test.php"; // Comment
+  // Comment // Comment
 
 // Comment
 include // Comment
-    // Comment
-    "test.php"; // Comment
-    // Comment // Comment
+  // Comment
+  "test.php"; // Comment
+  // Comment // Comment
 
 include /* Comment */ $a /* Comment */;
 include /* Comment */ 'string' /* Comment */;
@@ -4588,9 +4587,9 @@ $a = 1;
 ?>></h1>
 
 <?php if ($showRow) {
-    echo $arguments['afterItems'];
-    // escape ok
-    ?>
+  echo $arguments['afterItems'];
+  // escape ok
+  ?>
   </div>
     <?php
 } ?>
@@ -4667,28 +4666,28 @@ interface MyInterface
 
 interface IFoo
 {
-    /* Comments */
+  /* Comments */
 }
 interface IFoo
 {
-    // Comments
+  // Comments
 }
 
 // Comment
 interface IFoo extends
-    // Comment
-    MyClass
+  // Comment
+  MyClass
 {
 }
 
 // Comment
 interface IFoo extends
-    // Comment
-    MyClass,
-    // Comment
-    MyOtherClass,
-    // Comment
-    OtherClass
+  // Comment
+  MyClass,
+  // Comment
+  MyOtherClass,
+  // Comment
+  OtherClass
 {
 }
 
@@ -4703,7 +4702,7 @@ interface MyInterface
 
 interface MyInterface
 {
-    // Comment
+  // Comment
 }
 
 ================================================================================
@@ -4736,22 +4735,22 @@ if (
 <?php
 
 if (isset(/* Comment */ $a[1] /* Comment */)) {
-    echo "Foo";
+  echo "Foo";
 }
 
 if (
-    isset(
-        // Comment
-        $a
-    )
+  isset(
+    // Comment
+    $a
+  )
 ) {
 }
 
 if (
-    isset(
-        // Comment
-        $a
-    )
+  isset(
+    // Comment
+    $a
+  )
 ) {
 }
 
@@ -4772,9 +4771,9 @@ list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /*
 <?php
 
 list(
-    /* Comment */ $drink /* Comment */,
-    /* Comment */ $color /* Comment */,
-    /* Comment */ $power /* Comment */,
+  /* Comment */ $drink /* Comment */,
+  /* Comment */ $color /* Comment */,
+  /* Comment */ $power /* Comment */,
 ) = $info;
 
 ================================================================================
@@ -4860,82 +4859,82 @@ class Foo {
 
 class Foo
 {
-    public function foo(
-        /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
-    ): /* 5 */ ?string /* 6 */ {
-    }
+  public function foo(
+    /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
+  ): /* 5 */ ?string /* 6 */ {
+  }
 
-    public function emptyMethod(/* comments */)
-    {
-    }
+  public function emptyMethod(/* comments */)
+  {
+  }
 
-    abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
+  abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
 
-    /* comment */ /* comment */ protected static $foo; /* comment */
+  /* comment */ /* comment */ protected static $foo; /* comment */
 
-    public function foo()
-    {
-    } // Comment
+  public function foo()
+  {
+  } // Comment
 
-    public function foo()
-    {
-    }
-    // Comment
+  public function foo()
+  {
+  }
+  // Comment
 
-    abstract public function foo(); // Comment
+  abstract public function foo(); // Comment
 
-    abstract public function foo();
-    // Comment
+  abstract public function foo();
+  // Comment
 }
 
 class add_vendor extends request
 {
-    protected function request()
-    {
-        $qb_vendor->setVendorAddress(
-            $vendor->address_1, // address 1
-            $vendor->address_2, // address 2
-            '', // address 3 mike testing
-            '', // address 4
-            '', // address 5
-            $vendor->city, // city
-            $vendor->state, // state
-            $vendor->zip // state
-        );
-    }
+  protected function request()
+  {
+    $qb_vendor->setVendorAddress(
+      $vendor->address_1, // address 1
+      $vendor->address_2, // address 2
+      '', // address 3 mike testing
+      '', // address 4
+      '', // address 5
+      $vendor->city, // city
+      $vendor->state, // state
+      $vendor->zip // state
+    );
+  }
 }
 
 class Foo
 {
-    function foo()
-    {
-        // this is a function
-        return 42;
-    }
+  function foo()
+  {
+    // this is a function
+    return 42;
+  }
 
-    function foo()
-    {
-        // this is a function
-        return 42;
-    }
+  function foo()
+  {
+    // this is a function
+    return 42;
+  }
 
-    function foo()
-    {
-        // this is a function
-        return 42;
-    }
+  function foo()
+  {
+    // this is a function
+    return 42;
+  }
 
-    function foo()
-    {
-        // this is a function
-        return 42;
-    }
+  function foo()
+  {
+    // this is a function
+    return 42;
+  }
 
-    function foo()
-    {
-        // this is a function
-        return 42;
-    }
+  function foo()
+  {
+    // this is a function
+    return 42;
+  }
 }
 
 ================================================================================
@@ -4964,14 +4963,14 @@ namespace foo {
 <?php
 // Comment
 namespace foo {
-    // Comment
-    function bar($a, $b)
-    {
-        return $a + $b;
-    }
-    // Comment
-    echo bar(2, 3);
-    // Comment
+  // Comment
+  function bar($a, $b)
+  {
+    return $a + $b;
+  }
+  // Comment
+  echo bar(2, 3);
+  // Comment
 }
 // Comment
 
@@ -5843,181 +5842,181 @@ $a = new class // Comment
 $a = new Foo(/*Comment*/);
 $a = new Foo(/* Comment */ 1 /*Comments*/);
 $a = new // Comment
-    Foo();
+  Foo();
 
 $a = new class// Comment
  {
 };
 
 $a = new class {
-    // Comment
+  // Comment
 };
 
 $a = new class(
-    // Comment
-    $a,
-    $b,
-    $c
+  // Comment
+  $a,
+  $b,
+  $c
 ) {};
 
 $a = new class(
-    // Comemnt
-    $a,
-    // Comment
-    $b,
-    // Comment
-    $c
+  // Comemnt
+  $a,
+  // Comment
+  $b,
+  // Comment
+  $c
 ) {};
 
 $a = new class {
-    // Comment
+  // Comment
 };
 
 $a = new class {
-    // Comment
+  // Comment
 };
 
 $a = new class {
-    // Comment
+  // Comment
 };
 
 $a = new class {
-    // {{{ properties
+  // {{{ properties
 
-    /**
-     * The status of foo's universe
-     *
-     * Potential values are 'good', 'fair', 'poor' and 'unknown'.
-     *
-     * @var string
+  /**
+   * The status of foo's universe
+   *
+   * Potential values are 'good', 'fair', 'poor' and 'unknown'.
+   *
+   * @var string
+   */
+  var $foo = 'unknown';
+
+  /**
+   * The status of life
+   *
+   * Note that names of private properties or methods must be
+   * preceeded by an underscore.
+   *
+   * @var bool
+   * @access private
+   */
+  var $_good = true;
+
+  // }}}
+  // {{{ setFoo()
+
+  /**
+   * Registers the status of foo's universe
+   *
+   * Summaries for methods should use 3rd person declarative rather
+   * than 2nd person imperative, beginning with a verb phrase.
+   *
+   * Summaries should add description beyond the method's name. The
+   * best method names are "self-documenting", meaning they tell you
+   * basically what the method does.  If the summary merely repeats
+   * the method name in sentence form, it is not providing more
+   * information.
+   *
+   * Summary Examples:
+   *   + Sets the label              (preferred)
+   *   + Set the label               (avoid)
+   *   + This method sets the label  (avoid)
+   *
+   * Below are the tags commonly used for methods.  A @param tag is
+   * required for each parameter the method has.  The @return
+   * and @access tags are mandatory.  The @throws tag is required if
+   * the method uses exceptions.  @static is required if the method can
+   * be called statically.  The remainder should only be used when
+   * necessary.  Please use them in the order they appear here.
+   * phpDocumentor has several other tags available, feel free to use
+   * them.
+   *
+   * The @param tag contains the data type, then the parameter's
+   * name, followed by a description.  By convention, the first noun in
+   * the description is the data type of the parameter.  Articles like
+   * "a", "an", and  "the" can precede the noun.  The descriptions
+   * should start with a phrase.  If further description is necessary,
+   * follow with sentences.  Having two spaces between the name and the
+   * description aids readability.
+   *
+   * When writing a phrase, do not capitalize and do not end with a
+   * period:
+   *   + the string to be tested
+   *
+   * When writing a phrase followed by a sentence, do not capitalize the
+   * phrase, but end it with a period to distinguish it from the start
+   * of the next sentence:
+   *   + the string to be tested. Must use UTF-8 encoding.
+   *
+   * Return tags should contain the data type then a description of
+   * the data returned.  The data type can be any of PHP's data types
+   * (int, float, bool, string, array, object, resource, mixed)
+   * and should contain the type primarily returned.  For example, if
+   * a method returns an object when things work correctly but false
+   * when an error happens, say 'object' rather than 'mixed.'  Use
+   * 'void' if nothing is returned.
+   *
+   * Here's an example of how to format examples:
+   * <code>
+   * require_once 'Net/Sample.php';
+   *
+   * $s = new Net_Sample();
+   * if (PEAR::isError($s)) {
+   *     echo $s->getMessage() . "\\n";
+   * }
+   * </code>
+   *
+   * Here is an example for non-php example or sample:
+   * <samp>
+   * pear install net_sample
+   * </samp>
+   *
+   * @param string $arg1 the string to quote
+   * @param int    $arg2 an integer of how many problems happened.
+   *                     Indent to the description's starting point
+   *                     for long ones.
+   *
+   * @return int the integer of the set mode used. FALSE if foo
+   *             foo could not be set.
+   * @throws exceptionclass [description]
+   *
+   * @access public
+   * @static
+   * @see Net_Sample::$foo, Net_Other::someMethod()
+   * @since Method available since Release 1.2.0
+   * @deprecated Method deprecated in Release 2.0.0
+   */
+  function setFoo($arg1, $arg2 = 0)
+  {
+    /*
+     * This is a "Block Comment."  The format is the same as
+     * Docblock Comments except there is only one asterisk at the
+     * top.  phpDocumentor doesn't parse these.
      */
-    var $foo = 'unknown';
-
-    /**
-     * The status of life
-     *
-     * Note that names of private properties or methods must be
-     * preceeded by an underscore.
-     *
-     * @var bool
-     * @access private
-     */
-    var $_good = true;
-
-    // }}}
-    // {{{ setFoo()
-
-    /**
-     * Registers the status of foo's universe
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * Summaries should add description beyond the method's name. The
-     * best method names are "self-documenting", meaning they tell you
-     * basically what the method does.  If the summary merely repeats
-     * the method name in sentence form, it is not providing more
-     * information.
-     *
-     * Summary Examples:
-     *   + Sets the label              (preferred)
-     *   + Set the label               (avoid)
-     *   + This method sets the label  (avoid)
-     *
-     * Below are the tags commonly used for methods.  A @param tag is
-     * required for each parameter the method has.  The @return
-     * and @access tags are mandatory.  The @throws tag is required if
-     * the method uses exceptions.  @static is required if the method can
-     * be called statically.  The remainder should only be used when
-     * necessary.  Please use them in the order they appear here.
-     * phpDocumentor has several other tags available, feel free to use
-     * them.
-     *
-     * The @param tag contains the data type, then the parameter's
-     * name, followed by a description.  By convention, the first noun in
-     * the description is the data type of the parameter.  Articles like
-     * "a", "an", and  "the" can precede the noun.  The descriptions
-     * should start with a phrase.  If further description is necessary,
-     * follow with sentences.  Having two spaces between the name and the
-     * description aids readability.
-     *
-     * When writing a phrase, do not capitalize and do not end with a
-     * period:
-     *   + the string to be tested
-     *
-     * When writing a phrase followed by a sentence, do not capitalize the
-     * phrase, but end it with a period to distinguish it from the start
-     * of the next sentence:
-     *   + the string to be tested. Must use UTF-8 encoding.
-     *
-     * Return tags should contain the data type then a description of
-     * the data returned.  The data type can be any of PHP's data types
-     * (int, float, bool, string, array, object, resource, mixed)
-     * and should contain the type primarily returned.  For example, if
-     * a method returns an object when things work correctly but false
-     * when an error happens, say 'object' rather than 'mixed.'  Use
-     * 'void' if nothing is returned.
-     *
-     * Here's an example of how to format examples:
-     * <code>
-     * require_once 'Net/Sample.php';
-     *
-     * $s = new Net_Sample();
-     * if (PEAR::isError($s)) {
-     *     echo $s->getMessage() . "\\n";
-     * }
-     * </code>
-     *
-     * Here is an example for non-php example or sample:
-     * <samp>
-     * pear install net_sample
-     * </samp>
-     *
-     * @param string $arg1 the string to quote
-     * @param int    $arg2 an integer of how many problems happened.
-     *                     Indent to the description's starting point
-     *                     for long ones.
-     *
-     * @return int the integer of the set mode used. FALSE if foo
-     *             foo could not be set.
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     * @static
-     * @see Net_Sample::$foo, Net_Other::someMethod()
-     * @since Method available since Release 1.2.0
-     * @deprecated Method deprecated in Release 2.0.0
-     */
-    function setFoo($arg1, $arg2 = 0)
-    {
-        /*
-         * This is a "Block Comment."  The format is the same as
-         * Docblock Comments except there is only one asterisk at the
-         * top.  phpDocumentor doesn't parse these.
-         */
-        if ($arg1 == 'good' || $arg1 == 'fair') {
-            $this->foo = $arg1;
-            return 1;
-        } elseif ($arg1 == 'poor' && $arg2 > 1) {
-            $this->foo = 'poor';
-            return 2;
-        } else {
-            return false;
-        }
+    if ($arg1 == 'good' || $arg1 == 'fair') {
+      $this->foo = $arg1;
+      return 1;
+    } elseif ($arg1 == 'poor' && $arg2 > 1) {
+      $this->foo = 'poor';
+      return 2;
+    } else {
+      return false;
     }
+  }
 
-    // }}}
+  // }}}
 };
 
 $a = new // Comment
-    Foo();
+  Foo();
 $a = new class {
-    // Comment
+  // Comment
 };
 $a = new // Comment
-    Foo();
+  Foo();
 $a = new class {
-    // Comment
+  // Comment
 };
 
 ================================================================================
@@ -6152,19 +6151,19 @@ $var = $var
 echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 
 $var =
-    $var[
-        // Comment
-        'foo'
-    ][ // Comment
-        // Comment
-        'bar'
-    ][ // Comment
-        // Comment
-        'baz'
-    ][ // Comment
-        // Comment
-        'qqq'
-    ];
+  $var[
+    // Comment
+    'foo'
+  ][ // Comment
+    // Comment
+    'bar'
+  ][ // Comment
+    // Comment
+    'baz'
+  ][ // Comment
+    // Comment
+    'qqq'
+  ];
 
 ================================================================================
 `;
@@ -6194,8 +6193,8 @@ class MyClass {
 <?php
 
 function foo(
-    /* Comment */ $a,
-    /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
+  /* Comment */ $a,
+  /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
 ) {
 }
 
@@ -6204,28 +6203,28 @@ function bar(/* Comment */ &$a /* Comment */)
 }
 
 function baz(
-    /* Comment */ $a,
-    /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+  /* Comment */ $a,
+  /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
 ) {
 }
 
 class MyClass
 {
-    public function foo(
-        /* Comment */ $a,
-        /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
-    ) {
-    }
+  public function foo(
+    /* Comment */ $a,
+    /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
+  ) {
+  }
 
-    public function bar(/* Comment */ &$a /* Comment */)
-    {
-    }
+  public function bar(/* Comment */ &$a /* Comment */)
+  {
+  }
 
-    public function baz(
-        /* Comment */ $a,
-        /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
-    ) {
-    }
+  public function baz(
+    /* Comment */ $a,
+    /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+  ) {
+  }
 }
 
 ================================================================================
@@ -6302,25 +6301,25 @@ print // Comment
 <?php
 
 print // Comment
-    $foo;
-    /* Comment */
+  $foo;
+  /* Comment */
 
 print /* Comment */ $foo /* Comment */;
 
 print // Comment
-    $a;
+  $a;
 
 print // Comment
-    $a;
+  $a;
 
 print call(
-    // Comment
-    $a
+  // Comment
+  $a
 );
 
 print // Comment
-    // Comment
-    $a;
+  // Comment
+  $a;
 
 ================================================================================
 `;
@@ -6406,69 +6405,69 @@ EOT;
 <?php
 
 $var = new class {
-    public $name =
-        // Comment 1
-        // Comment 2
-        'string';
-};
-
-$var = new class {
-    public $name = // Comment 1
-        // Comment 2
-        'string';
-};
-
-$var = new class {
-    // Comment 1
-    public $name =
-        // Comment 2
-        // Comment 3
-        'string';
-};
-
-$var = new class {
+  public $name =
     // Comment 1
     // Comment 2
-    public static $name =
-        // Comment 3
-        // Comment 4
-        'string';
+    'string';
+};
+
+$var = new class {
+  public $name = // Comment 1
+    // Comment 2
+    'string';
+};
+
+$var = new class {
+  // Comment 1
+  public $name =
+    // Comment 2
+    // Comment 3
+    'string';
+};
+
+$var = new class {
+  // Comment 1
+  // Comment 2
+  public static $name =
+    // Comment 3
+    // Comment 4
+    'string';
 };
 
 class Foo
 {
-    var $name1 = // Comment 1
-        // Comment 2
-        'string';
-    private $name2 = // Comment 1
-        // Comment 2
-        'string';
-    protected $name3 = // Comment 1
-        // Comment 2
-        'string';
-    public $name4 = // Comment 1
-        // Comment 2
-        'string';
+  var $name1 = // Comment 1
+    // Comment 2
+    'string';
+  private $name2 = // Comment 1
+    // Comment 2
+    'string';
+  protected $name3 = // Comment 1
+    // Comment 2
+    'string';
+  public $name4 = // Comment 1
+    // Comment 2
+    'string';
 
-    public $bar = // Comment 1
-        // Comment 2
-        <<<'EOT'
+  public $bar = // Comment 1
+    // Comment 2
+    <<<'EOT'
 bar
 EOT;
 
-    public $baz = // Comment 1
-        // Comment 2
-        <<<EOT
+  public $baz = // Comment 1
+    // Comment 2
+    <<<EOT
 baz
 EOT;
 
-    public $var1 = // Comment 1
-        // Comment 2
-        'hello ' . 'world';
+  public $var1 = // Comment 1
+    // Comment 2
+    'hello ' . 'world';
 
-    public static $my_static = // Comment 1
-        // Comment 2
-        'foo';
+  public static $my_static = // Comment 1
+    // Comment 2
+    'foo';
 }
 
 ================================================================================
@@ -6488,7 +6487,7 @@ echo $a/*Comment*/->/*Comment*/bar();
 <?php
 
 echo $a /*Comment*/
-    ->/*Comment*/ bar();
+  ->/*Comment*/ bar();
 
 ================================================================================
 `;
@@ -6561,59 +6560,59 @@ $var = $a
 <?php
 
 $inspect = $condition
-    ? // node <= 0.8.x
-    function ($v, $colors) {
-        return $util->inspect($v, 0, 0, $colors);
-    }
-    : // node > 0.8.x
-    function ($v, $colors) {
-        return $util->inspect($v, ['colors' => colors]);
-    };
+  ? // node <= 0.8.x
+  function ($v, $colors) {
+    return $util->inspect($v, 0, 0, $colors);
+  }
+  : // node > 0.8.x
+  function ($v, $colors) {
+    return $util->inspect($v, ['colors' => colors]);
+  };
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
-    ? // Making sure that the publicPath goes back to to build folder.
-    ['publicPath' => (new Foo($cssFilename->split('/')->length))->join('../')]
-    : [];
+  ? // Making sure that the publicPath goes back to to build folder.
+  ['publicPath' => (new Foo($cssFilename->split('/')->length))->join('../')]
+  : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
-    ? // Making sure that the publicPath goes back to to build folder.
-    ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
-    : [];
+  ? // Making sure that the publicPath goes back to to build folder.
+  ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
+  : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
-    ? ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
-    : [];
+  ? ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
+  : [];
 
 $var =
-    $process->env->NODE_ENV === "production"
-        ? call("./configureProdStore") // a
-        : call("./configureDevStore"); // b
+  $process->env->NODE_ENV === "production"
+    ? call("./configureProdStore") // a
+    : call("./configureDevStore"); // b
 
 $var = $a
-    ? // Comment
-    $b
-    : // Comment
-    $c;
+  ? // Comment
+  $b
+  : // Comment
+  $c;
 
 $var = $a
-    ? // Comment
-    $b
-    : // Comment
-    $c;
+  ? // Comment
+  $b
+  : // Comment
+  $c;
 
 $var = $a
-    ? $b
-    : // Comment
-    $c;
+  ? $b
+  : // Comment
+  $c;
 // Comment
 
 $var = $a
-    ? $b // Comment
-    : $c; // Comment
+  ? $b // Comment
+  : $c; // Comment
 
 $var = $a
-    ? $b // Comment
-    : $c; // Comment
+  ? $b // Comment
+  : $c; // Comment
 
 ================================================================================
 `;
@@ -6657,19 +6656,19 @@ return // Comment
 
 function f()
 {
-    return /* a */;
+  return /* a */;
 }
 
 return; // Comment
 
 return // Comment
-    $a;
+  $a;
 
 return // Comment
-    [$a, $b, $c];
+  [$a, $b, $c];
 
 return /* Comment */
-    $a;
+  $a;
 
 // Comment
 return $a;
@@ -6677,7 +6676,7 @@ return $a;
 return /* Comment */ $a /* Comment */ = /* Comment */ $b /* Comment */;
 
 return // Comment
-    new Foo();
+  new Foo();
 
 ================================================================================
 `;
@@ -6726,14 +6725,14 @@ static
 static /* Comment */ $a /* Comment */, /* Comment */ $b /* Comment */;
 
 static // Comment
-    $a;
+  $a;
 
 // Comment
 static // Comment
-    $a = // Comment // Comment
-        // Comment
-        // Comment
-        2021;
+  $a = // Comment // Comment
+    // Comment
+    // Comment
+    2021;
 
 ================================================================================
 `;
@@ -6763,14 +6762,14 @@ $var = $var
 echo Foo /*Comment*/::/*Comment*/ bar();
 
 $var = $var
-    // Comment
-    ::each() // Comment
-    // Comment
-    ::map() // Comment
-    // Comment
-    ::first() // Comment
-    // Comment
-    ::dump();
+  // Comment
+  ::each() // Comment
+  // Comment
+  ::map() // Comment
+  // Comment
+  ::first() // Comment
+  // Comment
+  ::dump();
 
 ================================================================================
 `;
@@ -6821,38 +6820,38 @@ switch($i) {
 <?php
 // Comment
 switch ($i) {
+  // Comment
+  // Comment
+  case 0: // Comment
     // Comment
+    echo "i equals 0"; // Comment
     // Comment
-    case 0: // Comment
-        // Comment
-        echo "i equals 0"; // Comment
-        // Comment
-        break; // Comment
+    break; // Comment
+  // Comment
+  case 1: // Comment
     // Comment
-    case 1: // Comment
-        // Comment
-        echo "i equals 1"; // Comment
-        break; // Comment
-    // Comment
+    echo "i equals 1"; // Comment
+    break; // Comment
+  // Comment
 } // Comment
 
 switch (/* Comment */ 1 /* Comment */) {
 }
 
 switch ($i) {
-    case // Comment
-        0:
-        break;
-    // Comment
-    case 1:
-        break;
+  case // Comment
+    0:
+    break;
+  // Comment
+  case 1:
+    break;
 
-    // Comment
-    case 2:
-        break;
+  // Comment
+  case 2:
+    break;
 
-    case 3: // Comment
-        break;
+  case 3: // Comment
+    break;
 }
 
 ================================================================================
@@ -6894,24 +6893,24 @@ throw /* Comment */ new Foo() /* Comment */; // Comment
 
 // Comment
 throw new ClassName( // Comment
-    1, // Comment
-    // Comment
-    2 // Comment
+  1, // Comment
+  // Comment
+  2 // Comment
 ); // Comment
 
 /* Comment */
 throw new ClassName /* Comment */(
-    /* Comment */ 1 /* Comment */,
-    /* Comment */
-    /* Comment */ 2 /* Comment */
-    /* Comment */
+  /* Comment */ 1 /* Comment */,
+  /* Comment */
+  /* Comment */ 2 /* Comment */
+  /* Comment */
 ); /* Comment */
 
 throw // Comment
-    new Exception();
+  new Exception();
 
 throw // Comment
-    new Exception();
+  new Exception();
 
 throw /* Comment */ new Foo() /* Comment */; // Comment
 
@@ -6975,37 +6974,37 @@ class ImplementingClass
 
 trait tFoo
 {
-    /* Comment */
+  /* Comment */
 }
 
 trait tFoo
 {
-    // Comment
-}
-
-// Comment
-trait tFoo
-{
-    /* Comment */
+  // Comment
 }
 
 // Comment
 trait tFoo
 {
-    // Comment
+  /* Comment */
+}
+
+// Comment
+trait tFoo
+{
+  // Comment
 }
 
 class ImplementingClass
 {
-    /* Comment */
-    /* Comment */ use /* Comment */ testTrait /* Comment */,
-        /* Comment */ otherTrait /* Comment */;
-    /* Comment */ use /* Comment */ testTrait /* Comment */,
-        /* Comment */ implementingTrait /* Comment */ /* Comment */ {
-        /* Comment */ A /* Comment */::/* Comment */ testFunction /* Comment */ insteadof /* Comment */ C; /* Comment */ /* Comment */
-        /* Comment */ B /* Comment */::/* Comment */ someOtherTestFunction /* Comment */ as /* Comment */ aliasedFunctionName; /* Comment */ /* Comment */
-        /* Comment */ C /* Comment */::/* Comment */ testFunction /* Comment */ /* Comment */ as private /* Comment */ testVisibility; /* Comment */
-    }
+  /* Comment */
+  /* Comment */ use /* Comment */ testTrait /* Comment */,
+    /* Comment */ otherTrait /* Comment */;
+  /* Comment */ use /* Comment */ testTrait /* Comment */,
+    /* Comment */ implementingTrait /* Comment */ /* Comment */ {
+    /* Comment */ A /* Comment */::/* Comment */ testFunction /* Comment */ insteadof /* Comment */ C; /* Comment */ /* Comment */
+    /* Comment */ B /* Comment */::/* Comment */ someOtherTestFunction /* Comment */ as /* Comment */ aliasedFunctionName; /* Comment */ /* Comment */
+    /* Comment */ C /* Comment */::/* Comment */ testFunction /* Comment */ /* Comment */ as private /* Comment */ testVisibility; /* Comment */
+  }
 }
 
 trait MyTrait
@@ -7019,12 +7018,12 @@ trait MyTrait
 
 trait MyTrait
 {
-    // Comment
+  // Comment
 }
 
 class ImplementingClass
 {
-    use TraitUseWithComments { /* Comments */ }
+  use TraitUseWithComments { /* Comments */ }
 }
 
 ================================================================================
@@ -7110,64 +7109,64 @@ try // Comment
 
 // comment 1
 try {
-    // comment 2
+  // comment 2
 } catch (Expection $e) {
-    // comment 3
-    // comment 4
+  // comment 3
+  // comment 4
 } finally {
-    // comment 5
-    // comment 6
-    // comment 7
+  // comment 5
+  // comment 6
+  // comment 7
 }
 
 // comment 1
 try {
-    // comment 2
+  // comment 2
 } finally {
-    // comment 3
-    // comment 4
-    // comment 5
+  // comment 3
+  // comment 4
+  // comment 5
 }
 
 // comment 1
 try {
-    // comment 2
+  // comment 2
 } catch (OtherException $e) {
-    // comment 3
-    // comment 4
+  // comment 3
+  // comment 4
 } catch (Expection $e) {
-    // comment 5
-    // comment 6
+  // comment 5
+  // comment 6
 } finally {
-    // comment 7
-    // comment 8
-    // comment 9
+  // comment 7
+  // comment 8
+  // comment 9
 }
 // comment 10
 
 // Comment 1
 try {
-    // Comment 2
-    // Comment 3
+  // Comment 2
+  // Comment 3
 } catch (Exception $e) {
-    // Comment 4
-    // Comment 5
-    // Comment 6
+  // Comment 4
+  // Comment 5
+  // Comment 6
 } finally {
-    // Comment 7
-    // Comment 8
-    // Comment 9
+  // Comment 7
+  // Comment 8
+  // Comment 9
 }
 // Comment 10
 
 try {
-    // Comment
-    $a = new Foo();
+  // Comment
+  $a = new Foo();
 } catch (Exception $e) {
-    $b = new Bar();
+  $b = new Bar();
 } finally {
-    // Comment 8
-    $a = null;
+  // Comment 8
+  $a = null;
 }
 
 ================================================================================
@@ -7214,13 +7213,13 @@ unset // Comment
 unset(/* Comment */ $foo /* Comment */);
 
 unset(
-    // Comment
-    $var
+  // Comment
+  $var
 );
 
 unset(
-    // Comment
-    $var
+  // Comment
+  $var
 );
 
 ================================================================================
@@ -7247,13 +7246,13 @@ use // Comment
 <?php
 
 use some\\namespaces\\{
-    /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
-    /* Comment */ ClassB /* Comment */,
-    /* Comment */ ClassC as /* Comment */ /* Comment */ C
+  /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
+  /* Comment */ ClassB /* Comment */,
+  /* Comment */ ClassC as /* Comment */ /* Comment */ C
 };
 
 use // Comment
-    My\\Full\\NSname;
+  My\\Full\\NSname;
 
 ================================================================================
 `;
@@ -7353,95 +7352,95 @@ $obj = // Comment
 <?php
 
 $obj =
-    // Comment
-    [
-        'key' => 'val',
-    ];
-
-$obj =
-    // Comment
-    [
-        'key' => 'val',
-    ];
-
-$obj = [
-    // Comment
+  // Comment
+  [
     'key' => 'val',
-];
+  ];
 
-$obj = [
-    // Comment
+$obj =
+  // Comment
+  [
     'key' => 'val',
-];
-
-$obj =
-    // Comment
-    ['val'];
-
-$obj =
-    // Comment
-    ['val'];
+  ];
 
 $obj = [
-    // Comment
-    'val',
+  // Comment
+  'key' => 'val',
 ];
 
 $obj = [
-    // Comment
-    'val',
+  // Comment
+  'key' => 'val',
 ];
 
 $obj =
-    // Comment
-    'val';
+  // Comment
+  ['val'];
 
 $obj =
-    // Comment
-    '
+  // Comment
+  ['val'];
+
+$obj = [
+  // Comment
+  'val',
+];
+
+$obj = [
+  // Comment
+  'val',
+];
+
+$obj =
+  // Comment
+  'val';
+
+$obj =
+  // Comment
+  '
 val
 val
 ';
 
 $obj =
-    // Comment
-    '
+  // Comment
+  '
     val
     val
     ';
 
 $obj =
-    // Comment
-    "val";
+  // Comment
+  "val";
 
 $obj =
-    // Comment
-    "
+  // Comment
+  "
 val
 val
 ";
 
 $obj =
-    // Comment
-    "
+  // Comment
+  "
     val
     val
     ";
 
 $obj =
-    // Comment
-    "val \${$var}";
+  // Comment
+  "val \${$var}";
 
 $obj =
-    // Comment
-    "
+  // Comment
+  "
 val 
 \${$var}
 ";
 
 $obj =
-    // Comment
-    "
+  // Comment
+  "
     val 
     \${$var}
     ";
@@ -7512,35 +7511,35 @@ while (true) {
 <?php
 // Comment 1
 while (true) {
-    // Comment 2
-    // Comment 3
-    echo 'Foo'; // Comment 4
-    // Comment 5
+  // Comment 2
+  // Comment 3
+  echo 'Foo'; // Comment 4
+  // Comment 5
 } // Comment
 
 while (/* Comments */ true /* Comments */) {
 }
 
 while (
-    true
-    // Comment
+  true
+  // Comment
 ) {
 }
 
 while (true) {
-    // Comment
+  // Comment
 }
 
 while (true) {
 } // Comment
 
 while (true) {
-    /*Comment*/
+  /*Comment*/
 }
 
 while (
-    true && // Comment
-    true // Comment
+  true && // Comment
+  true // Comment
 ) {
 }
 
@@ -7548,11 +7547,11 @@ while (true) {
 } // comment
 
 while (true) {
-    /* comment */ ++$x;
+  /* comment */ ++$x;
 }
 
 while (true) {
-    // Comment
+  // Comment
 }
 
 ================================================================================
@@ -7586,14 +7585,14 @@ function gen_one_to_three() {
 
 function gen_one_to_three()
 {
-    yield /* Comment */ $i /* Comment */;
-    yield /* Comment */ $id /* Comment */ => /* Comment */ $fields /* Comment */;
-    yield // Comment
-        $i;
-    yield // Comment
-        $i => // Comment
-        // Comment
-        $var;
+  yield /* Comment */ $i /* Comment */;
+  yield /* Comment */ $id /* Comment */ => /* Comment */ $fields /* Comment */;
+  yield // Comment
+    $i;
+  yield // Comment
+    $i => // Comment
+    // Comment
+    $var;
 }
 
 ================================================================================
@@ -7621,12 +7620,12 @@ function gen() {
 
 function gen()
 {
-    yield 0;
-    yield from /* Comment */ from();
-    yield from from() /* Comment */;
-    yield from // Comment2
-        from(); // Comment 3
-    yield 4;
+  yield 0;
+  yield from /* Comment */ from();
+  yield from from() /* Comment */;
+  yield from // Comment2
+    from(); // Comment 3
+  yield 4;
 }
 
 ================================================================================

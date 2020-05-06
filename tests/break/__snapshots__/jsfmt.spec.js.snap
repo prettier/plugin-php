@@ -41,33 +41,33 @@ switch ($test) {
 <?php
 
 for ($i = 0; $i < 10; $i++) {
-    break;
+  break;
 }
 
 for ($i = 0; $i < 10; $i++) {
-    for ($j = 0; $j < 10; $j++) {
-        break 2;
-    }
+  for ($j = 0; $j < 10; $j++) {
+    break 2;
+  }
 }
 
 while (true) {
-    break;
-    break;
-    break;
-    break 2;
-    break 2;
-    break 3;
+  break;
+  break;
+  break;
+  break 2;
+  break 2;
+  break 3;
 }
 
 switch ($test) {
-    case 1:
-        $hi = 1;
-        break;
-    case 2:
-        $hi = 2;
-        break;
-    default:
-        break;
+  case 1:
+    $hi = 1;
+    break;
+  case 2:
+    $hi = 2;
+    break;
+  default:
+    break;
 }
 
 ================================================================================

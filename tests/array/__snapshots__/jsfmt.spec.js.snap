@@ -567,51 +567,51 @@ $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
+  'one' => 123,
 
-    'two' => $other,
+  'two' => $other,
 ];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = ['one' => 123, 'two' => $other];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 ];
 $keyed_test = [
-    'one' => 123,
+  'one' => 123,
 
-    'two' => $other,
+  'two' => $other,
 ];
 $short_keyed_test = [
-    'reallyreallyreallyreallylongkey' => 1248,
-    'otherkey' => 234,
-    'one more' => $hi,
+  'reallyreallyreallyreallylongkey' => 1248,
+  'otherkey' => 234,
+  'one more' => $hi,
 ];
 $short_keyed_test = [
-    'reallyreallyreallyreallylongkey' => 1248,
-    'otherkey' => 234,
-    'one more' => $hi,
+  'reallyreallyreallyreallylongkey' => 1248,
+  'otherkey' => 234,
+  'one more' => $hi,
 ];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
@@ -619,20 +619,20 @@ $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 $array = [
-    1 => "a",
-    "1" => "b",
-    1.5 => "c",
-    true => "d",
+  1 => "a",
+  "1" => "b",
+  1.5 => "c",
+  true => "d",
 ];
 $array = ["a", "b", 6 => "c", "d"];
 $array = [
-    "foo" => "bar",
-    42 => 24,
-    "multi" => [
-        "dimensional" => [
-            "array" => "foo",
-        ],
+  "foo" => "bar",
+  42 => 24,
+  "multi" => [
+    "dimensional" => [
+      "array" => "foo",
     ],
+  ],
 ];
 $secondElement = getArray()[1];
 $arr[] = 56;
@@ -656,85 +656,85 @@ echo $arr[somefunc($bar)];
 $test = $array[foo];
 
 $this->long->expression->before->array->statesArray[
-    $state->getCirculationStateId()
+  $state->getCirculationStateId()
 ] = $state->getName();
 $arr[] = 1;
 $arr["x"] = 42;
 [$a, $b] = [1, 2];
 $helpers = [
-    'Lazy',
-    'Form' => [
-        'templates' => 'app_form',
-        'widgets' => [
-            'select' => ['App\\View\\Widget\\SelectBoxWidget'],
-            'nestingLabel' => ['App\\View\\Widget\\NestingLabelWidget'],
-        ],
+  'Lazy',
+  'Form' => [
+    'templates' => 'app_form',
+    'widgets' => [
+      'select' => ['App\\View\\Widget\\SelectBoxWidget'],
+      'nestingLabel' => ['App\\View\\Widget\\NestingLabelWidget'],
     ],
-    'MagicMenu.MagicMenu',
+  ],
+  'MagicMenu.MagicMenu',
 ];
 
 $data = [
-    'value',
-    'value',
+  'value',
+  'value',
 
-    // a comment
-    'value',
-    'value',
+  // a comment
+  'value',
+  'value',
 ];
 
 $arr = [
-    'niveisFederativos' => app(NiveisFederativosRepository::class)
-        ->allOrderBy('nome')
-        ->pluck('nome', 'id'),
+  'niveisFederativos' => app(NiveisFederativosRepository::class)
+    ->allOrderBy('nome')
+    ->pluck('nome', 'id'),
 
-    'tiposLeis' => app(TiposLeisRepository::class)
-        ->allOrderBy('nome')
-        ->pluck('nome', 'id'),
+  'tiposLeis' => app(TiposLeisRepository::class)
+    ->allOrderBy('nome')
+    ->pluck('nome', 'id'),
 ];
 [[$id1, $name1]] = $data;
 [[$id1], [$id2], [$id]] = $data;
 [
-    [
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
-    ],
+  [
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
+  ],
 ] = $data;
 ["id" => $id1, "name" => $name1] = $data;
 [["id" => $id1, "name" => $name1]] = $data;
 [
-    [
-        "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
-    ],
+  [
+    "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
+    "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
+  ],
 ] = $data;
 $arr = [
-    'niveisFederativos' => function () {
-        return "value";
-    },
+  'niveisFederativos' => function () {
+    return "value";
+  },
 
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
-        return "other-value";
-    },
+  'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
+    return "other-value";
+  },
 ];
 
 $singleLine = ['do' => ['collapse' => 'this']];
 $singleLine = ['do' => ['collapse' => 'this']];
 
 $multiline = [
-    'do' => [
-        'not' => 'collapse',
-    ],
+  'do' => [
+    'not' => 'collapse',
+  ],
 ];
 $multiline = ['do' => 'collapse'];
 $multiline = ['do' => 'collapse'];
 
 $mixed = [
-    'only' => ['partly' => 'collapsed'],
+  'only' => ['partly' => 'collapsed'],
 ];
 $mixed = [
-    'only' => [
-        'partly' => ['coll', 'apsed'],
-    ],
+  'only' => [
+    'partly' => ['coll', 'apsed'],
+  ],
 ];
 
 $arr = [$var];
@@ -748,81 +748,81 @@ $collapse = ["not", "associative"];
 $collapse = ["not", "associative"];
 
 $array = [
-    'key-one' => true ? 1 : 2,
-    'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        ? 1
-        : 2,
-    'key-two' => true
-        ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        : 2,
-    'key-two' => true
-        ? 1
-        : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-    'key-two' =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+  'key-one' => true ? 1 : 2,
+  'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    ? 1
+    : 2,
+  'key-two' => true
+    ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    : 2,
+  'key-two' => true
+    ? 1
+    : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+  'key-two' =>
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+      ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-            ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-            : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-];
-
-$array = [
-    'key' => 1,
-    'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
-    'key' => 'string',
-    'key' => __LINE__,
-    'key' => "string \${var} {$var}",
-    'key' => 'string
-string
-              string',
-    'key' => 'string' . 'other-string',
-    'key' =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+      : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 ];
 
 $array = [
-    'string
+  'key' => 1,
+  'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
+  'key' => 'string',
+  'key' => __LINE__,
+  'key' => "string \${var} {$var}",
+  'key' => 'string
+string
+              string',
+  'key' => 'string' . 'other-string',
+  'key' =>
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+];
+
+$array = [
+  'string
 string
 string',
 ];
 
 $array = [
-    'string
+  'string
 string
 string',
-    'string
-string
-string',
-];
-
-$array = [
-    'key' => 'string
-string
-string',
-    'other-key' => 'string
+  'string
 string
 string',
 ];
 
 $array = [
-    'string
+  'key' => 'string
+string
+string',
+  'other-key' => 'string
+string
+string',
+];
+
+$array = [
+  'string
 string
 string' => 'value',
-    'string
+  'string
 string
 string
 other' => 'other-value',
 ];
 
 $array = [
-    'string
+  'string
 string
 string' => 'string
 string
 string',
-    'string
+  'string
 string
 string
 other' => 'string
@@ -831,24 +831,24 @@ string',
 ];
 
 $wp_admin_bar->add_menu([
-    'id' => 'menu-toggle',
-    'title' =>
-        '<span class="ab-icon"></span><span class="screen-reader-text">' .
-        __('Menu') .
-        '</span>',
-    'href' => '#',
+  'id' => 'menu-toggle',
+  'title' =>
+    '<span class="ab-icon"></span><span class="screen-reader-text">' .
+    __('Menu') .
+    '</span>',
+  'href' => '#',
 ]);
 
 $k = [
-    "blablah" =>
-        "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
-        "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
-        "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf",
+  "blablah" =>
+    "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
+    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
+    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf",
 ];
 
 $o = [
-    "somethingThatsAReallyLongPropName" =>
-        $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
+  "somethingThatsAReallyLongPropName" =>
+    $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
 ];
 
 // spread
@@ -1431,51 +1431,51 @@ $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
+  'one' => 123,
 
-    'two' => $other,
+  'two' => $other,
 );
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array('one' => 123, 'two' => $other);
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
-    'two' => $other,
+  'one' => 123,
+  'two' => $other,
 );
 $keyed_test = array(
-    'one' => 123,
+  'one' => 123,
 
-    'two' => $other,
+  'two' => $other,
 );
 $short_keyed_test = array(
-    'reallyreallyreallyreallylongkey' => 1248,
-    'otherkey' => 234,
-    'one more' => $hi,
+  'reallyreallyreallyreallylongkey' => 1248,
+  'otherkey' => 234,
+  'one more' => $hi,
 );
 $short_keyed_test = array(
-    'reallyreallyreallyreallylongkey' => 1248,
-    'otherkey' => 234,
-    'one more' => $hi,
+  'reallyreallyreallyreallylongkey' => 1248,
+  'otherkey' => 234,
+  'one more' => $hi,
 );
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
@@ -1483,20 +1483,20 @@ $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 $foo = $bar[1][2][3][4][5][6];
 $array = array(
-    1 => "a",
-    "1" => "b",
-    1.5 => "c",
-    true => "d",
+  1 => "a",
+  "1" => "b",
+  1.5 => "c",
+  true => "d",
 );
 $array = array("a", "b", 6 => "c", "d");
 $array = array(
-    "foo" => "bar",
-    42 => 24,
-    "multi" => array(
-        "dimensional" => array(
-            "array" => "foo",
-        ),
+  "foo" => "bar",
+  42 => 24,
+  "multi" => array(
+    "dimensional" => array(
+      "array" => "foo",
     ),
+  ),
 );
 $secondElement = getArray()[1];
 $arr[] = 56;
@@ -1520,85 +1520,85 @@ echo $arr[somefunc($bar)];
 $test = $array[foo];
 
 $this->long->expression->before->array->statesArray[
-    $state->getCirculationStateId()
+  $state->getCirculationStateId()
 ] = $state->getName();
 $arr[] = 1;
 $arr["x"] = 42;
 [$a, $b] = array(1, 2);
 $helpers = array(
-    'Lazy',
-    'Form' => array(
-        'templates' => 'app_form',
-        'widgets' => array(
-            'select' => array('App\\View\\Widget\\SelectBoxWidget'),
-            'nestingLabel' => array('App\\View\\Widget\\NestingLabelWidget'),
-        ),
+  'Lazy',
+  'Form' => array(
+    'templates' => 'app_form',
+    'widgets' => array(
+      'select' => array('App\\View\\Widget\\SelectBoxWidget'),
+      'nestingLabel' => array('App\\View\\Widget\\NestingLabelWidget'),
     ),
-    'MagicMenu.MagicMenu',
+  ),
+  'MagicMenu.MagicMenu',
 );
 
 $data = array(
-    'value',
-    'value',
+  'value',
+  'value',
 
-    // a comment
-    'value',
-    'value',
+  // a comment
+  'value',
+  'value',
 );
 
 $arr = array(
-    'niveisFederativos' => app(NiveisFederativosRepository::class)
-        ->allOrderBy('nome')
-        ->pluck('nome', 'id'),
+  'niveisFederativos' => app(NiveisFederativosRepository::class)
+    ->allOrderBy('nome')
+    ->pluck('nome', 'id'),
 
-    'tiposLeis' => app(TiposLeisRepository::class)
-        ->allOrderBy('nome')
-        ->pluck('nome', 'id'),
+  'tiposLeis' => app(TiposLeisRepository::class)
+    ->allOrderBy('nome')
+    ->pluck('nome', 'id'),
 );
 [array($id1, $name1)] = $data;
 [array($id1), array($id2), array($id)] = $data;
 [
-    array(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
-    ),
+  array(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOtherValue,
+  ),
 ] = $data;
 ["id" => $id1, "name" => $name1] = $data;
 [array("id" => $id1, "name" => $name1)] = $data;
 [
-    array(
-        "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
-        "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
-    ),
+  array(
+    "veryVeryVeryVeryLongKey" => $veryVeryVeryVeryLongValue,
+    "veryVeryVeryVeryLongOtherKey" => $veryVeryVeryVeryLongValue,
+  ),
 ] = $data;
 $arr = array(
-    'niveisFederativos' => function () {
-        return "value";
-    },
+  'niveisFederativos' => function () {
+    return "value";
+  },
 
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
-        return "other-value";
-    },
+  'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => function () {
+    return "other-value";
+  },
 );
 
 $singleLine = array('do' => array('collapse' => 'this'));
 $singleLine = array('do' => array('collapse' => 'this'));
 
 $multiline = array(
-    'do' => array(
-        'not' => 'collapse',
-    ),
+  'do' => array(
+    'not' => 'collapse',
+  ),
 );
 $multiline = array('do' => 'collapse');
 $multiline = array('do' => 'collapse');
 
 $mixed = array(
-    'only' => array('partly' => 'collapsed'),
+  'only' => array('partly' => 'collapsed'),
 );
 $mixed = array(
-    'only' => array(
-        'partly' => array('coll', 'apsed'),
-    ),
+  'only' => array(
+    'partly' => array('coll', 'apsed'),
+  ),
 );
 
 $arr = array($var);
@@ -1612,81 +1612,81 @@ $collapse = array("not", "associative");
 $collapse = array("not", "associative");
 
 $array = array(
-    'key-one' => true ? 1 : 2,
-    'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        ? 1
-        : 2,
-    'key-two' => true
-        ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-        : 2,
-    'key-two' => true
-        ? 1
-        : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-    'key-two' =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+  'key-one' => true ? 1 : 2,
+  'key-two' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    ? 1
+    : 2,
+  'key-two' => true
+    ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    : 2,
+  'key-two' => true
+    ? 1
+    : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+  'key-two' =>
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+      ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-            ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-            : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-                'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
-);
-
-$array = array(
-    'key' => 1,
-    'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
-    'key' => 'string',
-    'key' => __LINE__,
-    'key' => "string \${var} {$var}",
-    'key' => 'string
-string
-              string',
-    'key' => 'string' . 'other-string',
-    'key' =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+      : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
         'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
 );
 
 $array = array(
-    'string
+  'key' => 1,
+  'key' => 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,
+  'key' => 'string',
+  'key' => __LINE__,
+  'key' => "string \${var} {$var}",
+  'key' => 'string
+string
+              string',
+  'key' => 'string' . 'other-string',
+  'key' =>
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+);
+
+$array = array(
+  'string
 string
 string',
 );
 
 $array = array(
-    'string
+  'string
 string
 string',
-    'string
-string
-string',
-);
-
-$array = array(
-    'key' => 'string
-string
-string',
-    'other-key' => 'string
+  'string
 string
 string',
 );
 
 $array = array(
-    'string
+  'key' => 'string
+string
+string',
+  'other-key' => 'string
+string
+string',
+);
+
+$array = array(
+  'string
 string
 string' => 'value',
-    'string
+  'string
 string
 string
 other' => 'other-value',
 );
 
 $array = array(
-    'string
+  'string
 string
 string' => 'string
 string
 string',
-    'string
+  'string
 string
 string
 other' => 'string
@@ -1695,24 +1695,24 @@ string',
 );
 
 $wp_admin_bar->add_menu(array(
-    'id' => 'menu-toggle',
-    'title' =>
-        '<span class="ab-icon"></span><span class="screen-reader-text">' .
-        __('Menu') .
-        '</span>',
-    'href' => '#',
+  'id' => 'menu-toggle',
+  'title' =>
+    '<span class="ab-icon"></span><span class="screen-reader-text">' .
+    __('Menu') .
+    '</span>',
+  'href' => '#',
 ));
 
 $k = array(
-    "blablah" =>
-        "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
-        "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
-        "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf",
+  "blablah" =>
+    "aldkfkladfskladklsfkladklfkaldfadfkdaf" +
+    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" +
+    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf",
 );
 
 $o = array(
-    "somethingThatsAReallyLongPropName" =>
-        $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
+  "somethingThatsAReallyLongPropName" =>
+    $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST,
 );
 
 // spread

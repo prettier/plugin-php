@@ -33,35 +33,35 @@ do {} while ($veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable && $veryVeryVeryV
 <?php
 $i = 1;
 do {
-    $i++;
+  $i++;
 } while ($i <= 5);
 
 $really_really_long_variable_name = 0;
 $other_really_really_really_long_variable_name = 10;
 do {
-    $really_really_long_variable_name++;
+  $really_really_long_variable_name++;
 } while (
-    $really_really_long_variable_name <=
-    $other_really_really_really_long_variable_name
+  $really_really_long_variable_name <=
+  $other_really_really_really_long_variable_name
 );
 
 do {
-    $i++;
+  $i++;
 } while ($i <= 5);
 
 do {
-    $var++;
+  $var++;
 } while ($var < 10);
 
 do {
 } while (
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
 );
 
 do {
 } while (
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable &&
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable &&
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
 );
 
 ================================================================================

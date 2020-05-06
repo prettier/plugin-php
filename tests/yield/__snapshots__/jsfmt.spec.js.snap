@@ -69,67 +69,67 @@ function foo() {
 <?php
 function from()
 {
-    yield;
-    yield 1;
-    yield 2;
-    yield 3;
-    yield $test => 3;
-    yield [$i++, $value];
-    yield $arr->current();
+  yield;
+  yield 1;
+  yield 2;
+  yield 3;
+  yield $test => 3;
+  yield [$i++, $value];
+  yield $arr->current();
 }
 function gen()
 {
-    yield 0;
-    yield from from();
-    yield 4;
+  yield 0;
+  yield from from();
+  yield 4;
 }
 
 function gen_one_to_three()
 {
-    for ($i = 1; $i <= 3; $i++) {
-        yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValues;
-        yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
-        yield from $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
-    }
+  for ($i = 1; $i <= 3; $i++) {
+    yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValues;
+    yield $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+    yield from $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongObjName->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+  }
 }
 
 function count_to_ten()
 {
-    yield 1;
-    yield 2;
-    yield from [3, 4];
-    yield from new ArrayIterator([5, 6]);
-    yield from seven_eight();
-    yield 9;
-    yield 10;
+  yield 1;
+  yield 2;
+  yield from [3, 4];
+  yield from new ArrayIterator([5, 6]);
+  yield from seven_eight();
+  yield 9;
+  yield 10;
 }
 
 function seven_eight()
 {
-    yield 7;
-    yield from eight();
+  yield 7;
+  yield from eight();
 }
 
 function eight()
 {
-    yield 8;
+  yield 8;
 }
 
 function count_to_ten()
 {
-    yield 1;
-    yield 2;
-    yield from [3, 4];
-    yield from new ArrayIterator([5, 6]);
-    yield from seven_eight();
+  yield 1;
+  yield 2;
+  yield from [3, 4];
+  yield from new ArrayIterator([5, 6]);
+  yield from seven_eight();
 
-    return yield from nine_ten();
+  return yield from nine_ten();
 }
 
 function foo()
 {
-    $test = 123;
-    yield "bar {$test}" => 123;
+  $test = 123;
+  yield "bar {$test}" => 123;
 }
 
 ================================================================================

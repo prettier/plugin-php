@@ -51,45 +51,45 @@ class Foo
 
 class Foo
 {
-    protected $link;
+  protected $link;
 
-    public function __construct($link)
-    {
-        $this->link = $link;
-    }
+  public function __construct($link)
+  {
+    $this->link = $link;
+  }
 
-    public function publishMethod()
-    {
-        return 'public';
-    }
+  public function publishMethod()
+  {
+    return 'public';
+  }
 
-    private function protectedMethod()
-    {
-        return 'protected';
-    }
+  private function protectedMethod()
+  {
+    return 'protected';
+  }
 
-    private function privateMethod()
-    {
-        return 'private';
-    }
+  private function privateMethod()
+  {
+    return 'private';
+  }
 
-    public function emptyMethod()
-    {
-    }
+  public function emptyMethod()
+  {
+  }
 
-    public function emptyMethodWithComment()
-    {
-        // Comment
-    }
+  public function emptyMethodWithComment()
+  {
+    // Comment
+  }
 
-    function aMemberFunc()
-    {
-        print 'Inside \`aMemberFunc()\`';
-    }
+  function aMemberFunc()
+  {
+    print 'Inside \`aMemberFunc()\`';
+  }
 
-    function bMemberFunc()
-    {
-    }
+  function bMemberFunc()
+  {
+  }
 }
 
 ================================================================================

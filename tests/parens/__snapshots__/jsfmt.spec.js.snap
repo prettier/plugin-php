@@ -215,17 +215,17 @@ $var = ($var = 4) + 5;
 $var = $var = ['key' => 'value'];
 
 $var = $var
-    ? $var
-    : function () {
-        return 0;
-    };
+  ? $var
+  : function () {
+    return 0;
+  };
 
 for ($i = 1; $i <= 10; $i++) {
-    echo $i;
+  echo $i;
 }
 
 for ($i = 1; $i <= 10; $i++) {
-    echo $i;
+  echo $i;
 }
 for ($i = 1, $j = 0; $i <= 10; $j += $i, print $i, $i++);
 
@@ -243,76 +243,76 @@ $var = $var || ($var = new MyClass());
 $var = $var || ($var = new MyClass());
 
 if (true) {
-    $var = $var;
+  $var = $var;
 }
 if (true) {
-    $var = $var;
+  $var = $var;
 }
 if (true) {
-    $var = $var;
+  $var = $var;
 } elseif (false) {
-    $var = $var;
+  $var = $var;
 }
 if (true) {
-    $var = $var;
+  $var = $var;
 } elseif (false) {
-    $var = $var;
+  $var = $var;
 } else {
-    $var = $var;
+  $var = $var;
 }
 
 if (true) {
-    $var = $var;
-    $var = $var;
+  $var = $var;
+  $var = $var;
 }
 
 while ($i <= 10) {
-    $i = 1;
+  $i = 1;
 }
 while ($i <= 10) {
-    $i = 1;
+  $i = 1;
 }
 
 do {
-    echo $i;
+  echo $i;
 } while ($i = 0);
 
 for ($i = 1; $i <= 10; $i++) {
-    $i = 1;
+  $i = 1;
 }
 for ($i = 1; $i <= 10; $i++) {
-    $i = 1;
+  $i = 1;
 }
 
 foreach ($arr as &$value) {
-    $value = $value * 2;
+  $value = $value * 2;
 }
 foreach ($arr as &$value) {
-    $value = $value * 2;
+  $value = $value * 2;
 }
 
 switch ($i = 1) {
-    case 0:
-        echo "i equals 0";
-        break;
-    case 1:
-        echo "i equals 1";
-        break;
-    case 2:
-        echo "i equals 2";
-        break;
+  case 0:
+    echo "i equals 0";
+    break;
+  case 1:
+    echo "i equals 1";
+    break;
+  case 2:
+    echo "i equals 2";
+    break;
 }
 
 switch ($i = 1) {
-    case 0:
-        echo "i equals 0";
-        break;
-    case 1:
-        echo "i equals 1";
-        break;
-    case 2:
-        echo "i equals 2";
-        break;
+  case 0:
+    echo "i equals 0";
+    break;
+  case 1:
+    echo "i equals 1";
+    break;
+  case 2:
+    echo "i equals 2";
+    break;
 }
 
 ================================================================================
@@ -1105,14 +1105,14 @@ $d = (true or foo());
 ($h = true) and false;
 
 ($my_file = call('non_existent_file')) or
-    die("Failed opening file: error was '$php_errormsg'");
+  die("Failed opening file: error was '$php_errormsg'");
 ($my_file = call('non_existent_file')) or
-    die("Failed opening file: error was '$php_errormsg'");
+  die("Failed opening file: error was '$php_errormsg'");
 
 ($my_file = call('non_existent_file')) and
-    die("Failed opening file: error was '$php_errormsg'");
+  die("Failed opening file: error was '$php_errormsg'");
 ($my_file = call('non_existent_file')) and
-    die("Failed opening file: error was '$php_errormsg'");
+  die("Failed opening file: error was '$php_errormsg'");
 
 $var = $obj->foo ?? "default";
 $var = $foo ? $bar ?? $foo : $baz;
@@ -1142,7 +1142,7 @@ function foo() {
 
 function foo()
 {
-    $a->c();
+  $a->c();
 }
 
 ================================================================================
@@ -1496,7 +1496,7 @@ $var = (int) ($var === 1);
 $this->apc->put($this->prefix . $key, $value, (int) ($minutes * 60));
 
 $timeout =
-    (int) ($server->timeout / 1000) + ($server->timeout % 1000 > 0 ? 1 : 0);
+  (int) ($server->timeout / 1000) + ($server->timeout % 1000 > 0 ? 1 : 0);
 
 ================================================================================
 `;
@@ -1561,9 +1561,9 @@ $var = (clone foo())->bar()->foo();
 $var = (clone foo())->bar()->foo()[0];
 $var = (clone foo())->bar()->foo()[0][1];
 $var = (clone foo())
-    ->bar()
-    ->foo()
-    ->baz();
+  ->bar()
+  ->foo()
+  ->baz();
 $var = (clone $foo())->bar;
 $var = (clone $bar->y)->x;
 $var = (clone $foo)[0];
@@ -1623,8 +1623,8 @@ $func = static function () {};
 
 function foo()
 {
-    $var = function () {};
-    $var = (function () {})();
+  $var = function () {};
+  $var = (function () {})();
 }
 
 call(function () {}, function () {}, function () {});
@@ -1774,70 +1774,70 @@ do {} while( false !== ($file = readdir($dh)));
 <?php
 
 if ($a > $b) {
-    echo "a is bigger than b";
+  echo "a is bigger than b";
 } elseif ($a == $b) {
-    echo "a is equal to b";
+  echo "a is equal to b";
 } else {
-    echo "a is smaller than b";
+  echo "a is smaller than b";
 }
 
 while ($i <= 10) {
-    echo $i++;
+  echo $i++;
 }
 
 do {
-    echo $i;
+  echo $i;
 } while ($i > 0);
 
 switch ($i) {
-    case 0:
-        echo "i equals 0";
-        break;
-    case 1:
-        echo "i equals 1";
-        break;
-    case 'test' . (1 > 2 ? 'foo' : 'bar'):
-        echo "i equals 2";
-        break;
+  case 0:
+    echo "i equals 0";
+    break;
+  case 1:
+    echo "i equals 1";
+    break;
+  case 'test' . (1 > 2 ? 'foo' : 'bar'):
+    echo "i equals 2";
+    break;
 }
 
 switch ($i + 1) {
-    case 0:
-        echo "i equals 0";
-        break;
-    case 1 + 2:
-        echo "i equals 1";
-        break;
-    case 1 + (1 > 2 ? 1 : 3):
-        echo "i equals 2";
-        break;
+  case 0:
+    echo "i equals 0";
+    break;
+  case 1 + 2:
+    echo "i equals 1";
+    break;
+  case 1 + (1 > 2 ? 1 : 3):
+    echo "i equals 2";
+    break;
 }
 
 while (++$i) {
-    switch ($i) {
-        case 5:
-            echo "At 5<br />\\n";
-            break 2; /* Exit only the switch. */
-        case 10:
-            echo "At 10; quitting<br />\\n";
-            break 4; /* Exit the switch and the while. */
-        default:
-            break;
-    }
+  switch ($i) {
+    case 5:
+      echo "At 5<br />\\n";
+      break 2; /* Exit only the switch. */
+    case 10:
+      echo "At 10; quitting<br />\\n";
+      break 4; /* Exit the switch and the while. */
+    default:
+      break;
+  }
 }
 
 while ($i++ < 5) {
-    echo "Outer<br />\\n";
+  echo "Outer<br />\\n";
+  while (1) {
+    echo "Middle<br />\\n";
     while (1) {
-        echo "Middle<br />\\n";
-        while (1) {
-            echo "Inner<br />\\n";
-            continue 3;
-        }
-        echo "This never gets output.<br />\\n";
-        continue 2;
+      echo "Inner<br />\\n";
+      continue 3;
     }
-    echo "Neither does this.<br />\\n";
+    echo "This never gets output.<br />\\n";
+    continue 2;
+  }
+  echo "Neither does this.<br />\\n";
 }
 
 if ($var = 1) {
@@ -2000,10 +2000,10 @@ line with just a semicolon. no extra whitespace!
 END;
 
 echo (function () {
-    return 'test';
+  return 'test';
 })();
 echo (function () {
-    return 'test';
+  return 'test';
 })();
 
 ================================================================================
@@ -2111,10 +2111,10 @@ exit(1);
 exit(1);
 
 if (true) {
-    exit(1);
+  exit(1);
 }
 if (true) {
-    exit(1);
+  exit(1);
 }
 
 call(exit(1));
@@ -2182,8 +2182,8 @@ $var = include $var;
 
 function foo()
 {
-    include 'foo.php';
-    include 'foo.php';
+  include 'foo.php';
+  include 'foo.php';
 }
 
 if (include 'vars.php' == true) {
@@ -2512,27 +2512,27 @@ $var = (new class {})->foo;
 =====================================output=====================================
 <?php
 new Translator(
-    $container,
-    new MessageFormatter(),
-    'en',
-    [],
-    ['foo' => 'bar']
+  $container,
+  new MessageFormatter(),
+  'en',
+  [],
+  ['foo' => 'bar']
 ); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
-    'foo' => 'bar',
+  'foo' => 'bar',
 ]); ?>
 <?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
-    'foo' => 'bar',
+  'foo' => 'bar',
 ]); ?>
 <?php
 $var = new Foo();
 $var = new Foo();
 $var = (new Foo())->c();
 $var = new class {
-    public function log($msg)
-    {
-        echo $msg;
-    }
+  public function log($msg)
+  {
+    echo $msg;
+  }
 };
 $var = (new foo())->bar();
 $var = (new foo())->bar()->foo();
@@ -2541,9 +2541,9 @@ $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo()[0];
 $var = (new foo())->bar()->foo()[0][1];
 $var = (new foo())
-    ->bar()
-    ->foo()
-    ->baz();
+  ->bar()
+  ->foo()
+  ->baz();
 $var = (new $foo())->bar;
 $var = (new $bar->y())->x;
 $var = (new foo())[0];
@@ -2914,25 +2914,25 @@ $var = ((int) $var) + 1 === 2 ? '1' : '2';
 ($var ? $var : $var)->d();
 ($var ? $var : $var)->d()->e();
 ($var ? $var : $var)
-    ->d()
-    ->e()
-    ->f();
+  ->d()
+  ->e()
+  ->f();
 ($var
-    ? $var->responseBody($var->currentUser)
-    : $var->responseBody($var->defaultUser)
+  ? $var->responseBody($var->currentUser)
+  : $var->responseBody($var->defaultUser)
 )->map();
 ($var
-    ? $var . responseBody($var->currentUser)
-    : $var . responseBody($var->defaultUser)
+  ? $var . responseBody($var->currentUser)
+  : $var . responseBody($var->defaultUser)
 )
-    ->map()
-    ->filter();
+  ->map()
+  ->filter();
 ($var
-    ? $var . responseBody($var->currentUser)
-    : $var . responseBody($var)
+  ? $var . responseBody($var->currentUser)
+  : $var . responseBody($var)
 )->map();
 $var[
-    $var ? $var->responseBody($var->currentUser) : $var->responseBody($var)
+  $var ? $var->responseBody($var->currentUser) : $var->responseBody($var)
 ]->map();
 
 $var = $var . $var ? "()" : "";
@@ -2942,14 +2942,14 @@ $var = +($var ? 1 : 2);
 $var = +(+$var ? 1 : 2);
 $var = +($var++ ? 1 : 2);
 $var = (true
-        ? 'true'
-        : false)
-    ? (true
-        ? 'true'
-        : false)
-    : (true
-        ? 'true'
-        : false);
+    ? 'true'
+    : false)
+  ? (true
+    ? 'true'
+    : false)
+  : (true
+    ? 'true'
+    : false);
 $var = ($var ? ($var1 ? 1 : 2) : $var2) ? 3 : 4;
 
 $var = $var ?: $var ?: $var ?: 'string';
@@ -3001,12 +3001,12 @@ return 1;
 return 1;
 return 1 + 2;
 return 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+  'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
 return $var1 + $var2;
 return $var ? ($var1 ? 1 : 2) : ($var2 ? 3 : 4);
 return 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    ? 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    : 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+  ? 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+  : 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
 return static::class . '@' . $method;
 return $this->customer->paymentService ?? null;
 
@@ -3093,21 +3093,21 @@ $var = @new MyClass();
 $var = @$_GET['data'];
 
 if (
-    false === @fwrite($this->stream, $message) ||
-    ($newline && false === @fwrite($this->stream, PHP_EOL))
+  false === @fwrite($this->stream, $message) ||
+  ($newline && false === @fwrite($this->stream, PHP_EOL))
 ) {
-    // should never happen
-    throw new RuntimeException('Unable to write output.');
+  // should never happen
+  throw new RuntimeException('Unable to write output.');
 }
 
 try {
-    if (($fp = @fopen($filename, "r")) == false) {
-        throw new Exception();
-    } else {
-        do_file_stuff();
-    }
+  if (($fp = @fopen($filename, "r")) == false) {
+    throw new Exception();
+  } else {
+    do_file_stuff();
+  }
 } catch (Exception $e) {
-    handle_exception();
+  handle_exception();
 }
 
 @list($width, $height) = getimagesize($file);
@@ -3161,12 +3161,12 @@ throw new \\Exception("Bye");
 throw new \\Exception("Bye");
 
 if (!$var) {
-    throw new Exception('Division by zero.');
-    throw new Exception('Division by zero.');
-    throw $e;
-    throw $e;
-    throw new \\Exception("Bye");
-    throw new \\Exception("Bye");
+  throw new Exception('Division by zero.');
+  throw new Exception('Division by zero.');
+  throw $e;
+  throw $e;
+  throw new \\Exception("Bye");
+  throw new \\Exception("Bye");
 }
 
 ================================================================================
@@ -3432,7 +3432,7 @@ $var = $$var;
 
 function foo($a = 1, $b = 'string', $c = true, $d = __LINE__)
 {
-    echo "Example function.\\n";
+  echo "Example function.\\n";
 }
 
 ================================================================================
@@ -3491,45 +3491,45 @@ function gen_one_to_three() {
 
 function gen_one_to_three()
 {
-    for ($i = 1; $i <= 3; $i++) {
-        yield;
-        yield $i;
-        yield $i;
-        yield from from();
-        yield from from();
-        (yield f())->b;
-        !(yield $var);
-        yield (yield $var);
-    }
+  for ($i = 1; $i <= 3; $i++) {
+    yield;
+    yield $i;
+    yield $i;
+    yield from from();
+    yield from from();
+    (yield f())->b;
+    !(yield $var);
+    yield (yield $var);
+  }
 
-    $var = yield;
-    $var = (yield $var);
-    $var += (yield $var);
-    $var = (yield $var);
-    $var += (yield $var);
-    $var = (yield $key => $var);
-    $var = (yield $key => $var);
-    $var = !(yield $var);
-    $var = !(yield $var);
-    $var = (yield (yield $var));
-    $var = (yield 1 ? 1 : 1);
-    $var = (yield 1) ? 1 : 1;
-    $var = (yield 1 ? yield 1 : yield 1);
-    $var = (yield 1) ? yield 1 : yield 1;
-    $var = (yield $var->b);
-    $var = (yield $var)->b;
-    $var = (yield $var->b());
-    $var = (yield $var)->b();
-    $var = (yield $var[1]);
-    $var = (yield $var)[1];
+  $var = yield;
+  $var = (yield $var);
+  $var += (yield $var);
+  $var = (yield $var);
+  $var += (yield $var);
+  $var = (yield $key => $var);
+  $var = (yield $key => $var);
+  $var = !(yield $var);
+  $var = !(yield $var);
+  $var = (yield (yield $var));
+  $var = (yield 1 ? 1 : 1);
+  $var = (yield 1) ? 1 : 1;
+  $var = (yield 1 ? yield 1 : yield 1);
+  $var = (yield 1) ? yield 1 : yield 1;
+  $var = (yield $var->b);
+  $var = (yield $var)->b;
+  $var = (yield $var->b());
+  $var = (yield $var)->b();
+  $var = (yield $var[1]);
+  $var = (yield $var)[1];
 
-    call(yield $var);
+  call(yield $var);
 
-    return yield from nine_ten();
+  return yield from nine_ten();
 
-    foreach ($SubTrav as $SubItem) {
-        yield $SubItem;
-    }
+  foreach ($SubTrav as $SubItem) {
+    yield $SubItem;
+  }
 }
 
 ================================================================================

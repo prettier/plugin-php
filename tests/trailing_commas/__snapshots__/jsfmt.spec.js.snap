@@ -211,47 +211,47 @@ EOT
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+  idx($composer, 'require', []),
+  idx($composer, 'require-dev', [])
 );
 
 // nowdoc
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
@@ -260,8 +260,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<'EOT'
+  'foo',
+  <<<'EOT'
 foo
 # bar
 baz
@@ -270,19 +270,19 @@ EOT
 ,
 ];
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // heredoc
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
@@ -291,8 +291,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<EOT
+  'foo',
+  <<<EOT
 foo
 # bar
 baz
@@ -301,19 +301,19 @@ EOT
 ,
 ];
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Associative array with nowdoc
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -322,8 +322,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<'EOT'
+  'foo',
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -332,19 +332,19 @@ EOT
 ,
 ];
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Associative array with heredoc
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -353,8 +353,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<EOT
+  'foo',
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -363,74 +363,74 @@ EOT
 ,
 ];
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Nested with nowdoc
 $expected = [
-    'test' => <<<'EOT'
+  'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<'EOT'
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            'two' => <<<'EOT'
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<'EOT'
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 // Nested with heredoc
 $expected = [
-    'test' => <<<EOT
+  'test' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<EOT
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            'two' => <<<EOT
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<EOT
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 ================================================================================
@@ -649,47 +649,47 @@ EOT
 $foo = array('foo', 'bar');
 $foo = array('foo', 'bar');
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $foo = array('foo', 'bar');
 $foo = array('foo', 'bar');
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $foo = array(
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 );
 $packages = array_merge(
-    idx($composer, 'require', array()),
-    idx($composer, 'require-dev', array())
+  idx($composer, 'require', array()),
+  idx($composer, 'require-dev', array())
 );
 
 // nowdoc
 $expected = array(
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
@@ -698,8 +698,8 @@ EOT
 ,
 );
 $expected = array(
-    'foo',
-    <<<'EOT'
+  'foo',
+  <<<'EOT'
 foo
 # bar
 baz
@@ -708,19 +708,19 @@ EOT
 ,
 );
 $expected = array(
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 );
 
 // heredoc
 $expected = array(
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
@@ -729,8 +729,8 @@ EOT
 ,
 );
 $expected = array(
-    'foo',
-    <<<EOT
+  'foo',
+  <<<EOT
 foo
 # bar
 baz
@@ -739,19 +739,19 @@ EOT
 ,
 );
 $expected = array(
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 );
 
 // Associative array with nowdoc
 $expected = array(
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -760,8 +760,8 @@ EOT
 ,
 );
 $expected = array(
-    'foo',
-    'key' => <<<'EOT'
+  'foo',
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -770,19 +770,19 @@ EOT
 ,
 );
 $expected = array(
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 );
 
 // Associative array with heredoc
 $expected = array(
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -791,8 +791,8 @@ EOT
 ,
 );
 $expected = array(
-    'foo',
-    'key' => <<<EOT
+  'foo',
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -801,74 +801,74 @@ EOT
 ,
 );
 $expected = array(
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 );
 
 // Nested with nowdoc
 $expected = array(
-    'test' => <<<'EOT'
+  'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => array(
+    array(
+      'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => array(
-        array(
-            'one' => <<<'EOT'
-foo
-# bar
-baz
-
-EOT
-        ,
-        ),
-        array(
-            'two' => <<<'EOT'
-foo
-# bar
-baz
-EOT
-        ,
-        ),
     ),
+    array(
+      'two' => <<<'EOT'
+foo
+# bar
+baz
+EOT
+    ,
+    ),
+  ),
 );
 
 // Nested with heredoc
 $expected = array(
-    'test' => <<<EOT
+  'test' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => array(
+    array(
+      'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => array(
-        array(
-            'one' => <<<EOT
-foo
-# bar
-baz
-
-EOT
-        ,
-        ),
-        array(
-            'two' => <<<EOT
-foo
-# bar
-baz
-EOT
-        ,
-        ),
     ),
+    array(
+      'two' => <<<EOT
+foo
+# bar
+baz
+EOT
+    ,
+    ),
+  ),
 );
 
 ================================================================================
@@ -1087,47 +1087,47 @@ EOT
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+  idx($composer, 'require', []),
+  idx($composer, 'require-dev', [])
 );
 
 // nowdoc
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
@@ -1136,8 +1136,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<'EOT'
+  'foo',
+  <<<'EOT'
 foo
 # bar
 baz
@@ -1146,19 +1146,19 @@ EOT
 ,
 ];
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // heredoc
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
@@ -1167,8 +1167,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<EOT
+  'foo',
+  <<<EOT
 foo
 # bar
 baz
@@ -1177,19 +1177,19 @@ EOT
 ,
 ];
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Associative array with nowdoc
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -1198,8 +1198,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<'EOT'
+  'foo',
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -1208,19 +1208,19 @@ EOT
 ,
 ];
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Associative array with heredoc
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -1229,8 +1229,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<EOT
+  'foo',
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -1239,74 +1239,74 @@ EOT
 ,
 ];
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Nested with nowdoc
 $expected = [
-    'test' => <<<'EOT'
+  'test' => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<'EOT'
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            'two' => <<<'EOT'
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<'EOT'
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 // Nested with heredoc
 $expected = [
-    'test' => <<<EOT
+  'test' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<EOT
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            'two' => <<<EOT
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<EOT
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 ================================================================================
@@ -1525,78 +1525,78 @@ EOT
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2',
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar',
 ];
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', []),
+  idx($composer, 'require', []),
+  idx($composer, 'require-dev', []),
 );
 
 // nowdoc
 $expected = [
-    <<<'EOT'
-    foo
-    # bar
-    baz
+  <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<'EOT'
-    foo
-    # bar
-    baz
+  'foo',
+  <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    <<<'EOT'
-    foo
-    # bar
-    baz
+  <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
-    ,
-    'bar',
+  EOT
+  ,
+  'bar',
 ];
 
 // heredoc
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
@@ -1605,8 +1605,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    <<<EOT
+  'foo',
+  <<<EOT
 foo
 # bar
 baz
@@ -1615,50 +1615,50 @@ EOT
 ,
 ];
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Associative array with nowdoc
 $expected = [
-    'key' => <<<'EOT'
-    foo
-    # bar
-    baz
+  'key' => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<'EOT'
-    foo
-    # bar
-    baz
+  'foo',
+  'key' => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    'key' => <<<'EOT'
-    foo
-    # bar
-    baz
+  'key' => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
-    ,
-    'bar',
+  EOT
+  ,
+  'bar',
 ];
 
 // Associative array with heredoc
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -1667,8 +1667,8 @@ EOT
 ,
 ];
 $expected = [
-    'foo',
-    'key' => <<<EOT
+  'foo',
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -1677,74 +1677,74 @@ EOT
 ,
 ];
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar',
+  ,
+  'bar',
 ];
 
 // Nested with nowdoc
 $expected = [
-    'test' => <<<'EOT'
-    foo
-    # bar
-    baz
+  'test' => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<'EOT'
+      foo
+      # bar
+      baz
+
+      EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<'EOT'
-            foo
-            # bar
-            baz
-
-            EOT
-        ,
-        ],
-        [
-            'two' => <<<'EOT'
-            foo
-            # bar
-            baz
-            EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<'EOT'
+      foo
+      # bar
+      baz
+      EOT
+    ,
+    ],
+  ],
 ];
 
 // Nested with heredoc
 $expected = [
-    'test' => <<<EOT
+  'test' => <<<EOT
+foo
+# bar
+baz
+
+EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
-        [
-            'one' => <<<EOT
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            'two' => <<<EOT
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      'two' => <<<EOT
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 ================================================================================
@@ -1963,47 +1963,47 @@ EOT
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
 $foo = ['foo', 'bar'];
 $foo = ['foo', 'bar'];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1',
-    'very-very-very-very-very-very-very-very-very-long-item-2'
+  'very-very-very-very-very-very-very-very-very-long-item-1',
+  'very-very-very-very-very-very-very-very-very-long-item-2'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
 $foo = [
-    'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
-    'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
+  'very-very-very-very-very-very-very-very-very-long-item-1' => 'foo',
+  'very-very-very-very-very-very-very-very-very-long-item-2' => 'bar'
 ];
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+  idx($composer, 'require', []),
+  idx($composer, 'require-dev', [])
 );
 
 // nowdoc
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
@@ -2011,8 +2011,8 @@ baz
 EOT
 ];
 $expected = [
-    'foo',
-    <<<'EOT'
+  'foo',
+  <<<'EOT'
 foo
 # bar
 baz
@@ -2020,19 +2020,19 @@ baz
 EOT
 ];
 $expected = [
-    <<<'EOT'
+  <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar'
+  ,
+  'bar'
 ];
 
 // heredoc
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
@@ -2040,8 +2040,8 @@ baz
 EOT
 ];
 $expected = [
-    'foo',
-    <<<EOT
+  'foo',
+  <<<EOT
 foo
 # bar
 baz
@@ -2049,19 +2049,19 @@ baz
 EOT
 ];
 $expected = [
-    <<<EOT
+  <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar'
+  ,
+  'bar'
 ];
 
 // Associative array with nowdoc
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -2069,8 +2069,8 @@ baz
 EOT
 ];
 $expected = [
-    'foo',
-    'key' => <<<'EOT'
+  'foo',
+  'key' => <<<'EOT'
 foo
 # bar
 baz
@@ -2078,19 +2078,19 @@ baz
 EOT
 ];
 $expected = [
-    'key' => <<<'EOT'
+  'key' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar'
+  ,
+  'bar'
 ];
 
 // Associative array with heredoc
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -2098,8 +2098,8 @@ baz
 EOT
 ];
 $expected = [
-    'foo',
-    'key' => <<<EOT
+  'foo',
+  'key' => <<<EOT
 foo
 # bar
 baz
@@ -2107,70 +2107,70 @@ baz
 EOT
 ];
 $expected = [
-    'key' => <<<EOT
+  'key' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'bar'
+  ,
+  'bar'
 ];
 
 // Nested with nowdoc
 $expected = [
-    'test' => <<<'EOT'
+  'test' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    'collection' => [
-        [
-            'one' => <<<'EOT'
+  ,
+  'collection' => [
+    [
+      'one' => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-        ],
-        [
-            'two' => <<<'EOT'
+    ],
+    [
+      'two' => <<<'EOT'
 foo
 # bar
 baz
 EOT
-        ]
     ]
+  ]
 ];
 
 // Nested with heredoc
 $expected = [
-    'test' => <<<EOT
+  'test' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-    ,
-    'collection' => [
-        [
-            'one' => <<<EOT
+  ,
+  'collection' => [
+    [
+      'one' => <<<EOT
 foo
 # bar
 baz
 
 EOT
-        ],
-        [
-            'two' => <<<EOT
+    ],
+    [
+      'two' => <<<EOT
 foo
 # bar
 baz
 EOT
-        ]
     ]
+  ]
 ];
 
 ================================================================================
@@ -2335,104 +2335,104 @@ $sel = $this->connections
 foo('constructor', 'bar');
 
 foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new Foo('constructor', 'bar');
 
 $foo = new Foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new class('constructor', 'bar') {};
 
 $foo = new class(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 ) {};
 
 $foo->bar('method', 'bar');
 
 $foo->bar(
-    'method',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'method',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo('invoke', 'bar');
 
 $foo(
-    'invoke',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'invoke',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $var = strlen($var);
 
 $var = strlen(
-    $var,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $var,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
 
 var_dump(
-    $whatIsInThere,
-    $probablyABugInThisOne,
-    $oneMoreToCheck,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $whatIsInThere,
+  $probablyABugInThisOne,
+  $oneMoreToCheck,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 echo $twig->render('index.html', compact('title', 'body', 'comments'));
 
 echo $twig->render(
-    'index.html',
-    compact(
-        'title',
-        'body',
-        'comments',
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    )
+  'index.html',
+  compact(
+    'title',
+    'body',
+    'comments',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  )
 );
 
 $newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
 
 $newArray = array_merge(
-    $arrayOne,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    ['foo', 'bar']
+  $arrayOne,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  ['foo', 'bar']
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
 $text = sprintf($en, 'comma', 'Jane');
 
 $text = sprintf(
-    $en,
-    'comma',
-    'Jane',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $en,
+  'comma',
+  'Jane',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 call(
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ],
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ]
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ],
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ]
 );
 
 call(
-    <<<'EOT'
+  <<<'EOT'
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -2440,7 +2440,7 @@ EOT
 );
 
 call(
-    <<<EOT
+  <<<EOT
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -2449,22 +2449,22 @@ EOT
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(function ($x) {
-        return $x->selected;
-    });
+  ->concat($this->activities->concat($this->operators))
+  ->filter(function ($x) {
+    return $x->selected;
+  });
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(
-        function ($x) {
-            return $x->selected;
-        },
-        function ($x) {
-            return $x->selected;
-        }
-    );
+  ->concat($this->activities->concat($this->operators))
+  ->filter(
+    function ($x) {
+      return $x->selected;
+    },
+    function ($x) {
+      return $x->selected;
+    }
+  );
 
 ================================================================================
 `;
@@ -2630,104 +2630,104 @@ $sel = $this->connections
 foo('constructor', 'bar');
 
 foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new Foo('constructor', 'bar');
 
 $foo = new Foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new class('constructor', 'bar') {};
 
 $foo = new class(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 ) {};
 
 $foo->bar('method', 'bar');
 
 $foo->bar(
-    'method',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'method',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo('invoke', 'bar');
 
 $foo(
-    'invoke',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'invoke',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $var = strlen($var);
 
 $var = strlen(
-    $var,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $var,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
 
 var_dump(
-    $whatIsInThere,
-    $probablyABugInThisOne,
-    $oneMoreToCheck,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $whatIsInThere,
+  $probablyABugInThisOne,
+  $oneMoreToCheck,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 echo $twig->render('index.html', compact('title', 'body', 'comments'));
 
 echo $twig->render(
-    'index.html',
-    compact(
-        'title',
-        'body',
-        'comments',
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    )
+  'index.html',
+  compact(
+    'title',
+    'body',
+    'comments',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  )
 );
 
 $newArray = array_merge($arrayOne, $arrayTwo, array('foo', 'bar'));
 
 $newArray = array_merge(
-    $arrayOne,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    array('foo', 'bar')
+  $arrayOne,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  array('foo', 'bar')
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
 $text = sprintf($en, 'comma', 'Jane');
 
 $text = sprintf(
-    $en,
-    'comma',
-    'Jane',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $en,
+  'comma',
+  'Jane',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 call(
-    array(
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ),
-    array(
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    )
+  array(
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ),
+  array(
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  )
 );
 
 call(
-    <<<'EOT'
+  <<<'EOT'
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -2735,7 +2735,7 @@ EOT
 );
 
 call(
-    <<<EOT
+  <<<EOT
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -2744,22 +2744,22 @@ EOT
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(function ($x) {
-        return $x->selected;
-    });
+  ->concat($this->activities->concat($this->operators))
+  ->filter(function ($x) {
+    return $x->selected;
+  });
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(
-        function ($x) {
-            return $x->selected;
-        },
-        function ($x) {
-            return $x->selected;
-        }
-    );
+  ->concat($this->activities->concat($this->operators))
+  ->filter(
+    function ($x) {
+      return $x->selected;
+    },
+    function ($x) {
+      return $x->selected;
+    }
+  );
 
 ================================================================================
 `;
@@ -2925,104 +2925,104 @@ $sel = $this->connections
 foo('constructor', 'bar');
 
 foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new Foo('constructor', 'bar');
 
 $foo = new Foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new class('constructor', 'bar') {};
 
 $foo = new class(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 ) {};
 
 $foo->bar('method', 'bar');
 
 $foo->bar(
-    'method',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'method',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo('invoke', 'bar');
 
 $foo(
-    'invoke',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'invoke',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $var = strlen($var);
 
 $var = strlen(
-    $var,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $var,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
 
 var_dump(
-    $whatIsInThere,
-    $probablyABugInThisOne,
-    $oneMoreToCheck,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $whatIsInThere,
+  $probablyABugInThisOne,
+  $oneMoreToCheck,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 echo $twig->render('index.html', compact('title', 'body', 'comments'));
 
 echo $twig->render(
-    'index.html',
-    compact(
-        'title',
-        'body',
-        'comments',
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    )
+  'index.html',
+  compact(
+    'title',
+    'body',
+    'comments',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  )
 );
 
 $newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
 
 $newArray = array_merge(
-    $arrayOne,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    ['foo', 'bar']
+  $arrayOne,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  ['foo', 'bar']
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
 $text = sprintf($en, 'comma', 'Jane');
 
 $text = sprintf(
-    $en,
-    'comma',
-    'Jane',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $en,
+  'comma',
+  'Jane',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 call(
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ],
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ]
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ],
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ]
 );
 
 call(
-    <<<'EOT'
+  <<<'EOT'
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -3030,7 +3030,7 @@ EOT
 );
 
 call(
-    <<<EOT
+  <<<EOT
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -3039,22 +3039,22 @@ EOT
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(function ($x) {
-        return $x->selected;
-    });
+  ->concat($this->activities->concat($this->operators))
+  ->filter(function ($x) {
+    return $x->selected;
+  });
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(
-        function ($x) {
-            return $x->selected;
-        },
-        function ($x) {
-            return $x->selected;
-        }
-    );
+  ->concat($this->activities->concat($this->operators))
+  ->filter(
+    function ($x) {
+      return $x->selected;
+    },
+    function ($x) {
+      return $x->selected;
+    }
+  );
 
 ================================================================================
 `;
@@ -3220,138 +3220,138 @@ $sel = $this->connections
 foo('constructor', 'bar');
 
 foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 $foo = new Foo('constructor', 'bar');
 
 $foo = new Foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 $foo = new class('constructor', 'bar') {};
 
 $foo = new class(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 ) {};
 
 $foo->bar('method', 'bar');
 
 $foo->bar(
-    'method',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  'method',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 $foo('invoke', 'bar');
 
 $foo(
-    'invoke',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  'invoke',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 $var = strlen($var);
 
 $var = strlen(
-    $var,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  $var,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
 
 var_dump(
-    $whatIsInThere,
-    $probablyABugInThisOne,
-    $oneMoreToCheck,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  $whatIsInThere,
+  $probablyABugInThisOne,
+  $oneMoreToCheck,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
 echo $twig->render('index.html', compact('title', 'body', 'comments'));
 
 echo $twig->render(
-    'index.html',
-    compact(
-        'title',
-        'body',
-        'comments',
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ),
+  'index.html',
+  compact(
+    'title',
+    'body',
+    'comments',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ),
 );
 
 $newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
 
 $newArray = array_merge(
-    $arrayOne,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    ['foo', 'bar'],
+  $arrayOne,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  ['foo', 'bar'],
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
 $text = sprintf($en, 'comma', 'Jane');
 
 $text = sprintf(
-    $en,
-    'comma',
-    'Jane',
+  $en,
+  'comma',
+  'Jane',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+);
+
+call(
+  [
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ],
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
+  ],
 );
 
 call(
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ],
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
-    ],
+  <<<'EOT'
+  My name is "$name". I am printing some $foo->foo.
+  Now, I am printing some {$foo->bar[1]}.
+  This should not print a capital 'A': \\x41
+  EOT
+  ,
 );
 
 call(
-    <<<'EOT'
-    My name is "$name". I am printing some $foo->foo.
-    Now, I am printing some {$foo->bar[1]}.
-    This should not print a capital 'A': \\x41
-    EOT
-    ,
-);
-
-call(
-    <<<EOT
+  <<<EOT
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
 EOT
-    ,
+  ,
 );
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(function ($x) {
-        return $x->selected;
-    });
+  ->concat($this->activities->concat($this->operators))
+  ->filter(function ($x) {
+    return $x->selected;
+  });
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(
-        function ($x) {
-            return $x->selected;
-        },
-        function ($x) {
-            return $x->selected;
-        },
-    );
+  ->concat($this->activities->concat($this->operators))
+  ->filter(
+    function ($x) {
+      return $x->selected;
+    },
+    function ($x) {
+      return $x->selected;
+    },
+  );
 
 ================================================================================
 `;
@@ -3517,104 +3517,104 @@ $sel = $this->connections
 foo('constructor', 'bar');
 
 foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new Foo('constructor', 'bar');
 
 $foo = new Foo(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo = new class('constructor', 'bar') {};
 
 $foo = new class(
-    'constructor',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'constructor',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 ) {};
 
 $foo->bar('method', 'bar');
 
 $foo->bar(
-    'method',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'method',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $foo('invoke', 'bar');
 
 $foo(
-    'invoke',
-    'bar',
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  'invoke',
+  'bar',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 $var = strlen($var);
 
 $var = strlen(
-    $var,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $var,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 var_dump($whatIsInThere, $probablyABugInThisOne, $oneMoreToCheck);
 
 var_dump(
-    $whatIsInThere,
-    $probablyABugInThisOne,
-    $oneMoreToCheck,
-    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  $whatIsInThere,
+  $probablyABugInThisOne,
+  $oneMoreToCheck,
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
 echo $twig->render('index.html', compact('title', 'body', 'comments'));
 
 echo $twig->render(
-    'index.html',
-    compact(
-        'title',
-        'body',
-        'comments',
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    )
+  'index.html',
+  compact(
+    'title',
+    'body',
+    'comments',
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  )
 );
 
 $newArray = array_merge($arrayOne, $arrayTwo, ['foo', 'bar']);
 
 $newArray = array_merge(
-    $arrayOne,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    $arrayTwo,
-    ['foo', 'bar']
+  $arrayOne,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  $arrayTwo,
+  ['foo', 'bar']
 );
 
 $en = 'A trailing %s makes %s a happy developer.';
 $text = sprintf($en, 'comma', 'Jane');
 
 $text = sprintf(
-    $en,
-    'comma',
-    'Jane',
+  $en,
+  'comma',
+  'Jane',
+  'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+);
+
+call(
+  [
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  ],
+  [
+    'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
+  ]
 );
 
 call(
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    ],
-    [
-        'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
-    ]
-);
-
-call(
-    <<<'EOT'
+  <<<'EOT'
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -3622,7 +3622,7 @@ EOT
 );
 
 call(
-    <<<EOT
+  <<<EOT
 My name is "$name". I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 This should not print a capital 'A': \\x41
@@ -3631,22 +3631,22 @@ EOT
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(function ($x) {
-        return $x->selected;
-    });
+  ->concat($this->activities->concat($this->operators))
+  ->filter(function ($x) {
+    return $x->selected;
+  });
 
 $sel = $this->connections
 
-    ->concat($this->activities->concat($this->operators))
-    ->filter(
-        function ($x) {
-            return $x->selected;
-        },
-        function ($x) {
-            return $x->selected;
-        }
-    );
+  ->concat($this->activities->concat($this->operators))
+  ->filter(
+    function ($x) {
+      return $x->selected;
+    },
+    function ($x) {
+      return $x->selected;
+    }
+  );
 
 ================================================================================
 `;
@@ -3666,10 +3666,10 @@ var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 
 var_dump(isset($foo, $bar));
 var_dump(
-    isset(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
-    )
+  isset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  )
 );
 
 ================================================================================
@@ -3692,10 +3692,10 @@ var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 
 var_dump(isset($foo, $bar));
 var_dump(
-    isset(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
-    )
+  isset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  )
 );
 
 ================================================================================
@@ -3718,10 +3718,10 @@ var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 
 var_dump(isset($foo, $bar));
 var_dump(
-    isset(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
-    )
+  isset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  )
 );
 
 ================================================================================
@@ -3744,10 +3744,10 @@ var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 
 var_dump(isset($foo, $bar));
 var_dump(
-    isset(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    ),
+  isset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  ),
 );
 
 ================================================================================
@@ -3770,10 +3770,10 @@ var_dump(isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 
 var_dump(isset($foo, $bar));
 var_dump(
-    isset(
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
-    )
+  isset(
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  )
 );
 
 ================================================================================
@@ -3812,66 +3812,66 @@ list(, , , $first, $second, $three, $fourth, , ,) = $arr;
 list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
 
 list(
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 
 ================================================================================
@@ -3912,66 +3912,66 @@ list(, , , $first, $second, $three, $fourth, , ,) = $arr;
 list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
 
 list(
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 
 ================================================================================
@@ -4012,66 +4012,66 @@ list(, , , $first, $second, $three, $fourth, , ,) = $arr;
 list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
 
 list(
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 
 ================================================================================
@@ -4112,66 +4112,66 @@ list(, , , $first, $second, $three, $fourth, , ,) = $arr;
 list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
 
 list(
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 
 ================================================================================
@@ -4212,66 +4212,66 @@ list(, , , $first, $second, $three, $fourth, , ,) = $arr;
 list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
 
 list(
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong
 ) = $arr;
 list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  1 => $secondVeryVeryVeryVeryLong,
+  2 => $threeVeryVeryVeryVeryLong,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 list(
-    ,
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-    ,
+  ,
+  ,
+  ,
+  0 => $firstVeryVeryVeryVeryLong,
+  ,
+  ,
+  1 => $secondVeryVeryVeryVeryLong,
+  ,
+  ,
+  2 => $threeVeryVeryVeryVeryLong,
+  ,
+  ,
+  3 => $fourthVeryVeryVeryVeryLong,
+  ,
+  ,
 ) = $arr;
 
 ================================================================================
@@ -4293,8 +4293,8 @@ unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVe
 
 unset($foo, $bar);
 unset(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 );
 
 ================================================================================
@@ -4318,8 +4318,8 @@ unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVe
 
 unset($foo, $bar);
 unset(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 );
 
 ================================================================================
@@ -4343,8 +4343,8 @@ unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVe
 
 unset($foo, $bar);
 unset(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 );
 
 ================================================================================
@@ -4368,8 +4368,8 @@ unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVe
 
 unset($foo, $bar);
 unset(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
 );
 
 ================================================================================
@@ -4393,8 +4393,8 @@ unset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong, $veryVe
 
 unset($foo, $bar);
 unset(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong
 );
 
 ================================================================================
@@ -4427,24 +4427,24 @@ use const foo\\bar\\{ConstA, ConstB, ConstC};
 use other_foo\\bar\\{ClassA, ClassB, ClassC as C};
 
 use foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC
 };
 use function foo\\bar\\{
-    very_very_very_very_very_long_fn_a,
-    very_very_very_very_very_long_fn_b,
-    very_very_very_very_very_long_fn_c
+  very_very_very_very_very_long_fn_a,
+  very_very_very_very_very_long_fn_b,
+  very_very_very_very_very_long_fn_c
 };
 use const foo\\bar\\{
-    VeryVeryVeryVeryVeryLongConstA,
-    VeryVeryVeryVeryVeryLongConstB,
-    VeryVeryVeryVeryVeryLongConstC
+  VeryVeryVeryVeryVeryLongConstA,
+  VeryVeryVeryVeryVeryLongConstB,
+  VeryVeryVeryVeryVeryLongConstC
 };
 use other_foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC as C
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC as C
 };
 
 ================================================================================
@@ -4479,24 +4479,24 @@ use const foo\\bar\\{ConstA, ConstB, ConstC};
 use other_foo\\bar\\{ClassA, ClassB, ClassC as C};
 
 use foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC
 };
 use function foo\\bar\\{
-    very_very_very_very_very_long_fn_a,
-    very_very_very_very_very_long_fn_b,
-    very_very_very_very_very_long_fn_c
+  very_very_very_very_very_long_fn_a,
+  very_very_very_very_very_long_fn_b,
+  very_very_very_very_very_long_fn_c
 };
 use const foo\\bar\\{
-    VeryVeryVeryVeryVeryLongConstA,
-    VeryVeryVeryVeryVeryLongConstB,
-    VeryVeryVeryVeryVeryLongConstC
+  VeryVeryVeryVeryVeryLongConstA,
+  VeryVeryVeryVeryVeryLongConstB,
+  VeryVeryVeryVeryVeryLongConstC
 };
 use other_foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC as C
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC as C
 };
 
 ================================================================================
@@ -4531,24 +4531,24 @@ use const foo\\bar\\{ConstA, ConstB, ConstC};
 use other_foo\\bar\\{ClassA, ClassB, ClassC as C};
 
 use foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC,
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC,
 };
 use function foo\\bar\\{
-    very_very_very_very_very_long_fn_a,
-    very_very_very_very_very_long_fn_b,
-    very_very_very_very_very_long_fn_c,
+  very_very_very_very_very_long_fn_a,
+  very_very_very_very_very_long_fn_b,
+  very_very_very_very_very_long_fn_c,
 };
 use const foo\\bar\\{
-    VeryVeryVeryVeryVeryLongConstA,
-    VeryVeryVeryVeryVeryLongConstB,
-    VeryVeryVeryVeryVeryLongConstC,
+  VeryVeryVeryVeryVeryLongConstA,
+  VeryVeryVeryVeryVeryLongConstB,
+  VeryVeryVeryVeryVeryLongConstC,
 };
 use other_foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC as C,
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC as C,
 };
 
 ================================================================================
@@ -4583,24 +4583,24 @@ use const foo\\bar\\{ConstA, ConstB, ConstC};
 use other_foo\\bar\\{ClassA, ClassB, ClassC as C};
 
 use foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC,
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC,
 };
 use function foo\\bar\\{
-    very_very_very_very_very_long_fn_a,
-    very_very_very_very_very_long_fn_b,
-    very_very_very_very_very_long_fn_c,
+  very_very_very_very_very_long_fn_a,
+  very_very_very_very_very_long_fn_b,
+  very_very_very_very_very_long_fn_c,
 };
 use const foo\\bar\\{
-    VeryVeryVeryVeryVeryLongConstA,
-    VeryVeryVeryVeryVeryLongConstB,
-    VeryVeryVeryVeryVeryLongConstC,
+  VeryVeryVeryVeryVeryLongConstA,
+  VeryVeryVeryVeryVeryLongConstB,
+  VeryVeryVeryVeryVeryLongConstC,
 };
 use other_foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC as C,
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC as C,
 };
 
 ================================================================================
@@ -4635,24 +4635,24 @@ use const foo\\bar\\{ConstA, ConstB, ConstC};
 use other_foo\\bar\\{ClassA, ClassB, ClassC as C};
 
 use foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC
 };
 use function foo\\bar\\{
-    very_very_very_very_very_long_fn_a,
-    very_very_very_very_very_long_fn_b,
-    very_very_very_very_very_long_fn_c
+  very_very_very_very_very_long_fn_a,
+  very_very_very_very_very_long_fn_b,
+  very_very_very_very_very_long_fn_c
 };
 use const foo\\bar\\{
-    VeryVeryVeryVeryVeryLongConstA,
-    VeryVeryVeryVeryVeryLongConstB,
-    VeryVeryVeryVeryVeryLongConstC
+  VeryVeryVeryVeryVeryLongConstA,
+  VeryVeryVeryVeryVeryLongConstB,
+  VeryVeryVeryVeryVeryLongConstC
 };
 use other_foo\\bar\\{
-    VeryVeryVeryVeryVeryLongClassA,
-    VeryVeryVeryVeryVeryLongClassB,
-    VeryVeryVeryVeryVeryLongClassC as C
+  VeryVeryVeryVeryVeryLongClassA,
+  VeryVeryVeryVeryVeryLongClassB,
+  VeryVeryVeryVeryVeryLongClassC as C
 };
 
 ================================================================================

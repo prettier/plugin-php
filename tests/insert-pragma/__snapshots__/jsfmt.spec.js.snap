@@ -233,13 +233,13 @@ class Something<LF>
 <CR>
 class Something<CR>
 {<CR>
-    function whatever()<CR>
-    {<CR>
-        /**<CR>
-         * Some mid-file docblock<CR>
-         */<CR>
-        $variable = 3;<CR>
-    }<CR>
+  function whatever()<CR>
+  {<CR>
+    /**<CR>
+     * Some mid-file docblock<CR>
+     */<CR>
+    $variable = 3;<CR>
+  }<CR>
 }<CR>
 
 ================================================================================
@@ -274,13 +274,13 @@ class Something<LF>
 <CRLF>
 class Something<CRLF>
 {<CRLF>
-    function whatever()<CRLF>
-    {<CRLF>
-        /**<CRLF>
-         * Some mid-file docblock<CRLF>
-         */<CRLF>
-        $variable = 3;<CRLF>
-    }<CRLF>
+  function whatever()<CRLF>
+  {<CRLF>
+    /**<CRLF>
+     * Some mid-file docblock<CRLF>
+     */<CRLF>
+    $variable = 3;<CRLF>
+  }<CRLF>
 }<CRLF>
 
 ================================================================================
@@ -315,13 +315,13 @@ class Something<LF>
 <LF>
 class Something<LF>
 {<LF>
-    function whatever()<LF>
-    {<LF>
-        /**<LF>
-         * Some mid-file docblock<LF>
-         */<LF>
-        $variable = 3;<LF>
-    }<LF>
+  function whatever()<LF>
+  {<LF>
+    /**<LF>
+     * Some mid-file docblock<LF>
+     */<LF>
+    $variable = 3;<LF>
+  }<LF>
 }<LF>
 
 ================================================================================
