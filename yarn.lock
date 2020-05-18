@@ -3195,10 +3195,10 @@ jest-resolve@^25.5.1:
     resolve "^1.17.0"
     slash "^3.0.0"
 
-jest-runner-eslint@0.7.7:
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.7.7.tgz#fcdb364cbd336ebf2ba6d0be3a44ba9e6de16c41"
-  integrity sha512-N87Lpd8MdqrCmYJLhhDfIFTWqeqhCPIvtozFY5fjptGd1rZxoU4GN1sr2LtA1wvM+O4vcljrRsw23Ybk145Jjw==
+jest-runner-eslint@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.8.0.tgz#7c8abe635bf50a9b338022e24750cb216ee55461"
+  integrity sha512-pCa974VqYRZ5TRmeIwEngyeiuMktc9lCucJcTL+uvxpcDj+o8QCjmiGoRQCHEPx3w9I0/3GSbkUetA3OhDqiLw==
   dependencies:
     chalk "^2.4.1"
     cosmiconfig "^5.0.0"
