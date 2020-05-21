@@ -153,7 +153,7 @@ function handleEndOfLineComment(comment, text, options) {
     handleFunction(text, enclosingNode, followingNode, comment, options) ||
     handleEntryComments(enclosingNode, comment) ||
     handleCallComments(precedingNode, enclosingNode, comment) ||
-    handleVariableComments(enclosingNode, followingNode, comment) ||
+    handleAssignComments(enclosingNode, followingNode, comment) ||
     handleInlineComments(
       enclosingNode,
       precedingNode,
@@ -666,18 +666,17 @@ function handleEntryComments(enclosingNode, comment) {
   return false;
 }
 
-function handleVariableComments(enclosingNode, followingNode, comment) {
-  if (
-    enclosingNode &&
-    enclosingNode.kind === "assign" &&
-    followingNode &&
-    (followingNode.kind === "array" ||
-      followingNode.kind === "string" ||
-      followingNode.kind === "encapsed")
-  ) {
-    addLeadingComment(followingNode, comment);
-    return true;
+function handleAssignComments(enclosingNode, followingNode, comment) {
+  if (enclosingNode && enclosingNode.kind === "assign" && followingNode) {
+    const equalSignOffset =
+      enclosingNode.loc.start.offset + enclosingNode.loc.source.indexOf("=");
+
+    if (comment.loc.start.offset > equalSignOffset) {
+      addLeadingComment(followingNode, comment);
+      return true;
+    }
   }
+
   return false;
 }
 

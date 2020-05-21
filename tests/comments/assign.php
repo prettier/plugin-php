@@ -1,49 +1,49 @@
 <?php
 $var =
-    // Comment
+    // Comment 1
     'some' . 'long' . 'string';
 
 $var =
-    // Comment
-
-    'some' . 'long' . 'string';
-
-$var =
-
-    // Comment
+    // Comment 2
 
     'some' . 'long' . 'string';
 
 $var =
-    /* comment */
+
+    // Comment 3
+
+    'some' . 'long' . 'string';
+
+$var =
+    /* comment 4 */
     'some' . 'long' . 'string';
 
 $var =
     /**
-     * multi-line
+     * multi-line 5
      */
     'some' . 'long' . 'string';
 
 $var =
-    /* inline */ 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string';
+    /* inline 6 */ 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string';
 
-$var = // Comment
-    // Comment
+$var = // Comment 7
+    // Comment 8
     'some' . 'long' . 'string';
 
-$var = // Comment
+$var = // Comment 9
     'some' . 'long' . 'string';
 
-$var = /* Comment */
-    // Comment
+$var = /* Comment 10 */
+    // Comment 11
     'some' . 'long' . 'string';
 
-$var = // Comment/
-    /* Comment */
+$var = // Comment 12 /
+    /* Comment 13 */
     'some' . 'long' . 'string';
 
-$var = /* Comment */
-    /* Comment */'some' .
+$var = /* Comment 14 */
+    /* Comment 15 */'some' .
     'long' .
     'string';
 

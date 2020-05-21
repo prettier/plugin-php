@@ -1,44 +1,44 @@
 <?php
 
-$obj = // Comment
+$obj = // Comment 1
 [
 'key' => 'val'
 ];
 
-$obj // Comment
+$obj // Comment 2
 = [
 'key' => 'val'
 ];
 
-$obj = [ // Comment
+$obj = [ // Comment 3
 'key' => 'val'
 ];
 
 $obj = [
-// Comment
+// Comment 4
 'key' => 'val'
 ];
 
-$obj = // Comment
+$obj = // Comment 5
 [
 'val'
 ];
 
-$obj // Comment
+$obj // Comment 6
 = [
 'val'
 ];
 
-$obj = [ // Comment
+$obj = [ // Comment 7
 'val'
 ];
 
 $obj = [
-// Comment
+// Comment 8
 'val'
 ];
 
-$obj = // Comment
+$obj = // Comment 9
 'val';
 
 $obj = // Comment
