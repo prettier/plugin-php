@@ -404,9 +404,13 @@ function printMemberChain(path, options, print) {
       const firstNode = groups[0][0].node;
 
       return (
-        (firstNode.kind === "variable" && firstNode.name === "this") ||
+        (firstNode.kind === "variable" && (firstNode.name === "this" || isShort(firstNode.name))) ||
         isReferenceLikeNode(firstNode)
       );
+    }
+
+    function isShort(name) {
+      return name.length <= options.tabWidth;
     }
 
     const lastNode = getLast(groups[0]).node;
