@@ -34,3 +34,9 @@ $this
 
         return $arg;
     });
+
+
+$foo = /**
+* @param array{a: int, b: string} $bar
+*/
+static fn (array $bar) => $bar;

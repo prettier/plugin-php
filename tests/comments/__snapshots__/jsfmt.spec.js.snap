@@ -224,50 +224,50 @@ printWidth: 80
 =====================================input======================================
 <?php
 $var =
-    // Comment
+    // Comment 1
     'some' . 'long' . 'string';
 
 $var =
-    // Comment
-
-    'some' . 'long' . 'string';
-
-$var =
-
-    // Comment
+    // Comment 2
 
     'some' . 'long' . 'string';
 
 $var =
-    /* comment */
+
+    // Comment 3
+
+    'some' . 'long' . 'string';
+
+$var =
+    /* comment 4 */
     'some' . 'long' . 'string';
 
 $var =
     /**
-     * multi-line
+     * multi-line 5
      */
     'some' . 'long' . 'string';
 
 $var =
-    /* inline */ 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string';
+    /* inline 6 */ 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string' . 'some' . 'long' . 'string';
 
-$var = // Comment
-    // Comment
+$var = // Comment 7
+    // Comment 8
     'some' . 'long' . 'string';
 
-$var = // Comment
+$var = // Comment 9
     'some' . 'long' . 'string';
 
-$var = /* Comment */
-    // Comment
+$var = /* Comment 10 */
+    // Comment 11
     'some' . 'long' . 'string';
 
-$var = // Comment/
-    /* Comment */
+$var = // Comment 12 /
+    /* Comment 13 */
     'some' . 'long' . 'string';
 
-$var = /* Comment */
-    /* Comment */'some' .
+$var = /* Comment 14 */
+    /* Comment 15 */'some' .
     'long' .
     'string';
 
@@ -292,31 +292,31 @@ $var3;
 =====================================output=====================================
 <?php
 $var =
-    // Comment
+    // Comment 1
     'some' . 'long' . 'string';
 
 $var =
-    // Comment
-
-    'some' . 'long' . 'string';
-
-$var =
-    // Comment
+    // Comment 2
 
     'some' . 'long' . 'string';
 
 $var =
-    /* comment */
+    // Comment 3
+
+    'some' . 'long' . 'string';
+
+$var =
+    /* comment 4 */
     'some' . 'long' . 'string';
 
 $var =
     /**
-     * multi-line
+     * multi-line 5
      */
     'some' . 'long' . 'string';
 
 $var =
-    /* inline */ 'some' .
+    /* inline 6 */ 'some' .
     'long' .
     'string' .
     'some' .
@@ -329,21 +329,28 @@ $var =
     'long' .
     'string';
 
-$var = // Comment
-    // Comment
+$var =
+    // Comment 7
+    // Comment 8
     'some' . 'long' . 'string';
 
-$var = 'some' . 'long' . 'string'; // Comment
-
-$var /* Comment */ =
-    // Comment
+$var =
+    // Comment 9
     'some' . 'long' . 'string';
 
-$var = // Comment/
-    /* Comment */
+$var =
+    /* Comment 10 */
+    // Comment 11
     'some' . 'long' . 'string';
 
-$var /* Comment */ = /* Comment */ 'some' . 'long' . 'string';
+$var =
+    // Comment 12 /
+    /* Comment 13 */
+    'some' . 'long' . 'string';
+
+$var =
+    /* Comment 14 */
+    /* Comment 15 */ 'some' . 'long' . 'string';
 
 // Comment
 $var =
@@ -1145,6 +1152,12 @@ $this
         return $arg;
     });
 
+
+$foo = /**
+* @param array{a: int, b: string} $bar
+*/
+static fn (array $bar) => $bar;
+
 =====================================output=====================================
 <?php
 
@@ -1181,6 +1194,12 @@ $this
 
         return $arg;
     });
+
+$foo =
+    /**
+     * @param array{a: int, b: string} $bar
+     */
+    static fn(array $bar) => $bar;
 
 ================================================================================
 `;
@@ -7266,45 +7285,45 @@ printWidth: 80
 =====================================input======================================
 <?php
 
-$obj = // Comment
+$obj = // Comment 1
 [
 'key' => 'val'
 ];
 
-$obj // Comment
+$obj // Comment 2
 = [
 'key' => 'val'
 ];
 
-$obj = [ // Comment
+$obj = [ // Comment 3
 'key' => 'val'
 ];
 
 $obj = [
-// Comment
+// Comment 4
 'key' => 'val'
 ];
 
-$obj = // Comment
+$obj = // Comment 5
 [
 'val'
 ];
 
-$obj // Comment
+$obj // Comment 6
 = [
 'val'
 ];
 
-$obj = [ // Comment
+$obj = [ // Comment 7
 'val'
 ];
 
 $obj = [
-// Comment
+// Comment 8
 'val'
 ];
 
-$obj = // Comment
+$obj = // Comment 9
 'val';
 
 $obj = // Comment
@@ -7353,47 +7372,43 @@ $obj = // Comment
 <?php
 
 $obj =
-    // Comment
+    // Comment 1
     [
         'key' => 'val',
     ];
 
-$obj =
-    // Comment
-    [
-        'key' => 'val',
-    ];
-
-$obj = [
-    // Comment
+$obj = [ // Comment 2
     'key' => 'val',
 ];
 
 $obj = [
-    // Comment
+    // Comment 3
+    'key' => 'val',
+];
+
+$obj = [
+    // Comment 4
     'key' => 'val',
 ];
 
 $obj =
-    // Comment
+    // Comment 5
     ['val'];
 
-$obj =
-    // Comment
-    ['val'];
+$obj = ['val']; // Comment 6
 
 $obj = [
-    // Comment
+    // Comment 7
     'val',
 ];
 
 $obj = [
-    // Comment
+    // Comment 8
     'val',
 ];
 
 $obj =
-    // Comment
+    // Comment 9
     'val';
 
 $obj =
