@@ -361,3 +361,7 @@ $var = ($foo ?? $baz) || $baz;
 $var = $foo ?? $baz || $baz;
 $var = ($foo && $baz) ?? $baz;
 $var = $foo && ($baz ?? $baz);
+
+$result = 2 ** $number - 1;
+$result = (2 ** $number) - 1;
+$result = 2 ** ($number - 1);
