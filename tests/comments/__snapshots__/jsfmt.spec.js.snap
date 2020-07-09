@@ -703,10 +703,8 @@ $var = $a /* Comment */
 
 $a /* Comment*/->/*Comment*/ bar /* Comment */;
 $a /* Comment */['test'];
-$a /* Comment */
-    ->/* Comment */ bar();
-$a /* Comment */
-    ::/* Comment */ bar();
+$a /* Comment */->/* Comment */ bar();
+$a /* Comment */::/* Comment */ bar();
 
 ================================================================================
 `;

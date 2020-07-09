@@ -33,9 +33,13 @@ $a->b->a();
 $a->b()->c()->d();
 $a->b->c->d;
 
-$that->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\Bar\Baz' ), $this->app['foo.bar.baz']->getEmail())->looooooooooooooooooong();
-$this->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\Bar\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
-$a->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\Bar\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
+// should inline
+$t->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\\Bar\\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
+$te->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\\Bar\\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
+$tes->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\\Bar\\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
+// should break
+$test->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\\Bar\\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
+$a = $t->shouldReceive( 'signUp' )->with( anInstanceOf( 'Foo\\Bar\\Baz' ), $this->app['foo.bar.baz']->getEmail())->once();
 
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
     'some-param'

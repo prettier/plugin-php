@@ -395,6 +395,12 @@ function printMemberChain(path, options, print) {
   //    $foo->Data['key']("foo")
   //      ->method();
   //
+  // 3. expression statements with variable names shorter than the tab width
+  //
+  // Example:
+  // $foo->bar()
+  //     ->baz()
+  //     ->buzz()
 
   function shouldNotWrap(groups) {
     const hasComputed =
@@ -404,13 +410,15 @@ function printMemberChain(path, options, print) {
       const firstNode = groups[0][0].node;
 
       return (
-        (firstNode.kind === "variable" && (firstNode.name === "this" || isShort(firstNode.name))) ||
+        (firstNode.kind === "variable" &&
+          (firstNode.name === "this" ||
+            (isExpressionStatement && isShort(firstNode.name)))) ||
         isReferenceLikeNode(firstNode)
       );
     }
 
     function isShort(name) {
-      return name.length <= options.tabWidth;
+      return name.length < options.tabWidth;
     }
 
     const lastNode = getLast(groups[0]).node;
@@ -423,6 +431,8 @@ function printMemberChain(path, options, print) {
     );
   }
 
+  const isExpressionStatement =
+    path.getParentNode().kind === "expressionstatement";
   const shouldMerge =
     groups.length >= 2 && !groups[1][0].node.comments && shouldNotWrap(groups);
 
