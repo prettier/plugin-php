@@ -8,7 +8,6 @@ const comments = require("./comments");
 const { join, hardline } = require("prettier").doc.builders;
 const { hasPragma, insertPragma } = require("./pragma");
 
-// TODO: remove after resolve https://github.com/prettier/prettier/pull/5854
 function createLanguage(linguistData, { extend, override }) {
   const language = {};
 
