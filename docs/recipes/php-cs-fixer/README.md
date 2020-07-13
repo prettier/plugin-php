@@ -6,7 +6,7 @@
   applied, such that the `php-cs-fixer` user's configurations is respected.
 
 ## Useful Configurations
-  
+
 ### Priority
 
   If you would like `prettier` to execute last, which means you prefer to use
@@ -21,8 +21,8 @@
 
    For example,
    ```diff
-     - exec("yarn exec -- prettier --write $tmpFile");
-     + exec("yarn exec -- prettier --write --brace-style=1tbs $tmpFile");
+     - exec("yarn exec -- prettier $file");
+     + exec("yarn exec -- prettier --brace-style=1tbs $file");
    ```
    will allow you to change the `braceStyle` for this fixer
 

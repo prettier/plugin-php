@@ -58,37 +58,13 @@ final class PrettierPHPFixer implements FixerInterface {
     }
 
     /**
-     * {@inheritdoc}
+     * @param SplFileInfo $file
+     * @param Tokens      $tokens
      */
-    private function applyFix(SplFileInfo $file, Tokens $tokens) {
-        $tmpFile = $this->getTmpFile($file);
-        exec("yarn exec -- prettier --write $tmpFile");
-
-        $content = file_get_contents($tmpFile);
-        $tokens->setCode($content);
-
-        (new Filesystem())->remove($tmpFile);
-    }
-
-    /**
-     * Create a Temp file with the same content as given file.
-     *
-     * @param SplFileInfo $file file to be copied
-     *
-     * @return string tmp file name
-     */
-    private function getTmpFile(SplFileInfo $file): string {
-        $fileSys = new Filesystem();
-        $tmpFolderPath = __DIR__.DIRECTORY_SEPARATOR.'tmp';
-        $fileSys->mkdir($tmpFolderPath);
-
-        $tmpFileName = str_replace(
-            array(DIRECTORY_SEPARATOR, ':'),
-            '_',
-            $file->getRealPath()
-        );
-        $tmpFilePath = $tmpFolderPath.DIRECTORY_SEPARATOR.'__'.$tmpFileName;
-        $fileSys->copy($file->getRealPath(), $tmpFilePath, true);
-        return $tmpFilePath;
+    private function applyFix(SplFileInfo $file, Tokens $tokens): void
+    {
+        exec("yarn exec -- prettier $file", $prettierOutput);
+        $code = implode(PHP_EOL, $prettierOutput);
+        $tokens->setCode($code);
     }
 }
