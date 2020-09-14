@@ -69,6 +69,7 @@ global.run_spec = (dirname, parsers, options) => {
     const output = format(input, filename, mainOptions);
     const visualizedOutput = visualizeEndOfLine(output);
 
+    // eslint-disable-next-line jest/valid-title
     test(basename, () => {
       expect(visualizedOutput).toEqual(
         visualizeEndOfLine(consistentEndOfLine(output))
