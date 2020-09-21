@@ -22,7 +22,7 @@
     "eslint": "7.9.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-jest": "24.0.0",
+    "eslint-plugin-jest": "24.0.2",
     "eslint-plugin-prettier": "3.1.4",
     "jest": "26.4.2",
     "jest-runner-eslint": "0.10.0",
