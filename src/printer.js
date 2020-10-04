@@ -2459,7 +2459,8 @@ function printNode(path, options, print) {
     case "array": {
       const useShortForm =
         (node.kind === "array" && isMinVersion(options.phpVersion, "5.4")) ||
-        (node.kind === "list" && node.shortForm);
+        (node.kind === "list" &&
+          (node.shortForm || isMinVersion(options.phpVersion, "7.1")));
       const open = useShortForm ? "[" : concat([node.kind, "("]);
       const close = useShortForm ? "]" : ")";
 
