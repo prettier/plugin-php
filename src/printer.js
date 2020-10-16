@@ -1029,7 +1029,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
         childNode.leadingComments && childNode.leadingComments.length
           ? concat([
               isFirstNode && node.kind !== "namespace" && !isBlockNestedNode
-                ? openTag
+                ? "<?php"
                 : "",
               node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
               comments.printComments(childNode.leadingComments, options),
