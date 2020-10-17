@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "linguist-languages": "^7.5.1",
-    "mem": "^6.0.1",
+    "mem": "^8.0.0",
     "php-parser": "3.0.2"
   },
   "devDependencies": {
