@@ -2785,12 +2785,14 @@ function printNode(path, options, print) {
       if (parent.kind === "encapsedpart") {
         const parentParent = path.getParentNode(1);
         let closingTagIndentation = 0;
+        const flexible = isMinVersion(options.phpVersion, "7.3");
+        const linebreak = flexible ? hardline : literalline;
         if (parentParent.type === "heredoc") {
           const lines = parentParent.raw.split(/\r?\n/g);
           closingTagIndentation = lines[lines.length - 1].search(/\S/);
         }
         return join(
-          literalline,
+          linebreak,
           node.raw
             .split(/\r?\n/g)
             .map((s) => s.substring(closingTagIndentation))
@@ -2837,17 +2839,20 @@ function printNode(path, options, print) {
       switch (node.type) {
         case "string":
         case "shell":
-        case "heredoc":
+        case "heredoc": {
+          const flexible = isMinVersion(options.phpVersion, "7.3");
+          const linebreak = flexible ? hardline : literalline;
           return concat([
             getEncapsedQuotes(node),
             // Respect `indent` for `heredoc` nodes
-            node.type === "heredoc" ? literalline : "",
+            node.type === "heredoc" ? linebreak : "",
             concat(path.map(print, "value")),
             getEncapsedQuotes(node, { opening: false }),
             node.type === "heredoc" && docShouldHaveTrailingNewline(path)
               ? hardline
               : "",
           ]);
+        }
         // istanbul ignore next
         default:
           return `Have not implemented kind ${node.type} yet.`;
