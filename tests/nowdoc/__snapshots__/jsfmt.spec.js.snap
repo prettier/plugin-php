@@ -3105,8 +3105,8 @@ $str = sprintf(
 
 $str = sprintf(
     <<<EOD
-foo
-EOD
+    foo
+    EOD
     ,
     true,
 );
@@ -3114,8 +3114,8 @@ EOD
 $str = sprintf(
     sprintf(
         <<<END
-foo
-END
+        foo
+        END
         ,
         true,
     ),
@@ -3123,8 +3123,8 @@ END
 
 $str = call([
     <<<END
-foo
-END
+    foo
+    END
     ,
     true,
 ]);
@@ -3132,8 +3132,8 @@ END
 $str = [
     [
         <<<END
-foo
-END
+        foo
+        END
         ,
         true,
     ],
@@ -3142,8 +3142,8 @@ END
 $str = [
     call(
         <<<END
-foo
-END
+        foo
+        END
         ,
         true,
     ),
