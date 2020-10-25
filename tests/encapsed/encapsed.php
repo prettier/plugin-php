@@ -447,3 +447,13 @@ $php73FlexibleHeredoc2 = <<<EOD
      b
     c
   EOD;
+
+$xml = <<<XML
+     foo{$bar}bazzzzz
+    XML;
+
+function foo() {
+    $xml = <<<XML
+        foo{$bar}bazzzzz
+        XML;
+}

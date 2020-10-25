@@ -47,7 +47,8 @@
     "test": "jest",
     "prepublishOnly": "yarpm run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarpm test",
     "prettier": "prettier --plugin=. --parser=php",
-    "build-standalone": "rollup -c build/rollup.config.js"
+    "build-standalone": "rollup -c build/rollup.config.js",
+    "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "jest": {
     "projects": [
