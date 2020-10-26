@@ -2795,7 +2795,11 @@ function printNode(path, options, print) {
           linebreak,
           node.raw
             .split(/\r?\n/g)
-            .map((s) => s.substring(closingTagIndentation))
+            .map((s, i) =>
+              i > 0 || node.loc.start.column === 0
+                ? s.substring(closingTagIndentation)
+                : s
+            )
         );
       }
 
