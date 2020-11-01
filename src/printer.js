@@ -2143,6 +2143,13 @@ function printNode(path, options, print) {
 
       if (isAnonymousClassNode) {
         parts.push(
+          node.what.leadingComments &&
+            node.what.leadingComments[0].kind === "commentblock"
+            ? concat([
+                comments.printComments(node.what.leadingComments, options),
+                " ",
+              ])
+            : "",
           "class",
           node.arguments.length > 0
             ? printArgumentsList(path, options, print)
