@@ -2145,7 +2145,7 @@ function printNode(path, options, print) {
         parts.push(
           "class",
           node.arguments.length > 0
-            ? printArgumentsList(path, options, print)
+            ? concat([" ", printArgumentsList(path, options, print)])
             : "",
           group(path.call(print, "what"))
         );

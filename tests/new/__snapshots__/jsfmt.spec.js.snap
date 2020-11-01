@@ -319,7 +319,7 @@ setLogger(
         }
     }
 );
-$var = new class(
+$var = new class (
     $arg,
     'string',
     2100,
@@ -400,19 +400,19 @@ string
 $var\`
 );
 
-$var = new class(
+$var = new class (
     'string
 string
 string'
 ) {};
 
-$var = new class(
+$var = new class (
     'string
 string
 string'
 ) {};
 
-$var = new class(10) extends SomeClass implements SomeInterface {
+$var = new class (10) extends SomeClass implements SomeInterface {
     private $num;
 
     public function __construct($num)

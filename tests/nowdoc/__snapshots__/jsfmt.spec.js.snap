@@ -1299,7 +1299,7 @@ EOD
     $b
 );
 
-$var = new class(
+$var = new class (
     <<<'EOD'
 string
 string
@@ -1307,7 +1307,7 @@ string
 EOD
 ) {};
 
-$var = new class(
+$var = new class (
     $a,
     <<<'EOD'
 string
@@ -1316,7 +1316,7 @@ string
 EOD
 ) {};
 
-$var = new class(
+$var = new class (
     <<<'EOD'
 string
 string
@@ -3371,7 +3371,7 @@ call(
     $b,
 );
 
-$var = new class(
+$var = new class (
     <<<'EOD'
     string
     string
@@ -3380,7 +3380,7 @@ $var = new class(
     ,
 ) {};
 
-$var = new class(
+$var = new class (
     $a,
     <<<'EOD'
     string
@@ -3390,7 +3390,7 @@ $var = new class(
     ,
 ) {};
 
-$var = new class(
+$var = new class (
     <<<'EOD'
     string
     string
