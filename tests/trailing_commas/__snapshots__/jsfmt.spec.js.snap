@@ -2348,9 +2348,9 @@ $foo = new Foo(
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
-$foo = new class('constructor', 'bar') {};
+$foo = new class ('constructor', 'bar') {};
 
-$foo = new class(
+$foo = new class (
     'constructor',
     'bar',
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
@@ -2643,9 +2643,9 @@ $foo = new Foo(
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
-$foo = new class('constructor', 'bar') {};
+$foo = new class ('constructor', 'bar') {};
 
-$foo = new class(
+$foo = new class (
     'constructor',
     'bar',
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
@@ -2938,9 +2938,9 @@ $foo = new Foo(
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
-$foo = new class('constructor', 'bar') {};
+$foo = new class ('constructor', 'bar') {};
 
-$foo = new class(
+$foo = new class (
     'constructor',
     'bar',
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
@@ -3233,9 +3233,9 @@ $foo = new Foo(
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
 );
 
-$foo = new class('constructor', 'bar') {};
+$foo = new class ('constructor', 'bar') {};
 
-$foo = new class(
+$foo = new class (
     'constructor',
     'bar',
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string',
@@ -3530,9 +3530,9 @@ $foo = new Foo(
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
 );
 
-$foo = new class('constructor', 'bar') {};
+$foo = new class ('constructor', 'bar') {};
 
-$foo = new class(
+$foo = new class (
     'constructor',
     'bar',
     'very-very-very-very-very-very-very-very-very-very-very-very-veru-long-string'
