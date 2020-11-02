@@ -497,6 +497,16 @@ function handleClassComments(enclosingNode, followingNode, comment) {
       return true;
     }
   }
+
+  if (
+    followingNode &&
+    followingNode.kind === "class" &&
+    followingNode.isAnonymous &&
+    followingNode.leadingComments &&
+    comment.kind === "commentblock"
+  ) {
+    return true;
+  }
   return false;
 }
 

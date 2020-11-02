@@ -134,3 +134,5 @@ $var = new class {};
 $var = new class {
     // Comment
 };
+
+$foo = /*a*/ new /* b */ class {};
