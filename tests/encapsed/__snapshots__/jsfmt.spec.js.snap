@@ -580,10 +580,10 @@ EOF
 
 $var = "string {$string} string"[1];
 $var = $foo->bzr_[1];
-$var = $foo->bzr_['string'];
+$var = $foo->bzr_["string"];
 $var = $foo->bzr_[$baz];
 $var = $foo->bzr_[$baz->foo];
-$var = $foo->bzr_[$var ? 'one' : 'two'];
+$var = $foo->bzr_[$var ? "one" : "two"];
 $var =
     $foo->bzr_[
         $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
@@ -599,16 +599,16 @@ $var =
 
 $var = "{$this->target->resource->binary}";
 $var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
-$var = "{$this->target->resource->binary['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVertyVeryLongString']}";
+$var = "{$this->target->resource->binary["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVertyVeryLongString"]}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "{$this->target->resource->binary} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
-$var = "My name is {\${getName($arg, 'string', 1024, $var ? true : false, [
-    'foo' => 'bar',
-    'bar' => 'foo',
+$var = "My name is {\${getName($arg, "string", 1024, $var ? true : false, [
+    "foo" => "bar",
+    "bar" => "foo",
 ])}}";
 $var = "My name is {\${getName(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
@@ -622,7 +622,7 @@ $encapsHereDoc = <<<STR
 STR;
 
 $var = $this->swift->{'set'}($address, $name);
-$var = $this->swift->{'set' . 'Offset'}($address, $name);
+$var = $this->swift->{"set" . "Offset"}($address, $name);
 $var = $this->swift->{"set"}($address, $name);
 $var = $this->swift->{"set{$type}"}($address, $name);
 
@@ -655,18 +655,18 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
 $expected = [
-    'test' => <<<'EOT'
+    "test" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'foo' => 'bar',
+    "foo" => "bar",
 ];
 $expected = [
-    'foo' => 'bar',
-    'test' => <<<'EOT'
+    "foo" => "bar",
+    "test" => <<<'EOT'
 foo
 # bar
 baz
@@ -675,21 +675,21 @@ EOT
 ,
 ];
 $expected = [
-    'foo' => <<<'EOT'
+    "foo" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'bar' => <<<'EOT'
+    "bar" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'baz' => <<<'EOT'
+    "baz" => <<<'EOT'
 foo
 # bar
 baz
@@ -698,16 +698,16 @@ EOT
 ,
 ];
 $expected = [
-    'test' => <<<'EOT'
+    "test" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    'collection' => [
+    "collection" => [
         [
-            'one' => <<<'EOT'
+            "one" => <<<'EOT'
 foo
 # bar
 baz
@@ -716,7 +716,7 @@ EOT
         ,
         ],
         [
-            'two' => <<<'EOT'
+            "two" => <<<'EOT'
 foo
 # bar
 baz
@@ -866,11 +866,11 @@ $var = "String {$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCa
 $var = "String {$obj->call()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
 
-$var = "String {$array['offset']['offset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['offset']['offset']} string";
-$var = "String {$array['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['offset']} string";
-$var = "String {$array['offset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
+$var = "String {$array["offset"]["offset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray["offset"]["offset"]} string";
+$var = "String {$array["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]["offset"]} string";
+$var = "String {$array["offset"]["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]} string";
 
 $var = "String {$obj::call()::call()} string";
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj::call()::call()} string";
@@ -881,8 +881,8 @@ $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj
 $var = "String string string string string string string string string string string string string {$obj->call()->call()} string";
 $var = "String {$obj->call()->call()} string string string string string string string string string string string string string";
 
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall["offset"]->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall["offset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()["offset"]->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()["offset"]} string";
 
 echo "This is my array value: $anArray[key]";
 echo "This is my array value: $anArray[$key]";
@@ -891,7 +891,7 @@ echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
-$var = "string \${juices['FOO']} string";
+$var = "string \${juices["FOO"]} string";
 
 // T_VARIABLE
 echo "text $foo text.";
@@ -911,22 +911,22 @@ echo "text \${$test} text.";
 echo "text \${$$$test} text.";
 echo "text \${call()} text.";
 echo "text \${true || false} text.";
-echo "text \${$var ? 'foo' : 'bar'} text.";
-echo "text \${'test' + 'test'} text.";
-echo "text \${'test'} text.";
+echo "text \${$var ? "foo" : "bar"} text.";
+echo "text \${"test" + "test"} text.";
+echo "text \${"test"} text.";
 
 // T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
 echo "text \${foo} text";
 
 // T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
-echo "text \${foo['foo']} text";
+echo "text \${foo["foo"]} text";
 echo "text \${foo[foo]} text";
 echo "text \${foo[call()]} text";
-echo "text \${foo[$var ? 'foo' : 'bar']} text";
+echo "text \${foo[$var ? "foo" : "bar"]} text";
 
 // T_CURLY_OPEN variable '}'
 echo "text {$var} text";
-echo "text {$var['test']} text";
+echo "text {$var["test"]} text";
 echo "text {$var->test} text";
 echo "text {$var::$test} text";
 
@@ -1562,10 +1562,10 @@ function foo1(
 
 $var = "string {$string} string"[1];
 $var = $foo->bzr_[1];
-$var = $foo->bzr_['string'];
+$var = $foo->bzr_["string"];
 $var = $foo->bzr_[$baz];
 $var = $foo->bzr_[$baz->foo];
-$var = $foo->bzr_[$var ? 'one' : 'two'];
+$var = $foo->bzr_[$var ? "one" : "two"];
 $var =
     $foo->bzr_[
         $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
@@ -1581,16 +1581,16 @@ $var =
 
 $var = "{$this->target->resource->binary}";
 $var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
-$var = "{$this->target->resource->binary['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVertyVeryLongString']}";
+$var = "{$this->target->resource->binary["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVertyVeryLongString"]}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "{$this->target->resource->binary} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
-$var = "My name is {\${getName($arg, 'string', 1024, $var ? true : false, [
-    'foo' => 'bar',
-    'bar' => 'foo',
+$var = "My name is {\${getName($arg, "string", 1024, $var ? true : false, [
+    "foo" => "bar",
+    "bar" => "foo",
 ])}}";
 $var = "My name is {\${getName(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
@@ -1604,7 +1604,7 @@ $encapsHereDoc = <<<STR
 STR;
 
 $var = $this->swift->{'set'}($address, $name);
-$var = $this->swift->{'set' . 'Offset'}($address, $name);
+$var = $this->swift->{"set" . "Offset"}($address, $name);
 $var = $this->swift->{"set"}($address, $name);
 $var = $this->swift->{"set{$type}"}($address, $name);
 
@@ -1637,18 +1637,18 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
 $expected = [
-    'test' => <<<'EOT'
+    "test" => <<<'EOT'
     foo
     # bar
     baz
 
     EOT
     ,
-    'foo' => 'bar',
+    "foo" => "bar",
 ];
 $expected = [
-    'foo' => 'bar',
-    'test' => <<<'EOT'
+    "foo" => "bar",
+    "test" => <<<'EOT'
     foo
     # bar
     baz
@@ -1657,21 +1657,21 @@ $expected = [
 ,
 ];
 $expected = [
-    'foo' => <<<'EOT'
+    "foo" => <<<'EOT'
     foo
     # bar
     baz
 
     EOT
     ,
-    'bar' => <<<'EOT'
+    "bar" => <<<'EOT'
     foo
     # bar
     baz
 
     EOT
     ,
-    'baz' => <<<'EOT'
+    "baz" => <<<'EOT'
     foo
     # bar
     baz
@@ -1680,16 +1680,16 @@ $expected = [
 ,
 ];
 $expected = [
-    'test' => <<<'EOT'
+    "test" => <<<'EOT'
     foo
     # bar
     baz
 
     EOT
     ,
-    'collection' => [
+    "collection" => [
         [
-            'one' => <<<'EOT'
+            "one" => <<<'EOT'
             foo
             # bar
             baz
@@ -1698,7 +1698,7 @@ $expected = [
         ,
         ],
         [
-            'two' => <<<'EOT'
+            "two" => <<<'EOT'
             foo
             # bar
             baz
@@ -1848,11 +1848,11 @@ $var = "String {$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCa
 $var = "String {$obj->call()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()} string";
 
-$var = "String {$array['offset']['offset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['offset']['offset']} string";
-$var = "String {$array['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['offset']} string";
-$var = "String {$array['offset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset']} string";
+$var = "String {$array["offset"]["offset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray["offset"]["offset"]} string";
+$var = "String {$array["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]["offset"]} string";
+$var = "String {$array["offset"]["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameArray["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongOffset"]} string";
 
 $var = "String {$obj::call()::call()} string";
 $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj::call()::call()} string";
@@ -1863,8 +1863,8 @@ $var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj
 $var = "String string string string string string string string string string string string string {$obj->call()->call()} string";
 $var = "String {$obj->call()->call()} string string string string string string string string string string string string string";
 
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall['offset']} string";
-$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()['offset']} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall["offset"]->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall["offset"]} string";
+$var = "String {$veryVeryVeryVeryVeryVeryVeryVeryVaryVaryVaryVaryVaryLongNameObj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()["offset"]->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()["offset"]} string";
 
 echo "This is my array value: $anArray[key]";
 echo "This is my array value: $anArray[$key]";
@@ -1873,7 +1873,7 @@ echo "This is my array value: {$anArray[$var]}";
 
 $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
-$var = "string \${juices['FOO']} string";
+$var = "string \${juices["FOO"]} string";
 
 // T_VARIABLE
 echo "text $foo text.";
@@ -1893,22 +1893,22 @@ echo "text \${$test} text.";
 echo "text \${$$$test} text.";
 echo "text \${call()} text.";
 echo "text \${true || false} text.";
-echo "text \${$var ? 'foo' : 'bar'} text.";
-echo "text \${'test' + 'test'} text.";
-echo "text \${'test'} text.";
+echo "text \${$var ? "foo" : "bar"} text.";
+echo "text \${"test" + "test"} text.";
+echo "text \${"test"} text.";
 
 // T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'
 echo "text \${foo} text";
 
 // T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'
-echo "text \${foo['foo']} text";
+echo "text \${foo["foo"]} text";
 echo "text \${foo[foo]} text";
 echo "text \${foo[call()]} text";
-echo "text \${foo[$var ? 'foo' : 'bar']} text";
+echo "text \${foo[$var ? "foo" : "bar"]} text";
 
 // T_CURLY_OPEN variable '}'
 echo "text {$var} text";
-echo "text {$var['test']} text";
+echo "text {$var["test"]} text";
 echo "text {$var->test} text";
 echo "text {$var::$test} text";
 

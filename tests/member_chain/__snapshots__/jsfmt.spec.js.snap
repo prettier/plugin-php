@@ -32,16 +32,16 @@ function call($store)
         function ($response) {
             return next(
                 actionWith([
-                    'response' => $response,
-                    'type' => $successType,
+                    "response" => $response,
+                    "type" => $successType,
                 ])
             );
         },
         function ($error) {
             return next(
                 actionWith([
-                    'type' => $failureType,
-                    'error' => $error->message || 'Something bad happened',
+                    "type" => $failureType,
+                    "error" => $error->message || "Something bad happened",
                 ])
             );
         }
@@ -291,7 +291,7 @@ $someLongVariableName = (idx(
 <?php
 
 $someLongVariableName = (
-    idx($prop, ['foo' => 'bar', 'bar' => 'foo', 'foobar' => 'barfoor']) || []
+    idx($prop, ["foo" => "bar", "bar" => "foo", "foobar" => "barfoor"]) || []
 )->map(function ($edge) {
     return $edge->node;
 });
@@ -443,15 +443,15 @@ one()
     ->two->three()
     ->four->five();
 
-Route::prefix('api')
-    ->middleware('api')
+Route::prefix("api")
+    ->middleware("api")
     ->namespace($this->namespace)
-    ->group(base_path('routes/api.php'));
+    ->group(base_path("routes/api.php"));
 
 return tap(
     $this->forceFill([
-        'approver_id' => $user instanceof User ? $user->id : $user,
-        'approved_at' => $this->freshTimestamp(),
+        "approver_id" => $user instanceof User ? $user->id : $user,
+        "approved_at" => $this->freshTimestamp(),
     ])
 )->save();
 
@@ -482,40 +482,40 @@ $a->b()
 $a->b->c->d;
 
 // should inline
-$t->shouldReceive('signUp')
-    ->with(anInstanceOf('Foo\\\\Bar\\\\Baz'), $this->app['foo.bar.baz']->getEmail())
+$t->shouldReceive("signUp")
+    ->with(anInstanceOf("Foo\\\\Bar\\\\Baz"), $this->app["foo.bar.baz"]->getEmail())
     ->once();
-$te->shouldReceive('signUp')
-    ->with(anInstanceOf('Foo\\\\Bar\\\\Baz'), $this->app['foo.bar.baz']->getEmail())
+$te->shouldReceive("signUp")
+    ->with(anInstanceOf("Foo\\\\Bar\\\\Baz"), $this->app["foo.bar.baz"]->getEmail())
     ->once();
-$tes->shouldReceive('signUp')
-    ->with(anInstanceOf('Foo\\\\Bar\\\\Baz'), $this->app['foo.bar.baz']->getEmail())
+$tes->shouldReceive("signUp")
+    ->with(anInstanceOf("Foo\\\\Bar\\\\Baz"), $this->app["foo.bar.baz"]->getEmail())
     ->once();
 // should break
 $test
-    ->shouldReceive('signUp')
-    ->with(anInstanceOf('Foo\\\\Bar\\\\Baz'), $this->app['foo.bar.baz']->getEmail())
+    ->shouldReceive("signUp")
+    ->with(anInstanceOf("Foo\\\\Bar\\\\Baz"), $this->app["foo.bar.baz"]->getEmail())
     ->once();
 $a = $t
-    ->shouldReceive('signUp')
-    ->with(anInstanceOf('Foo\\\\Bar\\\\Baz'), $this->app['foo.bar.baz']->getEmail())
+    ->shouldReceive("signUp")
+    ->with(anInstanceOf("Foo\\\\Bar\\\\Baz"), $this->app["foo.bar.baz"]->getEmail())
     ->once();
 
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    'some-param'
+    "some-param"
 );
 
 $this->loooooooooooong->lookup = (int) $variable
     ->getRequest()
-    ->getParam('some-param');
+    ->getParam("some-param");
 
 $aVariable = $theThing
     ->aLongFunction(1, 2, 3)
-    ->anotherReallyLongFunciton('a', 'b', 'c');
+    ->anotherReallyLongFunciton("a", "b", "c");
 
 $anotherVariables = $theOtherThing
     ->aLongFunction(1, 2, 3, 4, 5, 6, 7)
-    ->anotherReallyLongFunciton('a', 'b', 'c');
+    ->anotherReallyLongFunciton("a", "b", "c");
 
 $aVariable = $theThing->veryVeryVeryVeryVeryVeryVeryVeryLongCall()
     ->veryVeryVeryVeryVeryVeryVeryVery;
@@ -525,86 +525,86 @@ $aVariable = $theThing
 
 bar()();
 bar(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 )();
 bar()(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 );
 bar(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 )()()()()();
 
 $foo->bar()();
 $foo->bar(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 )();
 $foo->bar()(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 );
 $foo->bar(
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 )()()()()();
 
 $brian->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 $brian::$hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
-$brian['hotel']
+$brian["hotel"]
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 Foo::$hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 (new Foo())->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 (clone $a)->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 
 $var = $brian->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 $var = $brian::$hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
-$var = $brian['hotel']
+$var = $brian["hotel"]
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 $var = Foo::$hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 $var = (new Foo())->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 $var = (clone $a)->hotel
     ->orders()
     ->ordered()
-    ->with('smith')
+    ->with("smith")
     ->get();
 
 $var = Foo::keys($items)
@@ -656,32 +656,32 @@ $wrapper->find('SomewhatLongNodeName')->prop('longPropFunctionName')->then(funct
 <?php
 
 $wrapper
-    ->find('SomewhatLongNodeName')
-    ->prop('longPropFunctionName')
+    ->find("SomewhatLongNodeName")
+    ->prop("longPropFunctionName")
     ->then(function () {
         doSomething();
     });
 
 $wrapper
-    ->find('SomewhatLongNodeName')
-    ->prop('longPropFunctionName')
+    ->find("SomewhatLongNodeName")
+    ->prop("longPropFunctionName")
     ->then(function () {
         doSomething();
     });
 
 $wrapper
-    ->find('SomewhatLongNodeName')
+    ->find("SomewhatLongNodeName")
     ->prop(
-        'longPropFunctionName',
-        'second argument that pushes this group past 80 characters'
+        "longPropFunctionName",
+        "second argument that pushes this group past 80 characters"
     )
     ->then(function () {
         doSomething();
     });
 
 $wrapper
-    ->find('SomewhatLongNodeName')
-    ->prop('longPropFunctionName')
+    ->find("SomewhatLongNodeName")
+    ->prop("longPropFunctionName")
     ->then(function () {
         doSomething();
     });
@@ -755,45 +755,45 @@ $window->{call()}
 <?php
 
 $version = $someLongString
-    ->split('jest version =')
+    ->split("jest version =")
     ->pop()
     ->split(EOL)[0]
     ->trim();
 
-$component = find('.org-lclp-edit-copy-url-banner__link')[0]
-    ->getAttribute('href')
+$component = find(".org-lclp-edit-copy-url-banner__link")[0]
+    ->getAttribute("href")
     ->indexOf($this->landingPageLink);
 
-nock('test')
-    ->matchHeader('Accept', 'application/json')
-    ['string']('/foo')
+nock("test")
+    ->matchHeader("Accept", "application/json")
+    ["string"]("/foo")
     ->reply(200, [
-        'foo' => 'bar',
+        "foo" => "bar",
     ]);
 
 $data->forEach(function ($key) {
     $data
-        ['key']('foo')
+        ["key"]("foo")
         ->then(function () {
-            $console->log('bar');
+            $console->log("bar");
         })
         ->catch(function () {
-            $console->log('baz');
+            $console->log("baz");
         });
 });
 
 $data->forEach(function ($key) {
-    $data('foo')
-        [$key]('bar')
+    $data("foo")
+        [$key]("bar")
         ->then(function () {
-            $console->log('bar');
+            $console->log("bar");
         })
         ->catch(function () {
-            $console->log('baz');
+            $console->log("baz");
         });
 });
 
-$window->Data['key']("foo")
+$window->Data["key"]("foo")
     ->then(function () {
         return $a;
     })
@@ -801,8 +801,8 @@ $window->Data['key']("foo")
         return $b;
     });
 
-$window->Data['key']
-    ['foo']("foo")
+$window->Data["key"]
+    ["foo"]("foo")
     ->then(function () {
         return $a;
     })
@@ -810,8 +810,8 @@ $window->Data['key']
         return $b;
     });
 
-$window->foo_['bar' . 'baz']
-    ['key']("foo")
+$window->foo_["bar" . "baz"]
+    ["key"]("foo")
     ->then(function () {
         return $a;
     })
@@ -820,7 +820,7 @@ $window->foo_['bar' . 'baz']
     });
 
 $window->{call()}
-    ['key']("foo")
+    ["key"]("foo")
     ->then(function () {
         return $a;
     })
@@ -963,63 +963,63 @@ Foo
 
 =====================================output=====================================
 <?php
-DB::table('identity')->insert([
-    'ref' => $ref,
-    'handle' => $handle,
+DB::table("identity")->insert([
+    "ref" => $ref,
+    "handle" => $handle,
 ]);
 
-DB::table('identity')->insert([
-    'ref' => $ref,
-    'handle' => $handle,
-    'foo' => $bar,
-    'bar' => $foo,
+DB::table("identity")->insert([
+    "ref" => $ref,
+    "handle" => $handle,
+    "foo" => $bar,
+    "bar" => $foo,
 ]);
 
 DB::table(
-    'identity'
+    "identity"
 )->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName([
-    'ref' => $ref,
-    'handle' => $handle,
-    'foo' => $bar,
-    'bar' => $foo,
+    "ref" => $ref,
+    "handle" => $handle,
+    "foo" => $bar,
+    "bar" => $foo,
 ]);
 
-$page = TableRegistry::get('Pages')
+$page = TableRegistry::get("Pages")
     ->findByPath($path)
-    ->find('published')
-    ->find('frontend')
-    ->find('somethingElse')
+    ->find("published")
+    ->find("frontend")
+    ->find("somethingElse")
     ->first();
 
-Logger::use_logger('albus')->info(
-    'Albus: failed to find active version for albus object',
+Logger::use_logger("albus")->info(
+    "Albus: failed to find active version for albus object",
     [
-        'uuid' => $uuid,
-        'requested_date' => $date,
+        "uuid" => $uuid,
+        "requested_date" => $date,
     ]
 );
 
-DBwithlongname::table('identity')
+DBwithlongname::table("identity")
     ->insertReallyReallyReallyLongName()
     ->someOtherReallyReallyLong();
 
 $DBwithlongname
-    ->table('identity')
+    ->table("identity")
     ::insertReallyReallyReallyLongName()
     ->someOtherReallyReallyLong();
 
-$page = TableRegistry::get('Pages')
+$page = TableRegistry::get("Pages")
     ::findByPath($path)
-    ::find('published')
-    ::find('frontend')
-    ::find('somethingElse')
+    ::find("published")
+    ::find("frontend")
+    ::find("somethingElse")
     ::first();
 
-$page = TableRegistry::insertReallyReallyReallyLongName('Pages')
+$page = TableRegistry::insertReallyReallyReallyLongName("Pages")
     ::insertReallyReallyReallyLongName($path)
-    ::insertReallyReallyReallyLongName('published')
-    ::insertReallyReallyReallyLongName('frontend')
-    ::insertReallyReallyReallyLongName('somethingElse')
+    ::insertReallyReallyReallyLongName("published")
+    ::insertReallyReallyReallyLongName("frontend")
+    ::insertReallyReallyReallyLongName("somethingElse")
     ::insertReallyReallyReallyLongName();
 
 $page = TableRegistry::insertReallyReallyReallyLongName[0];
@@ -1034,20 +1034,20 @@ $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyRea
     ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
     ::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
-$page = TableRegistry::insertReallyReallyReallyLongName('Pages')[0];
+$page = TableRegistry::insertReallyReallyReallyLongName("Pages")[0];
 $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName(
-    'Pages'
+    "Pages"
 )[0];
 
-$component = find('.org-lclp-edit-copy-url-banner__link')[0]
-    ::getAttribute('href')
+$component = find(".org-lclp-edit-copy-url-banner__link")[0]
+    ::getAttribute("href")
     ::indexOf($this->landingPageLink);
 
 $component = Foo::test([
-    'foo' => 'bar',
-    'bar' => 'foo',
-    'foobar' => 'barfoo',
-    'barfoo' => 'foobar',
+    "foo" => "bar",
+    "bar" => "foo",
+    "foobar" => "barfoo",
+    "barfoo" => "foobar",
 ]);
 $component =
     Foo
@@ -1057,7 +1057,7 @@ static::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this,
+            "paginator" => $this,
         ])
     )
     ->render();
@@ -1065,7 +1065,7 @@ static::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this,
+            "paginator" => $this,
         ])
     )
     ->render();
@@ -1073,7 +1073,7 @@ self::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this,
+            "paginator" => $this,
         ])
     )
     ->render();
@@ -1081,7 +1081,7 @@ parent::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this,
+            "paginator" => $this,
         ])
     )
     ->render();
@@ -1090,7 +1090,7 @@ Foo::viewFactory()
     ->make(
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
-            'paginator' => $this,
+            "paginator" => $this,
         ])
     )
     ->render();

@@ -466,7 +466,7 @@ function type_hinting_test(
     float $float_test,
     iterable $iterable_test,
     int $int_test,
-    string $string_test = ''
+    string $string_test = ""
 ) {
     return $int_test;
 }
@@ -559,7 +559,7 @@ function type_hinting_test(
     float $float_test,
     iterable $iterable_test,
     int $int_test,
-    string $string_test = ''
+    string $string_test = ""
 ) {
     return $int_test;
 }
@@ -649,7 +649,7 @@ function type_hinting_test(
     float $float_test,
     iterable $iterable_test,
     int $int_test,
-    string $string_test = ''
+    string $string_test = ""
 ) {
     return $int_test;
 }
@@ -800,7 +800,7 @@ class Foo
         return "hello";
     }
 
-    function bar($arg = '')
+    function bar($arg = "")
     {
         echo "In bar(); argument was '$arg'.<br />\\n";
     }
@@ -829,7 +829,7 @@ class Foo
         float $float_test,
         iterable $iterable_test,
         int $int_test,
-        string $string_test = ''
+        string $string_test = ""
     ) {
         return $int_test;
     }
@@ -838,7 +838,7 @@ class Foo
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         return "hello";
@@ -852,7 +852,7 @@ class Foo
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         $string = trim($string);
@@ -1052,7 +1052,7 @@ class Foo
         return "hello";
     }
 
-    function bar($arg = '')
+    function bar($arg = "")
     {
         echo "In bar(); argument was '$arg'.<br />\\n";
     }
@@ -1081,7 +1081,7 @@ class Foo
         float $float_test,
         iterable $iterable_test,
         int $int_test,
-        string $string_test = ''
+        string $string_test = ""
     ) {
         return $int_test;
     }
@@ -1090,7 +1090,7 @@ class Foo
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         return "hello";
@@ -1104,7 +1104,7 @@ class Foo
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         $string = trim($string);
@@ -1299,7 +1299,7 @@ class Foo {
         return "hello";
     }
 
-    function bar($arg = '') {
+    function bar($arg = "") {
         echo "In bar(); argument was '$arg'.<br />\\n";
     }
 
@@ -1325,7 +1325,7 @@ class Foo {
         float $float_test,
         iterable $iterable_test,
         int $int_test,
-        string $string_test = ''
+        string $string_test = ""
     ) {
         return $int_test;
     }
@@ -1334,7 +1334,7 @@ class Foo {
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         return "hello";
@@ -1347,7 +1347,7 @@ class Foo {
         $string,
         $max_length,
         // @codingStandardsIgnoreLine
-        $ellipses = ' … ', // the spaces are non-breaking spaces
+        $ellipses = " … ", // the spaces are non-breaking spaces
         &$flag = null
     ) {
         $string = trim($string);

@@ -39,7 +39,7 @@ isset($expected_array_got_string['0 Mostel']);
 echo "test echo";
 echo $test, $other;
 
-$info = ['coffee', 'brown', 'caffeine'];
+$info = ["coffee", "brown", "caffeine"];
 list($drink, $color, $power) = $info;
 list(
     $reallyReallyReallyReallyLongName,
@@ -71,14 +71,14 @@ isset(
     $test
 );
 
-isset($test['foo']);
-isset($a['cake']['a']['b']);
-isset($expected_array_got_string['some_key']);
+isset($test["foo"]);
+isset($a["cake"]["a"]["b"]);
+isset($expected_array_got_string["some_key"]);
 isset($expected_array_got_string[0]);
-isset($expected_array_got_string['0']);
+isset($expected_array_got_string["0"]);
 isset($expected_array_got_string[0.5]);
-isset($expected_array_got_string['0.5']);
-isset($expected_array_got_string['0 Mostel']);
+isset($expected_array_got_string["0.5"]);
+isset($expected_array_got_string["0 Mostel"]);
 
 ================================================================================
 `;

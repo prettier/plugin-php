@@ -60,17 +60,17 @@ class Foo
 
     public function publishMethod()
     {
-        return 'public';
+        return "public";
     }
 
     private function protectedMethod()
     {
-        return 'protected';
+        return "protected";
     }
 
     private function privateMethod()
     {
-        return 'private';
+        return "private";
     }
 
     public function emptyMethod()
@@ -84,7 +84,7 @@ class Foo
 
     function aMemberFunc()
     {
-        print 'Inside \`aMemberFunc()\`';
+        print "Inside \`aMemberFunc()\`";
     }
 
     function bMemberFunc()

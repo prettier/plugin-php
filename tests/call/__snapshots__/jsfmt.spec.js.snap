@@ -382,8 +382,8 @@ $db->Execute(
     $sql
 );
 
-$app->get('/hello/{name}', function ($name) use ($app) {
-    return 'Hello ' . $app->escape($name);
+$app->get("/hello/{name}", function ($name) use ($app) {
+    return "Hello " . $app->escape($name);
 });
 
 $this->something->method(
@@ -405,44 +405,44 @@ $this->something->method(
 
 $this->files->put($path, $this->expiration($minutes) . serialize($value), true);
 
-tap(((int) $raw['data']) + $value, function ($newValue) use ($key, $raw) {
-    $this->put($key, $newValue, $raw['time']);
+tap(((int) $raw["data"]) + $value, function ($newValue) use ($key, $raw) {
+    $this->put($key, $newValue, $raw["time"]);
 });
 
 $expire = substr($contents = $this->files->get($path, true), 0, 10);
-$this->app->singleton('session', function ($app) {
+$this->app->singleton("session", function ($app) {
     return new SessionManager($app);
 });
 
 $this->filter([
-    new MergeValue(['First', 'Second']),
-    'Taylor',
-    'Mohamed',
-    $this->mergeWhen(false, ['Adam', 'Matt']),
-    'Jeffrey',
-    new MergeValue(['Abigail', 'Lydia']),
+    new MergeValue(["First", "Second"]),
+    "Taylor",
+    "Mohamed",
+    $this->mergeWhen(false, ["Adam", "Matt"]),
+    "Jeffrey",
+    new MergeValue(["Abigail", "Lydia"]),
 ]);
 
 $this->assertEquals(
-    ['First', 'Second', 'Taylor', 'Mohamed', 'Jeffrey', 'Abigail', 'Lydia'],
+    ["First", "Second", "Taylor", "Mohamed", "Jeffrey", "Abigail", "Lydia"],
     $results
 );
 
-$this->assertEquals(['First'], $results);
+$this->assertEquals(["First"], $results);
 
 $some->other->thing([
-    'foo' => 'bar',
-    'buzz' => $this->is->nested([
-        'complex' => 'stuff',
-        'foo' => 'bar',
-        'buzz' => 'bazz',
+    "foo" => "bar",
+    "buzz" => $this->is->nested([
+        "complex" => "stuff",
+        "foo" => "bar",
+        "buzz" => "bazz",
     ]),
 ]);
 
 $some->other->thing(
     [
-        'foo' => 'bar',
-        'buzz' => $this->is->nested([12, 34, 45, 67, 89]),
+        "foo" => "bar",
+        "buzz" => $this->is->nested([12, 34, 45, 67, 89]),
     ],
     [11323123, 1231, 13231233243, 324234234]
 );
@@ -456,8 +456,8 @@ $foo->bar(
 );
 
 $packages = array_merge(
-    idx($composer, 'require', []),
-    idx($composer, 'require-dev', [])
+    idx($composer, "require", []),
+    idx($composer, "require-dev", [])
 );
 
 if (
@@ -474,7 +474,7 @@ if (
 }
 
 implode(
-    ', ',
+    ", ",
     array_map(function ($f) {
         return $f;
     }, array_merge($arr1, $arr2, $arr3))
@@ -519,11 +519,11 @@ call(
 
 array_map(
     function ($aligment) {
-        return 'row-' . $aligment . '-xs';
+        return "row-" . $aligment . "-xs";
     },
-    is_array($attributes['alignment'])
-        ? $attributes['alignment']
-        : explode(' ', $attributes['alignment'])
+    is_array($attributes["alignment"])
+        ? $attributes["alignment"]
+        : explode(" ", $attributes["alignment"])
 );
 
 call('
@@ -710,19 +710,19 @@ $var = ($this->foo()
     ->foo()
     ->bar()
     ->baz)();
-$var = $this['foo']();
-$var = $this['foo']['bar']();
+$var = $this["foo"]();
+$var = $this["foo"]["bar"]();
 $var = ($this::$foo)();
 $var = $var::foo()();
 $var = $var::foo()();
-$var = ('test')();
-$var = ('test')();
-$var = ('test')()();
-$var = ('test')()->bar();
-$var = (('test')()->bar)();
-$var = (['Foo', 'bar'])();
-$var = (['Foo', 'bar'])->bar();
-$var = ((['Foo', 'bar'])->bar)();
+$var = ("test")();
+$var = ("test")();
+$var = ("test")()();
+$var = ("test")()->bar();
+$var = (("test")()->bar)();
+$var = (["Foo", "bar"])();
+$var = (["Foo", "bar"])->bar();
+$var = ((["Foo", "bar"])->bar)();
 $var = ($var->foo)()();
 $var = ($var->foo)()();
 $var = (($var->foo)()->bar)();

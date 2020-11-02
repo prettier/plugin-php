@@ -403,10 +403,10 @@ $b = &$a;
 $a ?? $b;
 
 $this->reallyLong->testPropertyName =
-    'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
+    "a" . $someOtherTest . "n" . $oneLastOneToMakeLineLong;
 
-'tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst' .
-    'test';
+"tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst" .
+    "test";
 
 $someReallyReallyReallyLongBooleanVariable +
     $someReallyReallyReallyLongBooleanVariable;
@@ -422,10 +422,10 @@ $someReallyReallyReallyLongBooleanVariable +
     $someReallyReallyReallyLongBooleanVariable;
 
 $value =
-    isset($_POST['menu-item-dropdown']) &&
-    isset($_POST['menu-item-dropdown'][$menuItemDbId])
-        ? 'enabled'
-        : 'disabled';
+    isset($_POST["menu-item-dropdown"]) &&
+    isset($_POST["menu-item-dropdown"][$menuItemDbId])
+        ? "enabled"
+        : "disabled";
 
 ($var && $var && $var)->call();
 -($var && $var && $var);
@@ -441,11 +441,11 @@ $value =
 )->call();
 ($veryVeryVeryVeryVeryLongVariable &&
     $veryVeryVeryVeryVeryLongVariable &&
-    $veryVeryVeryVeryVeryLongVariable)['key'];
+    $veryVeryVeryVeryVeryLongVariable)["key"];
 
 if (
-    get_option('woocommerce_product_cart_actions_notification_more_cart') ===
-        'yes' &&
+    get_option("woocommerce_product_cart_actions_notification_more_cart") ===
+        "yes" &&
     count($cartItems) > 0
 ) {
     $a = 1;
@@ -455,8 +455,8 @@ function f()
 {
     if (
         get_option(
-            'woocommerce_product_cart_actions_notification_more_cart'
-        ) === 'yes' &&
+            "woocommerce_product_cart_actions_notification_more_cart"
+        ) === "yes" &&
         count($cartItems) > 0
     ) {
         $a = 1;
@@ -464,33 +464,33 @@ function f()
 }
 
 $accelerator =
-    (extension_loaded('eaccelerator') && ini_get('eaccelerator.enable')) ||
-    (extension_loaded('apc') && ini_get('apc.enabled')) ||
-    (extension_loaded('Zend Optimizer+') &&
-        ini_get('zend_optimizerplus.enable')) ||
-    (extension_loaded('Zend OPcache') && ini_get('opcache.enable')) ||
-    (extension_loaded('xcache') && ini_get('xcache.cacher')) ||
-    (extension_loaded('wincache') && ini_get('wincache.ocenabled'));
+    (extension_loaded("eaccelerator") && ini_get("eaccelerator.enable")) ||
+    (extension_loaded("apc") && ini_get("apc.enabled")) ||
+    (extension_loaded("Zend Optimizer+") &&
+        ini_get("zend_optimizerplus.enable")) ||
+    (extension_loaded("Zend OPcache") && ini_get("opcache.enable")) ||
+    (extension_loaded("xcache") && ini_get("xcache.cacher")) ||
+    (extension_loaded("wincache") && ini_get("wincache.ocenabled"));
 
 while ($a < 10) {
     $a + 1;
 }
 
 $a =
-    'string' .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery'
+    "string" .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery"
         ? 1
         : 2;
-return 'string' .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery'
+return "string" .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery"
     ? 1
     : 2;
 call(
-    'string' .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery'
+    "string" .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery"
         ? 1
         : 2,
-    'arg'
+    "arg"
 );
 
 $var =
@@ -595,19 +595,19 @@ if (
 ) {
 }
 
-echo 'This ' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
+echo "This " .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
     (100 + 100) .
-    'string ' .
+    "string " .
     (100 - 100) .
-    'was ' .
+    "was " .
     100 * 100 .
-    'made ' .
+    "made " .
     100 / 100 .
-    'with concatenation.';
+    "with concatenation.";
 
 if ($someReallyReallyReallyLongBooleanVariableWithRddllyReallyLongName || []) {
 }
@@ -618,13 +618,13 @@ if (
 }
 
 $accelerator =
-    (extension_loaded('eaccelerator') && ini_get('eaccelerator.enable')) ||
-    (extension_loaded('apc') && ini_get('apc.enabled')) ||
-    (extension_loaded('Zend Optimizer+') &&
-        ini_get('zend_optimizerplus.enable')) ||
-    (extension_loaded('Zend OPcache') && ini_get('opcache.enable')) ||
-    (extension_loaded('xcache') && ini_get('xcache.cacher')) ||
-    (extension_loaded('wincache') && ini_get('wincache.ocenabled'));
+    (extension_loaded("eaccelerator") && ini_get("eaccelerator.enable")) ||
+    (extension_loaded("apc") && ini_get("apc.enabled")) ||
+    (extension_loaded("Zend Optimizer+") &&
+        ini_get("zend_optimizerplus.enable")) ||
+    (extension_loaded("Zend OPcache") && ini_get("opcache.enable")) ||
+    (extension_loaded("xcache") && ini_get("xcache.cacher")) ||
+    (extension_loaded("wincache") && ini_get("wincache.ocenabled"));
 
 ~($a || $b);
 ~(
@@ -650,9 +650,9 @@ $accelerator =
     $someOtherReallyReallyReallyLongBooleanVariable
 )::foo();
 
-($a || $b)['string'];
+($a || $b)["string"];
 ($someReallyReallyReallyLongBooleanVariable ||
-    $someReallyReallyReallyLongBooleanVariable)['string'];
+    $someReallyReallyReallyLongBooleanVariable)["string"];
 
 $var = call($var > $var ? true : false);
 $var = call($someOtherReallyReallyLongVariable > $var ? true : false);
@@ -828,7 +828,7 @@ string\\\\r\\\\n
 ';
 
 $var = __DIR__ instanceof \\Exception;
-$var = 'string' instanceof \\Exception;
+$var = "string" instanceof \\Exception;
 $var = "string" instanceof \\Exception;
 $var = 2244 instanceof \\Exception;
 $var = true instanceof \\Exception;
@@ -836,20 +836,20 @@ $var = 100 + 1 instanceof \\Exception;
 
 // Fetches the value of $_GET['user'] and returns 'nobody'
 // if it does not exist.
-$username = $_GET['user'] ?? 'nobody';
+$username = $_GET["user"] ?? "nobody";
 // This is equivalent to:
-$username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+$username = isset($_GET["user"]) ? $_GET["user"] : "nobody";
 
 // Coalescing can be chained: this will return the first
 // defined value out of $_GET['user'], $_POST['user'], and
 // 'nobody'.
-$username = $_GET['user'] ?? ($_POST['user'] ?? 'nobody');
+$username = $_GET["user"] ?? ($_POST["user"] ?? "nobody");
 
 // The following lines are doing the same
-$this->request->data['comments']['user_id'] =
-    $this->request->data['comments']['user_id'] ?? 'value';
+$this->request->data["comments"]["user_id"] =
+    $this->request->data["comments"]["user_id"] ?? "value";
 // Instead of repeating variables with long names, the equal coalesce operator is used
-$this->request->data['comments']['user_id'] ??= 'value';
+$this->request->data["comments"]["user_id"] ??= "value";
 
 ================================================================================
 `;

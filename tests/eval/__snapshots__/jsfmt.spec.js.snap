@@ -81,7 +81,7 @@ $obj = eval('return new class($value)
 
 =====================================output=====================================
 <?php
-eval('return 1;');
+eval("return 1;");
 eval("return $a;");
 eval(
     "$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableName = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariableValue;"

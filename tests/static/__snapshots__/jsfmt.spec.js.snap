@@ -55,63 +55,63 @@ static $testReallyReallyLong = 1,
     $someOtherReallyReallyLongVariable = 2,
     $oneMoreReallyLongVariable = 3;
 static $a =
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 static $b =
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
     $b =
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
-static $a = ['value', 'other-value'];
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+static $a = ["value", "other-value"];
 static $a = [
-    'value',
-    'other-value',
-    'other-other-other-other-other-other-other-other-value',
+    "value",
+    "other-value",
+    "other-other-other-other-other-other-other-other-value",
 ];
-static $a = ['value', 'other-value'],
-    $b = ['value', 'other-value'];
+static $a = ["value", "other-value"],
+    $b = ["value", "other-value"];
 static $a = [
-        'value',
-        'other-value',
-        'other-other-other-other-other-other-other-other-value',
+        "value",
+        "other-value",
+        "other-other-other-other-other-other-other-other-value",
     ],
     $b = [
-        'value',
-        'other-value',
-        'other-other-other-other-other-other-other-other-value',
+        "value",
+        "other-value",
+        "other-other-other-other-other-other-other-other-value",
     ];
-static $a = ['key' => 'value', 'other-key' => 'other-value'];
+static $a = ["key" => "value", "other-key" => "other-value"];
 static $a = [
-    'key' => 'value',
-    'other-key' => 'other-value',
+    "key" => "value",
+    "other-key" => "other-value",
 ];
-static $a = ['key' => 'value', 'other-key' => 'other-value'],
-    $b = ['key' => 'value', 'other-key' => 'other-value'];
+static $a = ["key" => "value", "other-key" => "other-value"],
+    $b = ["key" => "value", "other-key" => "other-value"];
 static $a = [
-        'key' => 'value',
-        'other-key' => 'other-value',
+        "key" => "value",
+        "other-key" => "other-value",
     ],
     $b = [
-        'key' => 'value',
-        'other-key' => 'other-value',
+        "key" => "value",
+        "other-key" => "other-value",
     ];
 static $a =
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string';
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string";
 static $a,
     $b =
-        'string' .
-        'string' .
-        'string' .
-        'string' .
-        'string' .
-        'string' .
-        'string' .
-        'string';
+        "string" .
+        "string" .
+        "string" .
+        "string" .
+        "string" .
+        "string" .
+        "string" .
+        "string";
 static $a = 'string
 string
 string';

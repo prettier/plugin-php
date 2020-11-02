@@ -85,12 +85,12 @@ $var = (["foo", "bar"])();
 
 $arr = [$var, $other_var];
 $arr = [$var, $other_var];
-$arr = ['key' => $var, 'other-key' => $other_var];
-$arr = ['key' => $var, 'other-key' => $other_var];
+$arr = ["key" => $var, "other-key" => $other_var];
+$arr = ["key" => $var, "other-key" => $other_var];
 
 [$var, $other_var] = $arr;
 [$var, $other_var] = $arr;
-['key' => $var, 'other-key' => $other_var] = $arr;
+["key" => $var, "other-key" => $other_var] = $arr;
 
 $var = [1, 2, 3][1];
 $var = [1, 2, 3][1];
@@ -212,7 +212,7 @@ $var = $var += 1;
 $var = $var += 1;
 
 $var = ($var = 4) + 5;
-$var = $var = ['key' => 'value'];
+$var = $var = ["key" => "value"];
 
 $var = $var
     ? $var
@@ -778,9 +778,9 @@ $var = 10 + 20 + 30;
 $var = 10 + 20 + 30;
 $var = 10 + (20 + 30);
 
-$var = '10' . '20' . '30';
-$var = '10' . '20' . '30';
-$var = '10' . ('20' . '30');
+$var = "10" . "20" . "30";
+$var = "10" . "20" . "30";
+$var = "10" . ("20" . "30");
 
 $var = 10 + (20 % 30);
 $var = (10 + 20) % 30;
@@ -854,12 +854,12 @@ $var = $var || ($var && $var);
 $var = ($var || $var) && $var;
 $var = $var || ($var && $var);
 
-$var = $var & ($var || 'test');
-$var = ($var || 'test') & $var;
-$var = $var & ($var . 'test');
-$var = ($var . 'test') & $var;
-$var = $var & $var || 'test';
-$var = $var || 'test' & $var;
+$var = $var & ($var || "test");
+$var = ($var || "test") & $var;
+$var = $var & ($var . "test");
+$var = ($var . "test") & $var;
+$var = $var & $var || "test";
+$var = $var || "test" & $var;
 
 $var = ($var || $var) % 100;
 $var = ($var + $var) % 100;
@@ -918,9 +918,9 @@ $var = $var | $var | $var;
 $var = $var & ($var >> $var);
 $var = ($var << $var) | $var;
 
-$var = $var ? 'foo' : 'bar' . 'test';
-$var = ($var ? 'foo' : 'bar') . 'test';
-$var = $var ? 'foo' : 'bar' . 'test';
+$var = $var ? "foo" : "bar" . "test";
+$var = ($var ? "foo" : "bar") . "test";
+$var = $var ? "foo" : "bar" . "test";
 
 call($var + $var);
 
@@ -1000,28 +1000,28 @@ $var = false || $var == $var;
 $var = false || $var == $var;
 $var = ($var || false) == $var;
 
-$var = 'string' . true ? '1' : '2';
-$var = 'string' . (true ? '1' : '2');
+$var = "string" . true ? "1" : "2";
+$var = "string" . (true ? "1" : "2");
 
-$var = 'string' . (100 + 100);
-$var = 100 + 100 . 'string';
-$var = 'string' . ($var || 100);
-$var = ($var || 100) . 'string';
-$var = 'string' . $var * 100;
-$var = $var * 100 . 'string';
-$var = 'string' . !$var;
-$var = !$var . 'string';
-$var = 'string' . ($var | 100);
-$var = ($var | 100) . 'string';
+$var = "string" . (100 + 100);
+$var = 100 + 100 . "string";
+$var = "string" . ($var || 100);
+$var = ($var || 100) . "string";
+$var = "string" . $var * 100;
+$var = $var * 100 . "string";
+$var = "string" . !$var;
+$var = !$var . "string";
+$var = "string" . ($var | 100);
+$var = ($var | 100) . "string";
 
 $var = $var . $var % $var;
 $var = ($var . $var) % $var;
 $var = $var % $var . $var;
 $var = $var % ($var . $var);
 
-$var = '100' - '100' - '100';
-$var = '100' - '100' - '100';
-$var = '100' - ('100' - '100');
+$var = "100" - "100" - "100";
+$var = "100" - "100" - "100";
+$var = "100" - ("100" - "100");
 
 if (false || true) {
 }
@@ -1068,9 +1068,9 @@ $a ** -$b;
 $a ** ($b * $c);
 ($a % $b) ** $c;
 
-$var = $var + $var ?? '';
-$var = $var + ($var ?? '');
-$var = $var + $var ?? '';
+$var = $var + $var ?? "";
+$var = $var + ($var ?? "");
+$var = $var + $var ?? "";
 $var = $var ?? null + 1;
 $var = ($var ?? null) + 1;
 $var = $var && ($var ?? true);
@@ -1081,11 +1081,11 @@ $var = ($var ?? null) === true && $var;
 $findAll = $cachesNames === [];
 $findAll = $cachesNames === [];
 
-$isNamespaced = strpos($fixture, '\\\\') !== false;
-$isNamespaced = strpos($fixture, '\\\\') !== false;
+$isNamespaced = strpos($fixture, "\\\\") !== false;
+$isNamespaced = strpos($fixture, "\\\\") !== false;
 
-$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
-$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = $a["apply_time"] > $b["apply_time"] ? -1 : +1;
+$var = $a["apply_time"] > $b["apply_time"] ? -1 : +1;
 
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
@@ -1098,7 +1098,7 @@ $var = @foo() || @foo();
 @$i / 0;
 @$i / 0;
 
-$var = "a" . (@$b ? 'bar' : "baz");
+$var = "a" . (@$b ? "bar" : "baz");
 
 $a = false && foo();
 $b = true || foo();
@@ -1108,14 +1108,14 @@ $d = (true or foo());
 ($f = false) or true;
 ($h = true) and false;
 
-($my_file = call('non_existent_file')) or
+($my_file = call("non_existent_file")) or
     die("Failed opening file: error was '$php_errormsg'");
-($my_file = call('non_existent_file')) or
+($my_file = call("non_existent_file")) or
     die("Failed opening file: error was '$php_errormsg'");
 
-($my_file = call('non_existent_file')) and
+($my_file = call("non_existent_file")) and
     die("Failed opening file: error was '$php_errormsg'");
-($my_file = call('non_existent_file')) and
+($my_file = call("non_existent_file")) and
     die("Failed opening file: error was '$php_errormsg'");
 
 $var = $obj->foo ?? "default";
@@ -1408,38 +1408,38 @@ $timeout = (int) ($server->timeout / 1000) + (($server->timeout % 1000 > 0) ? 1 
 =====================================output=====================================
 <?php
 
-(int) '1';
-(int) '1';
-(int) '1';
-(int) '1';
+(int) "1";
+(int) "1";
+(int) "1";
+(int) "1";
 
-$var = (int) '1';
-$var = ((int) '1');
-$var = ((int) '1');
+$var = (int) "1";
+$var = ((int) "1");
+$var = ((int) "1");
 $var = ((bool) 2.3e5);
 $var = (object) [];
 $var = (object) [];
 $var = ((object) []);
-$var = ((object) ['1' => 'foo']);
-$var = ((object) ['1' => 'foo']);
-$var = ((object) 'ciao')->scalar;
-$var = ((object) ['test'])->{'0'};
-$var = ((object) ['test'])->{'0'};
+$var = ((object) ["1" => "foo"]);
+$var = ((object) ["1" => "foo"]);
+$var = ((object) "ciao")->scalar;
+$var = ((object) ["test"])->{'0'};
+$var = ((object) ["test"])->{'0'};
 $var = (array) new B();
 $var = (array) new B();
 $var = ((array) new B());
-$var = ((array) new B())['foo'];
+$var = ((array) new B())["foo"];
 $var = ((string) 1234)[1];
 $var = ((string) 123)();
 $var = ((string) 123)();
 $var = "test"[0];
 $var = (array) "test"[0];
 $var = ((array) "test")[0];
-$var = [(int) 'key' => (int) '1'];
-$var = [((int) 'key') => ((int) '1')];
-$var = [((int) 'key') => ((int) '1')];
-$var = (int) $raw['data'] + $value;
-$var = ((int) $raw['data']) + $value;
+$var = [(int) "key" => (int) "1"];
+$var = [((int) "key") => ((int) "1")];
+$var = [((int) "key") => ((int) "1")];
+$var = (int) $raw["data"] + $value;
+$var = ((int) $raw["data"]) + $value;
 $var = (bool) $var ? 1 : 2;
 $var = (bool) ($var ? 1 : 2);
 $var = (bool) $var + 1 ? 1 : 2;
@@ -1459,12 +1459,12 @@ $var = (bool) $var->foo;
 $var = ((bool) $var->foo);
 $var = ((object) $var)->foo;
 $var = ((object) $var)[0];
-$var = (int) 'test' + (int) 'test';
-$var = ((int) 'test') + ((int) 'test');
-$var = ((int) 'test') * ((int) 'test');
-$var = ((int) 'test') | ((int) 'test');
-$var = ((int) 'test') % ((int) 'test');
-$var = @((int) 'test');
+$var = (int) "test" + (int) "test";
+$var = ((int) "test") + ((int) "test");
+$var = ((int) "test") * ((int) "test");
+$var = ((int) "test") | ((int) "test");
+$var = ((int) "test") % ((int) "test");
+$var = @((int) "test");
 $var = @((int) call());
 $var = (int) (int) 1;
 $var = (int) ((int) 1);
@@ -1575,7 +1575,7 @@ $var = (clone foo())
 $var = (clone $foo())->bar;
 $var = (clone $bar->y)->x;
 $var = (clone $foo)[0];
-$var = (clone $foo)[0]['string'];
+$var = (clone $foo)[0]["string"];
 
 $var = clone $a->b;
 $var = clone $a->b();
@@ -1804,7 +1804,7 @@ switch ($i) {
     case 1:
         echo "i equals 1";
         break;
-    case 'test' . (1 > 2 ? 'foo' : 'bar'):
+    case "test" . (1 > 2 ? "foo" : "bar"):
         echo "i equals 2";
         break;
 }
@@ -1892,7 +1892,7 @@ while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 
 if (($foo = $bar) && count($foo) > 0) {
 }
-if (false !== ($file = readdir($dh)) && 0 !== strpos($file, '.')) {
+if (false !== ($file = readdir($dh)) && 0 !== strpos($file, ".")) {
 }
 while (($a = foo()) !== 5) {
 }
@@ -1981,17 +1981,17 @@ echo "Sum: ", 1 + 2;
 echo "Hello ", isset($name) ? $name : "John Doe", "!";
 echo "Hello ", isset($name) ? $name : "John Doe", "!";
 
-echo 'Sum: ' . (1 + 2);
-echo 'Hello ' . isset($name) ? $name : 'John Doe' . '!';
-echo 'Hello ' . (isset($name) ? $name : 'John Doe') . '!';
+echo "Sum: " . (1 + 2);
+echo "Hello " . isset($name) ? $name : "John Doe" . "!";
+echo "Hello " . (isset($name) ? $name : "John Doe") . "!";
 
-echo $some_var ? 'true' : 'false';
-echo $some_var ? 'true' : 'false';
+echo $some_var ? "true" : "false";
+echo $some_var ? "true" : "false";
 
-echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
-echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+echo "This ", "string ", "was ", "made ", "with multiple parameters.", chr(10);
+echo "This ", "string ", "was ", "made ", "with multiple parameters.", chr(10);
+echo "This " . "string " . "was " . "made " . "with concatenation." . "\\n";
+echo "This " . "string " . "was " . "made " . "with concatenation." . "\\n";
 
 echo <<<END
 This uses the "here document" syntax to output
@@ -2008,10 +2008,10 @@ line with just a semicolon. no extra whitespace!
 END;
 
 echo (function () {
-    return 'test';
+    return "test";
 })();
 echo (function () {
-    return 'test';
+    return "test";
 })();
 
 ================================================================================
@@ -2072,20 +2072,20 @@ if ((eval('return 1;')) === 1) {}
 =====================================output=====================================
 <?php
 
-eval('return 1;');
-eval('return 1;');
-eval('return 1;');
+eval("return 1;");
+eval("return 1;");
+eval("return 1;");
 
-$var = eval('return 1;');
-$var = eval('return 1;');
-$var = eval('return 1;');
+$var = eval("return 1;");
+$var = eval("return 1;");
+$var = eval("return 1;");
 
-if (eval('return 1;')) {
+if (eval("return 1;")) {
 }
-if (eval('return 1;')) {
+if (eval("return 1;")) {
 }
 
-if (eval('return 1;') === 1) {
+if (eval("return 1;") === 1) {
 }
 
 ================================================================================
@@ -2175,41 +2175,41 @@ include ($_GET['id'].".php");
 =====================================output=====================================
 <?php
 
-include 'foo.php';
-include 'foo.php';
+include "foo.php";
+include "foo.php";
 
 include $var;
 include $var;
 include $var;
 
-$var = include 'foo.php';
-$var = include 'foo.php';
+$var = include "foo.php";
+$var = include "foo.php";
 $var = include $var;
 $var = include $var;
 $var = include $var;
 
 function foo()
 {
-    include 'foo.php';
-    include 'foo.php';
+    include "foo.php";
+    include "foo.php";
 }
 
-if (include 'vars.php' == true) {
+if (include "vars.php" == true) {
 }
-if ((include 'vars.php') == true) {
+if ((include "vars.php") == true) {
 }
 
-include $path . 'example-config-file.php';
-include $path . 'example-config-file.php';
-include $path . 'example-config-file.php';
+include $path . "example-config-file.php";
+include $path . "example-config-file.php";
+include $path . "example-config-file.php";
 
-include __DIR__ . '/../src/includeFile.php';
-include __DIR__ . '/../src/includeFile.php';
-include __DIR__ . '/../src/includeFile.php';
+include __DIR__ . "/../src/includeFile.php";
+include __DIR__ . "/../src/includeFile.php";
+include __DIR__ . "/../src/includeFile.php";
 
-include dirname(dirname(__FILE__)) . '/prepend.php';
+include dirname(dirname(__FILE__)) . "/prepend.php";
 
-include $_GET['id'] . ".php";
+include $_GET["id"] . ".php";
 
 ================================================================================
 `;
@@ -2522,15 +2522,15 @@ $var = (new class {})->foo;
 new Translator(
     $container,
     new MessageFormatter(),
-    'en',
+    "en",
     [],
-    ['foo' => 'bar']
+    ["foo" => "bar"]
 ); ?>
-<?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
-    'foo' => 'bar',
+<?php new Translator($container, new MessageFormatter(), "en", $someOtherVar, [
+    "foo" => "bar",
 ]); ?>
-<?php new Translator($container, new MessageFormatter(), 'en', $someOtherVar, [
-    'foo' => 'bar',
+<?php new Translator($container, new MessageFormatter(), "en", $someOtherVar, [
+    "foo" => "bar",
 ]); ?>
 <?php
 $var = new Foo();
@@ -2555,7 +2555,7 @@ $var = (new foo())
 $var = (new $foo())->bar;
 $var = (new $bar->y())->x;
 $var = (new foo())[0];
-$var = (new foo())[0]['string'];
+$var = (new foo())[0]["string"];
 $var = new $a->b();
 $var = new $a->b();
 $var = (new $a())->b();
@@ -2563,7 +2563,7 @@ $var = (new $a())->b();
 (new class {})->foo;
 (new class {})->foo();
 (new class {})();
-(new class {})['foo'];
+(new class {})["foo"];
 $var = (new class {})->foo;
 
 
@@ -2582,8 +2582,8 @@ include ($test ? 'foo' : 'bar');
 
 =====================================output=====================================
 <?php
-include 'foo.php' . ($test ? 'foo' : 'bar');
-include $test ? 'foo' : 'bar';
+include "foo.php" . ($test ? "foo" : "bar");
+include $test ? "foo" : "bar";
 
 ================================================================================
 `;
@@ -2911,9 +2911,9 @@ $var ? 1 : 2;
 $var = $var ? 1 : 2;
 $var = $var ? 1 : 2;
 
-$var = (int) ($var + 1 === 2 ? '1' : '2');
-$var = (int) $var + 1 === 2 ? '1' : '2';
-$var = ((int) $var) + 1 === 2 ? '1' : '2';
+$var = (int) ($var + 1 === 2 ? "1" : "2");
+$var = (int) $var + 1 === 2 ? "1" : "2";
+$var = ((int) $var) + 1 === 2 ? "1" : "2";
 
 ($var ? $var : $var)();
 ($var ? $var : $var)->prop;
@@ -2950,23 +2950,23 @@ $var = +($var ? 1 : 2);
 $var = +(+$var ? 1 : 2);
 $var = +($var++ ? 1 : 2);
 $var = (true
-        ? 'true'
+        ? "true"
         : false)
     ? (true
-        ? 'true'
+        ? "true"
         : false)
     : (true
-        ? 'true'
+        ? "true"
         : false);
 $var = ($var ? ($var1 ? 1 : 2) : $var2) ? 3 : 4;
 
-$var = $var ?: $var ?: $var ?: 'string';
-$var = $var ?: $var ?: $var ?: 'string';
-$var = $var ?: $var ?: $var ?: 'string';
-$var = $var ?: $var ?: $var ?: 'string';
-$var = $var ?: ($var ?: $var) ?: 'string';
-$var = $var ?: ($var ?: $var ?: 'string');
-$var = $var ?: ($var ?: ($var ?: 'string'));
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: ($var ?: $var) ?: "string";
+$var = $var ?: ($var ?: $var ?: "string");
+$var = $var ?: ($var ?: ($var ?: "string"));
 
 $var = ($foo and $bar) ? true : false;
 $var = ($foo or $bar) ? true : false;
@@ -3008,14 +3008,14 @@ return;
 return 1;
 return 1;
 return 1 + 2;
-return 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+return "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 return $var1 + $var2;
 return $var ? ($var1 ? 1 : 2) : ($var2 ? 3 : 4);
-return 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    ? 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    : 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
-return static::class . '@' . $method;
+return "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    ? "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    : "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+return static::class . "@" . $method;
 return $this->customer->paymentService ?? null;
 
 ================================================================================
@@ -3098,14 +3098,14 @@ $var = @new MyClass();
 
 ($var = @include "file.php") or die("Could not find file.php!");
 
-$var = @$_GET['data'];
+$var = @$_GET["data"];
 
 if (
     false === @fwrite($this->stream, $message) ||
     ($newline && false === @fwrite($this->stream, PHP_EOL))
 ) {
     // should never happen
-    throw new RuntimeException('Unable to write output.');
+    throw new RuntimeException("Unable to write output.");
 }
 
 try {
@@ -3161,16 +3161,16 @@ if (!$var) {
 =====================================output=====================================
 <?php
 
-throw new Exception('Division by zero.');
-throw new Exception('Division by zero.');
+throw new Exception("Division by zero.");
+throw new Exception("Division by zero.");
 throw $e;
 throw $e;
 throw new \\Exception("Bye");
 throw new \\Exception("Bye");
 
 if (!$var) {
-    throw new Exception('Division by zero.');
-    throw new Exception('Division by zero.');
+    throw new Exception("Division by zero.");
+    throw new Exception("Division by zero.");
     throw $e;
     throw $e;
     throw new \\Exception("Bye");
@@ -3399,7 +3399,7 @@ $test = 1;
 $var = true;
 $var = false;
 
-$var = 'string';
+$var = "string";
 $var = "string";
 $var = "string";
 
@@ -3438,7 +3438,7 @@ EOD;
 $var = $var;
 $var = $$var;
 
-function foo($a = 1, $b = 'string', $c = true, $d = __LINE__)
+function foo($a = 1, $b = "string", $c = true, $d = __LINE__)
 {
     echo "Example function.\\n";
 }

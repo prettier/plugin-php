@@ -60,9 +60,9 @@ try {
 try {
     throw new OtherException();
 } catch (Exception | TestException $e) {
-    echo 'Caught exception: ', $e->getMessage();
+    echo "Caught exception: ", $e->getMessage();
 } catch (OtherException $i) {
-    echo 'Caugh other';
+    echo "Caugh other";
 } finally {
     echo "First finally";
 }
@@ -84,10 +84,10 @@ try {
 }
 
 throw new VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassException(
-    'exception'
+    "exception"
 );
 throw $e;
-throw new \\Exception('Bad logic in order cancel');
+throw new \\Exception("Bad logic in order cancel");
 
 try {
 } catch (Exception $e) {

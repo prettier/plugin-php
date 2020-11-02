@@ -580,24 +580,24 @@ function getNodeKindIncludingLogical(node) {
 }
 
 /**
- * Check if string can safely be converted from double to single quotes, i.e.
+ * Check if string can safely be converted from double to single quotes and vice-versa, i.e.
  *
  * - no embedded variables ("foo $bar")
  * - no linebreaks
  * - no special characters like \n, \t, ...
  * - no octal/hex/unicode characters
  *
- * See http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+ * See https://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
  */
 function useDoubleQuote(node, options) {
-  if (node.isDoubleQuote && options.singleQuote) {
+  if (node.isDoubleQuote === options.singleQuote) {
+    // We have a double quote and the user passed singleQuote:true, or the other way around.
     const rawValue = node.raw.slice(node.raw[0] === "b" ? 2 : 1, -1);
-
-    return rawValue.match(
-      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{([0-9a-fA-F]+)})|\r?\n|'|"/
+    const isComplex = rawValue.match(
+      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{([0-9a-fA-F]+)})|\r?\n|'|"|\$/
     );
+    return node.isDoubleQuote ? isComplex : !isComplex;
   }
-
   return node.isDoubleQuote;
 }
 

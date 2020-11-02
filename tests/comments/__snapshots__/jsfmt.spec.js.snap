@@ -158,12 +158,12 @@ return [
 ];
 
 $array = [
-    'type' => [],
-    'config' => [
+    "type" => [],
+    "config" => [
         // comments in nested arrays break things
-        'key' => 1,
+        "key" => 1,
     ],
-    'accepted' => [],
+    "accepted" => [],
 ];
 
 // Comment
@@ -175,22 +175,22 @@ $array /* Comment */ = /* Comment */ []; /* Comment */
 /* Comment */
 
 $array = [
-    'key' =>
+    "key" =>
         // Comment A
         // Comment B
-        'string',
+        "string",
 ];
 
 $array = [
     // Comment A
-    'key' =>
+    "key" =>
         // Comment B
-        'string',
+        "string",
 ];
 
 $array = [
     // Comment A
-    'key' => 'string',
+    "key" => "string",
 ];
 
 []; // Comment
@@ -199,8 +199,8 @@ $array = []; // Comment
 
 $array = [
     // Comment
-    'string',
-    'other-string',
+    "string",
+    "other-string",
 ];
 
 call(
@@ -209,8 +209,8 @@ call(
 
 call([
     // Comment
-    'string',
-    'other-string',
+    "string",
+    "other-string",
 ]);
 
 ================================================================================
@@ -293,64 +293,64 @@ $var3;
 <?php
 $var =
     // Comment 1
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     // Comment 2
 
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     // Comment 3
 
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     /* comment 4 */
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     /**
      * multi-line 5
      */
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
-    /* inline 6 */ 'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string' .
-    'some' .
-    'long' .
-    'string';
+    /* inline 6 */ "some" .
+    "long" .
+    "string" .
+    "some" .
+    "long" .
+    "string" .
+    "some" .
+    "long" .
+    "string" .
+    "some" .
+    "long" .
+    "string";
 
 $var =
     // Comment 7
     // Comment 8
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     // Comment 9
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     /* Comment 10 */
     // Comment 11
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     // Comment 12 /
     /* Comment 13 */
-    'some' . 'long' . 'string';
+    "some" . "long" . "string";
 
 $var =
     /* Comment 14 */
-    /* Comment 15 */ 'some' . 'long' . 'string';
+    /* Comment 15 */ "some" . "long" . "string";
 
 // Comment
 $var =
@@ -438,8 +438,8 @@ $variable =
     ($this->modelData instanceof \\Traversable &&
         0 === iterator_count($this->modelData));
 
-if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
-    mb_internal_encoding('ASCII');
+if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get("mbstring.func_overload")) {
+    mb_internal_encoding("ASCII");
 }
 
 $bool = /*Comment */ true /*Comment */ || /*Comment */ false /*Comment */;
@@ -464,7 +464,7 @@ if (
             $this->pricingQueryOfferResult->offer->offerGroup->state_id)
 ) {
     $this->hasResult = false;
-    $this->removedReason = 'State Mismatch';
+    $this->removedReason = "State Mismatch";
 }
 
 if (
@@ -595,31 +595,31 @@ $foo->bar(/* B */);
 
 render(
     // Comment
-    'string',
+    "string",
     $container
 );
 
 $var->render(
     // Comment
-    'string',
+    "string",
     $var
 );
 
 render(
-    'string',
+    "string",
     $container
     // Comment
 );
 
 $var->render(
-    'string',
+    "string",
     $var
     // Comment
 );
 
 $var->render(
     // Comment
-    'string',
+    "string",
     // Comment
     $var
     // Comment
@@ -648,7 +648,7 @@ $var = (int) // Comment
 =====================================output=====================================
 <?php
 
-$var = /* Comment */ (int) /* Comment */ '1' /* Comment */;
+$var = /* Comment */ (int) /* Comment */ "1" /* Comment */;
 
 $var = (int) // Comment
     $a;
@@ -702,14 +702,14 @@ $var = $var
     ->dump();
 
 $var = $a /* Comment*/->/*Comment*/ bar;
-$var = $a /* Comment */['test'];
+$var = $a /* Comment */["test"];
 $var = $a /* Comment */
     ->/* Comment */ bar();
 $var = $a /* Comment */
     ::/* Comment */ bar();
 
 $a /* Comment*/->/*Comment*/ bar /* Comment */;
-$a /* Comment */['test'];
+$a /* Comment */["test"];
 $a /* Comment */->/* Comment */ bar();
 $a /* Comment */::/* Comment */ bar();
 
@@ -1058,13 +1058,13 @@ $var = new class {
     const CONSTANT =
         // Comment 1
         // Comment 2
-        'string';
+        "string";
 };
 
 $var = new class {
     const CONSTANT = // Comment 1
         // Comment 2
-        'string';
+        "string";
 };
 
 $var = new class {
@@ -1072,7 +1072,7 @@ $var = new class {
     const CONSTANT =
         // Comment 2
         // Comment 3
-        'string';
+        "string";
 };
 
 $var = new class {
@@ -1081,7 +1081,7 @@ $var = new class {
     public const CONSTANT =
         // Comment 3
         // Comment 4
-        'string';
+        "string";
 };
 
 ================================================================================
@@ -1471,7 +1471,7 @@ $test = foo
     });
 
 $constraint = new UniqueEntity([
-    'message' => 'myMessage',
+    "message" => "myMessage",
     // no "em" option set
 ]);
 
@@ -2364,14 +2364,14 @@ class Net_Sample
  * This is a "Docblock Comment," also known as a "docblock."  The class'
  * docblock, below, contains a complete description of how to write these.
  */
-require_once 'PEAR.php';
+require_once "PEAR.php";
 
 // {{{ constants
 
 /**
  * Methods return this if they succeed
  */
-define('NET_SAMPLE_OK', 1);
+define("NET_SAMPLE_OK", 1);
 
 // }}}
 // {{{ GLOBALS
@@ -2380,7 +2380,7 @@ define('NET_SAMPLE_OK', 1);
  * The number of objects created
  * @global int $GLOBALS['_NET_SAMPLE_Count']
  */
-$GLOBALS['_NET_SAMPLE_Count'] = 0;
+$GLOBALS["_NET_SAMPLE_Count"] = 0;
 
 // }}}
 // {{{ Net_Sample
@@ -2442,7 +2442,7 @@ class Net_Sample
      *
      * @var string
      */
-    var $foo = 'unknown';
+    var $foo = "unknown";
 
     /**
      * The status of life
@@ -2546,11 +2546,11 @@ class Net_Sample
          * Docblock Comments except there is only one asterisk at the
          * top.  phpDocumentor doesn't parse these.
          */
-        if ($arg1 == 'good' || $arg1 == 'fair') {
+        if ($arg1 == "good" || $arg1 == "fair") {
             $this->foo = $arg1;
             return 1;
-        } elseif ($arg1 == 'poor' && $arg2 > 1) {
-            $this->foo = 'poor';
+        } elseif ($arg1 == "poor" && $arg2 > 1) {
+            $this->foo = "poor";
             return 2;
         } else {
             return false;
@@ -2671,7 +2671,7 @@ class Foo
 /** @var \\Sqlite3 $sqlite */
 foreach ($connections as $sqlite) {
     // there should be no docblock here
-    $sqlite->open('/my/database/path');
+    $sqlite->open("/my/database/path");
 }
 
 /**
@@ -3206,7 +3206,7 @@ foreach (
 foreach ($iterable as $value) {
     // Comment
     // Comment
-    echo 'Foo'; // Comment
+    echo "Foo"; // Comment
     // Comment
 } // Comment
 
@@ -3553,19 +3553,19 @@ goto c; // Comment
 <?php
 
 /* Comment */ goto a; /* Comment */ /* Comment */
-echo 'Foo';
+echo "Foo";
 
 /* Comment */ a: /* Comment */ /* Comment */
-echo 'Bar';
+echo "Bar";
 
 b:
 // Comment
-echo 'test';
+echo "test";
 
 goto b; // Comment
 
 c: // Comment
-echo 'test';
+echo "test";
 
 goto c; // Comment
 
@@ -4009,8 +4009,8 @@ if (/* Comments */ true /* Comments */) {
 } else {
 }
 
-if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get('mbstring.func_overload')) {
-    mb_internal_encoding('ASCII');
+if (2 /* MB_OVERLOAD_STRING */ & (int) ini_get("mbstring.func_overload")) {
+    mb_internal_encoding("ASCII");
 }
 
 // this is a comment on an if
@@ -4190,26 +4190,26 @@ function f()
 
 if (true) {
     // Comment
-    echo 'foo';
+    echo "foo";
 } elseif (false) {
     // Comment
-    echo 'bar';
+    echo "bar";
 }
 // Comment
 else {
-    echo 'baz';
+    echo "baz";
 }
 
 if (true) {
     // Comment
-    echo 'foo';
+    echo "foo";
 } elseif (false) {
     // Comment
-    echo 'bar';
+    echo "bar";
 }
 // Comment
 else {
-    echo 'baz';
+    echo "baz";
 }
 
 // If the values implements the Arrayable interface we can just call this
@@ -4288,21 +4288,21 @@ else {
 }
 
 if (true) {
-    echo 'test';
+    echo "test";
 } /* comment */ elseif (false) {
-    echo 'test';
+    echo "test";
 }
 // comment
 else {
-    echo 'test';
+    echo "test";
 }
 
 if (true) {
-    echo 'test';
+    echo "test";
 }
 // comment
 else {
-    echo 'test';
+    echo "test";
 }
 
 if ($code === 92 /* '\\' */) {
@@ -4394,7 +4394,7 @@ include // Comment
     // Comment // Comment
 
 include /* Comment */ $a /* Comment */;
-include /* Comment */ 'string' /* Comment */;
+include /* Comment */ "string" /* Comment */;
 
 ================================================================================
 `;
@@ -4609,7 +4609,7 @@ $a = 1;
 ?>></h1>
 
 <?php if ($showRow) {
-    echo $arguments['afterItems'];
+    echo $arguments["afterItems"];
     // escape ok
     ?>
   </div>
@@ -4916,9 +4916,9 @@ class add_vendor extends request
         $qb_vendor->setVendorAddress(
             $vendor->address_1, // address 1
             $vendor->address_2, // address 2
-            '', // address 3 mike testing
-            '', // address 4
-            '', // address 5
+            "", // address 3 mike testing
+            "", // address 4
+            "", // address 5
             $vendor->city, // city
             $vendor->state, // state
             $vendor->zip // state
@@ -5912,7 +5912,7 @@ $a = new class {
      *
      * @var string
      */
-    var $foo = 'unknown';
+    var $foo = "unknown";
 
     /**
      * The status of life
@@ -6016,11 +6016,11 @@ $a = new class {
          * Docblock Comments except there is only one asterisk at the
          * top.  phpDocumentor doesn't parse these.
          */
-        if ($arg1 == 'good' || $arg1 == 'fair') {
+        if ($arg1 == "good" || $arg1 == "fair") {
             $this->foo = $arg1;
             return 1;
-        } elseif ($arg1 == 'poor' && $arg2 > 1) {
-            $this->foo = 'poor';
+        } elseif ($arg1 == "poor" && $arg2 > 1) {
+            $this->foo = "poor";
             return 2;
         } else {
             return false;
@@ -6175,16 +6175,16 @@ echo /*Comment*/ $a /*Comment*/[/*Comment*/ 1 /*Comment*/] /*Comment*/;
 $var =
     $var[
         // Comment
-        'foo'
+        "foo"
     ][ // Comment
         // Comment
-        'bar'
+        "bar"
     ][ // Comment
         // Comment
-        'baz'
+        "baz"
     ][ // Comment
         // Comment
-        'qqq'
+        "qqq"
     ];
 
 ================================================================================
@@ -6430,13 +6430,13 @@ $var = new class {
     public $name =
         // Comment 1
         // Comment 2
-        'string';
+        "string";
 };
 
 $var = new class {
     public $name = // Comment 1
         // Comment 2
-        'string';
+        "string";
 };
 
 $var = new class {
@@ -6444,7 +6444,7 @@ $var = new class {
     public $name =
         // Comment 2
         // Comment 3
-        'string';
+        "string";
 };
 
 $var = new class {
@@ -6453,23 +6453,23 @@ $var = new class {
     public static $name =
         // Comment 3
         // Comment 4
-        'string';
+        "string";
 };
 
 class Foo
 {
     var $name1 = // Comment 1
         // Comment 2
-        'string';
+        "string";
     private $name2 = // Comment 1
         // Comment 2
-        'string';
+        "string";
     protected $name3 = // Comment 1
         // Comment 2
-        'string';
+        "string";
     public $name4 = // Comment 1
         // Comment 2
-        'string';
+        "string";
 
     public $bar = // Comment 1
         // Comment 2
@@ -6485,11 +6485,11 @@ EOT;
 
     public $var1 = // Comment 1
         // Comment 2
-        'hello ' . 'world';
+        "hello " . "world";
 
     public static $my_static = // Comment 1
         // Comment 2
-        'foo';
+        "foo";
 }
 
 ================================================================================
@@ -6588,21 +6588,21 @@ $inspect = $condition
     }
     : // node > 0.8.x
     function ($v, $colors) {
-        return $util->inspect($v, ['colors' => colors]);
+        return $util->inspect($v, ["colors" => colors]);
     };
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ['publicPath' => (new Foo($cssFilename->split('/')->length))->join('../')]
+    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
-    ? ['publicPath' => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ? ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
     : [];
 
 $var =
@@ -7376,42 +7376,42 @@ $obj = // Comment
 $obj =
     // Comment 1
     [
-        'key' => 'val',
+        "key" => "val",
     ];
 
 $obj = [ // Comment 2
-    'key' => 'val',
+    "key" => "val",
 ];
 
 $obj = [
     // Comment 3
-    'key' => 'val',
+    "key" => "val",
 ];
 
 $obj = [
     // Comment 4
-    'key' => 'val',
+    "key" => "val",
 ];
 
 $obj =
     // Comment 5
-    ['val'];
+    ["val"];
 
-$obj = ['val']; // Comment 6
+$obj = ["val"]; // Comment 6
 
 $obj = [
     // Comment 7
-    'val',
+    "val",
 ];
 
 $obj = [
     // Comment 8
-    'val',
+    "val",
 ];
 
 $obj =
     // Comment 9
-    'val';
+    "val";
 
 $obj =
     // Comment
@@ -7531,7 +7531,7 @@ while (true) {
 while (true) {
     // Comment 2
     // Comment 3
-    echo 'Foo'; // Comment 4
+    echo "Foo"; // Comment 4
     // Comment 5
 } // Comment
 

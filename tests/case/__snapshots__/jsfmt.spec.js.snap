@@ -289,15 +289,15 @@ final class MyClass extends Bar implements iTemplate
         B::bigTalk as talk;
     }
 
-    const CONSTANT = 'CONSTANT';
+    const CONSTANT = "CONSTANT";
 
-    public $public = 'Public';
+    public $public = "Public";
 
-    protected $protected = 'Protected';
+    protected $protected = "Protected";
 
-    private $private = 'Private';
+    private $private = "Private";
 
-    var $foo = 'Bar';
+    var $foo = "Bar";
 
     function printHello()
     {
@@ -323,14 +323,14 @@ final class MyClass extends Bar implements iTemplate
 
         switch ($expr) {
             case 0:
-                echo 'First case, with a break';
+                echo "First case, with a break";
                 break;
             case 1:
             case 4:
-                echo 'Third case, return instead of break';
+                echo "Third case, return instead of break";
                 return;
             default:
-                echo 'Default case';
+                echo "Default case";
                 break;
         }
 
@@ -396,7 +396,7 @@ final class MyClass extends Bar implements iTemplate
         $array = [1, 1, 1];
 
         if ($step <= 0) {
-            throw new LogicException('Logic');
+            throw new LogicException("Logic");
         }
 
         for ($i = $start; $i <= $limit; $i += $step) {
@@ -412,7 +412,7 @@ final class MyClass extends Bar implements iTemplate
 
         die();
         exit();
-        eval('test');
+        eval("test");
     }
 
     public function MyPublic()
@@ -422,19 +422,19 @@ final class MyClass extends Bar implements iTemplate
 
     protected function MyProtected()
     {
-        require 'somefile.php';
-        require_once 'somefile.php';
-        include 'somefile.php';
-        include_once 'somefile.php';
+        require "somefile.php";
+        require_once "somefile.php";
+        include "somefile.php";
+        include_once "somefile.php";
     }
 
     private function MyPrivate()
     {
         goto a;
-        echo 'Foo';
+        echo "Foo";
 
         a:
-        echo 'Bar';
+        echo "Bar";
     }
 
     final public static function bar(callable $callback, $coffeeMaker = null)

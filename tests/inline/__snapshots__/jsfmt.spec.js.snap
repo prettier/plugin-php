@@ -300,22 +300,22 @@ function test()
 
 function otherTest()
 {
-    echo '1'; ?>
+    echo "1"; ?>
       <div>
         <div>
           <div>
-            <?php echo '2'; ?>
+            <?php echo "2"; ?>
             <div>
             <?php
-            echo '3';
-            echo '4';
-            echo '5';
+            echo "3";
+            echo "4";
+            echo "5";
             ?>
             </div>
           </div>
         </div>
       </div>
-    <?php echo '6';
+    <?php echo "6";
 }
 
 function fff()
@@ -328,7 +328,7 @@ function fff()
           ?>
           <div>
             <div>
-              <?php echo 'test'; ?>
+              <?php echo "test"; ?>
             </div>
           </div>
           <?php
@@ -340,50 +340,50 @@ function fff()
 
 function ffff()
 {
-    echo '1';
-    echo '2';
-    echo '3';
-    echo '4';
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
     ?>
   <div>foo</div>
   <?php
-  echo '5';
-  echo '6';
-  echo '7';
-  echo '8';
+  echo "5";
+  echo "6";
+  echo "7";
+  echo "8";
 }
 
 function fffff()
 {
-    echo '1';
-    echo '2';
-    echo '3';
-    echo '4';
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
     ?>
     <div>
       <div>
         <div>
           <?php
-          echo 'nested';
-          echo 'nested';
-          echo 'nested';
+          echo "nested";
+          echo "nested";
+          echo "nested";
           ?>
         </div>
       </div>
     </div>
     <?php
-    echo '5';
-    echo '6';
-    echo '7';
-    echo '8';
+    echo "5";
+    echo "6";
+    echo "7";
+    echo "8";
 }
 
 function ffffff()
 {
-    echo '1';
-    echo '2';
-    echo '3';
-    echo '4';
+    echo "1";
+    echo "2";
+    echo "3";
+    echo "4";
     ?>
       <div>
         <div>
@@ -391,27 +391,27 @@ function ffffff()
             <div>
                 <?php function ffffff()
                 {
-                    echo '1';
-                    echo '2';
-                    echo '3';
-                    echo '4';
+                    echo "1";
+                    echo "2";
+                    echo "3";
+                    echo "4";
                     ?>
                     <div>FooBar</div>
                     <?php
-                    echo '5';
-                    echo '6';
-                    echo '7';
-                    echo '8';
+                    echo "5";
+                    echo "6";
+                    echo "7";
+                    echo "8";
                 } ?>
             </div>
           </div>
         </div>
       </div>
     <?php
-    echo '5';
-    echo '6';
-    echo '7';
-    echo '8';
+    echo "5";
+    echo "6";
+    echo "7";
+    echo "8";
 }
 
 ================================================================================
@@ -510,7 +510,7 @@ echo 'bar';
 
 =====================================output=====================================
 <p>Test.</p>
-<?php echo 'String.'; ?>
+<?php echo "String."; ?>
 <p>Test.</p>
 <?php if ($expression == true): ?>
   <p>Test.</p>
@@ -520,8 +520,8 @@ echo 'bar';
 <?php echo '<input type="hidden" value="' . htmlspecialchars($data) . '" />'; ?>
 <div></div>
 <?php
-echo 'foo';
-echo 'bar';
+echo "foo";
+echo "bar";
 ?>
 <div class="<?php echo $class; ?>"></div>
 <div>
@@ -765,31 +765,31 @@ printWidth: 80
 =====================================output=====================================
 <section class="<?= $sectionClass ?>">
   <header class="<?= $headerClass ?>">
-    <?php echo $this->element('collection/item-title', [
-        'class' => $itemTitleClass,
-        'small_title' => $item->small_title,
-        'title' => $item->title,
-        'url' => $url,
-        'color' => $item->title_color ?: 'primary',
+    <?php echo $this->element("collection/item-title", [
+        "class" => $itemTitleClass,
+        "small_title" => $item->small_title,
+        "title" => $item->title,
+        "url" => $url,
+        "color" => $item->title_color ?: "primary",
     ]); ?>
   </header>
 </section>
 
 <section class="<?= $sectionClass ?>">
   <header class="<?= $headerClass ?>">
-    <?php echo $this->element('collection/item-title', [
-        'class' => $itemTitleClass,
-        'small_title' => $item->small_title,
-        'title' => $item->title,
-        'url' => $url,
-        'color' => $item->title_color ?: 'primary',
+    <?php echo $this->element("collection/item-title", [
+        "class" => $itemTitleClass,
+        "small_title" => $item->small_title,
+        "title" => $item->title,
+        "url" => $url,
+        "color" => $item->title_color ?: "primary",
     ]); ?>
-  </header> <?= $someOtherVar()->element('collection/item-title', [
-      'class' => $itemTitleClass,
-      'small_title' => $item->small_title,
-      'title' => $item->title,
-      'url' => $url,
-      'color' => $item->title_color ?: 'primary',
+  </header> <?= $someOtherVar()->element("collection/item-title", [
+      "class" => $itemTitleClass,
+      "small_title" => $item->small_title,
+      "title" => $item->title,
+      "url" => $url,
+      "color" => $item->title_color ?: "primary",
   ]) ?>
 </section>
 
@@ -1012,7 +1012,7 @@ printWidth: 80
 <?php echo '1'; ?>
 
 =====================================output=====================================
-<?php echo '1'; ?>
+<?php echo "1"; ?>
 
 ================================================================================
 `;
@@ -1026,7 +1026,7 @@ printWidth: 80
 <?php echo '1';
 
 =====================================output=====================================
-<?php echo '1';
+<?php echo "1";
 
 ================================================================================
 `;
@@ -1041,8 +1041,8 @@ printWidth: 80
 <?php echo '2'; ?>
 
 =====================================output=====================================
-<?php echo '1'; ?>
-<?php echo '2'; ?>
+<?php echo "1"; ?>
+<?php echo "2"; ?>
 
 ================================================================================
 `;
@@ -1057,8 +1057,8 @@ printWidth: 80
 <?php echo '2';
 
 =====================================output=====================================
-<?php echo '1'; ?>
-<?php echo '2';
+<?php echo "1"; ?>
+<?php echo "2";
 
 ================================================================================
 `;
@@ -1074,9 +1074,9 @@ printWidth: 80
 <?php echo '3'; ?>
 
 =====================================output=====================================
-<?php echo '1'; ?>
-<?php echo '2'; ?>
-<?php echo '3'; ?>
+<?php echo "1"; ?>
+<?php echo "2"; ?>
+<?php echo "3"; ?>
 
 ================================================================================
 `;
@@ -1092,9 +1092,9 @@ printWidth: 80
 <?php echo '3';
 
 =====================================output=====================================
-<?php echo '1'; ?>
-<?php echo '2'; ?>
-<?php echo '3';
+<?php echo "1"; ?>
+<?php echo "2"; ?>
+<?php echo "3";
 
 ================================================================================
 `;
@@ -1153,36 +1153,36 @@ printWidth: 80
 <section class="<?= $sectionClass ?>">
   <header class="<?= $headerClass ?>">
   <?php echo $someOtherVar()->element(
-      'collection/item-title',
+      "collection/item-title",
       [
-          'class' => $itemTitleClass,
-          'small_title' => $item->small_title,
-          'title' => $item->title,
-          'url' => $url,
-          'color' => $item->title_color ?: 'primary',
+          "class" => $itemTitleClass,
+          "small_title" => $item->small_title,
+          "title" => $item->title,
+          "url" => $url,
+          "color" => $item->title_color ?: "primary",
       ],
       [
-          'foo' => 'bar',
-          'bar' => 'foo',
-          'barfoo' => 'foobar',
-          'foobar' => 'barfoo',
+          "foo" => "bar",
+          "bar" => "foo",
+          "barfoo" => "foobar",
+          "foobar" => "barfoo",
       ]
   ); ?>
   </header>
   <div> <?php echo $someOtherVar()->element(
-      'collection/item-title',
+      "collection/item-title",
       [
-          'class' => $itemTitleClass,
-          'small_title' => $item->small_title,
-          'title' => $item->title,
-          'url' => $url,
-          'color' => $item->title_color ?: 'primary',
+          "class" => $itemTitleClass,
+          "small_title" => $item->small_title,
+          "title" => $item->title,
+          "url" => $url,
+          "color" => $item->title_color ?: "primary",
       ],
       [
-          'foo' => 'bar',
-          'bar' => 'foo',
-          'barfoo' => 'foobar',
-          'foobar' => 'barfoo',
+          "foo" => "bar",
+          "bar" => "foo",
+          "barfoo" => "foobar",
+          "foobar" => "barfoo",
       ]
   ); ?>
   </div>
@@ -1240,8 +1240,8 @@ printWidth: 80
 =====================================output=====================================
 <div>
     <?php
-    echo '1';
-    echo '2';
+    echo "1";
+    echo "2";
     ?>
 </div>
 
@@ -1413,7 +1413,7 @@ declare(ticks=1) {
 =====================================output=====================================
 <?php
 declare(ticks=1) {
-    echo '1';
+    echo "1";
 } ?>
 <div>FooBar</div>
 
@@ -1457,7 +1457,7 @@ echo 'test';
 
 namespace Foo;
 
-echo 'test'; ?>
+echo "test"; ?>
 <div>Test</div>
 
 ================================================================================
@@ -1486,7 +1486,7 @@ declare(strict_types=1);
 
 namespace Foo;
 
-echo 'test'; ?>
+echo "test"; ?>
 <div>Test</div>
 
 ================================================================================
@@ -1504,7 +1504,7 @@ echo '1';
 
 =====================================output=====================================
 <?php
-echo '1';
+echo "1";
 ?>
 
 ================================================================================
@@ -1519,7 +1519,7 @@ printWidth: 80
 <?php echo '1'; ?>
 
 =====================================output=====================================
-<?php echo '1'; ?>
+<?php echo "1"; ?>
 
 ================================================================================
 `;
@@ -1538,11 +1538,11 @@ echo 'foo';
 ?>
 
 =====================================output=====================================
-<?php echo '1'; ?>
+<?php echo "1"; ?>
 <div> Foo Bar </div>
 <?php
-echo 'test';
-echo 'foo';
+echo "test";
+echo "foo";
 
 ?>
 
@@ -1563,7 +1563,7 @@ printWidth: 80
 =====================================output=====================================
 
 
-<?php echo '1'; ?>
+<?php echo "1"; ?>
 
 
 ================================================================================
@@ -1587,11 +1587,11 @@ printWidth: 80
 =====================================output=====================================
 <div></div>
 <?php if (true); ?>
-    <?php echo 'test'; ?>
+    <?php echo "test"; ?>
 <div></div>
 <div></div>
 <?php if (true); ?>
-<?php echo 'test'; ?>
+<?php echo "test"; ?>
 <div></div>
 
 ================================================================================
@@ -1613,7 +1613,7 @@ if (true)
 =====================================output=====================================
 <div></div>
 <?php if (true) {
-    echo 'test';
+    echo "test";
 } ?>
 <div></div>
 
@@ -1633,7 +1633,7 @@ printWidth: 80
 =====================================output=====================================
 <div></div>
 <?php if (true) {
-    echo 'test';
+    echo "test";
 } ?>
 <div></div>
 
@@ -1708,36 +1708,36 @@ function testTwo()
 
 =====================================output=====================================
 <?php if (!is_ajax()) { ?>
-    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php do_action("woocommerce_review_order_after_payment"); ?>
 <?php } ?>
 
 <?php if (!is_ajax()) { ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
 <?php } ?>
 
 <?php if (!is_ajax()) { ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
-    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php do_action("woocommerce_review_order_after_payment"); ?>
 <?php } ?>
 
 <?php if (!is_ajax()) { ?>
-    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
 <?php } ?>
 
 <?php if (!is_ajax()) { ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
-    <?php do_action('woocommerce_review_order_after_payment'); ?>
+    <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
 <?php } ?>
 
@@ -1746,7 +1746,7 @@ function test()
 {
     ?>
     <?php if (!is_ajax()) { ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
     <?php } ?>
     <?php
 }
@@ -1755,11 +1755,11 @@ function testTwo()
     ?>
     <?php if (!is_ajax()) { ?>
         <?php if (!is_ajax()) { ?>
-            <?php do_action('woocommerce_review_order_after_payment'); ?>
+            <?php do_action("woocommerce_review_order_after_payment"); ?>
         <?php } ?>
-        <?php do_action('woocommerce_review_order_after_payment'); ?>
+        <?php do_action("woocommerce_review_order_after_payment"); ?>
         <?php if (!is_ajax()) { ?>
-            <?php do_action('woocommerce_review_order_after_payment'); ?>
+            <?php do_action("woocommerce_review_order_after_payment"); ?>
         <?php } ?>
     <?php } ?>
     <?php
@@ -1872,57 +1872,57 @@ func(
 =====================================output=====================================
 <div>
 <?php func(
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
 ); ?>
 </div>
 
 <div>
 <?php func(
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
 ); ?>
 </div>
 
 <div>
 <?php func(
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-    'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
 ); ?>
 </div>
 
 <div>
   <?php func(
-      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-      'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-      'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+      "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+      "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+      "verVeryVeryVeryVeryVeryVeryVeryLongArg"
   ); ?>
 </div>
 
 <div>
     <?php func(
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
     ); ?>
 </div>
 
 <div>
     <?php func(
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
     ); ?>
 </div>
 
 <div>
     <?php func(
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg',
-        'verVeryVeryVeryVeryVeryVeryVeryLongArg'
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
     ); ?>
 </div>
 

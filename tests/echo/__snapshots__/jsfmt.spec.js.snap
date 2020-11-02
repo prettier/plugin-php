@@ -225,32 +225,32 @@ echo $foo, $bar; // foobarbarbaz
 
 // Strings can either be passed individually as multiple arguments or
 // concatenated together and passed as a single argument
-echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
-echo 'This ',
-    'string ',
-    'was ',
-    'made ',
-    'with multiple parameters.',
+echo "This ", "string ", "was ", "made ", "with multiple parameters.", chr(10);
+echo "This ",
+    "string ",
+    "was ",
+    "made ",
+    "with multiple parameters.",
     chr(10),
-    'and',
-    'other',
-    'long',
-    'long',
-    'long',
-    'long',
-    'string';
+    "and",
+    "other",
+    "long",
+    "long",
+    "long",
+    "long",
+    "string";
 
-echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
-echo 'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
-    'This ' .
-    'string ' .
-    'was ' .
-    'made ' .
-    'with concatenation.' .
+echo "This " . "string " . "was " . "made " . "with concatenation." . "\\n";
+echo "This " .
+    "string " .
+    "was " .
+    "made " .
+    "with concatenation." .
+    "This " .
+    "string " .
+    "was " .
+    "made " .
+    "with concatenation." .
     "\\n";
 
 echo <<<END
@@ -260,10 +260,10 @@ that the here document terminator must appear on a
 line with just a semicolon. no extra whitespace!
 END;
 
-echo $some_var ? 'true' : 'false';
+echo $some_var ? "true" : "false";
 echo $some_var
-    ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+    ? "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    : "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 
 echo 1000000000 +
     1000000000 +
@@ -288,15 +288,15 @@ echo 1000000000 +
     1000000000 +
     1000000000;
 echo 1000000000,
-    'String',
+    "String",
     $object->property,
     $object->method(),
     method(),
     $foo ? true : false;
-echo 1000000000 . 'String',
+echo 1000000000 . "String",
     $object->property + $object->method(),
-    method(method('string')),
-    $foo ? $bar . 'foo' . 'test' : false;
+    method(method("string")),
+    $foo ? $bar . "foo" . "test" : false;
 
 echo $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 
@@ -317,42 +317,42 @@ echo "Loop start!\\n", sleep(1);
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 );
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ) . "\\n\\n";
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ) . "\\n\\n",
     "string";
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ) . "\\n\\n",
     "string" .
@@ -360,11 +360,11 @@ echo esc_html(
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ),
     "string",
@@ -372,42 +372,42 @@ echo esc_html(
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ),
     esc_html(
         sprintf(
             __(
-                'Hi there. Your recent order on %s has been completed. ' .
-                    'Your order details are shown below for your reference:',
-                'woocommerce'
+                "Hi there. Your recent order on %s has been completed. " .
+                    "Your order details are shown below for your reference:",
+                "woocommerce"
             ),
-            get_option('blogname')
+            get_option("blogname")
         )
     );
 echo esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 ),
     "string",
     esc_html(
         sprintf(
             __(
-                'Hi there. Your recent order on %s has been completed. ' .
-                    'Your order details are shown below for your reference:',
-                'woocommerce'
+                "Hi there. Your recent order on %s has been completed. " .
+                    "Your order details are shown below for your reference:",
+                "woocommerce"
             ),
-            get_option('blogname')
+            get_option("blogname")
         )
     );
 
@@ -429,7 +429,7 @@ spanning multiple lines
 using heredoc syntax.
 EOD
     ,
-    'test';
+    "test";
 
 echo <<<'EOD'
 Example of string
@@ -437,7 +437,7 @@ spanning multiple lines
 using nowdoc syntax.
 EOD
     ,
-    'test';
+    "test";
 
 echo 'string
 string
