@@ -1514,7 +1514,7 @@ EOD
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
 string
 string
 string
@@ -1523,7 +1523,7 @@ EOD
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
 string
 string
 string
@@ -1532,8 +1532,8 @@ EOD
 ];
 
 $a = [
-    'other-key' => $a,
-    'key' => <<<'EOD'
+    "other-key" => $a,
+    "key" => <<<'EOD'
 string
 string
 string
@@ -1542,13 +1542,13 @@ EOD
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
 string
 string
 string
 EOD
     ,
-    'other-key' => $a,
+    "other-key" => $a,
 ];
 
 switch ($i) {
@@ -1619,7 +1619,7 @@ string
 string
 EOD
 ) {
-    echo 'test';
+    echo "test";
 }
 
 do {
@@ -3588,7 +3588,7 @@ $a = [
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
     string
     string
     string
@@ -3597,7 +3597,7 @@ $a = [
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
     string
     string
     string
@@ -3606,8 +3606,8 @@ $a = [
 ];
 
 $a = [
-    'other-key' => $a,
-    'key' => <<<'EOD'
+    "other-key" => $a,
+    "key" => <<<'EOD'
     string
     string
     string
@@ -3616,13 +3616,13 @@ $a = [
 ];
 
 $a = [
-    'key' => <<<'EOD'
+    "key" => <<<'EOD'
     string
     string
     string
     EOD
     ,
-    'other-key' => $a,
+    "other-key" => $a,
 ];
 
 switch ($i) {
@@ -3695,7 +3695,7 @@ if (
     string
     EOD
 ) {
-    echo 'test';
+    echo "test";
 }
 
 do {

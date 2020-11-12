@@ -25,16 +25,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<CR>
  */<CR>
 <CR>
-echo 'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
-    'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
+echo "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
+    "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
     "\\n";<CR>
 
 ================================================================================
@@ -65,16 +65,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<CRLF>
  */<CRLF>
 <CRLF>
-echo 'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
-    'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
+echo "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
+    "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
     "\\n";<CRLF>
 
 ================================================================================
@@ -105,16 +105,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<LF>
  */<LF>
 <LF>
-echo 'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
-    'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
+echo "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
+    "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
     "\\n";<LF>
 
 ================================================================================
@@ -145,16 +145,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<CR>
  */<CR>
 <CR>
-echo 'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
-    'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
+echo "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
+    "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
     "\\n";<CR>
 
 ================================================================================
@@ -185,16 +185,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<CRLF>
  */<CRLF>
 <CRLF>
-echo 'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
-    'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
+echo "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
+    "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
     "\\n";<CRLF>
 
 ================================================================================
@@ -225,16 +225,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @prettier<LF>
  */<LF>
 <LF>
-echo 'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
-    'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
+echo "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
+    "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
     "\\n";<LF>
 
 ================================================================================
@@ -265,16 +265,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<CR>
  */<CR>
 <CR>
-echo 'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
-    'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
+echo "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
+    "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
     "\\n";<CR>
 
 ================================================================================
@@ -305,16 +305,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<CRLF>
  */<CRLF>
 <CRLF>
-echo 'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
-    'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
+echo "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
+    "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
     "\\n";<CRLF>
 
 ================================================================================
@@ -345,16 +345,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<LF>
  */<LF>
 <LF>
-echo 'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
-    'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
+echo "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
+    "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
     "\\n";<LF>
 
 ================================================================================
@@ -385,16 +385,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<CR>
  */<CR>
 <CR>
-echo 'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
-    'This ' .<CR>
-    'string ' .<CR>
-    'was ' .<CR>
-    'made ' .<CR>
-    'with concatenation.' .<CR>
+echo "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
+    "This " .<CR>
+    "string " .<CR>
+    "was " .<CR>
+    "made " .<CR>
+    "with concatenation." .<CR>
     "\\n";<CR>
 
 ================================================================================
@@ -425,16 +425,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<CRLF>
  */<CRLF>
 <CRLF>
-echo 'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
-    'This ' .<CRLF>
-    'string ' .<CRLF>
-    'was ' .<CRLF>
-    'made ' .<CRLF>
-    'with concatenation.' .<CRLF>
+echo "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
+    "This " .<CRLF>
+    "string " .<CRLF>
+    "was " .<CRLF>
+    "made " .<CRLF>
+    "with concatenation." .<CRLF>
     "\\n";<CRLF>
 
 ================================================================================
@@ -465,16 +465,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  * @format<LF>
  */<LF>
 <LF>
-echo 'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
-    'This ' .<LF>
-    'string ' .<LF>
-    'was ' .<LF>
-    'made ' .<LF>
-    'with concatenation.' .<LF>
+echo "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
+    "This " .<LF>
+    "string " .<LF>
+    "was " .<LF>
+    "made " .<LF>
+    "with concatenation." .<LF>
     "\\n";<LF>
 
 ================================================================================

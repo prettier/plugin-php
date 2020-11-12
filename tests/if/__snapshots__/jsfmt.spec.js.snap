@@ -227,7 +227,7 @@ if (true) {
 }
 
 if (
-    $showNoticeValue === '1' &&
+    $showNoticeValue === "1" &&
     !is_null($currentService) &&
     $currentService->getServiceId() === $activation->getServiceId()
 ) {
@@ -235,7 +235,7 @@ if (
 }
 
 if (
-    $showNoticeValue === '1' &&
+    $showNoticeValue === "1" &&
     !is_null($currentService) &&
     $currentService->getServiceIdWithReallyReallyReallyLongName() ===
         $activation->getServiceId()

@@ -60,21 +60,21 @@ $a = &$b / 100;
 
 $var =
     $arr[
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     ];
 $var =
     &$arr[
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     ];
 $var =
-    $arr['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
+    $arr["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"];
 $var =
-    &$arr['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
+    &$arr["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"];
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = $variable->registered[1];
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = &$variable->registered[1];
 
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue;
@@ -94,8 +94,8 @@ $this->long->expression->before->array->statesArray[
 
 $cached_var = &drupal_static(__FUNCTION__);
 
-$test = ['key' => &$value];
-$test = ['key' => &$value['something']];
+$test = ["key" => &$value];
+$test = ["key" => &$value["something"]];
 
 ================================================================================
 `;

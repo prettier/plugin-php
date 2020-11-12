@@ -36,12 +36,12 @@ if(is_empty(NULL)) {
 <?php
 
 empty($var);
-empty($expected_array_got_string['some_key']);
+empty($expected_array_got_string["some_key"]);
 empty($expected_array_got_string[0]);
-empty($expected_array_got_string['0']);
+empty($expected_array_got_string["0"]);
 empty($expected_array_got_string[0.5]);
-empty($expected_array_got_string['0.5']);
-empty($expected_array_got_string['0 Mostel']);
+empty($expected_array_got_string["0.5"]);
+empty($expected_array_got_string["0 Mostel"]);
 empty($registry->notExisting);
 empty($registry->notExisting->foo);
 empty($this->_items[$key]);

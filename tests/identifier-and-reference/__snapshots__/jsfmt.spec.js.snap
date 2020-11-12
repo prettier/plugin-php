@@ -496,8 +496,8 @@ $var = new Foo(null);
 $var = new Foo(null);
 $var = [null];
 $var = [null];
-$var = ['foo' => null];
-$var = ['foo' => null];
+$var = ["foo" => null];
+$var = ["foo" => null];
 
 // Should don't change
 

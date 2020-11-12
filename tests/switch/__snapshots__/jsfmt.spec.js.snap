@@ -263,14 +263,14 @@ switch (1) {
 <?php
 switch (2) {
     case 1:
-        $test = 'first';
+        $test = "first";
         break;
     case 2:
-        $test = 'second';
+        $test = "second";
         break;
     case 10:
     case 20:
-        $test = 'big';
+        $test = "big";
         break;
     case 100:
     default:
@@ -288,7 +288,7 @@ endswitch;
 
 switch (2) {
     case 1:
-        $test = 'first';
+        $test = "first";
         break;
     default:
         $test = 1;
@@ -310,18 +310,18 @@ endswitch;
 
 switch ($expr) {
     case 0:
-        echo 'First case, with a break';
+        echo "First case, with a break";
         break;
     case 1:
-        echo 'Second case, which falls through';
+        echo "Second case, which falls through";
     // no break
     case 2:
     case 3:
     case 4:
-        echo 'Third case, return instead of break';
+        echo "Third case, return instead of break";
         return;
     default:
-        echo 'Default case';
+        echo "Default case";
         break;
 }
 

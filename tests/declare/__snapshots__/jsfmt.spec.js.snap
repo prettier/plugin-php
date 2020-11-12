@@ -44,7 +44,7 @@ $test = 1;
 declare(ticks=1) {
     $test = 1;
 }
-declare(encoding='ISO-8859-1');
+declare(encoding="ISO-8859-1");
 $test = 1;
 declare(ticks=1):
     $test = 1;
@@ -484,16 +484,16 @@ enddeclare;
 =====================================output=====================================
 <?php
 
-declare(encoding='ISO-8859-1', strict_types=1);
+declare(encoding="ISO-8859-1", strict_types=1);
 
-declare(X='Y');
+declare(X="Y");
 
-declare(A='B', C='D');
+declare(A="B", C="D");
 
-declare(A='B', C='D') {
+declare(A="B", C="D") {
 }
 
-declare(A='B', C='D'):
+declare(A="B", C="D"):
 enddeclare;
 
 ================================================================================

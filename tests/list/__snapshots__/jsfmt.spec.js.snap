@@ -156,7 +156,7 @@ list(
 =====================================output=====================================
 <?php
 
-$info = ['coffee', 'brown', 'caffeine'];
+$info = ["coffee", "brown", "caffeine"];
 
 // Listing all the variables
 list($drink, $color, $power) = $info;
@@ -179,7 +179,7 @@ while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
 
 list($a, list($b, $c)) = [1, [2, 3]];
 
-$info = ['coffee', 'brown', 'caffeine'];
+$info = ["coffee", "brown", "caffeine"];
 list($a[0], $a[1], $a[2]) = $info;
 
 list("id" => $id1, "name" => $name1) = $data[0];
@@ -216,8 +216,8 @@ foreach (
     // logic here with $id and $name
 }
 
-list(, $b) = ['a', 'b'];
-list(, , $c) = ['a', 'b', 'c'];
+list(, $b) = ["a", "b"];
+list(, , $c) = ["a", "b", "c"];
 
 while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
     echo " <tr>\\n" .
@@ -554,7 +554,7 @@ list(
 =====================================output=====================================
 <?php
 
-$info = ['coffee', 'brown', 'caffeine'];
+$info = ["coffee", "brown", "caffeine"];
 
 // Listing all the variables
 [$drink, $color, $power] = $info;
@@ -577,7 +577,7 @@ while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 
 [$a, [$b, $c]] = [1, [2, 3]];
 
-$info = ['coffee', 'brown', 'caffeine'];
+$info = ["coffee", "brown", "caffeine"];
 [$a[0], $a[1], $a[2]] = $info;
 
 ["id" => $id1, "name" => $name1] = $data[0];
@@ -614,8 +614,8 @@ foreach (
     // logic here with $id and $name
 }
 
-[, $b] = ['a', 'b'];
-[, , $c] = ['a', 'b', 'c'];
+[, $b] = ["a", "b"];
+[, , $c] = ["a", "b", "c"];
 
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
     echo " <tr>\\n" .

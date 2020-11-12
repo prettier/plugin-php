@@ -91,8 +91,8 @@ print (bool) $someOtherReallyReallyLongVariable ?:
 <?php
 
 $var =
-    (bool) 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
-$string = (bool) 'this is a simple string';
+    (bool) "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+$string = (bool) "this is a simple string";
 $string = (bool) 'You can also have embedded\\n newlines in
 strings this way as it is
 okay to do';
@@ -106,7 +106,7 @@ $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     (int) $var->aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
 
 $this->reallyLong->testPropertyName =
-    (bool) 'a' . $someOtherTest . 'n' . $oneLastOneToMakeLineLong;
+    (bool) "a" . $someOtherTest . "n" . $oneLastOneToMakeLineLong;
 
 $var = (array) ["test"] + ["test"];
 $var = (array) [
@@ -123,7 +123,7 @@ $var =
         $veryVeryVeryVeryVeryVeryVeryVeryLongVariable);
 
 $category_color =
-    (int) get_field(Category_Meta::COLOR, 'category_' . $term_id) ?: 'gold';
+    (int) get_field(Category_Meta::COLOR, "category_" . $term_id) ?: "gold";
 
 $var = (int) $veryVeryVeryVeryVeryVeryVeryVeryLongVariable
     ? $veryVeryVeryVeryVeryVeryVeryVeryLongVariable
@@ -145,8 +145,8 @@ e.g. \\\\ and \\'.
 EOD;
 
 $array = [
-    'foo' => (bool) $var,
-    'bar' => (bool) $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
+    "foo" => (bool) $var,
+    "bar" => (bool) $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
 
 $var =
@@ -190,18 +190,18 @@ function bar()
 
 $var =
     (string) $this->databasePath ?:
-    $this->basePath . DIRECTORY_SEPARATOR . 'database';
+    $this->basePath . DIRECTORY_SEPARATOR . "database";
 $var =
     $this->databasePath ?:
-    (string) $this->basePath . DIRECTORY_SEPARATOR . 'database';
+    (string) $this->basePath . DIRECTORY_SEPARATOR . "database";
 $var =
     (string) ($this->databasePath ?:
-    $this->basePath . DIRECTORY_SEPARATOR . 'database');
+    $this->basePath . DIRECTORY_SEPARATOR . "database");
 
 print (bool) $someOtherReallyReallyLongVariable ?:
     (bool) $someOtherReallyReallyLongVariable ?:
     (bool) $someOtherReallyReallyLongVariable ?:
-    'string';
+    "string";
 
 ================================================================================
 `;
@@ -219,7 +219,7 @@ printWidth: 80
 =====================================output=====================================
 <?php
 
-(int) '1';
+(int) "1";
 
 ================================================================================
 `;

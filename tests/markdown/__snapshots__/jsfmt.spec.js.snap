@@ -95,11 +95,11 @@ test
 # PHP in Markdown
 
 \`\`\`php
-$foo = 'bar';
+$foo = "bar";
 \`\`\`
 
 \`\`\`php
-$foo = 'bar';
+$foo = "bar";
 \`\`\`
 
 \`\`\`php
@@ -121,9 +121,9 @@ if ($foo) {
 
 \`\`\`php
 <?php
-include './1.php';
-include './i.php';
-require './2.php';
+include "./1.php";
+include "./i.php";
+require "./2.php";
 
 $files = get_included_files();
 var_dump($files_list);
@@ -131,9 +131,9 @@ var_dump(get_required_files());
 \`\`\`
 
 \`\`\`php
-include './1.php';
-include './i.php';
-require './2.php';
+include "./1.php";
+include "./i.php";
+require "./2.php";
 
 $files = get_included_files();
 var_dump($files_list);
@@ -163,11 +163,11 @@ $c = 3;
 ?>
 test
 <?php
-echo 'foo';
+echo "foo";
 if (true) {
-    echo 'test';
+    echo "test";
 }
-echo 'bar';
+echo "bar";
 ?>
 test
 \`\`\`

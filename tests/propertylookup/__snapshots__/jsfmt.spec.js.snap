@@ -42,7 +42,7 @@ $obj->{$var};
 // literal with call
 $obj->{call()};
 // encapsed (offset type)
-$obj->foo_['test' . 'bar'];
+$obj->foo_["test" . "bar"];
 // variable with literal with call
 // TODO https://github.com/glayzzle/php-parser/issues/254
 // $obj->\${call()};
@@ -105,10 +105,10 @@ $obj->value = 2;
 
 $b = $this->foo;
 $b = $this->{foo};
-$b = $this->{foo['bar']};
-$b = $this->{'foo' . $bar};
+$b = $this->{foo["bar"]};
+$b = $this->{"foo" . $bar};
 $b = $this->{self::STUFF};
-$object = $this->{'bar' . $foo}->buzz();
+$object = $this->{"bar" . $foo}->buzz();
 
 $this->loooooooooooongloooooooooooongloooooooooooonglookup =
     "teeeeeeeeeeeeeeeeeeeeest";
@@ -117,7 +117,7 @@ $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
 $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
     $other->looooooooooong->stuff;
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    'instance-resource-id'
+    "instance-resource-id"
 );
 
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;

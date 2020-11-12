@@ -32,26 +32,26 @@ $var = $a{$b}[$c];
 =====================================output=====================================
 <?php
 
-$variable['data']['title'] = html_entity_decode(wp_get_document_title());
+$variable["data"]["title"] = html_entity_decode(wp_get_document_title());
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-]['title'] = html_entity_decode(wp_get_document_title());
-$variable['data'][
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+]["title"] = html_entity_decode(wp_get_document_title());
+$variable["data"][
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = html_entity_decode(wp_get_document_title());
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ][
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = html_entity_decode(wp_get_document_title());
 $variable[1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111][1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111] = html_entity_decode(
     wp_get_document_title()
 );
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] =
     $variable->registered[
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     ];
 $variable = get_taxonomy_function(get_queried_object_function()->taxonomy)
     ->object_type[0];
@@ -60,14 +60,14 @@ $variable = "abcdef"[-2];
 
 $variable[1];
 $variable[11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111];
-$variable['string'];
+$variable["string"];
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ];
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ][
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ];
 
 $var = $a[$b];

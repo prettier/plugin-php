@@ -225,7 +225,7 @@ function type_hinting_test(
     float $float_test,
     iterable $iterable_test,
     int $int_test,
-    string $string_test = ''
+    string $string_test = ""
 ) {
     return $int_test;
 }
@@ -252,7 +252,7 @@ $silent = @hello();
 
 function returnTypeTest(): string
 {
-    return 'hi';
+    return "hi";
 }
 
 function &passByReferenceTest()
@@ -300,17 +300,17 @@ function test(object $obj): object
 
 function returnTypeTestOther(): string
 {
-    return 'hi';
+    return "hi";
 }
 
 function returnTypeTestOtherOther(): string
 {
-    return 'hi';
+    return "hi";
 }
 
 function the_panel_title(
     $title = null,
-    $classes = 'panel-title',
+    $classes = "panel-title",
     $data_name = null,
     $data_livetext = false,
     $depth = 0,
@@ -337,7 +337,7 @@ abstract class AbstractClass
     abstract public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName();
     abstract public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
         $title = null,
-        $classes = 'panel-title',
+        $classes = "panel-title",
         $data_name = null,
         $data_livetext = false,
         $depth = 0,
@@ -361,7 +361,7 @@ class Foo
     }
     public function shortNameAndBreak(
         $title = null,
-        $classes = 'panel-title',
+        $classes = "panel-title",
         $data_name = null,
         $data_livetext = false,
         $depth = 0,
@@ -383,7 +383,7 @@ class Foo
     }
     public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
         $title = null,
-        $classes = 'panel-title',
+        $classes = "panel-title",
         $data_name = null,
         $data_livetext = false,
         $depth = 0,

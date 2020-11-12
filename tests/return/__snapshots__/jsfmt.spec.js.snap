@@ -256,9 +256,9 @@ return $VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName;
 return [1, 2, 3];
 return [
     $veryVeryVeryVeryVeryVeryLongKey =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+        "VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
     $veryVeryVeryVeryVeryVeryLongKey =>
-        'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString',
+        "VeryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
     3,
 ];
 return $a + $b;
@@ -296,23 +296,23 @@ return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
     ? true
     : false;
 return $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
-return $true ? 'foo' . ('foo' . 'bar') : "foobarfoo";
-return 'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string';
-return 'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string' .
-    'string';
+return $true ? "foo" . ("foo" . "bar") : "foobarfoo";
+return "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string";
+return "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string" .
+    "string";
 
 return function () {};
 return (function () {})();
@@ -372,54 +372,54 @@ return new class {
 
 return null;
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
-    'extra'
-]['laravel']['dont-discover'] ?? [];
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)[
+    "extra"
+]["laravel"]["dont-discover"] ?? [];
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
-    'extra'
-]['laravel']['dont-discover']
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)[
+    "extra"
+]["laravel"]["dont-discover"]
     ? []
     : [];
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
-    'extra'
-]['laravel']['dont-discover'] . 'string';
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)[
+    "extra"
+]["laravel"]["dont-discover"] . "string";
 
-return 'string' .
-    json_decode(file_get_contents($this->basePath . '/composer.json'), true)[
-        'extra'
-    ]['laravel']['dont-discover'];
+return "string" .
+    json_decode(file_get_contents($this->basePath . "/composer.json"), true)[
+        "extra"
+    ]["laravel"]["dont-discover"];
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
     ->foo->bar->foo->bar;
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
     ->foo()
     ->bar()
     ->foo()
     ->bar();
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
     ::foo()
     ::bar()
     ::foo()
     ::bar();
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
-    ->foo->bar->foo->bar . 'string';
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
+    ->foo->bar->foo->bar . "string";
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
     ->foo()
     ->bar()
     ->foo()
-    ->bar() . 'string';
+    ->bar() . "string";
 
-return json_decode(file_get_contents($this->basePath . '/composer.json'), true)
+return json_decode(file_get_contents($this->basePath . "/composer.json"), true)
     ::foo()
     ::bar()
     ::foo()
-    ::bar() . 'string';
+    ::bar() . "string";
 
 return isset($veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine)
     ? true
@@ -429,19 +429,19 @@ return eval(
     '$var = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine"; $var .= $var;'
 );
 
-return include 'foo.php' . ' MORE OUTPUT';
-return include 'foo.php' .
-    ' MORE OUTPUT' .
-    ' MORE OUTPUT' .
-    ' MORE OUTPUT' .
-    ' MORE OUTPUT' .
-    ' MORE OUTPUT' .
-    ' MORE OUTPUT';
+return include "foo.php" . " MORE OUTPUT";
+return include "foo.php" .
+    " MORE OUTPUT" .
+    " MORE OUTPUT" .
+    " MORE OUTPUT" .
+    " MORE OUTPUT" .
+    " MORE OUTPUT" .
+    " MORE OUTPUT";
 
 return new Foo($arg);
 return new Foo(
     $arg,
-    'string',
+    "string",
     1024,
     $veryVeryVeryVeryVeryVeryLongLine,
     true,
@@ -449,16 +449,16 @@ return new Foo(
 );
 return new Foo(
     $arg,
-    'string',
+    "string",
     1024,
     $veryVeryVeryVeryVeryVeryLongLine,
     true,
     false
-) . 'string';
-return 'string' .
+) . "string";
+return "string" .
     new Foo(
         $arg,
-        'string',
+        "string",
         1024,
         $veryVeryVeryVeryVeryVeryLongLine,
         true,
@@ -466,26 +466,26 @@ return 'string' .
     );
 
 return [];
-return ['foo', 'bar'];
-return ['key' => 'foo', 'other-key' => 'bar'];
+return ["foo", "bar"];
+return ["key" => "foo", "other-key" => "bar"];
 return [
-    'key' => 'foo',
-    'other-key' => 'bar',
+    "key" => "foo",
+    "other-key" => "bar",
 ];
 return [
-    'foo',
-    'bar',
-    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine',
+    "foo",
+    "bar",
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongLine",
 ];
 return [
-    'bootstrap' => '^4.0.0',
-    'jquery' => '^3.2',
-    'popper.js' => '^1.12',
+    "bootstrap" => "^4.0.0",
+    "jquery" => "^3.2",
+    "popper.js" => "^1.12",
 ] || $packages;
 return $packages || [
-    'bootstrap' => '^4.0.0',
-    'jquery' => '^3.2',
-    'popper.js' => '^1.12',
+    "bootstrap" => "^4.0.0",
+    "jquery" => "^3.2",
+    "popper.js" => "^1.12",
 ];
 
 return $this->events->until(
@@ -497,18 +497,18 @@ return false !==
         new Events\\NotificationSending($notifiable, $notification, $channel)
     );
 
-return $this->getOptions()['endpoint'] ??
-    'https://api.sparkpost.com/api/v1/transmissions';
-return $this->getOptions()['endpoint'] ??
-    ('https://api.sparkpost.com/api/v1/transmissions' ??
-        ('https://api.sparkpost.com/api/v1/transmissions' ??
-            'https://api.sparkpost.com/api/v1/transmissions'));
+return $this->getOptions()["endpoint"] ??
+    "https://api.sparkpost.com/api/v1/transmissions";
+return $this->getOptions()["endpoint"] ??
+    ("https://api.sparkpost.com/api/v1/transmissions" ??
+        ("https://api.sparkpost.com/api/v1/transmissions" ??
+            "https://api.sparkpost.com/api/v1/transmissions"));
 
 return $this->channels[$name] ??
     with($this->resolve($name), function ($logger) use ($name) {
         return $this->channels[$name] = $this->tap(
             $name,
-            new Logger($logger, $this->app['events'])
+            new Logger($logger, $this->app["events"])
         );
     });
 
@@ -558,24 +558,24 @@ return call_user_func($this->passwordValidator, $credentials) &&
 return $password === $confirm &&
     call_user_func($this->passwordValidator, $credentials);
 
-return is_string($this->recaller) && Str::contains($this->recaller, '|');
+return is_string($this->recaller) && Str::contains($this->recaller, "|");
 return is_string($this->recallerWithClass) &&
-    Str::contains($this->recaller, '|');
-return Str::contains($this->recaller, '|') &&
+    Str::contains($this->recaller, "|");
+return Str::contains($this->recaller, "|") &&
     is_string($this->recallerWithClass);
 
-return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ??
+return in_array("odbc", $this->getAvailableDrivers()) && $config["odbc"] ??
     null === true;
-return in_array('odbc', $this->getAvailableDrivers()) && $config['odbc'] ??
+return in_array("odbc", $this->getAvailableDrivers()) && $config["odbc"] ??
     null === true;
-return in_array('odbc', $this->getAvailableDrivers()) &&
-    ($config['odbc'] ?? null) === true;
-return in_array('odbc', $this->getAvailableDrivers()) &&
-    ($config['odbc'] ?? null) === true;
+return in_array("odbc", $this->getAvailableDrivers()) &&
+    ($config["odbc"] ?? null) === true;
+return in_array("odbc", $this->getAvailableDrivers()) &&
+    ($config["odbc"] ?? null) === true;
 return ($map[$name] ?? $name) .
-    (!is_null($parameters) ? ':' . $parameters : '');
+    (!is_null($parameters) ? ":" . $parameters : "");
 return ($map[$name] ?? $name) .
-    (!is_null($parameters) ? ':' . $parameters : '');
+    (!is_null($parameters) ? ":" . $parameters : "");
 
 ================================================================================
 `;

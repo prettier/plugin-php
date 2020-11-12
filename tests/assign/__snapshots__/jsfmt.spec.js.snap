@@ -118,42 +118,42 @@ $var =
     111111111111111111111111111111111111111111111111111111 +
     111111111111111111111111111111111111111111111111111111111111111;
 $var = true;
-$var = 'string';
+$var = "string";
 $var =
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
-$var = 'string' . $var;
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+$var = "string" . $var;
 $var &= $var;
 $var = 'Multi
 Line
 String';
 $var = [];
 $var = [1, 2, 3] + [1, 2, 3];
-$var = ['key' => 'value'];
+$var = ["key" => "value"];
 $var = [
-    'key' => 'value',
+    "key" => "value",
 ];
 $var = [
-    'key' => 'value',
-    'oneKey' => 'value',
-    'twoKey' => 'value',
-    'threeKey' => 'value',
-    'fourKey' => 'value',
-    'fiveKey' => 'value',
-    'sixKey' => 'value',
+    "key" => "value",
+    "oneKey" => "value",
+    "twoKey" => "value",
+    "threeKey" => "value",
+    "fourKey" => "value",
+    "fiveKey" => "value",
+    "sixKey" => "value",
 ];
 $var = $veryVeryVeryVeryVeryVeryVeryLongVariable
     ? $veryVeryVeryVeryVeryVeryVeryLongTrueExpr
     : $veryVeryVeryVeryVeryVeryVeryLongFalseExpr;
-$var = $var . 'string' ? $trueExpr : $falseExpr;
+$var = $var . "string" ? $trueExpr : $falseExpr;
 $var =
     $var .
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
     $otherVar
         ? $trueExpr
         : $falseExpr;
 $var =
     $var .
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
         $otherVar ===
     $veryVeryVeryVeryVeryVeryVeryLongVariable
         ? $trueExpr
@@ -161,12 +161,12 @@ $var =
 $var = VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_CONSTANT;
 $var =
     $arr[
-        'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
     ];
 $var =
-    $arr['veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'];
+    $arr["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"];
 $variable[
-    'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = $variable->registered[1];
 
 $computedDescriptionLines =
@@ -203,7 +203,7 @@ $computedDescriptionLines =
     $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
-] = $test . 'string' ? $trueExpr : $falseExpr;
+] = $test . "string" ? $trueExpr : $falseExpr;
 [
     $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
@@ -216,8 +216,8 @@ $computedDescriptionLines =
     $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $arr || [
-    'key' => 'value',
-    'otherKey' => 'otherValue',
+    "key" => "value",
+    "otherKey" => "otherValue",
 ];
 
 for ($i = 0, $len = $arr->length; $i < $len; $i++) {
@@ -237,10 +237,10 @@ $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVery
     $arg
 );
 $obj->loooooooooooong->lookup = $this->getRequest()->getParam(
-    'instance-resource-id'
+    "instance-resource-id"
 );
 $obj->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    'instance-resource-id'
+    "instance-resource-id"
 );
 
 $component =

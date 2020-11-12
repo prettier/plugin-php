@@ -508,7 +508,7 @@ printWidth: 80
     </head><CR>
     <body><CR>
 <CR>
-        <?php echo 'foo!'; ?><CR>
+        <?php echo "foo!"; ?><CR>
 <CR>
     </body><CR>
 </html><CR>
@@ -547,7 +547,7 @@ printWidth: 80
     </head><CRLF>
     <body><CRLF>
 <CRLF>
-        <?php echo 'foo!'; ?><CRLF>
+        <?php echo "foo!"; ?><CRLF>
 <CRLF>
     </body><CRLF>
 </html><CRLF>
@@ -586,7 +586,7 @@ printWidth: 80
     </head><LF>
     <body><LF>
 <LF>
-        <?php echo 'foo!'; ?><LF>
+        <?php echo "foo!"; ?><LF>
 <LF>
     </body><LF>
 </html><LF>
@@ -625,7 +625,7 @@ printWidth: 80
     </head><CR>
     <body><CR>
 <CR>
-        <?php echo 'foo!'; ?><CR>
+        <?php echo "foo!"; ?><CR>
 <CR>
     </body><CR>
 </html><CR>
@@ -664,7 +664,7 @@ printWidth: 80
     </head><CRLF>
     <body><CRLF>
 <CRLF>
-        <?php echo 'foo!'; ?><CRLF>
+        <?php echo "foo!"; ?><CRLF>
 <CRLF>
     </body><CRLF>
 </html><CRLF>
@@ -703,7 +703,7 @@ printWidth: 80
     </head><LF>
     <body><LF>
 <LF>
-        <?php echo 'foo!'; ?><LF>
+        <?php echo "foo!"; ?><LF>
 <LF>
     </body><LF>
 </html><LF>

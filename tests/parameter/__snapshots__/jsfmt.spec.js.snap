@@ -396,13 +396,13 @@ function func23(?array &...$arg)
 {
 }
 // T_VARIABLE '=' expr
-function func24(string $arg = 'test')
+function func24(string $arg = "test")
 {
 }
-function func25(?string &$arg = 'test')
+function func25(?string &$arg = "test")
 {
 }
-function func26(?array &$arg = ['1', '2', '3'])
+function func26(?array &$arg = ["1", "2", "3"])
 {
 }
 function func27(array &...$arg)

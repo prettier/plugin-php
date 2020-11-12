@@ -180,18 +180,18 @@ line with just a semicolon no extra whitespace!
 END;
 
 // However, the following examples will work:
-$some_var ? print 'true' : print 'false';
+$some_var ? print "true" : print "false";
 // print is also a construct, but
 // it behaves like a function, so
 // it may be used in this context.
 
-print $some_var ? 'true' : 'false';
+print $some_var ? "true" : "false";
 print $some_var
-    ? 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString'
-    : 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+    ? "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    : "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 
-print 'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' .
-    'VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString';
+print "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 print 1000000000 +
     1000000000 +
     1000000000 +
@@ -214,11 +214,11 @@ print 1000000000 +
     1000000000 +
     1000000000 +
     1000000000;
-print 'foo' . ($bar ? 2 : 1);
+print "foo" . ($bar ? 2 : 1);
 print $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable->veryVeryVeryVeryVeryVeryLongProperty;
 
-print str_replace('test', 'test', 'test');
-print str_replace('test', 'test', 'test');
+print str_replace("test", "test", "test");
+print str_replace("test", "test", "test");
 
 print 1;
 print 1;
@@ -227,11 +227,11 @@ print 1;
 print esc_html(
     sprintf(
         __(
-            'Hi there. Your recent order on %s has been completed. ' .
-                'Your order details are shown below for your reference:',
-            'woocommerce'
+            "Hi there. Your recent order on %s has been completed. " .
+                "Your order details are shown below for your reference:",
+            "woocommerce"
         ),
-        get_option('blogname')
+        get_option("blogname")
     )
 );
 
@@ -287,11 +287,11 @@ print [
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
-print ['key' => $var, 'foo' => $var, 'bar' => $var];
+print ["key" => $var, "foo" => $var, "bar" => $var];
 print [
-    'key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    'other-key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    'ohter-other-key' => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
+    "key" => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
+    "other-key" => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
+    "ohter-other-key" => $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ];
 
 print $var->foo->bar->baz;
