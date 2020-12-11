@@ -2793,8 +2793,9 @@ function printNode(path, options, print) {
         const parentParent = path.getParentNode(1);
         let closingTagIndentation = 0;
         const flexible = isMinVersion(options.phpVersion, "7.3");
-        const linebreak = flexible ? hardline : literalline;
+        let linebreak = literalline;
         if (parentParent.type === "heredoc") {
+          linebreak = flexible ? hardline : literalline;
           const lines = parentParent.raw.split(/\r?\n/g);
           closingTagIndentation = lines[lines.length - 1].search(/\S/);
         }
