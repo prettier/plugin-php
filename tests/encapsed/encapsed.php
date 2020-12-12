@@ -457,3 +457,13 @@ function foo() {
         foo{$bar}bazzzzz
         XML;
 }
+
+// Multiline with variable
+function b()
+{
+    $a = "
+        This multiline string
+        should keep it's indent level.
+        Even though it has a variable: $c
+    ";
+}
