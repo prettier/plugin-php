@@ -20,7 +20,7 @@
     "codecov": "3.8.1",
     "cross-env": "^7.0.2",
     "eslint": "7.18.0",
-    "eslint-config-prettier": "6.15.0",
+    "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.1.3",
     "eslint-plugin-prettier": "3.3.1",
