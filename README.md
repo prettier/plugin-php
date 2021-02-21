@@ -46,6 +46,7 @@ If you want to use the plugin in production, we recommend limiting its scope to 
 ### Input
 
 ```php
+<?php
 array_map(function($arg1,$arg2) use ( $var1, $var2 ) {
     return $arg1+$arg2/($var+$var2);
 }, array("complex"=>"code","with"=>
@@ -56,6 +57,8 @@ array_map(function($arg1,$arg2) use ( $var1, $var2 ) {
 ### Output
 
 ```php
+<?php
+
 array_map(
     function ($arg1, $arg2) use ($var1, $var2) {
         return $arg1 + $arg2 / ($var + $var2);
