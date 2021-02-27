@@ -2926,7 +2926,8 @@ function printNode(path, options, print) {
       return node.comments
         ? comments.printComments(path.getValue().comments, options)
         : "";
-
+    case "namedargument":
+      return concat([node.name, ": ", path.call(print, "value")]);
     case "error":
     default:
       // istanbul ignore next

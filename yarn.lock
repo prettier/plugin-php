@@ -4461,9 +4461,9 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-php-parser@glayzzle/php-parser#php8:
+php-parser@czosel/php-parser#177699bf5f19b2ac4a95049fb19000fbc4ffa0fd:
   version "3.0.2"
-  resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/7de81cab19cb1096cfb8e2a8e823e75f428115f4"
+  resolved "https://codeload.github.com/czosel/php-parser/tar.gz/177699bf5f19b2ac4a95049fb19000fbc4ffa0fd"
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
