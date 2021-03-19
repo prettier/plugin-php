@@ -205,7 +205,17 @@ function needsParens(path) {
           return false;
       }
     case "closure":
-      return parent.kind === "call" && name === "what" && parent.what === node;
+      switch (parent.kind) {
+        case "call":
+          return name === "what" && parent.what === node;
+
+        // https://github.com/prettier/plugin-php/issues/1675
+        case "propertylookup":
+          return true;
+
+        default:
+          return false;
+      }
     case "silence":
     case "cast":
       // TODO: bug https://github.com/glayzzle/php-parser/issues/172
