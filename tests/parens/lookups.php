@@ -81,3 +81,10 @@ $var = ($var)->bar;
 $var = (($var)->bar);
 $var = ($var)->bar();
 $var = (($var)->bar());
+
+$var = (function () {
+    return $this->foo;
+})->bindTo($var, A::class)();
+$var = (((function () {
+    return $this->foo;
+})))->bindTo($var, A::class)();
