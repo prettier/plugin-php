@@ -2798,6 +2798,9 @@ function printNode(path, options, print) {
           linebreak = flexible ? hardline : literalline;
           const lines = parentParent.raw.split(/\r?\n/g);
           closingTagIndentation = lines[lines.length - 1].search(/\S/);
+          if (closingTagIndentation === -1) {
+            closingTagIndentation = lines[lines.length - 2].search(/\S/);
+          }
         }
         return join(
           linebreak,
