@@ -467,3 +467,21 @@ function b()
         Even though it has a variable: $c
     ";
 }
+
+// Heredoc in function call with correct indentation
+printf(
+    <<<EOT
+    Heredoc text used directly as argument
+    in a function call.
+    EOT
+    ,
+);
+
+// Heredoc in function call with wrong indentation
+printf(
+    <<<EOT
+        Heredoc text used directly as argument
+        in a function call.
+        EOT
+    ,
+);
