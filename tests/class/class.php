@@ -293,3 +293,9 @@ class User {
         $this->name = $name;
     }
 }
+
+class Promoted {
+    public function __construct(   public  int $a, private float $b, protected  string  $d  ){
+
+    }
+}
