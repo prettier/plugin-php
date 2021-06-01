@@ -1745,7 +1745,16 @@ function printNode(path, options, print) {
         path.call(print, "body"),
       ]);
     case "parameter": {
+      let promoted = "";
+      if (node.flags === 1) {
+        promoted = "public ";
+      } else if (node.flags === 2) {
+        promoted = "protected ";
+      } else if (node.flags === 4) {
+        promoted = "private ";
+      }
       const name = concat([
+        promoted,
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
         node.byref ? "&" : "",

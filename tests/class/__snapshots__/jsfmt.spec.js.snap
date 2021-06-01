@@ -929,6 +929,11 @@ class User {
     }
 }
 
+class Promoted {
+    public function __construct(   public  int $a, private float $b, protected  string  $d  ){
+
+    }
+}
 =====================================output=====================================
 <?php
 
@@ -1431,6 +1436,16 @@ class User
     {
         $this->id = $id;
         $this->name = $name;
+    }
+}
+
+class Promoted
+{
+    public function __construct(
+        public int $a,
+        private float $b,
+        protected string $d
+    ) {
     }
 }
 
