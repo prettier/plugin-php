@@ -2934,6 +2934,53 @@ function printNode(path, options, print) {
 
       return path.call(print, "name");
     }
+    case "match": {
+      if (!isMinVersion(options.phpVersion, "8.0")) {
+        throw new Error("PHP Version must be > 8.0 for match expression");
+      }
+
+      const arms = path.map((armPath, armIdx) => {
+        const conds =
+          armPath.getValue().conds === null
+            ? "default"
+            : concat(
+                armPath.map(
+                  (condPath, condIdx) =>
+                    group(
+                      concat(
+                        condIdx > 0
+                          ? [",", line, print(condPath)]
+                          : [print(condPath)]
+                      )
+                    ),
+                  "conds"
+                )
+              );
+        const body = armPath.call(print, "body");
+        return concat(
+          armIdx > 0
+            ? [", ", line, conds, " => ", body]
+            : [line, conds, " => ", body]
+        );
+      }, "arms");
+      return group(
+        concat([
+          "match (",
+          group(
+            concat([
+              softline,
+              indent(concat([path.call(print, "cond")])),
+              softline,
+            ])
+          ),
+          ") {",
+          indent(concat(arms)),
+          " ",
+          softline,
+          "}",
+        ])
+      );
+    }
     case "noop":
       return node.comments
         ? comments.printComments(path.getValue().comments, options)
