@@ -22,6 +22,7 @@ module.exports = {
       { value: "7.2" },
       { value: "7.3" },
       { value: "7.4" },
+      { value: "8.0" },
     ],
   },
   trailingCommaPHP: {
