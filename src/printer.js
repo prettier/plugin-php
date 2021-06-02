@@ -2856,6 +2856,17 @@ function printNode(path, options, print) {
         quote,
       ]);
     }
+    case "uniontype": {
+      return group(
+        concat(
+          path.map(
+            (uPath, i) =>
+              concat(i === 0 ? [path.call(print)] : ["|", path.call(print)]),
+            "types"
+          )
+        )
+      );
+    }
     case "encapsedpart": {
       const open =
         (node.syntax === "simple" && node.curly) || node.syntax === "complex"
@@ -2981,6 +2992,7 @@ function printNode(path, options, print) {
         ])
       );
     }
+
     case "noop":
       return node.comments
         ? comments.printComments(path.getValue().comments, options)
