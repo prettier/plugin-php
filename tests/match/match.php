@@ -29,8 +29,3 @@ $nest = match(match($a) {true => 1, false => 2}) {
     },
     2 => 'null'
 };
-
-$comment = match($a) {
-    true => 'ok',
-    default => 'fail'
-};
