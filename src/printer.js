@@ -2946,10 +2946,6 @@ function printNode(path, options, print) {
       return path.call(print, "name");
     }
     case "match": {
-      if (!isMinVersion(options.phpVersion, "8.0")) {
-        throw new Error("PHP Version must be > 8.0 for match expression");
-      }
-
       const arms = path.map((armPath, armIdx) => {
         const conds =
           armPath.getValue().conds === null
