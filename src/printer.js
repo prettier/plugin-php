@@ -116,8 +116,12 @@ function genericPrint(path, options, print) {
   return concat(parts);
 }
 
-function printPropertyLookup(path, options, print) {
-  return concat(["->", path.call(print, "offset")]);
+function printPropertyLookup(path, options, print, nullsafe = false) {
+  return concat([nullsafe ? "?" : "", "->", path.call(print, "offset")]);
+}
+
+function printNullsafePropertyLookup(path, options, print) {
+  return printPropertyLookup(path, options, print, true);
 }
 
 function printStaticLookup(path, options, print) {
@@ -243,6 +247,8 @@ function printMemberChain(path, options, print) {
 
       if (node.kind === "propertylookup") {
         printedMemberish = printPropertyLookup(path, options, print);
+      } else if (node.kind === "nullsafepropertylookup") {
+        printedMemberish = printNullsafePropertyLookup(path, options, print);
       } else if (node.kind === "staticlookup") {
         printedMemberish = printStaticLookup(path, options, print);
       } else {
@@ -842,6 +848,8 @@ function printLookupNodes(path, options, print) {
   switch (node.kind) {
     case "propertylookup":
       return printPropertyLookup(path, options, print);
+    case "nullsafepropertylookup":
+      return printNullsafePropertyLookup(path, options, print);
     case "staticlookup":
       return printStaticLookup(path, options, print);
     case "offsetlookup":
@@ -2175,6 +2183,7 @@ function printNode(path, options, print) {
           : path.call(print, "what"),
       ]);
     case "propertylookup":
+    case "nullsafepropertylookup":
     case "staticlookup":
     case "offsetlookup": {
       const parent = path.getParentNode();
@@ -2920,7 +2929,8 @@ function printNode(path, options, print) {
       return node.comments
         ? comments.printComments(path.getValue().comments, options)
         : "";
-
+    case "namedargument":
+      return concat([node.name, ": ", path.call(print, "value")]);
     case "error":
     default:
       // istanbul ignore next

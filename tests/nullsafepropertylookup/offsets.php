@@ -1,18 +1,18 @@
 <?php
 
 // identifier
-$obj->var;
+$obj?->foo;
 // variable
-$obj->$var;
+$obj?->$var;
 // variable variable
-$obj->$$var;
+$obj?->$$var;
 // literal with identifier
-$obj->{foo};
+$obj?->{foo};
 // literal with variable
-$obj->{$var};
+$obj?->{$var};
 // literal with call
-$obj->{call()};
+$obj?->{call()};
 // encapsed (offset type)
-$obj->foo_{'test' . 'bar'};
+$obj?->foo_{'test' . 'bar'};
 // variable with literal with call
-$obj->${call()};
+$obj?->${call()};
