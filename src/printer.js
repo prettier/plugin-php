@@ -1753,7 +1753,16 @@ function printNode(path, options, print) {
         path.call(print, "body"),
       ]);
     case "parameter": {
+      let promoted = "";
+      if (node.flags === 1) {
+        promoted = "public ";
+      } else if (node.flags === 2) {
+        promoted = "protected ";
+      } else if (node.flags === 4) {
+        promoted = "private ";
+      }
       const name = concat([
+        promoted,
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
         node.byref ? "&" : "",
@@ -2847,6 +2856,17 @@ function printNode(path, options, print) {
         quote,
       ]);
     }
+    case "uniontype": {
+      return group(
+        concat(
+          path.map(
+            (uPath, i) =>
+              concat(i === 0 ? [path.call(print)] : ["|", path.call(print)]),
+            "types"
+          )
+        )
+      );
+    }
     case "encapsedpart": {
       const open =
         (node.syntax === "simple" && node.curly) || node.syntax === "complex"
@@ -2925,6 +2945,50 @@ function printNode(path, options, print) {
 
       return path.call(print, "name");
     }
+    case "match": {
+      const arms = path.map((armPath, armIdx) => {
+        const conds =
+          armPath.getValue().conds === null
+            ? "default"
+            : concat(
+                armPath.map(
+                  (condPath, condIdx) =>
+                    group(
+                      concat(
+                        condIdx > 0
+                          ? [",", line, print(condPath)]
+                          : [print(condPath)]
+                      )
+                    ),
+                  "conds"
+                )
+              );
+        const body = armPath.call(print, "body");
+        return concat(
+          armIdx > 0
+            ? [", ", line, conds, " => ", body]
+            : [line, conds, " => ", body]
+        );
+      }, "arms");
+      return group(
+        concat([
+          "match (",
+          group(
+            concat([
+              softline,
+              indent(concat([path.call(print, "cond")])),
+              softline,
+            ])
+          ),
+          ") {",
+          indent(concat(arms)),
+          " ",
+          softline,
+          "}",
+        ])
+      );
+    }
+
     case "noop":
       return node.comments
         ? comments.printComments(path.getValue().comments, options)

@@ -15,3 +15,7 @@ if (!$var) {
     throw new \Exception("Bye");
     throw (new \Exception("Bye"));
 }
+
+die(throw new \Exception('In Statement'));
+$throws = fn() => throw new \RuntimeException('In arrow function');
+$value = $a ? $a : throw new \InvalidArgumentException('In ternary');
