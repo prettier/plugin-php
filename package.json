@@ -13,7 +13,7 @@
   "dependencies": {
     "linguist-languages": "^7.5.1",
     "mem": "^8.0.0",
-    "php-parser": "https://github.com/glayzzle/php-parser#bb89fff"
+    "php-parser": "https://github.com/moddengine/php-parser#895eccff0211c0e0fcd1f27403e82b649e2180f2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.7.5",
