@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`attributes.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+#[A,B]
+#[C]
+class D {
+
+    #[E]
+    const F = 0;
+
+    #[G] public int $h = 0;
+
+    #[I,J] function k(#[L] int $m):callable {
+      return #[N,O]#[P] fn(#[Q] int $r) => $r * 2;
+    }
+
+    #[S]
+//Testing
+#[T] private function u() {
+        return #[V] function() { return null; };
+    }
+
+}
+
+#[W('a', null, 'looooong','paraaaams','list','aaaaaaaaaaaaa','vvvvvvvvvvvv','cccccccccc','eeeeeeeeeee'), X()] function Y(#[ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(12345678, 1234578)] string $_):string {return new #[NON, Anon()] class {};}
+
+#[IA('interface'),IB]
+interface IC {
+    #[ID] const IE = 123;
+
+    #[IG, IH('abc'),IJ()] public function ik();
+}
+
+=====================================output=====================================
+<?php
+
+#[A]
+#[B]
+#[C]
+class D
+{
+    #[E]
+    const F = 0;
+
+    public int $h = 0;
+
+    #[I]
+    #[J]
+    function k(int $m): callable {
+        return #[N, O, P]
+        fn(int $r) => $r * 2;
+    }
+
+    //Testing
+    #[S]
+    #[T]
+    private function u()
+    {
+        return #[V]
+        function () {
+            return null;
+        };
+    }
+}
+
+#[W]
+#[X]
+function Y(string $_): string {
+    return new class#[NON, Anon] {};
+}
+
+#[IA]
+#[IB]
+interface IC
+{
+    #[ID]
+    const IE = 123;
+
+    #[IG]
+    #[IH]
+    #[IJ]
+    public function ik();
+}
+
+================================================================================
+`;

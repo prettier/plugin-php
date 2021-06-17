@@ -1189,10 +1189,36 @@ function printClassPart(
   );
 }
 
+function printAttrs(path, options, print, inline = false) {
+  const node = path.getValue();
+  const allAttrs = (node.attrGroups || [])
+    .reduce((t, attrGroup) => t.concat(attrGroup.attrs), [])
+    .reduce((list, attr, index) => {
+      if (index >= 1) {
+        if (inline) {
+          list.push(", ");
+        } else {
+          list.push("]", hardline, "#[");
+        }
+      }
+      list.push(attr.name);
+      process.stderr.write(`Attr: ${JSON.stringify(attr.args)}\n`);
+      if (node.args && node.args.length > 0) {
+        list.push(...printArgumentsList(path, options, print, "args"));
+      }
+      return list;
+    }, []);
+  if (allAttrs.length === 0) {
+    return [];
+  }
+  return ["#[", ...allAttrs, "]", inline ? softline : hardline];
+}
+
 function printClass(path, options, print) {
   const node = path.getValue();
+  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
 
-  const declaration = [];
+  const declaration = [...printAttrs(path, options, print, isAnonymousClass)];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1201,8 +1227,6 @@ function printClass(path, options, print) {
   if (node.isAbstract) {
     declaration.push("abstract ");
   }
-
-  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
 
   // `new` print `class` keyword with arguments
   declaration.push(isAnonymousClass ? "" : node.kind);
@@ -1308,7 +1332,9 @@ function printClass(path, options, print) {
 
 function printFunction(path, options, print) {
   const node = path.getValue();
-  const declaration = [];
+  const declaration = [
+    ...printAttrs(path, options, print, node.kind === "closure"),
+  ];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1735,6 +1761,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
+        ...printAttrs(path, options, print, true),
         node.isStatic ? "static " : "",
         "fn",
         printArgumentsList(path, options, print),
@@ -1813,6 +1840,7 @@ function printNode(path, options, print) {
         ])
       );
     case "propertystatement": {
+      const attrs = printAttrs(path, options, print);
       const printed = path.map((childPath) => {
         return print(childPath);
       }, "properties");
@@ -1832,6 +1860,7 @@ function printNode(path, options, print) {
 
       return group(
         concat([
+          ...attrs,
           hasVisibility
             ? concat([node.visibility === null ? "var" : node.visibility, ""])
             : "",
@@ -2396,9 +2425,11 @@ function printNode(path, options, print) {
     }
     case "constantstatement":
     case "classconstant": {
-      const printed = path.map((childPath) => {
-        return print(childPath);
-      }, "constants");
+      process.stderr.write(
+        `Variable Token: ${JSON.stringify(path.getValue())}\n`
+      );
+      const attrs = printAttrs(path, options, print);
+      const printed = path.map((childPath) => print(childPath), "constants");
 
       let firstVariable;
 
@@ -2411,6 +2442,7 @@ function printNode(path, options, print) {
 
       return group(
         concat([
+          ...attrs,
           node.visibility ? concat([node.visibility, " "]) : "",
           "const",
           firstVariable ? concat([" ", firstVariable]) : "",
