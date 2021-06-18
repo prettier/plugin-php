@@ -1198,28 +1198,51 @@ function printClassPart(
 }
 
 function printAttrs(path, options, print, inline = false) {
-  const node = path.getValue();
-  const allAttrs = (node.attrGroups || [])
-    .reduce((t, attrGroup) => t.concat(attrGroup.attrs), [])
-    .reduce((list, attr, index) => {
-      if (index >= 1) {
-        if (inline) {
-          list.push(", ");
-        } else {
-          list.push("]", hardline, "#[");
-        }
+  const allAttrs = [];
+  if (!path.getValue().attrGroups) return [];
+  let i = 0;
+  path.each((agPath) => {
+    agPath.each((attrPath) => {
+      const attrNode = attrPath.getValue();
+      const r = [];
+      if (!inline) {
+        r.push("#[");
+      } else if (i++ > 0) {
+        r.push(",", line);
       }
-      list.push(attr.name);
-      process.stderr.write(`Attr: ${JSON.stringify(attr.args)}\n`);
-      if (node.args && node.args.length > 0) {
-        list.push(...printArgumentsList(path, options, print, "args"));
+      r.push(attrNode.name);
+      if (attrNode.args.length > 0) {
+        r.push(printArgumentsList(attrPath, options, print, "args"));
       }
-      return list;
-    }, []);
+      if (!inline) {
+        r.push("]", hardline);
+      }
+      allAttrs.push(group(concat(r)));
+    }, "attrs");
+  }, "attrGroups");
+  // const allAttrs = (node.attrGroups || [])
+  //   .reduce((t, attrGroup) => t.concat(attrGroup.attrs), [])
+  //   .reduce((list, attr, index) => {
+  //     if (index >= 1) {
+  //       if (inline) {
+  //         list.push(", ");
+  //       } else {
+  //         list.push("]", hardline, "#[");
+  //       }
+  //     }
+  //     list.push(attr.name);
+  //     process.stderr.write(`Attr: ${JSON.stringify(attr.args)}\n`);
+  //     if (node.args && node.args.length > 0) {
+  //       list.push(...printArgumentsList(path, options, print, "args"));
+  //     }
+  //     return list;
+  //   }, []);
   if (allAttrs.length === 0) {
     return [];
+  } else if (inline) {
+    return ["#[", ...allAttrs, "]", " "];
   }
-  return ["#[", ...allAttrs, "]", inline ? softline : hardline];
+  return allAttrs;
 }
 
 function printClass(path, options, print) {
