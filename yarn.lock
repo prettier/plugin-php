@@ -4624,9 +4624,9 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-"php-parser@https://github.com/moddengine/php-parser#895eccff0211c0e0fcd1f27403e82b649e2180f2":
+"php-parser@https://github.com/moddengine/php-parser#bb6b2fbdd755e47cfcae8d292b89b564f5630963":
   version "3.0.2"
-  resolved "https://github.com/moddengine/php-parser#895eccff0211c0e0fcd1f27403e82b649e2180f2"
+  resolved "https://github.com/moddengine/php-parser#bb6b2fbdd755e47cfcae8d292b89b564f5630963"
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
