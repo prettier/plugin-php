@@ -1199,7 +1199,9 @@ function printClassPart(
 
 function printAttrs(path, options, print, inline = false) {
   const allAttrs = [];
-  if (!path.getValue().attrGroups) return [];
+  if (!path.getValue().attrGroups) {
+    return [];
+  }
   let i = 0;
   path.each((agPath) => {
     agPath.each((attrPath) => {
@@ -1220,23 +1222,6 @@ function printAttrs(path, options, print, inline = false) {
       allAttrs.push(group(concat(r)));
     }, "attrs");
   }, "attrGroups");
-  // const allAttrs = (node.attrGroups || [])
-  //   .reduce((t, attrGroup) => t.concat(attrGroup.attrs), [])
-  //   .reduce((list, attr, index) => {
-  //     if (index >= 1) {
-  //       if (inline) {
-  //         list.push(", ");
-  //       } else {
-  //         list.push("]", hardline, "#[");
-  //       }
-  //     }
-  //     list.push(attr.name);
-  //     process.stderr.write(`Attr: ${JSON.stringify(attr.args)}\n`);
-  //     if (node.args && node.args.length > 0) {
-  //       list.push(...printArgumentsList(path, options, print, "args"));
-  //     }
-  //     return list;
-  //   }, []);
   if (allAttrs.length === 0) {
     return [];
   } else if (inline) {
