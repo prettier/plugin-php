@@ -1233,8 +1233,8 @@ function printAttrs(path, options, print, inline = false) {
 function printClass(path, options, print) {
   const node = path.getValue();
   const isAnonymousClass = node.kind === "class" && node.isAnonymous;
-
-  const declaration = [...printAttrs(path, options, print, isAnonymousClass)];
+  const attrs = printAttrs(path, options, print, isAnonymousClass);
+  const declaration = isAnonymousClass ? [] : [...attrs];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1797,6 +1797,7 @@ function printNode(path, options, print) {
         promoted = "private ";
       }
       const name = concat([
+        ...printAttrs(path, options, print, true),
         promoted,
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
@@ -1856,7 +1857,11 @@ function printNode(path, options, print) {
         ])
       );
     case "propertystatement": {
-      const attrs = printAttrs(path, options, print);
+      const attrs = [];
+      path.map(
+        (propPath) => attrs.push(...printAttrs(propPath, options, print)),
+        "properties"
+      );
       const printed = path.map((childPath) => {
         return print(childPath);
       }, "properties");
@@ -2184,6 +2189,7 @@ function printNode(path, options, print) {
       ) {
         return concat([
           "new ",
+          ...path.call(printAttrs, "what"),
           path.call(print, "what"),
           "(",
           join(", ", path.map(print, "arguments")),
@@ -2204,6 +2210,7 @@ function printNode(path, options, print) {
                 " ",
               ])
             : "",
+          ...path.call((pa, opt, pr) => printAttrs(pa, opt, pr, true), "what"),
           "class",
           node.arguments.length > 0
             ? concat([" ", printArgumentsList(path, options, print)])
@@ -2442,9 +2449,6 @@ function printNode(path, options, print) {
     }
     case "constantstatement":
     case "classconstant": {
-      process.stderr.write(
-        `Variable Token: ${JSON.stringify(path.getValue())}\n`
-      );
       const attrs = printAttrs(path, options, print);
       const printed = path.map((childPath) => print(childPath), "constants");
 

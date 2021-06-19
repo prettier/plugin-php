@@ -58,6 +58,7 @@ class D
     #[E]
     const F = 0;
 
+    #[G]
     public int $h = 0;
 
     /**
@@ -66,8 +67,8 @@ class D
      */
     #[I]
     #[J]
-    function k(int $m): callable {
-        return #[N, O, P] fn(int $r) => $r * 2;
+    function k(#[L] int $m): callable {
+        return #[N, O, P] fn(#[Q] int $r) => $r * 2;
     } //Testing T
 
     // Testing S
@@ -94,8 +95,13 @@ class D
     "eeeeeeeeeee"
 )]
 #[X]
-function Y(string $_): string {
-    return new class#[NON, Anon]  {};
+function Y(
+    #[ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
+        12345678,
+        1234578
+    )] string $_
+): string {
+    return new #[NON, Anon] class {};
 }
 
 #[IA("interface")]
