@@ -46,3 +46,16 @@ try {
 } finally {
     // Comment
 }
+
+// PHP 8.0 non-capturing exception catch
+try {
+    // Something
+} catch (\Exception) {
+    // Nothing
+}
+
+try {
+    // Something
+} catch (MyException | OtherException) {
+    // Nothing
+}
