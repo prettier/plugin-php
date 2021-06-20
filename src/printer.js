@@ -1047,14 +1047,22 @@ function printLines(path, options, print, childrenAttribute = "children") {
           : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
           ? ""
           : concat([beforeCloseTagInlineNode, "?>"]);
+
+      const nextV = path.getNode(index + 1);
+      // process.stdout.write(`Inline: ${JSON.stringify(nextV)}\n`);
+
+      const skipLastComment = nextV && nextV.children && nextV.children.length;
+
       const afterInline =
         childNode.comments && childNode.comments.length
           ? concat([
               openTag,
               hardline,
-              comments.printComments(childNode.comments, options),
+              skipLastComment
+                ? comments.printComments(childNode.comments, options)
+                : "",
               hardline,
-              "?>",
+              skipLastComment ? "?>" : "",
             ])
           : isProgramLikeNode(node) && isLastNode
           ? ""
