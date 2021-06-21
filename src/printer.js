@@ -1197,7 +1197,7 @@ function printClassPart(
   );
 }
 
-function printAttrs(path, options, print, inline = false) {
+function printAttrs(path, options, print, { inline = false } = {}) {
   const allAttrs = [];
   if (!path.getValue().attrGroups) {
     return [];
@@ -1233,7 +1233,7 @@ function printAttrs(path, options, print, inline = false) {
 function printClass(path, options, print) {
   const node = path.getValue();
   const isAnonymousClass = node.kind === "class" && node.isAnonymous;
-  const attrs = printAttrs(path, options, print, isAnonymousClass);
+  const attrs = printAttrs(path, options, print, { inline: isAnonymousClass });
   const declaration = isAnonymousClass ? [] : [...attrs];
 
   if (node.isFinal) {
@@ -1349,7 +1349,7 @@ function printClass(path, options, print) {
 function printFunction(path, options, print) {
   const node = path.getValue();
   const declaration = [
-    ...printAttrs(path, options, print, node.kind === "closure"),
+    ...printAttrs(path, options, print, { inline: node.kind === "closure" }),
   ];
 
   if (node.isFinal) {
@@ -1777,7 +1777,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
-        ...printAttrs(path, options, print, true),
+        ...printAttrs(path, options, print, { inline: true }),
         node.isStatic ? "static " : "",
         "fn",
         printArgumentsList(path, options, print),
@@ -1797,7 +1797,7 @@ function printNode(path, options, print) {
         promoted = "private ";
       }
       const name = concat([
-        ...printAttrs(path, options, print, true),
+        ...printAttrs(path, options, print, { inline: true }),
         promoted,
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
@@ -2210,7 +2210,10 @@ function printNode(path, options, print) {
                 " ",
               ])
             : "",
-          ...path.call((pa, opt, pr) => printAttrs(pa, opt, pr, true), "what"),
+          ...path.call(
+            (pa, opt, pr) => printAttrs(pa, opt, pr, { inline: true }),
+            "what"
+          ),
           "class",
           node.arguments.length > 0
             ? concat([" ", printArgumentsList(path, options, print)])
