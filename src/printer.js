@@ -2114,8 +2114,7 @@ function printNode(path, options, print) {
           ? concat([
               " (",
               join(" | ", path.map(print, "what")),
-              " ",
-              path.call(print, "variable"),
+              node.variable ? concat([" ", path.call(print, "variable")]) : "",
               ")",
             ])
           : "",
