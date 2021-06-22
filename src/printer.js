@@ -631,9 +631,12 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const node = path.getValue();
   const lastArg = getLast(args);
 
+  // 123abc
   const maybeTrailingComma =
-    ["call", "new", "unset", "isset"].includes(node.kind) &&
-    shouldPrintComma(options, "7.3")
+    (shouldPrintComma(options, "7.3") &&
+      ["call", "new", "unset", "isset"].includes(node.kind)) ||
+    (shouldPrintComma(options, "8.0") &&
+      ["function", "closure", "method", "arrowfunc"].includes(node.kind))
       ? indent(
           concat([
             lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
