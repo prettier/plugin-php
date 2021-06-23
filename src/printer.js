@@ -631,7 +631,6 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const node = path.getValue();
   const lastArg = getLast(args);
 
-  // 123abc
   const maybeTrailingComma =
     (shouldPrintComma(options, "7.3") &&
       ["call", "new", "unset", "isset"].includes(node.kind)) ||
