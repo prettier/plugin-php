@@ -4603,9 +4603,9 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-"php-parser@https://github.com/glayzzle/php-parser#425c4dcc9f386596bdcd5b458503b3667a858141":
+"php-parser@https://github.com/glayzzle/php-parser#cca83041d938b972c7ef74648f29de03777b0ea4":
   version "3.0.2"
-  resolved "https://github.com/glayzzle/php-parser#425c4dcc9f386596bdcd5b458503b3667a858141"
+  resolved "https://github.com/glayzzle/php-parser#cca83041d938b972c7ef74648f29de03777b0ea4"
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"

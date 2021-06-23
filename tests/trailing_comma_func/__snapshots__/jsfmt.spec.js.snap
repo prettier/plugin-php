@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`function.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.0"
+printWidth: 80
+trailingComma: "all"
+trailingCommaPHP: false
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class f1 {
+    function f2(
+        int $classFunctionArgumentOne,
+        ?float $classFunctionArgumentTwo,
+        string $classFunctionArgumentThree,
+    ) {
+        return fn(
+            $labdaFunctionArgumentOne,
+            $labdaFunctionArgumentTwo,
+            $labdaFunctionArgumentThree,
+            $labdaFunctionArgumentFour,
+        ) => true;
+    }
+}
+
+function f3(
+    $standaloneFunctionArgumentOne,
+    $standaloneFunctionArgumentTwo,
+    $standaloneFunctionArgumentThree,
+    $standaloneFunctionArgumentFour,
+) {
+}
+
+f3(
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+);
+
+=====================================output=====================================
+<?php
+
+class f1
+{
+    function f2(
+        int $classFunctionArgumentOne,
+        ?float $classFunctionArgumentTwo,
+        string $classFunctionArgumentThree
+    ) {
+        return fn(
+            $labdaFunctionArgumentOne,
+            $labdaFunctionArgumentTwo,
+            $labdaFunctionArgumentThree,
+            $labdaFunctionArgumentFour
+        ) => true;
+    }
+}
+
+function f3(
+    $standaloneFunctionArgumentOne,
+    $standaloneFunctionArgumentTwo,
+    $standaloneFunctionArgumentThree,
+    $standaloneFunctionArgumentFour
+) {
+}
+
+f3(
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz"
+);
+
+================================================================================
+`;
+
+exports[`function.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.0"
+printWidth: 80
+trailingComma: "none"
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class f1 {
+    function f2(
+        int $classFunctionArgumentOne,
+        ?float $classFunctionArgumentTwo,
+        string $classFunctionArgumentThree,
+    ) {
+        return fn(
+            $labdaFunctionArgumentOne,
+            $labdaFunctionArgumentTwo,
+            $labdaFunctionArgumentThree,
+            $labdaFunctionArgumentFour,
+        ) => true;
+    }
+}
+
+function f3(
+    $standaloneFunctionArgumentOne,
+    $standaloneFunctionArgumentTwo,
+    $standaloneFunctionArgumentThree,
+    $standaloneFunctionArgumentFour,
+) {
+}
+
+f3(
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+);
+
+=====================================output=====================================
+<?php
+
+class f1
+{
+    function f2(
+        int $classFunctionArgumentOne,
+        ?float $classFunctionArgumentTwo,
+        string $classFunctionArgumentThree,
+    ) {
+        return fn(
+            $labdaFunctionArgumentOne,
+            $labdaFunctionArgumentTwo,
+            $labdaFunctionArgumentThree,
+            $labdaFunctionArgumentFour,
+        ) => true;
+    }
+}
+
+function f3(
+    $standaloneFunctionArgumentOne,
+    $standaloneFunctionArgumentTwo,
+    $standaloneFunctionArgumentThree,
+    $standaloneFunctionArgumentFour,
+) {
+}
+
+f3(
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+    "abcdefghijklmnopqrstuvwxyz",
+);
+
+================================================================================
+`;
