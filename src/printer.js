@@ -1102,7 +1102,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const beforeCloseTag = lastNode
         ? concat([
             hasNewlineInRange(
-              options.originalText,
+              options.originalText.trimEnd(),
               options.locEnd(lastNode),
               options.locEnd(node)
             )
