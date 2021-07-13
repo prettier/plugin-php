@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "linguist-languages": "^7.5.1",
-    "mem": "^8.0.0",
+    "mem": "^9.0.0",
     "php-parser": "https://github.com/glayzzle/php-parser#cca83041d938b972c7ef74648f29de03777b0ea4"
   },
   "devDependencies": {
