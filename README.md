@@ -221,6 +221,20 @@ The official [prettier plugin for atom](https://github.com/prettier/prettier-ato
 
 The official [prettier plugin for vscode](https://github.com/prettier/prettier-vscode) supports plugins since Version 1.10.0. To enable it, install the extension and make sure the plugin is installed _locally_ (in your project folder). After restarting VScode the plugin should work as expected.
 
+### PhpStorm / IntelliJ / Jetbrains IDE
+
+- Install prettier and plugin locally `yarn add -D prettier @prettier/plugin-php`
+- Open Settings (File, Settings)
+- Go to Plugins Section, Select Marketplace, Search for Prettier, Install Plugin, Restart IDE
+- Open Settings, Search for Prettier, select Prettier in left settings navigation
+- Check prettier package has auto-detected, should be something like `myproject/node_modules/prettier`
+- Update Run for Files to include .php, eg: `{**/*,*}.{js,ts,jsx,tsx,php,json,scss,vue,md}`
+- Tick the On Save button, if you want your files formatting updated on file save
+- Clock OK to save settings
+
+_Note: Just pressing save not reformat your current file unless the file has been modified in some way, 
+alternatively you can use the Prettier shortcut Ctrl+Alt+Shift+P_
+
 ### Sublime Text
 
 Sublime Text support is available through Package Control and the [JsPrettier](https://packagecontrol.io/packages/JsPrettier) plugin.
