@@ -232,7 +232,7 @@ The official [prettier plugin for vscode](https://github.com/prettier/prettier-v
 - Tick the On Save button, if you want your files formatting updated on file save
 - Clock OK to save settings
 
-_Note: Just pressing save not reformat your current file unless the file has been modified in some way, 
+_Note: Just pressing save does not reformat your current file unless the file has been modified in some way, 
 alternatively you can use the Prettier shortcut Ctrl+Alt+Shift+P_
 
 ### Sublime Text
