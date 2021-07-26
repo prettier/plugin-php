@@ -29,3 +29,11 @@ f3(
     "abcdefghijklmnopqrstuvwxyz",
     "abcdefghijklmnopqrstuvwxyz",
 );
+
+$f4 = function () use (
+    $closureUseBlockVariableOne,
+    $closureUseBlockVariableTwo,
+    $closureUseBlockVariableThree,
+    $closureUseBlockVariableFour,
+) {
+};

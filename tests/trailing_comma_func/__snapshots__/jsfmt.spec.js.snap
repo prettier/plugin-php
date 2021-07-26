@@ -41,6 +41,14 @@ f3(
     "abcdefghijklmnopqrstuvwxyz",
 );
 
+$f4 = function () use (
+    $closureUseBlockVariableOne,
+    $closureUseBlockVariableTwo,
+    $closureUseBlockVariableThree,
+    $closureUseBlockVariableFour,
+) {
+};
+
 =====================================output=====================================
 <?php
 
@@ -74,6 +82,13 @@ f3(
     "abcdefghijklmnopqrstuvwxyz",
     "abcdefghijklmnopqrstuvwxyz"
 );
+
+$f4 = function () use (
+    $closureUseBlockVariableOne,
+    $closureUseBlockVariableTwo,
+    $closureUseBlockVariableThree,
+    $closureUseBlockVariableFour
+) {};
 
 ================================================================================
 `;
@@ -119,6 +134,14 @@ f3(
     "abcdefghijklmnopqrstuvwxyz",
 );
 
+$f4 = function () use (
+    $closureUseBlockVariableOne,
+    $closureUseBlockVariableTwo,
+    $closureUseBlockVariableThree,
+    $closureUseBlockVariableFour,
+) {
+};
+
 =====================================output=====================================
 <?php
 
@@ -152,6 +175,13 @@ f3(
     "abcdefghijklmnopqrstuvwxyz",
     "abcdefghijklmnopqrstuvwxyz",
 );
+
+$f4 = function () use (
+    $closureUseBlockVariableOne,
+    $closureUseBlockVariableTwo,
+    $closureUseBlockVariableThree,
+    $closureUseBlockVariableFour,
+) {};
 
 ================================================================================
 `;
