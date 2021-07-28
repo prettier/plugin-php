@@ -115,16 +115,29 @@ const printers = {
       }
     },
     hasPrettierIgnore(path) {
-      const node = path.getNode();
       const isSimpleIgnore = (comment) =>
         comment.value.includes("prettier-ignore") &&
         !comment.value.includes("prettier-ignore-start") &&
         !comment.value.includes("prettier-ignore-end");
+
+      const parentNode = path.getParentNode();
+      const node = path.getNode();
+
       return (
-        node &&
-        node.comments &&
-        node.comments.length > 0 &&
-        node.comments.some(isSimpleIgnore)
+        (node &&
+          node.kind !== "classconstant" &&
+          node.comments &&
+          node.comments.length > 0 &&
+          node.comments.some(isSimpleIgnore)) ||
+        // For proper formatting, the classconstant ignore formatting should
+        // run on the "constant" child
+        (node &&
+          node.kind === "constant" &&
+          parentNode &&
+          parentNode.kind === "classconstant" &&
+          parentNode.comments &&
+          parentNode.comments.length > 0 &&
+          parentNode.comments.some(isSimpleIgnore))
       );
     },
   },
