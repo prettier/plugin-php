@@ -1204,32 +1204,35 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   if (!path.getValue().attrGroups) {
     return [];
   }
-  let i = 0;
+  let groupI = 0;
   path.each((agPath) => {
+    if (groupI++ > 0) {
+      allAttrs.push(inline ? " " : hardline);
+    }
+    allAttrs.push("#[");
+    const attrsInGroup = [ifBreak(softline)];
     agPath.each((attrPath) => {
       const attrNode = attrPath.getValue();
-      const r = [];
-      if (!inline) {
-        r.push("#[");
-      } else if (i++ > 0) {
-        r.push(",", line);
+      if (attrsInGroup.length > 1) {
+        attrsInGroup.push(",", " ", ifBreak(softline));
       }
-      r.push(attrNode.name);
+      const attrStmt = [attrNode.name];
       if (attrNode.args.length > 0) {
-        r.push(printArgumentsList(attrPath, options, print, "args"));
+        attrStmt.push(printArgumentsList(attrPath, options, print, "args"));
       }
-      if (!inline) {
-        r.push("]", hardline);
-      }
-      allAttrs.push(group(concat(r)));
+      attrsInGroup.push(group(concat(attrStmt)));
     }, "attrs");
+    allAttrs.push(
+      group(indent(concat([...attrsInGroup, ifBreak(softline)]))),
+      "]",
+      inline ? softline : hardline,
+      inline ? " " : ""
+    );
   }, "attrGroups");
   if (allAttrs.length === 0) {
     return [];
-  } else if (inline) {
-    return ["#[", ...allAttrs, "]", " "];
   }
-  return allAttrs;
+  return [concat(allAttrs)];
 }
 
 function printClass(path, options, print) {
