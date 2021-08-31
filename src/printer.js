@@ -1199,10 +1199,51 @@ function printClassPart(
   );
 }
 
+function printAttrs(path, options, print, { inline = false } = {}) {
+  const allAttrs = [];
+  if (!path.getValue().attrGroups) {
+    return [];
+  }
+  path.each((agPath) => {
+    const attrGroup = ["#["];
+    if (allAttrs.length > 0) {
+      allAttrs.push(inline ? " " : hardline);
+    }
+    attrGroup.push(ifBreak(softline));
+    agPath.each((attrPath) => {
+      const attrNode = attrPath.getValue();
+      if (attrGroup.length > 2) {
+        attrGroup.push(",", ifBreak(softline, " "));
+      }
+      const attrStmt = [attrNode.name];
+      if (attrNode.args.length > 0) {
+        attrStmt.push(printArgumentsList(attrPath, options, print, "args"));
+      }
+      attrGroup.push(group(concat(attrStmt)));
+    }, "attrs");
+    allAttrs.push(
+      group(
+        concat([
+          indent(concat(attrGroup)),
+          ifBreak(softline),
+          "]",
+          softline,
+          inline ? " " : "",
+        ])
+      )
+    );
+  }, "attrGroups");
+  if (allAttrs.length === 0) {
+    return [];
+  }
+  return [concat([...allAttrs, inline ? "" : hardline])];
+}
+
 function printClass(path, options, print) {
   const node = path.getValue();
-
-  const declaration = [];
+  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
+  const attrs = printAttrs(path, options, print, { inline: isAnonymousClass });
+  const declaration = isAnonymousClass ? [] : [...attrs];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1211,8 +1252,6 @@ function printClass(path, options, print) {
   if (node.isAbstract) {
     declaration.push("abstract ");
   }
-
-  const isAnonymousClass = node.kind === "class" && node.isAnonymous;
 
   // `new` print `class` keyword with arguments
   declaration.push(isAnonymousClass ? "" : node.kind);
@@ -1318,7 +1357,9 @@ function printClass(path, options, print) {
 
 function printFunction(path, options, print) {
   const node = path.getValue();
-  const declaration = [];
+  const declaration = [
+    ...printAttrs(path, options, print, { inline: node.kind === "closure" }),
+  ];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1745,6 +1786,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
+        ...printAttrs(path, options, print, { inline: true }),
         node.isStatic ? "static " : "",
         "fn",
         printArgumentsList(path, options, print),
@@ -1764,6 +1806,7 @@ function printNode(path, options, print) {
         promoted = "private ";
       }
       const name = concat([
+        ...printAttrs(path, options, print, { inline: true }),
         promoted,
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
@@ -1823,6 +1866,11 @@ function printNode(path, options, print) {
         ])
       );
     case "propertystatement": {
+      const attrs = [];
+      path.map(
+        (propPath) => attrs.push(...printAttrs(propPath, options, print)),
+        "properties"
+      );
       const printed = path.map((childPath) => {
         return print(childPath);
       }, "properties");
@@ -1842,6 +1890,7 @@ function printNode(path, options, print) {
 
       return group(
         concat([
+          ...attrs,
           hasVisibility
             ? concat([node.visibility === null ? "var" : node.visibility, ""])
             : "",
@@ -2148,6 +2197,7 @@ function printNode(path, options, print) {
       ) {
         return concat([
           "new ",
+          ...path.call(printAttrs, "what"),
           path.call(print, "what"),
           "(",
           join(", ", path.map(print, "arguments")),
@@ -2168,6 +2218,10 @@ function printNode(path, options, print) {
                 " ",
               ])
             : "",
+          ...path.call(
+            (pa, opt, pr) => printAttrs(pa, opt, pr, { inline: true }),
+            "what"
+          ),
           "class",
           node.arguments.length > 0
             ? concat([" ", printArgumentsList(path, options, print)])
@@ -2406,9 +2460,8 @@ function printNode(path, options, print) {
     }
     case "constantstatement":
     case "classconstant": {
-      const printed = path.map((childPath) => {
-        return print(childPath);
-      }, "constants");
+      const attrs = printAttrs(path, options, print);
+      const printed = path.map((childPath) => print(childPath), "constants");
 
       let firstVariable;
 
@@ -2421,6 +2474,7 @@ function printNode(path, options, print) {
 
       return group(
         concat([
+          ...attrs,
           node.visibility ? concat([node.visibility, " "]) : "",
           "const",
           firstVariable ? concat([" ", firstVariable]) : "",

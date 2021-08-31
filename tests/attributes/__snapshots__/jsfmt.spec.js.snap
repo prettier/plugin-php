@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`attributes.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+#[A,B]
+#[C('arg1','arg2',D::class)]
+class D {
+
+    /** @var int Constant F */
+    #[E]
+    const F = 0;
+
+    #[G] public int $h = 0;
+
+    /**
+     * @param int $m input Integer
+     * @return callable function doubles int
+     */
+    #[I,J] function k(#[L] int $m):callable {
+      return #[N,O]#[P] fn(#[Q] int $r) => $r * 2;
+    }
+
+    // Testing S
+    #[S]
+//Testing S-T
+#[T] //Testing T
+
+    private function u() {
+        return #[V] function() { return null; };
+    }
+
+}
+
+#[W('a', null, 'looooong','paraaaams','list','aaaaaaaaaaaaa','vvvvvvvvvvvv','cccccccccc','eeeeeeeeeee'), X()] function Y(#[ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(12345678, 1234578)] string $_):string {return new #[NON, Anon()] class {};}
+
+#[IA('interface'),\\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB]
+interface IC {
+    #[ID] const IE = 123;
+
+    #[IG, IH('abc'),IJ()] public function ik();
+}
+
+=====================================output=====================================
+<?php
+
+#[A, B]
+#[C("arg1", "arg2", D::class)]
+class D
+{
+    /** @var int Constant F */
+    #[E]
+    const F = 0;
+
+    #[G]
+    public int $h = 0;
+
+    /**
+     * @param int $m input Integer
+     * @return callable function doubles int
+     */
+    #[I, J]
+    function k(#[L] int $m): callable {
+        return #[N, O]  #[P] fn(#[Q] int $r) => $r * 2;
+    } //Testing T
+
+    // Testing S
+    //Testing S-T
+    #[S]
+    #[T]
+    private function u()
+    {
+        return #[V] function () {
+            return null;
+        };
+    }
+}
+
+#[
+    W(
+        "a",
+        null,
+        "looooong",
+        "paraaaams",
+        "list",
+        "aaaaaaaaaaaaa",
+        "vvvvvvvvvvvv",
+        "cccccccccc",
+        "eeeeeeeeeee"
+    ),
+    X
+]
+
+function Y(
+    #[
+        ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
+            12345678,
+            1234578
+        )
+    ]
+     string $_
+): string {
+    return new #[NON, Anon] class {};
+}
+
+#[
+    IA("interface"),
+    \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB
+]
+
+interface IC
+{
+    #[ID]
+    const IE = 123;
+
+    #[IG, IH("abc"), IJ]
+    public function ik();
+}
+
+================================================================================
+`;
