@@ -1049,8 +1049,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
           : concat([beforeCloseTagInlineNode, "?>"]);
 
       const nextV = path.getNode(index + 1);
-      // process.stdout.write(`Inline: ${JSON.stringify(nextV)}\n`);
-
       const skipLastComment = nextV && nextV.children && nextV.children.length;
 
       const afterInline =
