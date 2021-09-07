@@ -37,3 +37,18 @@ interface IC {
 
     #[IG, IH('abc'),IJ()] public function ik();
 }
+
+// issue #1820
+final class DomainEventMessage
+{
+    #[Some(type: "some_type")]
+    public function getPayload(): string
+    {
+        return "444";
+    }
+
+    public function getPayload1(): string
+    {
+        return "555";
+    }
+}
