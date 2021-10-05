@@ -46,3 +46,19 @@ class ExampleClass {
         'another_key' => 1
     ];
 }
+
+class FuncVisibility {
+
+    // prettier-ignore
+    static function a() {
+        return [
+            'services'    => [ '_type' => 'prototype', '_required' => FALSE, '_prototype' => [
+                '_type' => 'partial', '_required' => TRUE, '_partial' => 'service',
+            ]]
+        ];
+    }
+
+    // prettier-ignore
+    private function b(){    }
+
+}

@@ -55,6 +55,21 @@ class ExampleClass {
     ];
 }
 
+class FuncVisibility {
+
+    // prettier-ignore
+    static function a() {
+        return [
+            'services'    => [ '_type' => 'prototype', '_required' => FALSE, '_prototype' => [
+                '_type' => 'partial', '_required' => TRUE, '_partial' => 'service',
+            ]]
+        ];
+    }
+
+    // prettier-ignore
+    private function b(){    }
+
+}
 =====================================output=====================================
 <?php
 
@@ -103,6 +118,21 @@ class ExampleClass
         'test'        => 0,
         'another_key' => 1
     ];
+}
+
+class FuncVisibility
+{
+    // prettier-ignore
+    static function a() {
+        return [
+            'services'    => [ '_type' => 'prototype', '_required' => FALSE, '_prototype' => [
+                '_type' => 'partial', '_required' => TRUE, '_partial' => 'service',
+            ]]
+        ];
+    }
+
+    // prettier-ignore
+    private function b(){    }
 }
 
 ================================================================================
