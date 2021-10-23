@@ -2397,6 +2397,13 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
+dot-prop@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-5.3.0.tgz#90ccce708cd9cd82cc4dc8c3ddd9abdd55b20e88"
+  integrity sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
+  dependencies:
+    is-obj "^2.0.0"
+
 electron-to-chromium@^1.3.723:
   version "1.3.742"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.742.tgz#7223215acbbd3a5284962ebcb6df85d88b95f200"
@@ -3161,6 +3168,11 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+is-obj@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-2.0.0.tgz#473fb05d973705e3fd9620545018ca8e22ef4982"
+  integrity sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==
+
 is-potential-custom-element-name@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-potential-custom-element-name/-/is-potential-custom-element-name-1.0.1.tgz#171ed6f19e3ac554394edf78caa05784a45bebb5"
@@ -3541,14 +3553,15 @@ jest-resolve@^27.3.1:
     resolve.exports "^1.1.0"
     slash "^3.0.0"
 
-jest-runner-eslint@0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.10.1.tgz#f76eacb51154736d53d64eb195cc8a82f02caf12"
-  integrity sha512-3HiDDWwJfXksVUkpDIHphwPkXYtaKFCBjufTz3aR4b6WqSl31WECmTGFqhkfWzQdEACShO6WkKjBj/gSfgLsqQ==
+jest-runner-eslint@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-1.0.0.tgz#5cede321ed5ed57233462c5204a0fa8d90f993bd"
+  integrity sha512-LMlAaIQqIIySEThv651bfvzwX6J4nOu91RaEUYmXJgn4XXbM40rSMlBaC8ZrrFcFemu88MFlnrCLuYf7ZHE2sQ==
   dependencies:
     chalk "^3.0.0"
     cosmiconfig "^6.0.0"
     create-jest-runner "^0.6.0"
+    dot-prop "^5.3.0"
 
 jest-runner@^27.3.1:
   version "27.3.1"
