@@ -49,10 +49,5 @@
     "prettier": "prettier --plugin=. --parser=php",
     "build-standalone": "rollup -c build/rollup.config.js",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
-  },
-  "jest": {
-    "projects": [
-      "<rootDir>/jest.*.config.js"
-    ]
   }
 }
