@@ -24,7 +24,7 @@
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-jest": "24.4.0",
     "eslint-plugin-prettier": "4.0.0",
-    "jest": "27.3.1",
+    "jest": "27.4.4",
     "jest-runner-eslint": "1.0.0",
     "jest-snapshot-serializer-raw": "^1.1.0",
     "prettier": "2.1.2",
