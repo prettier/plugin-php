@@ -635,7 +635,9 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     (shouldPrintComma(options, "7.3") &&
       ["call", "new", "unset", "isset"].includes(node.kind)) ||
     (shouldPrintComma(options, "8.0") &&
-      ["function", "closure", "method", "arrowfunc"].includes(node.kind))
+      ["function", "closure", "method", "arrowfunc", "attribute"].includes(
+        node.kind
+      ))
       ? indent(
           concat([
             lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
@@ -1231,6 +1233,7 @@ function printAttrs(path, options, print, { inline = false } = {}) {
       group(
         concat([
           indent(concat(attrGroup)),
+          ifBreak(shouldPrintComma(options, "8.0") ? "," : ""),
           ifBreak(softline),
           "]",
           softline,
@@ -2225,7 +2228,7 @@ function printNode(path, options, print) {
               ])
             : "",
           ...path.call(
-            (pa, opt, pr) => printAttrs(pa, opt, pr, { inline: true }),
+            (pa) => printAttrs(pa, options, print, { inline: true }),
             "what"
           ),
           "class",

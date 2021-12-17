@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`attributes-trail-comma.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.0"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+#[W('a', null, 'looooong','paraaaams','list','aaaaaaaaaaaaa','vvvvvvvvvvvv','cccccccccc','eeeeeeeeeee'), X()]
+final class ORM
+{
+
+    #[
+        ORM\\Column,
+        ORM\\CustomIdGenerator(class: "bar"),
+        ORM\\GeneratedValue(strategy: 'CUSTOM'),
+        ORM\\Id
+    ]
+    private string $id;
+}
+
+=====================================output=====================================
+<?php
+
+#[
+    W(
+        "a",
+        null,
+        "looooong",
+        "paraaaams",
+        "list",
+        "aaaaaaaaaaaaa",
+        "vvvvvvvvvvvv",
+        "cccccccccc",
+        "eeeeeeeeeee",
+    ),
+    X,
+]
+
+final class ORM
+{
+    #[
+        ORM\\Column,
+        ORM\\CustomIdGenerator(class: "bar"),
+        ORM\\GeneratedValue(strategy: "CUSTOM"),
+        ORM\\Id,
+    ]
+
+    private string $id;
+}
+
+================================================================================
+`;
