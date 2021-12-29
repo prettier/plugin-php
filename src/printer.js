@@ -1214,14 +1214,14 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   }
   path.each((agPath) => {
     const attrGroup = ["#["];
-    if (allAttrs.length > 0) {
-      allAttrs.push(inline ? " " : hardline);
+    if (!inline && allAttrs.length > 0) {
+      allAttrs.push(hardline);
     }
-    attrGroup.push(ifBreak(softline));
+    attrGroup.push(softline);
     agPath.each((attrPath) => {
       const attrNode = attrPath.getValue();
       if (attrGroup.length > 2) {
-        attrGroup.push(",", ifBreak(softline, " "));
+        attrGroup.push(",", line);
       }
       const attrStmt = [attrNode.name];
       if (attrNode.args.length > 0) {
@@ -1234,10 +1234,9 @@ function printAttrs(path, options, print, { inline = false } = {}) {
         concat([
           indent(concat(attrGroup)),
           ifBreak(shouldPrintComma(options, "8.0") ? "," : ""),
-          ifBreak(softline),
-          "]",
           softline,
-          inline ? " " : "",
+          "]",
+          inline ? ifBreak(softline, " ") : "",
         ])
       )
     );
