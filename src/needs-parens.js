@@ -52,6 +52,7 @@ function needsParens(path) {
             (node.type === "+" || node.type === "-")
           );
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":
@@ -76,6 +77,7 @@ function needsParens(path) {
           return true;
         case "call":
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
           return name === "what" && parent.what === node;
@@ -121,6 +123,7 @@ function needsParens(path) {
       }
     }
     case "propertylookup":
+    case "nullsafepropertylookup":
     case "staticlookup": {
       switch (parent.kind) {
         case "call":
@@ -138,6 +141,7 @@ function needsParens(path) {
     case "new": {
       switch (parent.kind) {
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":
@@ -149,6 +153,7 @@ function needsParens(path) {
     case "yield": {
       switch (parent.kind) {
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":
@@ -196,6 +201,7 @@ function needsParens(path) {
 
           return true;
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":
@@ -211,6 +217,7 @@ function needsParens(path) {
 
         // https://github.com/prettier/plugin-php/issues/1675
         case "propertylookup":
+        case "nullsafepropertylookup":
           return true;
 
         default:
@@ -225,6 +232,7 @@ function needsParens(path) {
     case "array":
       switch (parent.kind) {
         case "propertylookup":
+        case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":

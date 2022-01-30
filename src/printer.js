@@ -288,7 +288,7 @@ function printMemberChain(path, options, print) {
     if (
       printedNodes[i].node.kind === "call" &&
       printedNodes[i - 1] &&
-      ["propertylookup", "staticlookup"].includes(
+      ["propertylookup", "nullsafepropertylookup", "staticlookup"].includes(
         printedNodes[i - 1].node.kind
       ) &&
       printedNodes[i - 1].needsParens
@@ -2822,7 +2822,11 @@ function printNode(path, options, print) {
       const parentParent = path.getParentNode(1);
       const pureParent =
         parent.kind === "cast" && parentParent ? parentParent : parent;
-      const breakLookupNodes = ["propertylookup", "staticlookup"];
+      const breakLookupNodes = [
+        "propertylookup",
+        "nullsafepropertylookup",
+        "staticlookup",
+      ];
       const breakClosingParens = breakLookupNodes.includes(pureParent.kind);
 
       const printedTest = path.call(print, "test");

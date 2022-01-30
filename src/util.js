@@ -485,6 +485,7 @@ function hasTrailingComment(node) {
 function isLookupNode(node) {
   return (
     node.kind === "propertylookup" ||
+    node.kind === "nullsafepropertylookup" ||
     node.kind === "staticlookup" ||
     node.kind === "offsetlookup"
   );
