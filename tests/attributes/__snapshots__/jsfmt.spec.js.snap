@@ -81,7 +81,7 @@ class D
      */
     #[I, J]
     function k(#[L] int $m): callable {
-        return #[N, O]  #[P] fn(#[Q] int $r) => $r * 2;
+        return #[N, O] #[P] fn(#[Q] int $r) => $r * 2;
     } //Testing T
 
     // Testing S
@@ -110,7 +110,6 @@ class D
     ),
     X
 ]
-
 function Y(
     #[
         ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
@@ -118,7 +117,7 @@ function Y(
             1234578
         )
     ]
-     string $_
+    string $_
 ): string {
     return new #[NON, Anon] class {};
 }
@@ -127,7 +126,6 @@ function Y(
     IA("interface"),
     \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB
 ]
-
 interface IC
 {
     #[ID]

@@ -40,7 +40,6 @@ final class ORM
     ),
     X,
 ]
-
 final class ORM
 {
     #[
@@ -49,7 +48,6 @@ final class ORM
         ORM\\GeneratedValue(strategy: "CUSTOM"),
         ORM\\Id,
     ]
-
     private string $id;
 }
 
