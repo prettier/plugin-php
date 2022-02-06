@@ -1737,6 +1737,7 @@ function printNode(path, options, print) {
         node.alias ? concat([" as ", path.call(print, "alias")]) : "",
       ]);
     case "class":
+    case "enum":
     case "interface":
     case "trait":
       return printClass(path, options, print);
@@ -3062,6 +3063,28 @@ function printNode(path, options, print) {
         : "";
     case "namedargument":
       return concat([node.name, ": ", path.call(print, "value")]);
+
+    case "enumcase":
+      return group(
+        concat([
+          "case ",
+          path.call(print, "name"),
+          node.value
+            ? concat([
+                " =",
+                printAssignmentRight(
+                  node.name,
+                  node.value,
+                  path.call(print, "value"),
+                  false,
+                  options
+                ),
+              ])
+            : "",
+          ";",
+        ])
+      );
+
     case "error":
     default:
       // istanbul ignore next

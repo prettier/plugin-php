@@ -1,61 +1,67 @@
 <?php
-try {
-    throw new OtherException();
-} catch (Exception | TestException $e) {
-    echo 'Caught exception: ',  $e->getMessage();
-} catch (OtherException $i) {
-    echo 'Caugh other';
-} finally {
-    echo "First finally";
+
+interface Colorful
+{
+	public function color(): string;
 }
 
-try {
-    throw new FirstException();
-} catch (FirstException | SecondException $e) {
-    // handle first and second exceptions
+trait Rectangle
+{
+	public function shape(): string {
+		return "Rectangle";
+	}
 }
 
-try {
-    throw new FirstException();
-} catch (FirstException $e) {
-    try {
-        throw new SecondException();
-    } catch (SecondException $e) {
-        // handle second exceptions
-    }
+enum Suit implements Colorful
+{
+	use Rectangle; // https://www.php.net/manual/en/language.enumerations.traits.php
+
+	case Hearts;
+	case Diamonds;
+	case Clubs;
+	case Spades;
+
+	public const Favorite = self::Clubs;
+
+	// Fulfills the interface contract.
+	public function color(): string
+	{
+		return match($this) {
+			Suit::Hearts,
+			Suit::Diamonds => 'Red',
+			Suit::Clubs,
+			Suit::Spades => 'Black',
+		};
+	}
+
+	// Not part of an interface; that's fine.
+	public function shape(): string
+	{
+		return "Rectangle";
+	}
+
+	public static function staticMethod(){
+		return self::Clubs;
+	}
 }
 
-throw new VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassException('exception');
-throw $e;
-throw new \Exception('Bad logic in order cancel');
+function paint(Colorful $c) { }
 
-try {} catch (Exception $e) {} finally {}
+paint(Suit::Clubs);  // Works
 
-try {
+print Suit::Diamonds->shape(); // prints "Rectangle"
 
-} catch (Exception $e) {
 
-} finally {
-
+class Foo
+{
+	const Bar = Suit::Hearts; // https://www.php.net/manual/en/language.enumerations.expressions.php
 }
 
-try {
-    // Comment
-} catch (Exception $e) {
-    // Comment
-} finally {
-    // Comment
-}
 
-// PHP 8.0 non-capturing exception catch
-try {
-    // Something
-} catch (\Exception) {
-    // Nothing
-}
-
-try {
-    // Something
-} catch (MyException | OtherException) {
-    // Nothing
+enum BackedSuit: string
+{
+	case Hearts = 'H';
+	case Diamonds = 'D';
+	case Clubs = 'C';
+	case Spades = 'S';
 }
