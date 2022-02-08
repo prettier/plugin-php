@@ -11,6 +11,7 @@
     "standalone.js"
   ],
   "dependencies": {
+    "eslint-plugin-prettier-doc": "1.0.1",
     "linguist-languages": "^7.5.1",
     "mem": "^8.0.0",
     "php-parser": "3.1.0-beta.0"
