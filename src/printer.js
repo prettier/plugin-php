@@ -1827,7 +1827,6 @@ function printNode(path, options, print) {
             // and value, we store them as dangling comments
             hasDanglingComments(node) ? " " : "",
             comments.printDanglingComments(path, options, true),
-
             " =",
             printAssignmentRight(
               node.name,
