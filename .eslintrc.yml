@@ -3,8 +3,10 @@ extends:
   - eslint:recommended
   - plugin:prettier/recommended
   - plugin:jest/recommended
+  - plugin:prettier-doc/recommended
 plugins:
   - import
+  - prettier-doc
 root: true
 env:
   es6: true
@@ -35,6 +37,7 @@ rules:
     - error
     - never
     - exceptRange: true
+  prettier-doc/no-concat: off
 overrides:
   - files: "tests/**/*.js"
     rules:
