@@ -60,8 +60,5 @@ class Foo
 
 enum BackedSuit: string
 {
-	case Hearts = 'H';
-	case Diamonds = 'D';
-	case Clubs = 'C';
-	case Spades = 'S';
+	case Spades = 5;
 }

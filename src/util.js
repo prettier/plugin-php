@@ -165,6 +165,7 @@ function nodeHasStatement(node) {
     "program",
     "namespace",
     "class",
+    "enum",
     "interface",
     "trait",
     "traituse",

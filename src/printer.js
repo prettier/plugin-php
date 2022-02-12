@@ -1268,6 +1268,10 @@ function printClass(path, options, print) {
     declaration.push(" ", path.call(print, "name"));
   }
 
+  if (node.kind === "enum" && node.valueType) {
+    declaration.push(": ", path.call(print, "valueType"));
+  }
+
   // Only `class` can have `extends` and `implements`
   if (node.extends && node.implements) {
     declaration.push(
