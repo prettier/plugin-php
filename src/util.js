@@ -421,6 +421,7 @@ function lineShouldEndWithSemicolon(path) {
     "traitalias",
     "goto",
     "constantstatement",
+    "enumcase",
     "global",
     "static",
     "echo",

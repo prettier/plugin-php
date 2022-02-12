@@ -3085,7 +3085,6 @@ function printNode(path, options, print) {
                 ),
               ])
             : "",
-          ";",
         ])
       );
 
