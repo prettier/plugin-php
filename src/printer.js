@@ -1268,6 +1268,10 @@ function printClass(path, options, print) {
     declaration.push(" ", path.call(print, "name"));
   }
 
+  if (node.kind === "enum" && node.valueType) {
+    declaration.push(": ", path.call(print, "valueType"));
+  }
+
   // Only `class` can have `extends` and `implements`
   if (node.extends && node.implements) {
     declaration.push(
@@ -1737,6 +1741,7 @@ function printNode(path, options, print) {
         node.alias ? concat([" as ", path.call(print, "alias")]) : "",
       ]);
     case "class":
+    case "enum":
     case "interface":
     case "trait":
       return printClass(path, options, print);
@@ -3062,6 +3067,27 @@ function printNode(path, options, print) {
         : "";
     case "namedargument":
       return concat([node.name, ": ", path.call(print, "value")]);
+
+    case "enumcase":
+      return group(
+        concat([
+          "case ",
+          path.call(print, "name"),
+          node.value
+            ? concat([
+                " =",
+                printAssignmentRight(
+                  node.name,
+                  node.value,
+                  path.call(print, "value"),
+                  false,
+                  options
+                ),
+              ])
+            : "",
+        ])
+      );
+
     case "error":
     default:
       // istanbul ignore next
