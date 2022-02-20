@@ -1821,6 +1821,7 @@ function printNode(path, options, print) {
       const name = concat([
         ...printAttrs(path, options, print, { inline: true }),
         promoted,
+        node.readonly ? "readonly " : "",
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
         node.byref ? "&" : "",
@@ -1859,6 +1860,7 @@ function printNode(path, options, print) {
     case "property":
       return group(
         concat([
+          node.readonly ? "readonly " : "",
           node.type
             ? concat([node.nullable ? "?" : "", path.call(print, "type"), " "])
             : "",
