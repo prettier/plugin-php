@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`intersection.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+function generateSlug(HasTitle&HasId $post) {
+	return strtolower($post->getTitle()) . $post->getId();
+}
+=====================================output=====================================
+<?php
+function generateSlug(HasTitle&HasId $post)
+{
+    return strtolower($post->getTitle()) . $post->getId();
+}
+
+================================================================================
+`;
