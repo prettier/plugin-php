@@ -74,6 +74,10 @@ function testReturn(?string $name): ?string
     return $name;
 }
 
+function test_return_never(): never {
+    exit();
+}
+
 function swap(&$left, &$right): void
 {
     if ($left === $right) {
