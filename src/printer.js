@@ -1613,6 +1613,18 @@ function isStringOnItsOwnLine(node, text, options) {
   );
 }
 
+function printComposedTypes(path, print, glue) {
+  return group(
+    concat(
+      path.map(
+        (uPath, i) =>
+          concat(i === 0 ? [path.call(print)] : [glue, path.call(print)]),
+        "types"
+      )
+    )
+  );
+}
+
 function printNode(path, options, print) {
   const node = path.getValue();
 
@@ -2930,16 +2942,11 @@ function printNode(path, options, print) {
         quote,
       ]);
     }
+    case "intersectiontype": {
+      return printComposedTypes(path, print, "&");
+    }
     case "uniontype": {
-      return group(
-        concat(
-          path.map(
-            (uPath, i) =>
-              concat(i === 0 ? [path.call(print)] : ["|", path.call(print)]),
-            "types"
-          )
-        )
-      );
+      return printComposedTypes(path, print, "|");
     }
     case "encapsedpart": {
       const open =
