@@ -102,7 +102,7 @@ enum Suit implements Colorful
     {
         return match ($this) {
             Suit::Hearts, Suit::Diamonds => "Red",
-            Suit::Clubs, Suit::Spades => "Black"
+            Suit::Clubs, Suit::Spades => "Black",
         };
     }
 
