@@ -3062,7 +3062,11 @@ function printNode(path, options, print) {
             ])
           ),
           ") {",
-          indent(concat(arms)),
+          group(
+            indent(
+              concat([...arms, options.trailingCommaPHP ? ifBreak(",") : ""])
+            )
+          ),
           " ",
           softline,
           "}",
