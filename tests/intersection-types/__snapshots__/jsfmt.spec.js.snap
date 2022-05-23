@@ -10,11 +10,18 @@ printWidth: 80
 function generateSlug(HasTitle&HasId $post) {
 	return strtolower($post->getTitle()) . $post->getId();
 }
+
+function test(foo|bar &$input) {}
+
 =====================================output=====================================
 <?php
 function generateSlug(HasTitle&HasId $post)
 {
     return strtolower($post->getTitle()) . $post->getId();
+}
+
+function test(foo|bar &$input)
+{
 }
 
 ================================================================================

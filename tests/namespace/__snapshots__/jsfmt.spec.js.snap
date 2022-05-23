@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`keywords.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+namespace Base\\Test\\To\\Extend;
+
+use Name\\Space\\Enum;
+use App\\Entity\\Interface\\EntityInterface;
+use \\Foo\\Trait\\Bar;
+
+=====================================output=====================================
+<?php
+namespace Base\\Test\\To\\Extend;
+
+use Name\\Space\\Enum;
+use App\\Entity\\Interface\\EntityInterface;
+use Foo\\Trait\\Bar;
+
+================================================================================
+`;
+
 exports[`namespace.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
