@@ -3100,6 +3100,8 @@ function printNode(path, options, print) {
             : "",
         ])
       );
+    case "variadicplaceholder":
+      return "...";
 
     case "error":
     default:
