@@ -341,3 +341,8 @@ $obj = call('return new class($value)
         $this->foo = $foo;
     }
 };');
+
+$callable = strlen(...);
+$callable = $item->doSomething(...);
+$callable = $item::doSomething(...);
+$callable = Foo::doSomething(...);
