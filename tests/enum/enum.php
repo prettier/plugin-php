@@ -62,3 +62,6 @@ enum BackedSuit: string
 {
 	case Spades = 5;
 }
+
+class Enum {}
+class Enum extends Foo {}

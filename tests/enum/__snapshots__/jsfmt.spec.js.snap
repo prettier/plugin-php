@@ -70,6 +70,10 @@ enum BackedSuit: string
 {
 	case Spades = 5;
 }
+
+class Enum {}
+class Enum extends Foo {}
+
 =====================================output=====================================
 <?php
 
@@ -134,6 +138,13 @@ class Foo
 enum BackedSuit: string
 {
     case Spades = 5;
+}
+
+class Enum
+{
+}
+class Enum extends Foo
+{
 }
 
 ================================================================================
