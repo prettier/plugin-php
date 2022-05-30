@@ -3047,8 +3047,8 @@ function printNode(path, options, print) {
         const body = armPath.call(print, "body");
         return concat(
           armIdx > 0
-            ? [", ", line, conds, " => ", body]
-            : [line, conds, " => ", body]
+            ? [", ", hardline, conds, " => ", body]
+            : [hardline, conds, " => ", body]
         );
       }, "arms");
       return group(
