@@ -49,7 +49,10 @@ $really_really_really_long_variable_name = match (getValue()) {
     default => throw new \\InvalidArgumentException("Unknown Value")
 };
 
-$boolStr = match ($v) { true => "true",  false => "false" };
+$boolStr = match ($v) {
+    true => "true",
+    false => "false"
+};
 
 $boolish = match ($v) {
     true, 1 => true,
@@ -57,10 +60,23 @@ $boolish = match ($v) {
     default => null
 };
 
-$a = match (true) { test() => "Good",  test2() => "Two",  default => "fail" };
+$a = match (true) {
+    test() => "Good",
+    test2() => "Two",
+    default => "fail"
+};
 
-$nest = match (match ($a) { true => 1,  false => 2 }) {
-    1 => match ($b) { "ok" => true,  "fail" => false,  default => false },
+$nest = match (
+match ($a) {
+        true => 1,
+        false => 2
+    }
+) {
+    1 => match ($b) {
+        "ok" => true,
+        "fail" => false,
+        default => false
+    },
     2 => "null"
 };
 
@@ -116,7 +132,10 @@ $really_really_really_long_variable_name = match (getValue()) {
     default => throw new \\InvalidArgumentException("Unknown Value"),
 };
 
-$boolStr = match ($v) { true => "true",  false => "false" };
+$boolStr = match ($v) {
+    true => "true",
+    false => "false",
+};
 
 $boolish = match ($v) {
     true, 1 => true,
@@ -124,10 +143,23 @@ $boolish = match ($v) {
     default => null,
 };
 
-$a = match (true) { test() => "Good",  test2() => "Two",  default => "fail" };
+$a = match (true) {
+    test() => "Good",
+    test2() => "Two",
+    default => "fail",
+};
 
-$nest = match (match ($a) { true => 1,  false => 2 }) {
-    1 => match ($b) { "ok" => true,  "fail" => false,  default => false },
+$nest = match (
+match ($a) {
+        true => 1,
+        false => 2,
+    }
+) {
+    1 => match ($b) {
+        "ok" => true,
+        "fail" => false,
+        default => false,
+    },
     2 => "null",
 };
 
