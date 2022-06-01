@@ -47,12 +47,12 @@ empty($registry->notExisting->foo);
 empty($this->_items[$key]);
 
 if (empty($var)) {
-    echo '$var is either 0, empty, or not set at all';
+  echo '$var is either 0, empty, or not set at all';
 }
 
 function is_blank($value)
 {
-    return empty($value) && !is_numeric($value);
+  return empty($value) && !is_numeric($value);
 }
 
 if (is_empty(null)) {

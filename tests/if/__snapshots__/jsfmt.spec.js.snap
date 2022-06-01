@@ -118,101 +118,100 @@ string') {
 =====================================output=====================================
 <?php
 if (true) {
-    return 1;
+  return 1;
 } elseif (false) {
-    return 2;
+  return 2;
 } elseif (null) {
-    return 3;
+  return 3;
 } else {
-    return;
+  return;
 }
 
 if (true) {
-    return 1;
+  return 1;
 }
 
 if (true):
-    return 1;
+  return 1;
 elseif (false):
-    return 2;
+  return 2;
 else:
-    return;
+  return;
 endif;
 
 if (true):
-    return 1;
+  return 1;
 endif;
 
 if (true) {
-    return 1;
+  return 1;
 } elseif (false) {
-    return 2;
+  return 2;
 } elseif (null) {
-    return 3;
+  return 3;
 } else {
-    return;
+  return;
 }
 
 if (true) {
-    return 1;
+  return 1;
 } elseif (false) {
-    return 2;
+  return 2;
 } elseif (null) {
-    return 3;
+  return 3;
 }
 
 if (
-    reallyReallyReallyLongFunction() &&
-    $this->reallyreallyreallyreallyLongMethodName()
+  reallyReallyReallyLongFunction() &&
+  $this->reallyreallyreallyreallyLongMethodName()
 ) {
-    return true;
+  return true;
 }
 
 if (
-    $this ||
-    ($that && $theOtherThing && $someReallyReallyReallyLongBooleanVariable)
+  $this ||
+  ($that && $theOtherThing && $someReallyReallyReallyLongBooleanVariable)
 ) {
-    return true;
+  return true;
 }
 
 if (
-    $this ||
-    ($that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable)
+  $this ||
+  ($that && $theOtherThing < $someReallyReallyReallyLongBooleanVariable)
 ) {
-    return true;
+  return true;
 }
 
 if (
-    $this ||
-    ($that &&
-        $theOtherThing < $someReallyReallyReallyLongBooleanVariable ==
-            $equalCheck)
+  $this ||
+  ($that &&
+    $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck)
 ) {
-    return true;
+  return true;
 }
 
 if (
-    $this ||
-    ($that && $theOtherThing) ||
-    $someReallyReallyReallyLongBooleanVariable
+  $this ||
+  ($that && $theOtherThing) ||
+  $someReallyReallyReallyLongBooleanVariable
 ) {
-    return true;
+  return true;
 }
 
 if (
-    $this ||
-    $that ||
-    $theOtherThing ||
-    $someReallyReallyReallyLongBooleanVariable
+  $this ||
+  $that ||
+  $theOtherThing ||
+  $someReallyReallyReallyLongBooleanVariable
 ) {
-    return true;
+  return true;
 }
 
 if (
-    ($this || $that) &&
-    $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck
+  ($this || $that) &&
+  $theOtherThing < $someReallyReallyReallyLongBooleanVariable == $equalCheck
 ) {
-    return true;
+  return true;
 }
 
 if (true):
@@ -227,35 +226,35 @@ if (true) {
 }
 
 if (
-    $showNoticeValue === "1" &&
-    !is_null($currentService) &&
-    $currentService->getServiceId() === $activation->getServiceId()
+  $showNoticeValue === "1" &&
+  !is_null($currentService) &&
+  $currentService->getServiceId() === $activation->getServiceId()
 ) {
-    $test = 1;
+  $test = 1;
 }
 
 if (
-    $showNoticeValue === "1" &&
-    !is_null($currentService) &&
-    $currentService->getServiceIdWithReallyReallyReallyLongName() ===
-        $activation->getServiceId()
+  $showNoticeValue === "1" &&
+  !is_null($currentService) &&
+  $currentService->getServiceIdWithReallyReallyReallyLongName() ===
+    $activation->getServiceId()
 ) {
-    $test = 1;
+  $test = 1;
 }
 
 if (true) {
-    return 1;
+  return 1;
 } else {
-    return 3;
+  return 3;
 }
 
 if (
-    $a ===
-    'string
+  $a ===
+  'string
 string
 string'
 ) {
-    $var = 'string
+  $var = 'string
     string
     string
     other';

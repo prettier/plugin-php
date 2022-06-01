@@ -26,16 +26,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CR>
 <CR>
 echo "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "\\n";<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "This " .<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "\\n";<CR>
 
 ================================================================================
 `;
@@ -66,16 +66,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CRLF>
 <CRLF>
 echo "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "\\n";<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "This " .<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "\\n";<CRLF>
 
 ================================================================================
 `;
@@ -106,16 +106,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<LF>
 <LF>
 echo "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "\\n";<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "This " .<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "\\n";<LF>
 
 ================================================================================
 `;
@@ -146,16 +146,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CR>
 <CR>
 echo "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "\\n";<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "This " .<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "\\n";<CR>
 
 ================================================================================
 `;
@@ -186,16 +186,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CRLF>
 <CRLF>
 echo "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "\\n";<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "This " .<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "\\n";<CRLF>
 
 ================================================================================
 `;
@@ -226,16 +226,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<LF>
 <LF>
 echo "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "\\n";<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "This " .<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "\\n";<LF>
 
 ================================================================================
 `;
@@ -266,16 +266,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CR>
 <CR>
 echo "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "\\n";<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "This " .<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "\\n";<CR>
 
 ================================================================================
 `;
@@ -306,16 +306,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CRLF>
 <CRLF>
 echo "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "\\n";<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "This " .<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "\\n";<CRLF>
 
 ================================================================================
 `;
@@ -346,16 +346,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<LF>
 <LF>
 echo "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "\\n";<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "This " .<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "\\n";<LF>
 
 ================================================================================
 `;
@@ -386,16 +386,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CR>
 <CR>
 echo "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "This " .<CR>
-    "string " .<CR>
-    "was " .<CR>
-    "made " .<CR>
-    "with concatenation." .<CR>
-    "\\n";<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "This " .<CR>
+  "string " .<CR>
+  "was " .<CR>
+  "made " .<CR>
+  "with concatenation." .<CR>
+  "\\n";<CR>
 
 ================================================================================
 `;
@@ -426,16 +426,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<CRLF>
 <CRLF>
 echo "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "This " .<CRLF>
-    "string " .<CRLF>
-    "was " .<CRLF>
-    "made " .<CRLF>
-    "with concatenation." .<CRLF>
-    "\\n";<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "This " .<CRLF>
+  "string " .<CRLF>
+  "was " .<CRLF>
+  "made " .<CRLF>
+  "with concatenation." .<CRLF>
+  "\\n";<CRLF>
 
 ================================================================================
 `;
@@ -466,16 +466,16 @@ echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . 'This ' . 
  */<LF>
 <LF>
 echo "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "This " .<LF>
-    "string " .<LF>
-    "was " .<LF>
-    "made " .<LF>
-    "with concatenation." .<LF>
-    "\\n";<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "This " .<LF>
+  "string " .<LF>
+  "was " .<LF>
+  "made " .<LF>
+  "with concatenation." .<LF>
+  "\\n";<LF>
 
 ================================================================================
 `;

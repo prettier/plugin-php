@@ -306,9 +306,9 @@ $string = "This works too: {$obj->values[3]->name}";
 $string = "This is the value of the var named $name: {\${$name}}";
 $string = "This is the value of the var named by the return value of getName(): {\${getName()}}";
 $string = "This is the value of the var named by the return value of getName(): {\${getName(
-    $arg1,
-    $arg2,
-    $arg3
+  $arg1,
+  $arg2,
+  $arg3
 )}}";
 $string = "This is the value of the var named by the return value of \\$object->getName(): {\${$object->getName()}}";
 $string = "I'd like an {\${beers::softdrink}}\\n";
@@ -322,9 +322,9 @@ okay to do";
 $test = "/(<a\\b[^><]*)>/i";
 $string = "\\"encapsed $escaping\\"";
 $string =
-    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+  "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 $string =
-    "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
+  "VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString\\n";
 $string = "ShortString\\n";
 $string = 'ShortString\\n';
 $string = "\\u{aa}";

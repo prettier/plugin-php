@@ -122,149 +122,149 @@ string', $c) {}
 
 function foo($arg)
 {
-    return $arg;
+  return $arg;
 }
 
 function foo1(&$arg)
 {
-    return $arg;
+  return $arg;
 }
 
 function makecoffee($type = "cappuccino")
 {
-    return "Making a cup of $type.\\n";
+  return "Making a cup of $type.\\n";
 }
 
 function makecoffee1($types = ["cappuccino"], $coffeeMaker = null)
 {
-    $device = is_null($coffeeMaker) ? "hands" : $coffeeMaker;
-    return "Making a cup of " . join(", ", $types) . " with $device.\\n";
+  $device = is_null($coffeeMaker) ? "hands" : $coffeeMaker;
+  return "Making a cup of " . join(", ", $types) . " with $device.\\n";
 }
 
 function f(C $c)
 {
-    echo get_class($c) . "\\n";
+  echo get_class($c) . "\\n";
 }
 
 function f1(C $c = null)
 {
-    var_dump($c);
+  var_dump($c);
 }
 
 function sum(int $a, int $b)
 {
-    return $a + $b;
+  return $a + $b;
 }
 
 function sum1(...$numbers)
 {
-    $acc = 0;
-    foreach ($numbers as $n) {
-        $acc += $n;
-    }
-    return $acc;
+  $acc = 0;
+  foreach ($numbers as $n) {
+    $acc += $n;
+  }
+  return $acc;
 }
 
 function total_intervals($unit, DateInterval ...$intervals)
 {
-    $time = 0;
-    foreach ($intervals as $interval) {
-        $time += $interval->$unit;
-    }
-    return $time;
+  $time = 0;
+  foreach ($intervals as $interval) {
+    $time += $interval->$unit;
+  }
+  return $time;
 }
 
 function testReturn(?string $name): ?string
 {
-    return $name;
+  return $name;
 }
 
 function intArg(
-    int $c = 111111111111111111111111111111111111111111111111111111111111111111111111
+  int $c = 111111111111111111111111111111111111111111111111111111111111111111111111
 ) {
-    var_dump($c);
+  var_dump($c);
 }
 
 function bar(
-    $arg = [
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    ]
+  $arg = [
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+  ]
 ) {
-    return $arg;
+  return $arg;
 }
 
 function bar1(
-    $arg = [
-        "key1" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+  $arg = [
+    "key1" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
-        "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+    "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
-        "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    ]
+    "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
+  ]
 ) {
-    return $arg;
+  return $arg;
 }
 
 function bar2(
-    $arg =
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
-            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
-            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+  $arg =
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+      "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+      "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ) {
-    return $arg;
+  return $arg;
 }
 
 function bar3(
-    $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
-        ? "1"
-        : "2"
+  $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    ? "1"
+    : "2"
 ) {
-    return $arg;
+  return $arg;
 }
 
 function bar4(
-    string $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
-        ? "1"
-        : "2"
+  string $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    ? "1"
+    : "2"
 ) {
-    return $arg;
+  return $arg;
 }
 
 function bar5(
-    $arg =
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" ===
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
-            ? "1"
-            : "2"
+  $arg =
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" ===
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+      ? "1"
+      : "2"
 ) {
-    return $arg;
+  return $arg;
 }
 
 function foo(
-    $arg = 'string
+  $arg = 'string
 string
 string'
 ) {
 }
 
 function foo(
-    $arg = 'string
+  $arg = 'string
 string
 string',
-    $arg = 'string
+  $arg = 'string
 string
 string'
 ) {
 }
 
 function foo(
-    $a,
-    $b = 'string
+  $a,
+  $b = 'string
 string
 string',
-    $c
+  $c
 ) {
 }
 
@@ -414,12 +414,12 @@ function func28(?array &...$arg)
 
 class Foo extends ArrayIterator
 {
-    function func1(?self $arg)
-    {
-    }
-    function func2(?parent $arg)
-    {
-    }
+  function func1(?self $arg)
+  {
+  }
+  function func2(?parent $arg)
+  {
+  }
 }
 
 ================================================================================

@@ -113,14 +113,14 @@ $somethingThatsAReallyLongPropName =
 $var = 1;
 $var = 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111;
 $var =
-    1111111111111111111111111111111111 + 111111111111111111111111111111111111;
+  1111111111111111111111111111111111 + 111111111111111111111111111111111111;
 $var =
-    111111111111111111111111111111111111111111111111111111 +
-    111111111111111111111111111111111111111111111111111111111111111;
+  111111111111111111111111111111111111111111111111111111 +
+  111111111111111111111111111111111111111111111111111111111111111;
 $var = true;
 $var = "string";
 $var =
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+  "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
 $var = "string" . $var;
 $var &= $var;
 $var = 'Multi
@@ -130,102 +130,102 @@ $var = [];
 $var = [1, 2, 3] + [1, 2, 3];
 $var = ["key" => "value"];
 $var = [
-    "key" => "value",
+  "key" => "value",
 ];
 $var = [
-    "key" => "value",
-    "oneKey" => "value",
-    "twoKey" => "value",
-    "threeKey" => "value",
-    "fourKey" => "value",
-    "fiveKey" => "value",
-    "sixKey" => "value",
+  "key" => "value",
+  "oneKey" => "value",
+  "twoKey" => "value",
+  "threeKey" => "value",
+  "fourKey" => "value",
+  "fiveKey" => "value",
+  "sixKey" => "value",
 ];
 $var = $veryVeryVeryVeryVeryVeryVeryLongVariable
-    ? $veryVeryVeryVeryVeryVeryVeryLongTrueExpr
-    : $veryVeryVeryVeryVeryVeryVeryLongFalseExpr;
+  ? $veryVeryVeryVeryVeryVeryVeryLongTrueExpr
+  : $veryVeryVeryVeryVeryVeryVeryLongFalseExpr;
 $var = $var . "string" ? $trueExpr : $falseExpr;
 $var =
-    $var .
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
-    $otherVar
-        ? $trueExpr
-        : $falseExpr;
+  $var .
+  "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+  $otherVar
+    ? $trueExpr
+    : $falseExpr;
 $var =
-    $var .
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
-        $otherVar ===
-    $veryVeryVeryVeryVeryVeryVeryLongVariable
-        ? $trueExpr
-        : $falseExpr;
+  $var .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+    $otherVar ===
+  $veryVeryVeryVeryVeryVeryVeryLongVariable
+    ? $trueExpr
+    : $falseExpr;
 $var = VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_VERY_LONG_CONSTANT;
 $var =
-    $arr[
-        "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
-    ];
+  $arr[
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+  ];
 $var =
-    $arr["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"];
+  $arr["veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"];
 $variable[
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+  "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
 ] = $variable->registered[1];
 
 $computedDescriptionLines =
-    ($showConfirm && $descriptionLinesConfirming) ||
-    ($focused && !$loading && $descriptionLinesFocused) ||
-    $descriptionLines;
+  ($showConfirm && $descriptionLinesConfirming) ||
+  ($focused && !$loading && $descriptionLinesFocused) ||
+  $descriptionLines;
 
 $computedDescriptionLines =
-    ($focused && !$loading && $descriptionLinesFocused) || $descriptionLines;
+  ($focused && !$loading && $descriptionLinesFocused) || $descriptionLines;
 
 [$bottom, $left, $right, $top] = $arr;
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $arr;
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $test ? $trueExpr : $falseExpr;
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $veryVeryVeryVeryVeryVeryVeryLongVariable
-    ? $veryVeryVeryVeryVeryVeryVeryLongVariable
-    : $veryVeryVeryVeryVeryVeryVeryLongVariable;
+  ? $veryVeryVeryVeryVeryVeryVeryLongVariable
+  : $veryVeryVeryVeryVeryVeryVeryLongVariable;
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $test . "string" ? $trueExpr : $falseExpr;
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $arr || [];
 [
-    $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $oneVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $twoVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $threeVeryVeryVeryVeryVeryVeryVeryLongVariable,
+  $fourVeryVeryVeryVeryVeryVeryVeryLongVariable,
 ] = $arr || [
-    "key" => "value",
-    "otherKey" => "otherValue",
+  "key" => "value",
+  "otherKey" => "otherValue",
 ];
 
 for ($i = 0, $len = $arr->length; $i < $len; $i++) {
-    call($arr[$i]);
+  call($arr[$i]);
 }
 
 for ($i = 0, $len = $arr->length; $i < $len; $i++) {
-    call($arr[$i]);
+  call($arr[$i]);
 }
 
 $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable;
@@ -234,61 +234,61 @@ $obj->property = $obj->oneProperty = $obj->twoPeroperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = (new MyClass())->call(
-    $arg
+  $arg
 );
 $obj->loooooooooooong->lookup = $this->getRequest()->getParam(
-    "instance-resource-id"
+  "instance-resource-id"
 );
 $obj->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    "instance-resource-id"
+  "instance-resource-id"
 );
 
 $component =
-    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $var->insertReallyReallyReally[$ReallyReallyReallyReallyReallyLongName];
+  $var->insertReallyReallyReally[$ReallyReallyReallyReallyReallyLongName];
 $component =
-    Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (new Foo())
-    ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
-    ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 
 $component =
-    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReally[
-        $ReallyReallyReallyReallyReallyReallyLongName
-    ];
+  $var->insertReallyReallyReallyReallyReallyReallyReallyReallyReally[
+    $ReallyReallyReallyReallyReallyReallyLongName
+  ];
 $component =
-    Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
-    $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (new Foo())
-    ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
-    ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
+  ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 
 $component =
-    $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+  $var->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component =
-    Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+  Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component =
-    $var
-        ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+  $var
+    ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 $component =
-    Foo
-        ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
+  Foo
+    ::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName[0];
 
 $blablah =
-    "aldkfkladfskladklsfkladklfkaldfadfkdaf" .
-    "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" .
-    "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf";
+  "aldkfkladfskladklsfkladklfkaldfadfkdaf" .
+  "adlfasdklfkldsklfakldsfkladsfkadsfladsfa" .
+  "dflkadfkladsfklkadlfkladlfkadklfjadlfdfdaf";
 
 $somethingThatsAReallyLongPropName =
-    $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST;
+  $obj->props->cardType === $AwesomizerCardEnum->SEEFIRST;
 
 ================================================================================
 `;

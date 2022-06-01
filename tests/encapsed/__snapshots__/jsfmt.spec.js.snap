@@ -521,11 +521,11 @@ EOD;
 
 function foo()
 {
-    $string = <<<EOJS
+  $string = <<<EOJS
 some text
 should not indent
 EOJS;
-    $string = <<<'EOD'
+  $string = <<<'EOD'
 Example of string
 spanning multiple lines
 using nowdoc syntax.
@@ -534,14 +534,14 @@ EOD;
 
 class test
 {
-    public function get_string()
-    {
-        $string = <<<EOJS
+  public function get_string()
+  {
+    $string = <<<EOJS
          some text
 should not indent
 EOJS;
-        return $string;
-    }
+    return $string;
+  }
 }
 
 $code = <<<EOF
@@ -550,60 +550,60 @@ $code = <<<EOF
 \\$request = unserialize('$request');
 EOF;
 $content = sprintf(
-    <<<EOF
+  <<<EOF
 foo
 EOF
 );
 $content = [
-    <<<EOF
+  <<<EOF
 foo
 EOF
-    ,
-    "bar",
+  ,
+  "bar",
 ];
 $content = [
-    "bar",
-    <<<EOF
+  "bar",
+  <<<EOF
 foo
 EOF
 ,
 ];
 
 function foo(
-    $a = 1,
-    $b = <<<EOF
+  $a = 1,
+  $b = <<<EOF
 Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOF
-    ,
-    $c = 1
+  ,
+  $c = 1
 ) {
-    echo $b;
+  echo $b;
 }
 
 function foo1(
-    $a = 1,
-    $b = <<<EOF
+  $a = 1,
+  $b = <<<EOF
 Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOF
-    ,
-    $c = 1
+  ,
+  $c = 1
 ) {
-    echo $b;
+  echo $b;
 }
 
 function foo1(
-    $a = 1,
-    $b = <<<EOF
+  $a = 1,
+  $b = <<<EOF
 Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOF
 ) {
-    echo $b;
+  echo $b;
 }
 
 $var = "string {$string} string"[1];
@@ -613,17 +613,17 @@ $var = $foo->bzr_[$baz];
 $var = $foo->bzr_[$baz->foo];
 $var = $foo->bzr_[$var ? "one" : "two"];
 $var =
-    $foo->bzr_[
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-            ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-            : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-    ];
+  $foo->bzr_[
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+      ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+      : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+  ];
 $var =
-    $foo->bzr_[
-        (function () {
-            return 1;
-        })($var)
-    ];
+  $foo->bzr_[
+    (function () {
+      return 1;
+    })($var)
+  ];
 
 $var = "{$this->target->resource->binary}";
 $var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
@@ -635,13 +635,13 @@ $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->ba
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "My name is {\${getName($arg, "string", 1024, $var ? true : false, [
-    "foo" => "bar",
-    "bar" => "foo",
+  "foo" => "bar",
+  "bar" => "foo",
 ])}}";
 $var = "My name is {\${getName(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
 )}}";
 
 $encapsHereDoc = <<<STR
@@ -683,18 +683,18 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
 $expected = [
-    "test" => <<<'EOT'
+  "test" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    "foo" => "bar",
+  ,
+  "foo" => "bar",
 ];
 $expected = [
-    "foo" => "bar",
-    "test" => <<<'EOT'
+  "foo" => "bar",
+  "test" => <<<'EOT'
 foo
 # bar
 baz
@@ -703,21 +703,21 @@ EOT
 ,
 ];
 $expected = [
-    "foo" => <<<'EOT'
+  "foo" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    "bar" => <<<'EOT'
+  ,
+  "bar" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
-    ,
-    "baz" => <<<'EOT'
+  ,
+  "baz" => <<<'EOT'
 foo
 # bar
 baz
@@ -726,134 +726,134 @@ EOT
 ,
 ];
 $expected = [
-    "test" => <<<'EOT'
+  "test" => <<<'EOT'
+foo
+# bar
+baz
+
+EOT
+  ,
+  "collection" => [
+    [
+      "one" => <<<'EOT'
 foo
 # bar
 baz
 
 EOT
     ,
-    "collection" => [
-        [
-            "one" => <<<'EOT'
-foo
-# bar
-baz
-
-EOT
-        ,
-        ],
-        [
-            "two" => <<<'EOT'
-foo
-# bar
-baz
-EOT
-        ,
-        ],
     ],
+    [
+      "two" => <<<'EOT'
+foo
+# bar
+baz
+EOT
+    ,
+    ],
+  ],
 ];
 
 $var =
-    <<<EOF
+  <<<EOF
 string
 string
 string
 EOF
-    . $var;
+  . $var;
 
 $var =
-    $var .
-    <<<EOF
+  $var .
+  <<<EOF
 string
 string
 string
 EOF;
 
 $var =
-    $var .
-    <<<EOF
+  $var .
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var;
+  .
+  $var;
 
 $var =
-    <<<EOF
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var .
-    $var;
+  .
+  $var .
+  $var;
 
 $var =
-    $var .
-    $var .
-    <<<EOF
+  $var .
+  $var .
+  <<<EOF
 string
 string
 string
 EOF;
 
 $var =
-    $var .
-    $var .
-    <<<EOF
+  $var .
+  $var .
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var .
-    $var;
+  .
+  $var .
+  $var;
 
 $var =
-    <<<EOF
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    <<<EOF
+  .
+  <<<EOF
 string
 string
 string
 EOF;
 
 $var =
-    <<<EOF
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var .
-    <<<EOF
+  .
+  $var .
+  <<<EOF
 string
 string
 string
 EOF;
 
 $var =
-    $var .
-    <<<EOF
+  $var .
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var .
-    <<<EOF
+  .
+  $var .
+  <<<EOF
 string
 string
 string
 EOF
-    .
-    $var;
+  .
+  $var;
 
 $str = <<<EOD
 EOD;
@@ -1000,7 +1000,7 @@ XML;
 
 function foo()
 {
-    $xml = <<<XML
+  $xml = <<<XML
 foo{$bar}bazzzzz
 XML;
 }
@@ -1008,7 +1008,7 @@ XML;
 // Multiline with variable
 function b()
 {
-    $a = "
+  $a = "
         This multiline string
         should keep it's indent level.
         Even though it has a variable: $c
@@ -1017,7 +1017,7 @@ function b()
 
 // Heredoc in function call with correct indentation
 printf(
-    <<<EOT
+  <<<EOT
 Heredoc text used directly as argument
 in a function call.
 EOT
@@ -1025,7 +1025,7 @@ EOT
 
 // Heredoc in function call with wrong indentation
 printf(
-    <<<EOT
+  <<<EOT
 Heredoc text used directly as argument
 in a function call.
 EOT
@@ -1556,27 +1556,27 @@ EOD;
 
 function foo()
 {
-    $string = <<<EOJS
-    some text
-    should not indent
-    EOJS;
-    $string = <<<'EOD'
-    Example of string
-    spanning multiple lines
-    using nowdoc syntax.
-    EOD;
+  $string = <<<EOJS
+  some text
+  should not indent
+  EOJS;
+  $string = <<<'EOD'
+  Example of string
+  spanning multiple lines
+  using nowdoc syntax.
+  EOD;
 }
 
 class test
 {
-    public function get_string()
-    {
-        $string = <<<EOJS
-                 some text
-        should not indent
-        EOJS;
-        return $string;
-    }
+  public function get_string()
+  {
+    $string = <<<EOJS
+             some text
+    should not indent
+    EOJS;
+    return $string;
+  }
 }
 
 $code = <<<EOF
@@ -1585,61 +1585,61 @@ $code = <<<EOF
 \\$request = unserialize('$request');
 EOF;
 $content = sprintf(
-    <<<EOF
-    foo
-    EOF
-    ,
+  <<<EOF
+  foo
+  EOF
+  ,
 );
 $content = [
-    <<<EOF
-    foo
-    EOF
-    ,
-    "bar",
+  <<<EOF
+  foo
+  EOF
+  ,
+  "bar",
 ];
 $content = [
-    "bar",
-    <<<EOF
-    foo
-    EOF
+  "bar",
+  <<<EOF
+  foo
+  EOF
 ,
 ];
 
 function foo(
-    $a = 1,
-    $b = <<<EOF
-    Example of string
-    spanning multiple lines
-    using nowdoc syntax.
-    EOF
-    ,
-    $c = 1
+  $a = 1,
+  $b = <<<EOF
+  Example of string
+  spanning multiple lines
+  using nowdoc syntax.
+  EOF
+  ,
+  $c = 1
 ) {
-    echo $b;
+  echo $b;
 }
 
 function foo1(
-    $a = 1,
-    $b = <<<EOF
-    Example of string
-    spanning multiple lines
-    using nowdoc syntax.
-    EOF
-    ,
-    $c = 1
+  $a = 1,
+  $b = <<<EOF
+  Example of string
+  spanning multiple lines
+  using nowdoc syntax.
+  EOF
+  ,
+  $c = 1
 ) {
-    echo $b;
+  echo $b;
 }
 
 function foo1(
-    $a = 1,
-    $b = <<<EOF
-    Example of string
-    spanning multiple lines
-    using nowdoc syntax.
-    EOF
+  $a = 1,
+  $b = <<<EOF
+  Example of string
+  spanning multiple lines
+  using nowdoc syntax.
+  EOF
 ) {
-    echo $b;
+  echo $b;
 }
 
 $var = "string {$string} string"[1];
@@ -1649,17 +1649,17 @@ $var = $foo->bzr_[$baz];
 $var = $foo->bzr_[$baz->foo];
 $var = $foo->bzr_[$var ? "one" : "two"];
 $var =
-    $foo->bzr_[
-        $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-            ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-            : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
-    ];
+  $foo->bzr_[
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+      ? $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+      : $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar
+  ];
 $var =
-    $foo->bzr_[
-        (function () {
-            return 1;
-        })($var)
-    ];
+  $foo->bzr_[
+    (function () {
+      return 1;
+    })($var)
+  ];
 
 $var = "{$this->target->resource->binary}";
 $var = "{$veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVar()}";
@@ -1671,13 +1671,13 @@ $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->ba
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo}";
 $var = "{$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()} {$this->target->resource->binary->foo->bar->foobar->bar->foo->foobar->bar->foo()}";
 $var = "My name is {\${getName($arg, "string", 1024, $var ? true : false, [
-    "foo" => "bar",
-    "bar" => "foo",
+  "foo" => "bar",
+  "bar" => "foo",
 ])}}";
 $var = "My name is {\${getName(
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
+  $veryVeryVeryVeryVeryVeryVeryVeryVeryLongVar,
 )}}";
 
 $encapsHereDoc = <<<STR
@@ -1719,177 +1719,177 @@ $var = "string {$var->foo->bar /* Comment */} string";
 $var = "string {$var->foo->bar} string";
 
 $expected = [
-    "test" => <<<'EOT'
-    foo
-    # bar
-    baz
+  "test" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
-    ,
-    "foo" => "bar",
+  EOT
+  ,
+  "foo" => "bar",
 ];
 $expected = [
-    "foo" => "bar",
-    "test" => <<<'EOT'
-    foo
-    # bar
-    baz
+  "foo" => "bar",
+  "test" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    "foo" => <<<'EOT'
-    foo
-    # bar
-    baz
+  "foo" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
-    ,
-    "bar" => <<<'EOT'
-    foo
-    # bar
-    baz
+  EOT
+  ,
+  "bar" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
-    ,
-    "baz" => <<<'EOT'
-    foo
-    # bar
-    baz
+  EOT
+  ,
+  "baz" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
 ,
 ];
 $expected = [
-    "test" => <<<'EOT'
-    foo
-    # bar
-    baz
+  "test" => <<<'EOT'
+  foo
+  # bar
+  baz
 
-    EOT
+  EOT
+  ,
+  "collection" => [
+    [
+      "one" => <<<'EOT'
+      foo
+      # bar
+      baz
+
+      EOT
     ,
-    "collection" => [
-        [
-            "one" => <<<'EOT'
-            foo
-            # bar
-            baz
-
-            EOT
-        ,
-        ],
-        [
-            "two" => <<<'EOT'
-            foo
-            # bar
-            baz
-            EOT
-        ,
-        ],
     ],
+    [
+      "two" => <<<'EOT'
+      foo
+      # bar
+      baz
+      EOT
+    ,
+    ],
+  ],
 ];
 
 $var =
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    . $var;
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  . $var;
 
 $var =
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF;
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF;
 
 $var =
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var;
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var;
 
 $var =
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var .
-    $var;
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var .
+  $var;
 
 $var =
-    $var .
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF;
+  $var .
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF;
 
 $var =
-    $var .
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var .
-    $var;
+  $var .
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var .
+  $var;
 
 $var =
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    <<<EOF
-    string
-    string
-    string
-    EOF;
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  <<<EOF
+  string
+  string
+  string
+  EOF;
 
 $var =
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF;
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF;
 
 $var =
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var .
-    <<<EOF
-    string
-    string
-    string
-    EOF
-    .
-    $var;
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var .
+  <<<EOF
+  string
+  string
+  string
+  EOF
+  .
+  $var;
 
 $str = <<<EOD
 EOD;
@@ -2036,15 +2036,15 @@ XML;
 
 function foo()
 {
-    $xml = <<<XML
-    foo{$bar}bazzzzz
-    XML;
+  $xml = <<<XML
+  foo{$bar}bazzzzz
+  XML;
 }
 
 // Multiline with variable
 function b()
 {
-    $a = "
+  $a = "
         This multiline string
         should keep it's indent level.
         Even though it has a variable: $c
@@ -2053,20 +2053,20 @@ function b()
 
 // Heredoc in function call with correct indentation
 printf(
-    <<<EOT
-    Heredoc text used directly as argument
-    in a function call.
-    EOT
-    ,
+  <<<EOT
+  Heredoc text used directly as argument
+  in a function call.
+  EOT
+  ,
 );
 
 // Heredoc in function call with wrong indentation
 printf(
-    <<<EOT
-    Heredoc text used directly as argument
-    in a function call.
-    EOT
-    ,
+  <<<EOT
+  Heredoc text used directly as argument
+  in a function call.
+  EOT
+  ,
 );
 
 ================================================================================

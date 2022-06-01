@@ -42,9 +42,9 @@ echo $test, $other;
 $info = ["coffee", "brown", "caffeine"];
 list($drink, $color, $power) = $info;
 list(
-    $reallyReallyReallyReallyLongName,
-    $otherReallyReallyReallyLongName,
-    $lastOne,
+  $reallyReallyReallyReallyLongName,
+  $otherReallyReallyReallyLongName,
+  $lastOne,
 ) = $info;
 
 print "test print";
@@ -57,18 +57,18 @@ unset($test);
 empty($test);
 
 isset(
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test,
-    $test
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test,
+  $test
 );
 
 isset($test["foo"]);

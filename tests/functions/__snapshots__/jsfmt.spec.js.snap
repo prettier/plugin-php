@@ -185,84 +185,84 @@ class Foo
 
 function hello()
 {
-    return "hello";
+  return "hello";
 }
 
 function return_x($x)
 {
-    return $x;
+  return $x;
 }
 
 function two_args($x, $y)
 {
-    return $x;
+  return $x;
 }
 
 function two_args_other($x, $y, $z, $foo, $bar)
 {
-    return $x;
+  return $x;
 }
 
 function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
-    $soooooooooooo_looooooooonnnng,
-    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+  $soooooooooooo_looooooooonnnng,
+  $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
 ) {
-    return $soooooooooooo_looooooooonnnng;
+  return $soooooooooooo_looooooooonnnng;
 }
 
 function variadicTest($one, ...$others)
 {
-    // test
-    $hi = 2;
-    return count($others);
+  // test
+  $hi = 2;
+  return count($others);
 }
 
 function pass_by_reference_test($x, int &$a)
 {
-    $a += 1;
+  $a += 1;
 }
 
 function type_hinting_test(
-    array $array_test,
-    callable $callable_test,
-    bool $bool_test,
-    float $float_test,
-    iterable $iterable_test,
-    int $int_test,
-    string $string_test = ""
+  array $array_test,
+  callable $callable_test,
+  bool $bool_test,
+  float $float_test,
+  iterable $iterable_test,
+  int $int_test,
+  string $string_test = ""
 ) {
-    return $int_test;
+  return $int_test;
 }
 
 $anonymous = function ($name) use ($otherthing, &$reference_test) {
-    printf("Hello %s", $name);
-    $reference_test += 1;
+  printf("Hello %s", $name);
+  $reference_test += 1;
 };
 $anonymousLongVariableName = function (
-    $name,
-    $more,
-    $params,
-    $looooooooooooooooooooooooooooooooong
+  $name,
+  $more,
+  $params,
+  $looooooooooooooooooooooooooooooooong
 ) use ($all, $kinds, $of, $stuff) {
-    printf("Hello %s", $name);
+  printf("Hello %s", $name);
 };
 
 $arr = [1, 2, 3];
 array_map(function ($entry) {
-    return $entry * 2;
+  return $entry * 2;
 }, $arr);
 
 $silent = @hello();
 
 function returnTypeTest(): string
 {
-    return "hi";
+  return "hi";
 }
 
 function &passByReferenceTest()
 {
-    $a = 1;
-    return $a;
+  $a = 1;
+  return $a;
 }
 
 function foo(iterable $iterable = [])
@@ -271,65 +271,65 @@ function foo(iterable $iterable = [])
 
 function bar(): iterable
 {
-    return [1, 2, 3];
+  return [1, 2, 3];
 }
 
 function gen(): iterable
 {
-    yield 1;
-    yield 2;
-    yield 3;
+  yield 1;
+  yield 2;
+  yield 3;
 }
 
 function testReturn(?string $name): ?string
 {
-    return $name;
+  return $name;
 }
 
 function test_return_never(): never
 {
-    exit();
+  exit();
 }
 
 function swap(&$left, &$right): void
 {
-    if ($left === $right) {
-        return;
-    }
+  if ($left === $right) {
+    return;
+  }
 
-    $tmp = $left;
-    $left = $right;
-    $right = $tmp;
+  $tmp = $left;
+  $left = $right;
+  $right = $tmp;
 }
 
 function test(object $obj): object
 {
-    return new SplQueue();
+  return new SplQueue();
 }
 
 function returnTypeTestOther(): string
 {
-    return "hi";
+  return "hi";
 }
 
 function returnTypeTestOtherOther(): string
 {
-    return "hi";
+  return "hi";
 }
 
 function the_panel_title(
-    $title = null,
-    $classes = "panel-title",
-    $data_name = null,
-    $data_livetext = false,
-    $depth = 0,
-    $index = 0
+  $title = null,
+  $classes = "panel-title",
+  $data_name = null,
+  $data_livetext = false,
+  $depth = 0,
+  $index = 0
 ) {
-    if (empty($title) && !is_panel_preview()) {
-        return "";
-    }
+  if (empty($title) && !is_panel_preview()) {
+    return "";
+  }
 
-    return $title;
+  return $title;
 }
 
 function emptyFunction()
@@ -337,68 +337,68 @@ function emptyFunction()
 }
 function emptyFunctionWithComment()
 {
-    /* Comment */
+  /* Comment */
 }
 
 abstract class AbstractClass
 {
-    abstract public function shortName();
-    abstract public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName();
-    abstract public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
-        $title = null,
-        $classes = "panel-title",
-        $data_name = null,
-        $data_livetext = false,
-        $depth = 0,
-        $index = 0
-    );
+  abstract public function shortName();
+  abstract public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName();
+  abstract public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
+    $title = null,
+    $classes = "panel-title",
+    $data_name = null,
+    $data_livetext = false,
+    $depth = 0,
+    $index = 0
+  );
 }
 
 class Foo
 {
-    public function shortName()
-    {
-    }
-    public function floatShortName(): float
-    {
-    }
-    public function otherShortName()
-    {
-    }
-    public function otherOtherShortName($arg)
-    {
-    }
-    public function shortNameAndBreak(
-        $title = null,
-        $classes = "panel-title",
-        $data_name = null,
-        $data_livetext = false,
-        $depth = 0,
-        $index = 0
-    ) {
-    }
-    public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
-    public function floatVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): float
-    {
-    }
-    public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
-    public function otherOtherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $arg
-    ) {
-    }
-    public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
-        $title = null,
-        $classes = "panel-title",
-        $data_name = null,
-        $data_livetext = false,
-        $depth = 0,
-        $index = 0
-    ) {
-    }
+  public function shortName()
+  {
+  }
+  public function floatShortName(): float
+  {
+  }
+  public function otherShortName()
+  {
+  }
+  public function otherOtherShortName($arg)
+  {
+  }
+  public function shortNameAndBreak(
+    $title = null,
+    $classes = "panel-title",
+    $data_name = null,
+    $data_livetext = false,
+    $depth = 0,
+    $index = 0
+  ) {
+  }
+  public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+  }
+  public function floatVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): float
+  {
+  }
+  public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
+  {
+  }
+  public function otherOtherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
+    $arg
+  ) {
+  }
+  public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
+    $title = null,
+    $classes = "panel-title",
+    $data_name = null,
+    $data_livetext = false,
+    $depth = 0,
+    $index = 0
+  ) {
+  }
 }
 
 ================================================================================

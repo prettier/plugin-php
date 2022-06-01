@@ -110,12 +110,12 @@ $info = "prettier-ignore-start and -end is currently not supported";
 
 class ExampleClass
 {
-    // prettier-ignore
-    const SOME_CONST    = 1;
-    const ANOTHER_CONST = 2;
+  // prettier-ignore
+  const SOME_CONST    = 1;
+  const ANOTHER_CONST = 2;
 
-    // prettier-ignore
-    const CONST_ARRAY = [
+  // prettier-ignore
+  const CONST_ARRAY = [
         'test'        => 0,
         'another_key' => 1
     ];
@@ -123,8 +123,8 @@ class ExampleClass
 
 class FuncVisibility
 {
-    // prettier-ignore
-    static function a() {
+  // prettier-ignore
+  static function a() {
         return [
             'services'    => [ '_type' => 'prototype', '_required' => FALSE, '_prototype' => [
                 '_type' => 'partial', '_required' => TRUE, '_partial' => 'service',
@@ -132,8 +132,8 @@ class FuncVisibility
         ];
     }
 
-    // prettier-ignore
-    private function b(){    }
+  // prettier-ignore
+  private function b(){    }
 }
 
 ================================================================================

@@ -24,10 +24,10 @@ $test = 1;<CR>
 <CR>
 class Foo<CR>
 {<CR>
-    /**<CR>
-     * Comment indented with tabs in file with utf-8[dos]<CR>
-     */<CR>
-    private $foo;<CR>
+  /**<CR>
+   * Comment indented with tabs in file with utf-8[dos]<CR>
+   */<CR>
+  private $foo;<CR>
 }<CR>
 
 ================================================================================
@@ -57,10 +57,10 @@ $test = 1;<CRLF>
 <CRLF>
 class Foo<CRLF>
 {<CRLF>
-    /**<CRLF>
-     * Comment indented with tabs in file with utf-8[dos]<CRLF>
-     */<CRLF>
-    private $foo;<CRLF>
+  /**<CRLF>
+   * Comment indented with tabs in file with utf-8[dos]<CRLF>
+   */<CRLF>
+  private $foo;<CRLF>
 }<CRLF>
 
 ================================================================================
@@ -90,10 +90,10 @@ $test = 1;<LF>
 <LF>
 class Foo<LF>
 {<LF>
-    /**<LF>
-     * Comment indented with tabs in file with utf-8[dos]<LF>
-     */<LF>
-    private $foo;<LF>
+  /**<LF>
+   * Comment indented with tabs in file with utf-8[dos]<LF>
+   */<LF>
+  private $foo;<LF>
 }<LF>
 
 ================================================================================
