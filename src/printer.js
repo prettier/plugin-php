@@ -3034,21 +3034,24 @@ function printNode(path, options, print) {
             : concat(
                 armPath.map(
                   (condPath, condIdx) =>
-                    group(
-                      concat(
-                        condIdx > 0
-                          ? [",", line, print(condPath)]
-                          : [print(condPath)]
-                      )
+                    concat(
+                      [",", line, print(condPath)].slice(condIdx === 0 ? 2 : 0)
                     ),
                   "conds"
                 )
               );
         const body = armPath.call(print, "body");
         return concat(
-          armIdx > 0
-            ? [", ", hardline, conds, " => ", body]
-            : [hardline, conds, " => ", body]
+          [
+            ",",
+            hardline,
+            group(
+              concat([
+                group(concat([conds, indent(line)])),
+                concat(["=> ", body]),
+              ])
+            ),
+          ].slice(armIdx > 0 ? 0 : 1)
         );
       }, "arms");
       return group(
