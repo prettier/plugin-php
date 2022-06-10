@@ -3,6 +3,7 @@ func();
 func($a, $b, $c);
 func(...$a);
 func($a, ...$b);
+func(...$a, ...$b);
 $foo->func();
 func( $arg1,$arg2 ,$arg3, $arg4 , $arg5 );
 $foo -> bar ( $arg1,$arg2 ,$arg3, $arg4 , $arg5 ) ;
