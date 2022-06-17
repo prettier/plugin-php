@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.18.2",
     "codecov": "3.8.3",
     "cross-env": "^7.0.2",
-    "eslint": "8.17.0",
+    "eslint": "8.18.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.5.3",
