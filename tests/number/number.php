@@ -106,3 +106,5 @@ $discount = 135_00;
 0xCAFE_F00D;   // hexadecimal
 0b0101_1111;   // binary
 0137_041;      // octal
+0o123;         // explicit octal, added in 8.1
+0O123;         // explicit octal, added in 8.1
