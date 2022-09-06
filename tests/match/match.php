@@ -29,3 +29,16 @@ $nest = match(match($a) {true => 1, false => 2}) {
     },
     2 => 'null'
 };
+
+$extraLongMatch = match($a) {
+    'foo', 'foo2', 'foo3', 'foo4',
+    'foo5', 'foo6', 'foo7', 'foo8',
+    'foo9', 'foo10', 'foo11', 'foo12',
+    => ['bar'],
+    'bar', 'bar2', 'bar3', 'bar4',
+    'bar5', 'bar6', 'bar7', 'bar8',
+    'bar9', 'bar10', 'bar11', 'bar12',
+    => 'some really long value in the return part of the match statement',
+    'cd' => [],
+    default => [],
+};
