@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Syntax errors have the expected structure 1`] = `
-Object {
+{
   "codeFrame": "> 1 | <?php _
     |       ^",
   "fileName": "eval",
-  "loc": Object {
-    "start": Object {
+  "loc": {
+    "start": {
       "column": 7,
       "line": 1,
     },
