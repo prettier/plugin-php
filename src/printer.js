@@ -1811,6 +1811,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
+        node.parenthesizedExpression ? "(" : "",
         ...printAttrs(path, options, print, { inline: true }),
         node.isStatic ? "static " : "",
         "fn",
@@ -1820,6 +1821,7 @@ function printNode(path, options, print) {
           : "",
         " => ",
         path.call(print, "body"),
+        node.parenthesizedExpression ? ")" : "",
       ]);
     case "parameter": {
       let promoted = "";
