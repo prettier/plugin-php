@@ -275,7 +275,7 @@ $class = new class extends
 
 exports[`classes.php 3`] = `
 ====================================options=====================================
-braceStyle: "psr-12"
+braceStyle: "per-cs"
 parsers: ["php"]
 printWidth: 80
                                                                                 | printWidth
@@ -719,7 +719,7 @@ $anonymousLongVariableName = function (
 
 exports[`functions.php 3`] = `
 ====================================options=====================================
-braceStyle: "psr-12"
+braceStyle: "per-cs"
 parsers: ["php"]
 printWidth: 80
                                                                                 | printWidth
@@ -1405,7 +1405,7 @@ class Foo
 
 exports[`methods.php 3`] = `
 ====================================options=====================================
-braceStyle: "psr-12"
+braceStyle: "per-cs"
 parsers: ["php"]
 printWidth: 80
                                                                                 | printWidth

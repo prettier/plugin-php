@@ -37,12 +37,12 @@ module.exports = {
     since: "0.10.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "psr-12",
+    default: "per-cs",
     description:
       "Print one space or newline for code blocks (classes and functions).",
     choices: [
-      { value: "psr-2", description: "(deprecated) Use psr-12" },
-      { value: "psr-12", description: "Use PSR-12 brace style." },
+      { value: "psr-2", description: "(deprecated) Use per-cs" },
+      { value: "per-cs", description: "Use the PER Coding Style brace style." },
       { value: "1tbs", description: "Use 1tbs brace style." },
     ],
   },
