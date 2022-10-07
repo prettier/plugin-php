@@ -76,6 +76,7 @@ function shouldPrintHardlineForOpenBrace(options) {
     case "1tbs":
       return false;
     case "psr-2":
+    case "per-cs":
     default:
       return true;
   }
