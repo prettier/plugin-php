@@ -187,3 +187,6 @@ $var = new class(10) extends SomeClass implements SomeInterface {
 
     use SomeTrait;
 };
+
+$a = new (b('c')['d']);
+$client = new (config('longstringvariable','longerstringvariable')(['name'=>$myLongClassname['name']]));

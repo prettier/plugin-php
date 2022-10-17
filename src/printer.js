@@ -2259,8 +2259,11 @@ function printNode(path, options, print) {
           group(path.call(print, "what"))
         );
       } else {
+        const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
         const printed = concat([
+          isExpression ? "(" : "",
           path.call(print, "what"),
+          isExpression ? ")" : "",
           printArgumentsList(path, options, print),
         ]);
 
