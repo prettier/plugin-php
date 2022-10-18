@@ -1370,9 +1370,10 @@ function printClass(path, options, print) {
 
 function printFunction(path, options, print) {
   const node = path.getValue();
-  const declaration = [
-    ...printAttrs(path, options, print, { inline: node.kind === "closure" }),
-  ];
+  const declAttrs = printAttrs(path, options, print, {
+    inline: node.kind === "closure",
+  });
+  const declaration = [];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1431,7 +1432,7 @@ function printFunction(path, options, print) {
   const printedDeclaration = concat(declaration);
 
   if (!node.body) {
-    return printedDeclaration;
+    return concat([...declAttrs, printedDeclaration]);
   }
 
   const isClosure = node.kind === "closure";
@@ -1445,11 +1446,12 @@ function printFunction(path, options, print) {
   ]);
 
   if (isClosure) {
-    return concat([printedDeclaration, " ", printedBody]);
+    return concat([...declAttrs, printedDeclaration, " ", printedBody]);
   }
 
   if (node.arguments.length === 0) {
     return concat([
+      ...declAttrs,
       printedDeclaration,
       shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
       printedBody,
@@ -1462,13 +1464,16 @@ function printFunction(path, options, print) {
     return concat([printedDeclaration, " ", printedBody]);
   }
 
-  return conditionalGroup([
-    concat([
-      printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
-      printedBody,
+  return concat([
+    ...declAttrs,
+    conditionalGroup([
+      concat([
+        printedDeclaration,
+        shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+        printedBody,
+      ]),
+      concat([printedDeclaration, " ", printedBody]),
     ]),
-    concat([printedDeclaration, " ", printedBody]),
   ]);
 }
 

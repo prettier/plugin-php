@@ -67,3 +67,18 @@ class ValueModel
     ]
     public ?string $value = null;
 }
+
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
+    }
+
+}

@@ -76,6 +76,20 @@ class ValueModel
     public ?string $value = null;
 }
 
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
+    }
+
+}
 =====================================output=====================================
 <?php
 
@@ -95,7 +109,8 @@ class D
      * @return callable function doubles int
      */
     #[I, J]
-    function k(#[L] int $m): callable {
+    function k(#[L] int $m): callable
+    {
         return #[N, O] #[P] fn(#[Q] int $r) => $r * 2;
     } //Testing T
 
@@ -177,6 +192,20 @@ class ValueModel
         Assert\\Length(max: 255, groups: ["foo"])
     ]
     public ?string $value = null;
+}
+
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
+    }
 }
 
 ================================================================================
