@@ -4095,9 +4095,9 @@ path-type@^4.0.0:
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
 php-parser@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.1.1.tgz#203905e9c7d69851306968334e39458268c99336"
-  integrity sha512-HUxWIWpJoGhnSVzM6nPI1O2RePd7eJKzJoL3VZr6/KUUdcHKBex2Cp7p6pWOV1WxgKI/oYgRPMywwLCP789OYA==
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.1.2.tgz#db704c584ea4085142fc5d3c33218b207d5f9a09"
+  integrity sha512-RRCMK/bCKYPLRhlpfMlVVVsaIesuW+X6UxRqWjm7dTAmTZk8PvD6hCmG/RVeDzse7iqYWJwLJeqEbaGLC+aHeQ==
 
 picocolors@^1.0.0:
   version "1.0.0"
