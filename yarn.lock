@@ -5035,9 +5035,9 @@ yargs@^17.3.1:
     yargs-parser "^21.0.0"
 
 yarpm@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/yarpm/-/yarpm-1.1.1.tgz#23e25e512b409d941524a9674718f1871e5fb52a"
-  integrity sha512-A3gVdtyld+gYcVmKScvJqS2oT/i9xdsb/SqDsY9c0+BeYdYBUJrRfr4pD7UP+5uXEneJ0BL0rC/6rd1fnlYEcg==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/yarpm/-/yarpm-1.2.0.tgz#5baaf5589f6237426cf76f812296dcf9b4254f55"
+  integrity sha512-gxN4Ali09uey8EpLfbYG+bTXf1hF6TA5oAXFPpKi5Nt5aztXU9AIEksXE0lpuvC50vL4De/KIeP8JXgYOZ8KbQ==
   dependencies:
     command-exists "^1.2.9"
     cross-spawn "^7.0.3"
