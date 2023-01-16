@@ -300,3 +300,7 @@ class Promoted {
 
     }
 }
+
+readonly class ReadOnlyCls {
+    public string $myValue;
+}
