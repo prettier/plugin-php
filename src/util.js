@@ -6,7 +6,8 @@ const {
   skipNewline,
   isNextLineEmpty: _isNextLineEmpty,
   isPreviousLineEmpty: _isPreviousLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex: _getNextNonSpaceNonCommentCharacterIndex,
+  getNextNonSpaceNonCommentCharacterIndex:
+    _getNextNonSpaceNonCommentCharacterIndex,
 } = require("prettier").util;
 
 const prettierVersion = require("prettier").version;

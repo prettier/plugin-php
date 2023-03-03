@@ -8,15 +8,8 @@ const {
   hasNewline,
   hasNewlineInRange,
 } = require("prettier").util;
-const {
-  concat,
-  join,
-  indent,
-  hardline,
-  cursor,
-  lineSuffix,
-  breakParent,
-} = require("prettier").doc.builders;
+const { concat, join, indent, hardline, cursor, lineSuffix, breakParent } =
+  require("prettier").doc.builders;
 const {
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,

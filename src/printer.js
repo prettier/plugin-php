@@ -18,11 +18,8 @@ const {
   dedentToRoot,
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
-const {
-  isNextLineEmptyAfterIndex,
-  hasNewline,
-  hasNewlineInRange,
-} = require("prettier").util;
+const { isNextLineEmptyAfterIndex, hasNewline, hasNewlineInRange } =
+  require("prettier").util;
 const comments = require("./comments");
 const pathNeedsParens = require("./needs-parens");
 
@@ -1065,7 +1062,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
                 ? comments.printComments(childNode.comments, options)
                 : "",
               hardline,
-              skipLastComment ? "?>" : "",
             ])
           : isProgramLikeNode(node) && isLastNode
           ? ""
@@ -1104,7 +1100,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
 
     parts.push(concat(wrappedParts));
 
-    const hasEndTag = options.originalText.trim().endsWith("?>");
+    const hasEndTag = /\?>\n?$/.test(options.originalText);
 
     if (hasEndTag) {
       const lastNode = getLast(node.children);
@@ -1115,7 +1111,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
               options.locEnd(lastNode),
               options.locEnd(node)
             )
-              ? hardline
+              ? !(
+                  lastNode.kind === "inline" &&
+                  lastNode.comments &&
+                  lastNode.comments.length
+                )
+                ? hardline
+                : ""
               : " ",
             isNextLineEmpty(options.originalText, lastNode, options)
               ? hardline
