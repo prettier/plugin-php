@@ -37,7 +37,6 @@ rules:
     - error
     - never
     - exceptRange: true
-  prettier-doc/no-concat: off
 overrides:
   - files: "tests/**/*.js"
     rules:
