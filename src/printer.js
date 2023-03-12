@@ -18,11 +18,8 @@ const {
   dedentToRoot,
 } = require("prettier").doc.builders;
 const { willBreak } = require("prettier").doc.utils;
-const {
-  isNextLineEmptyAfterIndex,
-  hasNewline,
-  hasNewlineInRange,
-} = require("prettier").util;
+const { isNextLineEmptyAfterIndex, hasNewline, hasNewlineInRange } =
+  require("prettier").util;
 const comments = require("./comments");
 const pathNeedsParens = require("./needs-parens");
 
@@ -76,6 +73,7 @@ function shouldPrintHardlineForOpenBrace(options) {
     case "1tbs":
       return false;
     case "psr-2":
+    case "per-cs":
     default:
       return true;
   }
@@ -1062,7 +1060,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
                 ? comments.printComments(childNode.comments, options)
                 : "",
               hardline,
-              skipLastComment ? "?>" : "",
             ])
           : isProgramLikeNode(node) && isLastNode
           ? ""
@@ -1101,7 +1098,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
 
     parts.push(concat(wrappedParts));
 
-    const hasEndTag = options.originalText.trim().endsWith("?>");
+    const hasEndTag = /\?>\n?$/.test(options.originalText);
 
     if (hasEndTag) {
       const lastNode = getLast(node.children);
@@ -1112,7 +1109,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
               options.locEnd(lastNode),
               options.locEnd(node)
             )
-              ? hardline
+              ? !(
+                  lastNode.kind === "inline" &&
+                  lastNode.comments &&
+                  lastNode.comments.length
+                )
+                ? hardline
+                : ""
               : " ",
             isNextLineEmpty(options.originalText, lastNode, options)
               ? hardline
@@ -1249,6 +1252,10 @@ function printClass(path, options, print) {
   const attrs = printAttrs(path, options, print, { inline: isAnonymousClass });
   const declaration = isAnonymousClass ? [] : [...attrs];
 
+  if (node.isReadonly) {
+    declaration.push("readonly ");
+  }
+
   if (node.isFinal) {
     declaration.push("final ");
   }
@@ -1262,6 +1269,10 @@ function printClass(path, options, print) {
 
   if (node.name) {
     declaration.push(" ", path.call(print, "name"));
+  }
+
+  if (node.kind === "enum" && node.valueType) {
+    declaration.push(": ", path.call(print, "valueType"));
   }
 
   // Only `class` can have `extends` and `implements`
@@ -1361,9 +1372,10 @@ function printClass(path, options, print) {
 
 function printFunction(path, options, print) {
   const node = path.getValue();
-  const declaration = [
-    ...printAttrs(path, options, print, { inline: node.kind === "closure" }),
-  ];
+  const declAttrs = printAttrs(path, options, print, {
+    inline: node.kind === "closure",
+  });
+  const declaration = [];
 
   if (node.isFinal) {
     declaration.push("final ");
@@ -1422,7 +1434,7 @@ function printFunction(path, options, print) {
   const printedDeclaration = concat(declaration);
 
   if (!node.body) {
-    return printedDeclaration;
+    return concat([...declAttrs, printedDeclaration]);
   }
 
   const isClosure = node.kind === "closure";
@@ -1436,11 +1448,12 @@ function printFunction(path, options, print) {
   ]);
 
   if (isClosure) {
-    return concat([printedDeclaration, " ", printedBody]);
+    return concat([...declAttrs, printedDeclaration, " ", printedBody]);
   }
 
   if (node.arguments.length === 0) {
     return concat([
+      ...declAttrs,
       printedDeclaration,
       shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
       printedBody,
@@ -1453,13 +1466,16 @@ function printFunction(path, options, print) {
     return concat([printedDeclaration, " ", printedBody]);
   }
 
-  return conditionalGroup([
-    concat([
-      printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
-      printedBody,
+  return concat([
+    ...declAttrs,
+    conditionalGroup([
+      concat([
+        printedDeclaration,
+        shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+        printedBody,
+      ]),
+      concat([printedDeclaration, " ", printedBody]),
     ]),
-    concat([printedDeclaration, " ", printedBody]),
   ]);
 }
 
@@ -1603,6 +1619,18 @@ function isStringOnItsOwnLine(node, text, options) {
   );
 }
 
+function printComposedTypes(path, print, glue) {
+  return group(
+    concat(
+      path.map(
+        (uPath, i) =>
+          concat(i === 0 ? [path.call(print)] : [glue, path.call(print)]),
+        "types"
+      )
+    )
+  );
+}
+
 function printNode(path, options, print) {
   const node = path.getValue();
 
@@ -1731,6 +1759,7 @@ function printNode(path, options, print) {
         node.alias ? concat([" as ", path.call(print, "alias")]) : "",
       ]);
     case "class":
+    case "enum":
     case "interface":
     case "trait":
       return printClass(path, options, print);
@@ -1788,6 +1817,7 @@ function printNode(path, options, print) {
       return printFunction(path, options, print);
     case "arrowfunc":
       return concat([
+        node.parenthesizedExpression ? "(" : "",
         ...printAttrs(path, options, print, { inline: true }),
         node.isStatic ? "static " : "",
         "fn",
@@ -1797,6 +1827,7 @@ function printNode(path, options, print) {
           : "",
         " => ",
         path.call(print, "body"),
+        node.parenthesizedExpression ? ")" : "",
       ]);
     case "parameter": {
       let promoted = "";
@@ -1810,6 +1841,7 @@ function printNode(path, options, print) {
       const name = concat([
         ...printAttrs(path, options, print, { inline: true }),
         promoted,
+        node.readonly ? "readonly " : "",
         node.nullable ? "?" : "",
         node.type ? concat([path.call(print, "type"), " "]) : "",
         node.byref ? "&" : "",
@@ -1846,6 +1878,7 @@ function printNode(path, options, print) {
     case "property":
       return group(
         concat([
+          node.readonly ? "readonly " : "",
           node.type
             ? concat([node.nullable ? "?" : "", path.call(print, "type"), " "])
             : "",
@@ -2223,8 +2256,11 @@ function printNode(path, options, print) {
           group(path.call(print, "what"))
         );
       } else {
+        const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
         const printed = concat([
+          isExpression ? "(" : "",
           path.call(print, "what"),
+          isExpression ? ")" : "",
           printArgumentsList(path, options, print),
         ]);
 
@@ -2907,16 +2943,11 @@ function printNode(path, options, print) {
         quote,
       ]);
     }
+    case "intersectiontype": {
+      return printComposedTypes(path, print, "&");
+    }
     case "uniontype": {
-      return group(
-        concat(
-          path.map(
-            (uPath, i) =>
-              concat(i === 0 ? [path.call(print)] : ["|", path.call(print)]),
-            "types"
-          )
-        )
-      );
+      return printComposedTypes(path, print, "|");
     }
     case "encapsedpart": {
       const open =
@@ -3004,21 +3035,24 @@ function printNode(path, options, print) {
             : concat(
                 armPath.map(
                   (condPath, condIdx) =>
-                    group(
-                      concat(
-                        condIdx > 0
-                          ? [",", line, print(condPath)]
-                          : [print(condPath)]
-                      )
+                    concat(
+                      [",", line, print(condPath)].slice(condIdx === 0 ? 2 : 0)
                     ),
                   "conds"
                 )
               );
         const body = armPath.call(print, "body");
         return concat(
-          armIdx > 0
-            ? [", ", line, conds, " => ", body]
-            : [line, conds, " => ", body]
+          [
+            ",",
+            hardline,
+            group(
+              concat([
+                group(concat([conds, indent(line)])),
+                concat(["=> ", body]),
+              ])
+            ),
+          ].slice(armIdx > 0 ? 0 : 1)
         );
       }, "arms");
       return group(
@@ -3026,7 +3060,11 @@ function printNode(path, options, print) {
           "match (",
           group(concat([softline, indent(path.call(print, "cond")), softline])),
           ") {",
-          indent(concat(arms)),
+          group(
+            indent(
+              concat([...arms, options.trailingCommaPHP ? ifBreak(",") : ""])
+            )
+          ),
           " ",
           softline,
           "}",
@@ -3040,6 +3078,29 @@ function printNode(path, options, print) {
         : "";
     case "namedargument":
       return concat([node.name, ": ", path.call(print, "value")]);
+
+    case "enumcase":
+      return group(
+        concat([
+          "case ",
+          path.call(print, "name"),
+          node.value
+            ? concat([
+                " =",
+                printAssignmentRight(
+                  node.name,
+                  node.value,
+                  path.call(print, "value"),
+                  false,
+                  options
+                ),
+              ])
+            : "",
+        ])
+      );
+    case "variadicplaceholder":
+      return "...";
+
     case "error":
     default:
       // istanbul ignore next

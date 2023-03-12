@@ -61,6 +61,35 @@ final class DomainEventMessage
     }
 }
 
+#[
+    Attr1(Attr1::FOO | Attr1::BAR),
+    Attr2(-20 * 5 + 10)
+]
+class A {}
+
+class ValueModel
+{
+    #[
+        Assert\\NotBlank(allowNull: false, groups: ['foo']),
+        Assert\\Length(max: 255, groups: ['foo']),
+    ]
+    public ?string $value = null;
+}
+
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
+    }
+
+}
 =====================================output=====================================
 <?php
 
@@ -80,7 +109,8 @@ class D
      * @return callable function doubles int
      */
     #[I, J]
-    function k(#[L] int $m): callable {
+    function k(#[L] int $m): callable
+    {
         return #[N, O] #[P] fn(#[Q] int $r) => $r * 2;
     } //Testing T
 
@@ -147,6 +177,34 @@ final class DomainEventMessage
     public function getPayload1(): string
     {
         return "555";
+    }
+}
+
+#[Attr1(Attr1::FOO | Attr1::BAR), Attr2(-20 * 5 + 10)]
+class A
+{
+}
+
+class ValueModel
+{
+    #[
+        Assert\\NotBlank(allowNull: false, groups: ["foo"]),
+        Assert\\Length(max: 255, groups: ["foo"])
+    ]
+    public ?string $value = null;
+}
+
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
     }
 }
 

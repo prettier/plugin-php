@@ -5,6 +5,7 @@ exports[`match.php 1`] = `
 parsers: ["php"]
 phpVersion: "8.0"
 printWidth: 80
+trailingCommaPHP: false
                                                                                 | printWidth
 =====================================input======================================
 <?php
@@ -38,6 +39,19 @@ $nest = match(match($a) {true => 1, false => 2}) {
     },
     2 => 'null'
 };
+
+$extraLongMatch = match($a) {
+    'foo', 'foo2', 'foo3', 'foo4',
+    'foo5', 'foo6', 'foo7', 'foo8',
+    'foo9', 'foo10', 'foo11', 'foo12',
+    => ['bar'],
+    'bar', 'bar2', 'bar3', 'bar4',
+    'bar5', 'bar6', 'bar7', 'bar8',
+    'bar9', 'bar10', 'bar11', 'bar12',
+    => 'some really long value in the return part of the match statement',
+    'cd' => [],
+    default => [],
+};
 =====================================output=====================================
 <?php
 
@@ -48,7 +62,10 @@ $really_really_really_long_variable_name = match (getValue()) {
     default => throw new \\InvalidArgumentException("Unknown Value")
 };
 
-$boolStr = match ($v) { true => "true",  false => "false" };
+$boolStr = match ($v) {
+    true => "true",
+    false => "false"
+};
 
 $boolish = match ($v) {
     true, 1 => true,
@@ -56,11 +73,182 @@ $boolish = match ($v) {
     default => null
 };
 
-$a = match (true) { test() => "Good",  test2() => "Two",  default => "fail" };
+$a = match (true) {
+    test() => "Good",
+    test2() => "Two",
+    default => "fail"
+};
 
-$nest = match (match ($a) { true => 1,  false => 2 }) {
-    1 => match ($b) { "ok" => true,  "fail" => false,  default => false },
+$nest = match (
+match ($a) {
+        true => 1,
+        false => 2
+    }
+) {
+    1 => match ($b) {
+        "ok" => true,
+        "fail" => false,
+        default => false
+    },
     2 => "null"
+};
+
+$extraLongMatch = match ($a) {
+    "foo",
+    "foo2",
+    "foo3",
+    "foo4",
+    "foo5",
+    "foo6",
+    "foo7",
+    "foo8",
+    "foo9",
+    "foo10",
+    "foo11",
+    "foo12"
+        => ["bar"],
+    "bar",
+    "bar2",
+    "bar3",
+    "bar4",
+    "bar5",
+    "bar6",
+    "bar7",
+    "bar8",
+    "bar9",
+    "bar10",
+    "bar11",
+    "bar12"
+        => "some really long value in the return part of the match statement",
+    "cd" => [],
+    default => []
+};
+
+================================================================================
+`;
+
+exports[`match.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.0"
+printWidth: 80
+trailingCommaPHP: true
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$really_really_really_long_variable_name = match(getValue()) {
+  true => implode(',',[1,2,3]),
+    false => $a || 'Empty',
+    null => null,
+    default => throw new \\InvalidArgumentException('Unknown Value'),
+};
+
+$boolStr = match($v) {true => 'true', false => 'false'};
+
+$boolish = match($v) {
+    true, 1 => true,
+    false,0,'',null => false,
+    default => null
+};
+
+$a = match(true) {
+    test() => 'Good',
+    test2() => 'Two',
+    default => 'fail'
+};
+
+$nest = match(match($a) {true => 1, false => 2}) {
+    1 => match($b) {
+        'ok' => true,
+        'fail' => false,
+        default => false
+    },
+    2 => 'null'
+};
+
+$extraLongMatch = match($a) {
+    'foo', 'foo2', 'foo3', 'foo4',
+    'foo5', 'foo6', 'foo7', 'foo8',
+    'foo9', 'foo10', 'foo11', 'foo12',
+    => ['bar'],
+    'bar', 'bar2', 'bar3', 'bar4',
+    'bar5', 'bar6', 'bar7', 'bar8',
+    'bar9', 'bar10', 'bar11', 'bar12',
+    => 'some really long value in the return part of the match statement',
+    'cd' => [],
+    default => [],
+};
+=====================================output=====================================
+<?php
+
+$really_really_really_long_variable_name = match (getValue()) {
+    true => implode(",", [1, 2, 3]),
+    false => $a || "Empty",
+    null => null,
+    default => throw new \\InvalidArgumentException("Unknown Value"),
+};
+
+$boolStr = match ($v) {
+    true => "true",
+    false => "false",
+};
+
+$boolish = match ($v) {
+    true, 1 => true,
+    false, 0, "", null => false,
+    default => null,
+};
+
+$a = match (true) {
+    test() => "Good",
+    test2() => "Two",
+    default => "fail",
+};
+
+$nest = match (
+match ($a) {
+        true => 1,
+        false => 2,
+    }
+) {
+    1 => match ($b) {
+        "ok" => true,
+        "fail" => false,
+        default => false,
+    },
+    2 => "null",
+};
+
+$extraLongMatch = match ($a) {
+    "foo",
+    "foo2",
+    "foo3",
+    "foo4",
+    "foo5",
+    "foo6",
+    "foo7",
+    "foo8",
+    "foo9",
+    "foo10",
+    "foo11",
+    "foo12"
+        => ["bar"],
+    "bar",
+    "bar2",
+    "bar3",
+    "bar4",
+    "bar5",
+    "bar6",
+    "bar7",
+    "bar8",
+    "bar9",
+    "bar10",
+    "bar11",
+    "bar12"
+        => "some really long value in the return part of the match statement",
+    "cd" => [],
+    default => [],
 };
 
 ================================================================================

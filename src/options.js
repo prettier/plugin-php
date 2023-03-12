@@ -23,6 +23,7 @@ module.exports = {
       { value: "7.3" },
       { value: "7.4" },
       { value: "8.0" },
+      { value: "8.1" },
     ],
   },
   trailingCommaPHP: {
@@ -36,11 +37,12 @@ module.exports = {
     since: "0.10.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "psr-2",
+    default: "per-cs",
     description:
       "Print one space or newline for code blocks (classes and functions).",
     choices: [
-      { value: "psr-2", description: "Use PSR-2 brace style." },
+      { value: "psr-2", description: "(deprecated) Use per-cs" },
+      { value: "per-cs", description: "Use the PER Coding Style brace style." },
       { value: "1tbs", description: "Use 1tbs brace style." },
     ],
   },

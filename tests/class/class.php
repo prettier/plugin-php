@@ -20,6 +20,7 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
   public $test;
   public $other = 1;
   public static $staticTest = ['hi'];
+  public readonly int $readonlytype;
   static $cache;
   protected static $_instance;
   protected $fillable = ['title', 'requester_id', 'type', 'summary', 'proof'];
@@ -37,7 +38,7 @@ abstract class ReallyReallyReallyLongClassName extends AbstractModelFactoryResou
    *
    * @return \Some\Test
    */
-  public function __construct($test, $test_int = null, $test_string = 'hi') {
+	public function __construct($test, $test_int = null, $test_string = 'hi', readonly int $test_readonly, public readonly string $test_promoted_readonly) {
     parent::__construct($test_int ?: 1);
     $this->other = $test_string;
     $this->current_version = $current_version ?: new Content_Version_Model();
@@ -298,4 +299,8 @@ class Promoted {
     public function __construct(   public  int $a, private float $b, protected  string  $d  ){
 
     }
+}
+
+readonly class ReadOnlyCls {
+    public string $myValue;
 }

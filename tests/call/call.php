@@ -3,6 +3,7 @@ func();
 func($a, $b, $c);
 func(...$a);
 func($a, ...$b);
+func(...$a, ...$b);
 $foo->func();
 func( $arg1,$arg2 ,$arg3, $arg4 , $arg5 );
 $foo -> bar ( $arg1,$arg2 ,$arg3, $arg4 , $arg5 ) ;
@@ -341,3 +342,8 @@ $obj = call('return new class($value)
         $this->foo = $foo;
     }
 };');
+
+$callable = strlen(...);
+$callable = $item->doSomething(...);
+$callable = $item::doSomething(...);
+$callable = Foo::doSomething(...);

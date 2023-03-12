@@ -6,7 +6,8 @@ const {
   skipNewline,
   isNextLineEmpty: _isNextLineEmpty,
   isPreviousLineEmpty: _isPreviousLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex: _getNextNonSpaceNonCommentCharacterIndex,
+  getNextNonSpaceNonCommentCharacterIndex:
+    _getNextNonSpaceNonCommentCharacterIndex,
 } = require("prettier").util;
 
 const prettierVersion = require("prettier").version;
@@ -165,6 +166,7 @@ function nodeHasStatement(node) {
     "program",
     "namespace",
     "class",
+    "enum",
     "interface",
     "trait",
     "traituse",
@@ -420,6 +422,7 @@ function lineShouldEndWithSemicolon(path) {
     "traitalias",
     "goto",
     "constantstatement",
+    "enumcase",
     "global",
     "static",
     "echo",

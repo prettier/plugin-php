@@ -52,3 +52,33 @@ final class DomainEventMessage
         return "555";
     }
 }
+
+#[
+    Attr1(Attr1::FOO | Attr1::BAR),
+    Attr2(-20 * 5 + 10)
+]
+class A {}
+
+class ValueModel
+{
+    #[
+        Assert\NotBlank(allowNull: false, groups: ['foo']),
+        Assert\Length(max: 255, groups: ['foo']),
+    ]
+    public ?string $value = null;
+}
+
+class Test
+{
+    /**
+     * Method with an attribute.
+     * @param string $foo
+     * @return string
+     */
+    #[Pure]
+    public function withAttribute(string $foo): string
+    {
+        return $foo;
+    }
+
+}
