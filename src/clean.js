@@ -44,7 +44,7 @@ function clean(node, newObj) {
       return null;
     }
 
-    newObj.value = newObj.value.replace(/\r\n?|\n/g, "");
+    newObj.value = newObj.value.replace(/\n/g, "");
   }
 
   // continue ((2)); -> continue 2;
