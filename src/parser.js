@@ -9,7 +9,7 @@ function parse(text, parsers, opts) {
   }
 
   // Todo https://github.com/glayzzle/php-parser/issues/170
-  text = text.replace(/\?>\r?\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
+  text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
 
   // initialize a new parser instance
   const parser = new engine({
@@ -52,10 +52,6 @@ function parse(text, parsers, opts) {
   // currently inline comments include the line break at the end, we need to
   // strip those out and update the end location for each comment manually
   ast.comments.forEach((comment) => {
-    if (comment.value[comment.value.length - 1] === "\r") {
-      comment.value = comment.value.slice(0, -1);
-      comment.loc.end.offset = comment.loc.end.offset - 1;
-    }
     if (comment.value[comment.value.length - 1] === "\n") {
       comment.value = comment.value.slice(0, -1);
       comment.loc.end.offset = comment.loc.end.offset - 1;

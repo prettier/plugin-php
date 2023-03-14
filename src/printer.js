@@ -2758,7 +2758,7 @@ function printNode(path, options, print) {
         let linebreak = literalline;
         if (parentParent.type === "heredoc") {
           linebreak = flexible ? hardline : literalline;
-          const lines = parentParent.raw.split(/\r?\n/g);
+          const lines = parentParent.raw.split("\n");
           closingTagIndentation = lines[lines.length - 1].search(/\S/);
           if (closingTagIndentation === -1) {
             closingTagIndentation = lines[lines.length - 2].search(/\S/);
@@ -2767,7 +2767,7 @@ function printNode(path, options, print) {
         return join(
           linebreak,
           node.raw
-            .split(/\r?\n/g)
+            .split("\n")
             .map((s, i) =>
               i > 0 || node.loc.start.column === 0
                 ? s.substring(closingTagIndentation)
@@ -2796,7 +2796,7 @@ function printNode(path, options, print) {
       return [
         node.raw[0] === "b" ? "b" : "",
         quote,
-        join(literalline, stringValue.split(/\r?\n/g)),
+        join(literalline, stringValue.split("\n")),
         quote,
       ];
     }
@@ -2843,7 +2843,7 @@ function printNode(path, options, print) {
     case "inline":
       return join(
         literalline,
-        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split(/\r?\n/g)
+        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
       );
     case "magic":
       return node.value;
@@ -2855,7 +2855,7 @@ function printNode(path, options, print) {
         node.label,
         "'",
         linebreak,
-        join(linebreak, node.value.split(/\r?\n/g)),
+        join(linebreak, node.value.split("\n")),
         linebreak,
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : "",

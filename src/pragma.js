@@ -22,16 +22,6 @@ const getPageLevelDocBlock = memoize((text) => {
   }
 });
 
-function guessLineEnding(text) {
-  const index = text.indexOf("\n");
-
-  if (index >= 0 && text.charAt(index - 1) === "\r") {
-    return "\r\n";
-  }
-
-  return "\n";
-}
-
 function hasPragma(text) {
   // fast path optimization - check if the pragma shows up in the file at all
   if (!reHasPragma.test(text)) {
@@ -49,8 +39,8 @@ function hasPragma(text) {
   return false;
 }
 
-function injectPragma(docblock, text) {
-  let lines = docblock.split(/\r?\n/g);
+function injectPragma(docblock) {
+  let lines = docblock.split("\n");
 
   if (lines.length === 1) {
     // normalize to multiline for simplicity
@@ -66,7 +56,7 @@ function injectPragma(docblock, text) {
   // not found => index == -1, which conveniently will splice 1 from the end.
   lines.splice(pragmaIndex, 0, " * @format");
 
-  return lines.join(guessLineEnding(text));
+  return lines.join("\n");
 }
 
 function insertPragma(text) {
