@@ -2,6 +2,23 @@
 
 const util = require("./util");
 
+const ignoredProperties = new Set([
+  "loc",
+  "range",
+  "raw",
+  "comments",
+  "leadingComments",
+  "trailingComments",
+  "parenthesizedExpression",
+  "parent",
+  "prev",
+  "start",
+  "end",
+  "tokens",
+  "errors",
+  "extra",
+]);
+
 /**
  * This function takes the existing ast node and a copy, by reference
  * We use it for testing, so that we can compare pre-post versions of the AST,
@@ -9,25 +26,6 @@ const util = require("./util");
  * changed by the printer, etc.)
  */
 function clean(node, newObj) {
-  [
-    "loc",
-    "range",
-    "raw",
-    "comments",
-    "leadingComments",
-    "trailingComments",
-    "parenthesizedExpression",
-    "parent",
-    "prev",
-    "start",
-    "end",
-    "tokens",
-    "errors",
-    "extra",
-  ].forEach((name) => {
-    delete newObj[name];
-  });
-
   if (node.kind === "string") {
     // TODO if options are available in this method, replace with
     // newObj.isDoubleQuote = !util.useSingleQuote(node, options);
@@ -109,5 +107,7 @@ function clean(node, newObj) {
     return null;
   }
 }
+
+clean.ignoredProperties = ignoredProperties;
 
 module.exports = clean;
