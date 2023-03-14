@@ -8,7 +8,7 @@ const {
   hasNewline,
   hasNewlineInRange,
 } = require("prettier").util;
-const { concat, join, indent, hardline, cursor, lineSuffix, breakParent } =
+const { join, indent, hardline, cursor, lineSuffix, breakParent } =
   require("prettier").doc.builders;
 const {
   getNextNonSpaceNonCommentCharacterIndex,
@@ -853,7 +853,7 @@ function printDanglingComments(path, options, sameIndent, filter) {
   if (sameIndent) {
     return join(hardline, parts);
   }
-  return indent(concat([hardline, join(hardline, parts)]));
+  return indent([hardline, join(hardline, parts)]);
 }
 
 function hasLeadingComment(node) {
@@ -889,7 +889,7 @@ function printComments(comments, options) {
       parts.push(hardline);
     }
   });
-  return concat(parts);
+  return parts;
 }
 
 function isBlockComment(comment) {
@@ -930,7 +930,7 @@ function canAttachComment(node) {
 // TODO remove after https://github.com/prettier/prettier/issues/5087
 function prependCursorPlaceholder(path, options, printed) {
   if (path.getNode() === options.cursorNode && path.getValue()) {
-    return concat([cursor, printed, cursor]);
+    return [cursor, printed, cursor];
   }
 
   return printed;
@@ -950,15 +950,15 @@ function printLeadingComment(commentPath, print, options) {
   // Leading block comments should see if they need to stay on the
   // same line or not.
   if (isBlock) {
-    return concat([
+    return [
       contents,
       hasNewline(options.originalText, options.locEnd(comment))
         ? hardline
         : " ",
-    ]);
+    ];
   }
 
-  return concat([contents, hardline]);
+  return [contents, hardline];
 }
 
 function printTrailingComment(commentPath, print, options) {
@@ -993,18 +993,13 @@ function printTrailingComment(commentPath, print, options) {
       options
     );
 
-    return lineSuffix(
-      concat([hardline, isLineBeforeEmpty ? hardline : "", contents])
-    );
+    return lineSuffix([hardline, isLineBeforeEmpty ? hardline : "", contents]);
   } else if (isBlock) {
     // Trailing block comments never need a newline
-    return concat([" ", contents]);
+    return [" ", contents];
   }
 
-  return concat([
-    lineSuffix(concat([" ", contents])),
-    !isBlock ? breakParent : "",
-  ]);
+  return [lineSuffix([" ", contents]), !isBlock ? breakParent : ""];
 }
 
 function printAllComments(path, print, options, needsSemi) {
@@ -1042,7 +1037,7 @@ function printAllComments(path, print, options, needsSemi) {
   return prependCursorPlaceholder(
     path,
     options,
-    concat(leadingParts.concat(trailingParts))
+    leadingParts.concat(trailingParts)
   );
 }
 
