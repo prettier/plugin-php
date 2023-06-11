@@ -304,3 +304,5 @@ class Promoted {
 readonly class ReadOnlyCls {
     public string $myValue;
 }
+
+class FinalCost { final public const FOO = 'foo'; }

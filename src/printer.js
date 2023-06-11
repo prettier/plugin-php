@@ -2377,6 +2377,7 @@ function printNode(path, options, print) {
 
       return group([
         ...attrs,
+        node.final ? "final " : "",
         node.visibility ? [node.visibility, " "] : "",
         "const",
         firstVariable ? [" ", firstVariable] : "",
