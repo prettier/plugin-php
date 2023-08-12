@@ -922,7 +922,7 @@ function getCommentChildNodes(node) {
 
 function canAttachComment(node) {
   return (
-    node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
+    node?.kind && node?.kind !== "commentblock" && node?.kind !== "commentline"
   );
 }
 

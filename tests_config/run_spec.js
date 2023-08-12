@@ -66,11 +66,11 @@ global.run_spec = (dirname, parsers, options) => {
 
     const hasEndOfLine = "endOfLine" in mainOptions;
 
-    const output = format(input, filename, mainOptions);
-    const visualizedOutput = visualizeEndOfLine(output);
-
     // eslint-disable-next-line jest/valid-title
-    test(basename, () => {
+    test(basename, async () => {
+      const output = await format(input, filename, mainOptions);
+      const visualizedOutput = visualizeEndOfLine(output);
+
       expect(visualizedOutput).toEqual(
         visualizeEndOfLine(consistentEndOfLine(output))
       );
@@ -124,8 +124,8 @@ function parse(source, options) {
   return prettier.__debug.parse(source, options, /* massage */ true).ast;
 }
 
-function format(source, filename, options) {
-  const result = prettier.formatWithCursor(
+async function format(source, filename, options) {
+  const result = await prettier.formatWithCursor(
     source,
     Object.assign({ filepath: filename }, options)
   );
