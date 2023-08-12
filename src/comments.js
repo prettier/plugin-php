@@ -897,6 +897,10 @@ function isBlockComment(comment) {
 }
 
 function getCommentChildNodes(node) {
+  // TODO why is this called with node == `null`??
+  if (!node) {
+    return [];
+  }
   if (typeof node !== "object") {
     return [];
   }
@@ -915,7 +919,9 @@ function getCommentChildNodes(node) {
           n !== "precedingNode" &&
           n !== "followingNode"
       )
-      .map((n) => node[n]);
+      .map((n) => node[n])
+      // make sure always AST nodes are returned
+      .filter((n) => typeof n === "object");
 
   return getChildNodes(node);
 }
