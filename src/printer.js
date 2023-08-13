@@ -2887,8 +2887,9 @@ function printNode(path, options, print) {
     }
     case "match": {
       const arms = path.map((armPath, armIdx) => {
+        const armNode = armPath.getValue();
         const conds =
-          armPath.getValue().conds === null
+          armNode.conds === null
             ? "default"
             : armPath.map(
                 (condPath, condIdx) =>
@@ -2906,7 +2907,7 @@ function printNode(path, options, print) {
         "match (",
         group([softline, indent(path.call(print, "cond")), softline]),
         ") {",
-        group(indent([...arms, options.trailingCommaPHP ? ifBreak(",") : ""])),
+        group(indent([...arms, options.trailingCommaPHP ? "," : ""])),
         " ",
         softline,
         "}",
