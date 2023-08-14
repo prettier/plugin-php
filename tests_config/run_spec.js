@@ -66,11 +66,15 @@ global.run_spec = (dirname, parsers, options) => {
 
     const hasEndOfLine = "endOfLine" in mainOptions;
 
+    let output;
+    let visualizedOutput;
+    beforeAll(async () => {
+      output = await format(input, filename, mainOptions);
+      visualizedOutput = visualizeEndOfLine(output);
+    });
+
     // eslint-disable-next-line jest/valid-title
     test(basename, async () => {
-      const output = await format(input, filename, mainOptions);
-      const visualizedOutput = visualizeEndOfLine(output);
-
       expect(visualizedOutput).toEqual(
         visualizeEndOfLine(consistentEndOfLine(output))
       );

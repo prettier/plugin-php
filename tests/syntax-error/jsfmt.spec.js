@@ -1,20 +1,20 @@
 const { prettier, plugin } = require("../../tests_config/get_engine");
 const stripAnsi = require("strip-ansi");
 
-function raiseSyntaxError() {
-  prettier.format(`<?php _`, {
+async function raiseSyntaxError() {
+  await prettier.format(`<?php _`, {
     plugins: [plugin],
     parser: "php",
   });
 }
 
-test("Prettier throws SyntaxErrors", () => {
-  expect(raiseSyntaxError).toThrow(SyntaxError);
+test("Prettier throws SyntaxErrors", async () => {
+  await expect(raiseSyntaxError).rejects.toThrow(SyntaxError);
 });
 
-test("Syntax errors have the expected structure", () => {
+test("Syntax errors have the expected structure", async () => {
   try {
-    raiseSyntaxError();
+    await raiseSyntaxError();
   } catch (err) {
     // Convert error to plain object since additional properties are not snapshotted otherwise
     const errObject = Object.assign({}, err, {
