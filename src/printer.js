@@ -2889,6 +2889,9 @@ function printNode(path, options, print) {
     case "match": {
       const arms = path.map((armPath, armIdx) => {
         const armNode = armPath.getValue();
+        const maybeLeadingComment = comments.hasLeadingComment(armNode)
+          ? [comments.printComments(armNode.leadingComments, options), hardline]
+          : [];
         const conds =
           armNode.conds === null
             ? "default"
@@ -2907,6 +2910,7 @@ function printNode(path, options, print) {
           ",",
           hardline,
           maybeEmptyLineBetweenArms,
+          ...maybeLeadingComment,
           group([group([conds, indent(line)]), "=> ", body]),
         ].slice(armIdx > 0 ? 0 : 1);
       }, "arms");
