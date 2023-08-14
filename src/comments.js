@@ -896,39 +896,26 @@ function isBlockComment(comment) {
   return comment.kind === "commentblock";
 }
 
-function getCommentChildNodes(node) {
-  // TODO why is this called with node == `null`??
-  if (!node) {
-    return [];
-  }
-  if (typeof node !== "object") {
-    return [];
-  }
-
-  const getChildNodes = (node) =>
-    Object.keys(node)
-      .filter(
-        (n) =>
-          n !== "kind" &&
-          n !== "loc" &&
-          n !== "errors" &&
-          n !== "extra" &&
-          n !== "comments" &&
-          n !== "leadingComments" &&
-          n !== "enclosingNode" &&
-          n !== "precedingNode" &&
-          n !== "followingNode"
-      )
-      .map((n) => node[n])
-      // make sure always AST nodes are returned
-      .filter((n) => typeof n === "object");
-
-  return getChildNodes(node);
+const ignoredKeys = new Set([
+  "kind",
+  "loc",
+  "errors",
+  "extra",
+  "comments",
+  "leadingComments",
+  "enclosingNode",
+  "precedingNode",
+  "followingNode",
+]);
+function getVisitorKeys(node, nonTraversableKeys) {
+  return Object.keys(node).filter(
+    (key) => !nonTraversableKeys.has(key) && !ignoredKeys.has(key)
+  );
 }
 
 function canAttachComment(node) {
   return (
-    node?.kind && node?.kind !== "commentblock" && node?.kind !== "commentline"
+    node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
   );
 }
 
@@ -1051,7 +1038,7 @@ module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
-  getCommentChildNodes,
+  getVisitorKeys,
   canAttachComment,
   isBlockComment,
   printDanglingComments,
