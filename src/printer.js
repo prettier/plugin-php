@@ -53,6 +53,7 @@ const {
   normalizeMagicMethodName,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
+  isPreviousLineEmpty,
 } = require("./util");
 
 function isMinVersion(actualVersion, requiredVersion) {
@@ -2897,9 +2898,15 @@ function printNode(path, options, print) {
                 "conds"
               );
         const body = armPath.call(print, "body");
+        const maybeEmptyLineBetweenArms =
+          armIdx > 0 &&
+          isPreviousLineEmpty(options.originalText, armNode, options)
+            ? hardline
+            : "";
         return [
           ",",
           hardline,
+          maybeEmptyLineBetweenArms,
           group([group([conds, indent(line)]), "=> ", body]),
         ].slice(armIdx > 0 ? 0 : 1);
       }, "arms");
