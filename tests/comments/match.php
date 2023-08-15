@@ -15,5 +15,9 @@ $withComments = match($v) {
 
 
     'b' => 2,
-    default => null
+    // leading comment ...
+    'c' => 3,              /* ... and trailing comment */
+    'd'           // fourth comment
+        => 4,
+    default => null            // final comment
 };
