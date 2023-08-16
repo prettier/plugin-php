@@ -21,6 +21,7 @@ jobs:
         run: |
           yarn
           yarn test
+          yarn test:standalone
           yarn codecov
         env:
           CI: true
