@@ -1,1 +1,1 @@
-run_spec(__dirname, ["php"], { phpVersion: "8.0" });
+run_spec(import.meta, ["php"], { phpVersion: "8.0" });

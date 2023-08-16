@@ -1,5 +1,5 @@
-const { prettier, plugin } = require("../../tests_config/get_engine");
-const stripAnsi = require("strip-ansi");
+import { prettier, plugin } from "../../tests_config/get_engine.js";
+import stripAnsi from "strip-ansi";
 
 async function raiseSyntaxError() {
   await prettier.format(`<?php _`, {

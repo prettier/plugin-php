@@ -1,8 +1,8 @@
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
-const raw = require("jest-snapshot-serializer-raw").wrap;
+import fs from "fs";
+import path from "path";
+import url from "url";
+import { wrap as raw } from "jest-snapshot-serializer-raw";
+import { prettier, plugin } from "./get_engine.js";
 
 const { AST_COMPARE, TEST_CRLF } = process.env;
 
@@ -10,9 +10,9 @@ const CURSOR_PLACEHOLDER = "<|>";
 const RANGE_START_PLACEHOLDER = "<<<PRETTIER_RANGE_START>>>";
 const RANGE_END_PLACEHOLDER = "<<<PRETTIER_RANGE_END>>>";
 
-const { prettier, plugin } = require("./get_engine");
+global.run_spec = (importMeta, parsers, options) => {
+  const dirname = path.dirname(url.fileURLToPath(importMeta.url));
 
-global.run_spec = (dirname, parsers, options) => {
   options = Object.assign({}, options, {
     plugins: [plugin, ...((options && options.plugins) || [])],
   });
