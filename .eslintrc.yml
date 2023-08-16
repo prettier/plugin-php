@@ -47,12 +47,9 @@ rules:
   
   unicorn/prefer-module: error
 overrides:
-  - files: "{tests,tests_config}/**/*.js"
+  - files: "**/*.cjs"
     parserOptions:
-      sourceType: "module"
-    rules:
-      # Turned off temporarily since we add a package.json without dependencies in these dirs
-      import/no-extraneous-dependencies: off
+      sourceType: "script"
   - files: "tests/**/*.js"
     globals:
       run_spec: true

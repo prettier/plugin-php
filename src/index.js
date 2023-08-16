@@ -1,5 +1,8 @@
 import { doc } from "prettier";
-import linguistLanguages from "linguist-languages";
+import {
+  LINGUIST_LANGUAGES_PHP,
+  LINGUIST_LANGUAGES_HTML_PHP,
+} from "./linguist-languages.cjs";
 import parse from "./parser.js";
 import print from "./printer.js";
 import clean from "./clean.js";
@@ -38,13 +41,13 @@ function createLanguage(linguistData, { extend, override }) {
 }
 
 const languages = [
-  createLanguage(linguistLanguages.PHP, {
+  createLanguage(LINGUIST_LANGUAGES_PHP, {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"],
     },
   }),
-  createLanguage(linguistLanguages["HTML+PHP"], {
+  createLanguage(LINGUIST_LANGUAGES_HTML_PHP, {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"],

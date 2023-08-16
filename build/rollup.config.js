@@ -1,8 +1,8 @@
 import { resolve, dirname } from "path";
 import url from "url";
 
-import nodeResolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 import alias from "rollup-plugin-alias";
 import inject from "rollup-plugin-inject";
 import replace from "rollup-plugin-replace";
@@ -60,6 +60,6 @@ export default {
         ],
       ],
     }),
-    terser(),
+    // terser(),
   ],
 };
