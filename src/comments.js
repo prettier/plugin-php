@@ -896,23 +896,6 @@ function isBlockComment(comment) {
   return comment.kind === "commentblock";
 }
 
-const ignoredKeys = new Set([
-  "kind",
-  "loc",
-  "errors",
-  "extra",
-  "comments",
-  "leadingComments",
-  "enclosingNode",
-  "precedingNode",
-  "followingNode",
-]);
-function getVisitorKeys(node, nonTraversableKeys) {
-  return Object.keys(node).filter(
-    (key) => !nonTraversableKeys.has(key) && !ignoredKeys.has(key)
-  );
-}
-
 function canAttachComment(node) {
   return (
     node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
@@ -1038,7 +1021,6 @@ module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
-  getVisitorKeys,
   canAttachComment,
   isBlockComment,
   printDanglingComments,
