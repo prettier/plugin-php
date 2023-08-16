@@ -445,6 +445,10 @@ function handleClassComments(enclosingNode, followingNode, comment) {
     enclosingNode &&
     ["class", "interface", "trait"].includes(enclosingNode.kind)
   ) {
+    if (enclosingNode.__parent_new_arguments?.includes(followingNode)) {
+      return false;
+    }
+
     // for extends nodes that have leading comments, we can store them as
     // dangling comments so we can handle them in the printer
 
@@ -896,6 +900,14 @@ function isBlockComment(comment) {
   return comment.kind === "commentblock";
 }
 
+function getCommentChildNodes(node) {
+  if (node.kind === "new" && node.what.kind === "class") {
+    // Pretend to be child of `class`
+    node.what.__parent_new_arguments = [...node.arguments];
+    return [node.what];
+  }
+}
+
 function canAttachComment(node) {
   return (
     node.kind && node.kind !== "commentblock" && node.kind !== "commentline"
@@ -1021,6 +1033,7 @@ module.exports = {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,
+  getCommentChildNodes,
   canAttachComment,
   isBlockComment,
   printDanglingComments,

@@ -46,7 +46,7 @@
     "prettier": "^1.15.0 || ^2.0.0 || ^3.0.0"
   },
   "scripts": {
-    "test": "yarn node --no-warnings --experimental-vm-modules $(yarn bin jest)",
+    "test": "yarn node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js",
     "prepublishOnly": "yarpm run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarpm test",
     "prettier": "prettier --plugin=src/index.js --parser=php",
     "build-standalone": "rollup -c build/rollup.config.js",

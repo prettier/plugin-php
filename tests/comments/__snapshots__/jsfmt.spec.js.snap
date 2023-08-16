@@ -6774,7 +6774,8 @@ static // Comment
 
 // Comment
 static // Comment
-    $a = // Comment // Comment
+    $a = // Comment
+    // Comment
         // Comment
         // Comment
         2021;
