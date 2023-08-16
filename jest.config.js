@@ -19,6 +19,8 @@ module.exports = {
       globals: {
         STANDALONE: false,
       },
+      runner: "jest-light-runner",
+      transform: {},
     },
     ...(/^true$/i.test(process.env.RUN_STANDALONE_TESTS)
       ? [
@@ -31,6 +33,8 @@ module.exports = {
             globals: {
               STANDALONE: true,
             },
+            runner: "jest-light-runner",
+            transform: {},
           },
         ]
       : []),

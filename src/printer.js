@@ -53,6 +53,7 @@ const {
   normalizeMagicMethodName,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
+  isPreviousLineEmpty,
 } = require("./util");
 
 function isMinVersion(actualVersion, requiredVersion) {
@@ -2886,9 +2887,27 @@ function printNode(path, options, print) {
       return path.call(print, "name");
     }
     case "match": {
+      const lastArmIndex = node.arms.length - 1;
       const arms = path.map((armPath, armIdx) => {
+        const armNode = armPath.getValue();
+
+        const maybeLeadingComment = comments.hasLeadingComment(armNode)
+          ? [comments.printComments(armNode.leadingComments, options), hardline]
+          : [];
+        const maybeTrailingComma =
+          armIdx < lastArmIndex || options.trailingCommaPHP ? "," : "";
+        const maybeTrailingComment = comments.hasTrailingComment(armNode)
+          ? [
+              " ",
+              comments.printComments(
+                armNode.comments.filter((c) => c.trailing),
+                options
+              ),
+            ]
+          : [];
+
         const conds =
-          armPath.getValue().conds === null
+          armNode.conds === null
             ? "default"
             : armPath.map(
                 (condPath, condIdx) =>
@@ -2896,17 +2915,31 @@ function printNode(path, options, print) {
                 "conds"
               );
         const body = armPath.call(print, "body");
+        const maybeEmptyLineBetweenArms =
+          armIdx > 0 &&
+          isPreviousLineEmpty(options.originalText, armNode, options)
+            ? hardline
+            : "";
+
         return [
-          ",",
+          "",
           hardline,
-          group([group([conds, indent(line)]), "=> ", body]),
+          maybeEmptyLineBetweenArms,
+          ...maybeLeadingComment,
+          group([
+            group([conds, indent(line)]),
+            "=> ",
+            body,
+            maybeTrailingComma,
+            ...maybeTrailingComment,
+          ]),
         ].slice(armIdx > 0 ? 0 : 1);
       }, "arms");
       return group([
         "match (",
         group([softline, indent(path.call(print, "cond")), softline]),
         ") {",
-        group(indent([...arms, options.trailingCommaPHP ? ifBreak(",") : ""])),
+        group(indent([...arms])),
         " ",
         softline,
         "}",

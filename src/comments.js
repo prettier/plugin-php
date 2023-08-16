@@ -445,6 +445,10 @@ function handleClassComments(enclosingNode, followingNode, comment) {
     enclosingNode &&
     ["class", "interface", "trait"].includes(enclosingNode.kind)
   ) {
+    if (enclosingNode.__parent_new_arguments?.includes(followingNode)) {
+      return false;
+    }
+
     // for extends nodes that have leading comments, we can store them as
     // dangling comments so we can handle them in the printer
 
@@ -897,27 +901,11 @@ function isBlockComment(comment) {
 }
 
 function getCommentChildNodes(node) {
-  if (typeof node !== "object") {
-    return [];
+  if (node.kind === "new" && node.what.kind === "class") {
+    // Pretend to be child of `class`
+    node.what.__parent_new_arguments = [...node.arguments];
+    return [node.what];
   }
-
-  const getChildNodes = (node) =>
-    Object.keys(node)
-      .filter(
-        (n) =>
-          n !== "kind" &&
-          n !== "loc" &&
-          n !== "errors" &&
-          n !== "extra" &&
-          n !== "comments" &&
-          n !== "leadingComments" &&
-          n !== "enclosingNode" &&
-          n !== "precedingNode" &&
-          n !== "followingNode"
-      )
-      .map((n) => node[n]);
-
-  return getChildNodes(node);
 }
 
 function canAttachComment(node) {

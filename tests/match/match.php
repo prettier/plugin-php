@@ -42,3 +42,16 @@ $extraLongMatch = match($a) {
     'cd' => [],
     default => [],
 };
+
+// Whitespace in match expressions is handled like in function/method arguments:
+// - none above the first arm or below the last arm
+// - empty lines are preserved between arms
+// - multiple empty lines are collapsed into one
+match ($a) {
+
+    'a' => 1,
+
+
+    'b' => 2
+
+};
