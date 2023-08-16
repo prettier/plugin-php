@@ -1,2 +1,2 @@
-run_spec(__dirname, ["php"]);
-run_spec(__dirname, ["php"], { phpVersion: "5.3" });
+run_spec(import.meta, ["php"]);
+run_spec(import.meta, ["php"], { phpVersion: "5.3" });

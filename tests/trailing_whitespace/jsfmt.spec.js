@@ -1,1 +1,1 @@
-run_spec(__dirname, ["php"]);
+run_spec(import.meta, ["php"]);

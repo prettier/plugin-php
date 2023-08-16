@@ -1,11 +1,14 @@
-"use strict";
+import path from "path";
+import url from "url";
+import { createRequire } from "module";
 
-const path = require("path");
+const require = createRequire(import.meta.url);
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-if (global.STANDALONE) {
-  exports.prettier = require("prettier/standalone");
-  exports.plugin = require(path.join(__dirname, "..", "standalone.js"));
-} else {
-  exports.prettier = require("prettier");
-  exports.plugin = require(path.join(__dirname, ".."));
-}
+// TODO: Use ESM version
+export const prettier = require(global.STANDALONE
+  ? "prettier/standalone"
+  : "prettier");
+export const plugin = require(global.STANDALONE
+  ? path.join(__dirname, "../standalone.js")
+  : path.join(__dirname, ".."));

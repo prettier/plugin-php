@@ -1,0 +1,5 @@
+{
+  "//": "Remove this file after we migrate to ESM.",
+  "description": "Make Node.js treat .js files in this directory as module",
+  "type": "module"
+}

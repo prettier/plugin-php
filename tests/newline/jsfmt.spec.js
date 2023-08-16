@@ -1,3 +1,3 @@
-run_spec(__dirname, ["php"], { endOfLine: "cr" });
-run_spec(__dirname, ["php"], { endOfLine: "crlf" });
-run_spec(__dirname, ["php"], { endOfLine: "lf" });
+run_spec(import.meta, ["php"], { endOfLine: "cr" });
+run_spec(import.meta, ["php"], { endOfLine: "crlf" });
+run_spec(import.meta, ["php"], { endOfLine: "lf" });

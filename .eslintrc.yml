@@ -39,9 +39,13 @@ rules:
     - never
     - exceptRange: true
 overrides:
-  - files: "tests/**/*.js"
+  - files: "{tests,tests_config}/**/*.js"
+    parserOptions:
+      sourceType: "module"
     rules:
-      strict: off
+      # Turned off temporarily since we add a package.json without dependencies in these dirs
+      import/no-extraneous-dependencies: off
+  - files: "tests/**/*.js"
     globals:
       run_spec: true
   - files: "build/*.js"

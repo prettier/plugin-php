@@ -1,1 +1,1 @@
-run_spec(__dirname, ["php"], { singleQuote: false });
+run_spec(import.meta, ["php"], { singleQuote: false });
