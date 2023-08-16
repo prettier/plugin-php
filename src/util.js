@@ -1,4 +1,4 @@
-"use strict";
+import { util as prettierUtil, version as prettierVersion } from "prettier";
 
 const {
   hasNewline,
@@ -8,9 +8,7 @@ const {
   isPreviousLineEmpty: _isPreviousLineEmpty,
   getNextNonSpaceNonCommentCharacterIndex:
     _getNextNonSpaceNonCommentCharacterIndex,
-} = require("prettier").util;
-
-const prettierVersion = require("prettier").version;
+} = prettierUtil;
 
 function lookupIfPrettier2(options, prop) {
   return parseInt(prettierVersion[0]) > 1 ? options[prop] : options;
@@ -477,14 +475,6 @@ function hasDanglingComments(node) {
   );
 }
 
-function hasLeadingComment(node) {
-  return node.comments && node.comments.some((comment) => comment.leading);
-}
-
-function hasTrailingComment(node) {
-  return node.comments && node.comments.some((comment) => comment.trailing);
-}
-
 function isLookupNode(node) {
   return (
     node.kind === "propertylookup" ||
@@ -692,7 +682,7 @@ function normalizeMagicMethodName(name) {
   return name;
 }
 
-module.exports = {
+export {
   printNumber,
   getPrecedence,
   isBitwiseOperator,
@@ -708,8 +698,6 @@ module.exports = {
   fileShouldEndWithHardline,
   maybeStripLeadingSlashFromUse,
   hasDanglingComments,
-  hasLeadingComment,
-  hasTrailingComment,
   docShouldHaveTrailingNewline,
   isLookupNode,
   isFirstChildrenInlineNode,

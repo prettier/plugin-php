@@ -1,8 +1,6 @@
-"use strict";
-
 const CATEGORY_PHP = "PHP";
 
-module.exports = {
+export default {
   phpVersion: {
     since: "0.13.0",
     category: CATEGORY_PHP,

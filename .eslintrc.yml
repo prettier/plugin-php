@@ -6,19 +6,18 @@ extends:
   - plugin:prettier-doc/recommended
 parserOptions:
   ecmaVersion: 2023
+  sourceType: "module"
 plugins:
   - import
+  - unicorn
 root: true
 env:
-  es6: true
+  es2024: true
   node: true
   jest: true
 rules:
   eqeqeq: error
   curly: error
-  import/no-extraneous-dependencies:
-    - error
-    - devDependencies: ["tests*/**", "scripts/**", "build/**"]
   no-else-return: error
   no-inner-declarations: error
   no-useless-return: error
@@ -38,6 +37,15 @@ rules:
     - error
     - never
     - exceptRange: true
+
+  import/extensions: 
+    - error
+    - ignorePackages
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies: ["tests*/**", "scripts/**", "build/**"]
+  
+  unicorn/prefer-module: error
 overrides:
   - files: "{tests,tests_config}/**/*.js"
     parserOptions:

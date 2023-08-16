@@ -1,6 +1,5 @@
-"use strict";
-const Buffer = {};
-Buffer.isBuffer = function () {
-  return false;
+const Buffer = {
+  isBuffer: () => false,
 };
-module.exports = Buffer;
+
+export default Buffer;

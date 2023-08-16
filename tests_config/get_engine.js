@@ -1,14 +1,12 @@
-import path from "path";
 import url from "url";
 import { createRequire } from "module";
+import prettierModule from "prettier";
+import prettierStandalone from "prettier/standalone";
+import prettierPluginPhp from "../src/index.js";
 
 const require = createRequire(import.meta.url);
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-// TODO: Use ESM version
-export const prettier = require(global.STANDALONE
-  ? "prettier/standalone"
-  : "prettier");
-export const plugin = require(global.STANDALONE
-  ? path.join(__dirname, "../standalone.js")
-  : path.join(__dirname, ".."));
+export const prettier = global.STANDALONE ? prettierStandalone : prettierModule;
+export const plugin = global.STANDALONE
+  ? require(url.fileURLToPath(new URL("../standalone.js", import.meta.url)))
+  : prettierPluginPhp;

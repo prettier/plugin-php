@@ -1,9 +1,7 @@
-"use strict";
-
 const ENABLE_COVERAGE = !!process.env.CI;
 const RUN_STANDALONE_TESTS = Boolean(process.env.RUN_STANDALONE_TESTS);
 
-module.exports = {
+export default {
   collectCoverage: ENABLE_COVERAGE,
   collectCoverageFrom: [
     "<rootDir>/src/**/*.js",

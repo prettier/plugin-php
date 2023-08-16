@@ -1,4 +1,5 @@
-import { resolve } from "path";
+import { resolve, dirname } from "path";
+import url from "url";
 
 import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
@@ -9,6 +10,7 @@ import babel from "rollup-plugin-babel";
 import json from "rollup-plugin-json";
 import { terser } from "rollup-plugin-terser";
 
+const __dirname = dirname(url.fileURLToPath(import.meta.url));
 const SRC_DIR = resolve(__dirname, "..", "src");
 const BUILD_DIR = resolve(__dirname, "..", "build");
 
@@ -50,7 +52,7 @@ export default {
       compact: false,
       presets: [
         [
-          require.resolve("@babel/preset-env"),
+          "@babel/preset-env",
           {
             targets: { browsers: [">0.25%", "not ie 11", "not op_mini all"] },
             modules: false,

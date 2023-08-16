@@ -1,7 +1,5 @@
-"use strict";
-
-const parse = require("./parser");
-const memoize = require("mem");
+import memoize from "mem";
+import parse from "./parser.js";
 
 const reHasPragma = /@prettier|@format/;
 
@@ -91,7 +89,4 @@ function insertPragma(text) {
 ${after}`;
 }
 
-module.exports = {
-  hasPragma,
-  insertPragma,
-};
+export { hasPragma, insertPragma };

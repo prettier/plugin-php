@@ -1,4 +1,10 @@
-"use strict";
+import { util as prettierUtil, doc } from "prettier";
+import {
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
+  isPreviousLineEmpty,
+  isLookupNode,
+} from "./util.js";
 
 const {
   addLeadingComment,
@@ -7,15 +13,9 @@ const {
   skipNewline,
   hasNewline,
   hasNewlineInRange,
-} = require("prettier").util;
+} = prettierUtil;
 const { join, indent, hardline, cursor, lineSuffix, breakParent } =
-  require("prettier").doc.builders;
-const {
-  getNextNonSpaceNonCommentCharacterIndex,
-  isNextLineEmpty,
-  isPreviousLineEmpty,
-  isLookupNode,
-} = require("./util");
+  doc.builders;
 
 /*
 Comment functions are meant to inspect various edge cases using given comment nodes,
@@ -1029,7 +1029,7 @@ function printAllComments(path, print, options, needsSemi) {
   );
 }
 
-module.exports = {
+export {
   handleOwnLineComment,
   handleEndOfLineComment,
   handleRemainingComment,

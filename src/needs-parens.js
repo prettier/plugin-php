@@ -1,8 +1,5 @@
-"use strict";
-
-const assert = require("assert");
-
-const { getPrecedence, shouldFlatten, isBitwiseOperator } = require("./util");
+import assert from "assert";
+import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.js";
 
 function needsParens(path) {
   const parent = path.getParentNode();
@@ -255,4 +252,4 @@ function needsParens(path) {
   return false;
 }
 
-module.exports = needsParens;
+export default needsParens;
