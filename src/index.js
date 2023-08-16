@@ -58,9 +58,27 @@ const parsers = {
   },
 };
 
+const ignoredKeys = new Set([
+  "kind",
+  "loc",
+  "errors",
+  "extra",
+  "comments",
+  "leadingComments",
+  "enclosingNode",
+  "precedingNode",
+  "followingNode",
+]);
+function getVisitorKeys(node, nonTraversableKeys) {
+  return Object.keys(node).filter(
+    (key) => !nonTraversableKeys.has(key) && !ignoredKeys.has(key)
+  );
+}
+
 const printers = {
   php: {
     print,
+    getVisitorKeys,
     insertPragma,
     massageAstNode: clean,
     getCommentChildNodes: comments.getCommentChildNodes,

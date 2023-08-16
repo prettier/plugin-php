@@ -4,6 +4,8 @@ extends:
   - plugin:prettier/recommended
   - plugin:jest/recommended
   - plugin:prettier-doc/recommended
+parserOptions:
+  ecmaVersion: 2023
 plugins:
   - import
 root: true

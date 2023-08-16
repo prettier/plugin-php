@@ -141,7 +141,7 @@ Then use Prettier with PHP, just like this:
 ```js
 prettier.format(YOUR_CODE, {
   plugins: prettierPlugins,
-  parser: "php"
+  parser: "php",
 });
 ```
 
@@ -157,7 +157,7 @@ import phpPlugin from "@prettier/plugin-php/standalone";
 
 prettier.format(YOUR_CODE, {
   plugins: [phpPlugin],
-  parser: "php"
+  parser: "php",
 });
 ```
 
@@ -165,17 +165,17 @@ prettier.format(YOUR_CODE, {
 
 Prettier for PHP supports the following options. We recommend that all users set the `phpVersion` option.
 
-| Name               | Default    | Description                                                                                                                                                                                                                                                                          |
-| ------------------ |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name               | Default    | Description                                                                                                                                                                                                                                                                            |
+| ------------------ | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `phpVersion`       | `"7.0"`    | Allows specifying the PHP version you're using. If you're using PHP 7.1 or later, setting this option will make use of modern language features in the printed output. If you're using PHP lower than 7.0, you'll have to set this option or Prettier will generate incompatible code. |
-| `printWidth`       | `80`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                                                                      |
-| `tabWidth`         | `4`        | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width)), The default is `4` based on the `PSR-2` coding standard.                                                                                                                              |
-| `useTabs`          | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                                                             |
-| `singleQuote`      | `false`    | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                                                             |
-| `trailingCommaPHP` | `true`     | If set to `true`, trailing commas will be added wherever possible. <br> If set to `false`, no trailing commas are printed.                                                                                                                                                           |
-| `braceStyle`       | `"per-cs"` | If set to `"per-cs"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line.                                           |
-| `requirePragma`    | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                   |
-| `insertPragma`     | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                    |
+| `printWidth`       | `80`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                                                                        |
+| `tabWidth`         | `4`        | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width)), The default is `4` based on the `PSR-2` coding standard.                                                                                                                                |
+| `useTabs`          | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                                                               |
+| `singleQuote`      | `false`    | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                                                               |
+| `trailingCommaPHP` | `true`     | If set to `true`, trailing commas will be added wherever possible. <br> If set to `false`, no trailing commas are printed.                                                                                                                                                             |
+| `braceStyle`       | `"per-cs"` | If set to `"per-cs"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line.                                            |
+| `requirePragma`    | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                     |
+| `insertPragma`     | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                      |
 
 ## Ignoring code
 
@@ -232,7 +232,7 @@ The official [prettier plugin for vscode](https://github.com/prettier/prettier-v
 - Tick the On Save button, if you want your files formatting updated on file save
 - Clock OK to save settings
 
-_Note: Just pressing save does not reformat your current file unless the file has been modified in some way, 
+_Note: Just pressing save does not reformat your current file unless the file has been modified in some way,
 alternatively you can use the Prettier shortcut Ctrl+Alt+Shift+P_
 
 ### Sublime Text

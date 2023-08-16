@@ -7,5 +7,5 @@ if (global.STANDALONE) {
   exports.plugin = require(path.join(__dirname, "..", "standalone.js"));
 } else {
   exports.prettier = require("prettier");
-  exports.plugin = path.join(__dirname, "..");
+  exports.plugin = require(path.join(__dirname, ".."));
 }

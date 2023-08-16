@@ -1,7 +1,7 @@
 "use strict";
 const engine = require("php-parser");
 
-function parse(text, parsers, opts) {
+function parse(text, opts) {
   const inMarkdown = opts && opts.parentParser === "markdown";
 
   if (!text && inMarkdown) {

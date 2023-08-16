@@ -15,9 +15,9 @@ yarn test tests/{folder of your choice}
 
 Here's what you need to know about the tests:
 
-* The tests use [Jest](https://facebook.github.io/jest/) snapshots.
-* You can make changes and run `jest -u` (or `yarn test -u`) to update the snapshots. Then run `git diff` to take a look at what changed. Always update the snapshots when opening a PR.
-* You can run `AST_COMPARE=1 yarn test` for a more robust test run. That formats each file, re-parses it, and compares the new AST with the original one and makes sure they are semantically equivalent.
+- The tests use [Jest](https://facebook.github.io/jest/) snapshots.
+- You can make changes and run `jest -u` (or `yarn test -u`) to update the snapshots. Then run `git diff` to take a look at what changed. Always update the snapshots when opening a PR.
+- You can run `AST_COMPARE=1 yarn test` for a more robust test run. That formats each file, re-parses it, and compares the new AST with the original one and makes sure they are semantically equivalent.
 
 Run `yarn lint --fix` to automatically format files.
 
@@ -31,16 +31,14 @@ Add the following configuration to `.vscode/launch.json`:
 
 ```json
 {
-    "type": "node",
-    "request": "launch",
-    "name": "Prettify test.php",
-    "skipFiles": [
-        "<node_internals>/**"
-    ],
-    "program": "${workspaceRoot}/node_modules/.bin/prettier",
-    "args": ["--plugin=.", "--parser=php", "test.php"],
-    "cwd": "${workspaceRoot}",
-    "outputCapture": "std"
+  "type": "node",
+  "request": "launch",
+  "name": "Prettify test.php",
+  "skipFiles": ["<node_internals>/**"],
+  "program": "${workspaceRoot}/node_modules/.bin/prettier",
+  "args": ["--plugin=.", "--parser=php", "test.php"],
+  "cwd": "${workspaceRoot}",
+  "outputCapture": "std"
 }
 ```
 
