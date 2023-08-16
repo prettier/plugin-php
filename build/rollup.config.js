@@ -60,6 +60,6 @@ export default {
         ],
       ],
     }),
-    // terser(),
+    terser(),
   ],
 };

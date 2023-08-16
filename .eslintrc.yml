@@ -9,7 +9,6 @@ parserOptions:
   sourceType: "module"
 plugins:
   - import
-  - unicorn
 root: true
 env:
   es2024: true
@@ -44,8 +43,6 @@ rules:
   import/no-extraneous-dependencies:
     - error
     - devDependencies: ["tests*/**", "scripts/**", "build/**"]
-  
-  unicorn/prefer-module: error
 overrides:
   - files: "**/*.cjs"
     parserOptions:
