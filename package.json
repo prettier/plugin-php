@@ -46,9 +46,10 @@
     "prettier": "^3.0.0"
   },
   "scripts": {
-    "test": "jest",
-    "test:standalone": "yarn run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarn test",
-    "prepublishOnly": "yarn test:standalone",
+    "test": "yarn test:node && yarn test:standalone",
+    "test:node": "jest",
+    "test:standalone": "yarn run build-standalone && cross-env RUN_STANDALONE_TESTS=true yarn jest",
+    "prepublishOnly": "yarn test",
     "prettier": "prettier --plugin=src/index.js --parser=php",
     "build-standalone": "rollup -c build/rollup.config.js",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
