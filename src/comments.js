@@ -822,11 +822,11 @@ function handleWhileComments(
   return false;
 }
 
-// https://github.com/prettier/prettier/blob/master/src/main/comments.js#L335
-function printComment(commentPath, options) {
-  const comment = commentPath.getValue();
+// https://github.com/prettier/prettier/blob/c01661f311a2e1e033f1f9cb127882cc13e293bd/src/main/comments/print.js#L23
+function printComment(path, options) {
+  const comment = path.node;
   comment.printed = true;
-  return options.printer.printComment(commentPath, options);
+  return options.printer.printComment(path, options);
 }
 
 // https://github.com/prettier/prettier/blob/master/src/main/comments.js#L440
@@ -838,15 +838,15 @@ function printDanglingComments(path, options, sameIndent, filter) {
     return "";
   }
 
-  path.each((commentPath) => {
-    const comment = commentPath.getValue();
+  path.each(() => {
+    const comment = path.node;
     if (
       comment &&
       !comment.leading &&
       !comment.trailing &&
       (!filter || filter(comment))
     ) {
-      parts.push(printComment(commentPath, options));
+      parts.push(printComment(path, options));
     }
   }, "comments");
 
@@ -917,21 +917,22 @@ function canAttachComment(node) {
 // Based on https://github.com/prettier/prettier/blob/master/src/main/comments.js
 // TODO remove after https://github.com/prettier/prettier/issues/5087
 function prependCursorPlaceholder(path, options, printed) {
-  if (path.getNode() === options.cursorNode && path.getValue()) {
+  const { node } = path;
+  if (node && node === options.cursorNode) {
     return [cursor, printed, cursor];
   }
 
   return printed;
 }
 
-function printLeadingComment(commentPath, print, options) {
-  const comment = commentPath.getValue();
-  const contents = printComment(commentPath, options);
+function printLeadingComment(path, print, options) {
+  const contents = printComment(path, options);
 
   if (!contents) {
     return "";
   }
 
+  const comment = path.node;
   const isBlock =
     options.printer.isBlockComment && options.printer.isBlockComment(comment);
 
@@ -949,12 +950,13 @@ function printLeadingComment(commentPath, print, options) {
   return [contents, hardline];
 }
 
-function printTrailingComment(commentPath, print, options) {
-  const comment = commentPath.getValue();
-  const contents = printComment(commentPath, options);
+function printTrailingComment(path, print, options) {
+  const contents = printComment(path, options);
   if (!contents) {
     return "";
   }
+
+  const comment = path.node;
   const isBlock =
     options.printer.isBlockComment && options.printer.isBlockComment(comment);
 
@@ -991,9 +993,9 @@ function printTrailingComment(commentPath, print, options) {
 }
 
 function printAllComments(path, print, options, needsSemi) {
-  const value = path.getValue();
+  const { node } = path;
   const printed = print(path);
-  const comments = value && value.comments;
+  const comments = node && node.comments;
 
   if (!comments || comments.length === 0) {
     return prependCursorPlaceholder(path, options, printed);

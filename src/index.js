@@ -101,12 +101,12 @@ const printers = {
       remaining: handleRemainingComment,
     },
     willPrintOwnComments(path) {
-      const node = path.getValue();
+      const { node } = path;
 
       return node && node.kind === "noop";
     },
-    printComment(commentPath) {
-      const comment = commentPath.getValue();
+    printComment(path) {
+      const comment = path.node;
 
       switch (comment.kind) {
         case "commentblock": {
@@ -149,8 +149,7 @@ const printers = {
         !comment.value.includes("prettier-ignore-start") &&
         !comment.value.includes("prettier-ignore-end");
 
-      const parentNode = path.getParentNode();
-      const node = path.getNode();
+      const { node, parent: parentNode } = path;
 
       return (
         (node &&
