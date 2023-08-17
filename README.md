@@ -153,10 +153,10 @@ Bundlers like webpack, Rollup or browserify automatically recognize how to handl
 
 ```js
 import prettier from "prettier/standalone";
-import phpPlugin from "@prettier/plugin-php/standalone";
+import * as prettierPluginPhp from "@prettier/plugin-php/standalone";
 
 prettier.format(YOUR_CODE, {
-  plugins: [phpPlugin],
+  plugins: [prettierPluginPhp],
   parser: "php",
 });
 ```

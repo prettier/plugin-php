@@ -177,4 +177,3 @@ const defaultOptions = {
 };
 
 export { languages, printers, parsers, options, defaultOptions };
-export default { languages, printers, parsers, options, defaultOptions };
