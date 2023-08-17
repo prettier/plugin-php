@@ -9,8 +9,12 @@
   "unpkg": "./standalone.js",
   "browser": "./standalone.js",
   "exports": {
-    "browser": "./standalone.js",
-    "default": "./src/index.js"
+    ".": {
+      "browser": "./standalone.js",
+      "default": "./src/index.js"
+    },
+    "./standalone": "./standalone.js",
+    "./package.json": "./package.json"
   },
   "files": [
     "src",
