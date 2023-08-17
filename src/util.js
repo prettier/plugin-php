@@ -188,7 +188,7 @@ function getNodeListProperty(node) {
 }
 
 function getParentNodeListProperty(path) {
-  const parent = path.getParentNode();
+  const { parent } = path;
   if (!parent) {
     return null;
   }
@@ -214,12 +214,12 @@ function isLastStatement(path) {
   if (!body) {
     return true;
   }
-  const node = path.getValue();
+  const { node } = path;
   return body[body.length - 1] === node;
 }
 
 function isFirstChildrenInlineNode(path) {
-  const node = path.getValue();
+  const { node } = path;
 
   if (node.kind === "program") {
     const children = getNodeListProperty(node);
@@ -375,8 +375,7 @@ function docShouldHaveTrailingNewline(path, recurse = 0) {
 }
 
 function lineShouldEndWithSemicolon(path) {
-  const node = path.getValue();
-  const parentNode = path.getParentNode();
+  const { node, parent: parentNode } = path;
   if (!parentNode) {
     return false;
   }
@@ -405,7 +404,7 @@ function lineShouldEndWithSemicolon(path) {
     return true;
   }
   if (node.kind === "method") {
-    const parent = path.getParentNode();
+    const { parent } = path;
     if (parent && parent.kind === "interface") {
       return true;
     }
@@ -433,7 +432,7 @@ function lineShouldEndWithSemicolon(path) {
 }
 
 function fileShouldEndWithHardline(path) {
-  const node = path.getValue();
+  const { node } = path;
   const isProgramNode = node.kind === "program";
   const lastNode = node.children && getLast(node.children);
 
@@ -485,7 +484,7 @@ function isLookupNode(node) {
 }
 
 function shouldPrintHardLineAfterStartInControlStructure(path) {
-  const node = path.getValue();
+  const { node } = path;
 
   if (["try", "catch"].includes(node.kind)) {
     return false;
@@ -495,7 +494,7 @@ function shouldPrintHardLineAfterStartInControlStructure(path) {
 }
 
 function shouldPrintHardLineBeforeEndInControlStructure(path) {
-  const node = path.getValue();
+  const { node } = path;
 
   if (["try", "catch"].includes(node.kind)) {
     return true;
@@ -534,7 +533,7 @@ function getAlignment(text) {
 }
 
 function getNextNode(path, node) {
-  const parent = path.getParentNode();
+  const { parent } = path;
   const children = getNodeListProperty(parent);
 
   if (!children) {
@@ -596,7 +595,7 @@ function useDoubleQuote(node, options) {
 }
 
 function hasEmptyBody(path, name = "body") {
-  const node = path.getValue();
+  const { node } = path;
 
   return (
     node[name] &&
