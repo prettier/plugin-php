@@ -52,7 +52,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return key === "what" && parent.what === node;
+          return key === "what";
         case "bin":
           return parent.type === "**" && key === "left";
         default:
@@ -76,7 +76,7 @@ function needsParens(path) {
         case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
-          return key === "what" && parent.what === node;
+          return key === "what";
         case "bin": {
           const po = parent.type;
           const pp = getPrecedence(po);
@@ -123,11 +123,7 @@ function needsParens(path) {
     case "staticlookup": {
       switch (parent.kind) {
         case "call":
-          return (
-            key === "what" &&
-            parent.what === node &&
-            node.parenthesizedExpression
-          );
+          return key === "what" && node.parenthesizedExpression;
 
         default:
           return false;
@@ -141,7 +137,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return key === "what" && parent.what === node;
+          return key === "what";
         default:
           return false;
       }
@@ -153,10 +149,10 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return key === "what" && parent.what === node;
+          return key === "what";
 
         case "retif":
-          return parent.test === node;
+          return key === "test";
 
         default:
           return !!(node.key || node.value);
@@ -201,7 +197,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return key === "what" && parent.what === node;
+          return key === "what";
 
         default:
           return false;
@@ -209,7 +205,7 @@ function needsParens(path) {
     case "closure":
       switch (parent.kind) {
         case "call":
-          return key === "what" && parent.what === node;
+          return key === "what";
 
         // https://github.com/prettier/plugin-php/issues/1675
         case "propertylookup":
@@ -239,7 +235,7 @@ function needsParens(path) {
             return false;
           }
 
-          return key === "what" && parent.what === node;
+          return key === "what";
         default:
           return false;
       }
