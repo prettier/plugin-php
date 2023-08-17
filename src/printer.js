@@ -85,11 +85,9 @@ function shouldPrintHardlineForOpenBrace(options) {
 }
 
 function genericPrint(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
 
-  if (!node) {
-    return "";
-  } else if (typeof node === "string") {
+  if (typeof node === "string") {
     return node;
   }
 
@@ -128,14 +126,14 @@ function printNullsafePropertyLookup(path, options, print) {
 }
 
 function printStaticLookup(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
   const needCurly = !["variable", "identifier"].includes(node.offset.kind);
 
   return ["::", needCurly ? "{" : "", print("offset"), needCurly ? "}" : ""];
 }
 
 function printOffsetLookup(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
   const shouldInline =
     (node.offset && node.offset.kind === "number") ||
     getAncestorNode(path, "encapsed");
@@ -217,7 +215,7 @@ function printMemberChain(path, options, print) {
   }
 
   function traverse(path) {
-    const node = path.getValue();
+    const { node } = path;
 
     if (
       node.kind === "call" &&
@@ -263,7 +261,7 @@ function printMemberChain(path, options, print) {
     }
   }
 
-  const node = path.getValue();
+  const { node } = path;
 
   printedNodes.unshift({
     node,
@@ -427,8 +425,7 @@ function printMemberChain(path, options, print) {
     );
   }
 
-  const isExpressionStatement =
-    path.getParentNode().kind === "expressionstatement";
+  const isExpressionStatement = path.parent.kind === "expressionstatement";
   const shouldMerge =
     groups.length >= 2 && !groups[1][0].node.comments && shouldNotWrap(groups);
 
@@ -576,7 +573,7 @@ function shouldGroupFirstArg(args) {
 }
 
 function printArgumentsList(path, options, print, argumentsKey = "arguments") {
-  const args = path.getValue()[argumentsKey];
+  const args = path.node[argumentsKey];
 
   if (args.length === 0) {
     return [
@@ -589,15 +586,13 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   let anyArgEmptyLine = false;
   let hasEmptyLineFollowingFirstArg = false;
 
-  const lastArgIndex = args.length - 1;
-  const printedArguments = path.map((argPath, index) => {
-    const arg = argPath.getNode();
-    const parts = [print(argPath)];
+  const printedArguments = path.map(({ node: arg, isLast, isFirst }) => {
+    const parts = [print()];
 
-    if (index === lastArgIndex) {
+    if (isLast) {
       // do nothing
     } else if (isNextLineEmpty(options.originalText, arg, options)) {
-      if (index === 0) {
+      if (isFirst) {
         hasEmptyLineFollowingFirstArg = true;
       }
 
@@ -610,7 +605,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
     return parts;
   }, argumentsKey);
 
-  const node = path.getValue();
+  const { node } = path;
   const lastArg = getLast(args);
 
   const maybeTrailingComma =
@@ -646,12 +641,11 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
     // We want to print the last argument with a special flag
     let printedExpanded;
-    let i = 0;
 
-    path.each((argPath) => {
-      if (shouldGroupFirst && i === 0) {
+    path.each(({ isLast, isFirst }) => {
+      if (shouldGroupFirst && isFirst) {
         printedExpanded = [
-          argPath.call(() => print([], { expandFirstArg: true })),
+          print([], { expandFirstArg: true }),
           printedArguments.length > 1 ? "," : "",
           hasEmptyLineFollowingFirstArg ? hardline : line,
           hasEmptyLineFollowingFirstArg ? hardline : "",
@@ -659,14 +653,12 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
         ];
       }
 
-      if (shouldGroupLast && i === args.length - 1) {
+      if (shouldGroupLast && isLast) {
         printedExpanded = [
           ...printedArguments.slice(0, -1),
-          argPath.call(() => print([], { expandLastArg: true })),
+          print([], { expandLastArg: true }),
         ];
       }
-
-      i++;
     }, argumentsKey);
 
     const somePrintedArgumentsWillBreak = printedArguments.some(willBreak);
@@ -748,7 +740,7 @@ function printBinaryExpression(
   isInsideParenthesis
 ) {
   let parts = [];
-  const node = path.getValue();
+  const { node } = path;
 
   if (node.kind === "bin") {
     // Put all operators with the same precedence level in the same
@@ -787,7 +779,7 @@ function printBinaryExpression(
 
     // If there's only a single binary expression, we want to create a group
     // in order to avoid having a small right part like -1 be on its own line.
-    const parent = path.getParentNode();
+    const { parent } = path;
     const shouldGroup =
       !(isInsideParenthesis && ["||", "&&"].includes(node.type)) &&
       getNodeKindIncludingLogical(parent) !==
@@ -821,7 +813,7 @@ function printBinaryExpression(
 }
 
 function printLookupNodes(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
 
   switch (node.kind) {
     case "propertylookup":
@@ -860,16 +852,13 @@ function printArrayItems(path, options, print) {
   const printedElements = [];
   let separatorParts = [];
 
-  path.each((childPath) => {
+  path.each(({ node }) => {
     printedElements.push(separatorParts);
-    printedElements.push(group(print(childPath)));
+    printedElements.push(group(print()));
 
     separatorParts = [",", line];
 
-    if (
-      childPath.getValue() &&
-      isNextLineEmpty(options.originalText, childPath.getValue(), options)
-    ) {
+    if (node && isNextLineEmpty(options.originalText, node, options)) {
       separatorParts.push(softline);
     }
   }, "items");
@@ -922,22 +911,26 @@ function wrapPartsIntoGroups(parts, indexes) {
 }
 
 function printLines(path, options, print, childrenAttribute = "children") {
-  const node = path.getValue();
-  const parentNode = path.getParentNode();
+  const { node, parent: parentNode } = path;
 
   let lastInlineIndex = -1;
 
   const parts = [];
   const groupIndexes = [];
 
-  path.map((childPath, index) => {
-    const childNode = childPath.getValue();
+  path.map(() => {
+    const {
+      node: childNode,
+      next: nextNode,
+      isFirst: isFirstNode,
+      isLast: isLastNode,
+      index,
+    } = path;
+
     const isInlineNode = childNode.kind === "inline";
-    const printedPath = print(childPath);
-    const children = node[childrenAttribute];
-    const nextNode = children[index + 1];
+    const printedPath = print();
     const canPrintBlankLine =
-      !isLastStatement(childPath) &&
+      !isLastStatement(path) &&
       !isInlineNode &&
       (nextNode && nextNode.kind === "case"
         ? !isFirstChildrenInlineNode(path)
@@ -952,8 +945,6 @@ function printLines(path, options, print, childrenAttribute = "children") {
         : "",
     ];
 
-    const isFirstNode = index === 0;
-    const isLastNode = children.length - 1 === index;
     const isBlockNestedNode =
       node.kind === "block" &&
       parentNode &&
@@ -978,7 +969,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
           (isInlineNode ? prevLastInlineIndex : lastInlineIndex) + 1;
         const end = isLastNode && !isInlineNode ? index + 1 : index;
         const prevInlineNode =
-          children[isInlineNode ? prevLastInlineIndex : lastInlineIndex];
+          path.siblings[isInlineNode ? prevLastInlineIndex : lastInlineIndex];
         const alignment = prevInlineNode
           ? getAlignment(prevInlineNode.raw)
           : "";
@@ -1024,6 +1015,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
           ? ""
           : [beforeCloseTagInlineNode, "?>"];
 
+      // Bug?
       const nextV = path.getNode(index + 1);
       const skipLastComment = nextV && nextV.children && nextV.children.length;
 
@@ -1106,17 +1098,15 @@ function printLines(path, options, print, childrenAttribute = "children") {
 }
 
 function printStatements(path, options, print, childrenAttribute) {
-  return path.map((childPath) => {
+  return path.map(() => {
     const parts = [];
 
-    parts.push(print(childPath));
+    parts.push(print());
 
-    if (!isLastStatement(childPath)) {
+    if (!isLastStatement(path)) {
       parts.push(hardline);
 
-      if (
-        isNextLineEmpty(options.originalText, childPath.getValue(), options)
-      ) {
+      if (isNextLineEmpty(options.originalText, path.node, options)) {
         parts.push(hardline);
       }
     }
@@ -1133,25 +1123,25 @@ function printClassPart(
   beforePart = " ",
   afterPart = " "
 ) {
-  const node = path.getValue();
-  const printedBeforePart = hasDanglingComments(node[part])
+  const value = path.node[part];
+  const printedBeforePart = hasDanglingComments(value)
     ? [
         hardline,
         path.call(() => printDanglingComments(path, options, true), part),
         hardline,
       ]
     : beforePart;
-  const printedPartItems = Array.isArray(node[part])
+  const printedPartItems = Array.isArray(value)
     ? group(
         join(
           ",",
-          path.map((itemPartPath) => {
-            const printedPart = print(itemPartPath);
+          path.map(({ node }) => {
+            const printedPart = print();
             // Check if any of the implements nodes have comments
-            return hasDanglingComments(itemPartPath.getValue())
+            return hasDanglingComments(node)
               ? [
                   hardline,
-                  printDanglingComments(itemPartPath, options, true),
+                  printDanglingComments(path, options, true),
                   hardline,
                   printedPart,
                 ]
@@ -1170,23 +1160,23 @@ function printClassPart(
 
 function printAttrs(path, options, print, { inline = false } = {}) {
   const allAttrs = [];
-  if (!path.getValue().attrGroups) {
+  if (!path.node.attrGroups) {
     return [];
   }
-  path.each((agPath) => {
+  path.each(() => {
     const attrGroup = ["#["];
     if (!inline && allAttrs.length > 0) {
       allAttrs.push(hardline);
     }
     attrGroup.push(softline);
-    agPath.each((attrPath) => {
-      const attrNode = attrPath.getValue();
+    path.each(() => {
+      const attrNode = path.node;
       if (attrGroup.length > 2) {
         attrGroup.push(",", line);
       }
       const attrStmt = [attrNode.name];
       if (attrNode.args.length > 0) {
-        attrStmt.push(printArgumentsList(attrPath, options, print, "args"));
+        attrStmt.push(printArgumentsList(path, options, print, "args"));
       }
       attrGroup.push(group(attrStmt));
     }, "attrs");
@@ -1207,7 +1197,7 @@ function printAttrs(path, options, print, { inline = false } = {}) {
 }
 
 function printClass(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
   const isAnonymousClass = node.kind === "class" && node.isAnonymous;
   const attrs = printAttrs(path, options, print, { inline: isAnonymousClass });
   const declaration = isAnonymousClass ? [] : [...attrs];
@@ -1327,7 +1317,7 @@ function printClass(path, options, print) {
 }
 
 function printFunction(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
   const declAttrs = printAttrs(path, options, print, {
     inline: node.kind === "closure",
   });
@@ -1433,7 +1423,7 @@ function printBodyControlStructure(
   print,
   bodyProperty = "body"
 ) {
-  const node = path.getValue();
+  const { node } = path;
 
   if (!node[bodyProperty]) {
     return ";";
@@ -1567,12 +1557,12 @@ function isStringOnItsOwnLine(node, text, options) {
 
 function printComposedTypes(path, print, glue) {
   return group(
-    path.map((uPath, i) => (i === 0 ? [print()] : [glue, print()]), "types")
+    path.map(({ isFirst }) => (isFirst ? [print()] : [glue, print()]), "types")
   );
 }
 
 function printNode(path, options, print) {
-  const node = path.getValue();
+  const { node } = path;
 
   switch (node.kind) {
     case "program": {
@@ -1595,10 +1585,7 @@ function printNode(path, options, print) {
       ];
     case "declare": {
       const printDeclareArguments = (path) => {
-        return join(
-          ", ",
-          path.map((directive) => print(directive), "directives")
-        );
+        return join(", ", path.map(print, "directives"));
       };
 
       if (["block", "short"].includes(node.mode)) {
@@ -1666,10 +1653,7 @@ function printNode(path, options, print) {
           node.name
             ? [maybeStripLeadingSlashFromUse(node.name), "\\{", softline]
             : "",
-          join(
-            [",", line],
-            path.map((item) => print(item), "items")
-          ),
+          join([",", line], path.map(print, "items")),
         ]),
         node.name
           ? [
@@ -1814,13 +1798,10 @@ function printNode(path, options, print) {
       ]);
     case "propertystatement": {
       const attrs = [];
-      path.map(
-        (propPath) => attrs.push(...printAttrs(propPath, options, print)),
-        "properties"
-      );
-      const printed = path.map((childPath) => {
-        return print(childPath);
+      path.each(() => {
+        attrs.push(...printAttrs(path, options, print));
       }, "properties");
+      const printed = path.map(print, "properties");
 
       const hasValue = node.properties.some((property) => property.value);
 
@@ -2138,11 +2119,11 @@ function printNode(path, options, print) {
     case "nullsafepropertylookup":
     case "staticlookup":
     case "offsetlookup": {
-      const parent = path.getParentNode();
+      const { parent } = path;
 
+      // TODO: Use `AstPath.findAncestor` when it's stable
       let firstNonMemberParent;
       let i = 0;
-
       do {
         firstNonMemberParent = path.getParentNode(i);
         i++;
@@ -2224,9 +2205,7 @@ function printNode(path, options, print) {
         ")",
       ]);
     case "echo": {
-      const printedArguments = path.map((childPath) => {
-        return print(childPath);
-      }, "expressions");
+      const printedArguments = path.map(print, "expressions");
 
       let firstVariable;
 
@@ -2287,8 +2266,7 @@ function printNode(path, options, print) {
         ")",
       ]);
     case "variable": {
-      const parent = path.getParentNode();
-      const parentParent = path.getParentNode(1);
+      const { parent, grandparent: parentParent } = path;
       const ampersand = parent.kind === "assign" ? "" : node.byref ? "&" : "";
       const dollar =
         (parent.kind === "encapsedpart" &&
@@ -2309,7 +2287,7 @@ function printNode(path, options, print) {
     case "constantstatement":
     case "classconstant": {
       const attrs = printAttrs(path, options, print);
-      const printed = path.map((childPath) => print(childPath), "constants");
+      const printed = path.map(print, "constants");
 
       let firstVariable;
 
@@ -2340,9 +2318,7 @@ function printNode(path, options, print) {
         options
       );
     case "static": {
-      const printed = path.map((childPath) => {
-        return print(childPath);
-      }, "variables");
+      const printed = path.map(print, "variables");
 
       const hasValue = node.variables.some((item) => item.defaultValue);
 
@@ -2507,8 +2483,7 @@ function printNode(path, options, print) {
       );
     }
     case "bin": {
-      const parent = path.getParentNode();
-      const parentParent = path.getParentNode(1);
+      const { parent, grandparent: parentParent } = path;
       const isInsideParenthesis =
         node !== parent.body &&
         (parent.kind === "if" ||
@@ -2591,8 +2566,9 @@ function printNode(path, options, print) {
     }
     case "retif": {
       const parts = [];
-      const parent = path.getParentNode();
+      const { parent } = path;
 
+      // TODO: Use `AstPath.findAncestor` when it's stable
       // Find the outermost non-retif parent, and the outermost retif parent.
       let currentParent;
       let i = 0;
@@ -2639,7 +2615,7 @@ function printNode(path, options, print) {
       //   ? $b
       //   : $c
       // )->call()
-      const parentParent = path.getParentNode(1);
+      const parentParent = path.grandparent;
       const pureParent =
         parent.kind === "cast" && parentParent ? parentParent : parent;
       const breakLookupNodes = [
@@ -2691,10 +2667,10 @@ function printNode(path, options, print) {
     case "number":
       return printNumber(node.value);
     case "string": {
-      const parent = path.getParentNode();
+      const { parent } = path;
 
       if (parent.kind === "encapsedpart") {
-        const parentParent = path.getParentNode(1);
+        const parentParent = path.grandparent;
         let closingTagIndentation = 0;
         const flexible = isMinVersion(options.phpVersion, "7.3");
         let linebreak = literalline;
@@ -2818,7 +2794,7 @@ function printNode(path, options, print) {
     case "nullkeyword":
       return "null";
     case "identifier": {
-      const parent = path.getParentNode();
+      const { parent } = path;
 
       if (parent.kind === "method") {
         node.name = normalizeMagicMethodName(node.name);
@@ -2827,15 +2803,14 @@ function printNode(path, options, print) {
       return print("name");
     }
     case "match": {
-      const lastArmIndex = node.arms.length - 1;
-      const arms = path.map((armPath, armIdx) => {
-        const armNode = armPath.getValue();
+      const arms = path.map(() => {
+        const armNode = path.node;
 
         const maybeLeadingComment = hasLeadingComment(armNode)
           ? [printComments(armNode.leadingComments, options), hardline]
           : [];
         const maybeTrailingComma =
-          armIdx < lastArmIndex || options.trailingCommaPHP ? "," : "";
+          !path.isLast || options.trailingCommaPHP ? "," : "";
         const maybeTrailingComment = hasTrailingComment(armNode)
           ? [
               " ",
@@ -2849,14 +2824,13 @@ function printNode(path, options, print) {
         const conds =
           armNode.conds === null
             ? "default"
-            : armPath.map(
-                (condPath, condIdx) =>
-                  [",", line, print(condPath)].slice(condIdx === 0 ? 2 : 0),
+            : path.map(
+                ({ isFirst }) => [",", line, print()].slice(isFirst ? 2 : 0),
                 "conds"
               );
         const body = print("body");
         const maybeEmptyLineBetweenArms =
-          armIdx > 0 &&
+          !path.isFirst &&
           isPreviousLineEmpty(options.originalText, armNode, options)
             ? hardline
             : "";
@@ -2873,7 +2847,7 @@ function printNode(path, options, print) {
             maybeTrailingComma,
             ...maybeTrailingComment,
           ]),
-        ].slice(armIdx > 0 ? 0 : 1);
+        ].slice(!path.isFirst ? 0 : 1);
       }, "arms");
       return group([
         "match (",
@@ -2887,9 +2861,7 @@ function printNode(path, options, print) {
     }
 
     case "noop":
-      return node.comments
-        ? printComments(path.getValue().comments, options)
-        : "";
+      return node.comments ? printComments(node.comments, options) : "";
     case "namedargument":
       return [node.name, ": ", print("value")];
 
