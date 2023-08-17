@@ -6,6 +6,7 @@
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
   "type": "module",
+  "unpkg": "./standalone.js",
   "exports": {
     "browser": "./standalone.js",
     "default": "./src/index.js"

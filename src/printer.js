@@ -1137,10 +1137,7 @@ function printClassPart(
   const printedBeforePart = hasDanglingComments(node[part])
     ? [
         hardline,
-        path.call(
-          () => printDanglingComments(path, options, true),
-          part
-        ),
+        path.call(() => printDanglingComments(path, options, true), part),
         hardline,
       ]
     : beforePart;
@@ -1375,10 +1372,7 @@ function printFunction(path, options, print) {
       ": ",
       hasDanglingComments(node.type)
         ? [
-            path.call(
-              () => printDanglingComments(path, options, true),
-              "type"
-            ),
+            path.call(() => printDanglingComments(path, options, true), "type"),
             " ",
           ]
         : "",
