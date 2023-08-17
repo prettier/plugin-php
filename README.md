@@ -139,7 +139,7 @@ First, grab both standalone scripts from an npm CDN like [unpkg](https://unpkg.c
 Then use Prettier with PHP, just like this:
 
 ```js
-prettier.format(YOUR_CODE, {
+await prettier.format(YOUR_CODE, {
   plugins: prettierPlugins,
   parser: "php",
 });
@@ -155,7 +155,7 @@ Bundlers like webpack, Rollup or browserify automatically recognize how to handl
 import prettier from "prettier/standalone";
 import * as prettierPluginPhp from "@prettier/plugin-php/standalone";
 
-prettier.format(YOUR_CODE, {
+await prettier.format(YOUR_CODE, {
   plugins: [prettierPluginPhp],
   parser: "php",
 });
