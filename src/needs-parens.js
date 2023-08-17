@@ -2,14 +2,13 @@ import assert from "assert";
 import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.js";
 
 function needsParens(path) {
-  const parent = path.getParentNode();
+  const { parent } = path;
 
   if (!parent) {
     return false;
   }
 
-  const name = path.getName();
-  const node = path.getNode();
+  const { key, node } = path;
 
   if (
     [
@@ -53,9 +52,9 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
         case "bin":
-          return parent.type === "**" && name === "left";
+          return parent.type === "**" && key === "left";
         default:
           return false;
       }
@@ -77,7 +76,7 @@ function needsParens(path) {
         case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
         case "bin": {
           const po = parent.type;
           const pp = getPrecedence(po);
@@ -92,7 +91,7 @@ function needsParens(path) {
             return true;
           }
 
-          if (pp === np && name === "right") {
+          if (pp === np && key === "right") {
             assert.strictEqual(parent.right, node);
 
             return true;
@@ -125,7 +124,7 @@ function needsParens(path) {
       switch (parent.kind) {
         case "call":
           return (
-            name === "what" &&
+            key === "what" &&
             parent.what === node &&
             node.parenthesizedExpression
           );
@@ -142,7 +141,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
         default:
           return false;
       }
@@ -154,7 +153,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
 
         case "retif":
           return parent.test === node;
@@ -192,7 +191,7 @@ function needsParens(path) {
         case "unary":
         case "bin":
         case "retif":
-          if (name === "test" && !parent.trueExpr) {
+          if (key === "test" && !parent.trueExpr) {
             return false;
           }
 
@@ -202,7 +201,7 @@ function needsParens(path) {
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
 
         default:
           return false;
@@ -210,7 +209,7 @@ function needsParens(path) {
     case "closure":
       switch (parent.kind) {
         case "call":
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
 
         // https://github.com/prettier/plugin-php/issues/1675
         case "propertylookup":
@@ -240,7 +239,7 @@ function needsParens(path) {
             return false;
           }
 
-          return name === "what" && parent.what === node;
+          return key === "what" && parent.what === node;
         default:
           return false;
       }
