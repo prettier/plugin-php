@@ -1004,12 +1004,11 @@ function printAllComments(path, print, options, needsSemi) {
   const leadingParts = [];
   const trailingParts = [needsSemi ? ";" : "", printed];
 
-  path.each((commentPath) => {
-    const comment = commentPath.getValue();
+  path.each(({ node: comment }) => {
     const { leading, trailing } = comment;
 
     if (leading) {
-      const contents = printLeadingComment(commentPath, print, options);
+      const contents = printLeadingComment(path, print, options);
       if (!contents) {
         return;
       }
@@ -1020,7 +1019,7 @@ function printAllComments(path, print, options, needsSemi) {
         leadingParts.push(hardline);
       }
     } else if (trailing) {
-      trailingParts.push(printTrailingComment(commentPath, print, options));
+      trailingParts.push(printTrailingComment(path, print, options));
     }
   }, "comments");
 
