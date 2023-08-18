@@ -217,9 +217,28 @@ matrix(
 
 The official [prettier plugin for atom](https://github.com/prettier/prettier-atom) supports plugins.
 
-### VScode
+### Visual Studio Code
 
-The official [prettier plugin for vscode](https://github.com/prettier/prettier-vscode) supports plugins since Version 1.10.0. To enable it, install the extension and make sure the plugin is installed _locally_ (in your project folder). After restarting VScode the plugin should work as expected.
+The official [prettier plugin for vscode](https://github.com/prettier/prettier-vscode) supports plugins since Version 1.10.0. To enable it, install the extension and make sure the plugin is installed _locally_ (in your project folder).
+
+Visual Studio Code may not recognise the document selectors provided by this plugin, and so you can add php to your document selectors by adding the following line to `.vscode/settings.json`:
+
+```json
+  "prettier.documentSelectors": [
+    "**/*.{js,jsx,ts,tsx,vue,html,css,scss,less,json,md,mdx,graphql,yaml,yml,php}"
+  ]
+```
+
+You may also need to declare php as the parser in your prettier config file:
+
+```json
+{
+  "parser": "php",
+  "plugins": ["@prettier/plugin-php"],
+}
+```
+
+See (this issue)[https://github.com/prettier/plugin-php/issues/1730] for more discussion around potential VS Code solutions.
 
 ### PhpStorm / IntelliJ / Jetbrains IDE
 
