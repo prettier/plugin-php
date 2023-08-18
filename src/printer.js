@@ -1015,7 +1015,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
           ? ""
           : [beforeCloseTagInlineNode, "?>"];
 
-      // Bug?
+      //FIXME getNode is used to get ancestors, but it seems this means to get next sibling?
       const nextV = path.getNode(index + 1);
       const skipLastComment = nextV && nextV.children && nextV.children.length;
 
