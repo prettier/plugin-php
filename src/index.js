@@ -1,12 +1,23 @@
-"use strict";
+import { doc } from "prettier";
+import {
+  LINGUIST_LANGUAGES_PHP,
+  LINGUIST_LANGUAGES_HTML_PHP,
+} from "./linguist-languages.cjs";
+import parse from "./parser.js";
+import print from "./printer.js";
+import clean from "./clean.js";
+import options from "./options.js";
+import {
+  handleOwnLineComment,
+  handleEndOfLineComment,
+  handleRemainingComment,
+  getCommentChildNodes,
+  canAttachComment,
+  isBlockComment,
+} from "./comments.js";
+import { hasPragma, insertPragma } from "./pragma.js";
 
-const parse = require("./parser");
-const print = require("./printer");
-const clean = require("./clean");
-const options = require("./options");
-const comments = require("./comments");
-const { join, hardline } = require("prettier").doc.builders;
-const { hasPragma, insertPragma } = require("./pragma");
+const { join, hardline } = doc.builders;
 
 function createLanguage(linguistData, { extend, override }) {
   const language = {};
@@ -30,13 +41,13 @@ function createLanguage(linguistData, { extend, override }) {
 }
 
 const languages = [
-  createLanguage(require("linguist-languages/data/PHP"), {
+  createLanguage(LINGUIST_LANGUAGES_PHP, {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"],
     },
   }),
-  createLanguage(require("linguist-languages/data/HTML+PHP"), {
+  createLanguage(LINGUIST_LANGUAGES_HTML_PHP, {
     override: {
       parsers: ["php"],
       vscodeLanguageIds: ["php"],
@@ -81,13 +92,13 @@ const printers = {
     getVisitorKeys,
     insertPragma,
     massageAstNode: clean,
-    getCommentChildNodes: comments.getCommentChildNodes,
-    canAttachComment: comments.canAttachComment,
-    isBlockComment: comments.isBlockComment,
+    getCommentChildNodes,
+    canAttachComment,
+    isBlockComment,
     handleComments: {
-      ownLine: comments.handleOwnLineComment,
-      endOfLine: comments.handleEndOfLineComment,
-      remaining: comments.handleRemainingComment,
+      ownLine: handleOwnLineComment,
+      endOfLine: handleEndOfLineComment,
+      remaining: handleRemainingComment,
     },
     willPrintOwnComments(path) {
       const node = path.getValue();
@@ -161,12 +172,8 @@ const printers = {
   },
 };
 
-module.exports = {
-  languages,
-  printers,
-  parsers,
-  options,
-  defaultOptions: {
-    tabWidth: 4,
-  },
+const defaultOptions = {
+  tabWidth: 4,
 };
+
+export { languages, printers, parsers, options, defaultOptions };

@@ -1,4 +1,3 @@
-"use strict";
-function assert() {}
-assert.strictEqual = function () {};
-module.exports = assert;
+const assert = new Proxy(() => {}, { get: () => assert });
+
+export default assert;

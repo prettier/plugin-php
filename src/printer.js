@@ -1,5 +1,4 @@
-"use strict";
-
+import { util as prettierUtil, doc } from "prettier";
 const {
   breakParent,
   join,
@@ -15,14 +14,22 @@ const {
   literalline,
   align,
   dedentToRoot,
-} = require("prettier").doc.builders;
-const { willBreak } = require("prettier").doc.utils;
+} = doc.builders;
+const { willBreak } = doc.utils;
 const { isNextLineEmptyAfterIndex, hasNewline, hasNewlineInRange } =
-  require("prettier").util;
-const comments = require("./comments");
-const pathNeedsParens = require("./needs-parens");
+  prettierUtil;
+import {
+  printAllComments,
+  hasTrailingComment,
+  hasLeadingComment,
+  printDanglingComments,
+  printComments,
+  isBlockComment,
+  hasLeadingOwnLineComment,
+} from "./comments.js";
+import pathNeedsParens from "./needs-parens.js";
 
-const {
+import {
   getLast,
   getPenultimate,
   isLastStatement,
@@ -32,8 +39,6 @@ const {
   maybeStripLeadingSlashFromUse,
   fileShouldEndWithHardline,
   hasDanglingComments,
-  hasLeadingComment,
-  hasTrailingComment,
   docShouldHaveTrailingNewline,
   isLookupNode,
   isFirstChildrenInlineNode,
@@ -54,7 +59,7 @@ const {
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
   isPreviousLineEmpty,
-} = require("./util");
+} from "./util.js";
 
 function isMinVersion(actualVersion, requiredVersion) {
   return parseFloat(actualVersion) >= parseFloat(requiredVersion);
@@ -221,7 +226,7 @@ function printMemberChain(path, options, print) {
       printedNodes.unshift({
         node,
         printed: [
-          comments.printAllComments(
+          printAllComments(
             path,
             () => printArgumentsList(path, options, print),
             options
@@ -247,11 +252,7 @@ function printMemberChain(path, options, print) {
       printedNodes.unshift({
         node,
         needsParens: pathNeedsParens(path, options),
-        printed: comments.printAllComments(
-          path,
-          () => printedMemberish,
-          options
-        ),
+        printed: printAllComments(path, () => printedMemberish, options),
       });
       path.call((what) => traverse(what), "what");
     } else {
@@ -365,7 +366,7 @@ function printMemberChain(path, options, print) {
 
     if (
       printedNodes[i].node.comments &&
-      comments.hasTrailingComment(printedNodes[i].node)
+      hasTrailingComment(printedNodes[i].node)
     ) {
       groups.push(currentGroup);
       currentGroup = [];
@@ -479,13 +480,9 @@ function printMemberChain(path, options, print) {
   const flatGroups = groups.slice(0, cutoff).flat();
 
   const hasComment =
-    flatGroups
-      .slice(1, -1)
-      .some((node) => comments.hasLeadingComment(node.node)) ||
-    flatGroups
-      .slice(0, -1)
-      .some((node) => comments.hasTrailingComment(node.node)) ||
-    (groups[cutoff] && comments.hasLeadingComment(groups[cutoff][0].node));
+    flatGroups.slice(1, -1).some((node) => hasLeadingComment(node.node)) ||
+    flatGroups.slice(0, -1).some((node) => hasTrailingComment(node.node)) ||
+    (groups[cutoff] && hasLeadingComment(groups[cutoff][0].node));
 
   const hasEncapsedAncestor = getAncestorNode(path, "encapsed");
 
@@ -584,7 +581,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   if (args.length === 0) {
     return [
       "(",
-      comments.printDanglingComments(path, options, /* sameIndent */ true),
+      printDanglingComments(path, options, /* sameIndent */ true),
       ")",
     ];
   }
@@ -813,7 +810,7 @@ function printBinaryExpression(
     // the other ones since we don't call the normal print on bin,
     // only for the left and right parts
     if (isNested && node.comments) {
-      parts = comments.printAllComments(path, () => parts, options);
+      parts = printAllComments(path, () => parts, options);
     }
   } else {
     // Our stopping case. Simply print the node normally.
@@ -1019,7 +1016,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
                 ? "<?php"
                 : "",
               node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
-              comments.printComments(childNode.leadingComments, options),
+              printComments(childNode.leadingComments, options),
               hardline,
               "?>",
             ]
@@ -1035,9 +1032,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
           ? [
               openTag,
               hardline,
-              skipLastComment
-                ? comments.printComments(childNode.comments, options)
-                : "",
+              skipLastComment ? printComments(childNode.comments, options) : "",
               hardline,
             ]
           : isProgramLikeNode(node) && isLastNode
@@ -1064,7 +1059,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
         between && between[2] && between[2].includes("\n")
           ? [hardline, between[2].split("\n").length > 2 ? hardline : ""]
           : " ",
-        node.comments ? comments.printComments(node.comments, options) : "",
+        node.comments ? printComments(node.comments, options) : "",
       ];
 
       const shortEcho =
@@ -1142,10 +1137,7 @@ function printClassPart(
   const printedBeforePart = hasDanglingComments(node[part])
     ? [
         hardline,
-        path.call(
-          () => comments.printDanglingComments(path, options, true),
-          part
-        ),
+        path.call(() => printDanglingComments(path, options, true), part),
         hardline,
       ]
     : beforePart;
@@ -1159,7 +1151,7 @@ function printClassPart(
             return hasDanglingComments(itemPartPath.getValue())
               ? [
                   hardline,
-                  comments.printDanglingComments(itemPartPath, options, true),
+                  printDanglingComments(itemPartPath, options, true),
                   hardline,
                   printedPart,
                 ]
@@ -1326,7 +1318,7 @@ function printClass(path, options, print) {
       hasEmptyClassBody ? "" : hardline,
       printStatements(path, options, print, "body"),
     ]),
-    comments.printDanglingComments(path, options, true),
+    printDanglingComments(path, options, true),
     isAnonymousClass && hasEmptyClassBody ? softline : hardline,
     "}",
   ];
@@ -1380,10 +1372,7 @@ function printFunction(path, options, print) {
       ": ",
       hasDanglingComments(node.type)
         ? [
-            path.call(
-              () => comments.printDanglingComments(path, options, true),
-              "type"
-            ),
+            path.call(() => printDanglingComments(path, options, true), "type"),
             " ",
           ]
         : "",
@@ -1523,9 +1512,7 @@ function printAssignmentRight(
 ) {
   const ref = hasRef ? "&" : "";
 
-  if (
-    comments.hasLeadingOwnLineComment(options.originalText, rightNode, options)
-  ) {
+  if (hasLeadingOwnLineComment(options.originalText, rightNode, options)) {
     return indent([hardline, ref, printedRight]);
   }
 
@@ -1561,7 +1548,7 @@ function needsHardlineAfterDanglingComment(node) {
     node.comments.filter((comment) => !comment.leading && !comment.trailing)
   );
 
-  return lastDanglingComment && !comments.isBlockComment(lastDanglingComment);
+  return lastDanglingComment && !isBlockComment(lastDanglingComment);
 }
 
 function stringHasNewLines(node) {
@@ -1591,7 +1578,7 @@ function printNode(path, options, print) {
     case "program": {
       return group([
         printLines(path, options, print),
-        comments.printDanglingComments(
+        printDanglingComments(
           path,
           options,
           /* sameIndent */ true,
@@ -1604,7 +1591,7 @@ function printNode(path, options, print) {
     case "block":
       return [
         printLines(path, options, print),
-        comments.printDanglingComments(path, options, true),
+        printDanglingComments(path, options, true),
       ];
     case "declare": {
       const printDeclareArguments = (path) => {
@@ -1623,7 +1610,7 @@ function printNode(path, options, print) {
           node.children.length > 0
             ? indent([hardline, printLines(path, options, print)])
             : "",
-          comments.printDanglingComments(path, options),
+          printDanglingComments(path, options),
           hardline,
           node.mode === "block" ? "}" : "enddeclare;",
         ];
@@ -1648,7 +1635,7 @@ function printNode(path, options, print) {
           : "",
         node.withBrackets ? "{" : ";",
         hasDanglingComments(node)
-          ? [" ", comments.printDanglingComments(path, options, true)]
+          ? [" ", printDanglingComments(path, options, true)]
           : "",
         node.children.length > 0
           ? node.withBrackets
@@ -1697,7 +1684,7 @@ function printNode(path, options, print) {
         node.type ? [node.type, " "] : "",
         maybeStripLeadingSlashFromUse(node.name),
         hasDanglingComments(node)
-          ? [" ", comments.printDanglingComments(path, options, true)]
+          ? [" ", printDanglingComments(path, options, true)]
           : "",
         node.alias ? [" as ", print("alias")] : "",
       ];
@@ -1740,11 +1727,7 @@ function printNode(path, options, print) {
                     hardline,
                   ]
                 : hasDanglingComments(node)
-                ? [
-                    line,
-                    comments.printDanglingComments(path, options, true),
-                    line,
-                  ]
+                ? [line, printDanglingComments(path, options, true), line]
                 : "",
               "}",
             ]
@@ -1794,7 +1777,7 @@ function printNode(path, options, print) {
           // no node to attach comments that fall in between the parameter name
           // and value, we store them as dangling comments
           hasDanglingComments(node) ? " " : "",
-          comments.printDanglingComments(path, options, true),
+          printDanglingComments(path, options, true),
           " =",
           printAssignmentRight(
             node.name,
@@ -1885,7 +1868,7 @@ function printNode(path, options, print) {
         const commentOnOwnLine =
           (hasTrailingComment(node.body) &&
             node.body.comments.some(
-              (comment) => comment.trailing && !comments.isBlockComment(comment)
+              (comment) => comment.trailing && !isBlockComment(comment)
             )) ||
           needsHardlineAfterDanglingComment(node);
         const elseOnSameLine = !commentOnOwnLine;
@@ -1896,7 +1879,7 @@ function printNode(path, options, print) {
             isNextLineEmpty(options.originalText, node.body, options)
               ? hardline
               : "",
-            comments.printDanglingComments(path, options, true),
+            printDanglingComments(path, options, true),
             commentOnOwnLine ? hardline : " "
           );
         }
@@ -1938,7 +1921,7 @@ function printNode(path, options, print) {
       // We want to keep dangling comments above the loop to stay consistent.
       // Any comment positioned between the for statement and the parentheses
       // is going to be printed before the statement.
-      const dangling = comments.printDanglingComments(
+      const dangling = printDanglingComments(
         path,
         options,
         /* sameLine */ true
@@ -1977,7 +1960,7 @@ function printNode(path, options, print) {
       // We want to keep dangling comments above the loop to stay consistent.
       // Any comment positioned between the for statement and the parentheses
       // is going to be printed before the statement.
-      const dangling = comments.printDanglingComments(
+      const dangling = printDanglingComments(
         path,
         options,
         /* sameLine */ true
@@ -2120,7 +2103,7 @@ function printNode(path, options, print) {
         parts.push(
           node.what.leadingComments &&
             node.what.leadingComments[0].kind === "commentblock"
-            ? [comments.printComments(node.what.leadingComments, options), " "]
+            ? [printComments(node.what.leadingComments, options), " "]
             : "",
           ...path.call(
             () => printAttrs(path, options, print, { inline: true }),
@@ -2195,7 +2178,7 @@ function printNode(path, options, print) {
           ? isStringOnItsOwnLine(node.expression, options.originalText, options)
             ? print("expression")
             : [indent([softline, print("expression")]), softline]
-          : comments.printDanglingComments(path, options),
+          : printDanglingComments(path, options),
         ")",
       ]);
     case "global":
@@ -2225,11 +2208,7 @@ function printNode(path, options, print) {
       return [
         hasDanglingComments(node)
           ? [
-              comments.printDanglingComments(
-                path,
-                options,
-                /* sameIndent */ true
-              ),
+              printDanglingComments(path, options, /* sameIndent */ true),
               hardline,
             ]
           : "",
@@ -2288,7 +2267,7 @@ function printNode(path, options, print) {
       if (hasDanglingComments(node)) {
         parts.push(
           " ",
-          comments.printDanglingComments(path, options, /* sameIndent */ true)
+          printDanglingComments(path, options, /* sameIndent */ true)
         );
       }
 
@@ -2411,7 +2390,7 @@ function printNode(path, options, print) {
 
         return group([
           open,
-          comments.printDanglingComments(path, options),
+          printDanglingComments(path, options),
           softline,
           close,
         ]);
@@ -2459,7 +2438,7 @@ function printNode(path, options, print) {
                 ]
               : ""
           ),
-          comments.printDanglingComments(path, options, true),
+          printDanglingComments(path, options, true),
           softline,
           close,
         ],
@@ -2852,15 +2831,15 @@ function printNode(path, options, print) {
       const arms = path.map((armPath, armIdx) => {
         const armNode = armPath.getValue();
 
-        const maybeLeadingComment = comments.hasLeadingComment(armNode)
-          ? [comments.printComments(armNode.leadingComments, options), hardline]
+        const maybeLeadingComment = hasLeadingComment(armNode)
+          ? [printComments(armNode.leadingComments, options), hardline]
           : [];
         const maybeTrailingComma =
           armIdx < lastArmIndex || options.trailingCommaPHP ? "," : "";
-        const maybeTrailingComment = comments.hasTrailingComment(armNode)
+        const maybeTrailingComment = hasTrailingComment(armNode)
           ? [
               " ",
-              comments.printComments(
+              printComments(
                 armNode.comments.filter((c) => c.trailing),
                 options
               ),
@@ -2909,7 +2888,7 @@ function printNode(path, options, print) {
 
     case "noop":
       return node.comments
-        ? comments.printComments(path.getValue().comments, options)
+        ? printComments(path.getValue().comments, options)
         : "";
     case "namedargument":
       return [node.name, ": ", print("value")];
@@ -2941,4 +2920,4 @@ function printNode(path, options, print) {
   }
 }
 
-module.exports = genericPrint;
+export default genericPrint;

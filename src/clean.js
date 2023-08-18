@@ -1,6 +1,4 @@
-"use strict";
-
-const util = require("./util");
+import { printNumber, normalizeMagicMethodName } from "./util.js";
 
 const ignoredProperties = new Set([
   "loc",
@@ -28,7 +26,7 @@ const ignoredProperties = new Set([
 function clean(node, newObj) {
   if (node.kind === "string") {
     // TODO if options are available in this method, replace with
-    // newObj.isDoubleQuote = !util.useSingleQuote(node, options);
+    // newObj.isDoubleQuote = !useSingleQuote(node, options);
     delete newObj.isDoubleQuote;
   }
 
@@ -66,7 +64,7 @@ function clean(node, newObj) {
 
   // Normalize numbers
   if (node.kind === "number") {
-    newObj.value = util.printNumber(node.value);
+    newObj.value = printNumber(node.value);
   }
 
   const statements = ["foreach", "for", "if", "while", "do"];
@@ -100,7 +98,7 @@ function clean(node, newObj) {
   }
 
   if (node.kind === "method" && node.name.kind === "identifier") {
-    newObj.name.name = util.normalizeMagicMethodName(newObj.name.name);
+    newObj.name.name = normalizeMagicMethodName(newObj.name.name);
   }
 
   if (node.kind === "noop") {
@@ -110,4 +108,4 @@ function clean(node, newObj) {
 
 clean.ignoredProperties = ignoredProperties;
 
-module.exports = clean;
+export default clean;

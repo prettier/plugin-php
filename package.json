@@ -5,7 +5,17 @@
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
-  "main": "src",
+  "type": "module",
+  "unpkg": "./standalone.js",
+  "browser": "./standalone.js",
+  "exports": {
+    ".": {
+      "browser": "./standalone.js",
+      "default": "./src/index.js"
+    },
+    "./standalone": "./standalone.js",
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "standalone.js"
@@ -17,6 +27,8 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.10",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "codecov": "3.8.3",
     "cross-env": "^7.0.2",
     "eslint": "8.47.0",
@@ -34,10 +46,8 @@
     "rollup": "^2.75.7",
     "rollup-plugin-alias": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-inject": "^3.0.1",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "strip-ansi": "^6.0.0"

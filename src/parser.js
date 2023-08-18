@@ -1,5 +1,4 @@
-"use strict";
-const engine = require("php-parser");
+import engine from "php-parser";
 
 function parse(text, opts) {
   const inMarkdown = opts && opts.parentParser === "markdown";
@@ -61,4 +60,4 @@ function parse(text, opts) {
   return ast;
 }
 
-module.exports = parse;
+export default parse;

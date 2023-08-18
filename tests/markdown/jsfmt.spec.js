@@ -1,5 +1,5 @@
 run_spec(import.meta, ["markdown"], {
-  plugins: global.STANDALONE ? [require("prettier/parser-markdown")] : [],
+  plugins: global.STANDALONE ? ["prettier/parser-markdown"] : [],
   proseWrap: "always",
   tabWidth: 4,
 });

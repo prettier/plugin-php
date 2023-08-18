@@ -6,19 +6,17 @@ extends:
   - plugin:prettier-doc/recommended
 parserOptions:
   ecmaVersion: 2023
+  sourceType: "module"
 plugins:
   - import
 root: true
 env:
-  es6: true
+  es2024: true
   node: true
   jest: true
 rules:
   eqeqeq: error
   curly: error
-  import/no-extraneous-dependencies:
-    - error
-    - devDependencies: ["tests*/**", "scripts/**", "build/**"]
   no-else-return: error
   no-inner-declarations: error
   no-useless-return: error
@@ -38,13 +36,17 @@ rules:
     - error
     - never
     - exceptRange: true
+
+  import/extensions: 
+    - error
+    - ignorePackages
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies: ["tests*/**", "scripts/**", "build/**"]
 overrides:
-  - files: "{tests,tests_config}/**/*.js"
+  - files: "**/*.cjs"
     parserOptions:
-      sourceType: "module"
-    rules:
-      # Turned off temporarily since we add a package.json without dependencies in these dirs
-      import/no-extraneous-dependencies: off
+      sourceType: "script"
   - files: "tests/**/*.js"
     globals:
       run_spec: true
