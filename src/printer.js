@@ -33,7 +33,6 @@ import { locStart, locEnd } from "./loc.js";
 import {
   getLast,
   getPenultimate,
-  isLastStatement,
   lineShouldEndWithSemicolon,
   printNumber,
   shouldFlatten,
@@ -931,7 +930,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
     const isInlineNode = childNode.kind === "inline";
     const printedPath = print();
     const canPrintBlankLine =
-      !isLastStatement(path) &&
+      !isLastNode &&
       !isInlineNode &&
       (nextNode && nextNode.kind === "case"
         ? !isFirstChildrenInlineNode(path)
@@ -1099,15 +1098,15 @@ function printLines(path, options, print, childrenAttribute = "children") {
 }
 
 function printStatements(path, options, print, childrenAttribute) {
-  return path.map(() => {
+  return path.map(({ node, isLast }) => {
     const parts = [];
 
     parts.push(print());
 
-    if (!isLastStatement(path)) {
+    if (!isLast) {
       parts.push(hardline);
 
-      if (isNextLineEmpty(options.originalText, path.node, options)) {
+      if (isNextLineEmpty(options.originalText, node, options)) {
         parts.push(hardline);
       }
     }

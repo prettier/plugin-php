@@ -188,14 +188,6 @@ function getNodeListProperty(node) {
   return Array.isArray(body) ? body : null;
 }
 
-function getParentNodeListProperty(path) {
-  const { parent } = path;
-  if (!parent) {
-    return null;
-  }
-  return getNodeListProperty(parent);
-}
-
 function getLast(arr) {
   if (arr.length > 0) {
     return arr[arr.length - 1];
@@ -208,15 +200,6 @@ function getPenultimate(arr) {
     return arr[arr.length - 2];
   }
   return null;
-}
-
-function isLastStatement(path) {
-  const body = getParentNodeListProperty(path);
-  if (!body) {
-    return true;
-  }
-  const { node } = path;
-  return body[body.length - 1] === node;
 }
 
 function isFirstChildrenInlineNode(path) {
@@ -687,10 +670,8 @@ export {
   shouldFlatten,
   nodeHasStatement,
   getNodeListProperty,
-  getParentNodeListProperty,
   getLast,
   getPenultimate,
-  isLastStatement,
   getBodyFirstChild,
   lineShouldEndWithSemicolon,
   fileShouldEndWithHardline,
