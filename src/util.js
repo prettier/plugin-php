@@ -652,7 +652,6 @@ export {
   isBitwiseOperator,
   shouldFlatten,
   nodeHasStatement,
-  getNodeListProperty,
   getLast,
   getPenultimate,
   getBodyFirstChild,
