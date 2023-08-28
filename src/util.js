@@ -7,8 +7,6 @@ const {
   skipNewline,
   isNextLineEmpty: _isNextLineEmpty,
   isPreviousLineEmpty: _isPreviousLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex:
-    _getNextNonSpaceNonCommentCharacterIndex,
 } = prettierUtil;
 
 function lookupIfPrettier2(options, prop) {
@@ -25,14 +23,6 @@ function isPreviousLineEmpty(text, node, options) {
 
 function isNextLineEmpty(text, node, options) {
   return _isNextLineEmpty(text, node, lookupIfPrettier2(options, "locEnd"));
-}
-
-function getNextNonSpaceNonCommentCharacterIndex(text, node, options) {
-  return _getNextNonSpaceNonCommentCharacterIndex(
-    text,
-    node,
-    lookupIfPrettier2(options, "locEnd")
-  );
 }
 
 function printNumber(rawNumber) {
@@ -715,5 +705,4 @@ export {
   normalizeMagicMethodName,
   isPreviousLineEmpty,
   isNextLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex,
 };

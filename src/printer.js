@@ -16,8 +16,12 @@ const {
   dedentToRoot,
 } = doc.builders;
 const { willBreak } = doc.utils;
-const { isNextLineEmptyAfterIndex, hasNewline, hasNewlineInRange } =
-  prettierUtil;
+const {
+  isNextLineEmptyAfterIndex,
+  hasNewline,
+  hasNewlineInRange,
+  getNextNonSpaceNonCommentCharacterIndex,
+} = prettierUtil;
 import {
   printAllComments,
   hasTrailingComment,
@@ -57,7 +61,6 @@ import {
   isReferenceLikeNode,
   getNextNode,
   normalizeMagicMethodName,
-  getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
   isPreviousLineEmpty,
 } from "./util.js";
@@ -197,8 +200,7 @@ function printMemberChain(path, options, print) {
     const { originalText } = options;
     const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
       originalText,
-      node,
-      options
+      locEnd(node)
     );
     const nextChar = originalText.charAt(nextCharIndex);
 
