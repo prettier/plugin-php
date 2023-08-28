@@ -381,8 +381,8 @@ function handleRetifComments(
   precedingNode,
   followingNode,
   comment,
-  text,
-  options
+  text
+  /* options */
 ) {
   const isSameLineAsPrecedingNode =
     precedingNode &&
@@ -865,7 +865,7 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some((comment) => comment.trailing);
 }
 
-function hasLeadingOwnLineComment(text, node, options) {
+function hasLeadingOwnLineComment(text, node) {
   return (
     node.comments &&
     node.comments.some(

@@ -1503,7 +1503,7 @@ function printAssignmentRight(
 ) {
   const ref = hasRef ? "&" : "";
 
-  if (hasLeadingOwnLineComment(options.originalText, rightNode, options)) {
+  if (hasLeadingOwnLineComment(options.originalText, rightNode)) {
     return indent([hardline, ref, printedRight]);
   }
 
