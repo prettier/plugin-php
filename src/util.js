@@ -516,23 +516,6 @@ function getAlignment(text) {
   return lastLine.length - lastLine.trimLeft().length + 1;
 }
 
-function getNextNode(path, node) {
-  const { parent } = path;
-  const children = getNodeListProperty(parent);
-
-  if (!children) {
-    return null;
-  }
-
-  const index = children.indexOf(node);
-
-  if (index === -1) {
-    return null;
-  }
-
-  return parent.children[index + 1];
-}
-
 function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
@@ -692,7 +675,6 @@ export {
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
   getAncestorNode,
-  getNextNode,
   normalizeMagicMethodName,
   isPreviousLineEmpty,
   isNextLineEmpty,

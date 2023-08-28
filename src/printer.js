@@ -54,7 +54,6 @@ import {
   isDocNode,
   getAncestorNode,
   isReferenceLikeNode,
-  getNextNode,
   normalizeMagicMethodName,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
@@ -1603,13 +1602,11 @@ function printNode(path, options, print) {
         ];
       }
 
-      const nextNode = getNextNode(path, node);
-
       return [
         "declare(",
         printDeclareArguments(path),
         ")",
-        nextNode && nextNode.kind === "inline" ? "" : ";",
+        path.next?.kind === "inline" ? "" : ";",
       ];
     }
     case "declaredirective":
