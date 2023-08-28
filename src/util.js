@@ -648,7 +648,7 @@ function getAncestorNode(path, typeOrTypes) {
   return counter === -1 ? null : path.getParentNode(counter);
 }
 
-const magicMethods = new Set([
+const magicMethods = [
   "__construct",
   "__destruct",
   "__call",
@@ -664,13 +664,16 @@ const magicMethods = new Set([
   "__set_state",
   "__clone",
   "__debugInfo",
-]);
+];
+const magicMethodsMap = new Map(
+  magicMethods.map((name) => [name.toLowerCase(), name])
+);
 
 function normalizeMagicMethodName(name) {
   const loweredName = name.toLowerCase();
 
-  if (magicMethods.has(loweredName)) {
-    return loweredName;
+  if (magicMethodsMap.has(loweredName)) {
+    return magicMethodsMap.get(loweredName);
   }
 
   return name;

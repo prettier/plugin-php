@@ -595,7 +595,7 @@ class Connection
     {
     }
 
-    public static function __CALLSTATIC($name, $arguments)
+    public static function __callStatic($name, $arguments)
     {
     }
 
@@ -623,7 +623,7 @@ class Connection
     {
     }
 
-    public function __TOSTRING()
+    public function __toString()
     {
     }
 
@@ -639,7 +639,7 @@ class Connection
     {
     }
 
-    public function __DEBUGINFO()
+    public function __debugInfo()
     {
     }
 
