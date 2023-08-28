@@ -977,8 +977,7 @@ function printTrailingComment(path, print, options) {
 
     const isLineBeforeEmpty = isPreviousLineEmpty(
       options.originalText,
-      comment,
-      options
+      locStart(comment)
     );
 
     return lineSuffix([hardline, isLineBeforeEmpty ? hardline : "", contents]);

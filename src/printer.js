@@ -1,27 +1,4 @@
 import { util as prettierUtil, doc } from "prettier";
-const {
-  breakParent,
-  join,
-  line,
-  lineSuffix,
-  group,
-  conditionalGroup,
-  indent,
-  dedent,
-  ifBreak,
-  hardline,
-  softline,
-  literalline,
-  align,
-  dedentToRoot,
-} = doc.builders;
-const { willBreak } = doc.utils;
-const {
-  isNextLineEmptyAfterIndex,
-  hasNewline,
-  hasNewlineInRange,
-  getNextNonSpaceNonCommentCharacterIndex,
-} = prettierUtil;
 import {
   printAllComments,
   hasTrailingComment,
@@ -30,6 +7,7 @@ import {
   printComments,
   isBlockComment,
   hasLeadingOwnLineComment,
+  isPreviousLineEmpty,
 } from "./comments.js";
 import pathNeedsParens from "./needs-parens.js";
 import { locStart, locEnd } from "./loc.js";
@@ -61,9 +39,32 @@ import {
   isReferenceLikeNode,
   getNextNode,
   normalizeMagicMethodName,
-  isNextLineEmpty,
-  isPreviousLineEmpty,
 } from "./util.js";
+
+const {
+  breakParent,
+  join,
+  line,
+  lineSuffix,
+  group,
+  conditionalGroup,
+  indent,
+  dedent,
+  ifBreak,
+  hardline,
+  softline,
+  literalline,
+  align,
+  dedentToRoot,
+} = doc.builders;
+const { willBreak } = doc.utils;
+const {
+  isNextLineEmptyAfterIndex,
+  hasNewline,
+  hasNewlineInRange,
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
+} = prettierUtil;
 
 function isMinVersion(actualVersion, requiredVersion) {
   return parseFloat(actualVersion) >= parseFloat(requiredVersion);
@@ -2830,7 +2831,7 @@ function printNode(path, options, print) {
         const body = print("body");
         const maybeEmptyLineBetweenArms =
           !path.isFirst &&
-          isPreviousLineEmpty(options.originalText, armNode, options)
+          isPreviousLineEmpty(options.originalText, locStart(armNode))
             ? hardline
             : "";
 
