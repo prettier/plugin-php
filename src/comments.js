@@ -5,6 +5,7 @@ import {
   isPreviousLineEmpty,
   isLookupNode,
 } from "./util.js";
+import { locStart, locEnd } from "./loc.js";
 
 const {
   addLeadingComment,
@@ -380,16 +381,12 @@ function handleRetifComments(
   precedingNode,
   followingNode,
   comment,
-  text,
-  options
+  text
+  /* options */
 ) {
   const isSameLineAsPrecedingNode =
     precedingNode &&
-    !hasNewlineInRange(
-      text,
-      options.locEnd(precedingNode),
-      options.locStart(comment)
-    );
+    !hasNewlineInRange(text, locEnd(precedingNode), locStart(comment));
 
   if (
     (!precedingNode || !isSameLineAsPrecedingNode) &&
@@ -518,14 +515,14 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
     let argumentsLocEnd = 0;
     for (let i = 0; i < enclosingNode.arguments.length; i++) {
       argumentsLocEnd =
-        options.locEnd(enclosingNode.arguments[i]) > argumentsLocEnd
-          ? options.locEnd(enclosingNode.arguments[i])
+        locEnd(enclosingNode.arguments[i]) > argumentsLocEnd
+          ? locEnd(enclosingNode.arguments[i])
           : argumentsLocEnd;
     }
     const commentIsBetweenArgumentsAndBody =
       enclosingNode.body &&
-      options.locStart(comment) > argumentsLocEnd &&
-      options.locEnd(comment) < options.locStart(enclosingNode.body);
+      locStart(comment) > argumentsLocEnd &&
+      locEnd(comment) < locStart(enclosingNode.body);
     const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
       text,
       comment,
@@ -538,7 +535,7 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
       commentIsBetweenArgumentsAndBody &&
       text.charAt(nextCharIndex) !== ")"
     ) {
-      if (options.locEnd(comment) < options.locStart(enclosingNode.type)) {
+      if (locEnd(comment) < locStart(enclosingNode.type)) {
         // we need to store this as a dangling comment in case the type is nullable
         // ie function(): ?string {} - the "nullable" attribute is part of the
         // function node, not the type.
@@ -868,11 +865,11 @@ function hasTrailingComment(node) {
   return node.comments && node.comments.some((comment) => comment.trailing);
 }
 
-function hasLeadingOwnLineComment(text, node, options) {
+function hasLeadingOwnLineComment(text, node) {
   return (
     node.comments &&
     node.comments.some(
-      (comment) => comment.leading && hasNewline(text, options.locEnd(comment))
+      (comment) => comment.leading && hasNewline(text, locEnd(comment))
     )
   );
 }
@@ -941,9 +938,7 @@ function printLeadingComment(path, print, options) {
   if (isBlock) {
     return [
       contents,
-      hasNewline(options.originalText, options.locEnd(comment))
-        ? hardline
-        : " ",
+      hasNewline(options.originalText, locEnd(comment)) ? hardline : " ",
     ];
   }
 
@@ -961,7 +956,7 @@ function printTrailingComment(path, print, options) {
     options.printer.isBlockComment && options.printer.isBlockComment(comment);
 
   if (
-    hasNewline(options.originalText, options.locStart(comment), {
+    hasNewline(options.originalText, locStart(comment), {
       backwards: true,
     })
   ) {
@@ -1015,7 +1010,7 @@ function printAllComments(path, print, options, needsSemi) {
       leadingParts.push(contents);
 
       const text = options.originalText;
-      if (hasNewline(text, skipNewline(text, options.locEnd(comment)))) {
+      if (hasNewline(text, skipNewline(text, locEnd(comment)))) {
         leadingParts.push(hardline);
       }
     } else if (trailing) {

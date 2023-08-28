@@ -1,4 +1,5 @@
 import { util as prettierUtil, version as prettierVersion } from "prettier";
+import { locStart } from "./loc.js";
 
 const {
   hasNewline,
@@ -605,7 +606,7 @@ function hasEmptyBody(path, name = "body") {
   );
 }
 
-function isNextLineEmptyAfterNamespace(text, node, locStart) {
+function isNextLineEmptyAfterNamespace(text, node) {
   let idx = locStart(node);
   idx = skipEverythingButNewLine(text, idx);
   idx = skipNewline(text, idx);
