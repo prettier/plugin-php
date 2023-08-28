@@ -666,17 +666,15 @@ const magicMethods = [
   "__clone",
   "__debugInfo",
 ];
-const MagicMethodsMap = magicMethods.reduce((map, obj) => {
-  map[obj.toLowerCase()] = obj;
-
-  return map;
-}, {});
+const magicMethodsMap = new Map(
+  magicMethods.map((name) => [name.toLowerCase(), name])
+);
 
 function normalizeMagicMethodName(name) {
   const loweredName = name.toLowerCase();
 
-  if (MagicMethodsMap[loweredName]) {
-    return MagicMethodsMap[loweredName];
+  if (magicMethodsMap.has(loweredName)) {
+    return magicMethodsMap.get(loweredName);
   }
 
   return name;

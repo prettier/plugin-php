@@ -2885,7 +2885,7 @@ function printNode(path, options, print) {
     case "error":
     default:
       // istanbul ignore next
-      return `Have not implemented kind ${node.kind} yet.`;
+      throw new Error(`Have not implemented kind '${node.kind}' yet.`);
   }
 }
 
