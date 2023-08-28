@@ -234,7 +234,7 @@ You may also need to declare php as the parser in your prettier config file:
 ```json
 {
   "parser": "php",
-  "plugins": ["@prettier/plugin-php"],
+  "plugins": ["@prettier/plugin-php"]
 }
 ```
 
