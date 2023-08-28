@@ -1,5 +1,5 @@
 import { util as prettierUtil, doc } from "prettier";
-import { isNextLineEmpty, isPreviousLineEmpty, isLookupNode } from "./util.js";
+import { isPreviousLineEmpty, isLookupNode } from "./util.js";
 import { locStart, locEnd } from "./loc.js";
 
 const {
@@ -10,6 +10,7 @@ const {
   hasNewline,
   hasNewlineInRange,
   getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
 } = prettierUtil;
 const { join, indent, hardline, cursor, lineSuffix, breakParent } =
   doc.builders;
@@ -886,7 +887,7 @@ function printComments(comments, options) {
       parts.push(hardline);
     }
     if (
-      isNextLineEmpty(options.originalText, comment, options) &&
+      isNextLineEmpty(options.originalText, locEnd(comment)) &&
       !isLastComment
     ) {
       parts.push(hardline);
