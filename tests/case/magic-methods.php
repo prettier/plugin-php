@@ -64,4 +64,8 @@ class Connection
     public function __DEBUGINFO()
     {
     }
+
+    // Not magic methods, JS Object prototype properties
+    public function __pRoTo__() {}
+    public function cOnStRuCtOr() {}
 }

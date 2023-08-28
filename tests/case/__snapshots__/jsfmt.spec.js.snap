@@ -569,6 +569,10 @@ class Connection
     public function __DEBUGINFO()
     {
     }
+
+    // Not magic methods, JS Object prototype properties
+    public function __pRoTo__() {}
+    public function cOnStRuCtOr() {}
 }
 
 =====================================output=====================================
@@ -591,7 +595,7 @@ class Connection
     {
     }
 
-    public static function __callStatic($name, $arguments)
+    public static function __CALLSTATIC($name, $arguments)
     {
     }
 
@@ -619,7 +623,7 @@ class Connection
     {
     }
 
-    public function __toString()
+    public function __TOSTRING()
     {
     }
 
@@ -635,7 +639,15 @@ class Connection
     {
     }
 
-    public function __debugInfo()
+    public function __DEBUGINFO()
+    {
+    }
+
+    // Not magic methods, JS Object prototype properties
+    public function __pRoTo__()
+    {
+    }
+    public function cOnStRuCtOr()
     {
     }
 }
