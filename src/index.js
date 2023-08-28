@@ -16,6 +16,7 @@ import {
   isBlockComment,
 } from "./comments.js";
 import { hasPragma, insertPragma } from "./pragma.js";
+import { locStart, locEnd } from "./loc.js";
 
 const { join, hardline } = doc.builders;
 
@@ -55,16 +56,12 @@ const languages = [
   }),
 ];
 
-const loc = (prop) => (node) => {
-  return node.loc && node.loc[prop] && node.loc[prop].offset;
-};
-
 const parsers = {
   php: {
     parse,
     astFormat: "php",
-    locStart: loc("start"),
-    locEnd: loc("end"),
+    locStart,
+    locEnd,
     hasPragma,
   },
 };

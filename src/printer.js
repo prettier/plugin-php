@@ -28,6 +28,7 @@ import {
   hasLeadingOwnLineComment,
 } from "./comments.js";
 import pathNeedsParens from "./needs-parens.js";
+import { locStart, locEnd } from "./loc.js";
 
 import {
   getLast,
@@ -1069,8 +1070,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
         ? [
             hasNewlineInRange(
               options.originalText.trimEnd(),
-              options.locEnd(lastNode),
-              options.locEnd(node)
+              locEnd(lastNode),
+              locEnd(node)
             )
               ? !(
                   lastNode.kind === "inline" &&
@@ -1545,13 +1546,13 @@ function stringHasNewLines(node) {
   return node.raw.includes("\n");
 }
 
-function isStringOnItsOwnLine(node, text, options) {
+function isStringOnItsOwnLine(node, text) {
   return (
     (node.kind === "string" ||
       (node.kind === "encapsed" &&
         (node.type === "string" || node.type === "shell"))) &&
     stringHasNewLines(node) &&
-    !hasNewline(text, options.locStart(node), { backwards: true })
+    !hasNewline(text, locStart(node), { backwards: true })
   );
 }
 
@@ -1632,11 +1633,7 @@ function printNode(path, options, print) {
                   ? ""
                   : [
                       hardline,
-                      isNextLineEmptyAfterNamespace(
-                        options.originalText,
-                        node,
-                        options.locStart
-                      )
+                      isNextLineEmptyAfterNamespace(options.originalText, node)
                         ? hardline
                         : "",
                     ],
@@ -2039,7 +2036,7 @@ function printNode(path, options, print) {
       // Multiline strings as single arguments
       if (
         node.arguments.length === 1 &&
-        isStringOnItsOwnLine(node.arguments[0], options.originalText, options)
+        isStringOnItsOwnLine(node.arguments[0], options.originalText)
       ) {
         return [
           print("what"),
@@ -2064,7 +2061,7 @@ function printNode(path, options, print) {
       if (
         !isAnonymousClassNode &&
         node.arguments.length === 1 &&
-        isStringOnItsOwnLine(node.arguments[0], options.originalText, options)
+        isStringOnItsOwnLine(node.arguments[0], options.originalText)
       ) {
         return [
           "new ",
@@ -2156,7 +2153,7 @@ function printNode(path, options, print) {
         node.useDie ? "die" : "exit",
         "(",
         node.expression
-          ? isStringOnItsOwnLine(node.expression, options.originalText, options)
+          ? isStringOnItsOwnLine(node.expression, options.originalText)
             ? print("expression")
             : [indent([softline, print("expression")]), softline]
           : printDanglingComments(path, options),
@@ -2199,7 +2196,7 @@ function printNode(path, options, print) {
     case "eval":
       return group([
         "eval(",
-        isStringOnItsOwnLine(node.source, options.originalText, options)
+        isStringOnItsOwnLine(node.source, options.originalText)
           ? print("source")
           : [indent([softline, print("source")]), softline],
         ")",
@@ -2388,15 +2385,15 @@ function printNode(path, options, print) {
 
       const [firstProperty] = node.items
         .filter((node) => node.kind !== "noop")
-        .sort((a, b) => options.locStart(a) - options.locStart(b));
+        .sort((a, b) => locStart(a) - locStart(b));
       const isAssociative = !!(firstProperty && firstProperty.key);
       const shouldBreak =
         isAssociative &&
         firstProperty &&
         hasNewlineInRange(
           options.originalText,
-          options.locStart(node),
-          options.locStart(firstProperty)
+          locStart(node),
+          locStart(firstProperty)
         );
 
       return group(
