@@ -1,5 +1,5 @@
 import { util as prettierUtil, doc } from "prettier";
-import { isPreviousLineEmpty, isLookupNode } from "./util.js";
+import { isLookupNode } from "./util.js";
 import { locStart, locEnd } from "./loc.js";
 
 const {
@@ -11,6 +11,7 @@ const {
   hasNewlineInRange,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
+  isPreviousLineEmpty,
 } = prettierUtil;
 const { join, indent, hardline, cursor, lineSuffix, breakParent } =
   doc.builders;

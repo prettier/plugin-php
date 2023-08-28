@@ -7,7 +7,6 @@ import {
   printComments,
   isBlockComment,
   hasLeadingOwnLineComment,
-  isPreviousLineEmpty,
 } from "./comments.js";
 import pathNeedsParens from "./needs-parens.js";
 import { locStart, locEnd } from "./loc.js";
@@ -64,6 +63,7 @@ const {
   hasNewlineInRange,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
+  isPreviousLineEmpty,
 } = prettierUtil;
 
 function isMinVersion(actualVersion, requiredVersion) {
