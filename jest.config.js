@@ -8,40 +8,15 @@ export default {
     "!<rootDir>/node_modules/",
     "!<rootDir>/tests_config/",
   ],
-  projects: [
-    RUN_STANDALONE_TESTS
-      ? {
-          displayName: "test-standalone",
-          setupFiles: ["<rootDir>/tests_config/run_spec.js"],
-          testRegex: "jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
-          snapshotSerializers: ["jest-snapshot-serializer-raw"],
-          testEnvironment: "jsdom",
-          globals: {
-            STANDALONE: true,
-          },
-          runner: "jest-light-runner",
-          transform: {},
-        }
-      : {
-          displayName: "test-node",
-          setupFiles: ["<rootDir>/tests_config/run_spec.js"],
-          testRegex: "jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
-          snapshotSerializers: ["jest-snapshot-serializer-raw"],
-          testEnvironment: "node",
-          globals: {
-            STANDALONE: false,
-          },
-          runner: "jest-light-runner",
-          transform: {},
-        },
-    {
-      runner: "jest-runner-eslint",
-      displayName: "lint",
-      testMatch: ["<rootDir>/**/*.js"],
-      testPathIgnorePatterns: [
-        "<rootDir>/node_modules/",
-        "<rootDir>/coverage/",
-      ],
-    },
-  ],
+  runner: "jest-light-runner",
+  transform: {},
+  setupFiles: ["<rootDir>/tests_config/run_spec.js"],
+  testRegex: "jsfmt\\.spec\\.js$|__tests__/.*\\.js$",
+  snapshotSerializers: ["jest-snapshot-serializer-raw"],
+  globals: {
+    STANDALONE: RUN_STANDALONE_TESTS,
+  },
+  ...(RUN_STANDALONE_TESTS
+    ? { displayName: "test-standalone", testEnvironment: "jsdom" }
+    : { displayName: "test-node", testEnvironment: "node" }),
 };

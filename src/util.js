@@ -1,39 +1,7 @@
-import { util as prettierUtil, version as prettierVersion } from "prettier";
+import { util as prettierUtil } from "prettier";
 import { locStart } from "./loc.js";
 
-const {
-  hasNewline,
-  skipEverythingButNewLine,
-  skipNewline,
-  isNextLineEmpty: _isNextLineEmpty,
-  isPreviousLineEmpty: _isPreviousLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex:
-    _getNextNonSpaceNonCommentCharacterIndex,
-} = prettierUtil;
-
-function lookupIfPrettier2(options, prop) {
-  return parseInt(prettierVersion[0]) > 1 ? options[prop] : options;
-}
-
-function isPreviousLineEmpty(text, node, options) {
-  return _isPreviousLineEmpty(
-    text,
-    node,
-    lookupIfPrettier2(options, "locStart")
-  );
-}
-
-function isNextLineEmpty(text, node, options) {
-  return _isNextLineEmpty(text, node, lookupIfPrettier2(options, "locEnd"));
-}
-
-function getNextNonSpaceNonCommentCharacterIndex(text, node, options) {
-  return _getNextNonSpaceNonCommentCharacterIndex(
-    text,
-    node,
-    lookupIfPrettier2(options, "locEnd")
-  );
-}
+const { hasNewline, skipEverythingButNewLine, skipNewline } = prettierUtil;
 
 function printNumber(rawNumber) {
   return (
@@ -53,49 +21,47 @@ function printNumber(rawNumber) {
 }
 
 // http://php.net/manual/en/language.operators.precedence.php
-const PRECEDENCE = {};
-[
-  ["or"],
-  ["xor"],
-  ["and"],
+const PRECEDENCE = new Map(
   [
-    "=",
-    "+=",
-    "-=",
-    "*=",
-    "**=",
-    "/=",
-    ".=",
-    "%=",
-    "&=",
-    "|=",
-    "^=",
-    "<<=",
-    ">>=",
-  ],
-  ["??"],
-  ["||"],
-  ["&&"],
-  ["|"],
-  ["^"],
-  ["&"],
-  ["==", "===", "!=", "!==", "<>", "<=>"],
-  ["<", ">", "<=", ">="],
-  [">>", "<<"],
-  ["+", "-", "."],
-  ["*", "/", "%"],
-  ["!"],
-  ["instanceof"],
-  ["++", "--", "~"],
-  ["**"],
-].forEach((tier, i) => {
-  tier.forEach((op) => {
-    PRECEDENCE[op] = i;
-  });
-});
-
-function getPrecedence(op) {
-  return PRECEDENCE[op];
+    ["or"],
+    ["xor"],
+    ["and"],
+    [
+      "=",
+      "+=",
+      "-=",
+      "*=",
+      "**=",
+      "/=",
+      ".=",
+      "%=",
+      "&=",
+      "|=",
+      "^=",
+      "<<=",
+      ">>=",
+    ],
+    ["??"],
+    ["||"],
+    ["&&"],
+    ["|"],
+    ["^"],
+    ["&"],
+    ["==", "===", "!=", "!==", "<>", "<=>"],
+    ["<", ">", "<=", ">="],
+    [">>", "<<"],
+    ["+", "-", "."],
+    ["*", "/", "%"],
+    ["!"],
+    ["instanceof"],
+    ["++", "--", "~"],
+    ["**"],
+  ].flatMap((operators, index) =>
+    operators.map((operator) => [operator, index])
+  )
+);
+function getPrecedence(operator) {
+  return PRECEDENCE.get(operator);
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
@@ -675,7 +641,4 @@ export {
   isDocNode,
   getAncestorNode,
   normalizeMagicMethodName,
-  isPreviousLineEmpty,
-  isNextLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex,
 };

@@ -37,7 +37,7 @@ rules:
     - never
     - exceptRange: true
 
-  import/extensions: 
+  import/extensions:
     - error
     - ignorePackages
   import/no-extraneous-dependencies:
