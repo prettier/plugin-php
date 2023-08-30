@@ -1,39 +1,7 @@
-import { util as prettierUtil, version as prettierVersion } from "prettier";
+import { util as prettierUtil } from "prettier";
 import { locStart } from "./loc.js";
 
-const {
-  hasNewline,
-  skipEverythingButNewLine,
-  skipNewline,
-  isNextLineEmpty: _isNextLineEmpty,
-  isPreviousLineEmpty: _isPreviousLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex:
-    _getNextNonSpaceNonCommentCharacterIndex,
-} = prettierUtil;
-
-function lookupIfPrettier2(options, prop) {
-  return parseInt(prettierVersion[0]) > 1 ? options[prop] : options;
-}
-
-function isPreviousLineEmpty(text, node, options) {
-  return _isPreviousLineEmpty(
-    text,
-    node,
-    lookupIfPrettier2(options, "locStart")
-  );
-}
-
-function isNextLineEmpty(text, node, options) {
-  return _isNextLineEmpty(text, node, lookupIfPrettier2(options, "locEnd"));
-}
-
-function getNextNonSpaceNonCommentCharacterIndex(text, node, options) {
-  return _getNextNonSpaceNonCommentCharacterIndex(
-    text,
-    node,
-    lookupIfPrettier2(options, "locEnd")
-  );
-}
+const { hasNewline, skipEverythingButNewLine, skipNewline } = prettierUtil;
 
 function printNumber(rawNumber) {
   return (
@@ -711,7 +679,4 @@ export {
   getAncestorNode,
   getNextNode,
   normalizeMagicMethodName,
-  isPreviousLineEmpty,
-  isNextLineEmpty,
-  getNextNonSpaceNonCommentCharacterIndex,
 };

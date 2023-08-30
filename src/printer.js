@@ -1,23 +1,4 @@
 import { util as prettierUtil, doc } from "prettier";
-const {
-  breakParent,
-  join,
-  line,
-  lineSuffix,
-  group,
-  conditionalGroup,
-  indent,
-  dedent,
-  ifBreak,
-  hardline,
-  softline,
-  literalline,
-  align,
-  dedentToRoot,
-} = doc.builders;
-const { willBreak } = doc.utils;
-const { isNextLineEmptyAfterIndex, hasNewline, hasNewlineInRange } =
-  prettierUtil;
 import {
   printAllComments,
   hasTrailingComment,
@@ -57,10 +38,33 @@ import {
   isReferenceLikeNode,
   getNextNode,
   normalizeMagicMethodName,
+} from "./util.js";
+
+const {
+  breakParent,
+  join,
+  line,
+  lineSuffix,
+  group,
+  conditionalGroup,
+  indent,
+  dedent,
+  ifBreak,
+  hardline,
+  softline,
+  literalline,
+  align,
+  dedentToRoot,
+} = doc.builders;
+const { willBreak } = doc.utils;
+const {
+  isNextLineEmptyAfterIndex,
+  hasNewline,
+  hasNewlineInRange,
   getNextNonSpaceNonCommentCharacterIndex,
   isNextLineEmpty,
   isPreviousLineEmpty,
-} from "./util.js";
+} = prettierUtil;
 
 function isMinVersion(actualVersion, requiredVersion) {
   return parseFloat(actualVersion) >= parseFloat(requiredVersion);
@@ -197,8 +201,7 @@ function printMemberChain(path, options, print) {
     const { originalText } = options;
     const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
       originalText,
-      node,
-      options
+      locEnd(node)
     );
     const nextChar = originalText.charAt(nextCharIndex);
 
@@ -212,7 +215,7 @@ function printMemberChain(path, options, print) {
       );
     }
 
-    return isNextLineEmpty(originalText, node, options);
+    return isNextLineEmpty(originalText, locEnd(node));
   }
 
   function traverse(path) {
@@ -592,7 +595,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
 
     if (isLast) {
       // do nothing
-    } else if (isNextLineEmpty(options.originalText, arg, options)) {
+    } else if (isNextLineEmpty(options.originalText, locEnd(arg))) {
       if (isFirst) {
         hasEmptyLineFollowingFirstArg = true;
       }
@@ -859,7 +862,7 @@ function printArrayItems(path, options, print) {
 
     separatorParts = [",", line];
 
-    if (node && isNextLineEmpty(options.originalText, node, options)) {
+    if (node && isNextLineEmpty(options.originalText, locEnd(node))) {
       separatorParts.push(softline);
     }
   }, "items");
@@ -941,7 +944,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
       printedPath,
       canPrintBlankLine ? hardline : "",
       canPrintBlankLine &&
-      isNextLineEmpty(options.originalText, childNode, options)
+      isNextLineEmpty(options.originalText, locEnd(childNode))
         ? hardline
         : "",
     ];
@@ -1081,7 +1084,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
                 ? hardline
                 : ""
               : " ",
-            isNextLineEmpty(options.originalText, lastNode, options)
+            isNextLineEmpty(options.originalText, locEnd(lastNode))
               ? hardline
               : "",
           ]
@@ -1107,7 +1110,7 @@ function printStatements(path, options, print, childrenAttribute) {
     if (!isLastStatement(path)) {
       parts.push(hardline);
 
-      if (isNextLineEmpty(options.originalText, path.node, options)) {
+      if (isNextLineEmpty(options.originalText, locEnd(path.node))) {
         parts.push(hardline);
       }
     }
@@ -1854,7 +1857,7 @@ function printNode(path, options, print) {
 
         if (hasDanglingComments(node)) {
           parts.push(
-            isNextLineEmpty(options.originalText, node.body, options)
+            isNextLineEmpty(options.originalText, locEnd(node.body))
               ? hardline
               : "",
             printDanglingComments(path, options, true),
@@ -2828,7 +2831,7 @@ function printNode(path, options, print) {
         const body = print("body");
         const maybeEmptyLineBetweenArms =
           !path.isFirst &&
-          isPreviousLineEmpty(options.originalText, armNode, options)
+          isPreviousLineEmpty(options.originalText, locStart(armNode))
             ? hardline
             : "";
 

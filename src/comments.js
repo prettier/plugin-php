@@ -1,10 +1,5 @@
 import { util as prettierUtil, doc } from "prettier";
-import {
-  getNextNonSpaceNonCommentCharacterIndex,
-  isNextLineEmpty,
-  isPreviousLineEmpty,
-  isLookupNode,
-} from "./util.js";
+import { isLookupNode } from "./util.js";
 import { locStart, locEnd } from "./loc.js";
 
 const {
@@ -14,6 +9,9 @@ const {
   skipNewline,
   hasNewline,
   hasNewlineInRange,
+  getNextNonSpaceNonCommentCharacterIndex,
+  isNextLineEmpty,
+  isPreviousLineEmpty,
 } = prettierUtil;
 const { join, indent, hardline, cursor, lineSuffix, breakParent } =
   doc.builders;
@@ -275,13 +273,12 @@ function handleLastFunctionArgComments(
   precedingNode,
   enclosingNode,
   followingNode,
-  comment,
-  options
+  comment
+  /* options */
 ) {
   const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
     text,
-    comment,
-    options
+    locEnd(comment)
   );
   const nextCharacter = text.charAt(nextCharIndex);
 
@@ -330,8 +327,8 @@ function handleIfStatementComments(
   precedingNode,
   enclosingNode,
   followingNode,
-  comment,
-  options
+  comment
+  /* options */
 ) {
   if (!enclosingNode || enclosingNode.kind !== "if" || !followingNode) {
     return false;
@@ -339,8 +336,7 @@ function handleIfStatementComments(
 
   const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
     text,
-    comment,
-    options
+    locEnd(comment)
   );
   const nextCharacter = text.charAt(nextCharIndex);
 
@@ -504,7 +500,13 @@ function handleClassComments(enclosingNode, followingNode, comment) {
   return false;
 }
 
-function handleFunction(text, enclosingNode, followingNode, comment, options) {
+function handleFunction(
+  text,
+  enclosingNode,
+  followingNode,
+  comment
+  /* options */
+) {
   if (
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method")
@@ -525,8 +527,7 @@ function handleFunction(text, enclosingNode, followingNode, comment, options) {
       locEnd(comment) < locStart(enclosingNode.body);
     const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
       text,
-      comment,
-      options
+      locEnd(comment)
     );
     // we additionally need to check if this isn't a trailing argument comment,
     // by checking the next character isn't ")"
@@ -606,11 +607,15 @@ function handleHalt(precedingNode, enclosingNode, followingNode, comment) {
   return false;
 }
 
-function handleCommentInEmptyParens(text, enclosingNode, comment, options) {
+function handleCommentInEmptyParens(
+  text,
+  enclosingNode,
+  comment
+  /* options */
+) {
   const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
     text,
-    comment,
-    options
+    locEnd(comment)
   );
 
   if (text.charAt(nextCharIndex) !== ")") {
@@ -787,8 +792,8 @@ function handleWhileComments(
   precedingNode,
   enclosingNode,
   followingNode,
-  comment,
-  options
+  comment
+  /* options */
 ) {
   if (!enclosingNode || enclosingNode.kind !== "while" || !followingNode) {
     return false;
@@ -801,8 +806,7 @@ function handleWhileComments(
 
   const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
     text,
-    comment,
-    options
+    locEnd(comment)
   );
   const nextCharacter = text.charAt(nextCharIndex);
 
@@ -884,7 +888,7 @@ function printComments(comments, options) {
       parts.push(hardline);
     }
     if (
-      isNextLineEmpty(options.originalText, comment, options) &&
+      isNextLineEmpty(options.originalText, locEnd(comment)) &&
       !isLastComment
     ) {
       parts.push(hardline);
@@ -974,8 +978,7 @@ function printTrailingComment(path, print, options) {
 
     const isLineBeforeEmpty = isPreviousLineEmpty(
       options.originalText,
-      comment,
-      options
+      locStart(comment)
     );
 
     return lineSuffix([hardline, isLineBeforeEmpty ? hardline : "", contents]);
