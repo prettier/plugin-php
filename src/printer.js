@@ -1108,7 +1108,7 @@ function printStatements(path, options, print, childrenAttribute) {
     if (!isLast) {
       parts.push(hardline);
 
-      if (isNextLineEmpty(options.originalText, locEnd(path.node))) {
+      if (isNextLineEmpty(options.originalText, locEnd(node))) {
         parts.push(hardline);
       }
     }
