@@ -14,7 +14,6 @@ import { locStart, locEnd } from "./loc.js";
 import {
   getLast,
   getPenultimate,
-  isLastStatement,
   lineShouldEndWithSemicolon,
   printNumber,
   shouldFlatten,
@@ -36,7 +35,6 @@ import {
   isDocNode,
   getAncestorNode,
   isReferenceLikeNode,
-  getNextNode,
   normalizeMagicMethodName,
 } from "./util.js";
 
@@ -934,7 +932,7 @@ function printLines(path, options, print, childrenAttribute = "children") {
     const isInlineNode = childNode.kind === "inline";
     const printedPath = print();
     const canPrintBlankLine =
-      !isLastStatement(path) &&
+      !isLastNode &&
       !isInlineNode &&
       (nextNode && nextNode.kind === "case"
         ? !isFirstChildrenInlineNode(path)
@@ -1102,15 +1100,15 @@ function printLines(path, options, print, childrenAttribute = "children") {
 }
 
 function printStatements(path, options, print, childrenAttribute) {
-  return path.map(() => {
+  return path.map(({ node, isLast }) => {
     const parts = [];
 
     parts.push(print());
 
-    if (!isLastStatement(path)) {
+    if (!isLast) {
       parts.push(hardline);
 
-      if (isNextLineEmpty(options.originalText, locEnd(path.node))) {
+      if (isNextLineEmpty(options.originalText, locEnd(node))) {
         parts.push(hardline);
       }
     }
@@ -1607,13 +1605,11 @@ function printNode(path, options, print) {
         ];
       }
 
-      const nextNode = getNextNode(path, node);
-
       return [
         "declare(",
         printDeclareArguments(path),
         ")",
-        nextNode && nextNode.kind === "inline" ? "" : ";",
+        path.next?.kind === "inline" ? "" : ";",
       ];
     }
     case "declaredirective":

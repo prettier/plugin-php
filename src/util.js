@@ -154,14 +154,6 @@ function getNodeListProperty(node) {
   return Array.isArray(body) ? body : null;
 }
 
-function getParentNodeListProperty(path) {
-  const { parent } = path;
-  if (!parent) {
-    return null;
-  }
-  return getNodeListProperty(parent);
-}
-
 function getLast(arr) {
   if (arr.length > 0) {
     return arr[arr.length - 1];
@@ -174,15 +166,6 @@ function getPenultimate(arr) {
     return arr[arr.length - 2];
   }
   return null;
-}
-
-function isLastStatement(path) {
-  const body = getParentNodeListProperty(path);
-  if (!body) {
-    return true;
-  }
-  const { node } = path;
-  return body[body.length - 1] === node;
 }
 
 function isFirstChildrenInlineNode(path) {
@@ -499,23 +482,6 @@ function getAlignment(text) {
   return lastLine.length - lastLine.trimLeft().length + 1;
 }
 
-function getNextNode(path, node) {
-  const { parent } = path;
-  const children = getNodeListProperty(parent);
-
-  if (!children) {
-    return null;
-  }
-
-  const index = children.indexOf(node);
-
-  if (index === -1) {
-    return null;
-  }
-
-  return parent.children[index + 1];
-}
-
 function isProgramLikeNode(node) {
   return ["program", "declare", "namespace"].includes(node.kind);
 }
@@ -652,11 +618,8 @@ export {
   isBitwiseOperator,
   shouldFlatten,
   nodeHasStatement,
-  getNodeListProperty,
-  getParentNodeListProperty,
   getLast,
   getPenultimate,
-  isLastStatement,
   getBodyFirstChild,
   lineShouldEndWithSemicolon,
   fileShouldEndWithHardline,
@@ -677,6 +640,5 @@ export {
   shouldPrintHardlineBeforeTrailingComma,
   isDocNode,
   getAncestorNode,
-  getNextNode,
   normalizeMagicMethodName,
 };
