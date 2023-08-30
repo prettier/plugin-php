@@ -53,49 +53,47 @@ function printNumber(rawNumber) {
 }
 
 // http://php.net/manual/en/language.operators.precedence.php
-const PRECEDENCE = {};
-[
-  ["or"],
-  ["xor"],
-  ["and"],
+const PRECEDENCE = new Map(
   [
-    "=",
-    "+=",
-    "-=",
-    "*=",
-    "**=",
-    "/=",
-    ".=",
-    "%=",
-    "&=",
-    "|=",
-    "^=",
-    "<<=",
-    ">>=",
-  ],
-  ["??"],
-  ["||"],
-  ["&&"],
-  ["|"],
-  ["^"],
-  ["&"],
-  ["==", "===", "!=", "!==", "<>", "<=>"],
-  ["<", ">", "<=", ">="],
-  [">>", "<<"],
-  ["+", "-", "."],
-  ["*", "/", "%"],
-  ["!"],
-  ["instanceof"],
-  ["++", "--", "~"],
-  ["**"],
-].forEach((tier, i) => {
-  tier.forEach((op) => {
-    PRECEDENCE[op] = i;
-  });
-});
-
-function getPrecedence(op) {
-  return PRECEDENCE[op];
+    ["or"],
+    ["xor"],
+    ["and"],
+    [
+      "=",
+      "+=",
+      "-=",
+      "*=",
+      "**=",
+      "/=",
+      ".=",
+      "%=",
+      "&=",
+      "|=",
+      "^=",
+      "<<=",
+      ">>=",
+    ],
+    ["??"],
+    ["||"],
+    ["&&"],
+    ["|"],
+    ["^"],
+    ["&"],
+    ["==", "===", "!=", "!==", "<>", "<=>"],
+    ["<", ">", "<=", ">="],
+    [">>", "<<"],
+    ["+", "-", "."],
+    ["*", "/", "%"],
+    ["!"],
+    ["instanceof"],
+    ["++", "--", "~"],
+    ["**"],
+  ].flatMap((operators, index) =>
+    operators.map((operator) => [operator, index])
+  )
+);
+function getPrecedence(operator) {
+  return PRECEDENCE.get(operator);
 }
 
 const equalityOperators = ["==", "!=", "===", "!==", "<>", "<=>"];
