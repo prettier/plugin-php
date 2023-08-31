@@ -28,8 +28,8 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [14.x, 16.x, 18.x, 20.x]
 
-    env:
-      ENABLE_COVERAGE: true
+    # env:
+    #   ENABLE_COVERAGE: true
 
     steps:
       - uses: actions/checkout@v3
@@ -39,8 +39,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
       - run: yarn install --frozen-lockfile
-      - run: yarn test
+      - run: yarn c8 yarn test:node
       - uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
           files: coverage/lcov.info
+      - run: yarn test:standalone

@@ -1,9 +1,10 @@
 const RUN_STANDALONE_TESTS = Boolean(process.env.RUN_STANDALONE_TESTS);
-const ENABLE_COVERAGE =
-  !RUN_STANDALONE_TESTS && Boolean(process.env.ENABLE_COVERAGE);
+// Can't work on `jest-light-runner`
+// const ENABLE_COVERAGE =
+//   !RUN_STANDALONE_TESTS && Boolean(process.env.ENABLE_COVERAGE);
 
 export default {
-  collectCoverage: ENABLE_COVERAGE,
+  // collectCoverage: ENABLE_COVERAGE,
   collectCoverageFrom: [
     "<rootDir>/src/**/*.js",
     "!<rootDir>/node_modules/",
