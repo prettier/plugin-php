@@ -1,4 +1,4 @@
-const ENABLE_COVERAGE = !!process.env.CI;
+const ENABLE_COVERAGE = Boolean(process.env.ENABLE_COVERAGE);
 const RUN_STANDALONE_TESTS = Boolean(process.env.RUN_STANDALONE_TESTS);
 
 export default {

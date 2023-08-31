@@ -43,7 +43,11 @@ export default {
     }),
     json(),
     babel({
+<<<<<<< HEAD
       babelHelpers: "bundled",
+=======
+      configFile: false,
+>>>>>>> 33382e8 (Fix coverage report)
       babelrc: false,
       plugins: [],
       compact: false,

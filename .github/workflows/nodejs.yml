@@ -3,7 +3,17 @@ name: Node CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -11,18 +21,19 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [14.x, 16.x, 18.x, 20.x]
 
+    env:
+      ENABLE_COVERAGE: 1
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, and test
-        run: |
-          yarn
-          yarn lint
-          yarn test
-          yarn codecov
-        env:
-          CI: true
-          AST_COMPARE: 1
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+      - uses: codecov/codecov-action@v3.1.4
+        with:
+          fail_ci_if_error: true
+          files: coverage/lcov.info
