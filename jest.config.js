@@ -1,5 +1,6 @@
-const ENABLE_COVERAGE = Boolean(process.env.ENABLE_COVERAGE);
 const RUN_STANDALONE_TESTS = Boolean(process.env.RUN_STANDALONE_TESTS);
+const ENABLE_COVERAGE =
+  !RUN_STANDALONE_TESTS && Boolean(process.env.ENABLE_COVERAGE);
 
 export default {
   collectCoverage: ENABLE_COVERAGE,
