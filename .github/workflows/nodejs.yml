@@ -40,7 +40,7 @@ jobs:
           cache: "yarn"
       - run: yarn install --frozen-lockfile
       - run: yarn test
-      - uses: codecov/codecov-action@v3.1.4
+      - uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
           files: coverage/lcov.info
