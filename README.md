@@ -97,6 +97,16 @@ npm install --save-dev prettier @prettier/plugin-php
 npm install --global prettier @prettier/plugin-php
 ```
 
+### Activate the plugin
+
+Create or modify your prettier configuration file to activate the plugin:
+
+```json
+{
+  "plugins": ["@prettier/plugin-php"]
+}
+```
+
 ## Use
 
 ### With Node.js
