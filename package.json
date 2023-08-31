@@ -68,5 +68,15 @@
     "prettier": "prettier --plugin=src/index.js --parser=php",
     "build": "rollup --config build/rollup.config.js",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "c8": {
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "all": true,
+    "include": [
+      "src/**"
+    ]
   }
 }
