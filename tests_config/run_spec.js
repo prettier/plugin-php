@@ -106,11 +106,7 @@ global.run_spec = (importMeta, parsers, options) => {
     // this will only work for php tests (since we're in the php repo)
     if (AST_COMPARE && parsers[0] === "php") {
       test(`${filename} parse`, async () => {
-        const parseOptions = {
-          ...mainOptions,
-          cursorOffset: undefined,
-          insertPragma: false,
-        };
+        const parseOptions = { ...mainOptions, cursorOffset: undefined };
 
         const originalAst = await parse(input, parseOptions);
         const formattedAst = await parse(
