@@ -115,7 +115,7 @@ global.run_spec = (importMeta, parsers, options) => {
         );
 
         expect(originalAst).toBeDefined();
-        expect(originalAst).toEqual(formattedAst);
+        expect(formattedAst).toEqual(originalAst);
       });
     }
   });
