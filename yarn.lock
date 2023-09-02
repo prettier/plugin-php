@@ -4187,9 +4187,9 @@ jest-leak-detector@^29.6.2:
     pretty-format "^29.6.2"
 
 jest-light-runner@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/jest-light-runner/-/jest-light-runner-0.5.0.tgz#92615f08e53ef0e8600684dd88fae6a17db33e4c"
-  integrity sha512-J5UkAUOnyKd3MY+cn7TqXdBPBPvxjGZzJORpeQCbQKQvEWxNyI4SDUIKPFqNVDoOsNJb22lejxklY94LkG/2uA==
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/jest-light-runner/-/jest-light-runner-0.5.1.tgz#145fd6e76e6dea6e507db46eaa0cc43f00b96c25"
+  integrity sha512-TV3GZ/LuK8HQRKUvO5pVRwtBINA4vFAatpA2FAbRJoIHXDuxM37L/BcZQJOzmEGgEd3FwuzRVmnnTpGnfYmnUg==
   dependencies:
     "@jest/expect" "^29.0.1"
     "@jest/fake-timers" "^29.2.2"
