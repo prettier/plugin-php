@@ -1,4 +1,3 @@
-import assert from "assert";
 import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.js";
 
 function needsParens(path) {
@@ -92,8 +91,6 @@ function needsParens(path) {
           }
 
           if (pp === np && key === "right") {
-            assert.strictEqual(parent.right, node);
-
             return true;
           }
 
