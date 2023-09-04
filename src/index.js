@@ -135,7 +135,7 @@ const printers = {
         case "commentline": {
           return comment.value.trimRight();
         }
-        /* istanbul ignore next */
+        /* c8 ignore next 2 */
         default:
           throw new Error(`Not a comment: ${JSON.stringify(comment)}`);
       }

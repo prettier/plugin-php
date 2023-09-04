@@ -826,9 +826,9 @@ function printLookupNodes(path, options, print) {
       return printStaticLookup(path, options, print);
     case "offsetlookup":
       return printOffsetLookup(path, options, print);
-    /* istanbul ignore next */
+    /* c8 ignore next 2 */
     default:
-      return `Have not implemented lookup kind ${node.kind} yet.`;
+      throw new Error(`Have not implemented lookup kind ${node.kind} yet.`);
   }
 }
 
@@ -846,8 +846,8 @@ function getEncapsedQuotes(node, { opening = true } = {}) {
     return quotes[node.type];
   }
 
-  /* istanbul ignore next */
-  return `Unimplemented encapsed type ${node.type}`;
+  /* c8 ignore next */
+  throw new Error(`Unimplemented encapsed type ${node.type}`);
 }
 
 function printArrayItems(path, options, print) {
@@ -2750,9 +2750,9 @@ function printNode(path, options, print) {
               : "",
           ];
         }
-        // istanbul ignore next
+        /* c8 ignore next 2 */
         default:
-          return `Have not implemented kind ${node.type} yet.`;
+          throw new Error(`Have not implemented kind ${node.type} yet.`);
       }
     case "inline":
       return join(
@@ -2881,9 +2881,9 @@ function printNode(path, options, print) {
     case "variadicplaceholder":
       return "...";
 
+    /* c8 ignore next 3 */
     case "error":
     default:
-      // istanbul ignore next
       throw new Error(`Have not implemented kind '${node.kind}' yet.`);
   }
 }

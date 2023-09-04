@@ -44,6 +44,7 @@ export default {
     json(),
     babel({
       babelHelpers: "bundled",
+      configFile: false,
       babelrc: false,
       plugins: [],
       compact: false,

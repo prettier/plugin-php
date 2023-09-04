@@ -105,27 +105,27 @@ global.run_spec = (importMeta, parsers, options) => {
 
     // this will only work for php tests (since we're in the php repo)
     if (AST_COMPARE && parsers[0] === "php") {
-      test(`${filename} parse`, () => {
-        const parseOptions = Object.assign({}, mainOptions);
-        delete parseOptions.cursorOffset;
+      test(`${filename} parse`, async () => {
+        const parseOptions = { ...mainOptions, cursorOffset: undefined };
 
-        const originalAst = parse(input, parseOptions);
-        let formattedAst;
+        const originalAst = await parse(input, parseOptions);
+        const formattedAst = await parse(
+          output.replace(CURSOR_PLACEHOLDER, ""),
+          parseOptions
+        );
 
-        expect(() => {
-          formattedAst = parse(
-            output.replace(CURSOR_PLACEHOLDER, ""),
-            parseOptions
-          );
-        }).not.toThrow();
-        expect(originalAst).toEqual(formattedAst);
+        expect(originalAst).toBeDefined();
+        expect(formattedAst).toEqual(originalAst);
       });
     }
   });
 };
 
-function parse(source, options) {
-  return prettier.__debug.parse(source, options, /* massage */ true).ast;
+async function parse(source, options) {
+  const { ast } = await prettier.__debug.parse(source, options, {
+    massage: true,
+  });
+  return ast;
 }
 
 async function format(source, filename, options) {
