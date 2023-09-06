@@ -43,6 +43,7 @@ jobs:
       - run: yarn c8 yarn test:node
       - uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           files: coverage/lcov.info
       - run: yarn test:standalone
