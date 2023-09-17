@@ -14,6 +14,7 @@
       "default": "./src/index.js"
     },
     "./standalone": "./standalone.js",
+    "./standalone.cjs": "./standalone.cjs",
     "./package.json": "./package.json"
   },
   "files": [
