@@ -19,7 +19,8 @@
   },
   "files": [
     "src",
-    "standalone.js"
+    "standalone.js",
+    "standalone.cjs"
   ],
   "dependencies": {
     "linguist-languages": "^7.21.0",
