@@ -13,18 +13,32 @@ const getPath = (file) => url.fileURLToPath(new URL(file, import.meta.url));
 
 export default {
   input: getPath("../src/index.js"),
-  output: {
-    file: "standalone.js",
-    format: "umd",
-    name: "prettierPlugins.php",
-    exports: "named",
-    globals: {
-      prettier: "prettier",
+  output: [
+    {
+      file: "standalone.js",
+      format: "umd",
+      name: "prettierPlugins.php",
+      exports: "named",
+      globals: {
+        prettier: "prettier",
+      },
+      paths: {
+        prettier: "prettier/standalone",
+      },
     },
-    paths: {
-      prettier: "prettier/standalone",
+    {
+      file: "standalone.cjs",
+      format: "cjs",
+      name: "prettierPlugins.php",
+      exports: "named",
+      globals: {
+        prettier: "prettier",
+      },
+      paths: {
+        prettier: "prettier/standalone",
+      },
     },
-  },
+  ],
   external: ["prettier"],
   plugins: [
     nodeResolve({
