@@ -830,7 +830,7 @@ function printComment(path, options) {
   return options.printer.printComment(path, options);
 }
 
-// https://github.com/prettier/prettier/blob/master/src/main/comments.mjs#L440
+// https://github.com/prettier/prettier/blob/6bff776efd0951b7812818d02d1cae3fda184737/src/main/comments/print.js#L119
 function printDanglingComments(path, options, sameIndent, filter) {
   const parts = [];
   const node = path.getValue();
@@ -915,7 +915,7 @@ function canAttachComment(node) {
   );
 }
 
-// Based on https://github.com/prettier/prettier/blob/master/src/main/comments.mjs
+// Based on https://github.com/prettier/prettier/blob/master/src/main/comments.js
 // TODO remove after https://github.com/prettier/prettier/issues/5087
 function prependCursorPlaceholder(path, options, printed) {
   const { node } = path;
