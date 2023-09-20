@@ -13,13 +13,11 @@
       "default": "./src/index.js"
     },
     "./standalone": "./standalone.js",
-    "./standalone.cjs": "./standalone.cjs",
     "./package.json": "./package.json"
   },
   "files": [
     "src",
-    "standalone.js",
-    "standalone.cjs"
+    "standalone.js"
   ],
   "dependencies": {
     "linguist-languages": "^7.21.0",
