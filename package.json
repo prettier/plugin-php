@@ -5,7 +5,6 @@
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
   "license": "MIT",
-  "type": "module",
   "unpkg": "./standalone.js",
   "browser": "./standalone.js",
   "exports": {
