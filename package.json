@@ -67,8 +67,8 @@
     "test:node": "jest",
     "test:standalone": "yarn run build && cross-env RUN_STANDALONE_TESTS=true yarn jest",
     "prepublishOnly": "yarn test",
-    "prettier": "prettier --plugin=src/index.js --parser=php",
-    "build": "rollup --config build/rollup.config.js",
+    "prettier": "prettier --plugin=src/index.mjs --parser=php",
+    "build": "rollup --config build/rollup.config.mjs",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "c8": {

@@ -1,5 +1,5 @@
 import { util as prettierUtil } from "prettier";
-import { locStart } from "./loc.js";
+import { locStart } from "./loc.mjs";
 
 const { hasNewline, skipEverythingButNewLine, skipNewline } = prettierUtil;
 

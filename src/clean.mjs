@@ -1,4 +1,4 @@
-import { printNumber, normalizeMagicMethodName } from "./util.js";
+import { printNumber, normalizeMagicMethodName } from "./util.mjs";
 
 const ignoredProperties = new Set([
   "loc",

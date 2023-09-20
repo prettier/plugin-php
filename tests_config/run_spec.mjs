@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import url from "url";
 import { wrap as raw } from "jest-snapshot-serializer-raw";
-import { prettier, plugin } from "./get_engine.js";
+import { prettier, plugin } from "./get_engine.mjs";
 
 const { AST_COMPARE, TEST_CRLF } = process.env;
 
@@ -29,7 +29,7 @@ global.run_spec = (importMeta, parsers, options) => {
       path.extname(basename) === ".snap" ||
       !fs.lstatSync(filename).isFile() ||
       basename[0] === "." ||
-      basename === "jsfmt.spec.js"
+      basename === "jsfmt.spec.mjs"
     ) {
       return;
     }

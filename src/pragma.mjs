@@ -1,5 +1,5 @@
 import memoize from "mem";
-import parse from "./parser.js";
+import parse from "./parser.mjs";
 
 const reHasPragma = /@prettier|@format/;
 

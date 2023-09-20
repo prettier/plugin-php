@@ -47,9 +47,9 @@ overrides:
   - files: "**/*.cjs"
     parserOptions:
       sourceType: "script"
-  - files: "tests/**/*.js"
+  - files: "tests/**/*.mjs"
     globals:
       run_spec: true
-  - files: "build/*.js"
+  - files: "build/*.mjs"
     parserOptions:
       sourceType: module

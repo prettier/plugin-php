@@ -2,7 +2,7 @@ import url from "url";
 import { createRequire } from "module";
 import prettierModule from "prettier";
 import prettierStandalone from "prettier/standalone";
-import * as prettierPluginPhp from "../src/index.js";
+import * as prettierPluginPhp from "../src/index.mjs";
 
 const require = createRequire(import.meta.url);
 

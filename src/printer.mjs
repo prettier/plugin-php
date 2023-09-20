@@ -7,9 +7,9 @@ import {
   printComments,
   isBlockComment,
   hasLeadingOwnLineComment,
-} from "./comments.js";
-import pathNeedsParens from "./needs-parens.js";
-import { locStart, locEnd } from "./loc.js";
+} from "./comments.mjs";
+import pathNeedsParens from "./needs-parens.mjs";
+import { locStart, locEnd } from "./loc.mjs";
 
 import {
   getLast,
@@ -36,7 +36,7 @@ import {
   getAncestorNode,
   isReferenceLikeNode,
   normalizeMagicMethodName,
-} from "./util.js";
+} from "./util.mjs";
 
 const {
   breakParent,
@@ -1753,7 +1753,7 @@ function printNode(path, options, print) {
       if (node.value) {
         return group([
           name,
-          // see handleFunctionParameter() in ./comments.js - since there's
+          // see handleFunctionParameter() in ./comments.mjs - since there's
           // no node to attach comments that fall in between the parameter name
           // and value, we store them as dangling comments
           hasDanglingComments(node) ? " " : "",
