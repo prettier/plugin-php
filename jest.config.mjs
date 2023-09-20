@@ -13,7 +13,7 @@ export default {
   runner: "jest-light-runner",
   transform: {},
   setupFiles: ["<rootDir>/tests_config/run_spec.mjs"],
-  testRegex: "jsfmt\\.spec\\.mjs$|__tests__/.*\\.mjs$",
+  testRegex: "jsfmt\\.spec\\.m?js$|__tests__/.*\\.m?js$",
   snapshotSerializers: ["jest-snapshot-serializer-raw"],
   globals: {
     STANDALONE: RUN_STANDALONE_TESTS,
