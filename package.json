@@ -10,7 +10,6 @@
   "exports": {
     ".": {
       "browser": "./standalone.js",
-      "require": "./standalone.js",
       "default": "./src/index.js"
     },
     "./standalone": "./standalone.js",
