@@ -55,3 +55,7 @@ match ($a) {
     'b' => 2
 
 };
+
+match($really_really_really_really_really_really_really_really_long_variable_name) {
+default => null
+};

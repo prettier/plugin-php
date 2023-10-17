@@ -2847,7 +2847,7 @@ function printNode(path, options, print) {
       }, "arms");
       return group([
         "match (",
-        group([softline, indent(print("cond")), softline]),
+        group([indent([softline, print("cond")]), softline]),
         ") {",
         group(indent([...arms])),
         " ",
