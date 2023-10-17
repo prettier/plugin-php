@@ -998,10 +998,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
     }
 
     if (isInlineNode) {
-      const openTag =
-        nextNode && nextNode.kind === "echo" && nextNode.shortForm
-          ? "<?="
-          : "<?php";
+      const shortOpenTag =
+        nextNode && nextNode.kind === "echo" && nextNode.shortForm;
+      if (shortOpenTag) {
+        parts.push(concat(["<?=", " ", printed, " ", "?>"]));
+        return;
+      }
+      const openTag = shortOpenTag ? "<?=" : "<?php";
       const beforeInline =
         childNode.leadingComments && childNode.leadingComments.length
           ? [
