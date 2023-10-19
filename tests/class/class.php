@@ -268,11 +268,15 @@ abstract class BaseClass {}
 
 final readonly class BaseClass {}
 
+readonly final class BaseClass {}
+
 final class BaseClass extends MyOtherClass {}
 
 abstract class BaseClass extends MyOtherClass {}
 
 final readonly class BaseClass extends MyOtherClass {}
+
+readonly final class BaseClass extends MyOtherClass {}
 
 final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass {}
 
