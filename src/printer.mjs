@@ -1208,12 +1208,12 @@ function printClass(path, options, print) {
     declaration.push("final ");
   }
 
-  if (node.isReadonly) {
-    declaration.push("readonly ");
-  }
-
   if (node.isAbstract) {
     declaration.push("abstract ");
+  }
+
+  if (node.isReadonly) {
+    declaration.push("readonly ");
   }
 
   // `new` print `class` keyword with arguments
