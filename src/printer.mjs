@@ -1204,16 +1204,16 @@ function printClass(path, options, print) {
   const attrs = printAttrs(path, options, print, { inline: isAnonymousClass });
   const declaration = isAnonymousClass ? [] : [...attrs];
 
-  if (node.isReadonly) {
-    declaration.push("readonly ");
-  }
-
   if (node.isFinal) {
     declaration.push("final ");
   }
 
   if (node.isAbstract) {
     declaration.push("abstract ");
+  }
+
+  if (node.isReadonly) {
+    declaration.push("readonly ");
   }
 
   // `new` print `class` keyword with arguments
