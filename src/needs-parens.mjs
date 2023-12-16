@@ -1,4 +1,4 @@
-import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.js";
+import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.mjs";
 
 function needsParens(path) {
   const { parent } = path;

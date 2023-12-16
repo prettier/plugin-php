@@ -1,6 +1,6 @@
 import { util as prettierUtil, doc } from "prettier";
-import { isLookupNode } from "./util.js";
-import { locStart, locEnd } from "./loc.js";
+import { isLookupNode } from "./util.mjs";
+import { locStart, locEnd } from "./loc.mjs";
 
 const {
   addLeadingComment,
@@ -830,7 +830,7 @@ function printComment(path, options) {
   return options.printer.printComment(path, options);
 }
 
-// https://github.com/prettier/prettier/blob/master/src/main/comments.js#L440
+// https://github.com/prettier/prettier/blob/6bff776efd0951b7812818d02d1cae3fda184737/src/main/comments/print.js#L119
 function printDanglingComments(path, options, sameIndent, filter) {
   const parts = [];
   const node = path.getValue();

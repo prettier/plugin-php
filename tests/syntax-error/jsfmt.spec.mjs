@@ -1,4 +1,4 @@
-import { prettier, plugin } from "../../tests_config/get_engine.js";
+import { prettier, plugin } from "../../tests_config/get_engine.mjs";
 import stripAnsi from "strip-ansi";
 
 async function raiseSyntaxError() {

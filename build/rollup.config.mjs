@@ -12,7 +12,7 @@ import terser from "@rollup/plugin-terser";
 const getPath = (file) => url.fileURLToPath(new URL(file, import.meta.url));
 
 export default {
-  input: getPath("../src/index.js"),
+  input: getPath("../src/index.mjs"),
   output: {
     file: "standalone.js",
     format: "umd",
@@ -32,10 +32,10 @@ export default {
     }),
     commonjs(),
     alias({
-      entries: [{ find: "assert", replacement: getPath("./shims/assert.js") }],
+      entries: [{ find: "assert", replacement: getPath("./shims/assert.mjs") }],
     }),
     inject({
-      Buffer: getPath("./shims/buffer.js"),
+      Buffer: getPath("./shims/buffer.mjs"),
     }),
     replace({
       preventAssignment: true,

@@ -3,10 +3,10 @@ import {
   LINGUIST_LANGUAGES_PHP,
   LINGUIST_LANGUAGES_HTML_PHP,
 } from "./linguist-languages.cjs";
-import parse from "./parser.js";
-import print from "./printer.js";
-import clean from "./clean.js";
-import options from "./options.js";
+import parse from "./parser.mjs";
+import print from "./printer.mjs";
+import clean from "./clean.mjs";
+import options from "./options.mjs";
 import {
   handleOwnLineComment,
   handleEndOfLineComment,
@@ -14,9 +14,9 @@ import {
   getCommentChildNodes,
   canAttachComment,
   isBlockComment,
-} from "./comments.js";
-import { hasPragma, insertPragma } from "./pragma.js";
-import { locStart, locEnd } from "./loc.js";
+} from "./comments.mjs";
+import { hasPragma, insertPragma } from "./pragma.mjs";
+import { locStart, locEnd } from "./loc.mjs";
 
 const { join, hardline } = doc.builders;
 
