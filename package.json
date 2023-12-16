@@ -10,7 +10,7 @@
   "exports": {
     ".": {
       "browser": "./standalone.js",
-      "default": "./src/index.js"
+      "default": "./src/index.mjs"
     },
     "./standalone": "./standalone.js",
     "./package.json": "./package.json"
