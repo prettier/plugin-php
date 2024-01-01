@@ -1,7 +1,8 @@
 import prettier from "prettier/standalone";
 import * as prettierPluginPhp from "../../src/index.mjs";
 
-test(`singleQuote`, async () => {
+// https://github.com/prettier/plugin-php/issues/2302
+test(`singleQuote option on format api`, async () => {
   const input = `<?php echo link_to_route("frontend.users.user.show", $users["name"], $users['_id']); ?>`;
   const result = await prettier.format(input, {
     plugins: [prettierPluginPhp],
