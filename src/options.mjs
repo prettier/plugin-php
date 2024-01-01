@@ -45,4 +45,11 @@ export default {
       { value: "1tbs", description: "Use 1tbs brace style." },
     ],
   },
+  singleQuote: {
+    since: "0.0.0",
+    category: CATEGORY_PHP,
+    type: "boolean",
+    default: false,
+    description: "Use single quotes instead of double quotes.",
+  }
 };
