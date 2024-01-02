@@ -51,5 +51,5 @@ export default {
     type: "boolean",
     default: false,
     description: "Use single quotes instead of double quotes.",
-  }
+  },
 };
