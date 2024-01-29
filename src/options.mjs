@@ -38,7 +38,7 @@ export default {
     type: "int",
     default: 3,
     description:
-      "Break chain expressions if number of chains is more or equal to this option. 0 for unlimited",
+      "Break chain expressions if number of calls in a chain is more than this number. 0 for unlimited",
   },
   braceStyle: {
     since: "0.10.0",
