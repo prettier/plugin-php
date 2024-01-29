@@ -299,7 +299,10 @@ print $var->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty
     ->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty
     ->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;
 
-print $var->call()->call()->call();
+print $var
+    ->call()
+    ->call()
+    ->call();
 print $var
     ->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()
     ->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongCall()

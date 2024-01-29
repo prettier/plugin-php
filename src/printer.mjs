@@ -508,9 +508,14 @@ function printMemberChain(path, options, print) {
     printIndentedGroup(groups.slice(shouldMerge ? 2 : 1)),
   ];
 
-  // const callExpressionCount = printedNodes.filter(
-  //   (tuple) => tuple.node.kind === "call"
-  // ).length;
+  const callExpressionCount = printedNodes.filter(
+    (tuple) => tuple.node.kind === "call"
+  ).length;
+
+  const maxCallExpressionCount =
+    options.maxChainCallExpressionCountPHP === 0
+      ? Infinity
+      : options.maxChainCallExpressionCountPHP;
 
   // We don't want to print in one line if there's:
   //  * A comment.
@@ -519,7 +524,7 @@ function printMemberChain(path, options, print) {
   // If the last group is a function it's okay to inline if it fits.
   if (
     hasComment ||
-    // callExpressionCount >= 3 ||
+    callExpressionCount >= maxCallExpressionCount ||
     printedGroups.slice(0, -1).some(willBreak)
   ) {
     return group(expanded);

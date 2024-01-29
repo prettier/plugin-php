@@ -1568,7 +1568,10 @@ $var = (clone foo())->bar()->foo();
 $var = (clone foo())->bar()->foo();
 $var = (clone foo())->bar()->foo()[0];
 $var = (clone foo())->bar()->foo()[0][1];
-$var = (clone foo())->bar()->foo()->baz();
+$var = (clone foo())
+    ->bar()
+    ->foo()
+    ->baz();
 $var = (clone $foo())->bar;
 $var = (clone $bar->y)->x;
 $var = (clone $foo)[0];
@@ -2559,7 +2562,10 @@ $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo();
 $var = (new foo())->bar()->foo()[0];
 $var = (new foo())->bar()->foo()[0][1];
-$var = (new foo())->bar()->foo()->baz();
+$var = (new foo())
+    ->bar()
+    ->foo()
+    ->baz();
 $var = (new $foo())->bar;
 $var = (new $bar->y())->x;
 $var = (new foo())[0];
@@ -2929,7 +2935,10 @@ $var = ((int) $var) + 1 === 2 ? "1" : "2";
 ($var ? $var : $var)[1];
 ($var ? $var : $var)->d();
 ($var ? $var : $var)->d()->e();
-($var ? $var : $var)->d()->e()->f();
+($var ? $var : $var)
+    ->d()
+    ->e()
+    ->f();
 ($var
     ? $var->responseBody($var->currentUser)
     : $var->responseBody($var->defaultUser)
