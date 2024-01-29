@@ -117,14 +117,9 @@ foo()->bar->baz();
 =====================================output=====================================
 <?php
 
-$object
-    ->foo()
-    ->bar()
-    ->baz();
+$object->foo()->bar()->baz();
 
-foo()
-    ->bar()
-    ->baz();
+foo()->bar()->baz();
 
 foo()->bar->baz();
 
@@ -191,10 +186,7 @@ $object[$valid
 
 ($a ? $b : $c)->d()->e();
 
-($a ? $b : $c)
-    ->d()
-    ->e()
-    ->f();
+($a ? $b : $c)->d()->e()->f();
 
 ($valid
     ? $helper->responseBody($this->currentUser)
@@ -436,12 +428,8 @@ $var = Foo::keys($items)->filter(function ($x) { return $x > 2; })->map(function
 <?php
 
 one()->two();
-one()
-    ->two()
-    ->three();
-one()
-    ->two->three()
-    ->four->five();
+one()->two()->three();
+one()->two->three()->four->five();
 
 Route::prefix("api")
     ->middleware("api")
@@ -476,9 +464,7 @@ $a->a()->b();
 $a->a()->b();
 $a->a()->b;
 $a->b->a();
-$a->b()
-    ->c()
-    ->d();
+$a->b()->c()->d();
 $a->b->c->d;
 
 // should inline
@@ -545,67 +531,19 @@ $foo->bar(
     "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
 )()()()()();
 
-$brian->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$brian::$hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$brian["hotel"]
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-Foo::$hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-(new Foo())->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-(clone $a)->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
+$brian->hotel->orders()->ordered()->with("smith")->get();
+$brian::$hotel->orders()->ordered()->with("smith")->get();
+$brian["hotel"]->orders()->ordered()->with("smith")->get();
+Foo::$hotel->orders()->ordered()->with("smith")->get();
+(new Foo())->hotel->orders()->ordered()->with("smith")->get();
+(clone $a)->hotel->orders()->ordered()->with("smith")->get();
 
-$var = $brian->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$var = $brian::$hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$var = $brian["hotel"]
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$var = Foo::$hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$var = (new Foo())->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
-$var = (clone $a)->hotel
-    ->orders()
-    ->ordered()
-    ->with("smith")
-    ->get();
+$var = $brian->hotel->orders()->ordered()->with("smith")->get();
+$var = $brian::$hotel->orders()->ordered()->with("smith")->get();
+$var = $brian["hotel"]->orders()->ordered()->with("smith")->get();
+$var = Foo::$hotel->orders()->ordered()->with("smith")->get();
+$var = (new Foo())->hotel->orders()->ordered()->with("smith")->get();
+$var = (clone $a)->hotel->orders()->ordered()->with("smith")->get();
 
 $var = Foo::keys($items)
     ->filter(function ($x) {
@@ -618,12 +556,9 @@ $var = Foo::keys($items)
 (new static(func_get_args()))->push($this)->each(function ($item) {
     VarDumper::dump($item);
 });
-(new static(func_get_args()))
-    ->offset(10)
-    ->push($this)
-    ->each(function ($item) {
-        VarDumper::dump($item);
-    });
+(new static(func_get_args()))->offset(10)->push($this)->each(function ($item) {
+    VarDumper::dump($item);
+});
 
 ================================================================================
 `;
