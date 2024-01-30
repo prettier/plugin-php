@@ -621,7 +621,8 @@ function createTypeCheckFunction(kindsArray) {
   return (node) => kinds.has(node?.kind);
 }
 
-const isLiteral = createTypeCheckFunction([
+const isWord = createTypeCheckFunction([
+  "variable",
   "parameter",
   "variadic",
   "clone",
@@ -656,19 +657,19 @@ function getChainParts(node, prev = []) {
 // should always break: nowdoc, heredoc, ?match
 // unsure: propertylookup, nullsafepropertylookup, staticlookup, offsetlookup, encapsedpart, encapsed, identifier, enumcase
 
-function isSimpleCallArgument(node, depth = 3) {
+function isSimpleCallArgument(node, depth = 2) {
   if (depth <= 0) {
     return false;
   }
 
   const isChildSimple = (child) => isSimpleCallArgument(child, depth - 1);
 
-  if (isLiteral(node)) {
+  if (isWord(node)) {
     return true;
   }
 
   if (isArrayExpression(node)) {
-    return node.elements.every((x) => x === null || isChildSimple(x));
+    return node.items.every((x) => x === null || isChildSimple(x));
   }
 
   if (isCallOrNewExpression(node)) {
@@ -685,7 +686,6 @@ function isSimpleCallArgument(node, depth = 3) {
     );
   }
 
-  console.log(node);
   return false;
 }
 

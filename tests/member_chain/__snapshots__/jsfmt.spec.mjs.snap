@@ -583,12 +583,17 @@ $var = Foo::keys($items)
         return $x * 2;
     });
 
-(new static(func_get_args()))->push($this)->each(function ($item) {
-    VarDumper::dump($item);
-});
-(new static(func_get_args()))->offset(10)->push($this)->each(function ($item) {
-    VarDumper::dump($item);
-});
+(new static(func_get_args()))
+    ->push($this)
+    ->each(function ($item) {
+        VarDumper::dump($item);
+    });
+(new static(func_get_args()))
+    ->offset(10)
+    ->push($this)
+    ->each(function ($item) {
+        VarDumper::dump($item);
+    });
 
 ================================================================================
 `;

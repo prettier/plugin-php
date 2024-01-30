@@ -520,7 +520,7 @@ function printMemberChain(path, options, print) {
   // If the last group is a function it's okay to inline if it fits.
   if (
     hasComment ||
-    (callExpressions.length > 4 &&
+    (callExpressions.length > 2 &&
       callExpressions.some(
         (exp) => !exp.node.arguments.every((arg) => isSimpleCallArgument(arg))
       )) ||
