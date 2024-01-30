@@ -36,6 +36,7 @@ import {
   getAncestorNode,
   isReferenceLikeNode,
   normalizeMagicMethodName,
+  isSimpleCallArgument,
 } from "./util.mjs";
 
 const {
@@ -508,14 +509,9 @@ function printMemberChain(path, options, print) {
     printIndentedGroup(groups.slice(shouldMerge ? 2 : 1)),
   ];
 
-  const callExpressionCount = printedNodes.filter(
-    (tuple) => tuple.node.kind === "call"
-  ).length;
-
-  const maxCallExpressionCount =
-    options.maxChainCallExpressionCountPHP === 0
-      ? Infinity
-      : options.maxChainCallExpressionCountPHP;
+  const callExpressions = printedNodes.filter((tuple) =>
+    ["call", "new"].includes(tuple.node.kind)
+  );
 
   // We don't want to print in one line if there's:
   //  * A comment.
@@ -524,7 +520,10 @@ function printMemberChain(path, options, print) {
   // If the last group is a function it's okay to inline if it fits.
   if (
     hasComment ||
-    callExpressionCount >= maxCallExpressionCount ||
+    (callExpressions.length > 4 &&
+      callExpressions.some(
+        (exp) => !exp.node.arguments.every((arg) => isSimpleCallArgument(arg))
+      )) ||
     printedGroups.slice(0, -1).some(willBreak)
   ) {
     return group(expanded);
@@ -1019,8 +1018,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               "?>",
             ]
           : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
-          ? ""
-          : [beforeCloseTagInlineNode, "?>"];
+            ? ""
+            : [beforeCloseTagInlineNode, "?>"];
 
       //FIXME getNode is used to get ancestors, but it seems this means to get next sibling?
       const nextV = path.getNode(index + 1);
@@ -1035,8 +1034,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               hardline,
             ]
           : isProgramLikeNode(node) && isLastNode
-          ? ""
-          : [openTag, " "];
+            ? ""
+            : [openTag, " "];
 
       printed = [beforeInline, printed, afterInline];
     }
@@ -1092,8 +1091,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               : "",
           ]
         : node.comments
-        ? hardline
-        : "";
+          ? hardline
+          : "";
 
       parts.push(lineSuffix([beforeCloseTag, "?>"]));
     }
@@ -1712,8 +1711,8 @@ function printNode(path, options, print) {
                     hardline,
                   ]
                 : hasDanglingComments(node)
-                ? [line, printDanglingComments(path, options, true), line]
-                : "",
+                  ? [line, printDanglingComments(path, options, true), line]
+                  : "",
               "}",
             ]
           : "",

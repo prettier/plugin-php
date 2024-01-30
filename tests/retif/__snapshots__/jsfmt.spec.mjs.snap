@@ -636,15 +636,11 @@ $callback =
 $var =
     $delay instanceof DateTimeInterface
         ? $delay->getTimestamp()
-        : Carbon::now()
-            ->addSeconds($delay)
-            ->getTimestamp();
+        : Carbon::now()->addSeconds($delay)->getTimestamp();
 
 return $delay instanceof DateTimeInterface
     ? $delay->getTimestamp()
-    : Carbon::now()
-        ->addSeconds($delay)
-        ->getTimestamp();
+    : Carbon::now()->addSeconds($delay)->getTimestamp();
 
 $var = true
     ? 'string

@@ -32,14 +32,6 @@ export default {
     default: true,
     description: "Print trailing commas wherever possible when multi-line.",
   },
-  maxChainCallExpressionCountPHP: {
-    since: "0.0.0",
-    category: CATEGORY_PHP,
-    type: "int",
-    default: 3,
-    description:
-      "Break chain expressions if number of calls in a chain is more than this number. 0 for unlimited",
-  },
   braceStyle: {
     since: "0.10.0",
     category: CATEGORY_PHP,
