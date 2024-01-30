@@ -621,7 +621,7 @@ function createTypeCheckFunction(kindsArray) {
   return (node) => kinds.has(node?.kind);
 }
 
-const isWord = createTypeCheckFunction([
+const isSingleWordType = createTypeCheckFunction([
   "variable",
   "parameter",
   "variadic",
@@ -664,7 +664,7 @@ function isSimpleCallArgument(node, depth = 2) {
 
   const isChildSimple = (child) => isSimpleCallArgument(child, depth - 1);
 
-  if (isWord(node)) {
+  if (isSingleWordType(node)) {
     return true;
   }
 
