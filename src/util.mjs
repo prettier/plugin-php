@@ -653,10 +653,6 @@ function getChainParts(node, prev = []) {
   return getChainParts(node.what, parts);
 }
 
-// left to check: function
-// should always break: nowdoc, heredoc, ?match
-// unsure: propertylookup, nullsafepropertylookup, staticlookup, offsetlookup, encapsedpart, encapsed, identifier, enumcase
-
 function isSimpleCallArgument(node, depth = 2) {
   if (depth <= 0) {
     return false;
