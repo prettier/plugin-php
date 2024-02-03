@@ -612,6 +612,79 @@ function normalizeMagicMethodName(name) {
   return name;
 }
 
+/**
+ * @param {string[]} kindsArray
+ * @returns {(node: Node | Comment) => Boolean}
+ */
+function createTypeCheckFunction(kindsArray) {
+  const kinds = new Set(kindsArray);
+  return (node) => kinds.has(node?.kind);
+}
+
+const isSingleWordType = createTypeCheckFunction([
+  "variable",
+  "parameter",
+  "variadic",
+  "clone",
+  "cast",
+  "boolean",
+  "number",
+  "string",
+  "literal",
+  "nullkeyword",
+  "namedargument",
+  "variadicplaceholder",
+]);
+
+const isArrayExpression = createTypeCheckFunction(["array"]);
+const isCallOrNewExpression = createTypeCheckFunction(["call", "new"]);
+const isArrowFuncExpression = createTypeCheckFunction(["arrowfunc"]);
+
+function getChainParts(node, prev = []) {
+  const parts = prev;
+  if (isCallOrNewExpression(node)) {
+    parts.push(node);
+  }
+
+  if (!node.what) {
+    return parts;
+  }
+
+  return getChainParts(node.what, parts);
+}
+
+function isSimpleCallArgument(node, depth = 2) {
+  if (depth <= 0) {
+    return false;
+  }
+
+  const isChildSimple = (child) => isSimpleCallArgument(child, depth - 1);
+
+  if (isSingleWordType(node)) {
+    return true;
+  }
+
+  if (isArrayExpression(node)) {
+    return node.items.every((x) => x === null || isChildSimple(x));
+  }
+
+  if (isCallOrNewExpression(node)) {
+    const parts = getChainParts(node);
+    return (
+      parts.filter((node) => node.kind === "call").length <= depth &&
+      parts.every((node) => node.arguments.every(isChildSimple))
+    );
+  }
+
+  if (isArrowFuncExpression(node)) {
+    return (
+      node.arguments.length <= depth && node.arguments.every(isChildSimple)
+    );
+  }
+
+  return false;
+}
+
 export {
   printNumber,
   getPrecedence,
@@ -641,4 +714,5 @@ export {
   isDocNode,
   getAncestorNode,
   normalizeMagicMethodName,
+  isSimpleCallArgument,
 };

@@ -36,6 +36,7 @@ import {
   getAncestorNode,
   isReferenceLikeNode,
   normalizeMagicMethodName,
+  isSimpleCallArgument,
 } from "./util.mjs";
 
 const {
@@ -508,9 +509,9 @@ function printMemberChain(path, options, print) {
     printIndentedGroup(groups.slice(shouldMerge ? 2 : 1)),
   ];
 
-  const callExpressionCount = printedNodes.filter(
-    (tuple) => tuple.node.kind === "call"
-  ).length;
+  const callExpressions = printedNodes.filter((tuple) =>
+    ["call", "new"].includes(tuple.node.kind)
+  );
 
   // We don't want to print in one line if there's:
   //  * A comment.
@@ -519,7 +520,10 @@ function printMemberChain(path, options, print) {
   // If the last group is a function it's okay to inline if it fits.
   if (
     hasComment ||
-    callExpressionCount >= 3 ||
+    (callExpressions.length > 2 &&
+      callExpressions.some(
+        (exp) => !exp.node.arguments.every((arg) => isSimpleCallArgument(arg))
+      )) ||
     printedGroups.slice(0, -1).some(willBreak)
   ) {
     return group(expanded);

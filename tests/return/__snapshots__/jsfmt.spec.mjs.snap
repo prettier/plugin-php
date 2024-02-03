@@ -319,30 +319,10 @@ return (function () {})();
 
 return call();
 return $a->b->c->d->e->f;
-return $a
-    ->b()
-    ->c()
-    ->d()
-    ->e()
-    ->f();
-return call()
-    ->b()
-    ->c()
-    ->d()
-    ->e()
-    ->f();
-return $a
-    ::b()
-    ::c()
-    ::d()
-    ::e()
-    ::f();
-return Foo::a()
-    ::b()
-    ::c()
-    ::d()
-    ::e()
-    ::f();
+return $a->b()->c()->d()->e()->f();
+return call()->b()->c()->d()->e()->f();
+return $a::b()::c()::d()::e()::f();
+return Foo::a()::b()::c()::d()::e()::f();
 
 return "
 string
