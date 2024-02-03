@@ -685,6 +685,16 @@ function isSimpleCallArgument(node, depth = 2) {
   return false;
 }
 
+function memoize(fn) {
+  const cache = new Map();
+  return (key) => {
+    if (!cache.has(key)) {
+      cache.set(key, fn(key));
+    }
+    return cache.get(key);
+  };
+}
+
 export {
   printNumber,
   getPrecedence,
@@ -715,4 +725,5 @@ export {
   getAncestorNode,
   normalizeMagicMethodName,
   isSimpleCallArgument,
+  memoize,
 };
