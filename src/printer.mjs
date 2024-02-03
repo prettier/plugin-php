@@ -1018,8 +1018,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               "?>",
             ]
           : isProgramLikeNode(node) && isFirstNode && node.kind !== "namespace"
-          ? ""
-          : [beforeCloseTagInlineNode, "?>"];
+            ? ""
+            : [beforeCloseTagInlineNode, "?>"];
 
       //FIXME getNode is used to get ancestors, but it seems this means to get next sibling?
       const nextV = path.getNode(index + 1);
@@ -1034,8 +1034,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               hardline,
             ]
           : isProgramLikeNode(node) && isLastNode
-          ? ""
-          : [openTag, " "];
+            ? ""
+            : [openTag, " "];
 
       printed = [beforeInline, printed, afterInline];
     }
@@ -1091,8 +1091,8 @@ function printLines(path, options, print, childrenAttribute = "children") {
               : "",
           ]
         : node.comments
-        ? hardline
-        : "";
+          ? hardline
+          : "";
 
       parts.push(lineSuffix([beforeCloseTag, "?>"]));
     }
@@ -1711,8 +1711,8 @@ function printNode(path, options, print) {
                     hardline,
                   ]
                 : hasDanglingComments(node)
-                ? [line, printDanglingComments(path, options, true), line]
-                : "",
+                  ? [line, printDanglingComments(path, options, true), line]
+                  : "",
               "}",
             ]
           : "",

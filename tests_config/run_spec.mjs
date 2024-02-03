@@ -205,8 +205,8 @@ function printOptions(options) {
     return value === Infinity
       ? "Infinity"
       : Array.isArray(value)
-      ? `[${value.map((v) => JSON.stringify(v)).join(", ")}]`
-      : JSON.stringify(value);
+        ? `[${value.map((v) => JSON.stringify(v)).join(", ")}]`
+        : JSON.stringify(value);
   }
 }
 
