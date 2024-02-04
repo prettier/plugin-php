@@ -509,8 +509,8 @@ function printMemberChain(path, options, print) {
     printIndentedGroup(groups.slice(shouldMerge ? 2 : 1)),
   ];
 
-  const callExpressions = printedNodes.filter((tuple) =>
-    ["call", "new"].includes(tuple.node.kind)
+  const callExpressions = printedNodes.filter(
+    (tuple) => tuple.node.kind === "call"
   );
 
   // We don't want to print in one line if there's:

@@ -622,27 +622,35 @@ function createTypeCheckFunction(kindsArray) {
 }
 
 const isSingleWordType = createTypeCheckFunction([
-  "variable",
+  "variadicplaceholder",
+  "namedargument",
+  "nullkeyword",
+  "identifier",
   "parameter",
+  "variable",
   "variadic",
-  "clone",
-  "cast",
   "boolean",
+  "literal",
   "number",
   "string",
-  "literal",
-  "nullkeyword",
-  "namedargument",
-  "variadicplaceholder",
+  "clone",
+  "cast",
 ]);
 
 const isArrayExpression = createTypeCheckFunction(["array"]);
-const isCallOrNewExpression = createTypeCheckFunction(["call", "new"]);
+const isCallLikeExpression = createTypeCheckFunction([
+  "nullsafepropertylookup",
+  "propertylookup",
+  "staticlookup",
+  "offsetlookup",
+  "call",
+  "new",
+]);
 const isArrowFuncExpression = createTypeCheckFunction(["arrowfunc"]);
 
 function getChainParts(node, prev = []) {
   const parts = prev;
-  if (isCallOrNewExpression(node)) {
+  if (isCallLikeExpression(node)) {
     parts.push(node);
   }
 
@@ -668,11 +676,17 @@ function isSimpleCallArgument(node, depth = 2) {
     return node.items.every((x) => x === null || isChildSimple(x));
   }
 
-  if (isCallOrNewExpression(node)) {
+  if (isCallLikeExpression(node)) {
     const parts = getChainParts(node);
+    parts.unshift();
+
     return (
-      parts.filter((node) => node.kind === "call").length <= depth &&
-      parts.every((node) => node.arguments.every(isChildSimple))
+      parts.length <= depth &&
+      parts.every((node) =>
+        isLookupNode(node)
+          ? isChildSimple(node.offset)
+          : node.arguments.every(isChildSimple)
+      )
     );
   }
 
