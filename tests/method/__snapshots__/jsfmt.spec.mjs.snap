@@ -73,9 +73,7 @@ class Foo
         return "private";
     }
 
-    public function emptyMethod()
-    {
-    }
+    public function emptyMethod() {}
 
     public function emptyMethodWithComment()
     {
@@ -87,9 +85,7 @@ class Foo
         print "Inside \`aMemberFunc()\`";
     }
 
-    function bMemberFunc()
-    {
-    }
+    function bMemberFunc() {}
 }
 
 ================================================================================

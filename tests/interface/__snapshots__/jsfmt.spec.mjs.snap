@@ -49,54 +49,38 @@ interface test2 extends testInterface
     public function other($hi);
 }
 
-interface EmptyInterface
-{
-}
+interface EmptyInterface {}
 
 interface EmptyInterfaceWithComments
 {
     /* Comment */
 }
 
-interface Foo extends MyClass
-{
-}
+interface Foo extends MyClass {}
 
-interface Foo extends MyClass, MyOtherClass, OtherClass
-{
-}
+interface Foo extends MyClass, MyOtherClass, OtherClass {}
 
 interface Foo extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName {}
 
 interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName
-{
-}
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName {}
 
 interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName
-    extends Foo
-{
-}
+    extends Foo {}
 
 interface Foo extends
     MyClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyVeryVeryVeryLongClassName
-{
-}
+    MyVeryVeryVeryLongClassName {}
 
 interface VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassName
     extends
         MyClass,
         MyOtherClass,
         MyOtherOtherOtherClass,
-        MyVeryVeryVeryLongClassName
-{
-}
+        MyVeryVeryVeryLongClassName {}
 
 ================================================================================
 `;

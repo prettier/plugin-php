@@ -379,61 +379,45 @@ $class = new class implements MyOtherClass {};
 $class = new class implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 $class = new class extends MyOtherClass implements MyI {};
 
 $class = new class extends MyOtherClass implements MyI, MyII, MyIII {};
 
 $class = new class extends MyOtherClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 $class = new class extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
-    MyOtherOtherInterface
-{
-};
+    MyOtherOtherInterface {};
 
 $class = new class
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements MyI
-{
-};
+    implements MyI {};
 
 $class = new class
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements
         MyI,
         MyII,
-        MyIII
-{
-};
+        MyIII {};
 
 $class = new class
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 $class = new class (
     $arg,
@@ -478,9 +462,7 @@ $class = new class (
         return 1;
     }
 ) implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class (
     $arg,
@@ -495,9 +477,7 @@ $class = new class (
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class (
     $arg,
@@ -520,9 +500,7 @@ $class = new class (
         return 1;
     }
 ) extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 $class = new class (
     $arg,
@@ -556,9 +534,7 @@ $class = new class (
         return 1;
     }
 ) extends MyOtherClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 $class = new class (
     $arg,
@@ -572,9 +548,7 @@ $class = new class (
 ) extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
-    MyOtherOtherInterface
-{
-};
+    MyOtherOtherInterface {};
 
 $class = new class (
     $arg,
@@ -587,9 +561,7 @@ $class = new class (
     }
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements MyI
-{
-};
+    implements MyI {};
 
 $class = new class (
     $arg,
@@ -605,9 +577,7 @@ $class = new class (
     implements
         MyI,
         MyII,
-        MyIII
-{
-};
+        MyIII {};
 
 $class = new class (
     $arg,
@@ -620,9 +590,7 @@ $class = new class (
     }
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 ================================================================================
 `;
@@ -1151,9 +1119,7 @@ $this->something->method(
     $this->more->stuff($this->even->more->things->complicatedMethod())
 );
 
-class A
-{
-}
+class A {}
 
 $someVar = new ReaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalyLongClassName();
 
@@ -1166,12 +1132,8 @@ class FooBar
 {
     public $property;
     public $property2;
-    public function method()
-    {
-    }
-    public function method2()
-    {
-    }
+    public function method() {}
+    public function method2() {}
 }
 
 class FooBarFoo
@@ -1182,76 +1144,52 @@ class FooBarFoo
     }
 }
 
-class ClassName extends ParentClass implements InterfaceClass
-{
-}
+class ClassName extends ParentClass implements InterfaceClass {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
-{
-}
+    InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 class Custom_Plugin_NotificationPlaceholderSource extends
-    Notification_Manager_DefaultPlaceholderSource
-{
-}
+    Notification_Manager_DefaultPlaceholderSource {}
 
 class field extends \\models\\base
 {
@@ -1280,187 +1218,121 @@ class test
     }
 }
 
-class EmptyClass
-{
-}
+class EmptyClass {}
 
 class EmptyClassWithComments
 {
     /* Comment */
 }
 
-class MyClass implements MyOtherClass
-{
-}
+class MyClass implements MyOtherClass {}
 
-class MyClass implements MyOtherClass, MyOtherClass1, MyOtherClass2
-{
-}
+class MyClass implements MyOtherClass, MyOtherClass1, MyOtherClass2 {}
 
 class MyClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements MyOtherClass
-{
-}
+    implements MyOtherClass {}
 
 class MyClass implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-}
+    MyOtherOtherOtherOtherClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements
         MyOtherClass,
         MyOtherClass,
         MyOtherOtherOtherClass,
-        MyOtherOtherOtherOtherClass
-{
-}
+        MyOtherOtherOtherOtherClass {}
 
-class EmptyClass extends MyOtherClass
-{
-}
+class EmptyClass extends MyOtherClass {}
 
 class EmptyClass extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    extends EmptyClass
-{
-}
+    extends EmptyClass {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-}
+    extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
 
-class MyClass extends MyOtherClass implements MyI
-{
-}
+class MyClass extends MyOtherClass implements MyI {}
 
-class MyClass extends MyOtherClass implements MyI, MyII, MyIII
-{
-}
+class MyClass extends MyOtherClass implements MyI, MyII, MyIII {}
 
 class MyClass extends MyOtherClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
 
 class MyClass extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
-    MyOtherOtherInterface
-{
-}
+    MyOtherOtherInterface {}
 
 class MyClass
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements MyI
-{
-}
+    implements MyI {}
 
 class MyClass
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements
         MyI,
         MyII,
-        MyIII
-{
-}
+        MyIII {}
 
 class MyClass
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {}
 
 class MyClass
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements
         MyI,
         MyII,
-        MyIII
-{
-}
+        MyIII {}
 
-final class BaseClass
-{
-}
+final class BaseClass {}
 
-abstract class BaseClass
-{
-}
+abstract class BaseClass {}
 
-final readonly class BaseClass
-{
-}
+final readonly class BaseClass {}
 
-final readonly class BaseClass
-{
-}
+final readonly class BaseClass {}
 
-final class BaseClass extends MyOtherClass
-{
-}
+final class BaseClass extends MyOtherClass {}
 
-abstract class BaseClass extends MyOtherClass
-{
-}
+abstract class BaseClass extends MyOtherClass {}
 
-final readonly class BaseClass extends MyOtherClass
-{
-}
+final readonly class BaseClass extends MyOtherClass {}
 
-final readonly class BaseClass extends MyOtherClass
-{
-}
-
-final class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass
-{
-}
-
-abstract class BaseClass extends MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass
-{
-}
+final readonly class BaseClass extends MyOtherClass {}
 
 final class BaseClass extends
-    MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass1
-{
-}
+    MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass {}
 
 abstract class BaseClass extends
-    MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass1
-{
-}
+    MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass {}
+
+final class BaseClass extends
+    MyOtherVeryVeryVeryVeVeryVeryVeryVeryVeryLongClass1 {}
+
+abstract class BaseClass extends
+    MyOtherVeryVeryVeryVeVeryVeryVeryVVeryLongClass1 {}
 
 final class BaseClass extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
-    MyOtherOtherInterface
-{
-}
+    MyOtherOtherInterface {}
 
 abstract class BaseClass extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
-    MyOtherOtherInterface
-{
-}
+    MyOtherOtherInterface {}
 
 class User
 {
@@ -1483,8 +1355,7 @@ class Promoted
         public int $a,
         private float $b,
         protected string $d
-    ) {
-    }
+    ) {}
 }
 
 readonly class ReadOnlyCls
