@@ -1316,11 +1316,7 @@ function printClass(path, options, print) {
       printStatements(path, options, print, "body"),
     ]),
     printDanglingComments(path, options, true),
-    isAnonymousClass && hasEmptyClassBody
-      ? softline
-      : hasEmptyClassBody
-        ? ""
-        : hardline,
+    hasEmptyClassBody ? "" : hardline,
     "}",
   ];
 
@@ -1404,7 +1400,9 @@ function printFunction(path, options, print) {
     return [
       ...declAttrs,
       printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+      shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+        ? hardline
+        : " ",
       printedBody,
     ];
   }
@@ -1420,7 +1418,9 @@ function printFunction(path, options, print) {
     conditionalGroup([
       [
         printedDeclaration,
-        shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path) ? hardline : " ",
+        shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+          ? hardline
+          : " ",
         printedBody,
       ],
       [printedDeclaration, " ", printedBody],
