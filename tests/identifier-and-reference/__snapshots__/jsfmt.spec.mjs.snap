@@ -238,82 +238,38 @@ Foo::$pArEnT;
 
 // Functions
 
-function int(int $var): int
-{
-}
-function intI(int $var): int
-{
-}
+function int(int $var): int {}
+function intI(int $var): int {}
 
-function float(float $var): float
-{
-}
-function floatI(float $var): float
-{
-}
+function float(float $var): float {}
+function floatI(float $var): float {}
 
-function bool(bool $var): bool
-{
-}
-function boolI(bool $var): bool
-{
-}
+function bool(bool $var): bool {}
+function boolI(bool $var): bool {}
 
-function string(string $var): string
-{
-}
-function stringI(string $var): string
-{
-}
+function string(string $var): string {}
+function stringI(string $var): string {}
 
-function iterable(iterable $var): iterable
-{
-}
-function iterableI(iterable $var): iterable
-{
-}
+function iterable(iterable $var): iterable {}
+function iterableI(iterable $var): iterable {}
 
-function object(object $var): object
-{
-}
-function objectI(object $var): object
-{
-}
+function object(object $var): object {}
+function objectI(object $var): object {}
 
-function arrayI(array $var): array
-{
-}
-function arrayI(array $var): array
-{
-}
+function arrayI(array $var): array {}
+function arrayI(array $var): array {}
 
-function callableI(callable $var): callable
-{
-}
-function callableII(callable $var): callable
-{
-}
+function callableI(callable $var): callable {}
+function callableII(callable $var): callable {}
 
-function void(): void
-{
-}
-function voidI(): void
-{
-}
+function void(): void {}
+function voidI(): void {}
 
-function null($var = null)
-{
-}
-function nullII($var = null)
-{
-}
+function null($var = null) {}
+function nullII($var = null) {}
 
-function something(something $var): something
-{
-}
-function somethingI(sOmEtHiNg $var): sOmEtHiNg
-{
-}
+function something(something $var): something {}
+function somethingI(sOmEtHiNg $var): sOmEtHiNg {}
 
 // Closures
 
@@ -386,96 +342,44 @@ class A
         return $this;
     }
 
-    public function foo(self $arg)
-    {
-    }
-    public function foo2(self $arg)
-    {
-    }
-    public function foo3(parent $arg)
-    {
-    }
-    public function foo4(parent $arg)
-    {
-    }
+    public function foo(self $arg) {}
+    public function foo2(self $arg) {}
+    public function foo3(parent $arg) {}
+    public function foo4(parent $arg) {}
 
     // methods
-    function int(int $var): int
-    {
-    }
-    function intI(int $var): int
-    {
-    }
+    function int(int $var): int {}
+    function intI(int $var): int {}
 
-    function float(float $var): float
-    {
-    }
-    function floatI(float $var): float
-    {
-    }
+    function float(float $var): float {}
+    function floatI(float $var): float {}
 
-    function bool(bool $var): bool
-    {
-    }
-    function boolI(bool $var): bool
-    {
-    }
+    function bool(bool $var): bool {}
+    function boolI(bool $var): bool {}
 
-    function string(string $var): string
-    {
-    }
-    function stringI(string $var): string
-    {
-    }
+    function string(string $var): string {}
+    function stringI(string $var): string {}
 
-    function iterable(iterable $var): iterable
-    {
-    }
-    function iterableI(iterable $var): iterable
-    {
-    }
+    function iterable(iterable $var): iterable {}
+    function iterableI(iterable $var): iterable {}
 
-    function object(object $var): object
-    {
-    }
-    function objectI(object $var): object
-    {
-    }
+    function object(object $var): object {}
+    function objectI(object $var): object {}
 
-    function arrayI(array $var): array
-    {
-    }
-    function arrayI(array $var): array
-    {
-    }
+    function arrayI(array $var): array {}
+    function arrayI(array $var): array {}
 
-    function callableI(callable $var): callable
-    {
-    }
-    function callableII(callable $var): callable
-    {
-    }
+    function callableI(callable $var): callable {}
+    function callableII(callable $var): callable {}
 
-    function void(): void
-    {
-    }
-    function voidI(): void
-    {
-    }
+    function void(): void {}
+    function voidI(): void {}
 
-    function null($var = null)
-    {
-    }
-    function nullII($var = null)
-    {
-    }
+    function null($var = null) {}
+    function nullII($var = null) {}
 
-    function something(something $var): something
-    {
-    }
-    function somethingI(sOmEtHiNg $var): sOmEtHiNg
-    {
-    }
+    function something(something $var): something {}
+    function somethingI(sOmEtHiNg $var): sOmEtHiNg {}
 }
 
 // Null

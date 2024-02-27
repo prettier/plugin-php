@@ -19,9 +19,7 @@ function foo()
 }
 class Test
 {
-    public function method()
-    {
-    }
+    public function method() {}
 }
 if (true) {
     echo "good";

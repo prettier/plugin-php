@@ -943,9 +943,7 @@ class ResponseMethodFailure
         // Some comment
         FooBar,
         // Another comment
-        BarBaz
-{
-}
+        BarBaz {}
 
 // 424 : Method failure
 class ResponseMethodFailure
@@ -955,9 +953,7 @@ class ResponseMethodFailure
         // Some comment
         FooBar,
         // Another comment
-        BarBaz
-{
-}
+        BarBaz {}
 
 // 424 : Method failure
 class ResponseMethodFailure
@@ -967,27 +963,19 @@ class ResponseMethodFailure
         // Some comment
         FooBar,
         // Another comment
-        BarBaz
-{
-}
+        BarBaz {}
 
 // 424 : Method failure
 class ResponseMethodFailure extends ResponseNotAcceptable implements
     // Some comment
     FooBar,
     // Another comment
-    BarBaz
-{
-}
+    BarBaz {}
 
-class MyClass
-{
-}
+class MyClass {}
 
 // Comment
-class MyClass
-{
-}
+class MyClass {}
 
 class MyClass
 {
@@ -2690,9 +2678,7 @@ foreach ($connections as $sqlite) {
  *
  * @return string
  */
-function test($parameter1, $e)
-{
-}
+function test($parameter1, $e) {}
 
 ================================================================================
 `;
@@ -2816,9 +2802,7 @@ class Test
         // body
     }
 
-    function testFunction($arg1, /* inline */ $arg2)
-    {
-    }
+    function testFunction($arg1, /* inline */ $arg2) {}
 }
 
 function testFunction(/* inline */ $arg)
@@ -2826,9 +2810,7 @@ function testFunction(/* inline */ $arg)
     // body
 }
 
-function testFunction($arg1, /* inline */ $arg2)
-{
-}
+function testFunction($arg1, /* inline */ $arg2) {}
 
 ================================================================================
 `;
@@ -3433,24 +3415,12 @@ function foo // this is a function
 =====================================output=====================================
 <?php
 
-function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */)
-{
-}
-function foo($a): /* 5 */ ?string /* 6 */
-{
-}
-function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */
-{
-}
-function emptyFn(/*Comment */)
-{
-}
-function func()
-{
-} // Comment
-function func()
-{
-}
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */) {}
+function foo($a): /* 5 */ ?string /* 6 */ {}
+function foo(/* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */): /* 5 */ ?string /* 6 */ {}
+function emptyFn(/*Comment */) {}
+function func() {} // Comment
+function func() {}
 // Comment
 function foo(
     // Comment
@@ -3458,8 +3428,7 @@ function foo(
     // Comment
     string $b,
     bool $c // Comment
-) {
-}
+) {}
 
 function foo()
 {
@@ -4721,9 +4690,7 @@ interface IFoo
 // Comment
 interface IFoo extends
     // Comment
-    MyClass
-{
-}
+    MyClass {}
 
 // Comment
 interface IFoo extends
@@ -4732,18 +4699,12 @@ interface IFoo extends
     // Comment
     MyOtherClass,
     // Comment
-    OtherClass
-{
-}
+    OtherClass {}
 
-interface MyInterface
-{
-}
+interface MyInterface {}
 
 // Comment
-interface MyInterface
-{
-}
+interface MyInterface {}
 
 interface MyInterface
 {
@@ -4957,24 +4918,17 @@ class Foo
 {
     public function foo(
         /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
-    ): /* 5 */ ?string /* 6 */ {
-    }
+    ): /* 5 */ ?string /* 6 */ {}
 
-    public function emptyMethod(/* comments */)
-    {
-    }
+    public function emptyMethod(/* comments */) {}
 
     abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
 
     /* comment */ /* comment */ protected static $foo; /* comment */
 
-    public function foo()
-    {
-    } // Comment
+    public function foo() {} // Comment
 
-    public function foo()
-    {
-    }
+    public function foo() {}
     // Comment
 
     abstract public function foo(); // Comment
@@ -5177,9 +5131,7 @@ class Foo
 
 namespace Acme;
 
-class Foo
-{
-}
+class Foo {}
 
 ================================================================================
 `;
@@ -5221,9 +5173,7 @@ class Foo
 
 namespace Acme;
 
-class Foo
-{
-}
+class Foo {}
 
 ================================================================================
 `;
@@ -5421,9 +5371,7 @@ namespace Monolog\\Formatter;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5455,9 +5403,7 @@ namespace Monolog\\Formatter;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5495,9 +5441,7 @@ namespace Monolog\\Formatter;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5531,9 +5475,7 @@ namespace Monolog\\Formatter;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5567,9 +5509,7 @@ namespace Monolog\\Formatter; // Comment
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5599,9 +5539,7 @@ namespace Monolog\\Formatter; // Comment
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5633,9 +5571,7 @@ namespace Monolog\\Formatter; /* Comment */
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5671,9 +5607,7 @@ namespace Monolog\\Formatter; /* Comment */
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5710,9 +5644,7 @@ namespace Monolog\\Formatter; /* Comment */
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter
-{
-}
+class FlowdockFormatter {}
 
 ================================================================================
 `;
@@ -5941,8 +5873,7 @@ $a = new // Comment
     Foo();
 
 $a = new class// Comment
- {
-};
+ {};
 
 $a = new class {
     // Comment
@@ -6291,36 +6222,28 @@ class MyClass {
 function foo(
     /* Comment */ $a,
     /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
-) {
-}
+) {}
 
-function bar(/* Comment */ &$a /* Comment */)
-{
-}
+function bar(/* Comment */ &$a /* Comment */) {}
 
 function baz(
     /* Comment */ $a,
     /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
-) {
-}
+) {}
 
 class MyClass
 {
     public function foo(
         /* Comment */ $a,
         /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
-    ) {
-    }
+    ) {}
 
-    public function bar(/* Comment */ &$a /* Comment */)
-    {
-    }
+    public function bar(/* Comment */ &$a /* Comment */) {}
 
     public function baz(
         /* Comment */ $a,
         /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
-    ) {
-    }
+    ) {}
 }
 
 ================================================================================
@@ -7104,14 +7027,10 @@ class ImplementingClass
     }
 }
 
-trait MyTrait
-{
-}
+trait MyTrait {}
 
 // Comment
-trait MyTrait
-{
-}
+trait MyTrait {}
 
 trait MyTrait
 {

@@ -106,9 +106,7 @@ class Partial
     }
 }
 
-trait emptyTrait
-{
-}
+trait emptyTrait {}
 
 trait EmptyTraitWithComment
 {

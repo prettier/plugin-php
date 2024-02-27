@@ -1412,8 +1412,7 @@ string
 string
 string
 EOD
-    ) {
-    }
+    ) {}
     public function test1(
         $var,
         $var = <<<'EOD'
@@ -1421,8 +1420,7 @@ string
 string
 string
 EOD
-    ) {
-    }
+    ) {}
     public function test2(
         $var = <<<'EOD'
 string
@@ -1431,8 +1429,7 @@ string
 EOD
         ,
         $var
-    ) {
-    }
+    ) {}
 }
 
 declare(ticks=1) {
@@ -3486,8 +3483,7 @@ class Foo
         string
         string
         EOD
-    ) {
-    }
+    ) {}
     public function test1(
         $var,
         $var = <<<'EOD'
@@ -3495,8 +3491,7 @@ class Foo
         string
         string
         EOD
-    ) {
-    }
+    ) {}
     public function test2(
         $var = <<<'EOD'
         string
@@ -3505,8 +3500,7 @@ class Foo
         EOD
         ,
         $var
-    ) {
-    }
+    ) {}
 }
 
 declare(ticks=1) {

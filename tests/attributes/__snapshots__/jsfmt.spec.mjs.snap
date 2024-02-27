@@ -181,9 +181,7 @@ final class DomainEventMessage
 }
 
 #[Attr1(Attr1::FOO | Attr1::BAR), Attr2(-20 * 5 + 10)]
-class A
-{
-}
+class A {}
 
 class ValueModel
 {
