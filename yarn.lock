@@ -1770,9 +1770,9 @@
     "@rollup/pluginutils" "^5.0.1"
 
 "@rollup/plugin-commonjs@^25.0.7":
-  version "25.0.7"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-25.0.7.tgz#145cec7589ad952171aeb6a585bbeabd0fd3b4cf"
-  integrity sha512-nEvcR+LRjEjsaSsc4x3XZfCCvZIaSMenZu/OiwOKGN2UhQpAYI7ru7czFvyWbErlpoGjnSX3D5Ch5FcMA3kRWQ==
+  version "25.0.8"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-25.0.8.tgz#c77e608ab112a666b7f2a6bea625c73224f7dd34"
+  integrity sha512-ZEZWTK5n6Qde0to4vS9Mr5x/0UZoqCxPVR9KRUjU4kA2sO7GEUn1fop0DAwpO6z0Nw/kJON9bDmSxdWxO/TT1A==
   dependencies:
     "@rollup/pluginutils" "^5.0.1"
     commondir "^1.0.1"
@@ -1826,16 +1826,7 @@
     smob "^1.0.0"
     terser "^5.17.4"
 
-"@rollup/pluginutils@^5.0.1":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.5.tgz#bbb4c175e19ebfeeb8c132c2eea0ecb89941a66c"
-  integrity sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==
-  dependencies:
-    "@types/estree" "^1.0.0"
-    estree-walker "^2.0.2"
-    picomatch "^2.3.1"
-
-"@rollup/pluginutils@^5.1.0":
+"@rollup/pluginutils@^5.0.1", "@rollup/pluginutils@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.1.0.tgz#7e53eddc8c7f483a4ad0b94afb1f7f5fd3c771e0"
   integrity sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==
