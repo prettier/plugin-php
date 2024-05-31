@@ -53,3 +53,13 @@ $window->{call()}
     ->catch(function () {
         return $b;
     });
+
+
+$window->call($foo->bar->baz)->first()->second();
+$window->call($foo->bar->baz->foo())->first()->second();
+
+(new Foo())->call($foo->bar->baz)->first()->second();
+(new Foo())->call($foo->bar->baz->foo())->first()->second();
+
+Foo::call($foo->bar->baz)->first()->second();
+Foo::call($foo->bar->baz->foo())->first()->second();
