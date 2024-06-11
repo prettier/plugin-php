@@ -43,95 +43,65 @@ $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 =====================================output=====================================
 <?php
 
-class Foo extends Bar implements Baz, Buzz
-{
-}
+class Foo extends Bar implements Baz, Buzz {}
 
-class ClassName extends ParentClass implements InterfaceClass
-{
-}
+class ClassName extends ParentClass implements InterfaceClass {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
-{
-}
+    InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 ================================================================================
 `;
@@ -180,95 +150,65 @@ $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 =====================================output=====================================
 <?php
 
-class Foo extends Bar implements Baz, Buzz
-{
-}
+class Foo extends Bar implements Baz, Buzz {}
 
-class ClassName extends ParentClass implements InterfaceClass
-{
-}
+class ClassName extends ParentClass implements InterfaceClass {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
-{
-}
+    InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 ================================================================================
 `;
@@ -317,95 +257,65 @@ $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 =====================================output=====================================
 <?php
 
-class Foo extends Bar implements Baz, Buzz
-{
-}
+class Foo extends Bar implements Baz, Buzz {}
 
-class ClassName extends ParentClass implements InterfaceClass
-{
-}
+class ClassName extends ParentClass implements InterfaceClass {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass
-{
-}
+    InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-{
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3
-{
-}
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
-    implements InterfaceClass
-{
-}
+    implements InterfaceClass {}
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass
-{
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
-{
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 ================================================================================
 `;
@@ -454,80 +364,65 @@ $class = new class extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryV
 =====================================output=====================================
 <?php
 
-class Foo extends Bar implements Baz, Buzz {
-}
+class Foo extends Bar implements Baz, Buzz {}
 
-class ClassName extends ParentClass implements InterfaceClass {
-}
+class ClassName extends ParentClass implements InterfaceClass {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
-    InterfaceClass {
-}
+    InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements InterfaceClass {
-}
+    implements InterfaceClass {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
-    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {
-}
+    implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 {}
 
 class ClassName extends ParentClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName extends VeryVeryVeryVeryVeryVeryVeryVeryLongFileName1 implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
-}
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class ClassName
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     implements
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1,
         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName2,
-        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {
-}
+        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName3 {}
 
 class VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongFileName1
     extends ParentClass
-    implements InterfaceClass {
-}
+    implements InterfaceClass {}
 
 $class = new class implements
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
 $class = new class implements
     MyOtherClass,
     MyOtherClass,
     MyOtherOtherOtherClass,
-    MyOtherOtherOtherOtherClass {
-};
+    MyOtherOtherOtherOtherClass {};
 
 $class = new class extends MyOtherClass {};
 
 $class = new class extends
-    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {
-};
+    VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
 ================================================================================
 `;
@@ -1074,9 +969,7 @@ class Foo
         return "hello";
     }
 
-    static function staticmethod()
-    {
-    }
+    static function staticmethod() {}
 
     public static function ellipsizeMiddle(
         $string,
@@ -1088,64 +981,51 @@ class Foo
         $string = trim($string);
     }
 
-    public static function hello_2()
-    {
-    }
+    public static function hello_2() {}
 
-    public static function hello_3($var = 1)
-    {
-    }
+    public static function hello_3($var = 1) {}
 
     public static function hello_4(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function hello_5(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
     public static function newlines(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 }
 
 ================================================================================
@@ -1326,9 +1206,7 @@ class Foo
         return "hello";
     }
 
-    static function staticmethod()
-    {
-    }
+    static function staticmethod() {}
 
     public static function ellipsizeMiddle(
         $string,
@@ -1340,64 +1218,51 @@ class Foo
         $string = trim($string);
     }
 
-    public static function hello_2()
-    {
-    }
+    public static function hello_2() {}
 
-    public static function hello_3($var = 1)
-    {
-    }
+    public static function hello_3($var = 1) {}
 
     public static function hello_4(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function hello_5(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
     public static function newlines(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 }
 
 ================================================================================
@@ -1578,9 +1443,7 @@ class Foo
         return "hello";
     }
 
-    static function staticmethod()
-    {
-    }
+    static function staticmethod() {}
 
     public static function ellipsizeMiddle(
         $string,
@@ -1592,64 +1455,51 @@ class Foo
         $string = trim($string);
     }
 
-    public static function hello_2()
-    {
-    }
+    public static function hello_2() {}
 
-    public static function hello_3($var = 1)
-    {
-    }
+    public static function hello_3($var = 1) {}
 
     public static function hello_4(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function hello_5(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName()
-    {
-    }
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
     public static function newlines(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 }
 
 ================================================================================
@@ -1822,8 +1672,7 @@ class Foo {
         return "hello";
     }
 
-    static function staticmethod() {
-    }
+    static function staticmethod() {}
 
     public static function ellipsizeMiddle(
         $string,
@@ -1835,61 +1684,51 @@ class Foo {
         $string = trim($string);
     }
 
-    public static function hello_2() {
-    }
+    public static function hello_2() {}
 
-    public static function hello_3($var = 1) {
-    }
+    public static function hello_3($var = 1) {}
 
     public static function hello_4(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function hello_5(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
-    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {
-    }
+    public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
         $other_var = 2,
         $other_other_other_var = 3
-    ): ?string {
-    }
+    ): ?string {}
 
     public static function newlines(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 
     public static function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
         $var = 1,
 
         $other_var = 2
-    ) {
-    }
+    ) {}
 }
 
 ================================================================================

@@ -254,9 +254,7 @@ namespace Vendor\\Package;
 use FooClass;
 use BarClass as Bar;
 
-interface iTemplate
-{
-}
+interface iTemplate {}
 
 abstract class AbstractClass
 {
@@ -583,73 +581,39 @@ class Connection
 
 class Connection
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    public function __destruct()
-    {
-    }
+    public function __destruct() {}
 
-    public function __call($name, $arguments)
-    {
-    }
+    public function __call($name, $arguments) {}
 
-    public static function __callStatic($name, $arguments)
-    {
-    }
+    public static function __callStatic($name, $arguments) {}
 
-    public function __get($name)
-    {
-    }
+    public function __get($name) {}
 
-    public function __set($name, $value)
-    {
-    }
+    public function __set($name, $value) {}
 
-    public function __isset($name)
-    {
-    }
+    public function __isset($name) {}
 
-    public function __unset($name)
-    {
-    }
+    public function __unset($name) {}
 
-    public function __sleep()
-    {
-    }
+    public function __sleep() {}
 
-    public function __wakeup()
-    {
-    }
+    public function __wakeup() {}
 
-    public function __toString()
-    {
-    }
+    public function __toString() {}
 
-    public function __invoke($x)
-    {
-    }
+    public function __invoke($x) {}
 
-    public function __set_state($an_array)
-    {
-    }
+    public function __set_state($an_array) {}
 
-    public function __clone()
-    {
-    }
+    public function __clone() {}
 
-    public function __debugInfo()
-    {
-    }
+    public function __debugInfo() {}
 
     // Not magic methods, JS Object prototype properties
-    public function __pRoTo__()
-    {
-    }
-    public function cOnStRuCtOr()
-    {
-    }
+    public function __pRoTo__() {}
+    public function cOnStRuCtOr() {}
 }
 
 ================================================================================

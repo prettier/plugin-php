@@ -255,16 +255,12 @@ abstract class Singleton
     /**
      * Prevent direct object creation
      */
-    final private function __construct()
-    {
-    }
+    final private function __construct() {}
 
     /**
      * Prevent object cloning
      */
-    final private function __clone()
-    {
-    }
+    final private function __clone() {}
 
     /**
      * Returns new or existing Singleton instance

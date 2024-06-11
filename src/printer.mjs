@@ -1297,17 +1297,18 @@ function printClass(path, options, print) {
     }
   }
 
+  const hasEmptyClassBody =
+    node.body && node.body.length === 0 && !hasDanglingComments(node);
+
   const printedDeclaration = group([
     group(declaration),
-    shouldPrintHardlineForOpenBrace(options)
+    shouldPrintHardlineForOpenBrace(options) && !hasEmptyClassBody
       ? isAnonymousClass
         ? line
         : hardline
       : " ",
   ]);
 
-  const hasEmptyClassBody =
-    node.body && node.body.length === 0 && !hasDanglingComments(node);
   const printedBody = [
     "{",
     indent([
@@ -1315,7 +1316,7 @@ function printClass(path, options, print) {
       printStatements(path, options, print, "body"),
     ]),
     printDanglingComments(path, options, true),
-    isAnonymousClass && hasEmptyClassBody ? softline : hardline,
+    hasEmptyClassBody ? "" : hardline,
     "}",
   ];
 
@@ -1383,14 +1384,14 @@ function printFunction(path, options, print) {
     return [...declAttrs, printedDeclaration];
   }
 
-  const isClosure = node.kind === "closure";
   const printedBody = [
     "{",
     indent([hasEmptyBody(path) ? "" : hardline, print("body")]),
-    isClosure && hasEmptyBody(path) ? "" : hardline,
+    hasEmptyBody(path) ? "" : hardline,
     "}",
   ];
 
+  const isClosure = node.kind === "closure";
   if (isClosure) {
     return [...declAttrs, printedDeclaration, " ", printedBody];
   }
@@ -1399,7 +1400,9 @@ function printFunction(path, options, print) {
     return [
       ...declAttrs,
       printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+      shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+        ? hardline
+        : " ",
       printedBody,
     ];
   }
@@ -1415,7 +1418,9 @@ function printFunction(path, options, print) {
     conditionalGroup([
       [
         printedDeclaration,
-        shouldPrintHardlineForOpenBrace(options) ? hardline : " ",
+        shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+          ? hardline
+          : " ",
         printedBody,
       ],
       [printedDeclaration, " ", printedBody],

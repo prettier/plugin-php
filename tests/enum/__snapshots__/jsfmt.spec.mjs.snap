@@ -122,9 +122,7 @@ enum Suit implements Colorful
     }
 }
 
-function paint(Colorful $c)
-{
-}
+function paint(Colorful $c) {}
 
 paint(Suit::Clubs); // Works
 
@@ -140,12 +138,8 @@ enum BackedSuit: string
     case Spades = 5;
 }
 
-class Enum
-{
-}
-class Enum extends Foo
-{
-}
+class Enum {}
+class Enum extends Foo {}
 
 ================================================================================
 `;

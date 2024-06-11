@@ -73,8 +73,7 @@ function f3(
     $standaloneFunctionArgumentTwo,
     $standaloneFunctionArgumentThree,
     $standaloneFunctionArgumentFour
-) {
-}
+) {}
 
 f3(
     "abcdefghijklmnopqrstuvwxyz",
@@ -166,8 +165,7 @@ function f3(
     $standaloneFunctionArgumentTwo,
     $standaloneFunctionArgumentThree,
     $standaloneFunctionArgumentFour,
-) {
-}
+) {}
 
 f3(
     "abcdefghijklmnopqrstuvwxyz",
