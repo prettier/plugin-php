@@ -37,6 +37,10 @@ Prettier is an opinionated code formatter. It enforces a consistent style by par
 
 This plugin adds support for the PHP language to Prettier.
 
+> [!NOTE]
+>
+> This plugin has always used PSR / PER as guidance when making formatting decisions, but has never aimed to be fully PSR / PER compliant. The idea behind this plugin is to stay reasonably close to how Prettier for JS works.
+
 ### Can this be used in production?
 
 We're considering the plugin to be stable when pure PHP files are formatted. Formatting of files that contain mixed PHP and HTML is still considered unstable - please see [open issues with the tag "inline"](https://github.com/prettier/plugin-php/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Ainline) for details.
