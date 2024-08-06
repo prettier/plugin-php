@@ -39,7 +39,7 @@ This plugin adds support for the PHP language to Prettier.
 
 > [!NOTE]
 >
-> This plugin has always used PSR / PER as guidance when making formatting decisions, but has never aimed to be fully PSR / PER compliant. The idea behind this plugin is to stay reasonably close to how Prettier for JS works.
+> This plugin uses PSR / PER as guidance when making formatting decisions, but does not aim to be fully PSR / PER compliant. The idea is to stay reasonably close to how Prettier for JS works.
 
 ### Can this be used in production?
 
