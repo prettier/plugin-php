@@ -2308,6 +2308,7 @@ function printNode(path, options, print) {
         node.final ? "final " : "",
         node.visibility ? [node.visibility, " "] : "",
         "const",
+        node.type ? [node.nullable ? " ?" : " ", print("type")] : "",
         firstVariable ? [" ", firstVariable] : "",
         indent(printed.slice(1).map((p) => [",", hardline, p])),
       ]);
