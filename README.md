@@ -89,7 +89,7 @@ yarn:
 
 ```bash
 yarn add --dev prettier @prettier/plugin-php
-# or globally
+# or globally (pending https://github.com/prettier/prettier/issues/15141)
 yarn global add prettier @prettier/plugin-php
 ```
 
@@ -97,7 +97,7 @@ npm:
 
 ```bash
 npm install --save-dev prettier @prettier/plugin-php
-# or globally
+# or globally (pending https://github.com/prettier/prettier/issues/15141)
 npm install --global prettier @prettier/plugin-php
 ```
 
@@ -274,7 +274,7 @@ Sublime Text support is available through Package Control and the [JsPrettier](h
 
 ### Vim
 
-Regarding plugin support in the official plugin vim-prettier see [this issue](https://github.com/prettier/vim-prettier/issues/119).
+The official [prettier plugin for vim](https://github.com/prettier/vim-prettier) has built-in support for plugin-php since 1.0.
 
 #### ALE
 
