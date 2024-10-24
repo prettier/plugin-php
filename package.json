@@ -7,17 +7,23 @@
   "license": "MIT",
   "unpkg": "./standalone.js",
   "browser": "./standalone.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "browser": "./standalone.js",
       "default": "./src/index.mjs"
     },
-    "./standalone": "./standalone.js",
+    "./standalone": {
+      "types": "./index.d.ts",
+      "default": "./standalone.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
     "src",
-    "standalone.js"
+    "standalone.js",
+    "index.d.ts"
   ],
   "dependencies": {
     "linguist-languages": "^7.27.0",
