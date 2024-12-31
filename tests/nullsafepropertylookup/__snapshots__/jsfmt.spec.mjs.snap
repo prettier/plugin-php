@@ -76,3 +76,31 @@ $obj->aaaaaaaaaaaaaaaaaaaaaaaa()
 
 ================================================================================
 `;
+
+exports[`reserved-keyword.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.0"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+// keyword: abstract
+echo $post->metaData?->abstract;
+
+// keyword: class
+echo $record->learner->currentEnrollment?->class->grade->code;
+
+
+=====================================output=====================================
+<?php
+
+// keyword: abstract
+echo $post->metaData?->abstract;
+
+// keyword: class
+echo $record->learner->currentEnrollment?->class->grade->code;
+
+================================================================================
+`;
