@@ -90,6 +90,27 @@ class Test
     }
 
 }
+
+class ParamCommentFunctionAnnotation {
+
+    #[Foo]
+    function bar(
+        int $a, // parameter comment
+        int $b,
+    ) {
+        return $a + $b;
+    }
+
+    #[Foo]
+    function bar2(
+        int $a,
+        int $middle, // parameter comment
+        int $b,
+    ) {
+        return $a + $middle + $b;
+    }
+
+}
 =====================================output=====================================
 <?php
 
@@ -203,6 +224,26 @@ class Test
     public function withAttribute(string $foo): string
     {
         return $foo;
+    }
+}
+
+class ParamCommentFunctionAnnotation
+{
+    #[Foo]
+    function bar(
+        int $a, // parameter comment
+        int $b
+    ) {
+        return $a + $b;
+    }
+
+    #[Foo]
+    function bar2(
+        int $a,
+        int $middle, // parameter comment
+        int $b
+    ) {
+        return $a + $middle + $b;
     }
 }
 
