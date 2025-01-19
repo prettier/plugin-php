@@ -1,6 +1,6 @@
 {
   "name": "@prettier/plugin-php",
-  "version": "0.22.2",
+  "version": "0.22.3",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
