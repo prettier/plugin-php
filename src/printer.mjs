@@ -1410,7 +1410,7 @@ function printFunction(path, options, print) {
   const willBreakDeclaration = declaration.some(willBreak);
 
   if (willBreakDeclaration) {
-    return [printedDeclaration, " ", printedBody];
+    return [...declAttrs, printedDeclaration, " ", printedBody];
   }
 
   return [
