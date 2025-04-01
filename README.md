@@ -227,10 +227,6 @@ matrix(
 
 ## Editor integration
 
-### Atom
-
-The official [prettier plugin for atom](https://github.com/prettier/prettier-atom) supports plugins.
-
 ### Visual Studio Code
 
 The official [prettier plugin for vscode](https://github.com/prettier/prettier-vscode) supports plugins since Version 1.10.0. To enable it, install the extension and make sure the plugin is installed _locally_ (in your project folder).
