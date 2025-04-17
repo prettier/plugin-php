@@ -104,6 +104,111 @@ $var = [new stdClass()][0];
 ================================================================================
 `;
 
+exports[`array.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+array();
+(array());
+
+[];
+([]);
+
+$var = array();
+$var = (array());
+
+$var = [];
+$var = ([]);
+
+$var = array("1", "2", "3");
+$var = (array("1", "2", "3"));
+$var = array(array("1"), array("2"), array("3"));
+$var = (array(array("1"), array("2"), array("3")));
+$var = array((array("1")), (array("2")), (array("3")));
+$var = (array((array("1")), (array("2")), (array("3"))));
+
+$var = array("foo", "bar")();
+$var = (array("foo", "bar"))();
+$var = ((array("foo", "bar")))();
+
+$var = ["foo", "bar"]();
+$var = (["foo", "bar"])();
+$var = ((["foo", "bar"]))();
+
+$arr = [$var, $other_var];
+$arr = [($var), ($other_var)];
+$arr = [('key') => ($var), ('other-key') => ($other_var)];
+$arr = ([('key') => ($var), ('other-key') => ($other_var)]);
+
+[$var, $other_var] = $arr;
+[($var), ($other_var)] = $arr;
+[('key') => ($var), ('other-key') => ($other_var)] = $arr;
+
+$var = array(1, 2, 3)[1];
+$var = (array(1, 2, 3))[1];
+$var = [1, 2, 3][1];
+$var = ([1, 2, 3])[1];
+$var = array(new stdClass())[0];
+$var = (array((new stdClass())))[0];
+$var = [new stdClass()][0];
+$var = ([(new stdClass())])[0];
+
+=====================================output=====================================
+<?php
+
+[];
+[];
+
+[];
+[];
+
+$var = [];
+$var = [];
+
+$var = [];
+$var = [];
+
+$var = ["1", "2", "3"];
+$var = ["1", "2", "3"];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+$var = [["1"], ["2"], ["3"]];
+
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+$var = (["foo", "bar"])();
+
+$arr = [$var, $other_var];
+$arr = [$var, $other_var];
+$arr = ["key" => $var, "other-key" => $other_var];
+$arr = ["key" => $var, "other-key" => $other_var];
+
+[$var, $other_var] = $arr;
+[$var, $other_var] = $arr;
+["key" => $var, "other-key" => $other_var] = $arr;
+
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = [1, 2, 3][1];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
+$var = [new stdClass()][0];
+
+================================================================================
+`;
+
 exports[`assign.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -318,9 +423,273 @@ switch ($i = 1) {
 ================================================================================
 `;
 
+exports[`assign.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$var = 1;
+($var = 1);
+
+$var = $var;
+($var = $var);
+
+$var = $var = $var;
+$var = ($var = $var);
+($var = ($var = $var));
+
+$var = $var += 1;
+$var = ($var += 1);
+
+$var = ($var = 4) + 5;
+$var = ($var = ['key' => 'value']);
+
+($var = $var ? $var : function() { return 0; });
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+
+for (($i = 1); ($i <= 10); ($i++)) {
+    echo $i;
+}
+for (($i = 1), ($j = 0); ($i <= 10); ($j += $i), print ($i), ($i++));
+
+if ($a = 1) {}
+
+while ($var = 1) {}
+while ($var = current($array) !== FALSE) {}
+while (($var = current($array)) !== FALSE) {}
+
+$var = $var || $var = new MyClass();
+$var = $var || ($var = new MyClass());
+
+if (true) $var = $var;
+if (true) ($var = $var);
+if (true) { ($var = $var); } else if (false) ($var = $var);
+if (true) { ($var = $var); } else if (false) { ($var = $var); } else ($var = $var);
+
+if (true) {
+    $var = $var;
+    ($var = $var);
+}
+
+while ($i <= 10) $i = 1;
+while ($i <= 10) ($i = 1);
+
+do {
+    echo $i;
+} while ($i = 0);
+
+for ($i = 1; $i <= 10; $i++) $i = 1;
+for ($i = 1; $i <= 10; $i++) ($i = 1);
+
+foreach ($arr as &$value) $value = $value * 2;
+foreach ($arr as &$value) ($value = $value * 2);
+
+switch ($i = 1) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+
+switch (($i = 1)) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+
+=====================================output=====================================
+<?php
+
+$var = 1;
+$var = 1;
+
+$var = $var;
+$var = $var;
+
+$var = $var = $var;
+$var = $var = $var;
+$var = $var = $var;
+
+$var = $var += 1;
+$var = $var += 1;
+
+$var = ($var = 4) + 5;
+$var = $var = ["key" => "value"];
+
+$var = $var
+    ? $var
+    : function () {
+        return 0;
+    };
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+for ($i = 1, $j = 0; $i <= 10; $j += $i, print $i, $i++);
+
+if ($a = 1) {
+}
+
+while ($var = 1) {
+}
+while ($var = current($array) !== false) {
+}
+while (($var = current($array)) !== false) {
+}
+
+$var = $var || ($var = new MyClass());
+$var = $var || ($var = new MyClass());
+
+if (true) {
+    $var = $var;
+}
+if (true) {
+    $var = $var;
+}
+if (true) {
+    $var = $var;
+} elseif (false) {
+    $var = $var;
+}
+if (true) {
+    $var = $var;
+} elseif (false) {
+    $var = $var;
+} else {
+    $var = $var;
+}
+
+if (true) {
+    $var = $var;
+    $var = $var;
+}
+
+while ($i <= 10) {
+    $i = 1;
+}
+while ($i <= 10) {
+    $i = 1;
+}
+
+do {
+    echo $i;
+} while ($i = 0);
+
+for ($i = 1; $i <= 10; $i++) {
+    $i = 1;
+}
+for ($i = 1; $i <= 10; $i++) {
+    $i = 1;
+}
+
+foreach ($arr as &$value) {
+    $value = $value * 2;
+}
+foreach ($arr as &$value) {
+    $value = $value * 2;
+}
+
+switch ($i = 1) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+
+switch ($i = 1) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+}
+
+================================================================================
+`;
+
 exports[`assignref.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$test = $var = $test;
+$test = ($var = $test);
+$test = $var = &$test;
+$test = ($var = &$test);
+
+$a = ($b = $var) + 5;
+$a = ($b = &$var) + 5;
+
+$a = ($b = $var) || 5;
+$a = ($b = &$var) || 5;
+
+if (($foo = &$bar) && count($foo) > 0) {}
+if (($foo = &test1()) && test2($foo) > 0) {}
+
+call(($a =& $b));
+
+=====================================output=====================================
+<?php
+
+$test = $var = $test;
+$test = $var = $test;
+$test = $var = &$test;
+$test = $var = &$test;
+
+$a = ($b = $var) + 5;
+$a = $b = &$var + 5;
+
+$a = ($b = $var) || 5;
+$a = $b = &$var || 5;
+
+if ($foo = &$bar && count($foo) > 0) {
+}
+if ($foo = &test1() && test2($foo) > 0) {
+}
+
+call($a = &$b);
+
+================================================================================
+`;
+
+exports[`assignref.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1133,9 +1502,801 @@ $result = 2 ** ($number - 1);
 ================================================================================
 `;
 
+exports[`bin.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$var = 1;
+($var = 1);
+$var = $var = 1;
+$var = ($var = 1);
+($var = $var = 1);
+($var = ($var = 1));
+$var = $var = $var = $var;
+$var = $var = ($var = $var);
+$var = ($var = $var = $var);
+$var = ($var = ($var = $var));
+($var = ($var = ($var = $var)));
+
+$var = $var++;
+$var = ($var++);
+$var = ++$var;
+$var = (++$var);
+
+$var = $var--;
+$var = ($var--);
+$var = --$var;
+$var = (--$var);
+
+$var = ~$var;
+$var = (~$var);
+
+$var = !$var;
+$var = (!$var);
+
+$var = $var += 10;
+$var = ($var += 10);
+
+$var = 10 + 20 + 30;
+$var = (10 + 20) + 30;
+$var = 10 + (20 + 30);
+
+$var = '10' . '20' . '30';
+$var = ('10' . '20') . '30';
+$var = '10' . ('20' . '30');
+
+$var = 10 + 20 % 30;
+$var = (10 + 20) % 30;
+$var = 10 + (20 % 30);
+
+$var = 10 ** 20 ** 30;
+$var = (10 ** 20) ** 30;
+$var = 10 ** (20 ** 30);
+
+$var = (10 == 20) == 30;
+$var = 10 == (20 == 30);
+
+$var = (10 === 20) === 30;
+$var = 10 === (20 === 30);
+
+$var = 10 * 20 % 30;
+$var = (10 * 20) % 30;
+$var = 10 * (20 % 30);
+
+$var = 10 * 20 / 30;
+$var = (10 * 20) / 30;
+$var = 10 * (20 / 30);
+
+$var = 10 / 20 * 30;
+$var = (10 / 20) * 30;
+$var = 10 / (20 * 30);
+
+$var = 10 << 20 << 30;
+$var = (10 << 20) << 30;
+$var = 10 << (20 << 30);
+
+$var = 10 >> 20 >> 30;
+$var = (10 >> 20) >> 30;
+$var = 10 >> (20 >> 30);
+
+$var = 10 ^ 20 ^ 30;
+$var = (10 ^ 20) ^ 30;
+$var = 10 ^ (20 ^ 30);
+
+$var = 10 | 20 | 30;
+$var = (10 | 20) | 30;
+$var = 10 | (20 | 30);
+
+$var = false || true;
+$var = (false || true);
+$var = false or true;
+$var = (false or true);
+$var = true && false;
+$var = (true && false);
+$var = true and false;
+$var = (true and false);
+
+$var = $var || $var();
+$var = ($var || $var)();
+$var = $var && $var();
+$var = ($var && $var)();
+$var = call($var || $var);
+$var = call(($var || $var));
+$var = call($var && $var);
+$var = call(($var && $var));
+
+$var = +($var || $var);
+$var = -($var || $var);
+$var = ~($var || $var);
+
+$var = ($var || $var)->foo;
+$var = ($var || $var)->foo();
+$var = ($var || $var)[1];
+
+$var = $var || $var && $var;
+$var = ($var || $var) && $var;
+$var = $var || ($var && $var);
+
+$var = $var & ($var || 'test');
+$var = ($var || 'test') & $var;
+$var = $var & ($var . 'test');
+$var = ($var . 'test') & $var;
+$var = ($var & $var) || 'test';
+$var = $var || ('test' & $var);
+
+$var = ($var || $var) % 100;
+$var = ($var + $var) % 100;
+$var = 100 % ($var || $var);
+$var = 100 % ($var + $var);
+$var = $var || ($var % 100);
+$var = $var + ($var % 100);
+$var = (100 % $var) || $var;
+$var = (100 % $var) + $var;
+
+$var = ($var + $var) >> 1;
+$var = (($var - 1) >> $var) & $var;
+$var = $var > $var ? 0 : ($var - $var) >> $var;
+$var = (($var - $var) >> $var) + 1;
+
+if ($var < 1 << ($var + $var)) {}
+
+$var = $var < $var ? 0 : ((($var - 1) >> $var) << $var);
+$var = 1 - (2 * ($var[3] >> 7));
+$var = ((($var[3] << 1) & 0xff) | ($var[2] >> 7)) - 127;
+$var = (($var[2] & 0x7f) << 16) | ($var[1] << 8) | $var[0];
+
+$var = 2 / 3 * 10 / 2 + 2;
+
+$var = (($var / $var) * $var - $var / 2) * call($var);
+$var = (($var / $var) * $var - $var / 2) * call($var);
+
+$var = $var % 10 - 5;
+$var = $var * $var % 10;
+$var = $var % 10 > 5;
+$var = $var % 10 == 0;
+
+$var = $var + $var / $var;
+$var = $var / $var + $var;
+
+$var = $var * $var % $var;
+$var = $var / $var % $var;
+$var = $var % $var * $var;
+$var = $var % $var / $var;
+
+$var = $var % $var % $var;
+
+$var = $var << $var >> $var;
+$var = $var >> $var << $var;
+$var = $var >> $var >> $var;
+$var = $var + $var >> $var;
+$var = ($var + $var) >> $var;
+$var = $var + ($var >> $var);
+
+$var = $var | $var & $var;
+$var = $var & $var | $var;
+$var = $var ^ $var ^ $var;
+$var = $var & $var & $var;
+$var = $var | $var | $var;
+$var = $var & $var >> $var;
+$var = $var << $var | $var;
+
+$var = $var ? 'foo' : 'bar' . 'test';
+$var = ($var ? 'foo' : 'bar') . 'test';
+$var = $var ? 'foo' : ('bar' . 'test');
+
+call(($var + $var));
+
+$var = call(($var + $var));
+
+$var = $var + $var ** 2;
+$var = ($var + $var) ** 2;
+$var = $var + ($var ** 2);
+$var = (+$var) ** 2;
+$var = +$var ** 2;
+
+$var = $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = ($foo instanceof Foo) || ($foo instanceof Foo);
+$var = (($foo) instanceof Foo);
+
+$var = !$var;
+$var = !($var);
+$var = (!($var));
+$var = !!$var;
+$var = !!($var);
+$var = !(!($var));
+$var = (!(!($var)));
+$var = !!!$var;
+$var = !!!($var);
+$var = !!(!($var));
+$var = !(!(!($var)));
+$var = (!(!(!($var))));
+
+$var = !$var || !$var;
+$var = (!($var) || !($var));
+$var = !(!($var) || !($var));
+
+$var = $var + $var * $var;
+$var = ($var + $var) * $var;
+
+$var = @foo() || @foo();
+$var = @(foo() || foo());
+
+($var += ($var += ($var += $var)));
+($var -= ($var -= ($var -= $var)));
+($var *= ($var *= ($var *= $var)));
+($var **= ($var **= ($var **= $var)));
+($var /= ($var /= ($var /= $var)));
+($var .= ($var .= ($var .= $var)));
+($var %= ($var %= ($var %= $var)));
+($var &= ($var &= ($var &= $var)));
+($var |= ($var |= ($var |= $var)));
+($var ^= ($var ^= ($var ^= $var)));
+($var <<= ($var <<= ($var <<= $var)));
+($var >>= ($var >>= ($var >>= $var)));
+
+$var = $var | $var | $var;
+$var = $var | ($var | $var);
+$var = ($var | $var) | $var;
+$var = $var & $var & $var;
+$var = $var & ($var & $var);
+$var = ($var & $var) & $var;
+
+$var = $var ^ $var | $var;
+$var = ($var ^ $var) | $var;
+$var = $var | $var ^ $var;
+$var = $var | ($var ^ $var);
+$var = ($var | $var) ^ $var;
+
+$var = $var & $var | $var;
+$var = ($var & $var) | $var;
+$var = $var | $var & $var;
+$var = $var | ($var & $var);
+$var = ($var | $var) & $var;
+
+$var = $var == $var || false;
+$var = ($var == $var) || false;
+$var = $var == ($var || false);
+
+$var = false || $var == $var;
+$var = false || ($var == $var);
+$var = ($var || false) == $var;
+
+$var = 'string' . true ? '1' : '2';
+$var = 'string' . (true ? '1' : '2');
+
+$var = 'string' . (100 + 100);
+$var = (100 + 100) . 'string';
+$var = 'string' . ($var || 100);
+$var = ($var || 100) . 'string';
+$var = 'string' . ($var * 100);
+$var = ($var * 100) . 'string';
+$var = 'string' . !$var;
+$var = !$var . 'string';
+$var = 'string' . ($var | 100);
+$var = ($var | 100) . 'string';
+
+$var = $var . $var % $var;
+$var = ($var . $var) % $var;
+$var = $var % $var . $var;
+$var = $var % ($var . $var);
+
+$var = '100' - '100' - '100';
+$var = ('100' - '100') - '100';
+$var = '100' - ('100' - '100');
+
+if (false || true) {};
+if ((false || true)) {};
+if (false or true) {};
+if ((false or true)) {};
+if (true && false) {};
+if ((true && false)) {};
+if (true and false) {};
+if ((true and false)) {};
+
+if (!$foo or $bar == -1) {}
+if ((!$foo or $bar == -1)) {}
+if ((!$foo or $bar) == -1) {}
+if (!$foo or ($bar == -1)) {}
+
+do {} while ($foo and $bar);
+while ($foo or $bar < 10) {}
+for ($foo or $bar;;) {}
+switch ($foo or $bar) {}
+
+$a ** $b ** $c;
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a**$b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;
+
+$var = $var + $var ?? '';
+$var = $var + ($var ?? '');
+$var = ($var + $var) ?? '';
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = ($cachesNames === []);
+
+$isNamespaced = strpos($fixture, '\\\\') !== false;
+$isNamespaced = (strpos($fixture, '\\\\') !== false);
+
+$var = $a['apply_time'] > $b['apply_time'] ? -1 : +1;
+$var = ($a['apply_time'] > $b['apply_time']) ? -1 : +1;
+
+$var = $page > 0 || $page == 0 && $this->forcePageParam;
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
+@foo() || @foo();
+(@foo()) || (@foo());
+$var = @foo() || @foo();
+$var = (@foo() || @foo());
+
+@$i / 0;
+@($i) / 0;
+
+$var = "a" . (@$b ? 'bar' : "baz");
+
+$a = (false && foo());
+$b = (true  || foo());
+$c = (false and foo());
+$d = (true  or  foo());
+
+$f = false or true;
+$h = true and false;
+
+$my_file = call('non_existent_file') or die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) or die("Failed opening file: error was '$php_errormsg'");
+
+$my_file = call('non_existent_file') and die("Failed opening file: error was '$php_errormsg'");
+($my_file = call('non_existent_file')) and die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = ($foo && $baz) ?? $baz;
+$var = $foo && ($baz ?? $baz);
+
+$result = 2 ** $number - 1;
+$result = (2 ** $number) - 1;
+$result = 2 ** ($number - 1);
+
+=====================================output=====================================
+<?php
+
+$var = 1;
+$var = 1;
+$var = $var = 1;
+$var = $var = 1;
+$var = $var = 1;
+$var = $var = 1;
+$var = $var = $var = $var;
+$var = $var = $var = $var;
+$var = $var = $var = $var;
+$var = $var = $var = $var;
+$var = $var = $var = $var;
+
+$var = $var++;
+$var = $var++;
+$var = ++$var;
+$var = ++$var;
+
+$var = $var--;
+$var = $var--;
+$var = --$var;
+$var = --$var;
+
+$var = ~$var;
+$var = ~$var;
+
+$var = !$var;
+$var = !$var;
+
+$var = $var += 10;
+$var = $var += 10;
+
+$var = 10 + 20 + 30;
+$var = 10 + 20 + 30;
+$var = 10 + (20 + 30);
+
+$var = "10" . "20" . "30";
+$var = "10" . "20" . "30";
+$var = "10" . ("20" . "30");
+
+$var = 10 + (20 % 30);
+$var = (10 + 20) % 30;
+$var = 10 + (20 % 30);
+
+$var = 10 ** (20 ** 30);
+$var = (10 ** 20) ** 30;
+$var = 10 ** (20 ** 30);
+
+$var = (10 == 20) == 30;
+$var = 10 == (20 == 30);
+
+$var = (10 === 20) === 30;
+$var = 10 === (20 === 30);
+
+$var = (10 * 20) % 30;
+$var = (10 * 20) % 30;
+$var = 10 * (20 % 30);
+
+$var = (10 * 20) / 30;
+$var = (10 * 20) / 30;
+$var = 10 * (20 / 30);
+
+$var = (10 / 20) * 30;
+$var = (10 / 20) * 30;
+$var = 10 / (20 * 30);
+
+$var = (10 << 20) << 30;
+$var = (10 << 20) << 30;
+$var = 10 << (20 << 30);
+
+$var = (10 >> 20) >> 30;
+$var = (10 >> 20) >> 30;
+$var = 10 >> (20 >> 30);
+
+$var = 10 ^ 20 ^ 30;
+$var = 10 ^ 20 ^ 30;
+$var = 10 ^ (20 ^ 30);
+
+$var = 10 | 20 | 30;
+$var = 10 | 20 | 30;
+$var = 10 | (20 | 30);
+
+$var = false || true;
+$var = false || true;
+($var = false) or true;
+$var = (false or true);
+$var = true && false;
+$var = true && false;
+($var = true) and false;
+$var = (true and false);
+
+$var = $var || $var();
+$var = ($var || $var)();
+$var = $var && $var();
+$var = ($var && $var)();
+$var = call($var || $var);
+$var = call($var || $var);
+$var = call($var && $var);
+$var = call($var && $var);
+
+$var = +($var || $var);
+$var = -($var || $var);
+$var = ~($var || $var);
+
+$var = ($var || $var)->foo;
+$var = ($var || $var)->foo();
+$var = ($var || $var)[1];
+
+$var = $var || ($var && $var);
+$var = ($var || $var) && $var;
+$var = $var || ($var && $var);
+
+$var = $var & ($var || "test");
+$var = ($var || "test") & $var;
+$var = $var & ($var . "test");
+$var = ($var . "test") & $var;
+$var = $var & $var || "test";
+$var = $var || "test" & $var;
+
+$var = ($var || $var) % 100;
+$var = ($var + $var) % 100;
+$var = 100 % ($var || $var);
+$var = 100 % ($var + $var);
+$var = $var || $var % 100;
+$var = $var + ($var % 100);
+$var = 100 % $var || $var;
+$var = (100 % $var) + $var;
+
+$var = $var + $var >> 1;
+$var = ($var - 1 >> $var) & $var;
+$var = $var > $var ? 0 : $var - $var >> $var;
+$var = ($var - $var >> $var) + 1;
+
+if ($var < 1 << $var + $var) {
+}
+
+$var = $var < $var ? 0 : ($var - 1 >> $var) << $var;
+$var = 1 - 2 * ($var[3] >> 7);
+$var = ((($var[3] << 1) & 0xff) | ($var[2] >> 7)) - 127;
+$var = (($var[2] & 0x7f) << 16) | ($var[1] << 8) | $var[0];
+
+$var = ((2 / 3) * 10) / 2 + 2;
+
+$var = (($var / $var) * $var - $var / 2) * call($var);
+$var = (($var / $var) * $var - $var / 2) * call($var);
+
+$var = ($var % 10) - 5;
+$var = ($var * $var) % 10;
+$var = $var % 10 > 5;
+$var = $var % 10 == 0;
+
+$var = $var + $var / $var;
+$var = $var / $var + $var;
+
+$var = ($var * $var) % $var;
+$var = ($var / $var) % $var;
+$var = ($var % $var) * $var;
+$var = ($var % $var) / $var;
+
+$var = ($var % $var) % $var;
+
+$var = ($var << $var) >> $var;
+$var = ($var >> $var) << $var;
+$var = ($var >> $var) >> $var;
+$var = $var + $var >> $var;
+$var = $var + $var >> $var;
+$var = $var + ($var >> $var);
+
+$var = $var | ($var & $var);
+$var = ($var & $var) | $var;
+$var = $var ^ $var ^ $var;
+$var = $var & $var & $var;
+$var = $var | $var | $var;
+$var = $var & ($var >> $var);
+$var = ($var << $var) | $var;
+
+$var = $var ? "foo" : "bar" . "test";
+$var = ($var ? "foo" : "bar") . "test";
+$var = $var ? "foo" : "bar" . "test";
+
+call($var + $var);
+
+$var = call($var + $var);
+
+$var = $var + $var ** 2;
+$var = ($var + $var) ** 2;
+$var = $var + $var ** 2;
+$var = (+$var) ** 2;
+$var = (+$var) ** 2;
+
+$var = $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = $foo instanceof Foo || $foo instanceof Foo;
+$var = $foo instanceof Foo;
+
+$var = !$var;
+$var = !$var;
+$var = !$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+$var = !!!$var;
+
+$var = !$var || !$var;
+$var = !$var || !$var;
+$var = !(!$var || !$var);
+
+$var = $var + $var * $var;
+$var = ($var + $var) * $var;
+
+$var = @foo() || @foo();
+$var = @(foo() || foo());
+
+$var += $var += $var += $var;
+$var -= $var -= $var -= $var;
+$var *= $var *= $var *= $var;
+$var **= $var **= $var **= $var;
+$var /= $var /= $var /= $var;
+$var .= $var .= $var .= $var;
+$var %= $var %= $var %= $var;
+$var &= $var &= $var &= $var;
+$var |= $var |= $var |= $var;
+$var ^= $var ^= $var ^= $var;
+$var <<= $var <<= $var <<= $var;
+$var >>= $var >>= $var >>= $var;
+
+$var = $var | $var | $var;
+$var = $var | ($var | $var);
+$var = $var | $var | $var;
+$var = $var & $var & $var;
+$var = $var & ($var & $var);
+$var = $var & $var & $var;
+
+$var = ($var ^ $var) | $var;
+$var = ($var ^ $var) | $var;
+$var = $var | ($var ^ $var);
+$var = $var | ($var ^ $var);
+$var = ($var | $var) ^ $var;
+
+$var = ($var & $var) | $var;
+$var = ($var & $var) | $var;
+$var = $var | ($var & $var);
+$var = $var | ($var & $var);
+$var = ($var | $var) & $var;
+
+$var = $var == $var || false;
+$var = $var == $var || false;
+$var = $var == ($var || false);
+
+$var = false || $var == $var;
+$var = false || $var == $var;
+$var = ($var || false) == $var;
+
+$var = "string" . true ? "1" : "2";
+$var = "string" . (true ? "1" : "2");
+
+$var = "string" . (100 + 100);
+$var = 100 + 100 . "string";
+$var = "string" . ($var || 100);
+$var = ($var || 100) . "string";
+$var = "string" . $var * 100;
+$var = $var * 100 . "string";
+$var = "string" . !$var;
+$var = !$var . "string";
+$var = "string" . ($var | 100);
+$var = ($var | 100) . "string";
+
+$var = $var . $var % $var;
+$var = ($var . $var) % $var;
+$var = $var % $var . $var;
+$var = $var % ($var . $var);
+
+$var = "100" - "100" - "100";
+$var = "100" - "100" - "100";
+$var = "100" - ("100" - "100");
+
+if (false || true) {
+}
+if (false || true) {
+}
+if (false or true) {
+}
+if (false or true) {
+}
+if (true && false) {
+}
+if (true && false) {
+}
+if (true and false) {
+}
+if (true and false) {
+}
+
+if (!$foo or $bar == -1) {
+}
+if (!$foo or $bar == -1) {
+}
+if ((!$foo or $bar) == -1) {
+}
+if (!$foo or $bar == -1) {
+}
+
+do {
+} while ($foo and $bar);
+while ($foo or $bar < 10) {
+}
+for ($foo or $bar; ; ) {
+}
+switch ($foo or $bar) {
+}
+
+$a ** ($b ** $c);
+($a ** $b) ** $c;
+$a->b ** $c;
+(-$a) ** $b;
+$a ** -$b;
+-($a ** $b);
+($a * $b) ** $c;
+$a ** ($b * $c);
+($a % $b) ** $c;
+
+$var = $var + $var ?? "";
+$var = $var + ($var ?? "");
+$var = $var + $var ?? "";
+$var = $var ?? null + 1;
+$var = ($var ?? null) + 1;
+$var = $var && ($var ?? true);
+$var = ($var ?? true) && $var;
+$var = $var && ($var ?? null) === true;
+$var = ($var ?? null) === true && $var;
+
+$findAll = $cachesNames === [];
+$findAll = $cachesNames === [];
+
+$isNamespaced = strpos($fixture, "\\\\") !== false;
+$isNamespaced = strpos($fixture, "\\\\") !== false;
+
+$var = $a["apply_time"] > $b["apply_time"] ? -1 : +1;
+$var = $a["apply_time"] > $b["apply_time"] ? -1 : +1;
+
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
+$var = $page > 0 || ($page == 0 && $this->forcePageParam);
+
+@foo() || @foo();
+@foo() || @foo();
+$var = @foo() || @foo();
+$var = @foo() || @foo();
+
+@$i / 0;
+@$i / 0;
+
+$var = "a" . (@$b ? "bar" : "baz");
+
+$a = false && foo();
+$b = true || foo();
+$c = (false and foo());
+$d = (true or foo());
+
+($f = false) or true;
+($h = true) and false;
+
+($my_file = call("non_existent_file")) or
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call("non_existent_file")) or
+    die("Failed opening file: error was '$php_errormsg'");
+
+($my_file = call("non_existent_file")) and
+    die("Failed opening file: error was '$php_errormsg'");
+($my_file = call("non_existent_file")) and
+    die("Failed opening file: error was '$php_errormsg'");
+
+$var = $obj->foo ?? "default";
+$var = $foo ? $bar ?? $foo : $baz;
+$var = $foo ?? ($bar ?? $baz);
+$var = ($foo ?? $baz) || $baz;
+$var = $foo ?? $baz || $baz;
+$var = $foo && $baz ?? $baz;
+$var = $foo && ($baz ?? $baz);
+
+$result = 2 ** $number - 1;
+$result = 2 ** $number - 1;
+$result = 2 ** ($number - 1);
+
+================================================================================
+`;
+
 exports[`block.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+function foo() {
+    ($a->c());
+}
+
+=====================================output=====================================
+<?php
+
+function foo()
+{
+    $a->c();
+}
+
+================================================================================
+`;
+
+exports[`block.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1190,9 +2351,163 @@ break 2;
 ================================================================================
 `;
 
+exports[`break.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+break;
+break 1;
+break (1);
+break ((1));
+break (((1)));
+break 2;
+break (2);
+break ((2));
+break (((2)));
+
+=====================================output=====================================
+<?php
+
+break;
+break;
+break;
+break;
+break;
+break 2;
+break 2;
+break 2;
+break 2;
+
+================================================================================
+`;
+
 exports[`call.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+call();
+(call());
+
+$var = call();
+$var = (call());
+$var = call()();
+$var = (call())();
+$var = (call()());
+$var = ((call())());
+
+$var = $foo->call();
+$var = ($foo)->call();
+$var = ($foo->call());
+$var = $foo->call()->call();
+$var = ($foo)->call()->call();
+$var = (($foo)->call())->call();
+$var = ((($foo)->call())->call());
+
+$var = call((call()));
+$var = call(...(call()));
+$var = (call((call())));
+$var = (call((call()), (call())));
+
+$var = $func();
+$var = ($func)();
+$var = ($func());
+$var = (($func)());
+
+$var = $this->$name();
+$var = ($this)->$name();
+$var = ($this->$name());
+$var = (($this)->$name());
+
+$var = Foo::call();
+$var = (Foo::call());
+
+$var = (array("Foo", "bar"))();
+$var = (array(new Foo, "baz"))();
+$var = ((string) 1234)();
+$var = "Foo::bar"();
+$var = ("Foo::bar")();
+
+call(($a), (($b)), ((($c))));
+call($a = $b);
+call(($a = $b));
+call($a = new Foo());
+call(($a = new Foo()));
+call($a = (new Foo()));
+call(($a = (new Foo())));
+$foo->call(($a = (new Foo())));
+Foo::call(($a = (new Foo())));
+
+=====================================output=====================================
+<?php
+
+call();
+call();
+
+$var = call();
+$var = call();
+$var = call()();
+$var = call()();
+$var = call()();
+$var = call()();
+
+$var = $foo->call();
+$var = $foo->call();
+$var = $foo->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+$var = $foo->call()->call();
+
+$var = call(call());
+$var = call(...call());
+$var = call(call());
+$var = call(call(), call());
+
+$var = $func();
+$var = $func();
+$var = $func();
+$var = $func();
+
+$var = $this->$name();
+$var = $this->$name();
+$var = $this->$name();
+$var = $this->$name();
+
+$var = Foo::call();
+$var = Foo::call();
+
+$var = (["Foo", "bar"])();
+$var = ([new Foo(), "baz"])();
+$var = ((string) 1234)();
+$var = ("Foo::bar")();
+$var = ("Foo::bar")();
+
+call($a, $b, $c);
+call($a = $b);
+call($a = $b);
+call($a = new Foo());
+call($a = new Foo());
+call($a = new Foo());
+call($a = new Foo());
+$foo->call($a = new Foo());
+Foo::call($a = new Foo());
+
+================================================================================
+`;
+
+exports[`call.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1509,9 +2824,290 @@ $timeout =
 ================================================================================
 `;
 
+exports[`cast.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+(int) '1';
+( int ) '1';
+((int) '1');
+((int) ('1'));
+
+$var = (int) '1';
+$var = ((int) '1');
+$var = ((int) ('1'));
+$var = ((bool) (2.3e5));
+$var = (object) [];
+$var = (object) ([]);
+$var = ((object) ([]));
+$var = ((object) (array('1' => 'foo')));
+$var = ((object) (['1' => 'foo']));
+$var = ((object) 'ciao')->scalar;
+$var = ((object) array('test'))->{'0'};
+$var = (((object) array('test'))->{'0'});
+$var = (array) new B();
+$var = (array) (new B());
+$var = ((array) (new B()));
+$var = ((array) (new B()))['foo'];
+$var = ((string) 1234)[1];
+$var = ((string) 123)();
+$var = ((string) (123))();
+$var = "test"[0];
+$var = (array) "test"[0];
+$var = ((array) "test")[0];
+$var = [(int) 'key' => (int) '1'];
+$var = [((int) 'key') => ((int) '1')];
+$var = ([((int) 'key') => ((int) '1')]);
+$var = (int) $raw['data'] + $value;
+$var = ((int) $raw['data']) + $value;
+$var = (bool) $var ? 1 : 2;
+$var = (bool) ($var ? 1 : 2);
+$var = (bool) $var + 1 ? 1 : 2;
+$var = ((bool) $var) + 1 ? 1 : 2;
+$var = (bool) ($var + 1) ? 1 : 2;
+$var = ((bool) $var) ? 1 : 2;
+$var = ((bool) $var) ? (bool) 1 :  (bool) 2;
+$var = ((bool) $var) ? ((bool) 1) :  ((bool) 2);
+$var = ((bool) $var) ? (bool) 1 + 2 :  (bool) 2 + 3;
+$var = ((bool) $var) ? ((bool) 1 + 2) :  ((bool) 2 + 3);
+$var = ((bool) $var) ? (bool) $var ? 1 : 2 :  (bool) $var ? 1 : 2;
+$var = ((bool) $var) ? ((bool) $var) ? 1 : 2 :  ((bool) $var) ? 1 : 2;
+$var = ((bool) $var) ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2);
+$var = (bool) ($var ? (bool) ($var ? 1 : 2) :  (bool) ($var ? 1 : 2));
+$var = (bool) $var->foo;
+$var = (bool) ($var->foo);
+$var = ((bool) $var->foo);
+$var = ((object) $var)->foo;
+$var = ((object) $var)[0];
+$var = (int) 'test' + (int) 'test';
+$var = ((int) 'test') + ((int) 'test');
+$var = ((int) 'test') * ((int) 'test');
+$var = ((int) 'test') | ((int) 'test');
+$var = ((int) 'test') % ((int) 'test');
+$var = @((int) 'test');
+$var = @((int) call());
+$var = (int) (int) 1;
+$var = (int) ((int) 1);
+$var = call((int) $var, (int) call(), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
+$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
+
+return (int) $var;
+return ((int) $var);
+
+if ((int) 1 === 1) {}
+if (1 === (int) 1) {}
+if (((int) 1) === 1) {}
+if (1 === ((int) 1)) {}
+if ((int) 1 === (int) 1) {}
+if (((int) 1) === (int) 1) {}
+if ((int) 1 === ((int) 1)) {}
+if (((int) (1)) === ((int) 1)) {}
+
+$var = (bool) call();
+$var = $var || (bool) call();
+$var = (bool) call() || $var;
+
+$var = (int) $var === 1;
+$var = ((int) $var) === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix.$key, $value, (int) ($minutes * 60));
+
+$timeout = (int) ($server->timeout / 1000) + (($server->timeout % 1000 > 0) ? 1 : 0);
+
+=====================================output=====================================
+<?php
+
+(int) "1";
+(int) "1";
+(int) "1";
+(int) "1";
+
+$var = (int) "1";
+$var = ((int) "1");
+$var = ((int) "1");
+$var = ((bool) 2.3e5);
+$var = (object) [];
+$var = (object) [];
+$var = ((object) []);
+$var = ((object) ["1" => "foo"]);
+$var = ((object) ["1" => "foo"]);
+$var = ((object) "ciao")->scalar;
+$var = ((object) ["test"])->{'0'};
+$var = ((object) ["test"])->{'0'};
+$var = (array) new B();
+$var = (array) new B();
+$var = ((array) new B());
+$var = ((array) new B())["foo"];
+$var = ((string) 1234)[1];
+$var = ((string) 123)();
+$var = ((string) 123)();
+$var = "test"[0];
+$var = (array) "test"[0];
+$var = ((array) "test")[0];
+$var = [(int) "key" => (int) "1"];
+$var = [((int) "key") => ((int) "1")];
+$var = [((int) "key") => ((int) "1")];
+$var = (int) $raw["data"] + $value;
+$var = ((int) $raw["data"]) + $value;
+$var = (bool) $var ? 1 : 2;
+$var = (bool) ($var ? 1 : 2);
+$var = (bool) $var + 1 ? 1 : 2;
+$var = ((bool) $var) + 1 ? 1 : 2;
+$var = (bool) ($var + 1) ? 1 : 2;
+$var = ((bool) $var) ? 1 : 2;
+$var = ((bool) $var) ? (bool) 1 : (bool) 2;
+$var = ((bool) $var) ? ((bool) 1) : ((bool) 2);
+$var = ((bool) $var) ? (bool) 1 + 2 : (bool) 2 + 3;
+$var = ((bool) $var) ? (bool) 1 + 2 : (bool) 2 + 3;
+$var = (((bool) $var) ? ((bool) $var ? 1 : 2) : (bool) $var) ? 1 : 2;
+$var = (((bool) $var) ? (((bool) $var) ? 1 : 2) : ((bool) $var)) ? 1 : 2;
+$var = ((bool) $var) ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2);
+$var = (bool) ($var ? (bool) ($var ? 1 : 2) : (bool) ($var ? 1 : 2));
+$var = (bool) $var->foo;
+$var = (bool) $var->foo;
+$var = ((bool) $var->foo);
+$var = ((object) $var)->foo;
+$var = ((object) $var)[0];
+$var = (int) "test" + (int) "test";
+$var = ((int) "test") + ((int) "test");
+$var = ((int) "test") * ((int) "test");
+$var = ((int) "test") | ((int) "test");
+$var = ((int) "test") % ((int) "test");
+$var = @((int) "test");
+$var = @((int) call());
+$var = (int) (int) 1;
+$var = (int) ((int) 1);
+$var = call((int) $var, (int) call(), (int) $minutes * 60);
+$var = call(((int) $var), ((int) call()), (int) ($minutes * 60));
+$var = $var + (int) $minutes * 60;
+$var = $var + (int) ($minutes * 60);
+
+return (int) $var;
+return (int) $var;
+
+if ((int) 1 === 1) {
+}
+if (1 === (int) 1) {
+}
+if (((int) 1) === 1) {
+}
+if (1 === ((int) 1)) {
+}
+if ((int) 1 === (int) 1) {
+}
+if (((int) 1) === (int) 1) {
+}
+if ((int) 1 === ((int) 1)) {
+}
+if (((int) 1) === ((int) 1)) {
+}
+
+$var = (bool) call();
+$var = $var || (bool) call();
+$var = (bool) call() || $var;
+
+$var = (int) $var === 1;
+$var = ((int) $var) === 1;
+$var = (int) ($var === 1);
+
+$this->apc->put($this->prefix . $key, $value, (int) ($minutes * 60));
+
+$timeout =
+    (int) ($server->timeout / 1000) + ($server->timeout % 1000 > 0 ? 1 : 0);
+
+================================================================================
+`;
+
 exports[`clone.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+clone $a;
+(clone $a);
+
+$var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
+$var = (clone $a);
+$var = (clone $a)->foo;
+$var = (clone $a->foo);
+$var = (clone $a)->foo();
+
+$var = (clone foo())->bar()->foo();
+$var = ((clone foo())->bar())->foo();
+$var = (((clone foo())->bar())->foo());
+$var = (((clone foo())->bar())->foo())[0];
+$var = ((((clone foo())->bar())->foo())[0])[1];
+$var = (((clone foo())->bar())->foo())->baz();
+$var = (clone $foo())->bar;
+$var = (clone $bar->y)->x;
+$var = (clone $foo)[0];
+$var = (clone $foo)[0]['string'];
+
+$var = clone $a->b;
+$var = clone $a->b();
+$var = (clone $a)->b();
+$var = ((clone $a)->b());
+
+$var = (clone ($var));
+$var = (clone($var));
+$var = (clone($var->foo));
+$var = (clone($var->foo))->foo;
+
+=====================================output=====================================
+<?php
+
+clone $a;
+clone $a;
+
+$var = clone $a;
+$var = clone $a();
+$var = (clone $a)();
+$var = clone $a;
+$var = (clone $a)->foo;
+$var = clone $a->foo;
+$var = (clone $a)->foo();
+
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo();
+$var = (clone foo())->bar()->foo()[0];
+$var = (clone foo())->bar()->foo()[0][1];
+$var = (clone foo())->bar()->foo()->baz();
+$var = (clone $foo())->bar;
+$var = (clone $bar->y)->x;
+$var = (clone $foo)[0];
+$var = (clone $foo)[0]["string"];
+
+$var = clone $a->b;
+$var = clone $a->b();
+$var = (clone $a)->b();
+$var = (clone $a)->b();
+
+$var = clone $var;
+$var = clone $var;
+$var = clone $var->foo;
+$var = (clone $var->foo)->foo;
+
+================================================================================
+`;
+
+exports[`clone.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1640,9 +3236,98 @@ var_dump(...(function () use ($type) {})());
 ================================================================================
 `;
 
+exports[`closure.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+(function () {})();
+
+$var = function () {};
+$var = (function () {});
+$var = (function () {})();
+$var = ((function () {})())();
+$func = static function() {};
+$func = (static function() {});
+
+function foo() {
+    $var = (function () {});
+    $var = (function () {})();
+}
+
+call(function () {}, function () {}, function () {});
+call((function () {}), (function () {}), (function () {}));
+
+var_dump(...(function() use ($type) {})());
+
+=====================================output=====================================
+<?php
+
+(function () {})();
+
+$var = function () {};
+$var = function () {};
+$var = (function () {})();
+$var = (function () {})()();
+$func = static function () {};
+$func = static function () {};
+
+function foo()
+{
+    $var = function () {};
+    $var = (function () {})();
+}
+
+call(function () {}, function () {}, function () {});
+call(function () {}, function () {}, function () {});
+
+var_dump(...(function () use ($type) {})());
+
+================================================================================
+`;
+
 exports[`continue.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+continue;
+continue 1;
+continue (1);
+continue ((1));
+continue (((1)));
+continue 2;
+continue (2);
+continue ((2));
+continue (((2)));
+
+=====================================output=====================================
+<?php
+
+continue;
+continue;
+continue;
+continue;
+continue;
+continue 2;
+continue 2;
+continue 2;
+continue 2;
+
+================================================================================
+`;
+
+exports[`continue.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1901,6 +3586,234 @@ do {
 ================================================================================
 `;
 
+exports[`control-structures.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+if (($a > $b)) {
+    echo "a is bigger than b";
+} elseif (($a == $b)) {
+    echo "a is equal to b";
+} else {
+    echo "a is smaller than b";
+}
+
+while (($i <= 10)) {
+    echo $i++;
+}
+
+do {
+    echo $i;
+} while (($i > 0));
+
+switch (($i)) {
+    case (0):
+        echo "i equals 0";
+        break;
+    case ((1)):
+        echo "i equals 1";
+        break;
+    case ('test' . ( 1 > 2 ? 'foo' : 'bar')):
+        echo "i equals 2";
+        break;
+}
+
+switch (($i + 1)) {
+    case (0):
+        echo "i equals 0";
+        break;
+    case (1 + 2):
+        echo "i equals 1";
+        break;
+    case (1 + ( 1 > 2 ? 1 : 3)):
+        echo "i equals 2";
+        break;
+}
+
+while (++$i) {
+    switch ($i) {
+        case 5:
+            echo "At 5<br />\\n";
+            break (2);  /* Exit only the switch. */
+        case 10:
+            echo "At 10; quitting<br />\\n";
+            break ((4));  /* Exit the switch and the while. */
+        default:
+            break;
+    }
+}
+
+while ($i++ < 5) {
+    echo "Outer<br />\\n";
+    while (1) {
+        echo "Middle<br />\\n";
+        while (1) {
+            echo "Inner<br />\\n";
+            continue (3);
+        }
+        echo "This never gets output.<br />\\n";
+        continue ((2));
+    }
+    echo "Neither does this.<br />\\n";
+}
+
+if ($var = 1) {}
+if (($var = 1)) {}
+if ($var = 1) {} else if ($var = 1) {} else {}
+if (($var = 1)) {} else if (($var = 1)) {} else {}
+do {} while ($var = 1);
+do {} while (($var = 1));
+while ($var = 1) {}
+while (($var = 1)) {}
+for ($i = 1; $i <= 10; $i++) {}
+for (($i = 1); ($i <= 10); ($i++)) {}
+foreach (($arr = [1, 2, 3]) as $value) {}
+foreach (($arr) as $value) {}
+foreach (($arr) as $key => $value) {}
+foreach (($arr = [1, 2, 3]) as $key => $value) {}
+switch ($var = 1) {}
+switch (($var = 1)) {}
+
+while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {}
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {}
+
+if (($foo = $bar) && count($foo) > 0) {}
+if( false !== ($file = readdir($dh)) && 0 !== strpos($file,'.')){}
+while (($a = foo()) !== 5) {}
+while( false !== ($file = readdir($dh))){}
+do {} while( false !== ($file = readdir($dh)));
+
+=====================================output=====================================
+<?php
+
+if ($a > $b) {
+    echo "a is bigger than b";
+} elseif ($a == $b) {
+    echo "a is equal to b";
+} else {
+    echo "a is smaller than b";
+}
+
+while ($i <= 10) {
+    echo $i++;
+}
+
+do {
+    echo $i;
+} while ($i > 0);
+
+switch ($i) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1:
+        echo "i equals 1";
+        break;
+    case "test" . (1 > 2 ? "foo" : "bar"):
+        echo "i equals 2";
+        break;
+}
+
+switch ($i + 1) {
+    case 0:
+        echo "i equals 0";
+        break;
+    case 1 + 2:
+        echo "i equals 1";
+        break;
+    case 1 + (1 > 2 ? 1 : 3):
+        echo "i equals 2";
+        break;
+}
+
+while (++$i) {
+    switch ($i) {
+        case 5:
+            echo "At 5<br />\\n";
+            break 2; /* Exit only the switch. */
+        case 10:
+            echo "At 10; quitting<br />\\n";
+            break 4; /* Exit the switch and the while. */
+        default:
+            break;
+    }
+}
+
+while ($i++ < 5) {
+    echo "Outer<br />\\n";
+    while (1) {
+        echo "Middle<br />\\n";
+        while (1) {
+            echo "Inner<br />\\n";
+            continue 3;
+        }
+        echo "This never gets output.<br />\\n";
+        continue 2;
+    }
+    echo "Neither does this.<br />\\n";
+}
+
+if ($var = 1) {
+}
+if ($var = 1) {
+}
+if ($var = 1) {
+} elseif ($var = 1) {
+} else {
+}
+if ($var = 1) {
+} elseif ($var = 1) {
+} else {
+}
+do {
+} while ($var = 1);
+do {
+} while ($var = 1);
+while ($var = 1) {
+}
+while ($var = 1) {
+}
+for ($i = 1; $i <= 10; $i++) {
+}
+for ($i = 1; $i <= 10; $i++) {
+}
+foreach ($arr = [1, 2, 3] as $value) {
+}
+foreach ($arr as $value) {
+}
+foreach ($arr as $key => $value) {
+}
+foreach ($arr = [1, 2, 3] as $key => $value) {
+}
+switch ($var = 1) {
+}
+switch ($var = 1) {
+}
+
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
+}
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
+}
+
+if (($foo = $bar) && count($foo) > 0) {
+}
+if (false !== ($file = readdir($dh)) && 0 !== strpos($file, ".")) {
+}
+while (($a = foo()) !== 5) {
+}
+while (false !== ($file = readdir($dh))) {
+}
+do {
+} while (false !== ($file = readdir($dh)));
+
+================================================================================
+`;
+
 exports[`declare.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -1923,9 +3836,124 @@ $a->c();
 ================================================================================
 `;
 
+exports[`declare.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+declare(strict_types=1);
+
+($a->c());
+
+=====================================output=====================================
+<?php
+
+declare(strict_types=1);
+
+$a->c();
+
+================================================================================
+`;
+
 exports[`echo.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+echo "Hello World";
+echo ("Hello World");
+
+echo "Sum: ", 1 + 2;
+echo "Hello ", isset($name) ? $name : "John Doe", "!";
+echo "Hello ", (isset($name) ? $name : "John Doe"), "!";
+
+echo 'Sum: ' . (1 + 2);
+echo 'Hello ' . isset($name) ? $name : 'John Doe' . '!';
+echo 'Hello ' . (isset($name) ? $name : 'John Doe') . '!';
+
+echo $some_var ? 'true': 'false';
+echo ($some_var ? 'true': 'false');
+
+echo 'This ', 'string ', 'was ', 'made ', 'with multiple parameters.', chr(10);
+echo ('This '), ('string '), ('was '), ('made '), ('with multiple parameters.'), (chr(10));
+echo 'This ' . 'string ' . 'was ' . 'made ' . 'with concatenation.' . "\\n";
+echo ('This ') . ('string ') . ('was ') . ('made ') . ('with concatenation.') . ("\\n");
+
+echo <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon. no extra whitespace!
+END;
+
+echo (<<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon. no extra whitespace!
+END
+);
+
+echo (function () { return 'test'; })();
+echo ((function () { return 'test'; })());
+
+=====================================output=====================================
+<?php
+
+echo "Hello World";
+echo "Hello World";
+
+echo "Sum: ", 1 + 2;
+echo "Hello ", isset($name) ? $name : "John Doe", "!";
+echo "Hello ", isset($name) ? $name : "John Doe", "!";
+
+echo "Sum: " . (1 + 2);
+echo "Hello " . isset($name) ? $name : "John Doe" . "!";
+echo "Hello " . (isset($name) ? $name : "John Doe") . "!";
+
+echo $some_var ? "true" : "false";
+echo $some_var ? "true" : "false";
+
+echo "This ", "string ", "was ", "made ", "with multiple parameters.", chr(10);
+echo "This ", "string ", "was ", "made ", "with multiple parameters.", chr(10);
+echo "This " . "string " . "was " . "made " . "with concatenation." . "\\n";
+echo "This " . "string " . "was " . "made " . "with concatenation." . "\\n";
+
+echo <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon. no extra whitespace!
+END;
+
+echo <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon. no extra whitespace!
+END;
+
+echo (function () {
+    return "test";
+})();
+echo (function () {
+    return "test";
+})();
+
+================================================================================
+`;
+
+exports[`echo.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2045,6 +4073,38 @@ if (empty($var)) {
 ================================================================================
 `;
 
+exports[`empty.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+empty($var);
+(empty($var));
+
+$var = empty($var);
+$var = (empty($var));
+
+if ((empty($var))) {}
+
+=====================================output=====================================
+<?php
+
+empty($var);
+empty($var);
+
+$var = empty($var);
+$var = empty($var);
+
+if (empty($var)) {
+}
+
+================================================================================
+`;
+
 exports[`eval.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -2088,9 +4148,94 @@ if (eval("return 1;") === 1) {
 ================================================================================
 `;
 
+exports[`eval.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+eval('return 1;');
+(eval('return 1;'));
+(eval(('return 1;')));
+
+$var = eval('return 1;');
+$var = (eval('return 1;'));
+$var = (eval(('return 1;')));
+
+if (eval('return 1;')) {}
+if ((eval('return 1;'))) {}
+
+if ((eval('return 1;')) === 1) {}
+
+=====================================output=====================================
+<?php
+
+eval("return 1;");
+eval("return 1;");
+eval("return 1;");
+
+$var = eval("return 1;");
+$var = eval("return 1;");
+$var = eval("return 1;");
+
+if (eval("return 1;")) {
+}
+if (eval("return 1;")) {
+}
+
+if (eval("return 1;") === 1) {
+}
+
+================================================================================
+`;
+
 exports[`exit.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+exit(1);
+(exit(1));
+
+exit((1));
+
+if (true) exit(1);
+if (true) (exit(1));
+
+call(exit(1));
+call((exit(1)));
+
+=====================================output=====================================
+<?php
+
+exit(1);
+exit(1);
+
+exit(1);
+
+if (true) {
+    exit(1);
+}
+if (true) {
+    exit(1);
+}
+
+call(exit(1));
+call(exit(1));
+
+================================================================================
+`;
+
+exports[`exit.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2211,9 +4356,129 @@ include $_GET["id"] . ".php";
 ================================================================================
 `;
 
+exports[`include.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+include 'foo.php';
+(include 'foo.php');
+
+include $var;
+(include $var);
+(include ($var));
+
+$var = include 'foo.php';
+$var = (include 'foo.php');
+$var = include $var;
+$var = (include $var);
+$var = (include ($var));
+
+function foo() {
+    include 'foo.php';
+    (include 'foo.php');
+}
+
+if (include('vars.php') == TRUE) {}
+if ((include 'vars.php') == TRUE) {}
+
+include $path . 'example-config-file.php';
+include ($path) . ('example-config-file.php');
+include (($path) . ('example-config-file.php'));
+
+include __DIR__ . '/../src/includeFile.php';
+include (__DIR__) . ('/../src/includeFile.php');
+include ((__DIR__) . ('/../src/includeFile.php'));
+
+include(dirname(dirname(__FILE__)) . '/prepend.php');
+
+include ($_GET['id'].".php");
+
+=====================================output=====================================
+<?php
+
+include "foo.php";
+include "foo.php";
+
+include $var;
+include $var;
+include $var;
+
+$var = include "foo.php";
+$var = include "foo.php";
+$var = include $var;
+$var = include $var;
+$var = include $var;
+
+function foo()
+{
+    include "foo.php";
+    include "foo.php";
+}
+
+if (include "vars.php" == true) {
+}
+if ((include "vars.php") == true) {
+}
+
+include $path . "example-config-file.php";
+include $path . "example-config-file.php";
+include $path . "example-config-file.php";
+
+include __DIR__ . "/../src/includeFile.php";
+include __DIR__ . "/../src/includeFile.php";
+include __DIR__ . "/../src/includeFile.php";
+
+include dirname(dirname(__FILE__)) . "/prepend.php";
+
+include $_GET["id"] . ".php";
+
+================================================================================
+`;
+
 exports[`isset.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+isset($var);
+(isset($var));
+
+$var = isset($var);
+$var = (isset($var));
+$var = isset($var, $var, $var);
+$var = (isset($var, $var, $var));
+
+if ((isset($var))) {}
+
+=====================================output=====================================
+<?php
+
+isset($var);
+isset($var);
+
+$var = isset($var);
+$var = isset($var);
+$var = isset($var, $var, $var);
+$var = isset($var, $var, $var);
+
+if (isset($var)) {
+}
+
+================================================================================
+`;
+
+exports[`isset.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2438,9 +4703,225 @@ $var = (function () {
 ================================================================================
 `;
 
+exports[`lookups.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$var->bar;
+($var->bar);
+
+$var->bar();
+($var->bar());
+
+$var::bar();
+($var::bar());
+
+$var = $var->bar;
+$var = ($var->bar);
+$var = $var->bar->foo;
+$var = ($var->bar)->foo;
+$var = ($var->bar->foo);
+$var = (($var->bar)->foo);
+
+$var = $var::foo();
+$var = ($var::foo());
+$var = $var::foo()::bar();
+$var = ($var::foo())::bar();
+$var = ($var::foo()::bar());
+$var = (($var::foo())::bar());
+
+$var = $var->bar();
+$var = ($var->bar());
+$var = $var->bar()->foo();
+$var = ($var->bar())->foo();
+$var = ($var->bar()->foo());
+$var = (($var->bar())->foo());
+
+$var = ((object) ($var->bar())->foo());
+$var = (object) (($var->bar())->foo());
+
+$var = $var[0];
+$var = $var[0][1];
+$var = ($var[0]);
+$var = ($var[0][1]);
+$var = $var[0]->foo;
+$var = ($var[0])->foo;
+$var = ($var[0][1])->foo;
+$var = ($var[0])[1]->foo;
+$var = (($var[0])[1])->foo;
+$var = $var[0]::foo;
+$var = ($var[0])::foo;
+$var = ($var[0][1])::foo;
+$var = ($var[0])[1]::foo;
+$var = (($var[0])[1])::foo;
+$var = $var[0]->foo();
+$var = ($var[0])->foo();
+$var = ($var[0][1])->foo();
+$var = ($var[0])[1]->foo();
+$var = (($var[0])[1])->foo();
+$var = $var[0]::foo();
+$var = ($var[0])::foo();
+$var = ($var[0][1])::foo();
+$var = ($var[0])[1]::foo();
+$var = (($var[0])[1])::foo();
+
+$var = $var[0]->foo()->baz;
+$var = ((($var[0])->foo())->baz);
+
+$var = (new Foo())->bar;
+$var = (new Foo())::bar;
+$var = (new Foo())->bar();
+$var = (new Foo())::bar();
+$var = (new Foo())[1];
+
+$var = $var->bar()();
+$var = ($var->bar())();
+$var = ($var->bar()());
+$var = (($var->bar())());
+
+$var = $var::bar()();
+$var = ($var::bar())();
+$var = ($var::bar()());
+$var = (($var::bar())());
+
+$var = ($var)->bar;
+$var = (($var)->bar);
+$var = ($var)->bar();
+$var = (($var)->bar());
+
+$var = (function () {
+    return $this->foo;
+})->bindTo($var, A::class)();
+$var = (((function () {
+    return $this->foo;
+})))->bindTo($var, A::class)();
+
+=====================================output=====================================
+<?php
+
+$var->bar;
+$var->bar;
+
+$var->bar();
+$var->bar();
+
+$var::bar();
+$var::bar();
+
+$var = $var->bar;
+$var = $var->bar;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+$var = $var->bar->foo;
+
+$var = $var::foo();
+$var = $var::foo();
+$var = $var::foo()::bar();
+$var = $var::foo()::bar();
+$var = $var::foo()::bar();
+$var = $var::foo()::bar();
+
+$var = $var->bar();
+$var = $var->bar();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+$var = $var->bar()->foo();
+
+$var = ((object) $var->bar()->foo());
+$var = (object) $var->bar()->foo();
+
+$var = $var[0];
+$var = $var[0][1];
+$var = $var[0];
+$var = $var[0][1];
+$var = $var[0]->foo;
+$var = $var[0]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0][1]->foo;
+$var = $var[0]::foo;
+$var = $var[0]::foo;
+$var = $var[0][1]::foo;
+$var = $var[0][1]::foo;
+$var = $var[0][1]::foo;
+$var = $var[0]->foo();
+$var = $var[0]->foo();
+$var = $var[0][1]->foo();
+$var = $var[0][1]->foo();
+$var = $var[0][1]->foo();
+$var = $var[0]::foo();
+$var = $var[0]::foo();
+$var = $var[0][1]::foo();
+$var = $var[0][1]::foo();
+$var = $var[0][1]::foo();
+
+$var = $var[0]->foo()->baz;
+$var = $var[0]->foo()->baz;
+
+$var = (new Foo())->bar;
+$var = (new Foo())::bar;
+$var = (new Foo())->bar();
+$var = (new Foo())::bar();
+$var = (new Foo())[1];
+
+$var = $var->bar()();
+$var = $var->bar()();
+$var = $var->bar()();
+$var = $var->bar()();
+
+$var = $var::bar()();
+$var = $var::bar()();
+$var = $var::bar()();
+$var = $var::bar()();
+
+$var = $var->bar;
+$var = $var->bar;
+$var = $var->bar();
+$var = $var->bar();
+
+$var = (function () {
+    return $this->foo;
+})->bindTo($var, A::class)();
+$var = (function () {
+    return $this->foo;
+})->bindTo($var, A::class)();
+
+================================================================================
+`;
+
 exports[`namespace.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+namespace Foo;
+
+($a->c());
+
+=====================================output=====================================
+<?php
+
+namespace Foo;
+
+$a->c();
+
+================================================================================
+`;
+
+exports[`namespace.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2578,6 +5059,125 @@ $var = (new class {})->foo;
 ================================================================================
 `;
 
+exports[`new.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+(new Translator(
+    $container,
+    new MessageFormatter(),
+    'en',
+    array(),
+    array('foo' => 'bar')
+))
+?>
+<?php
+(((new Translator(
+    $container,
+    new MessageFormatter(),
+    'en',
+    $someOtherVar,
+    array('foo' => 'bar')
+))))
+?>
+<?php
+(new Translator(
+    $container,
+    new MessageFormatter(),
+    'en',
+    $someOtherVar,
+    ['foo' => 'bar']
+))
+?>
+<?php
+
+$var = new Foo();
+$var = (new Foo());
+$var = (new Foo())->c();
+$var = (new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+$var = (new foo())->bar();
+$var = (new foo())->bar()->foo();
+$var = ((new foo())->bar())->foo();
+$var = (((new foo())->bar())->foo());
+$var = (((new foo())->bar())->foo())[0];
+$var = ((((new foo())->bar())->foo())[0])[1];
+$var = (((new foo())->bar())->foo())->baz();
+$var = (new $foo())->bar;
+$var = (new $bar->y)->x;
+$var = (new foo)[0];
+$var = (new foo)[0]['string'];
+
+$var = new $a->b;
+$var = new $a->b();
+$var = (new $a)->b();
+$var = ((new $a)->b());
+
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})['foo'];
+
+$var = (new class {})->foo;
+
+=====================================output=====================================
+<?php
+new Translator(
+    $container,
+    new MessageFormatter(),
+    "en",
+    [],
+    ["foo" => "bar"],
+); ?>
+<?php new Translator($container, new MessageFormatter(), "en", $someOtherVar, [
+    "foo" => "bar",
+]); ?>
+<?php new Translator($container, new MessageFormatter(), "en", $someOtherVar, [
+    "foo" => "bar",
+]); ?>
+<?php
+$var = new Foo();
+$var = new Foo();
+$var = (new Foo())->c();
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+$var = (new foo())->bar();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo();
+$var = (new foo())->bar()->foo()[0];
+$var = (new foo())->bar()->foo()[0][1];
+$var = (new foo())->bar()->foo()->baz();
+$var = (new $foo())->bar;
+$var = (new $bar->y())->x;
+$var = (new foo())[0];
+$var = (new foo())[0]["string"];
+$var = new $a->b();
+$var = new $a->b();
+$var = (new $a())->b();
+$var = (new $a())->b();
+(new class {})->foo;
+(new class {})->foo();
+(new class {})();
+(new class {})["foo"];
+$var = (new class {})->foo;
+
+
+================================================================================
+`;
+
 exports[`parens.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -2596,9 +5196,157 @@ include $test ? "foo" : "bar";
 ================================================================================
 `;
 
+exports[`parens.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+include 'foo.php' . ($test ? 'foo' : 'bar');
+include ($test ? 'foo' : 'bar');
+
+=====================================output=====================================
+<?php
+include "foo.php" . ($test ? "foo" : "bar");
+include $test ? "foo" : "bar";
+
+================================================================================
+`;
+
 exports[`pre-post.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+++$var;
+(++$var);
+
+$var++;
+($var++);
+
+--$var;
+(--$var);
+
+$var--;
+($var--);
+
+$var = ++$var;
+$var = (++$var);
+
+$var = +(++$var);
+$var = -(++$var);
+$var = ~(++$var);
+
+$var = +(--$var);
+$var = -(--$var);
+$var = ~(--$var);
+
+$var = +($var++);
+$var = -($var++);
+$var = ~($var++);
+
+$var = +($var--);
+$var = -($var--);
+$var = ~($var--);
+
+$var = ++$var ** 2;
+$var = (++$var) ** 2;
+
+$var = $var++ ** 2;
+$var = ($var++) ** 2;
+
+$var = +(+(++$var));
+$var = +(+($var++));
+$var = ~(-(++$var));
+$var = ~(-($var++));
+
+$a->b++;
+($a->b++);
+++$a->b;
+(++$a)->b;
+
+($a->b++)->call();
+($a->b++)[1];
+($var++)();
+$var = call($var->_uuidCounter++);
+
+(--$a->b)->call();
+(--$a->b)[1];
+(--$var)();
+$var = call(--$var->_uuidCounter);
+
+=====================================output=====================================
+<?php
+
+++$var;
+++$var;
+
+$var++;
+$var++;
+
+--$var;
+--$var;
+
+$var--;
+$var--;
+
+$var = ++$var;
+$var = ++$var;
+
+$var = +(++$var);
+$var = -++$var;
+$var = ~++$var;
+
+$var = +--$var;
+$var = -(--$var);
+$var = ~--$var;
+
+$var = +$var++;
+$var = -$var++;
+$var = ~$var++;
+
+$var = +$var--;
+$var = -$var--;
+$var = ~$var--;
+
+$var = (++$var) ** 2;
+$var = (++$var) ** 2;
+
+$var = ($var++) ** 2;
+$var = ($var++) ** 2;
+
+$var = +(+(++$var));
+$var = +(+$var++);
+$var = ~-++$var;
+$var = ~-$var++;
+
+$a->b++;
+$a->b++;
+++$a->b;
+(++$a)->b;
+
+($a->b++)->call();
+($a->b++)[1];
+($var++)();
+$var = call($var->_uuidCounter++);
+
+(--$a->b)->call();
+(--$a->b)[1];
+(--$var)();
+$var = call(--$var->_uuidCounter);
+
+================================================================================
+`;
+
+exports[`pre-post.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2823,6 +5571,106 @@ print ($var || $var) && $var;
 ================================================================================
 `;
 
+exports[`print.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+print("Hello World");
+(print("Hello World"));
+
+print "print() also works without parentheses.";
+
+print "This spans
+multiple lines. The newlines will be
+output as well";
+(print "This spans
+multiple lines. The newlines will be
+output as well");
+
+print <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon no extra whitespace!
+END;
+
+print (<<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon no extra whitespace!
+END
+);
+
+if (print("foo") && print("bar")) {
+}
+
+if ((print("foo")) && (print("bar"))) {
+}
+
+$var = $var ? print "$string_message<br />" : print "$string_message\\n";
+$var = $var ? (print "$string_message<br />") : (print "$string_message\\n");
+$var = $var ? (print ("$string_message<br />")) : (print ("$string_message\\n"));
+
+print 1 . print(2) + 3; // 511
+print 1 . (print(2)) + 3; // 214
+
+print ($var || $var) && $var;
+print (($var || $var) && $var);
+
+=====================================output=====================================
+<?php
+
+print "Hello World";
+print "Hello World";
+
+print "print() also works without parentheses.";
+
+print "This spans
+multiple lines. The newlines will be
+output as well";
+print "This spans
+multiple lines. The newlines will be
+output as well";
+
+print <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon no extra whitespace!
+END;
+
+print <<<END
+This uses the "here document" syntax to output
+multiple lines with $variable interpolation. Note
+that the here document terminator must appear on a
+line with just a semicolon no extra whitespace!
+END;
+
+if (print "foo" && (print "bar")) {
+}
+
+if ((print "foo") && (print "bar")) {
+}
+
+$var = $var ? print "$string_message<br />" : print "$string_message\\n";
+$var = $var ? print "$string_message<br />" : print "$string_message\\n";
+$var = $var ? print "$string_message<br />" : print "$string_message\\n";
+
+print 1 . (print 2 + 3); // 511
+print 1 . (print 2) + 3; // 214
+
+print ($var || $var) && $var;
+print ($var || $var) && $var;
+
+================================================================================
+`;
+
 exports[`program.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -2841,9 +5689,174 @@ $a->c();
 ================================================================================
 `;
 
+exports[`program.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+($a->c());
+
+=====================================output=====================================
+<?php
+
+$a->c();
+
+================================================================================
+`;
+
 exports[`retif.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$var ? 1 : 2;
+($var ? 1 : 2);
+
+$var = $var ? 1 : 2;
+$var = ($var ? 1 : 2);
+
+$var = (int) ($var + 1 === 2 ? '1' : '2');
+$var = (int) $var + 1 === 2 ? '1' : '2';
+$var = ((int) $var) + 1 === 2 ? '1' : '2';
+
+($var ? $var : $var)();
+($var ? $var : $var)->prop;
+($var ? $var : $var)->prop();
+($var ? $var : $var)[1];
+($var ? $var : $var)->d();
+($var ? $var : $var)->d()->e();
+($var ? $var : $var)->d()->e()->f();
+($var
+    ? $var->responseBody($var->currentUser)
+    : $var->responseBody($var->defaultUser))
+->map();
+($var
+    ? $var.responseBody($var->currentUser)
+    : $var.responseBody($var->defaultUser))
+->map()->filter();
+($var
+    ? $var.responseBody($var->currentUser)
+    : $var.responseBody($var))
+->map();
+$var[$var
+    ? $var->responseBody($var->currentUser)
+    : $var->responseBody($var)]
+->map();
+
+$var = $var . $var ? "()" : "";
+$var = ($var . $var) ? "()" : "";
+$var = $var . ($var ? "()" : "");
+$var = +($var ? 1 : 2);
+$var = +(+$var ? 1 : 2);
+$var = +($var++ ? 1 : 2);
+$var = ((true ? 'true' : false) ? (true ? 'true' : false) : (true ? 'true' : false));
+$var = $var ? $var1 ? 1 : 2 : $var2 ? 3 : 4;
+
+$var = $var ?: $var ?: $var ?: 'string';
+$var = ($var ?: $var) ?: $var ?: 'string';
+$var = (($var ?: $var) ?: $var) ?: 'string';
+$var = ((($var ?: $var) ?: $var) ?: 'string');
+$var = ($var ?: ($var ?: $var)) ?: 'string';
+$var = ($var ?: (($var ?: $var) ?: 'string'));
+$var = ($var ?: ($var ?: ($var ?: 'string')));
+
+$var = ($foo and $bar) ? true : false;
+$var = ($foo or $bar) ? true : false;
+$var = ($foo xor $bar) ? true : false;
+$var = ($foo = "bar") ? true : false;
+
+$var = ($foo && $bar) ? true : false;
+$var = ($foo || $bar) ? true : false;
+$var = (!$foo) ? true : false;
+$var = (new $foo) ? true : false;
+
+=====================================output=====================================
+<?php
+
+$var ? 1 : 2;
+$var ? 1 : 2;
+
+$var = $var ? 1 : 2;
+$var = $var ? 1 : 2;
+
+$var = (int) ($var + 1 === 2 ? "1" : "2");
+$var = (int) $var + 1 === 2 ? "1" : "2";
+$var = ((int) $var) + 1 === 2 ? "1" : "2";
+
+($var ? $var : $var)();
+($var ? $var : $var)->prop;
+($var ? $var : $var)->prop();
+($var ? $var : $var)[1];
+($var ? $var : $var)->d();
+($var ? $var : $var)->d()->e();
+($var ? $var : $var)->d()->e()->f();
+($var
+    ? $var->responseBody($var->currentUser)
+    : $var->responseBody($var->defaultUser)
+)->map();
+($var
+    ? $var . responseBody($var->currentUser)
+    : $var . responseBody($var->defaultUser)
+)
+    ->map()
+    ->filter();
+($var
+    ? $var . responseBody($var->currentUser)
+    : $var . responseBody($var)
+)->map();
+$var[
+    $var ? $var->responseBody($var->currentUser) : $var->responseBody($var)
+]->map();
+
+$var = $var . $var ? "()" : "";
+$var = $var . $var ? "()" : "";
+$var = $var . ($var ? "()" : "");
+$var = +($var ? 1 : 2);
+$var = +(+$var ? 1 : 2);
+$var = +($var++ ? 1 : 2);
+$var = (true
+        ? "true"
+        : false)
+    ? (true
+        ? "true"
+        : false)
+    : (true
+        ? "true"
+        : false);
+$var = ($var ? ($var1 ? 1 : 2) : $var2) ? 3 : 4;
+
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: $var ?: $var ?: "string";
+$var = $var ?: ($var ?: $var) ?: "string";
+$var = $var ?: ($var ?: $var ?: "string");
+$var = $var ?: ($var ?: ($var ?: "string"));
+
+$var = ($foo and $bar) ? true : false;
+$var = ($foo or $bar) ? true : false;
+$var = ($foo xor $bar) ? true : false;
+$var = ($foo = "bar") ? true : false;
+
+$var = $foo && $bar ? true : false;
+$var = $foo || $bar ? true : false;
+$var = !$foo ? true : false;
+$var = new $foo() ? true : false;
+
+================================================================================
+`;
+
+exports[`retif.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -3026,6 +6039,47 @@ return $this->customer->paymentService ?? null;
 ================================================================================
 `;
 
+exports[`return.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+return;
+return 1;
+return (1);
+return (1 + 2);
+return ('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' . 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString');
+return ($var1 + $var2);
+return $var ? ($var1 ? 1 : 2) : ($var2 ? 3 : 4);
+return ('veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' ? 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString' : 'veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString');
+return static::class . '@' . $method;
+return ($this->customer->paymentService ?? null);
+
+
+=====================================output=====================================
+<?php
+
+return;
+return 1;
+return 1;
+return 1 + 2;
+return "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+return $var1 + $var2;
+return $var ? ($var1 ? 1 : 2) : ($var2 ? 3 : 4);
+return "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    ? "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+    : "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
+return static::class . "@" . $method;
+return $this->customer->paymentService ?? null;
+
+================================================================================
+`;
+
 exports[`silent.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -3139,6 +6193,120 @@ echo @(1 / 0);
 ================================================================================
 `;
 
+exports[`silent.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+@foo();
+(@foo());
+
+$var = @foo();
+$var = (@foo());
+
+$var = @call() || @other();
+$var = @(call()) || @(other_class());
+$var = @(call() || call());
+
+$var = @$cache[$key];
+$var = @($cache[$key]);
+
+$var = @new MyClass();
+$var = @(new MyClass());
+
+$var = (@include("file.php")) OR die("Could not find file.php!");
+
+$var = @  $_GET['data'];
+
+if (false === @fwrite($this->stream, $message) || ($newline && (false === @fwrite($this->stream, PHP_EOL)))) {
+    // should never happen
+    throw new RuntimeException('Unable to write output.');
+}
+
+try {
+    if (($fp = @fopen($filename, "r")) == false) {
+        throw new Exception;
+    } else {
+        do_file_stuff();
+    }
+} catch (Exception $e) {
+    handle_exception();
+}
+
+@list($width, $height) = getimagesize($file);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
+
+@$var += 10;
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
+
+echo @(1 / 0);
+
+@$i / 0;
+@($i / 0);
+
+=====================================output=====================================
+<?php
+
+@foo();
+@foo();
+
+$var = @foo();
+$var = @foo();
+
+$var = @call() || @other();
+$var = @call() || @other_class();
+$var = @(call() || call());
+
+$var = @$cache[$key];
+$var = @$cache[$key];
+
+$var = @new MyClass();
+$var = @new MyClass();
+
+($var = @include "file.php") or die("Could not find file.php!");
+
+$var = @$_GET["data"];
+
+if (
+    false === @fwrite($this->stream, $message) ||
+    ($newline && false === @fwrite($this->stream, PHP_EOL))
+) {
+    // should never happen
+    throw new RuntimeException("Unable to write output.");
+}
+
+try {
+    if (($fp = @fopen($filename, "r")) == false) {
+        throw new Exception();
+    } else {
+        do_file_stuff();
+    }
+} catch (Exception $e) {
+    handle_exception();
+}
+
+@[$width, $height] = getimagesize($file);
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @(list($width, $height) = getimagesize($file));
+
+@$var += 10;
+// Todo https://github.com/glayzzle/php-parser/issues/356
+// @($var += 10);
+
+echo @(1 / 0);
+
+@$i / 0;
+@($i / 0);
+
+================================================================================
+`;
+
 exports[`throw.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
@@ -3192,9 +6360,208 @@ $value = $a ? $a : throw new \\InvalidArgumentException("In ternary");
 ================================================================================
 `;
 
+exports[`throw.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+throw new Exception('Division by zero.');
+throw (new Exception('Division by zero.'));
+throw $e;
+throw ($e);
+throw new \\Exception("Bye");
+throw (new \\Exception("Bye"));
+
+if (!$var) {
+    throw new Exception('Division by zero.');
+    throw (new Exception('Division by zero.'));
+    throw $e;
+    throw ($e);
+    throw new \\Exception("Bye");
+    throw (new \\Exception("Bye"));
+}
+
+die(throw new \\Exception('In Statement'));
+$throws = fn() => throw new \\RuntimeException('In arrow function');
+$value = $a ? $a : throw new \\InvalidArgumentException('In ternary');
+=====================================output=====================================
+<?php
+
+throw new Exception("Division by zero.");
+throw new Exception("Division by zero.");
+throw $e;
+throw $e;
+throw new \\Exception("Bye");
+throw new \\Exception("Bye");
+
+if (!$var) {
+    throw new Exception("Division by zero.");
+    throw new Exception("Division by zero.");
+    throw $e;
+    throw $e;
+    throw new \\Exception("Bye");
+    throw new \\Exception("Bye");
+}
+
+die(throw new \\Exception("In Statement"));
+$throws = fn() => throw new \\RuntimeException("In arrow function");
+$value = $a ? $a : throw new \\InvalidArgumentException("In ternary");
+
+================================================================================
+`;
+
 exports[`unary.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
++$var;
++($var);
+(+$var);
+
+-$var;
+-($var);
+(-$var);
+
+~$var;
+~($var);
+(~$var);
+
+!$var;
+!($var);
+(!$var);
+
+!!$var;
+!(!$var);
+(!(!$var));
+(!!$var);
+
+$var = (+$var);
+$var = +(+$var);
+
+$var = (-$var);
+$var = -(-$var);
+
+$var = -(+$var);
+$var = +(-$var);
+
+$var = (~$var);
+$var = ~(~$var);
+
+$var = (!$var);
+$var = !(!$var);
+
+$a = +$a ** 1;
+$a = (+$a) ** 1;
+$a = 1 ** (+$a);
+
+$var = call(+$a);
+$var = call((+$a));
+
+$var = +($foo->bar);
+
+$var = +$var || +$var;
+$var = (+$var) || (+$var);
+$var = ((+$var) || (+$var));
+
+$var = -(+($var));
+
+$var = ~(+$var);
+
+$var = ~$var += 1;
+$var = ~($var += 1);
+
+(+$a->b)->call();
+(+$a->b)[1];
+(+$var)();
+$var = call(+$var->_uuidCounter);
+
+if (!$token = $this->getToken()) {}
+if (!($token = $this->getToken())) {}
+
+=====================================output=====================================
+<?php
+
++$var;
++$var;
++$var;
+
+-$var;
+-$var;
+-$var;
+
+~$var;
+~$var;
+~$var;
+
+!$var;
+!$var;
+!$var;
+
+!!$var;
+!!$var;
+!!$var;
+!!$var;
+
+$var = +$var;
+$var = +(+$var);
+
+$var = -$var;
+$var = -(-$var);
+
+$var = -+$var;
+$var = +-$var;
+
+$var = ~$var;
+$var = ~~$var;
+
+$var = !$var;
+$var = !!$var;
+
+$a = (+$a) ** 1;
+$a = (+$a) ** 1;
+$a = 1 ** +$a;
+
+$var = call(+$a);
+$var = call(+$a);
+
+$var = +$foo->bar;
+
+$var = +$var || +$var;
+$var = +$var || +$var;
+$var = +$var || +$var;
+
+$var = -+$var;
+
+$var = ~+$var;
+
+$var = ~($var += 1);
+$var = ~($var += 1);
+
+(+$a->b)->call();
+(+$a->b)[1];
+(+$var)();
+$var = call(+$var->_uuidCounter);
+
+if (!($token = $this->getToken())) {
+}
+if (!($token = $this->getToken())) {
+}
+
+================================================================================
+`;
+
+exports[`unary.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -3458,9 +6825,230 @@ function foo($a = 1, $b = "string", $c = true, $d = __LINE__)
 ================================================================================
 `;
 
+exports[`unnecessary.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+$test = 1;
+$test = (1);
+$test = ((1));
+$test = (((1)));
+
+$var = (true);
+$var = (false);
+
+$var = ('string');
+$var = ("string");
+$var = ("string");
+
+$var = (1234); // decimal number
+$var = (-123); // a negative number
+$var = -(123); // a negative number
+$var = (0123); // octal number (equivalent to 83 decimal)
+$var = (0x1A); // hexadecimal number (equivalent to 26 decimal)
+$var = (0b11111111); // binary number (equivalent to 255 decimal)
+
+$var = (__LINE__);
+
+$var = (<<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD
+);
+$var = (
+<<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD
+);
+
+$var = (<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+);
+
+$var = (
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+);
+
+$var = ($var);
+$var = ($$var);
+
+function foo($a = (1), $b = ('string'), $c = (true), $d = (__LINE__))
+{
+    echo "Example function.\\n";
+}
+
+=====================================output=====================================
+<?php
+$test = 1;
+$test = 1;
+$test = 1;
+$test = 1;
+
+$var = true;
+$var = false;
+
+$var = "string";
+$var = "string";
+$var = "string";
+
+$var = 1234; // decimal number
+$var = -123; // a negative number
+$var = -123; // a negative number
+$var = 0123; // octal number (equivalent to 83 decimal)
+$var = 0x1a; // hexadecimal number (equivalent to 26 decimal)
+$var = 0b11111111; // binary number (equivalent to 255 decimal)
+
+$var = __LINE__;
+
+$var = <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+$var = <<<EOD
+Example of string
+spanning multiple lines
+using heredoc syntax.
+EOD;
+
+$var = <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+
+$var = <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+
+$var = $var;
+$var = $$var;
+
+function foo($a = 1, $b = "string", $c = true, $d = __LINE__)
+{
+    echo "Example function.\\n";
+}
+
+================================================================================
+`;
+
 exports[`yield.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+function gen_one_to_three() {
+    for ($i = 1; $i <= 3; $i++) {
+        yield;
+        yield $i;
+        (yield $i);
+        yield from from();
+        (yield from from());
+        (yield f())->b;
+        !(yield $var);
+        yield (yield $var);
+    }
+
+    $var = yield;
+    $var = yield $var;
+    $var += yield $var;
+    $var = (yield $var);
+    $var += (yield $var);
+    $var = yield $key => $var;
+    $var = (yield $key => $var);
+    $var = !yield $var;
+    $var = !(yield $var);
+    $var = yield (yield $var);
+    $var = yield 1 ? 1 : 1;
+    $var = (yield 1) ? 1 : 1;
+    $var = yield 1 ? yield 1 : yield 1;
+    $var = (yield 1) ? (yield 1) : (yield 1);
+    $var = yield $var->b;
+    $var = (yield $var)->b;
+    $var = yield $var->b();
+    $var = (yield $var)->b();
+    $var = yield $var[1];
+    $var = (yield $var)[1];
+
+    call(yield $var);
+
+    return yield from nine_ten();
+
+    foreach($SubTrav as $SubItem) yield $SubItem;
+}
+
+=====================================output=====================================
+<?php
+
+function gen_one_to_three()
+{
+    for ($i = 1; $i <= 3; $i++) {
+        yield;
+        yield $i;
+        yield $i;
+        yield from from();
+        yield from from();
+        (yield f())->b;
+        !(yield $var);
+        yield (yield $var);
+    }
+
+    $var = yield;
+    $var = (yield $var);
+    $var += (yield $var);
+    $var = (yield $var);
+    $var += (yield $var);
+    $var = (yield $key => $var);
+    $var = (yield $key => $var);
+    $var = !(yield $var);
+    $var = !(yield $var);
+    $var = (yield (yield $var));
+    $var = (yield 1 ? 1 : 1);
+    $var = (yield 1) ? 1 : 1;
+    $var = (yield 1 ? yield 1 : yield 1);
+    $var = (yield 1) ? yield 1 : yield 1;
+    $var = (yield $var->b);
+    $var = (yield $var)->b;
+    $var = (yield $var->b());
+    $var = (yield $var)->b();
+    $var = (yield $var[1]);
+    $var = (yield $var)[1];
+
+    call(yield $var);
+
+    return yield from nine_ten();
+
+    foreach ($SubTrav as $SubItem) {
+        yield $SubItem;
+    }
+}
+
+================================================================================
+`;
+
+exports[`yield.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
