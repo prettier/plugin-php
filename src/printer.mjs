@@ -37,6 +37,7 @@ import {
   isReferenceLikeNode,
   normalizeMagicMethodName,
   isSimpleCallArgument,
+  isMinVersion,
 } from "./util.mjs";
 
 const {
@@ -64,10 +65,6 @@ const {
   isNextLineEmpty,
   isPreviousLineEmpty,
 } = prettierUtil;
-
-function isMinVersion(actualVersion, requiredVersion) {
-  return parseFloat(actualVersion) >= parseFloat(requiredVersion);
-}
 
 function shouldPrintComma(options, requiredVersion) {
   if (!options.trailingCommaPHP) {
