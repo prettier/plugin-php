@@ -1,6 +1,6 @@
 import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.mjs";
 
-function needsParens(path) {
+function needsParens(path, options) {
   const { parent } = path;
 
   if (!parent) {
