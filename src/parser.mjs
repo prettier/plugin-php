@@ -10,11 +10,16 @@ function parse(text, opts) {
   // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
 
+  const parserOpts = Object.assign(
+    { extractDoc: true },
+    // only pass the version if user requested 8.4 syntax; parser is stricter
+    // about allowed syntax than we are and currenly defaults to support for 8.3
+    opts && opts.phpVersion === "8.4" ? { version: opts.phpVersion } : {}
+  );
+
   // initialize a new parser instance
   const parser = new engine({
-    parser: {
-      extractDoc: true,
-    },
+    parser: parserOpts,
     ast: {
       withPositions: true,
       withSource: true,
