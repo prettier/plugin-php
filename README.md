@@ -272,6 +272,10 @@ Sublime Text support is available through Package Control and the [JsPrettier](h
 
 The official [prettier plugin for vim](https://github.com/prettier/vim-prettier) has built-in support for plugin-php since 1.0.
 
+### Nova
+
+The [Prettier⁺ Extension](https://extensions.panic.com/extensions/stonerl/stonerl.prettier/) has built-in support for plugin-php.
+
 #### ALE
 
 The linting plugin ALE has built-in support for prettier and its plugins. Just add prettier to your [list of fixers](https://github.com/w0rp/ale#2ii-fixing). For example:
