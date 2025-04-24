@@ -709,6 +709,10 @@ function memoize(fn) {
   };
 }
 
+function isMinVersion(actualVersion, requiredVersion) {
+  return parseFloat(actualVersion) >= parseFloat(requiredVersion);
+}
+
 export {
   printNumber,
   getPrecedence,
@@ -740,4 +744,5 @@ export {
   normalizeMagicMethodName,
   isSimpleCallArgument,
   memoize,
+  isMinVersion,
 };

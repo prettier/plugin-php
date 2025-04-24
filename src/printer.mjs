@@ -37,6 +37,7 @@ import {
   isReferenceLikeNode,
   normalizeMagicMethodName,
   isSimpleCallArgument,
+  isMinVersion,
 } from "./util.mjs";
 
 const {
@@ -64,10 +65,6 @@ const {
   isNextLineEmpty,
   isPreviousLineEmpty,
 } = prettierUtil;
-
-function isMinVersion(actualVersion, requiredVersion) {
-  return parseFloat(actualVersion) >= parseFloat(requiredVersion);
-}
 
 function shouldPrintComma(options, requiredVersion) {
   if (!options.trailingCommaPHP) {
@@ -777,11 +774,12 @@ function printBinaryExpression(
       parts.push(print("left"));
     }
 
-    const shouldInline = shouldInlineLogicalExpression(node);
-
-    const right = shouldInline
-      ? [node.type, " ", print("right")]
-      : [node.type, line, print("right")];
+    const right =
+      node.left.kind === "new" && node.type !== "."
+        ? [node.type, print("right")]
+        : shouldInlineLogicalExpression(node)
+          ? [node.type, " ", print("right")]
+          : [node.type, line, print("right")];
 
     // If there's only a single binary expression, we want to create a group
     // in order to avoid having a small right part like -1 be on its own line.
@@ -797,6 +795,7 @@ function printBinaryExpression(
 
     const shouldNotHaveWhitespace =
       isDocNode(node.left) ||
+      (node.left.kind === "new" && node.type !== ".") ||
       (node.left.kind === "bin" && isDocNode(node.left.right));
 
     parts.push(
