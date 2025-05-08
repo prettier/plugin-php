@@ -20,7 +20,7 @@
   <!-- <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="monthly downloads" src="https://img.shields.io/npm/dm/@prettier/plugin-php.svg?style=flat-square">
   </a> -->
-  <a href="#badge">
+  <a href="https://github.com/prettier/prettier/tree/main#badge">
     <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
   </a>
   <a href="https://x.com/intent/follow?screen_name=PrettierCode">
