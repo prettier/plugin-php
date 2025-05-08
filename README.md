@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/prettier/plugin-php/actions">
-    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/prettier/plugin-php/Node CI?style=flat-square">
+    <img alt="GitHub Workflow Status" src="https://github.com/prettier/plugin-php/actions/workflows/nodejs.yml/badge.svg">
   </a>
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
