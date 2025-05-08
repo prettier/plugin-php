@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/prettier/plugin-php/actions?query=branch%3Amain">
-    <img alt="CI Status" src="https://img.shields.io/github/actions/workflow/status/prettier/plugin-php/nodejs.yml?style=flat-square&label=CI">
+    <img alt="CI Status" src="https://img.shields.io/github/actions/workflow/status/prettier/plugin-php/nodejs.yml?style=flat-square&label=CI&branch=main">
   </a>
   <a href="https://www.npmjs.com/package/@prettier/plugin-php">
     <img alt="npm version" src="https://img.shields.io/npm/v/@prettier/plugin-php.svg?style=flat-square">
