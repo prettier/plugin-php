@@ -17,7 +17,6 @@ $var = new class {
     const
         // Comment 1
         CONSTANT
-        // Comment 2
         =
         // Comment 3
         'string';
@@ -29,7 +28,6 @@ $var = new class {
         const
         // Comment 2
         CONSTANT
-        // Comment 3
         =
         // Comment 4
         'string';

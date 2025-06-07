@@ -1021,7 +1021,6 @@ $var = new class {
     const
         // Comment 1
         CONSTANT
-        // Comment 2
         =
         // Comment 3
         'string';
@@ -1033,7 +1032,6 @@ $var = new class {
         const
         // Comment 2
         CONSTANT
-        // Comment 3
         =
         // Comment 4
         'string';
@@ -1058,7 +1056,6 @@ $var = new class {
 $var = new class {
     // Comment 1
     const CONSTANT =
-        // Comment 2
         // Comment 3
         "string";
 };
@@ -1067,7 +1064,6 @@ $var = new class {
     // Comment 1
     // Comment 2
     public const CONSTANT =
-        // Comment 3
         // Comment 4
         "string";
 };
