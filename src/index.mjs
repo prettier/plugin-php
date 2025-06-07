@@ -1,8 +1,6 @@
 import { doc } from "prettier";
-import {
-  LINGUIST_LANGUAGES_PHP,
-  LINGUIST_LANGUAGES_HTML_PHP,
-} from "./linguist-languages.cjs";
+import LINGUIST_LANGUAGES_PHP from "linguist-languages/data/PHP";
+import LINGUIST_LANGUAGES_HTML_PHP from "linguist-languages/data/HTML_2b_PHP";
 import parse from "./parser.mjs";
 import print from "./printer.mjs";
 import clean from "./clean.mjs";
