@@ -14,6 +14,7 @@ function parse(text, opts) {
   const parser = new engine({
     parser: {
       extractDoc: true,
+      version: opts.phpVersion,
     },
     ast: {
       withPositions: true,
