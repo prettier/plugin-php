@@ -53,6 +53,12 @@ final class DomainEventMessage
     }
 }
 
+// issue #2360
+#[Route('route/path', name: 'very_very_very_very_very_very_long_route_name', methods: ['GET'])]
+class Controller
+{
+}
+
 #[
     Attr1(Attr1::FOO | Attr1::BAR),
     Attr2(-20 * 5 + 10)
