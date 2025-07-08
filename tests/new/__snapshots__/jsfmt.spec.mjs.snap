@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`new.php 1`] = `
 ====================================options=====================================
@@ -225,7 +225,7 @@ $class = (new Foo([
         "VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue",
 ]))->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
 $class = (new PendingDispatch(new $this->class(...func_get_args())))->chain(
-    $this->chain
+    $this->chain,
 );
 $dumper = in_array(PHP_SAPI, ["cli", "phpdbg"])
     ? new CliDumper()
@@ -236,10 +236,10 @@ $class = new static(
         "] with ID [" .
         $model->getKey() .
         "] to JSON: " .
-        $message
+        $message,
 );
 $response = new \\Illuminate\\Http\\JsonResponse(
-    new JsonResponseTestJsonSerializeObject()
+    new JsonResponseTestJsonSerializeObject(),
 );
 $result = (new Pipeline(new \\Illuminate\\Container\\Container()))
     ->send("foo")
@@ -250,62 +250,64 @@ $result = (new Pipeline(new \\Illuminate\\Container\\Container()))
 
 $var = new Foo(
     <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
     ,
-    $arg
+    $arg,
 );
 
 $var = new Foo(
     $arg,
     <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
+    ,
 );
 
 $var = new Foo(
     $arg,
     <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
     ,
-    $arg
+    $arg,
 );
 
 $var = new Foo(
     <<<EOF
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
     ,
-    $arg
+    $arg,
 );
 
 $var = new Foo(
     $arg,
     <<<EOF
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
+    ,
 );
 
 $var = new Foo(
     $arg,
     <<<EOF
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
     ,
-    $arg
+    $arg,
 );
 
 $var = new class {
@@ -320,7 +322,7 @@ setLogger(
         {
             echo $msg;
         }
-    }
+    },
 );
 $var = new class (
     $arg,
@@ -330,7 +332,7 @@ $var = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends SomeClass implements SomeInterface {
     public function log($msg)
     {
@@ -365,21 +367,21 @@ string');
 new Foo(
     'string
 string
-string'
+string',
 );
 
 new Foo(
     $a,
     'string
 string
-string'
+string',
 );
 
 new Foo(
     'string
 string
 string',
-    $b
+    $b,
 );
 
 new Foo("string
@@ -390,7 +392,7 @@ new Foo(
     "string
 string
 string
-$var"
+$var",
 );
 new Foo(\`string
 string
@@ -400,19 +402,19 @@ new Foo(
     \`string
 string
 string
-$var\`
+$var\`,
 );
 
 $var = new class (
     'string
 string
-string'
+string',
 ) {};
 
 $var = new class (
     'string
 string
-string'
+string',
 ) {};
 
 $var = new class (10) extends SomeClass implements SomeInterface {

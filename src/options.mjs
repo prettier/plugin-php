@@ -5,7 +5,7 @@ export default {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "7.0",
+    default: "8.3",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },

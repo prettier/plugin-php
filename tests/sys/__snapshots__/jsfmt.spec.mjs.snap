@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`sys.php 1`] = `
 ====================================options=====================================
@@ -40,12 +40,12 @@ echo "test echo";
 echo $test, $other;
 
 $info = ["coffee", "brown", "caffeine"];
-list($drink, $color, $power) = $info;
-list(
+[$drink, $color, $power] = $info;
+[
     $reallyReallyReallyReallyLongName,
     $otherReallyReallyReallyLongName,
     $lastOne,
-) = $info;
+] = $info;
 
 print "test print";
 print "parens test";
@@ -68,7 +68,7 @@ isset(
     $test,
     $test,
     $test,
-    $test
+    $test,
 );
 
 isset($test["foo"]);

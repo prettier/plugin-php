@@ -303,7 +303,7 @@ $app->setLogger(
         {
             echo $msg;
         }
-    }
+    },
 );
 $app->setLogger(
     new class {
@@ -311,7 +311,7 @@ $app->setLogger(
         {
             echo $msg;
         }
-    }
+    },
 );
 
 var_dump(
@@ -324,7 +324,7 @@ var_dump(
         }
 
         use SomeTrait;
-    }
+    },
 );
 
 class Outer
@@ -427,7 +427,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) {};
 
 $class = new class (
@@ -438,7 +438,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) implements MyOtherClass {};
 
 $class = new class (
@@ -449,7 +449,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) implements MyOtherClass, MyOtherClass1, MyOtherClass2 {};
 
 $class = new class (
@@ -460,7 +460,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyOtherClass {};
 
@@ -472,7 +472,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) implements
     MyOtherClass,
     MyOtherClass,
@@ -487,7 +487,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends MyOtherClass {};
 
 $class = new class (
@@ -498,7 +498,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
@@ -510,7 +510,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends MyOtherClass implements MyI {};
 
 $class = new class (
@@ -521,7 +521,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends MyOtherClass implements MyI, MyII, MyIII {};
 
 $class = new class (
@@ -532,7 +532,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends MyOtherClass implements
     VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
@@ -544,7 +544,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 ) extends MyOtherClass implements
     MyInterface,
     MyOtherInterface,
@@ -558,7 +558,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements MyI {};
@@ -571,7 +571,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements
@@ -587,7 +587,7 @@ $class = new class (
     $other_arg,
     function () {
         return 1;
-    }
+    },
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
@@ -1004,7 +1004,7 @@ abstract class ReallyReallyReallyLongClassName
         $test_int = null,
         $test_string = "hi",
         readonly int $test_readonly,
-        public readonly string $test_promoted_readonly
+        public readonly string $test_promoted_readonly,
     ) {
         parent::__construct($test_int ?: 1);
         $this->other = $test_string;
@@ -1016,13 +1016,13 @@ abstract class ReallyReallyReallyLongClassName
     public static function test_static_constructor(
         $test,
         $test_int,
-        $test_string
+        $test_string,
     ) {
         $model = new self($test, $test_int, $test_string);
         $model = new self(
             $really_really_really_really_really_really_really_really_long_array,
             $test_int,
-            $test_string
+            $test_string,
         );
         return $model;
     }
@@ -1048,7 +1048,7 @@ abstract class ReallyReallyReallyLongClassName
 
     public function reallyReallyReallyReallyReallyReallyReallyLongMethodName(
         $input,
-        $otherInput = 1
+        $otherInput = 1,
     ) {
         return true;
     }
@@ -1115,7 +1115,7 @@ abstract class ReallyReallyReallyLongClassName
     public function longLongAnotherFunction(
         string $foo,
         string $bar,
-        int $baz
+        int $baz,
     ): string {
         return "foo";
     }
@@ -1123,7 +1123,7 @@ abstract class ReallyReallyReallyLongClassName
     public function longLongAnotherFunctionOther(
         string $foo,
         string $bar,
-        int $baz
+        int $baz,
     ) {
         return "foo";
     }
@@ -1141,7 +1141,7 @@ abstract class ReallyReallyReallyLongClassName
 
 $this->something->method(
     $argument,
-    $this->more->stuff($this->even->more->things->complicatedMethod())
+    $this->more->stuff($this->even->more->things->complicatedMethod()),
 );
 
 class A {}
@@ -1224,9 +1224,9 @@ class field extends \\models\\base
             array_merge(
                 $configs,
                 $field_type->process_field_config_from_user(
-                    $input["definition"]
-                )
-            )
+                    $input["definition"],
+                ),
+            ),
         );
         unset($input["definition"]);
     }
@@ -1379,7 +1379,7 @@ class Promoted
     public function __construct(
         public int $a,
         private float $b,
-        protected string $d
+        protected string $d,
     ) {}
 }
 

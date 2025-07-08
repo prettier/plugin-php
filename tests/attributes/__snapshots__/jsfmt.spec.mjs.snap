@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`attributes.php 1`] = `
 ====================================options=====================================
@@ -158,25 +158,25 @@ class D
         "aaaaaaaaaaaaa",
         "vvvvvvvvvvvv",
         "cccccccccc",
-        "eeeeeeeeeee"
+        "eeeeeeeeeee",
     ),
-    X
+    X,
 ]
 function Y(
     #[
         ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
             12345678,
-            1234578
-        )
+            1234578,
+        ),
     ]
-    string $_
+    string $_,
 ): string {
     return new #[NON, Anon] class {};
 }
 
 #[
     IA("interface"),
-    \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB
+    \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB,
 ]
 interface IC
 {
@@ -209,7 +209,7 @@ class ValueModel
 {
     #[
         Assert\\NotBlank(allowNull: false, groups: ["foo"]),
-        Assert\\Length(max: 255, groups: ["foo"])
+        Assert\\Length(max: 255, groups: ["foo"]),
     ]
     public ?string $value = null;
 }
@@ -233,7 +233,7 @@ class ParamCommentFunctionAnnotation
     #[Foo]
     function bar(
         int $a, // parameter comment
-        int $b
+        int $b,
     ) {
         return $a + $b;
     }
@@ -242,7 +242,7 @@ class ParamCommentFunctionAnnotation
     function bar2(
         int $a,
         int $middle, // parameter comment
-        int $b
+        int $b,
     ) {
         return $a + $middle + $b;
     }

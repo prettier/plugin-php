@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`bin.php 1`] = `
 ====================================options=====================================
@@ -455,7 +455,7 @@ function f()
 {
     if (
         get_option(
-            "woocommerce_product_cart_actions_notification_more_cart"
+            "woocommerce_product_cart_actions_notification_more_cart",
         ) === "yes" &&
         count($cartItems) > 0
     ) {
@@ -490,7 +490,7 @@ call(
     "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery"
         ? 1
         : 2,
-    "arg"
+    "arg",
 );
 
 $var =
@@ -660,13 +660,13 @@ $var = call($var > $someOtherReallyReallyLongVariable ? true : false);
 $var = call(
     $someOtherReallyReallyLongVariable > $someOtherReallyReallyLongVariable
         ? true
-        : false
+        : false,
 );
 $var = call(
     $someOtherReallyReallyReallyReallyReallyReallyLongVariable >
     $someOtherReallyReallyReallyReallyReallyReallyLongVariable
         ? true
-        : false
+        : false,
 );
 
 return $var > $var ? true : false;
@@ -686,7 +686,7 @@ func(
     $glimseGlyphsHazardNoopsTieTie === averredBathersBoxroomBuggyNurl &&
     $anodyneCondosMalateOverateRetinol
         ? $annularCooeedSplicesWalksWayWay
-        : $kochabCooieGameOnOboleUnweave
+        : $kochabCooieGameOnOboleUnweave,
 );
 
 $var = $a ?? $b;
@@ -714,7 +714,7 @@ $var =
                 call(
                     $someOtherReallyReallyLongVariable,
                     $someOtherReallyReallyLongVariable,
-                    $someOtherReallyReallyLongVariable
+                    $someOtherReallyReallyLongVariable,
                 ))));
 $var =
     $someOtherReallyReallyLongVariable ??

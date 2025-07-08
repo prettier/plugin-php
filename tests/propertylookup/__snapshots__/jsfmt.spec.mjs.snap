@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`offsets.php 1`] = `
 ====================================options=====================================
@@ -115,7 +115,7 @@ $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
 $this->loooooooooooong->loooooooooooong->loooooooooooong->lookup =
     $other->looooooooooong->stuff;
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    "instance-resource-id"
+    "instance-resource-id",
 );
 
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty;

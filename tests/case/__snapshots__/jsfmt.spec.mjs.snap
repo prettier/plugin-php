@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`case.php 1`] = `
 ====================================options=====================================
@@ -332,7 +332,7 @@ final class MyClass extends Bar implements iTemplate
                 break;
         }
 
-        while (list($key, $value) = foo($arr)) {
+        while ([$key, $value] = foo($arr)) {
             if (!($key % 2)) {
                 continue;
             }
@@ -363,7 +363,7 @@ final class MyClass extends Bar implements iTemplate
         $noArgs_longVars = function () use (
             $longVar1,
             $longerVar2,
-            $muchLongerVar3
+            $muchLongerVar3,
         ) {
             // Body
         };
@@ -484,7 +484,7 @@ final class MyClass extends Bar implements iTemplate
         object $param6,
         ClassA $param7,
         self $param8,
-        Name\\Space\\ClassA $param8
+        Name\\Space\\ClassA $param8,
     ): void {
         // Nothing
     }

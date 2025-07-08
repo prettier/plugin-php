@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`closure.php 1`] = `
 ====================================options=====================================
@@ -158,7 +158,7 @@ $closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
 $longArgs_noVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) {
     // body
 };
@@ -166,7 +166,7 @@ $longArgs_noVars = function (
 $noArgs_longVars = function () use (
     $longLongLongLongVar1,
     $longerLongerVar2,
-    $muchLongerVar3
+    $muchLongerVar3,
 ) {
     // body
 };
@@ -174,11 +174,11 @@ $noArgs_longVars = function () use (
 $longArgs_longVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) use (
     $longLongLongLongLongLongLongVar1,
     $longerLongerLongerLongerVar2,
-    $muchLongerVar3
+    $muchLongerVar3,
 ) {
     // body
 };
@@ -186,7 +186,7 @@ $longArgs_longVars = function (
 $longArgs_shortVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) use ($var1) {
     // body
 };
@@ -194,7 +194,7 @@ $longArgs_shortVars = function (
 $shortArgs_longVars = function ($arg) use (
     $longVar1,
     $longerVar2,
-    $muchLongerVar3
+    $muchLongerVar3,
 ) {
     // body
 };
@@ -204,7 +204,7 @@ $foo->bar(
     function ($arg2) use ($var1) {
         // body
     },
-    $longLongLongLongLongLongLongLongLongLongArg3
+    $longLongLongLongLongLongLongLongLongLongArg3,
 );
 
 $emptyFunc = function () {};
@@ -216,7 +216,7 @@ $emptyFuncWithComment = function () {
 $longArgs_noVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) {
     // body
 };
@@ -228,7 +228,7 @@ $noArgs_longVars = function () use ($longVar1, $longerVar2, $muchLongerVar3) {
 $longArgs_longVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) use ($longVar1, $longerVar2, $muchLongerVar3) {
     // body
 };
@@ -236,7 +236,7 @@ $longArgs_longVars = function (
 $longArgs_shortVars = function (
     $longArgument,
     $longerArgument,
-    $muchLongerArgument
+    $muchLongerArgument,
 ) use ($var1) {
     // body
 };
@@ -244,7 +244,7 @@ $longArgs_shortVars = function (
 $shortArgs_longVars = function ($arg) use (
     $longVar1,
     $longerVar2,
-    $muchLongerVar3
+    $muchLongerVar3,
 ) {
     // body
 };
@@ -264,7 +264,7 @@ $rTDWU = function (array $array) use ($var1, $var2): int {
 $rTDWLU = function (array $array) use (
     $longLongLongLongLongLongLongVar1,
     $longerLongerLongerLongerVar2,
-    $muchLongerVar3
+    $muchLongerVar3,
 ): int {
     return array_sum($array);
 };

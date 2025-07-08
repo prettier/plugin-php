@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`parameter.php 1`] = `
 ====================================options=====================================
@@ -180,7 +180,7 @@ function testReturn(?string $name): ?string
 }
 
 function intArg(
-    int $c = 111111111111111111111111111111111111111111111111111111111111111111111111
+    int $c = 111111111111111111111111111111111111111111111111111111111111111111111111,
 ) {
     var_dump($c);
 }
@@ -190,7 +190,7 @@ function bar(
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    ]
+    ],
 ) {
     return $arg;
 }
@@ -202,7 +202,7 @@ function bar1(
         "key2" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 
         "key3" => "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
-    ]
+    ],
 ) {
     return $arg;
 }
@@ -211,7 +211,7 @@ function bar2(
     $arg =
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
             "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" .
-            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
+            "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString",
 ) {
     return $arg;
 }
@@ -219,7 +219,7 @@ function bar2(
 function bar3(
     $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
         ? "1"
-        : "2"
+        : "2",
 ) {
     return $arg;
 }
@@ -227,7 +227,7 @@ function bar3(
 function bar4(
     string $arg = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
         ? "1"
-        : "2"
+        : "2",
 ) {
     return $arg;
 }
@@ -237,7 +237,7 @@ function bar5(
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString" ===
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongString"
             ? "1"
-            : "2"
+            : "2",
 ) {
     return $arg;
 }
@@ -245,7 +245,7 @@ function bar5(
 function foo(
     $arg = 'string
 string
-string'
+string',
 ) {}
 
 function foo(
@@ -254,7 +254,7 @@ string
 string',
     $arg = 'string
 string
-string'
+string',
 ) {}
 
 function foo(
@@ -262,7 +262,7 @@ function foo(
     $b = 'string
 string
 string',
-    $c
+    $c,
 ) {}
 
 ================================================================================
