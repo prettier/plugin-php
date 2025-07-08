@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`silent.php 1`] = `
 ====================================options=====================================
@@ -41,7 +41,7 @@ $variable = @foo()
 $variable = @foo(
     "VeryVeryVeryVeryVeryVeryLongArgument",
     "VeryVeryVeryVeryVeryVeryLongArgument",
-    "VeryVeryVeryVeryVeryVeryLongArgument"
+    "VeryVeryVeryVeryVeryVeryLongArgument",
 );
 @trigger_error($error, E_USER_DEPRECATED);
 $value = @$cache[$key];

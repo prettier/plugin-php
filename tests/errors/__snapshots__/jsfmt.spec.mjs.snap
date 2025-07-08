@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`errors.php 1`] = `
 ====================================options=====================================
@@ -97,7 +97,7 @@ try {
 }
 
 throw new VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClassException(
-    "exception"
+    "exception",
 );
 throw $e;
 throw new \\Exception("Bad logic in order cancel");

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`variadic.php 1`] = `
 ====================================options=====================================
@@ -41,7 +41,7 @@ function f($req, $opt = null, ...$params)
         '$req: %d; $opt: %d; number of params: %d' . "\\n",
         $req,
         $opt,
-        count($params)
+        count($params),
     );
 }
 

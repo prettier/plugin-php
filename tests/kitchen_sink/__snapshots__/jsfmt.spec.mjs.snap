@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`kitchen_sink.php 1`] = `
 ====================================options=====================================
@@ -77,7 +77,7 @@ if ($test == 1) {
 function really_long_function(
     $test2 = 1,
     $long_parameter_name,
-    $even_longer_longer_longer_longer_longer_parameter_name
+    $even_longer_longer_longer_longer_longer_parameter_name,
 ) {
     return $test2;
 }

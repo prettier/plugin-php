@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`functions.php 1`] = `
 ====================================options=====================================
@@ -205,7 +205,7 @@ function two_args_other($x, $y, $z, $foo, $bar)
 
 function reeeeeeeeeeaaaaaaaallllllllyyyyyy_llloooooooonnnnnnggggg(
     $soooooooooooo_looooooooonnnng,
-    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr
+    $eeeeeeeeevvveeeeeeeennnn_loooooonnngggeeeerrrr,
 ) {
     return $soooooooooooo_looooooooonnnng;
 }
@@ -229,7 +229,7 @@ function type_hinting_test(
     float $float_test,
     iterable $iterable_test,
     int $int_test,
-    string $string_test = ""
+    string $string_test = "",
 ) {
     return $int_test;
 }
@@ -242,7 +242,7 @@ $anonymousLongVariableName = function (
     $name,
     $more,
     $params,
-    $looooooooooooooooooooooooooooooooong
+    $looooooooooooooooooooooooooooooooong,
 ) use ($all, $kinds, $of, $stuff) {
     printf("Hello %s", $name);
 };
@@ -321,7 +321,7 @@ function the_panel_title(
     $data_name = null,
     $data_livetext = false,
     $depth = 0,
-    $index = 0
+    $index = 0,
 ) {
     if (empty($title) && !is_panel_preview()) {
         return "";
@@ -346,7 +346,7 @@ abstract class AbstractClass
         $data_name = null,
         $data_livetext = false,
         $depth = 0,
-        $index = 0
+        $index = 0,
     );
 }
 
@@ -362,13 +362,13 @@ class Foo
         $data_name = null,
         $data_livetext = false,
         $depth = 0,
-        $index = 0
+        $index = 0,
     ) {}
     public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
     public function floatVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(): float {}
     public function otherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName() {}
     public function otherOtherVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongName(
-        $arg
+        $arg,
     ) {}
     public function veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongNameAndBreak(
         $title = null,
@@ -376,7 +376,7 @@ class Foo
         $data_name = null,
         $data_livetext = false,
         $depth = 0,
-        $index = 0
+        $index = 0,
     ) {}
 }
 

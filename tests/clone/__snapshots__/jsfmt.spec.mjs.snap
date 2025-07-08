@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`clone.php 1`] = `
 ====================================options=====================================
@@ -23,7 +23,7 @@ $obj2 = clone $obj;
 $obj2 = clone $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongClass;
 $obj2 = clone $this->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLeadDeveloper;
 $OneSecAgo = (clone $Now)->veryVeryVeryVeryVeryVeryVeryVeryLongMethod(
-    new \\DateInterval("PT1S")
+    new \\DateInterval("PT1S"),
 );
 
 ================================================================================

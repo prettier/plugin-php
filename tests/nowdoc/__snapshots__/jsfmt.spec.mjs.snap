@@ -1,8 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`nowdoc.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -4146,6 +4147,7 @@ EOD;
 exports[`single.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

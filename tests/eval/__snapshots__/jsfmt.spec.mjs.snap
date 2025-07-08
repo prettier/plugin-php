@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`eval.php 1`] = `
 ====================================options=====================================
@@ -121,18 +121,18 @@ $var\`
 );
 eval(
     <<<FOO
-string
-string
-string
-$var
-FOO
+    string
+    string
+    string
+    $var
+    FOO
 );
 eval(
     <<<'FOO'
-string
-string
-string
-FOO
+    string
+    string
+    string
+    FOO
 );
 
 $obj = eval('return new class($value)

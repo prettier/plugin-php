@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`property.php 1`] = `
 ====================================options=====================================
@@ -62,8 +62,8 @@ class Foo
         "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString " .
         "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
     public $var2 = <<<EOD
-hello world
-EOD;
+    hello world
+    EOD;
     public $var3 = 1 + 2;
     public $var6 = myConstant;
     public $var7 = [true, false];
@@ -74,8 +74,8 @@ EOD;
         "very_very_very_long_other_key" => "very_very_very_long_other_value",
     ];
     public $var8 = <<<'EOD'
-hello world
-EOD;
+    hello world
+    EOD;
     public $var9 = 11111111111111111111111111111111111111111111111111111111111111111111;
     public $var10 = "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongString";
     public $var11 = true;

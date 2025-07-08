@@ -1,8 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`encapsed.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2075,6 +2076,7 @@ printf(
 exports[`single.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -2108,6 +2110,7 @@ printWidth: 80
 exports[`single-heredoc.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

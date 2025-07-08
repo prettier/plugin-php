@@ -13,7 +13,7 @@ test(`singleQuote option on format api`, async () => {
   const expected = `<?php echo link_to_route(
     'frontend.users.user.show',
     $users['name'],
-    $users['_id']
+    $users['_id'],
 ); ?>
 `;
 

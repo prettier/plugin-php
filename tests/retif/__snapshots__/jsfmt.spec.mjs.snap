@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`retif.php 1`] = `
 ====================================options=====================================
@@ -259,7 +259,7 @@ $test =
     bar(
         $someOtherReallyReallyLongVariable,
         $someOtherReallyReallyLongVariable,
-        $someOtherReallyReallyLongVariable
+        $someOtherReallyReallyLongVariable,
     );
 $test =
     $testReallyReallyReallyReallyReallyReallyLong >= 1 ?:
@@ -445,7 +445,7 @@ call(
     function () {
         return 1;
     },
-    $var ? 1 : 2
+    $var ? 1 : 2,
 );
 
 call(
@@ -454,7 +454,7 @@ call(
     },
     $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable,
 );
 
 call(
@@ -464,7 +464,7 @@ call(
     $someOtherReallyReallyLongVariable ?:
     $someOtherReallyReallyLongVariable ?:
     $someOtherReallyReallyLongVariable ?:
-    "test"
+    "test",
 );
 
 $var = [
@@ -553,13 +553,13 @@ call($var ?: $var ?: $var ?: "string");
 call(
     $someOtherReallyReallyLongVariable
         ? $someOtherReallyReallyLongVariable
-        : $someOtherReallyReallyLongVariable
+        : $someOtherReallyReallyLongVariable,
 );
 call(
     $someOtherReallyReallyLongVariable ?:
     $someOtherReallyReallyLongVariable ?:
     $someOtherReallyReallyLongVariable ?:
-    "string"
+    "string",
 );
 
 exit($var ? "string" : "other-string");
