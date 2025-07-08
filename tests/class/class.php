@@ -314,3 +314,28 @@ readonly class ReadOnlyCls {
 }
 
 class FinalCost { final public const FOO = 'foo'; }
+
+// PHP 8.3 typed class constants
+enum E {
+    const string TEST = "Test1";   // E::TEST is a string
+}
+
+trait T {
+    const string TEST = E::TEST;   // T::TEST is a string too
+}
+
+interface I {
+    const string TEST = E::TEST;   // I::TEST is a string as well
+}
+
+class Foo implements I {
+    use T;
+
+    const string TEST = E::TEST;  // Foo::TEST must also be a string
+}
+
+class Bar extends Foo {
+    const string TEST = "Test2";  // Bar::TEST must also be a string, but the value can change
+    public const int|null I = null;
+    public const ?int J = null;
+}
