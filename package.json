@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "linguist-languages": "^8.0.0",
-    "php-parser": "^3.1.5"
+    "php-parser": "^3.2.4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.27.2",
