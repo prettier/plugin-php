@@ -4865,11 +4865,11 @@ $var = $var[0][1]::foo();
 $var = $var[0]->foo()->baz;
 $var = $var[0]->foo()->baz;
 
-$var = (new Foo())->bar;
-$var = (new Foo())::bar;
-$var = (new Foo())->bar();
-$var = (new Foo())::bar();
-$var = (new Foo())[1];
+$var = new Foo()->bar;
+$var = new Foo()::bar;
+$var = new Foo()->bar();
+$var = new Foo()::bar();
+$var = new Foo()[1];
 
 $var = $var->bar()();
 $var = $var->bar()();
@@ -4979,6 +4979,9 @@ printWidth: 80
 $var = new Foo();
 $var = (new Foo());
 $var = (new Foo())->c();
+new Foo->prop;
+new Foo->method();
+new Foo->$var;
 $var = (new class {
     public function log($msg)
     {
@@ -4994,8 +4997,16 @@ $var = ((((new foo())->bar())->foo())[0])[1];
 $var = (((new foo())->bar())->foo())->baz();
 $var = (new $foo())->bar;
 $var = (new $bar->y)->x;
+new SortOfLongClassName()->withALongMethodName()->andAnother()->toPushItPast80Chars();
+$asdf =
+new SortOfLongClassName()->withALongMethodName()
+    ->andAnother()->toPushItPast80Chars();
+
 $var = (new foo)[0];
 $var = (new foo)[0]['string'];
+
+$var = (new Foo)::foo;
+$var = (new Foo)::$foo;
 
 $var = new $a->b;
 $var = new $a->b();
@@ -5028,6 +5039,9 @@ new Translator(
 $var = new Foo();
 $var = new Foo();
 $var = (new Foo())->c();
+(new Foo())->prop;
+(new Foo())->method();
+(new Foo())->$var;
 $var = new class {
     public function log($msg)
     {
@@ -5043,8 +5057,18 @@ $var = (new foo())->bar()->foo()[0][1];
 $var = (new foo())->bar()->foo()->baz();
 $var = (new $foo())->bar;
 $var = (new $bar->y())->x;
+(new SortOfLongClassName())
+    ->withALongMethodName()
+    ->andAnother()
+    ->toPushItPast80Chars();
+$asdf = (new SortOfLongClassName())
+    ->withALongMethodName()
+    ->andAnother()
+    ->toPushItPast80Chars();
 $var = (new foo())[0];
 $var = (new foo())[0]["string"];
+$var = (new Foo())::foo;
+$var = (new Foo())::$foo;
 $var = new $a->b();
 $var = new $a->b();
 $var = (new $a())->b();
@@ -5098,6 +5122,9 @@ printWidth: 80
 $var = new Foo();
 $var = (new Foo());
 $var = (new Foo())->c();
+new Foo->prop;
+new Foo->method();
+new Foo->$var;
 $var = (new class {
     public function log($msg)
     {
@@ -5113,8 +5140,16 @@ $var = ((((new foo())->bar())->foo())[0])[1];
 $var = (((new foo())->bar())->foo())->baz();
 $var = (new $foo())->bar;
 $var = (new $bar->y)->x;
+new SortOfLongClassName()->withALongMethodName()->andAnother()->toPushItPast80Chars();
+$asdf =
+new SortOfLongClassName()->withALongMethodName()
+    ->andAnother()->toPushItPast80Chars();
+
 $var = (new foo)[0];
 $var = (new foo)[0]['string'];
+
+$var = (new Foo)::foo;
+$var = (new Foo)::$foo;
 
 $var = new $a->b;
 $var = new $a->b();
@@ -5146,33 +5181,46 @@ new Translator(
 <?php
 $var = new Foo();
 $var = new Foo();
-$var = (new Foo())->c();
+$var = new Foo()->c();
+new Foo()->prop;
+new Foo()->method();
+new Foo()->$var;
 $var = new class {
     public function log($msg)
     {
         echo $msg;
     }
 };
-$var = (new foo())->bar();
-$var = (new foo())->bar()->foo();
-$var = (new foo())->bar()->foo();
-$var = (new foo())->bar()->foo();
-$var = (new foo())->bar()->foo()[0];
-$var = (new foo())->bar()->foo()[0][1];
-$var = (new foo())->bar()->foo()->baz();
-$var = (new $foo())->bar;
-$var = (new $bar->y())->x;
-$var = (new foo())[0];
-$var = (new foo())[0]["string"];
+$var = new foo()->bar();
+$var = new foo()->bar()->foo();
+$var = new foo()->bar()->foo();
+$var = new foo()->bar()->foo();
+$var = new foo()->bar()->foo()[0];
+$var = new foo()->bar()->foo()[0][1];
+$var = new foo()->bar()->foo()->baz();
+$var = new $foo()->bar;
+$var = new $bar->y()->x;
+new SortOfLongClassName()
+    ->withALongMethodName()
+    ->andAnother()
+    ->toPushItPast80Chars();
+$asdf = new SortOfLongClassName()
+    ->withALongMethodName()
+    ->andAnother()
+    ->toPushItPast80Chars();
+$var = new foo()[0];
+$var = new foo()[0]["string"];
+$var = new Foo()::foo;
+$var = new Foo()::$foo;
 $var = new $a->b();
 $var = new $a->b();
-$var = (new $a())->b();
-$var = (new $a())->b();
-(new class {})->foo;
-(new class {})->foo();
-(new class {})();
-(new class {})["foo"];
-$var = (new class {})->foo;
+$var = new $a()->b();
+$var = new $a()->b();
+new class {}->foo;
+new class {}->foo();
+new class {}();
+new class {}["foo"];
+$var = new class {}->foo;
 
 
 ================================================================================

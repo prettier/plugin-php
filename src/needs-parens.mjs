@@ -1,4 +1,9 @@
-import { getPrecedence, shouldFlatten, isBitwiseOperator } from "./util.mjs";
+import {
+  getPrecedence,
+  shouldFlatten,
+  isBitwiseOperator,
+  isMinVersion,
+} from "./util.mjs";
 
 function needsParens(path, options) {
   const { parent } = path;
@@ -128,13 +133,16 @@ function needsParens(path, options) {
     }
     case "clone":
     case "new": {
+      const requiresParens =
+        node.kind === "clone" ||
+        (node.kind === "new" && !isMinVersion(options.phpVersion, "8.4"));
       switch (parent.kind) {
         case "propertylookup":
         case "nullsafepropertylookup":
         case "staticlookup":
         case "offsetlookup":
         case "call":
-          return key === "what";
+          return key === "what" && requiresParens;
         default:
           return false;
       }
