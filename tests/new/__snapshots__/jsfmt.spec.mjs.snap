@@ -433,3 +433,440 @@ $client = new (config("longstringvariable", "longerstringvariable")([
 
 ================================================================================
 `;
+
+exports[`new.php 2`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+new Foo;
+new Foo();
+$a = new Foo;
+$b = new Foo();
+$c = new Foo([1, 2, 3], "foo", $variable);
+$bar = 'MyClassName';
+$foo = new $bar;
+$foo = new $bar();
+
+abstract class A
+{
+    public static function create()
+    {
+        $a = new static;
+        $b = new static();
+    }
+
+}
+
+$class = (new Foo)->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = (new Foo(['VeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey' => 'VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue']))->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = (new PendingDispatch(new $this->class(...func_get_args())))->chain($this->chain);
+$dumper = in_array(PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper : new HtmlDumper;
+$class = new static('Error encoding model ['.get_class($model).'] with ID ['.$model->getKey().'] to JSON: '.$message);
+$response = new \\Illuminate\\Http\\JsonResponse(new JsonResponseTestJsonSerializeObject);
+$result = (new Pipeline(new \\Illuminate\\Container\\Container))
+    ->send('foo')
+    ->through([new PipelineTestPipeOne])
+    ->then(function ($piped) {
+        return $piped;
+    });
+
+$var = new Foo(
+<<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD
+    ,
+    $arg
+);
+
+$var = new Foo(
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOF
+    ,
+    $arg
+);
+
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+setLogger(new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+});
+$var = new class ($arg, 'string', 2100, $var ? true : false, $other_arg, function () { return 1; }) extends SomeClass implements SomeInterface {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+
+$var = new class {};
+$var = new class() {};
+
+class A {
+    public function create1() {
+        $class = get_class($this);
+        return new $class();
+    }
+    public function create2() {
+        return new static();
+    }
+    public function create3() {
+        return new static($arg, $arg, $arg);
+    }
+}
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string'
+);
+
+new Foo($a, 'string
+string
+string'
+);
+
+new Foo('string
+string
+string', $b
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+"string
+string
+string
+$var"
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+\`string
+string
+string
+$var\`
+);
+
+$var = new class('string
+string
+string') {};
+
+$var = new class(
+    'string
+string
+string'
+) {};
+
+$var = new class(10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+};
+
+$a = new (b('c')['d']);
+$client = new (config('longstringvariable','longerstringvariable')(['name'=>$myLongClassname['name']]));
+
+=====================================output=====================================
+<?php
+new Foo();
+new Foo();
+$a = new Foo();
+$b = new Foo();
+$c = new Foo([1, 2, 3], "foo", $variable);
+$bar = "MyClassName";
+$foo = new $bar();
+$foo = new $bar();
+
+abstract class A
+{
+    public static function create()
+    {
+        $a = new static();
+        $b = new static();
+    }
+}
+
+$class = new Foo()->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = new Foo([
+    "VeryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" =>
+        "VeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue",
+])->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMethod();
+$class = new PendingDispatch(new $this->class(...func_get_args()))->chain(
+    $this->chain,
+);
+$dumper = in_array(PHP_SAPI, ["cli", "phpdbg"])
+    ? new CliDumper()
+    : new HtmlDumper();
+$class = new static(
+    "Error encoding model [" .
+        get_class($model) .
+        "] with ID [" .
+        $model->getKey() .
+        "] to JSON: " .
+        $message,
+);
+$response = new \\Illuminate\\Http\\JsonResponse(
+    new JsonResponseTestJsonSerializeObject(),
+);
+$result = new Pipeline(new \\Illuminate\\Container\\Container())
+    ->send("foo")
+    ->through([new PipelineTestPipeOne()])
+    ->then(function ($piped) {
+        return $piped;
+    });
+
+$var = new Foo(
+    <<<'EOD'
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
+    ,
+    $arg,
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
+    ,
+);
+
+$var = new Foo(
+    $arg,
+    <<<'EOD'
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD
+    ,
+    $arg,
+);
+
+$var = new Foo(
+    <<<EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
+    ,
+    $arg,
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
+    ,
+);
+
+$var = new Foo(
+    $arg,
+    <<<EOF
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOF
+    ,
+    $arg,
+);
+
+$var = new class {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+setLogger(
+    new class {
+        public function log($msg)
+        {
+            echo $msg;
+        }
+    },
+);
+$var = new class (
+    $arg,
+    "string",
+    2100,
+    $var ? true : false,
+    $other_arg,
+    function () {
+        return 1;
+    },
+) extends SomeClass implements SomeInterface {
+    public function log($msg)
+    {
+        echo $msg;
+    }
+};
+
+$var = new class {};
+$var = new class {};
+
+class A
+{
+    public function create1()
+    {
+        $class = get_class($this);
+        return new $class();
+    }
+    public function create2()
+    {
+        return new static();
+    }
+    public function create3()
+    {
+        return new static($arg, $arg, $arg);
+    }
+}
+
+new Foo('string
+string
+string');
+
+new Foo(
+    'string
+string
+string',
+);
+
+new Foo(
+    $a,
+    'string
+string
+string',
+);
+
+new Foo(
+    'string
+string
+string',
+    $b,
+);
+
+new Foo("string
+string
+string
+$var");
+new Foo(
+    "string
+string
+string
+$var",
+);
+new Foo(\`string
+string
+string
+$var\`);
+new Foo(
+    \`string
+string
+string
+$var\`,
+);
+
+$var = new class (
+    'string
+string
+string',
+) {};
+
+$var = new class (
+    'string
+string
+string',
+) {};
+
+$var = new class (10) extends SomeClass implements SomeInterface {
+    private $num;
+
+    public function __construct($num)
+    {
+        $this->num = $num;
+    }
+
+    use SomeTrait;
+};
+
+$a = new (b("c")["d"])();
+$client = new (config("longstringvariable", "longerstringvariable")([
+    "name" => $myLongClassname["name"],
+]))();
+
+================================================================================
+`;
