@@ -4,11 +4,10 @@ import path from "path";
 const CATEGORY_PHP = "PHP";
 
 /**
- * Detect minimum PHP version from the composer.json file
- * @param def {string} Default PHP version to use if not found
- * @return {string} The PHP version to use in the composer.json file.
+ * Detect the minimum PHP version from the composer.json file
+ * @return {string|null} The PHP version to use in the composer.json file, null when not found
  */
-function getComposerPhpVer(def) {
+function getComposerPhpVer() {
   // Try to find composer.json
   const currentDir = process.cwd();
   let composerPath = null;
@@ -36,6 +35,14 @@ function getComposerPhpVer(def) {
       const composerJson = JSON.parse(fileContent);
 
       if (composerJson.require && composerJson.require.php) {
+        // Check for wildcard pattern like "7.*"
+        const wildcardMatch = composerJson.require.php.match(
+          /^(?:[^0-9]*)?([0-9]+)\.\*/
+        );
+        if (wildcardMatch) {
+          return `${wildcardMatch[1]}.0`;
+        }
+
         // Extract version from composer semver format
         const versionMatch = composerJson.require.php.match(
           /^(?:[^0-9]*)?([0-9]+)\.([0-9]+)/
@@ -45,12 +52,12 @@ function getComposerPhpVer(def) {
           return `${versionMatch[1]}.${versionMatch[2]}`;
         }
       }
-    } catch (error) {
-      return def;
+    } catch (e) {
+      // Ignore JSON parsing errors
     }
   }
 
-  return def;
+  return null;
 }
 
 export { getComposerPhpVer };
@@ -60,7 +67,7 @@ export default {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: getComposerPhpVer("8.3"),
+    default: getComposerPhpVer() ?? "8.3",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },

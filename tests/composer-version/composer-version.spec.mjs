@@ -44,69 +44,42 @@ describe("getComposerPhpVer", () => {
     }
   });
 
-  test("returns default value when no composer.json is found", () => {
+  test("returns null when no composer.json is found", () => {
     // Create a directory with no composer.json
     const emptyDir = path.join(tempDir, "empty-dir");
     fs.mkdirSync(emptyDir, { recursive: true });
 
     process.chdir(emptyDir);
 
-    const defaultVersion = "7.4";
-    expect(getComposerPhpVer(defaultVersion)).toBe(defaultVersion);
+    expect(getComposerPhpVer()).toBe(null);
   });
 
   test.each([
-    [">=7.1.0", "7.1"],
-    ["^8.0", "8.0"],
-    ["~7.4", "7.4"],
-    [">=5.6.0 <8.0.0", "5.6"],
-    ["7.3.*", "7.3"]
-  ])("extracts correct version from %s", (versionConstraint, expectedVersion) => {
+    {ver:">=7.1.0",expected: "7.1"},
+    {ver:"^8.0",expected: "8.0"},
+    {ver:"~7.4",expected: "7.4"},
+    {ver:">=5.6.0 <8.0.0",expected: "5.6"},
+    {ver:"7.3.*",expected: "7.3"},
+    {ver:"7.* || 8.*",expected: "7.0"}
+  ])("extracts correct version from $ver ba changing cwd", ({ver, expected}) => {
     const composerContent = JSON.stringify(
       {
         require: {
-          php: versionConstraint,
+          php: ver,
         },
       },
       null,
       2
     );
 
+    process.chdir(tempDir);
     fs.writeFileSync(tempComposerPath, composerContent);
 
-    process.chdir(tempDir);
 
-    // Call getComposerPhpVer to test version extraction
-    const result = getComposerPhpVer("default");
-    expect(result).toBe(expectedVersion);
+    expect(getComposerPhpVer()).toBe(expected);
   });
 
-  test.each([
-    [">=7.1.0", "7.1"],
-    ["^8.0", "8.0"],
-    ["~7.4", "7.4"],
-    [">=5.6.0 <8.0.0", "5.6"],
-    ["7.3.*", "7.3"]
-  ])("extracts correct version from %s by changing cwd", (versionConstraint, expectedVersion) => {
-    const composerContent = JSON.stringify(
-      {
-        require: {
-          php: versionConstraint,
-        },
-      },
-      null,
-      2
-    );
-
-    fs.writeFileSync(tempComposerPath, composerContent);
-
-    process.chdir(tempDir);
-
-    const result = getComposerPhpVer("default");
-    expect(result).toBe(expectedVersion);
-  });
-
-  test("returns default when composer.json has no PHP requirement", () => {
+  test("returns null when composer.json has no PHP requirement", () => {
     const composerContent = JSON.stringify(
       {
         require: {
@@ -122,12 +95,10 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(tempDir);
 
-    const defaultVersion = "8.3";
-    const result = getComposerPhpVer(defaultVersion);
-    expect(result).toBe(defaultVersion);
+    expect(getComposerPhpVer()).toBe(null);
   });
 
-  test("returns default when composer.json has invalid PHP requirement", () => {
+  test("returns null when composer.json has invalid PHP requirement", () => {
     const composerContent = JSON.stringify(
       {
         require: {
@@ -142,9 +113,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(tempDir);
 
-    const defaultVersion = "8.3";
-    const result = getComposerPhpVer(defaultVersion);
-    expect(result).toBe(defaultVersion);
+    expect(getComposerPhpVer()).toBe(null);
   });
 
   test("finds composer.json in parent directory when in nested child folder", () => {
@@ -172,8 +141,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    const result = getComposerPhpVer("default");
-    expect(result).toBe("8.1");
+    expect(getComposerPhpVer()).toBe("8.1");
   });
 
   test("finds composer.json in intermediate parent directory", () => {
@@ -202,7 +170,25 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    const result = getComposerPhpVer("default");
-    expect(result).toBe("7.2");
+    expect(getComposerPhpVer()).toBe("7.2");
+  });
+
+  test("returns null when composer.json is malformed", () => {
+    // Create a malformed JSON file (invalid syntax)
+    const malformedContent = `{
+      "name": "test/package",
+      "require": {
+        "php": "^7.4"
+      }, // Invalid trailing comma
+      "extra": {
+        "key": "value"
+      }
+    }`;
+
+    fs.writeFileSync(tempComposerPath, malformedContent);
+
+    process.chdir(tempDir);
+
+    expect(getComposerPhpVer()).toBe(null);
   });
 });
