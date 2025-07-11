@@ -7,7 +7,7 @@ const CATEGORY_PHP = "PHP";
  * Detect the minimum PHP version from the composer.json file
  * @return {string|null} The PHP version to use in the composer.json file, null when not found
  */
-function getComposerPhpVer() {
+function getComposerPhpVersion() {
   // Try to find composer.json
   const currentDir = process.cwd();
   let composerPath = null;
@@ -60,14 +60,14 @@ function getComposerPhpVer() {
   return null;
 }
 
-export { getComposerPhpVer };
+export { getComposerPhpVersion };
 
 export default {
   phpVersion: {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: getComposerPhpVer() ?? "8.3",
+    default: getComposerPhpVersion() ?? "8.3",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },

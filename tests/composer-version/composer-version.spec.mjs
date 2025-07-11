@@ -1,4 +1,4 @@
-import { getComposerPhpVer } from "../../src/options.mjs";
+import { getComposerPhpVersion } from "../../src/options.mjs";
 import fs from "fs";
 import path from "path";
 import os from "os";
@@ -51,7 +51,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(emptyDir);
 
-    expect(getComposerPhpVer()).toBe(null);
+    expect(getComposerPhpVersion()).toBe(null);
   });
 
   test.each([
@@ -76,7 +76,7 @@ describe("getComposerPhpVer", () => {
     fs.writeFileSync(tempComposerPath, composerContent);
 
 
-    expect(getComposerPhpVer()).toBe(expected);
+    expect(getComposerPhpVersion()).toBe(expected);
   });
 
   test("returns null when composer.json has no PHP requirement", () => {
@@ -95,7 +95,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(tempDir);
 
-    expect(getComposerPhpVer()).toBe(null);
+    expect(getComposerPhpVersion()).toBe(null);
   });
 
   test("returns null when composer.json has invalid PHP requirement", () => {
@@ -113,7 +113,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(tempDir);
 
-    expect(getComposerPhpVer()).toBe(null);
+    expect(getComposerPhpVersion()).toBe(null);
   });
 
   test("finds composer.json in parent directory when in nested child folder", () => {
@@ -141,7 +141,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    expect(getComposerPhpVer()).toBe("8.1");
+    expect(getComposerPhpVersion()).toBe("8.1");
   });
 
   test("finds composer.json in intermediate parent directory", () => {
@@ -170,7 +170,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    expect(getComposerPhpVer()).toBe("7.2");
+    expect(getComposerPhpVersion()).toBe("7.2");
   });
 
   test("returns null when composer.json is malformed", () => {
@@ -189,6 +189,6 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(tempDir);
 
-    expect(getComposerPhpVer()).toBe(null);
+    expect(getComposerPhpVersion()).toBe(null);
   });
 });
