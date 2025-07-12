@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`array.php 1`] = `
 ====================================options=====================================
@@ -3567,7 +3567,7 @@ switch ($var = 1) {
 switch ($var = 1) {
 }
 
-while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 }
 while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 }
@@ -5027,7 +5027,7 @@ new Translator(
     new MessageFormatter(),
     "en",
     [],
-    ["foo" => "bar"]
+    ["foo" => "bar"],
 ); ?>
 <?php new Translator($container, new MessageFormatter(), "en", $someOtherVar, [
     "foo" => "bar",
@@ -6225,7 +6225,7 @@ try {
     handle_exception();
 }
 
-@list($width, $height) = getimagesize($file);
+@[$width, $height] = getimagesize($file);
 // Todo https://github.com/glayzzle/php-parser/issues/356
 // @(list($width, $height) = getimagesize($file));
 

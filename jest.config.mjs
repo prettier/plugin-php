@@ -14,7 +14,7 @@ export default {
   transform: {},
   setupFiles: ["<rootDir>/tests_config/run_spec.mjs"],
   // Matches `.js` file to prevent files use `.js` extension by mistake, https://github.com/prettier/plugin-php/pull/2247#discussion_r1331847801
-  testRegex: "jsfmt\\.spec\\.m?js$|__tests__/.*\\.m?js$",
+  testRegex: ".*\\.spec\\.m?js$",
   snapshotSerializers: ["jest-snapshot-serializer-raw"],
   globals: {
     STANDALONE: RUN_STANDALONE_TESTS,

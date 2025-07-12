@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`return.php 1`] = `
 ====================================options=====================================
@@ -425,7 +425,7 @@ return new Foo(
     1024,
     $veryVeryVeryVeryVeryVeryLongLine,
     true,
-    false
+    false,
 );
 return new Foo(
     $arg,
@@ -433,7 +433,7 @@ return new Foo(
     1024,
     $veryVeryVeryVeryVeryVeryLongLine,
     true,
-    false
+    false,
 ) . "string";
 return "string" .
     new Foo(
@@ -442,7 +442,7 @@ return "string" .
         1024,
         $veryVeryVeryVeryVeryVeryLongLine,
         true,
-        false
+        false,
     );
 
 return [];
@@ -469,12 +469,12 @@ return $packages || [
 ];
 
 return $this->events->until(
-    new Events\\NotificationSending($notifiable, $notification, $channel)
+    new Events\\NotificationSending($notifiable, $notification, $channel),
 ) !== false;
 
 return false !==
     $this->events->until(
-        new Events\\NotificationSending($notifiable, $notification, $channel)
+        new Events\\NotificationSending($notifiable, $notification, $channel),
     );
 
 return $this->getOptions()["endpoint"] ??
@@ -488,7 +488,7 @@ return $this->channels[$name] ??
     with($this->resolve($name), function ($logger) use ($name) {
         return $this->channels[$name] = $this->tap(
             $name,
-            new Logger($logger, $this->app["events"])
+            new Logger($logger, $this->app["events"]),
         );
     });
 
@@ -530,7 +530,7 @@ return $this->guards[$name] ??
     ($this->guards[$name] = $this->resolve($veryVeryVeryLongVariable));
 return $this->guards[$veryVeryVeryLongVariable] ??
     ($this->guards[$veryVeryVeryLongVariable] = $this->resolve(
-        $veryVeryVeryLongVariable
+        $veryVeryVeryLongVariable,
     ));
 
 return call_user_func($this->passwordValidator, $credentials) &&

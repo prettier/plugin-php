@@ -1,11 +1,73 @@
+import fs from "fs";
+import path from "path";
+
 const CATEGORY_PHP = "PHP";
+
+/**
+ * Detect the minimum PHP version from the composer.json file
+ * @return {string|null} The PHP version to use in the composer.json file, null when not found
+ */
+function getComposerPhpVersion() {
+  // Try to find composer.json
+  const currentDir = process.cwd();
+  let composerPath = null;
+
+  const directComposerPath = path.join(currentDir, "composer.json");
+  if (fs.existsSync(directComposerPath)) {
+    composerPath = directComposerPath;
+  }
+
+  if (!composerPath) {
+    let searchDir = path.dirname(currentDir);
+    while (searchDir !== path.parse(searchDir).root) {
+      const potentialComposerPath = path.join(searchDir, "composer.json");
+      if (fs.existsSync(potentialComposerPath)) {
+        composerPath = potentialComposerPath;
+        break;
+      }
+      searchDir = path.dirname(searchDir);
+    }
+  }
+
+  if (composerPath) {
+    try {
+      const fileContent = fs.readFileSync(composerPath, "utf8");
+      const composerJson = JSON.parse(fileContent);
+
+      if (composerJson.require && composerJson.require.php) {
+        // Check for wildcard pattern like "7.*"
+        const wildcardMatch = composerJson.require.php.match(
+          /^(?:[^0-9]*)?([0-9]+)\.\*/
+        );
+        if (wildcardMatch) {
+          return `${wildcardMatch[1]}.0`;
+        }
+
+        // Extract version from composer semver format
+        const versionMatch = composerJson.require.php.match(
+          /^(?:[^0-9]*)?([0-9]+)\.([0-9]+)/
+        );
+
+        if (versionMatch) {
+          return `${versionMatch[1]}.${versionMatch[2]}`;
+        }
+      }
+    } catch (e) {
+      // Ignore JSON parsing errors
+    }
+  }
+
+  return null;
+}
+
+export { getComposerPhpVersion };
 
 export default {
   phpVersion: {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: "7.0",
+    default: getComposerPhpVersion() ?? "8.3",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },

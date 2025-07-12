@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`declare.php 1`] = `
 ====================================options=====================================
@@ -1166,7 +1166,7 @@ printWidth: 80
           "bar" => "foo",
           "barfoo" => "foobar",
           "foobar" => "barfoo",
-      ]
+      ],
   ); ?>
   </header>
   <div> <?php echo $someOtherVar()->element(
@@ -1183,7 +1183,7 @@ printWidth: 80
           "bar" => "foo",
           "barfoo" => "foobar",
           "foobar" => "barfoo",
-      ]
+      ],
   ); ?>
   </div>
 </section>
@@ -1803,7 +1803,7 @@ printWidth: 80
                     value="<?php echo esc_attr($gateway->id); ?>"
                     <?php checked($gateway->chosen, true); ?>
                     data-text="<?php echo esc_attr(
-                        $gateway->order_button_text
+                        $gateway->order_button_text,
                     ); ?>"
             </div>
         </div>
@@ -1874,7 +1874,7 @@ func(
 <?php func(
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
 ); ?>
 </div>
 
@@ -1882,7 +1882,7 @@ func(
 <?php func(
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
 ); ?>
 </div>
 
@@ -1890,7 +1890,7 @@ func(
 <?php func(
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-    "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+    "verVeryVeryVeryVeryVeryVeryVeryLongArg",
 ); ?>
 </div>
 
@@ -1898,7 +1898,7 @@ func(
   <?php func(
       "verVeryVeryVeryVeryVeryVeryVeryLongArg",
       "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-      "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+      "verVeryVeryVeryVeryVeryVeryVeryLongArg",
   ); ?>
 </div>
 
@@ -1906,7 +1906,7 @@ func(
     <?php func(
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     ); ?>
 </div>
 
@@ -1914,7 +1914,7 @@ func(
     <?php func(
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     ); ?>
 </div>
 
@@ -1922,7 +1922,7 @@ func(
     <?php func(
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
         "verVeryVeryVeryVeryVeryVeryVeryLongArg",
-        "verVeryVeryVeryVeryVeryVeryVeryLongArg"
+        "verVeryVeryVeryVeryVeryVeryVeryLongArg",
     ); ?>
 </div>
 
