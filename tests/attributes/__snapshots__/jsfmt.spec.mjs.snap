@@ -61,6 +61,12 @@ final class DomainEventMessage
     }
 }
 
+// issue #2360
+#[Route('route/path', name: 'very_very_very_very_very_very_long_route_name', methods: ['GET'])]
+class Controller
+{
+}
+
 #[
     Attr1(Attr1::FOO | Attr1::BAR),
     Attr2(-20 * 5 + 10)
@@ -148,36 +154,30 @@ class D
     }
 }
 
-#[
-    W(
-        "a",
-        null,
-        "looooong",
-        "paraaaams",
-        "list",
-        "aaaaaaaaaaaaa",
-        "vvvvvvvvvvvv",
-        "cccccccccc",
-        "eeeeeeeeeee"
-    ),
-    X
-]
+#[W(
+    "a",
+    null,
+    "looooong",
+    "paraaaams",
+    "list",
+    "aaaaaaaaaaaaa",
+    "vvvvvvvvvvvv",
+    "cccccccccc",
+    "eeeeeeeeeee"
+)]
+#[X]
 function Y(
-    #[
-        ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
-            12345678,
-            1234578
-        )
-    ]
+    #[ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
+        12345678,
+        1234578
+    )]
     string $_
 ): string {
     return new #[NON, Anon] class {};
 }
 
-#[
-    IA("interface"),
-    \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB
-]
+#[IA("interface")]
+#[\\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB]
 interface IC
 {
     #[ID]
@@ -202,15 +202,21 @@ final class DomainEventMessage
     }
 }
 
+// issue #2360
+#[Route(
+    "route/path",
+    name: "very_very_very_very_very_very_long_route_name",
+    methods: ["GET"]
+)]
+class Controller {}
+
 #[Attr1(Attr1::FOO | Attr1::BAR), Attr2(-20 * 5 + 10)]
 class A {}
 
 class ValueModel
 {
-    #[
-        Assert\\NotBlank(allowNull: false, groups: ["foo"]),
-        Assert\\Length(max: 255, groups: ["foo"])
-    ]
+    #[Assert\\NotBlank(allowNull: false, groups: ["foo"])]
+    #[Assert\\Length(max: 255, groups: ["foo"])]
     public ?string $value = null;
 }
 

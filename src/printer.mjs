@@ -1167,30 +1167,25 @@ function printAttrs(path, options, print, { inline = false } = {}) {
     return [];
   }
   path.each(() => {
-    const attrGroup = ["#["];
+    const attrGroup = [];
     if (!inline && allAttrs.length > 0) {
       allAttrs.push(hardline);
     }
-    attrGroup.push(softline);
-    path.each(() => {
+    path.each((_, index) => {
       const attrNode = path.node;
-      if (attrGroup.length > 2) {
-        attrGroup.push(",", line);
-      }
       const attrStmt = [attrNode.name];
       if (attrNode.args.length > 0) {
         attrStmt.push(printArgumentsList(path, options, print, "args"));
       }
-      attrGroup.push(group(attrStmt));
+      if (index === 0) {
+        attrGroup.push("#[");
+      } else {
+        attrGroup.push(ifBreak([line, "#["], ", "));
+      }
+      attrGroup.push(group(attrStmt), ifBreak("]"));
     }, "attrs");
     allAttrs.push(
-      group([
-        indent(attrGroup),
-        ifBreak(shouldPrintComma(options, "8.0") ? "," : ""),
-        softline,
-        "]",
-        inline ? ifBreak(softline, " ") : "",
-      ])
+      group([attrGroup, ifBreak("", "]"), inline ? ifBreak(softline, " ") : ""])
     );
   }, "attrGroups");
   if (allAttrs.length === 0) {
