@@ -176,17 +176,27 @@ await prettier.format(YOUR_CODE, {
 
 Prettier for PHP supports the following options. We recommend that all users set the `phpVersion` option.
 
-| Name               | Default    | Description                                                                                                                                                                                                                                                                            |
-| ------------------ | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `phpVersion`       | `"7.0"`    | Allows specifying the PHP version you're using. If you're using PHP 7.1 or later, setting this option will make use of modern language features in the printed output. If you're using PHP lower than 7.0, you'll have to set this option or Prettier will generate incompatible code. |
-| `printWidth`       | `80`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                                                                        |
-| `tabWidth`         | `4`        | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width)), The default is `4` based on the `PSR-2` coding standard.                                                                                                                                |
-| `useTabs`          | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                                                               |
-| `singleQuote`      | `false`    | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                                                               |
-| `trailingCommaPHP` | `true`     | If set to `true`, trailing commas will be added wherever possible. <br> If set to `false`, no trailing commas are printed.                                                                                                                                                             |
-| `braceStyle`       | `"per-cs"` | If set to `"per-cs"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line.                                            |
-| `requirePragma`    | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                                                                     |
-| `insertPragma`     | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                                                                      |
+| Name               | Default    | Description                                                                                                                                                                                                                                 |
+| ------------------ |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `phpVersion`       | `"8.3"` *  | Allows specifying the PHP version you're using. (See Notes Below)                                                                                                                                                                           |
+| `printWidth`       | `80`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                             |
+| `tabWidth`         | `4`        | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width)), The default is `4` based on the `PSR-2` coding standard.                                                                                     |
+| `useTabs`          | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                    |
+| `singleQuote`      | `false`    | If set to `"true"`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: `"foo" -> 'foo'`, `"foo $bar" -> "foo $bar"`.                                                                    |
+| `trailingCommaPHP` | `true`     | If set to `true`, trailing commas will be added wherever possible. <br> If set to `false`, no trailing commas are printed.                                                                                                                  |
+| `braceStyle`       | `"per-cs"` | If set to `"per-cs"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. <br> If set to `"1tbs"`, prettier will move open brace for code blocks (classes, functions and methods) onto same line. |
+| `requirePragma`    | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#require-pragma))                                                                                                                                          |
+| `insertPragma`     | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#insert-pragma))                                                                                                                                           |
+
+### `phpVersion` Configuration Notes:
+
+This setting now defaults to PHP 8.3, however, if the code you are formatting has a `composer.json` with in the current
+directory or any parent directory, the plugin will use minimum supported php version from `{"require":{"php":"..."}}` 
+to set the phpVersion. If no such value is found, it will default to PHP 8.3.
+
+If the phpVersion is not set correctly for your environment, this plugin will product code that could be incompatible 
+with your PHP runtime. For example, if you are using PHP 7.4, but the plugin is set to PHP 8.3, it will produce code 
+that uses features not available in PHP 7.4.
 
 ## Ignoring code
 
