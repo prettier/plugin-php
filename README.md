@@ -177,8 +177,8 @@ await prettier.format(YOUR_CODE, {
 Prettier for PHP supports the following options. We recommend that all users set the `phpVersion` option.
 
 | Name               | Default    | Description                                                                                                                                                                                                                                 |
-| ------------------ |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `phpVersion`       | `"8.3"` *  | Allows specifying the PHP version you're using. (See Notes Below)                                                                                                                                                                           |
+| ------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `phpVersion`       | `"8.3"` \* | Allows specifying the PHP version you're using. (See Notes Below)                                                                                                                                                                           |
 | `printWidth`       | `80`       | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#print-width))                                                                                                                                             |
 | `tabWidth`         | `4`        | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tab-width)), The default is `4` based on the `PSR-2` coding standard.                                                                                     |
 | `useTabs`          | `false`    | Same as in Prettier ([see prettier docs](https://prettier.io/docs/en/options.html#tabs))                                                                                                                                                    |
@@ -191,11 +191,11 @@ Prettier for PHP supports the following options. We recommend that all users set
 ### `phpVersion` Configuration Notes:
 
 This setting now defaults to PHP 8.3, however, if the code you are formatting has a `composer.json` with in the current
-directory or any parent directory, the plugin will use minimum supported php version from `{"require":{"php":"..."}}` 
+directory or any parent directory, the plugin will use minimum supported php version from `{"require":{"php":"..."}}`
 to set the phpVersion. If no such value is found, it will default to PHP 8.3.
 
-If the phpVersion is not set correctly for your environment, this plugin will product code that could be incompatible 
-with your PHP runtime. For example, if you are using PHP 7.4, but the plugin is set to PHP 8.3, it will produce code 
+If the phpVersion is not set correctly for your environment, this plugin will product code that could be incompatible
+with your PHP runtime. For example, if you are using PHP 7.4, but the plugin is set to PHP 8.3, it will produce code
 that uses features not available in PHP 7.4.
 
 ## Ignoring code
