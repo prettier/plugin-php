@@ -6590,16 +6590,16 @@ $inspect = $condition
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
-    ? ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ? ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $var =

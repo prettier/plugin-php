@@ -3,6 +3,7 @@
 exports[`new.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "8.3"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -439,7 +440,6 @@ $client = new (config("longstringvariable", "longerstringvariable")([
 exports[`new.php 2`] = `
 ====================================options=====================================
 parsers: ["php"]
-phpVersion: "8.4"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================

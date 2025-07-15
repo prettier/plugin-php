@@ -233,7 +233,7 @@ $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable = $veryVeryVeryVeryVer
 $obj->property = $obj->oneProperty = $obj->twoPeroperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue;
-$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = (new MyClass())->call(
+$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = new MyClass()->call(
     $arg,
 );
 $obj->loooooooooooong->lookup = $this->getRequest()->getParam(
@@ -251,7 +251,7 @@ $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
     $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
-$component = (new Foo())
+$component = new Foo()
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
@@ -266,7 +266,7 @@ $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
     $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
-$component = (new Foo())
+$component = new Foo()
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
