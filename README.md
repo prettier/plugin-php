@@ -193,7 +193,7 @@ Prettier for PHP supports the following options. We recommend that all users set
 The default setting `auto`, attempts to auto-detect your supported php versions from a `composer.json` with in the
 current directory or any parent directory, the plugin will use a minimum supported php version from
 `{"require":{"php":"..."}}` to set the phpVersion. If not found or not able to be parsed, it will default to latest
-supported PHP version, which is currently `8.4`.
+supported PHP version.
 
 You set the `phpVersion` to `composer` and this will only use the `composer.json` file to determine the php
 version, prettier will crash if the PHP cannot be determined.
