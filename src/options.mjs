@@ -3,6 +3,10 @@ import path from "path";
 
 const CATEGORY_PHP = "PHP";
 
+const LATEST_PHP_VERSION = "8.3";
+
+let getComposerError = "";
+
 /**
  * Detect the minimum PHP version from the composer.json file
  * @return {string|null} The PHP version to use in the composer.json file, null when not found
@@ -50,11 +54,16 @@ function getComposerPhpVersion() {
 
         if (versionMatch) {
           return `${versionMatch[1]}.${versionMatch[2]}`;
+        } else {
+          getComposerError = `Could not decode PHP version (${composerJson.require.php}})`;
+          return null;
         }
       }
     } catch (e) {
-      // Ignore JSON parsing errors
+      getComposerError = `Error reading composer.json: ${e.message}`;
     }
+  } else {
+    getComposerError = "Could not find composer.json";
   }
 
   return null;
@@ -62,12 +71,34 @@ function getComposerPhpVersion() {
 
 export { getComposerPhpVersion };
 
+/**
+ * Resolve the PHP version based on the provided options.
+ *
+ */
+export function resolvePhpVersion(options) {
+  if (!options) {
+    return;
+  }
+  if (options.phpVersion === "auto") {
+    options.phpVersion = getComposerPhpVersion() ?? LATEST_PHP_VERSION;
+  } else if (options.phpVersion === "composer") {
+    const v = getComposerPhpVersion();
+    if (v === null) {
+      throw new Error(
+        `Could not determine PHP version from composer; ${getComposerError}`
+      );
+    } else {
+      options.phpVersion = v;
+    }
+  }
+}
+
 export default {
   phpVersion: {
     since: "0.13.0",
     category: CATEGORY_PHP,
     type: "choice",
-    default: getComposerPhpVersion() ?? "8.3",
+    default: "auto",
     description: "Minimum target PHP version.",
     choices: [
       { value: "5.0" },
@@ -87,6 +118,14 @@ export default {
       { value: "8.2" },
       { value: "8.3" },
       { value: "8.4" },
+      {
+        value: "composer",
+        description: "Use the PHP version defined in composer.json",
+      },
+      {
+        value: "auto",
+        description: `Try composer.json, latest PHP Version (${LATEST_PHP_VERSION})`,
+      },
     ],
   },
   trailingCommaPHP: {

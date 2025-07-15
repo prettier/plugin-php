@@ -1,4 +1,4 @@
-import { getComposerPhpVersion } from "../../src/options.mjs";
+import { getComposerPhpVersion, resolvePhpVersion } from "../../src/options.mjs";
 import fs from "fs";
 import path from "path";
 import os from "os";
@@ -79,6 +79,27 @@ describe("getComposerPhpVer", () => {
     expect(getComposerPhpVersion()).toBe(expected);
   });
 
+  test("phpVersion=composer reads composer.json", () => {
+
+    const composerContent = JSON.stringify(
+      {
+        require: {
+          php: ">=5.4",
+        },
+      },
+      null,
+      2
+    );
+
+    process.chdir(tempDir);
+    fs.writeFileSync(tempComposerPath, composerContent);
+
+
+    const options = { phpVersion: "composer" };
+    resolvePhpVersion(options);
+    expect(options.phpVersion).toBe("5.4");
+  })
+
   test("returns null when composer.json has no PHP requirement", () => {
     const composerContent = JSON.stringify(
       {
@@ -96,6 +117,14 @@ describe("getComposerPhpVer", () => {
     process.chdir(tempDir);
 
     expect(getComposerPhpVersion()).toBe(null);
+  });
+
+
+  test("returns error when no composer.json and phpVersion set to composer", () => {
+
+    process.chdir(tempDir);
+
+    expect(() =>resolvePhpVersion({phpVersion:"composer"})).toThrow();
   });
 
   test("returns null when composer.json has invalid PHP requirement", () => {
