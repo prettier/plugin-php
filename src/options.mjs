@@ -3,13 +3,20 @@ import path from "path";
 
 const CATEGORY_PHP = "PHP";
 
-const LATEST_PHP_VERSION = "8.3";
+// prettier-ignore
+const SUPPORTED_PHP_VERSIONS = [
+  5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6,
+  7.0, 7.1, 7.2, 7.3, 7.4,
+  8.0, 8.1, 8.2, 8.3, 8.4,
+];
+
+export const LATEST_SUPPORTED_PHP_VERSION = Math.max(...SUPPORTED_PHP_VERSIONS);
 
 let getComposerError = "";
 
 /**
  * Detect the minimum PHP version from the composer.json file
- * @return {string|null} The PHP version to use in the composer.json file, null when not found
+ * @return {number|null} The PHP version to use in the composer.json file, null when not found
  */
 function getComposerPhpVersion() {
   // Try to find composer.json
@@ -39,12 +46,12 @@ function getComposerPhpVersion() {
       const composerJson = JSON.parse(fileContent);
 
       if (composerJson.require && composerJson.require.php) {
-        // Check for wildcard pattern like "7.*"
+        // Check for a wildcard pattern like "7.*"
         const wildcardMatch = composerJson.require.php.match(
           /^(?:[^0-9]*)?([0-9]+)\.\*/
         );
         if (wildcardMatch) {
-          return `${wildcardMatch[1]}.0`;
+          return parseFloat(`${wildcardMatch[1]}.0`);
         }
 
         // Extract version from composer semver format
@@ -53,7 +60,7 @@ function getComposerPhpVersion() {
         );
 
         if (versionMatch) {
-          return `${versionMatch[1]}.${versionMatch[2]}`;
+          return parseFloat(`${versionMatch[1]}.${versionMatch[2]}`);
         } else {
           getComposerError = `Could not decode PHP version (${composerJson.require.php}})`;
           return null;
@@ -72,7 +79,7 @@ function getComposerPhpVersion() {
 export { getComposerPhpVersion };
 
 /**
- * Resolve the PHP version based on the provided options.
+ * Resolve the PHP version to a number based on the provided options.
  *
  */
 export function resolvePhpVersion(options) {
@@ -80,7 +87,8 @@ export function resolvePhpVersion(options) {
     return;
   }
   if (options.phpVersion === "auto") {
-    options.phpVersion = getComposerPhpVersion() ?? LATEST_PHP_VERSION;
+    options.phpVersion =
+      getComposerPhpVersion() ?? LATEST_SUPPORTED_PHP_VERSION;
   } else if (options.phpVersion === "composer") {
     const v = getComposerPhpVersion();
     if (v === null) {
@@ -90,6 +98,8 @@ export function resolvePhpVersion(options) {
     } else {
       options.phpVersion = v;
     }
+  } else {
+    options.phpVersion = parseFloat(options.phpVersion);
   }
 }
 
@@ -101,30 +111,14 @@ export default {
     default: "auto",
     description: "Minimum target PHP version.",
     choices: [
-      { value: "5.0" },
-      { value: "5.1" },
-      { value: "5.2" },
-      { value: "5.3" },
-      { value: "5.4" },
-      { value: "5.5" },
-      { value: "5.6" },
-      { value: "7.0" },
-      { value: "7.1" },
-      { value: "7.2" },
-      { value: "7.3" },
-      { value: "7.4" },
-      { value: "8.0" },
-      { value: "8.1" },
-      { value: "8.2" },
-      { value: "8.3" },
-      { value: "8.4" },
+      ...SUPPORTED_PHP_VERSIONS.map((v) => ({ value: v.toFixed(1) })),
       {
         value: "composer",
         description: "Use the PHP version defined in composer.json",
       },
       {
         value: "auto",
-        description: `Try composer.json, latest PHP Version (${LATEST_PHP_VERSION})`,
+        description: `Try composer.json, else latest PHP Version (${LATEST_SUPPORTED_PHP_VERSION})`,
       },
     ],
   },
