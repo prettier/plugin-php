@@ -55,12 +55,12 @@ describe("getComposerPhpVer", () => {
   });
 
   test.each([
-    {ver:">=7.1.0",expected: "7.1"},
-    {ver:"^8.0",expected: "8.0"},
-    {ver:"~7.4",expected: "7.4"},
-    {ver:">=5.6.0 <8.0.0",expected: "5.6"},
-    {ver:"7.3.*",expected: "7.3"},
-    {ver:"7.* || 8.*",expected: "7.0"}
+    {ver:">=7.1.0",expected: 7.1},
+    {ver:"^8.0",expected: 8.0},
+    {ver:"~7.4",expected: 7.4},
+    {ver:">=5.6.0 <8.0.0",expected: 5.6},
+    {ver:"7.3.*",expected: 7.3},
+    {ver:"7.* || 8.*",expected: 7.0}
   ])("extracts correct version from $ver ba changing cwd", ({ver, expected}) => {
     const composerContent = JSON.stringify(
       {
@@ -97,7 +97,7 @@ describe("getComposerPhpVer", () => {
 
     const options = { phpVersion: "composer" };
     resolvePhpVersion(options);
-    expect(options.phpVersion).toBe("5.4");
+    expect(options.phpVersion).toBe(5.4);
   })
 
   test("returns null when composer.json has no PHP requirement", () => {
@@ -170,7 +170,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    expect(getComposerPhpVersion()).toBe("8.1");
+    expect(getComposerPhpVersion()).toBe(8.1);
   });
 
   test("finds composer.json in intermediate parent directory", () => {
@@ -199,7 +199,7 @@ describe("getComposerPhpVer", () => {
 
     process.chdir(nestedDir3);
 
-    expect(getComposerPhpVersion()).toBe("7.2");
+    expect(getComposerPhpVersion()).toBe(7.2);
   });
 
   test("returns null when composer.json is malformed", () => {
