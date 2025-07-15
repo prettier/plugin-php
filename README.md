@@ -200,7 +200,7 @@ version, prettier will crash if the PHP cannot be determined.
 
 You can also set the `phpVersion` to a specific version, such as `7.4`, `8.0`, `8.1`, `8.2`, or `8.3`.
 
-**Please Note:** If the phpVersion is not set correctly for your environment, this plugin will product code that could
+**Please Note:** If the phpVersion is not set correctly for your environment, this plugin will produce code that could
 be incompatible with your PHP runtime. For example, if you are using PHP 7.4, but the plugin is set to PHP 8.3, it will
 produce code that uses features not available in PHP 7.4.
 
