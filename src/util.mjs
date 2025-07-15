@@ -709,7 +709,6 @@ function memoize(fn) {
   };
 }
 
-
 export {
   printNumber,
   getPrecedence,
