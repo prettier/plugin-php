@@ -95,9 +95,8 @@ export function resolvePhpVersion(options) {
       throw new Error(
         `Could not determine PHP version from composer; ${getComposerError}`
       );
-    } else {
-      options.phpVersion = v;
     }
+    options.phpVersion = v;
   } else {
     options.phpVersion = parseFloat(options.phpVersion);
   }
