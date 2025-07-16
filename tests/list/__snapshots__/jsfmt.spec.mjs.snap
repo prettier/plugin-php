@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`list.php 1`] = `
 ====================================options=====================================
@@ -159,132 +159,110 @@ list(
 $info = ["coffee", "brown", "caffeine"];
 
 // Listing all the variables
-list($drink, $color, $power) = $info;
+[$drink, $color, $power] = $info;
 echo "$drink is $color and $power makes it special.\\n";
 
 // Listing some of them
-list($drink, , $power) = $info;
+[$drink, , $power] = $info;
 echo "$drink has $power.\\n";
 
 // Or let's skip to only the third one
-list(, , $power) = $info;
+[, , $power] = $info;
 echo "I need $power!\\n";
 
 // list() doesn't work with strings
-list($bar) = "abcde";
+[$bar] = "abcde";
 var_dump($bar); // NULL
 
-while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
 }
 
-list($a, list($b, $c)) = [1, [2, 3]];
+[$a, [$b, $c]] = [1, [2, 3]];
 
 $info = ["coffee", "brown", "caffeine"];
-list($a[0], $a[1], $a[2]) = $info;
+[$a[0], $a[1], $a[2]] = $info;
 
-list("id" => $id1, "name" => $name1) = $data[0];
-list(
+["id" => $id1, "name" => $name1] = $data[0];
+[
     "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
     "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
-) = $data[0];
-list(
+] = $data[0];
+[
     "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
     "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-) = $data[0];
+] = $data[0];
 
-foreach ($data as list("id" => $id, "name" => $name)) {
+foreach ($data as ["id" => $id, "name" => $name]) {
     // logic here with $id and $name
 }
 
 foreach (
     $data
-    as list(
+    as [
         "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
         "veryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryLongValue,
-    )
+    ]
 ) {
     // logic here with $id and $name
 }
 
 foreach (
     $data
-    as list(
+    as [
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
         "veryVeryVeryVeryVeryVeryVeryVeryVeryLongKey" => $veryVeryVeryVeryVeryVeryVeryVeryVeryLongValue,
-    )
+    ]
 ) {
     // logic here with $id and $name
 }
 
-list(, $b) = ["a", "b"];
-list(, , $c) = ["a", "b", "c"];
+[, $b] = ["a", "b"];
+[, , $c] = ["a", "b", "c"];
 
-while (list($id, $name, $salary) = $result->fetch(PDO::FETCH_NUM)) {
+while ([$id, $name, $salary] = $result->fetch(PDO::FETCH_NUM)) {
     echo " <tr>\\n" .
         "  <td><a href=\\"info.php?id=$id\\">$name</a></td>\\n" .
         "  <td>$salary</td>\\n" .
         " </tr>\\n";
 }
 
-list($a, list($b, $c)) = [1, [2, 3]];
+[$a, [$b, $c]] = [1, [2, 3]];
 
-list($a[0], $a[1], $a[2]) = $info;
+[$a[0], $a[1], $a[2]] = $info;
 
 foreach ($data as ["id" => $id, "name" => $name]) {
     echo "id: $id, name: $name\\n";
 }
 
-list(0 => $first, 1 => $second, 2 => $three, 3 => $fourth) = $arr;
-list(
+[0 => $first, 1 => $second, 2 => $three, 3 => $fourth] = $arr;
+[
     0 => $first,
     1 => $second,
     2 => $three,
     3 => $fourth,
-) = $arr;
+] = $arr;
 
-list($first, $second, $three, $fourth) = $arr;
-list(, $first, $second, $three, $fourth) = $arr;
-list(, , $first, $second, $three, $fourth, ,) = $arr;
-list(, , $first, , $second, , $three, , $fourth, ,) = $arr;
-list(, , , $first, $second, $three, $fourth, , ,) = $arr;
-list(, , , $first, , , $second, , , $three, , , $fourth, , ,) = $arr;
+[$first, $second, $three, $fourth] = $arr;
+[, $first, $second, $three, $fourth] = $arr;
+[, , $first, $second, $three, $fourth, ,] = $arr;
+[, , $first, , $second, , $three, , $fourth, ,] = $arr;
+[, , , $first, $second, $three, $fourth, , ,] = $arr;
+[, , , $first, , , $second, , , $three, , , $fourth, , ,] = $arr;
 
-list(
+[
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    1 => $secondVeryVeryVeryVeryLong,
-    2 => $threeVeryVeryVeryVeryLong,
-    3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     0 => $firstVeryVeryVeryVeryLong,
     1 => $secondVeryVeryVeryVeryLong,
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
-    ,
-    0 => $firstVeryVeryVeryVeryLong,
-    ,
-    1 => $secondVeryVeryVeryVeryLong,
-    ,
-    2 => $threeVeryVeryVeryVeryLong,
-    ,
-    3 => $fourthVeryVeryVeryVeryLong,
-    ,
-) = $arr;
-list(
-    ,
+] = $arr;
+[
     ,
     ,
     0 => $firstVeryVeryVeryVeryLong,
@@ -292,9 +270,31 @@ list(
     2 => $threeVeryVeryVeryVeryLong,
     3 => $fourthVeryVeryVeryVeryLong,
     ,
+] = $arr;
+[
     ,
-) = $arr;
-list(
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    ,
+    1 => $secondVeryVeryVeryVeryLong,
+    ,
+    2 => $threeVeryVeryVeryVeryLong,
+    ,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+] = $arr;
+[
+    ,
+    ,
+    ,
+    0 => $firstVeryVeryVeryVeryLong,
+    1 => $secondVeryVeryVeryVeryLong,
+    2 => $threeVeryVeryVeryVeryLong,
+    3 => $fourthVeryVeryVeryVeryLong,
+    ,
+    ,
+] = $arr;
+[
     ,
     ,
     ,
@@ -310,9 +310,9 @@ list(
     3 => $fourthVeryVeryVeryVeryLong,
     ,
     ,
-) = $arr;
+] = $arr;
 
-list(
+[
     0 => $firstVeryVeryVeryVeryLong,
 
     1 => $secondVeryVeryVeryVeryLong,
@@ -320,12 +320,12 @@ list(
     2 => $threeVeryVeryVeryVeryLong,
 
     3 => $fourthVeryVeryVeryVeryLong,
-) = $arr;
+] = $arr;
 
-list("id" => $id1, "name" => $name1) = $data[0];
+["id" => $id1, "name" => $name1] = $data[0];
 ["id" => $id1, "name" => $name1] = $data[0];
 
-foreach ($data as list("id" => $id, "name" => $name)) {
+foreach ($data as ["id" => $id, "name" => $name]) {
     // logic here with $id and $name
 }
 
@@ -339,60 +339,60 @@ function swap(&$a, &$b): void
 }
 
 $array = [1, 2];
-list($a, &$b) = $array;
 [$a, &$b] = $array;
-list(&$a, $b, , list(&$c, $d)) = $array;
+[$a, &$b] = $array;
+[&$a, $b, , [&$c, $d]] = $array;
 [&$a, $b, , [&$c, $d]] = $array;
 
-foreach ($array as list(&$a, $b)) {
+foreach ($array as [&$a, $b]) {
 }
 foreach ($array as [&$a, $b]) {
 }
 
-list(0 => $var) = $arr;
-list(0 => $var) = $arr;
-list(, 0 => $var) = $arr;
-list(0 => $var) = $arr;
-list(
+[0 => $var] = $arr;
+[0 => $var] = $arr;
+[, 0 => $var] = $arr;
+[0 => $var] = $arr;
+[
     0 => $var,
-) = $arr;
-list(
+] = $arr;
+[
     ,
     0 => $var,
-) = $arr;
-list(
+] = $arr;
+[
     ,
     0 => $var,
-) = $arr;
-list(
+] = $arr;
+[
     ,
     0 => $var,
     ,
-) = $arr;
-list(
+] = $arr;
+[
     0 => $var,
     1 => $other_var,
-) = $arr;
-list(
-    ,
-    0 => $var,
-    1 => $other_var,
-) = $arr;
-list(
+] = $arr;
+[
     ,
     0 => $var,
     1 => $other_var,
-) = $arr;
-list(
+] = $arr;
+[
+    ,
+    0 => $var,
+    1 => $other_var,
+] = $arr;
+[
     ,
     0 => $var,
     1 => $other_var,
     ,
-) = $arr;
-list(0 => $var) = $arr;
-list(
+] = $arr;
+[0 => $var] = $arr;
+[
     0 => $var,
-) = $arr;
+] = $arr;
 
 ================================================================================
 `;

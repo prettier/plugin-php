@@ -1,8 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`array.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -1753,6 +1754,7 @@ $expected = [
 exports[`array.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false
@@ -2179,6 +2181,7 @@ EOT
 exports[`call.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -3359,6 +3362,7 @@ $sel = $this->connections
 exports[`call.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false
@@ -3654,6 +3658,7 @@ $sel = $this->connections
 exports[`isset.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -3756,6 +3761,7 @@ var_dump(
 exports[`isset.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false
@@ -3782,6 +3788,7 @@ var_dump(
 exports[`list.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -4180,6 +4187,7 @@ list(,,,0 => $firstVeryVeryVeryVeryLong,,, 1 => $secondVeryVeryVeryVeryLong,,, 2
 exports[`list.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false
@@ -4280,6 +4288,7 @@ list(
 exports[`unset.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -4378,6 +4387,7 @@ unset(
 exports[`unset.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false
@@ -4403,6 +4413,7 @@ unset(
 exports[`use.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
                                                                                 | printWidth
 =====================================input======================================
@@ -4609,6 +4620,7 @@ use other_foo\\bar\\{
 exports[`use.php 5`] = `
 ====================================options=====================================
 parsers: ["php"]
+phpVersion: "7.0"
 printWidth: 80
 trailingComma: "all"
 trailingCommaPHP: false

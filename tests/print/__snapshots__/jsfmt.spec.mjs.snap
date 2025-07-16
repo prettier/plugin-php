@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`print.php 1`] = `
 ====================================options=====================================
@@ -229,10 +229,10 @@ print esc_html(
         __(
             "Hi there. Your recent order on %s has been completed. " .
                 "Your order details are shown below for your reference:",
-            "woocommerce"
+            "woocommerce",
         ),
-        get_option("blogname")
-    )
+        get_option("blogname"),
+    ),
 );
 
 print <<<NOW
@@ -278,7 +278,7 @@ print call($var);
 print call(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 );
 
 print [$var, $var, $var];
@@ -318,7 +318,7 @@ print new Foo();
 print new Foo(
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
     $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
-    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable
+    $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable,
 );
 print new class {};
 print new class {

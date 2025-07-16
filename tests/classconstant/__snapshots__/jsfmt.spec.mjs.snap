@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`classconstant.php 1`] = `
 ====================================options=====================================
@@ -125,15 +125,15 @@ class ConstDemo
         1200 +
         1300;
     const CONST_9 = <<<EOD
-Example of string
-spanning multiple lines
-using heredoc syntax.
-EOD;
+    Example of string
+    spanning multiple lines
+    using heredoc syntax.
+    EOD;
     const CONST_10 = <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD;
+    Example of string
+    spanning multiple lines
+    using nowdoc syntax.
+    EOD;
     const CONST_11 = ["value", "other-value"];
     const CONST_12 = [
         "value",

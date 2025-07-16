@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`break-last-call.php 1`] = `
 ====================================options=====================================
@@ -34,7 +34,7 @@ function call($store)
                 actionWith([
                     "response" => $response,
                     "type" => $successType,
-                ])
+                ]),
             );
         },
         function ($error) {
@@ -42,9 +42,9 @@ function call($store)
                 actionWith([
                     "type" => $failureType,
                     "error" => $error->message || "Something bad happened",
-                ])
+                ]),
             );
-        }
+        },
     );
 }
 
@@ -87,10 +87,10 @@ $superSupersuperSupersuperSupersuperSupersuperSuperLong->{$exampleOfOrderOfGette
 $superSupersuperSupersuperSupersuperSupersuperSuperLong::$exampleOfOrderOfGetterAndSetterReordered;
 $superSupersuperSupersuperSupersuperSupersuperSuperLong
     ::$exampleOfOrderOfGetterAndSetterReordered[0];
-$superSupersuperSupersuperSupersuperSupersuperSuperLong = (new SuperSuperSuperSuperSuperSuperLongClassName())
+$superSupersuperSupersuperSupersuperSupersuperSuperLong = new SuperSuperSuperSuperSuperSuperLongClassName()
     ->some_very_long_member_expression;
 new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong();
-(new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong())
+new $superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong->superSupersuperSupersuperSupersuperSupersuperSuperLong()
     ->superSupersuperSupersuperSupersuperSupersuperSuperLong;
 $test =
     $superSupersuperSupersuperSupersuperSupersuperSuperLong->exampleOfOrderOfGetterAndSetterReordered;
@@ -241,7 +241,7 @@ $object[
         : $helper->responseBody($defaultUser)
 ]->map();
 
-(new TestClassWithReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName())
+new TestClassWithReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName()
     ->map()
     ->filter();
 
@@ -470,7 +470,7 @@ return tap(
     $this->forceFill([
         "approver_id" => $user instanceof User ? $user->id : $user,
         "approved_at" => $this->freshTimestamp(),
-    ])
+    ]),
 )->save();
 
 return collect(parent::jsonSerialize())
@@ -518,7 +518,7 @@ $a = $t
     ->once();
 
 $this->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    "some-param"
+    "some-param",
 );
 
 $this->loooooooooooong->lookup = (int) $variable
@@ -541,38 +541,38 @@ $aVariable = $theThing
 
 bar()();
 bar(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 )();
 bar()(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 );
 bar(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 )()()()()();
 
 $foo->bar()();
 $foo->bar(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 )();
 $foo->bar()(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 );
 $foo->bar(
-    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong"
+    "veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLong",
 )()()()()();
 
 $brian->hotel->orders()->ordered()->with("smith")->get();
 $brian::$hotel->orders()->ordered()->with("smith")->get();
 $brian["hotel"]->orders()->ordered()->with("smith")->get();
 Foo::$hotel->orders()->ordered()->with("smith")->get();
-(new Foo())->hotel->orders()->ordered()->with("smith")->get();
+new Foo()->hotel->orders()->ordered()->with("smith")->get();
 (clone $a)->hotel->orders()->ordered()->with("smith")->get();
 
 $var = $brian->hotel->orders()->ordered()->with("smith")->get();
 $var = $brian::$hotel->orders()->ordered()->with("smith")->get();
 $var = $brian["hotel"]->orders()->ordered()->with("smith")->get();
 $var = Foo::$hotel->orders()->ordered()->with("smith")->get();
-$var = (new Foo())->hotel->orders()->ordered()->with("smith")->get();
+$var = new Foo()->hotel->orders()->ordered()->with("smith")->get();
 $var = (clone $a)->hotel->orders()->ordered()->with("smith")->get();
 
 $var = Foo::keys($items)
@@ -583,10 +583,10 @@ $var = Foo::keys($items)
         return $x * 2;
     });
 
-(new static(func_get_args()))->push($this)->each(function ($item) {
+new static(func_get_args())->push($this)->each(function ($item) {
     VarDumper::dump($item);
 });
-(new static(func_get_args()))
+new static(func_get_args())
     ->offset(10)
     ->push($this)
     ->each(function ($item) {
@@ -641,7 +641,7 @@ $wrapper
     ->find("SomewhatLongNodeName")
     ->prop(
         "longPropFunctionName",
-        "second argument that pushes this group past 80 characters"
+        "second argument that pushes this group past 80 characters",
     )
     ->then(function () {
         doSomething();
@@ -812,8 +812,8 @@ $window
     ->first()
     ->second();
 
-(new Foo())->call($foo->bar->baz)->first()->second();
-(new Foo())
+new Foo()->call($foo->bar->baz)->first()->second();
+new Foo()
     ->call($foo->bar->baz->foo())
     ->first()
     ->second();
@@ -971,7 +971,7 @@ DB::table("identity")->insert([
 ]);
 
 DB::table(
-    "identity"
+    "identity",
 )->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName([
     "ref" => $ref,
     "handle" => $handle,
@@ -991,7 +991,7 @@ Logger::use_logger("albus")->info(
     [
         "uuid" => $uuid,
         "requested_date" => $date,
-    ]
+    ],
 );
 
 DBwithlongname::table("identity")
@@ -1031,7 +1031,7 @@ $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyRea
 
 $page = TableRegistry::insertReallyReallyReallyLongName("Pages")[0];
 $page = TableRegistry::insertReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName(
-    "Pages"
+    "Pages",
 )[0];
 
 $component = find(".org-lclp-edit-copy-url-banner__link")[0]
@@ -1053,7 +1053,7 @@ static::viewFactory()
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
             "paginator" => $this,
-        ])
+        ]),
     )
     ->render();
 static::viewFactory()
@@ -1061,7 +1061,7 @@ static::viewFactory()
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
             "paginator" => $this,
-        ])
+        ]),
     )
     ->render();
 self::viewFactory()
@@ -1069,7 +1069,7 @@ self::viewFactory()
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
             "paginator" => $this,
-        ])
+        ]),
     )
     ->render();
 parent::viewFactory()
@@ -1077,7 +1077,7 @@ parent::viewFactory()
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
             "paginator" => $this,
-        ])
+        ]),
     )
     ->render();
 
@@ -1086,7 +1086,7 @@ Foo::viewFactory()
         $view ?: static::$defaultSimpleView,
         array_merge($data, [
             "paginator" => $this,
-        ])
+        ]),
     )
     ->render();
 

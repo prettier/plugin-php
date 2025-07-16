@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`use.php 1`] = `
 ====================================options=====================================
@@ -64,7 +64,7 @@ use Vendor\\Package\\SomeNamespace\\{
     SubnamespaceOne\\ClassA,
     SubnamespaceOne\\ClassB,
     SubnamespaceTwo\\ClassY,
-    ClassZ
+    ClassZ,
 };
 use Mizo\\Web\\{
     Php\\WebSite,
@@ -74,7 +74,7 @@ use Mizo\\Web\\{
     function JS\\printTotal,
     function JS\\printList,
     const JS\\BUAIKUM,
-    const JS\\MAUTAM
+    const JS\\MAUTAM,
 };
 use Illuminate\\Foundation\\Bootstrap\\BootProviders;
 use function some\\Full\\fn_a;

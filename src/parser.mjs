@@ -1,5 +1,6 @@
 import engine from "php-parser";
-import options from "./options.mjs";
+import { LATEST_SUPPORTED_PHP_VERSION } from "./options.mjs";
+import { resolvePhpVersion } from "./options.mjs";
 
 function parse(text, opts) {
   const inMarkdown = opts && opts.parentParser === "markdown";
@@ -7,19 +8,16 @@ function parse(text, opts) {
   if (!text && inMarkdown) {
     return "";
   }
+  resolvePhpVersion(opts);
 
   // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
-
-  const latestSupportedPhpVersion = Math.max(
-    ...options.phpVersion.choices.map((c) => parseFloat(c.value))
-  );
 
   // initialize a new parser instance
   const parser = new engine({
     parser: {
       extractDoc: true,
-      version: `${latestSupportedPhpVersion}`,
+      version: `${LATEST_SUPPORTED_PHP_VERSION}`,
     },
     ast: {
       withPositions: true,

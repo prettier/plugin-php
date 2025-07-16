@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`array.php 1`] = `
 ====================================options=====================================
@@ -204,7 +204,7 @@ $array = [
 ];
 
 call(
-    [] // Comment
+    [], // Comment
 );
 
 call([
@@ -588,7 +588,7 @@ $var->render(
 foo(
     /* Comment */ $a /* Comment */,
     /* Comment */ [] /* Comment */,
-    /* Comment */ $a + 2 /* Comment */
+    /* Comment */ $a + 2 /* Comment */,
 );
 foo(/* A */);
 $foo->bar(/* B */);
@@ -596,24 +596,24 @@ $foo->bar(/* B */);
 render(
     // Comment
     "string",
-    $container
+    $container,
 );
 
 $var->render(
     // Comment
     "string",
-    $var
+    $var,
 );
 
 render(
     "string",
-    $container
+    $container,
     // Comment
 );
 
 $var->render(
     "string",
-    $var
+    $var,
     // Comment
 );
 
@@ -621,7 +621,7 @@ $var->render(
     // Comment
     "string",
     // Comment
-    $var
+    $var,
     // Comment
 );
 
@@ -2745,22 +2745,22 @@ echo // Comment
     call(
         $veryVeryVeryVeryVeryVeryVeryLongArg,
         $veryVeryVeryVeryVeryVeryVeryLongArg,
-        $veryVeryVeryVeryVeryVeryVeryLongArg
+        $veryVeryVeryVeryVeryVeryVeryLongArg,
     );
 
 echo // Comment
     <<<EOD
-Example of string
-spanning multiple lines
-using heredoc syntax.
-EOD;
+    Example of string
+    spanning multiple lines
+    using heredoc syntax.
+    EOD;
 
 echo // Comment
     <<<EOD
-Example of string
-spanning multiple lines
-using heredoc syntax.
-EOD
+    Example of string
+    spanning multiple lines
+    using heredoc syntax.
+    EOD
     ,
     $a;
 
@@ -3427,7 +3427,7 @@ function foo(
     int $a,
     // Comment
     string $b,
-    bool $c // Comment
+    bool $c, // Comment
 ) {}
 
 function foo()
@@ -4747,7 +4747,7 @@ if (isset(/* Comment */ $a[1] /* Comment */)) {
 if (
     isset(
         // Comment
-        $a
+        $a,
     )
 ) {
 }
@@ -4755,7 +4755,7 @@ if (
 if (
     isset(
         // Comment
-        $a
+        $a,
     )
 ) {
 }
@@ -4776,11 +4776,11 @@ list(/* Comment */ $drink /* Comment */ , /* Comment */ $color /* Comment */, /*
 =====================================output=====================================
 <?php
 
-list(
+[
     /* Comment */ $drink /* Comment */,
     /* Comment */ $color /* Comment */,
     /* Comment */ $power /* Comment */,
-) = $info;
+] = $info;
 
 ================================================================================
 `;
@@ -4917,7 +4917,7 @@ class Foo {
 class Foo
 {
     public function foo(
-        /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */
+        /* 1 */ $a /* 2 */ = /* 3 */ 1 /* 4 */,
     ): /* 5 */ ?string /* 6 */ {}
 
     public function emptyMethod(/* comments */) {}
@@ -4949,7 +4949,7 @@ class add_vendor extends request
             "", // address 5
             $vendor->city, // city
             $vendor->state, // state
-            $vendor->zip // state
+            $vendor->zip, // state
         );
     }
 }
@@ -5883,7 +5883,7 @@ $a = new class (
     // Comment
     $a,
     $b,
-    $c
+    $c,
 ) {};
 
 $a = new class (
@@ -5892,7 +5892,7 @@ $a = new class (
     // Comment
     $b,
     // Comment
-    $c
+    $c,
 ) {};
 
 $a = new class {
@@ -6221,28 +6221,28 @@ class MyClass {
 
 function foo(
     /* Comment */ $a,
-    /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
+    /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */,
 ) {}
 
 function bar(/* Comment */ &$a /* Comment */) {}
 
 function baz(
     /* Comment */ $a,
-    /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+    /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */,
 ) {}
 
 class MyClass
 {
     public function foo(
         /* Comment */ $a,
-        /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */
+        /* Comment */ array /* Comment2 */ $b /* Comment */ = /* Comment */ [] /* Comment */,
     ) {}
 
     public function bar(/* Comment */ &$a /* Comment */) {}
 
     public function baz(
         /* Comment */ $a,
-        /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */
+        /* Comment */ array /* Comment3 */ &$b /* Comment */ = /* Comment */ [] /* Comment */,
     ) {}
 }
 
@@ -6333,7 +6333,7 @@ print // Comment
 
 print call(
     // Comment
-    $a
+    $a,
 );
 
 print // Comment
@@ -6471,14 +6471,14 @@ class Foo
     public $bar = // Comment 1
         // Comment 2
         <<<'EOT'
-bar
-EOT;
+        bar
+        EOT;
 
     public $baz = // Comment 1
         // Comment 2
         <<<EOT
-baz
-EOT;
+        baz
+        EOT;
 
     public $var1 = // Comment 1
         // Comment 2
@@ -6590,16 +6590,16 @@ $inspect = $condition
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths
     ? // Making sure that the publicPath goes back to to build folder.
-    ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $extractTextPluginOptions = $shouldUseRelativeAssetPaths // Making sure that the publicPath goes back to to build folder.
-    ? ["publicPath" => (new Foo($cssFilename->split("/")->length))->join("../")]
+    ? ["publicPath" => new Foo($cssFilename->split("/")->length)->join("../")]
     : [];
 
 $var =
@@ -6915,14 +6915,14 @@ throw /* Comment */ new Foo() /* Comment */; // Comment
 throw new ClassName( // Comment
     1, // Comment
     // Comment
-    2 // Comment
+    2, // Comment
 ); // Comment
 
 /* Comment */
 throw new ClassName /* Comment */(
     /* Comment */ 1 /* Comment */,
     /* Comment */
-    /* Comment */ 2 /* Comment */
+    /* Comment */ 2 /* Comment */,
     /* Comment */
 ); /* Comment */
 
@@ -7230,12 +7230,12 @@ unset(/* Comment */ $foo /* Comment */);
 
 unset(
     // Comment
-    $var
+    $var,
 );
 
 unset(
     // Comment
-    $var
+    $var,
 );
 
 ================================================================================
@@ -7264,7 +7264,7 @@ use // Comment
 use some\\namespaces\\{
     /* Comment */ /* Comment */ /* Comment */ ClassA /* Comment */,
     /* Comment */ ClassB /* Comment */,
-    /* Comment */ ClassC as /* Comment */ /* Comment */ C
+    /* Comment */ ClassC as /* Comment */ /* Comment */ C,
 };
 
 use // Comment

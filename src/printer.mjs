@@ -37,7 +37,6 @@ import {
   isReferenceLikeNode,
   normalizeMagicMethodName,
   isSimpleCallArgument,
-  isMinVersion,
 } from "./util.mjs";
 
 const {
@@ -66,12 +65,19 @@ const {
   isPreviousLineEmpty,
 } = prettierUtil;
 
+/**
+ * Determine if we should print a trailing comma based on the config & php version
+ *
+ * @param options {object} Prettier Options
+ * @param requiredVersion {number}
+ * @returns {boolean}
+ */
 function shouldPrintComma(options, requiredVersion) {
   if (!options.trailingCommaPHP) {
     return false;
   }
 
-  return isMinVersion(options.phpVersion, requiredVersion);
+  return options.phpVersion >= requiredVersion;
 }
 
 function shouldPrintHardlineForOpenBrace(options) {
@@ -612,9 +618,9 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const lastArg = getLast(args);
 
   const maybeTrailingComma =
-    (shouldPrintComma(options, "7.3") &&
+    (shouldPrintComma(options, 7.3) &&
       ["call", "new", "unset", "isset"].includes(node.kind)) ||
-    (shouldPrintComma(options, "8.0") &&
+    (shouldPrintComma(options, 8.0) &&
       ["function", "closure", "method", "arrowfunc", "attribute"].includes(
         node.kind
       ))
@@ -1186,7 +1192,7 @@ function printAttrs(path, options, print, { inline = false } = {}) {
     allAttrs.push(
       group([
         indent(attrGroup),
-        ifBreak(shouldPrintComma(options, "8.0") ? "," : ""),
+        ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
         softline,
         "]",
         inline ? ifBreak(softline, " ") : "",
@@ -1658,11 +1664,7 @@ function printNode(path, options, print) {
           join([",", line], path.map(print, "items")),
         ]),
         node.name
-          ? [
-              ifBreak(shouldPrintComma(options, "7.2") ? "," : ""),
-              softline,
-              "}",
-            ]
+          ? [ifBreak(shouldPrintComma(options, 7.2) ? "," : ""), softline, "}"]
           : "",
       ]);
     case "useitem":
@@ -2356,9 +2358,8 @@ function printNode(path, options, print) {
     case "list":
     case "array": {
       const useShortForm =
-        (node.kind === "array" && isMinVersion(options.phpVersion, "5.4")) ||
-        (node.kind === "list" &&
-          (node.shortForm || isMinVersion(options.phpVersion, "7.1")));
+        (node.kind === "array" && options.phpVersion >= 5.4) ||
+        (node.kind === "list" && (node.shortForm || options.phpVersion >= 7.1));
       const open = useShortForm ? "[" : [node.kind, "("];
       const close = useShortForm ? "]" : ")";
 
@@ -2408,7 +2409,7 @@ function printNode(path, options, print) {
           indent([softline, printArrayItems(path, options, print)]),
           needsForcedTrailingComma ? "," : "",
           ifBreak(
-            !needsForcedTrailingComma && shouldPrintComma(options, "5.0")
+            !needsForcedTrailingComma && shouldPrintComma(options, 5.0)
               ? [
                   lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
                     ? hardline
@@ -2675,7 +2676,7 @@ function printNode(path, options, print) {
       if (parent.kind === "encapsedpart") {
         const parentParent = path.grandparent;
         let closingTagIndentation = 0;
-        const flexible = isMinVersion(options.phpVersion, "7.3");
+        const flexible = options.phpVersion >= 7.3;
         let linebreak = literalline;
         if (parentParent.type === "heredoc") {
           linebreak = flexible ? hardline : literalline;
@@ -2744,7 +2745,7 @@ function printNode(path, options, print) {
         case "string":
         case "shell":
         case "heredoc": {
-          const flexible = isMinVersion(options.phpVersion, "7.3");
+          const flexible = options.phpVersion >= 7.3;
           const linebreak = flexible ? hardline : literalline;
           return [
             getEncapsedQuotes(node),
@@ -2769,7 +2770,7 @@ function printNode(path, options, print) {
     case "magic":
       return node.value;
     case "nowdoc": {
-      const flexible = isMinVersion(options.phpVersion, "7.3");
+      const flexible = options.phpVersion >= 7.3;
       const linebreak = flexible ? hardline : literalline;
       return [
         "<<<'",

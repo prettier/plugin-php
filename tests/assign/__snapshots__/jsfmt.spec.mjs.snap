@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`assign.php 1`] = `
 ====================================options=====================================
@@ -233,14 +233,14 @@ $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongVariable = $veryVeryVeryVeryVer
 $obj->property = $obj->oneProperty = $obj->twoPeroperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = 0;
 $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = $veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongValue;
-$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = (new MyClass())->call(
-    $arg
+$obj->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty = new MyClass()->call(
+    $arg,
 );
 $obj->loooooooooooong->lookup = $this->getRequest()->getParam(
-    "instance-resource-id"
+    "instance-resource-id",
 );
 $obj->loooooooooooong->lookup = (int) $this->getRequest()->getParam(
-    "instance-resource-id"
+    "instance-resource-id",
 );
 
 $component =
@@ -251,7 +251,7 @@ $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
     $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
-$component = (new Foo())
+$component = new Foo()
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyLongName;
@@ -266,7 +266,7 @@ $component =
     Foo::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component =
     $a::$insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
-$component = (new Foo())
+$component = new Foo()
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
 $component = (clone $a)
     ->insertReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongName;
