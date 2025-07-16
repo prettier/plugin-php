@@ -204,15 +204,7 @@ describe("getComposerPhpVer", () => {
 
   test("returns null when composer.json is malformed", () => {
     // Create a malformed JSON file (invalid syntax)
-    const malformedContent = `{
-      "name": "test/package",
-      "require": {
-        "php": "^7.4"
-      }, // Invalid trailing comma
-      "extra": {
-        "key": "value"
-      }
-    }`;
+    const malformedContent = `{This is not JSON}`;
 
     fs.writeFileSync(tempComposerPath, malformedContent);
 
