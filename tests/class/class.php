@@ -339,3 +339,34 @@ class Bar extends Foo {
     public const int|null I = null;
     public const ?int J = null;
 }
+
+class B
+{
+    public string $bar {
+        get {
+            return $this->bar;
+        }
+    }
+
+    public string $bar2 {
+        get => $this->bar2;
+    }
+
+    public string $foo {
+        set => $this->foo = $value;
+    }
+
+    public string $foo2 {
+        set(string $value2) {
+            {
+                $this->bar = $value2;
+                $this->foo2 = 'something';
+            }
+        }
+    }
+}
+
+interface ABC {
+    public string $foo { get; }
+    public string $bar { set; }
+}

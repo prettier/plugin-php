@@ -1604,10 +1604,10 @@
     "@types/yargs" "^17.0.33"
     chalk "^4.1.2"
 
-"@jorgsowa/php-parser@^3.2.5-7":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@jorgsowa/php-parser/-/php-parser-3.2.5.tgz#4ee2c03f48aa22b5bd22b785acb5f483b46e5b88"
-  integrity sha512-EOhxHfvDjofdhRcuyoY06GlaNsHFkfWKaRJ5Q5UdtAkhUwfnvQDznFAL7CiIGHYqB1YqFOc+uvnP5ubXEya8Qw==
+"@jorgsowa/php-parser@3.2.5-7":
+  version "3.2.5-7"
+  resolved "https://registry.yarnpkg.com/@jorgsowa/php-parser/-/php-parser-3.2.5-7.tgz#65b0d3281f295271566c7fc51aa94b9d7811141d"
+  integrity sha512-FYIbu0b+hzWzUgc7oMwb8OMuDGsDSPP4Pm/tgGkuRxvQwCLuRRyVhCdjvkWsbXP+GL8gGWPn1D66BfZXX+IU4Q==
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
