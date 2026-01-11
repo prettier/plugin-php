@@ -17,8 +17,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           cache: "yarn"
       - run: yarn install --frozen-lockfile
@@ -37,15 +37,16 @@ jobs:
       AST_COMPARE: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
       - run: yarn install --frozen-lockfile
       - run: yarn c8 yarn test:node
       - uses: codecov/codecov-action@v5
+        if: false
         with:
           fail_ci_if_error: true
           disable_search: true
