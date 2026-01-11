@@ -1604,6 +1604,11 @@
     "@types/yargs" "^17.0.33"
     chalk "^4.1.2"
 
+"@jorgsowa/php-parser@^3.2.5-7":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@jorgsowa/php-parser/-/php-parser-3.2.5.tgz#4ee2c03f48aa22b5bd22b785acb5f483b46e5b88"
+  integrity sha512-EOhxHfvDjofdhRcuyoY06GlaNsHFkfWKaRJ5Q5UdtAkhUwfnvQDznFAL7CiIGHYqB1YqFOc+uvnP5ubXEya8Qw==
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
@@ -4700,11 +4705,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-php-parser@^3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.2.5.tgz#24ff4b4f3e1788967f7737e43c273a5a8e7cd0ac"
-  integrity sha512-M1ZYlALFFnESbSdmRtTQrBFUHSriHgPhgqtTF/LCbZM4h7swR5PHtUceB2Kzby5CfqcsYwBn7OXTJ0+8Sajwkw==
 
 picocolors@^1.0.0:
   version "1.0.0"

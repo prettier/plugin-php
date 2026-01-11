@@ -1,5 +1,5 @@
 {
-  "name": "@prettier/plugin-php",
+  "name": "@jorgsowa/prettier-plugin-php",
   "version": "0.24.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "linguist-languages": "^8.0.0",
-    "php-parser": "^3.2.5"
+    "@jorgsowa/php-parser": "^3.2.5-7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.27.2",
