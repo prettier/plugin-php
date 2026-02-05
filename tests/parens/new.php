@@ -70,3 +70,7 @@ $var = ((new $a)->b());
 (new class {})['foo'];
 
 $var = (new class {})->foo;
+
+// Issue #2441: static property access should not add parens
+$identifier = new Yii::$app->class([]);
+$identifier = new Yii::$app()->class([]);

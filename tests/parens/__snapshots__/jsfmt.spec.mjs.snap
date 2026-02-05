@@ -5021,6 +5021,10 @@ $var = ((new $a)->b());
 
 $var = (new class {})->foo;
 
+// Issue #2441: static property access should not add parens
+$identifier = new Yii::$app->class([]);
+$identifier = new Yii::$app()->class([]);
+
 =====================================output=====================================
 <?php
 new Translator(
@@ -5075,10 +5079,14 @@ $var = new $a->b();
 $var = (new $a())->b();
 $var = (new $a())->b();
 (new class {})->foo;
+
 (new class {})->foo();
 (new class {})();
 (new class {})["foo"];
 $var = (new class {})->foo;
+// Issue #2441: static property access should not add parens
+$identifier = (new Yii::$app)->class([]);
+$identifier = (new Yii::$app)->class([]);
 
 
 ================================================================================
@@ -5163,6 +5171,10 @@ $var = ((new $a)->b());
 
 $var = (new class {})->foo;
 
+// Issue #2441: static property access should not add parens
+$identifier = new Yii::$app->class([]);
+$identifier = new Yii::$app()->class([]);
+
 =====================================output=====================================
 <?php
 new Translator(
@@ -5217,10 +5229,14 @@ $var = new $a->b();
 $var = new $a()->b();
 $var = new $a()->b();
 new class {}->foo;
+
 new class {}->foo();
 new class {}();
 new class {}["foo"];
 $var = new class {}->foo;
+// Issue #2441: static property access should not add parens
+$identifier = new Yii::$app->class([]);
+$identifier = new Yii::$app->class([]);
 
 
 ================================================================================

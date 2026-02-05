@@ -2102,11 +2102,28 @@ function printNode(path, options, print) {
         );
       } else {
         const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
+
+        const isInMemberChain =
+          path.parent &&
+          (isLookupNode(path.parent) || path.parent.kind === "call");
+        const whatEndOffset = locEnd(node.what);
+        const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+          options.originalText,
+          whatEndOffset
+        );
+        const hasOriginalParens =
+          options.originalText.charAt(nextCharIndex) === "(";
+        const shouldSkipParens =
+          isInMemberChain &&
+          node.arguments.length === 0 &&
+          !hasOriginalParens &&
+          node.what.kind === "staticlookup";
+
         const printed = [
           isExpression ? "(" : "",
           print("what"),
           isExpression ? ")" : "",
-          printArgumentsList(path, options, print),
+          shouldSkipParens ? "" : printArgumentsList(path, options, print),
         ];
 
         parts.push(hasLeadingComment(node.what) ? indent(printed) : printed);
