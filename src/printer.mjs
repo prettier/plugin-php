@@ -2103,16 +2103,17 @@ function printNode(path, options, print) {
       } else {
         const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
 
+        // Skip parens for staticlookup in member chain to preserve original syntax
         const isInMemberChain =
           path.parent &&
           (isLookupNode(path.parent) || path.parent.kind === "call");
-        const whatEndOffset = locEnd(node.what);
-        const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
-          options.originalText,
-          whatEndOffset
-        );
         const hasOriginalParens =
-          options.originalText.charAt(nextCharIndex) === "(";
+          options.originalText.charAt(
+            getNextNonSpaceNonCommentCharacterIndex(
+              options.originalText,
+              locEnd(node.what)
+            )
+          ) === "(";
         const shouldSkipParens =
           isInMemberChain &&
           node.arguments.length === 0 &&
