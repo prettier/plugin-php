@@ -265,3 +265,7 @@ $class = new class(
         return 1;
     }
 ) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+new readonly class() {};
+new readonly class {};
+new readonly class($one, $two, $three) {};
