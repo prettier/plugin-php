@@ -331,3 +331,19 @@ $username = $_GET['user'] ?? $_POST['user'] ?? 'nobody';
 $this->request->data['comments']['user_id'] = $this->request->data['comments']['user_id'] ?? 'value';
 // Instead of repeating variables with long names, the equal coalesce operator is used
 $this->request->data['comments']['user_id'] ??= 'value';
+
+$result = "Hello, World!" |> strtoupper(...);
+$result = "Hello, World!" |> strtoupper(...) |> trim(...);
+$result = "Hello, World!" |> strtoupper(...) |> trim(...) |> htmlspecialchars(...);
+
+return $value |> transform(...);
+echo $value |> format(...);
+
+if ($x |> validate(...)) {}
+
+$result = $value |> fn1(...) ?? $fallback;
+$result = $value ?? $fallback |> fn1(...);
+
+foo($value |> transform(...), $other);
+
+$veryLongVariableName |> someVeryLongFunctionName(...) |> anotherVeryLongFunctionName(...);

@@ -1219,7 +1219,7 @@ function printClass(path, options, print) {
     declaration.push("abstract ");
   }
 
-  if (node.isReadonly) {
+  if (node.isReadonly && !isAnonymousClass) {
     declaration.push("readonly ");
   }
 
@@ -2094,7 +2094,7 @@ function printNode(path, options, print) {
             () => printAttrs(path, options, print, { inline: true }),
             "what"
           ),
-          "class",
+          node.what.isReadonly ? "readonly class" : "class",
           node.arguments.length > 0
             ? [" ", printArgumentsList(path, options, print)]
             : "",
