@@ -70,7 +70,7 @@ const bitshiftOperators = [">>", "<<"];
 
 function isBitwiseOperator(operator) {
   return (
-    !!bitshiftOperators[operator] ||
+    bitshiftOperators.includes(operator) ||
     operator === "|" ||
     operator === "^" ||
     operator === "&"
