@@ -678,7 +678,7 @@ function isSimpleCallArgument(node, depth = 2) {
 
   if (isCallLikeExpression(node)) {
     const parts = getChainParts(node);
-    parts.unshift();
+    parts.shift();
 
     return (
       parts.length <= depth &&
