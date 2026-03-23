@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`static.php 1`] = `
 ====================================options=====================================
@@ -43,6 +43,8 @@ string
 string', $b = 'string
 string
 string';
+static $x = $a = 1;
+static $x = $a = $b = 1;
 
 =====================================output=====================================
 <?php
@@ -121,6 +123,8 @@ string',
     $b = 'string
 string
 string';
+static $x = $a = 1;
+static $x = $a = $b = 1;
 
 ================================================================================
 `;
