@@ -215,7 +215,7 @@ function needsParens(path, options) {
         default:
           return false;
       }
-    case "silence":
+    case "silent":
     case "cast":
       // TODO: bug https://github.com/glayzzle/php-parser/issues/172
       return node.parenthesizedExpression;

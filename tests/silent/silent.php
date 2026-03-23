@@ -11,3 +11,5 @@ $variable = @foo()->veryVeryVeryVeryVeryLongMethod()->veryVeryVeryVeryVeryLongMe
 $variable = @foo('VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument', 'VeryVeryVeryVeryVeryVeryLongArgument');
 @trigger_error($error, E_USER_DEPRECATED);
 $value = @     $cache[$key];
+(@$obj)->method();
+(@$arr)[0];

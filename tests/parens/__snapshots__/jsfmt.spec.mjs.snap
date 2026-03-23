@@ -1461,7 +1461,7 @@ $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 
 @foo() || @foo();
-@foo() || @foo();
+(@foo()) || (@foo());
 $var = @foo() || @foo();
 $var = @foo() || @foo();
 
@@ -2228,7 +2228,7 @@ $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 $var = $page > 0 || ($page == 0 && $this->forcePageParam);
 
 @foo() || @foo();
-@foo() || @foo();
+(@foo()) || (@foo());
 $var = @foo() || @foo();
 $var = @foo() || @foo();
 
@@ -6192,7 +6192,7 @@ echo @(1 / 0);
 @foo();
 
 $var = @foo();
-$var = @foo();
+$var = (@foo());
 
 $var = @call() || @other();
 $var = @call() || @other_class();
@@ -6204,7 +6204,7 @@ $var = @$cache[$key];
 $var = @new MyClass();
 $var = @new MyClass();
 
-($var = @include "file.php") or die("Could not find file.php!");
+($var = (@include "file.php")) or die("Could not find file.php!");
 
 $var = @$_GET["data"];
 
@@ -6305,7 +6305,7 @@ echo @(1 / 0);
 @foo();
 
 $var = @foo();
-$var = @foo();
+$var = (@foo());
 
 $var = @call() || @other();
 $var = @call() || @other_class();
@@ -6317,7 +6317,7 @@ $var = @$cache[$key];
 $var = @new MyClass();
 $var = @new MyClass();
 
-($var = @include "file.php") or die("Could not find file.php!");
+($var = (@include "file.php")) or die("Could not find file.php!");
 
 $var = @$_GET["data"];
 
