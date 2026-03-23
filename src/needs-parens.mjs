@@ -158,13 +158,14 @@ function needsParens(path, options) {
           return !!(node.key || node.value);
       }
     }
+    case "assignref":
     case "assign": {
       if (
         parent.kind === "for" &&
         (parent.init.includes(node) || parent.increment.includes(node))
       ) {
         return false;
-      } else if (parent.kind === "assign") {
+      } else if (parent.kind === "assign" || parent.kind === "assignref") {
         return false;
       } else if (parent.kind === "static") {
         return false;
