@@ -90,10 +90,6 @@ function needsParens(path, options) {
             return true;
           }
 
-          if (po === "|>" && no === "|>") {
-            return false;
-          }
-
           if (pp === np && key === "right") {
             return true;
           }
