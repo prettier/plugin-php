@@ -117,7 +117,7 @@ function genericPrint(path, options, print) {
   if (lineShouldEndWithSemicolon(path)) {
     const isPipeChainStatement =
       node.kind === "expressionstatement" &&
-      (node.expression.kind === "bin" && node.expression.type === "|>" ||
+      ((node.expression.kind === "bin" && node.expression.type === "|>") ||
         (node.expression.kind === "assign" &&
           node.expression.right.kind === "bin" &&
           node.expression.right.type === "|>"));
@@ -769,7 +769,11 @@ function printPipeChain(path, print, trailingSemicolon = false) {
   const semicolon = trailingSemicolon
     ? ifBreak([hardlineWithoutBreakParent, ";"], ";")
     : "";
-  return group([first, indent(rest.flatMap((el) => [line, "|> ", el])), semicolon]);
+  return group([
+    first,
+    indent(rest.flatMap((el) => [line, "|> ", el])),
+    semicolon,
+  ]);
 }
 
 function printBinaryExpression(
