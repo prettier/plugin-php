@@ -1,4 +1,4 @@
-import engine from "php-parser";
+import engine from "@jorgsowa/php-parser";
 import { LATEST_SUPPORTED_PHP_VERSION } from "./options.mjs";
 import { resolvePhpVersion } from "./options.mjs";
 

@@ -1205,6 +1205,40 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   return [...allAttrs, inline ? "" : hardline];
 }
 
+function printPropertyHook(path, options, print, hook) {
+  const parts = [];
+  if (hook.byref) {
+    parts.push("&");
+  }
+  if (hook.visibility) {
+    parts.push(hook.visibility, " ");
+  }
+  if (hook.isFinal) {
+    parts.push("final ");
+  }
+  parts.push(hook.name);
+
+  if (hook.parameter) {
+    path.call((parameterPath) => {
+      parts.push("(", print(parameterPath), ")");
+    }, "parameter");
+  }
+
+  if (hook.body) {
+    if (hook.body.kind === "block") {
+      console.log(hook.body);
+      parts.push(" ", "{", indent([line, path.call(print, "body")]), line, "}");
+    } else {
+      parts.push(
+        " => ",
+        path.call((p) => print(p), "body"),
+        ";"
+      );
+    }
+  }
+  return group(parts);
+}
+
 function printClass(path, options, print) {
   const { node } = path;
   const isAnonymousClass = node.kind === "class" && node.isAnonymous;
@@ -1782,6 +1816,7 @@ function printNode(path, options, print) {
     case "variadic":
       return ["...", print("what")];
     case "property":
+      const isInterface = getAncestorNode(path, "interface");
       return group([
         node.readonly ? "readonly " : "",
         node.type ? [node.nullable ? "?" : "", print("type"), " "] : "",
@@ -1798,6 +1833,38 @@ function printNode(path, options, print) {
                 options
               ),
             ]
+          : "",
+        node.hooks && node.hooks.length > 0 && options.phpVersion >= 8.4
+          ? isInterface
+            ? [
+                " { ",
+                join(
+                  " ",
+                  path.map(
+                    (p) => [
+                      printPropertyHook(p, options, print, p.node),
+                      p.node.body ? "" : ";",
+                    ],
+                    "hooks"
+                  )
+                ),
+                " }",
+              ]
+            : [
+                " {",
+                indent([
+                  hardline,
+                  join(
+                    [hardline, hardline],
+                    path.map(
+                      (p) => printPropertyHook(p, options, print, p.node),
+                      "hooks"
+                    )
+                  ),
+                ]),
+                hardline,
+                "}",
+              ]
           : "",
       ]);
     case "propertystatement": {

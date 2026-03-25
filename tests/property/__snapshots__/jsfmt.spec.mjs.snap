@@ -47,6 +47,18 @@ string
 string' . 'string
 string
 string';
+
+    public $string3 { get => 'string'; }
+    public $string13 { &get => 'string'; }
+    public $string4 { get => $this->string4; }
+    public $string5 { final get => $this->string5; }
+    public $string6 { set => $this->string6 = $value; }
+    public $string7 { set => $this->string7 = $value; }
+    public string $string8 { set(string $value) => $this->string8 = $value; }
+    public string $string9 { set(string $value) { $this->string9 = $value; }}
+    public string $string10 { set { $this->string10 = $value; }}
+    public $string11 { final set => $this->string11 = $value; }
+    public $string12 { get { return $this->string12; } }
 }
 
 =====================================output=====================================
@@ -99,6 +111,40 @@ string' .
         'string
 string
 string';
+
+    public $string3 {
+        get => "string";
+    }
+    public $string13 {
+        &get => "string";
+    }
+    public $string4 {
+        get => $this->string4;
+    }
+    public $string5 {
+        final get => $this->string5;
+    }
+    public $string6 {
+        set => ($this->string6 = $value);
+    }
+    public $string7 {
+        set => ($this->string7 = $value);
+    }
+    public string $string8 {
+        set(string $value) => ($this->string8 = $value);
+    }
+    public string $string9 {
+        set(string $value) { $this->string9 = $value; }
+    }
+    public string $string10 {
+        set { $this->string10 = $value; }
+    }
+    public $string11 {
+        final set => ($this->string11 = $value);
+    }
+    public $string12 {
+        get { return $this->string12; }
+    }
 }
 
 ================================================================================

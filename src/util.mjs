@@ -359,6 +359,12 @@ function lineShouldEndWithSemicolon(path) {
       return true;
     }
   }
+  if (
+    node.kind === "propertystatement" &&
+    node.properties.some((p) => p.hooks && p.hooks.length > 0)
+  ) {
+    return false;
+  }
   return [
     "expressionstatement",
     "do",
