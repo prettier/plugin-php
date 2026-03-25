@@ -274,6 +274,10 @@ $class = new class(
     }
 ) extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
 
+new readonly class() {};
+new readonly class {};
+new readonly class($one, $two, $three) {};
+
 =====================================output=====================================
 <?php
 interface Logger
@@ -591,6 +595,10 @@ $class = new class (
 )
     extends VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass
     implements VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongMyClass {};
+
+new classreadonly  {};
+new classreadonly  {};
+new class ($one, $two, $three)readonly  {};
 
 ================================================================================
 `;
