@@ -239,6 +239,8 @@ function needsParens(path, options) {
         default:
           return false;
       }
+    case "intersectiontype":
+      return parent.kind === "uniontype";
     case "print":
     case "include":
       return parent.kind === "bin";
