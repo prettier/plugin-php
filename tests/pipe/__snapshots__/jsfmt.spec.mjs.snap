@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`pipe.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.5"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$result = "Hello, World!" |> strtoupper(...);
+$result = "Hello, World!" |> strtoupper(...) |> trim(...);
+$result = "Hello, World!" |> strtoupper(...) |> trim(...) |> htmlspecialchars(...);
+
+return $value |> transform(...);
+echo $value |> format(...);
+
+if ($x |> validate(...)) {}
+
+$result = $value |> fn1(...) ?? $fallback;
+$result = $value ?? $fallback |> fn1(...);
+
+foo($value |> transform(...), $other);
+
+$veryLongVariableName |> someVeryLongFunctionName(...) |> anotherVeryLongFunctionName(...);
+
+$result = $a |> fn1(...) || $b |> fn2(...);
+
+$result = $value |> fn1($inner |> transform(...)) |> fn2(...);
+
+$result = $veryLongValue |> someFunction($innerValue |> innerTransform(...) |> anotherInnerTransform(...) |> yetAnotherInnerTransform(...)) |> finalTransform(...);
+
+=====================================output=====================================
+<?php
+
+$result = "Hello, World!" |> strtoupper(...);
+$result = "Hello, World!" |> strtoupper(...) |> trim(...);
+$result = "Hello, World!"
+    |> strtoupper(...)
+    |> trim(...)
+    |> htmlspecialchars(...)
+;
+
+return $value |> transform(...);
+echo $value |> format(...);
+
+if ($x |> validate(...)) {
+}
+
+$result = $value |> fn1(...) ?? $fallback;
+$result = $value ?? ($fallback |> fn1(...));
+
+foo($value |> transform(...), $other);
+
+$veryLongVariableName
+    |> someVeryLongFunctionName(...)
+    |> anotherVeryLongFunctionName(...)
+;
+
+$result = $a |> fn1(...) || ($b |> fn2(...));
+
+$result = $value |> fn1($inner |> transform(...)) |> fn2(...);
+
+$result = $veryLongValue
+    |> someFunction(
+        $innerValue
+            |> innerTransform(...)
+            |> anotherInnerTransform(...)
+            |> yetAnotherInnerTransform(...),
+    )
+    |> finalTransform(...)
+;
+
+================================================================================
+`;

@@ -50,6 +50,7 @@ const {
   dedent,
   ifBreak,
   hardline,
+  hardlineWithoutBreakParent,
   softline,
   literalline,
   align,
@@ -741,6 +742,32 @@ function shouldInlineLogicalExpression(node) {
 // precedence level and the AST is structured based on precedence
 // level, things are naturally broken up correctly, i.e. `&&` is
 // broken before `+`.
+function printPipeChain(path, print, trailingSemicolon = false) {
+  const elements = [];
+
+  function collect() {
+    const { node } = path;
+    if (node.kind === "bin" && node.type === "|>") {
+      elements.push(path.call(print, "left"));
+      path.call(collect, "right");
+    } else {
+      elements.push(print());
+    }
+  }
+
+  collect();
+
+  const [first, ...rest] = elements;
+  const semicolon = trailingSemicolon
+    ? ifBreak([hardlineWithoutBreakParent, ";"], ";")
+    : "";
+  return group([
+    first,
+    indent(rest.flatMap((el) => [line, "|> ", el])),
+    semicolon,
+  ]);
+}
+
 function printBinaryExpression(
   path,
   print,
@@ -1219,7 +1246,7 @@ function printClass(path, options, print) {
     declaration.push("abstract ");
   }
 
-  if (node.isReadonly) {
+  if (node.isReadonly && !isAnonymousClass) {
     declaration.push("readonly ");
   }
 
@@ -1524,6 +1551,7 @@ function printAssignmentRight(
 
   const canBreak =
     (pureRightNode.kind === "bin" &&
+      pureRightNode.type !== "|>" &&
       !shouldInlineLogicalExpression(pureRightNode)) ||
     (pureRightNode.kind === "retif" &&
       ((!pureRightNode.trueExpr &&
@@ -2094,7 +2122,7 @@ function printNode(path, options, print) {
             () => printAttrs(path, options, print, { inline: true }),
             "what"
           ),
-          "class",
+          node.what.isReadonly ? "readonly class" : "class",
           node.arguments.length > 0
             ? [" ", printArgumentsList(path, options, print)]
             : "",
@@ -2487,6 +2515,16 @@ function printNode(path, options, print) {
       );
     }
     case "bin": {
+      if (node.type === "|>") {
+        const { parent, grandparent } = path;
+        const isStatementLevel =
+          parent.kind === "expressionstatement" ||
+          (parent.kind === "assign" &&
+            grandparent &&
+            grandparent.kind === "expressionstatement");
+        return printPipeChain(path, print, isStatementLevel);
+      }
+
       const { parent, grandparent: parentParent } = path;
       const isInsideParenthesis =
         node !== parent.body &&

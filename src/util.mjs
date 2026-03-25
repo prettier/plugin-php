@@ -41,6 +41,7 @@ const PRECEDENCE = new Map(
       "<<=",
       ">>=",
     ],
+    ["|>"],
     ["??"],
     ["||"],
     ["&&"],
@@ -357,6 +358,17 @@ function lineShouldEndWithSemicolon(path) {
     const { parent } = path;
     if (parent && parent.kind === "interface") {
       return true;
+    }
+  }
+  if (node.kind === "expressionstatement") {
+    const expr = node.expression;
+    const isPipeChain =
+      (expr.kind === "bin" && expr.type === "|>") ||
+      (expr.kind === "assign" &&
+        expr.right.kind === "bin" &&
+        expr.right.type === "|>");
+    if (isPipeChain) {
+      return false;
     }
   }
   return [
