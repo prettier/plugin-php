@@ -347,3 +347,5 @@ $callable = strlen(...);
 $callable = $item->doSomething(...);
 $callable = $item::doSomething(...);
 $callable = Foo::doSomething(...);
+
+$this->method1()->method2()->method3(foo()->bar());
