@@ -52,7 +52,7 @@
     "jest-light-runner": "^0.7.9",
     "jest-snapshot-serializer-raw": "^2.0.0",
     "prettier": "^3.6.1",
-    "rollup": "^3.28.1",
+    "rollup": "^4.60.0",
     "strip-ansi": "^7.1.0"
   },
   "peerDependencies": {
