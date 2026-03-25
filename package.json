@@ -47,7 +47,7 @@
     "eslint-plugin-jest": "27.6.3",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-prettier-doc": "^1.1.0",
-    "jest": "30.0.3",
+    "jest": "30.3.0",
     "jest-environment-jsdom": "30.0.2",
     "jest-light-runner": "^0.7.9",
     "jest-snapshot-serializer-raw": "^2.0.0",
