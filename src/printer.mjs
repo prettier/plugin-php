@@ -115,15 +115,7 @@ function genericPrint(path, options, print) {
   }
 
   if (lineShouldEndWithSemicolon(path)) {
-    const isPipeChainStatement =
-      node.kind === "expressionstatement" &&
-      ((node.expression.kind === "bin" && node.expression.type === "|>") ||
-        (node.expression.kind === "assign" &&
-          node.expression.right.kind === "bin" &&
-          node.expression.right.type === "|>"));
-    if (!isPipeChainStatement) {
-      parts.push(";");
-    }
+    parts.push(";");
   }
 
   if (fileShouldEndWithHardline(path)) {

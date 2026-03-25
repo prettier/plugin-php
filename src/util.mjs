@@ -360,6 +360,17 @@ function lineShouldEndWithSemicolon(path) {
       return true;
     }
   }
+  if (node.kind === "expressionstatement") {
+    const expr = node.expression;
+    const isPipeChain =
+      (expr.kind === "bin" && expr.type === "|>") ||
+      (expr.kind === "assign" &&
+        expr.right.kind === "bin" &&
+        expr.right.type === "|>");
+    if (isPipeChain) {
+      return false;
+    }
+  }
   return [
     "expressionstatement",
     "do",
