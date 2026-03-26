@@ -1522,18 +1522,18 @@
   resolved "https://registry.yarnpkg.com/@jest/diff-sequences/-/diff-sequences-30.3.0.tgz#25b0818d3d83f00b9c7b04e069b8810f9014b143"
   integrity sha512-cG51MVnLq1ecVUaQ3fr6YuuAOitHK1S4WUJHnsPFE/quQr33ADUx1FfrTCpMCRxvy0Yr9BThKpDjSlcTi91tMA==
 
-"@jest/environment-jsdom-abstract@30.0.2":
-  version "30.0.2"
-  resolved "https://registry.yarnpkg.com/@jest/environment-jsdom-abstract/-/environment-jsdom-abstract-30.0.2.tgz#3538bcc206704a4a37ee18afcb5b88ce55f02dc4"
-  integrity sha512-8aMoEzGdUuJeQl71BUACkys1ZEX437AF376VBqdYXsGFd4l3F1SdTjFHmNq8vF0Rp+CYhUyxa0kRAzXbBaVzfQ==
+"@jest/environment-jsdom-abstract@30.3.0":
+  version "30.3.0"
+  resolved "https://registry.yarnpkg.com/@jest/environment-jsdom-abstract/-/environment-jsdom-abstract-30.3.0.tgz#c97b2bf3ec35336d543c174a758f3dc07478c172"
+  integrity sha512-0hNFs5N6We3DMCwobzI0ydhkY10sT1tZSC0AAiy+0g2Dt/qEWgrcV5BrMxPczhe41cxW4qm6X+jqZaUdpZIajA==
   dependencies:
-    "@jest/environment" "30.0.2"
-    "@jest/fake-timers" "30.0.2"
-    "@jest/types" "30.0.1"
+    "@jest/environment" "30.3.0"
+    "@jest/fake-timers" "30.3.0"
+    "@jest/types" "30.3.0"
     "@types/jsdom" "^21.1.7"
     "@types/node" "*"
-    jest-mock "30.0.2"
-    jest-util "30.0.2"
+    jest-mock "30.3.0"
+    jest-util "30.3.0"
 
 "@jest/environment@30.0.2":
   version "30.0.2"
@@ -4369,15 +4369,13 @@ jest-each@30.3.0:
     jest-util "30.3.0"
     pretty-format "30.3.0"
 
-jest-environment-jsdom@30.0.2:
-  version "30.0.2"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-30.0.2.tgz#8f0eb3544ba5abb8de71a2be42b5a95f04485e91"
-  integrity sha512-lwMpe7hZ81e2PpHj+4nowAzSkC0p8ftRfzC+qEjav9p5ElCs6LAce3y46iLwMS27oL9+/KQe55gUvUDwrlDeJQ==
+jest-environment-jsdom@30.3.0:
+  version "30.3.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-30.3.0.tgz#6bf80519643333ae2faa07b5660d80451d328578"
+  integrity sha512-RLEOJy6ip1lpw0yqJ8tB3i88FC7VBz7i00Zvl2qF71IdxjS98gC9/0SPWYIBVXHm5hgCYK0PAlSlnHGGy9RoMg==
   dependencies:
-    "@jest/environment" "30.0.2"
-    "@jest/environment-jsdom-abstract" "30.0.2"
-    "@types/jsdom" "^21.1.7"
-    "@types/node" "*"
+    "@jest/environment" "30.3.0"
+    "@jest/environment-jsdom-abstract" "30.3.0"
     jsdom "^26.1.0"
 
 jest-environment-node@30.3.0:
