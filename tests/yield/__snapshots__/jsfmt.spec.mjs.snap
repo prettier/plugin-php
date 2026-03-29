@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`yield.php 1`] = `
 ====================================options=====================================
@@ -63,6 +63,13 @@ function count_to_ten() {
 function foo() {
   $test = 123;
   yield "bar {$test}" => 123;
+}
+function bar() {
+  $x = yield from $gen;
+  $cond ? yield from $gen : $fallback;
+  foo(yield from $gen);
+  (yield from $gen)->method();
+  $a && yield from $gen;
 }
 
 =====================================output=====================================
@@ -130,6 +137,14 @@ function foo()
 {
     $test = 123;
     yield "bar {$test}" => 123;
+}
+function bar()
+{
+    $x = yield from $gen;
+    $cond ? yield from $gen : $fallback;
+    foo(yield from $gen);
+    (yield from $gen)->method();
+    $a && (yield from $gen);
 }
 
 ================================================================================

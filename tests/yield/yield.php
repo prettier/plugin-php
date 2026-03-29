@@ -56,3 +56,10 @@ function foo() {
   $test = 123;
   yield "bar {$test}" => 123;
 }
+function bar() {
+  $x = yield from $gen;
+  $cond ? yield from $gen : $fallback;
+  foo(yield from $gen);
+  (yield from $gen)->method();
+  $a && yield from $gen;
+}

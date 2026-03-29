@@ -142,7 +142,8 @@ function needsParens(path, options) {
           return false;
       }
     }
-    case "yield": {
+    case "yield":
+    case "yieldfrom": {
       switch (parent.kind) {
         case "propertylookup":
         case "nullsafepropertylookup":
@@ -154,8 +155,11 @@ function needsParens(path, options) {
         case "retif":
           return key === "test";
 
+        case "assign":
+          return node.kind === "yield" && !!(node.key || node.value);
+
         default:
-          return !!(node.key || node.value);
+          return node.kind === "yieldfrom" || !!(node.key || node.value);
       }
     }
     case "assign": {
