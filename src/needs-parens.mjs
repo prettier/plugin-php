@@ -166,7 +166,7 @@ function needsParens(path, options) {
         return false;
       } else if (parent.kind === "assign") {
         return false;
-      } else if (parent.kind === "static") {
+      } else if (parent.kind === "staticvariable") {
         return false;
       } else if (
         ["if", "do", "while", "foreach", "switch"].includes(parent.kind)

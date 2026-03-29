@@ -35,3 +35,5 @@ string
 string', $b = 'string
 string
 string';
+static $x = $a = 1;
+static $x = $a = $b = 1;
