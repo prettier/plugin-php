@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`assignref.php 1`] = `
 ====================================options=====================================
@@ -42,6 +42,7 @@ $cached_var = &drupal_static(__FUNCTION__);
 
 $test = ['key' => &$value];
 $test = ['key' => &$value['something']];
+$x = $y =& $z;
 
 =====================================output=====================================
 <?php
@@ -56,7 +57,7 @@ class Foo
     }
 }
 
-$a = &$b / 100;
+($a = &$b) / 100;
 
 $var =
     $arr[
@@ -96,6 +97,7 @@ $cached_var = &drupal_static(__FUNCTION__);
 
 $test = ["key" => &$value];
 $test = ["key" => &$value["something"]];
+$x = $y = &$z;
 
 ================================================================================
 `;
