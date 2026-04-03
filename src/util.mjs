@@ -694,6 +694,7 @@ function isSimpleCallArgument(node, depth = 2) {
 
     return (
       parts.length <= depth &&
+      (node.arguments ?? []).every(isChildSimple) &&
       parts.every((node) =>
         isLookupNode(node)
           ? isChildSimple(node.offset)
