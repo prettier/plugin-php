@@ -63,3 +63,7 @@ $var = call(+$var->_uuidCounter);
 
 if (!$token = $this->getToken()) {}
 if (!($token = $this->getToken())) {}
+
+$var = 5 * -1 + 2;
+$var = 5 * -1 . "foo";
+$var = 5 * (-1) + 2;
