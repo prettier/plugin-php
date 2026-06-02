@@ -134,12 +134,12 @@ class D
     function k(#[L] int $m): callable
     {
         return #[N, O] #[P] fn(#[Q] int $r) => $r * 2;
-    } //Testing T
+    }
 
     // Testing S
-    //Testing S-T
     #[S]
-    #[T]
+    //Testing S-T
+    #[T] //Testing T
     private function u()
     {
         return #[V] function () {

@@ -1199,37 +1199,150 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   if (!path.node.attrGroups) {
     return [];
   }
-  path.each(() => {
-    const attrGroup = ["#["];
+  path.each((attrGroupPath) => {
     if (!inline && allAttrs.length > 0) {
       allAttrs.push(hardline);
     }
-    attrGroup.push(softline);
-    path.each(() => {
-      const attrNode = path.node;
-      if (attrGroup.length > 2) {
-        attrGroup.push(",", line);
-      }
-      const attrStmt = [attrNode.name];
-      if (attrNode.args.length > 0) {
-        attrStmt.push(printArgumentsList(path, options, print, "args"));
-      }
-      attrGroup.push(group(attrStmt));
-    }, "attrs");
     allAttrs.push(
-      group([
-        indent(attrGroup),
-        ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
-        softline,
-        "]",
-        inline ? ifBreak(softline, " ") : "",
-      ])
+      printAllComments(
+        attrGroupPath,
+        () => printAttrGroup(attrGroupPath, options, print, { inline }),
+        options
+      )
     );
   }, "attrGroups");
   if (allAttrs.length === 0) {
     return [];
   }
   return [...allAttrs, inline ? "" : hardline];
+}
+
+function printAttrGroup(path, options, print, { inline = false } = {}) {
+  const attrGroup = ["#["];
+  attrGroup.push(softline);
+  path.each(() => {
+    const attrNode = path.node;
+    if (attrGroup.length > 2) {
+      attrGroup.push(",", line);
+    }
+    const attrStmt = [attrNode.name];
+    if (attrNode.args.length > 0) {
+      attrStmt.push(printArgumentsList(path, options, print, "args"));
+    }
+    attrGroup.push(group(attrStmt));
+  }, "attrs");
+  return group([
+    indent(attrGroup),
+    ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
+    softline,
+    "]",
+    inline ? ifBreak(softline, " ") : "",
+  ]);
+}
+
+function printFunction(path, options, print) {
+  const { node } = path;
+  const declAttrs = printAttrs(path, options, print, {
+    inline: node.kind === "closure",
+  });
+  const declaration = [];
+
+  if (node.isFinal) {
+    declaration.push("final ");
+  }
+
+  if (node.isAbstract) {
+    declaration.push("abstract ");
+  }
+
+  if (node.visibility) {
+    declaration.push(node.visibility, " ");
+  }
+
+  if (node.isStatic) {
+    declaration.push("static ");
+  }
+
+  declaration.push("function ");
+
+  if (node.byref) {
+    declaration.push("&");
+  }
+
+  if (node.name) {
+    declaration.push(print("name"));
+  }
+
+  declaration.push(printArgumentsList(path, options, print));
+
+  if (node.uses && node.uses.length > 0) {
+    declaration.push(
+      group([" use ", printArgumentsList(path, options, print, "uses")])
+    );
+  }
+
+  if (node.type) {
+    declaration.push([
+      ": ",
+      hasDanglingComments(node.type)
+        ? [
+            path.call(() => printDanglingComments(path, options, true), "type"),
+            " ",
+          ]
+        : "",
+      node.nullable ? "?" : "",
+      print("type"),
+    ]);
+  }
+
+  const printedDeclaration = declaration;
+
+  if (!node.body) {
+    return [...declAttrs, printedDeclaration];
+  }
+
+  const printedBody = [
+    "{",
+    indent([hasEmptyBody(path) ? "" : hardline, print("body")]),
+    hasEmptyBody(path) ? "" : hardline,
+    "}",
+  ];
+
+  const isClosure = node.kind === "closure";
+  if (isClosure) {
+    return [...declAttrs, printedDeclaration, " ", printedBody];
+  }
+
+  if (node.arguments.length === 0) {
+    return [
+      ...declAttrs,
+      printedDeclaration,
+      shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+        ? hardline
+        : " ",
+      printedBody,
+    ];
+  }
+
+  const willBreakDeclaration = declaration.some(willBreak);
+
+  if (willBreakDeclaration) {
+    return [...declAttrs, printedDeclaration, " ", printedBody];
+  }
+
+  return [
+    ...declAttrs,
+    conditionalGroup([
+      [
+        printedDeclaration,
+        shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
+          ? hardline
+          : " ",
+        printedBody,
+      ],
+      [printedDeclaration, " ", printedBody],
+    ]),
+  ];
 }
 
 function printClass(path, options, print) {
@@ -1351,111 +1464,6 @@ function printClass(path, options, print) {
   ];
 
   return [printedDeclaration, printedBody];
-}
-
-function printFunction(path, options, print) {
-  const { node } = path;
-  const declAttrs = printAttrs(path, options, print, {
-    inline: node.kind === "closure",
-  });
-  const declaration = [];
-
-  if (node.isFinal) {
-    declaration.push("final ");
-  }
-
-  if (node.isAbstract) {
-    declaration.push("abstract ");
-  }
-
-  if (node.visibility) {
-    declaration.push(node.visibility, " ");
-  }
-
-  if (node.isStatic) {
-    declaration.push("static ");
-  }
-
-  declaration.push("function ");
-
-  if (node.byref) {
-    declaration.push("&");
-  }
-
-  if (node.name) {
-    declaration.push(print("name"));
-  }
-
-  declaration.push(printArgumentsList(path, options, print));
-
-  if (node.uses && node.uses.length > 0) {
-    declaration.push(
-      group([" use ", printArgumentsList(path, options, print, "uses")])
-    );
-  }
-
-  if (node.type) {
-    declaration.push([
-      ": ",
-      hasDanglingComments(node.type)
-        ? [
-            path.call(() => printDanglingComments(path, options, true), "type"),
-            " ",
-          ]
-        : "",
-      node.nullable ? "?" : "",
-      print("type"),
-    ]);
-  }
-
-  const printedDeclaration = declaration;
-
-  if (!node.body) {
-    return [...declAttrs, printedDeclaration];
-  }
-
-  const printedBody = [
-    "{",
-    indent([hasEmptyBody(path) ? "" : hardline, print("body")]),
-    hasEmptyBody(path) ? "" : hardline,
-    "}",
-  ];
-
-  const isClosure = node.kind === "closure";
-  if (isClosure) {
-    return [...declAttrs, printedDeclaration, " ", printedBody];
-  }
-
-  if (node.arguments.length === 0) {
-    return [
-      ...declAttrs,
-      printedDeclaration,
-      shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
-        ? hardline
-        : " ",
-      printedBody,
-    ];
-  }
-
-  const willBreakDeclaration = declaration.some(willBreak);
-
-  if (willBreakDeclaration) {
-    return [...declAttrs, printedDeclaration, " ", printedBody];
-  }
-
-  return [
-    ...declAttrs,
-    conditionalGroup([
-      [
-        printedDeclaration,
-        shouldPrintHardlineForOpenBrace(options) && !hasEmptyBody(path)
-          ? hardline
-          : " ",
-        printedBody,
-      ],
-      [printedDeclaration, " ", printedBody],
-    ]),
-  ];
 }
 
 function printBodyControlStructure(
@@ -2909,6 +2917,7 @@ function printNode(path, options, print) {
 
     case "enumcase":
       return group([
+        ...printAttrs(path, options, print),
         "case ",
         print("name"),
         node.value
