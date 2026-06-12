@@ -5737,9 +5737,10 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-"php-parser@https://github.com/glayzzle/php-parser.git#0b3dbe8833965ae14915e722a1b974e3616df78c":
-  version "3.6.0"
-  resolved "https://github.com/glayzzle/php-parser.git#0b3dbe8833965ae14915e722a1b974e3616df78c"
+php-parser@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.7.0.tgz#b40b82dc9ba2ad3068b418130f50a84b663d29ac"
+  integrity sha512-JRc1t78GZAEa+MuzVC5A5RJS1NDFTS4UnprUEu/NnsN9cyHbGZLUqghO9IQZUSCay62HYQiWd3PxyWAEF45zmA==
 
 picocolors@^1.1.1:
   version "1.1.1"

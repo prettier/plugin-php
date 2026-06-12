@@ -1,6 +1,6 @@
 {
-  "name": "@prettier/plugin-php",
-  "version": "0.25.0",
+  "name": "@vanilla/prettier-plugin-php",
+  "version": "0.26.0",
   "description": "Prettier PHP Plugin",
   "repository": "prettier/prettier-php",
   "author": "Lucas Azzola <@azz>",
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "linguist-languages": "^8.0.0",
-    "php-parser": "https://github.com/glayzzle/php-parser.git#0b3dbe8833965ae14915e722a1b974e3616df78c"
+    "php-parser": "^3.7.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.27.2",
