@@ -5249,10 +5249,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-linguist-languages@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/linguist-languages/-/linguist-languages-8.0.0.tgz#0ca116ca26bafcf0dd4780c8718aa3b8c0435fa8"
-  integrity sha512-qfzYmWmM/HOsrO/6YwN2f1DD39p3ObSuq8YgF9JLY9toQO39ZsPBPJoWwTtrqRvhkG+cQUgCOS9h/xRgwfqLxQ==
+linguist-languages@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/linguist-languages/-/linguist-languages-9.4.0.tgz#0b87013f004b51a8c4972773de367ce9669b56b5"
+  integrity sha512-mYnFVrsWg5Bex0Kl5EDcXhrjXZ5DqMlBDXo7EUWLMTLDpxbuHvgBb2aOvGWC5ZmMJ2HXEKJiuFie9NEs8NUMXg==
 
 locate-path@^5.0.0:
   version "5.0.0"

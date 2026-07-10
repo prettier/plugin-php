@@ -26,7 +26,7 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "linguist-languages": "^8.0.0",
+    "linguist-languages": "^9.4.0",
     "php-parser": "^3.7.0"
   },
   "devDependencies": {
