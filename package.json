@@ -30,7 +30,7 @@
     "php-parser": "^3.7.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-env": "^8.0.2",
     "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-babel": "^7.0.0",
     "@rollup/plugin-commonjs": "^29.0.2",
