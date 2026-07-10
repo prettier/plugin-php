@@ -62,6 +62,7 @@ function handleOwnLineComment(comment, text, options) {
       options
     ) ||
     handleTryComments(enclosingNode, followingNode, comment) ||
+    handleClassMemberStatementComments(enclosingNode, followingNode, comment) ||
     handleClassComments(enclosingNode, followingNode, comment) ||
     handleFunctionParameter(
       text,
@@ -201,6 +202,7 @@ function handleRemainingComment(comment, text, options) {
     handleGoto(enclosingNode, comment) ||
     handleHalt(precedingNode, enclosingNode, followingNode, comment) ||
     handleBreakAndContinueStatementComments(enclosingNode, comment) ||
+    handleClassMemberStatementComments(enclosingNode, followingNode, comment) ||
     handleInlineComments(
       enclosingNode,
       precedingNode,
@@ -430,6 +432,32 @@ function handleTraitUseComments(enclosingNode, followingNode, comment) {
     addDanglingComment(enclosingNode, comment);
     return true;
   }
+  return false;
+}
+
+function handleClassMemberStatementComments(
+  enclosingNode,
+  followingNode,
+  comment
+) {
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "propertystatement" &&
+    enclosingNode.properties?.includes(followingNode)
+  ) {
+    addLeadingComment(enclosingNode, comment);
+    return true;
+  }
+
+  if (
+    enclosingNode &&
+    enclosingNode.kind === "classconstant" &&
+    enclosingNode.constants?.includes(followingNode)
+  ) {
+    addLeadingComment(enclosingNode, comment);
+    return true;
+  }
+
   return false;
 }
 
@@ -906,6 +934,24 @@ function getCommentChildNodes(node) {
     // Pretend to be child of `class`
     node.what.__parent_new_arguments = [...node.arguments];
     return [node.what];
+  }
+
+  if (node.attrGroups && node.attrGroups.length > 0) {
+    if (node.kind === "method" || node.kind === "function") {
+      return [
+        ...node.attrGroups,
+        ...node.arguments,
+        ...(node.type ? [node.type] : []),
+      ];
+    }
+
+    if (node.kind === "classconstant") {
+      return [...node.attrGroups, ...node.constants];
+    }
+
+    if (node.kind === "enumcase") {
+      return node.attrGroups;
+    }
   }
 }
 

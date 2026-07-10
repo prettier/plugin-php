@@ -1199,37 +1199,45 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   if (!path.node.attrGroups) {
     return [];
   }
-  path.each(() => {
-    const attrGroup = ["#["];
+  path.each((attrGroupPath) => {
     if (!inline && allAttrs.length > 0) {
       allAttrs.push(hardline);
     }
-    attrGroup.push(softline);
-    path.each(() => {
-      const attrNode = path.node;
-      if (attrGroup.length > 2) {
-        attrGroup.push(",", line);
-      }
-      const attrStmt = [attrNode.name];
-      if (attrNode.args.length > 0) {
-        attrStmt.push(printArgumentsList(path, options, print, "args"));
-      }
-      attrGroup.push(group(attrStmt));
-    }, "attrs");
     allAttrs.push(
-      group([
-        indent(attrGroup),
-        ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
-        softline,
-        "]",
-        inline ? ifBreak(softline, " ") : "",
-      ])
+      printAllComments(
+        attrGroupPath,
+        () => printAttrGroup(attrGroupPath, options, print, { inline }),
+        options
+      )
     );
   }, "attrGroups");
   if (allAttrs.length === 0) {
     return [];
   }
   return [...allAttrs, inline ? "" : hardline];
+}
+
+function printAttrGroup(path, options, print, { inline = false } = {}) {
+  const attrGroup = ["#["];
+  attrGroup.push(softline);
+  path.each(() => {
+    const attrNode = path.node;
+    if (attrGroup.length > 2) {
+      attrGroup.push(",", line);
+    }
+    const attrStmt = [attrNode.name];
+    if (attrNode.args.length > 0) {
+      attrStmt.push(printArgumentsList(path, options, print, "args"));
+    }
+    attrGroup.push(group(attrStmt));
+  }, "attrs");
+  return group([
+    indent(attrGroup),
+    ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
+    softline,
+    "]",
+    inline ? ifBreak(softline, " ") : "",
+  ]);
 }
 
 function printClass(path, options, print) {
@@ -2909,6 +2917,7 @@ function printNode(path, options, print) {
 
     case "enumcase":
       return group([
+        ...printAttrs(path, options, print),
         "case ",
         print("name"),
         node.value

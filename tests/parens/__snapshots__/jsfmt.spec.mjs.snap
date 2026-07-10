@@ -1300,7 +1300,7 @@ $var = $var + $var ** 2;
 $var = ($var + $var) ** 2;
 $var = $var + $var ** 2;
 $var = (+$var) ** 2;
-$var = (+$var) ** 2;
+$var = +($var ** 2);
 
 $var = $foo instanceof Foo;
 $var = $foo instanceof Foo || $foo instanceof Foo;
@@ -2067,7 +2067,7 @@ $var = $var + $var ** 2;
 $var = ($var + $var) ** 2;
 $var = $var + $var ** 2;
 $var = (+$var) ** 2;
-$var = (+$var) ** 2;
+$var = +($var ** 2);
 
 $var = $foo instanceof Foo;
 $var = $foo instanceof Foo || $foo instanceof Foo;
@@ -6574,7 +6574,7 @@ $var = ~~$var;
 $var = !$var;
 $var = !!$var;
 
-$a = (+$a) ** 1;
+$a = +($a ** 1);
 $a = (+$a) ** 1;
 $a = 1 ** +$a;
 
@@ -6718,7 +6718,7 @@ $var = ~~$var;
 $var = !$var;
 $var = !!$var;
 
-$a = (+$a) ** 1;
+$a = +($a ** 1);
 $a = (+$a) ** 1;
 $a = 1 ** +$a;
 

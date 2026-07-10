@@ -4922,9 +4922,9 @@ class Foo
 
     public function emptyMethod(/* comments */) {}
 
-    abstract public function sortByName(/* bool $useNaturalSort = false */); /* comment */
+    abstract public function sortByName(/* bool $useNaturalSort = false */);
 
-    /* comment */ /* comment */ protected static $foo; /* comment */
+    /* comment */ /* comment */ /* comment */ protected static $foo; /* comment */
 
     public function foo() {} // Comment
 

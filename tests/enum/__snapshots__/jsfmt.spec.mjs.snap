@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`enum.php 1`] = `
 ====================================options=====================================
@@ -140,6 +140,52 @@ enum BackedSuit: string
 
 class Enum {}
 class Enum extends Foo {}
+
+================================================================================
+`;
+
+exports[`enum-case-attributes.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+namespace App\\Enums;
+
+use App\\Support\\Attributes\\Description;
+
+enum SalutationEnum: string
+{
+    #[Description('Mr.')]
+    case MR = 'mr';
+
+    #[Description('Mrs.')]
+    case MRS = 'mrs';
+
+    #[Description('Miss')]
+    case MISS = 'miss';
+}
+
+=====================================output=====================================
+<?php
+
+namespace App\\Enums;
+
+use App\\Support\\Attributes\\Description;
+
+enum SalutationEnum: string
+{
+    #[Description("Mr.")]
+    case MR = "mr";
+
+    #[Description("Mrs.")]
+    case MRS = "mrs";
+
+    #[Description("Miss")]
+    case MISS = "miss";
+}
 
 ================================================================================
 `;
