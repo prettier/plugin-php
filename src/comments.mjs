@@ -938,10 +938,15 @@ function getCommentChildNodes(node) {
 
   if (node.attrGroups && node.attrGroups.length > 0) {
     if (node.kind === "method" || node.kind === "function") {
+      // Keep every child (in source order): dropping `body` makes comments
+      // inside the body resolve against the return type, dropping `name`
+      // makes a comment after the attribute look like it precedes the body.
       return [
         ...node.attrGroups,
+        ...(node.name && typeof node.name === "object" ? [node.name] : []),
         ...node.arguments,
         ...(node.type ? [node.type] : []),
+        ...(node.body ? [node.body] : []),
       ];
     }
 
