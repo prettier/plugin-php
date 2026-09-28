@@ -43,6 +43,20 @@ function clean(node, newObj) {
     newObj.value = newObj.value.replace(/\n/g, "");
   }
 
+  // The parser injects `___PSEUDO_INLINE_PLACEHOLDER___` into the source text
+  // for top-level `?>\n<?` sequences; it can land inside string-like values
+  // too, so strip it there for AST_COMPARE.
+  // https://github.com/prettier/plugin-php/issues/2087
+  if (
+    ["string", "nowdoc"].includes(node.kind) &&
+    typeof newObj.value === "string"
+  ) {
+    newObj.value = newObj.value.replaceAll(
+      "___PSEUDO_INLINE_PLACEHOLDER___",
+      ""
+    );
+  }
+
   // continue ((2)); -> continue 2;
   // continue 1; -> continue;
   if ((node.kind === "continue" || node.kind === "break") && node.level) {
