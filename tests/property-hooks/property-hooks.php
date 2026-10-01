@@ -68,4 +68,11 @@ final class Flags
     private(set) int $d;
     protected(set) static int $e;
     public private(set) string $f { get => $this->f; }
+
+    public function __construct(
+        public private(set) int $promotedAsymmetric,
+        private(set) int $promotedSetOnly,
+        protected(set) readonly int $promotedSetOnlyReadonly,
+        public private(set) string $promotedWithHook { get => strtolower($this->promotedWithHook); },
+    ) {}
 }

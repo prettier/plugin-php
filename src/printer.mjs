@@ -1806,14 +1806,13 @@ function printNode(path, options, print) {
         node.parenthesizedExpression ? ")" : "",
       ];
     case "parameter": {
-      let promoted = "";
-      if (node.flags === 1) {
-        promoted = "public ";
-      } else if (node.flags === 2) {
-        promoted = "protected ";
-      } else if (node.flags === 4) {
-        promoted = "private ";
-      }
+      const visibilities = { 1: "public", 2: "protected", 4: "private" };
+      // promoted constructor property: `public`, and/or the asymmetric set
+      // visibility `private(set)` (PHP 8.4)
+      const promoted = [
+        node.flags ? [visibilities[node.flags], " "] : "",
+        node.flagsSet ? [visibilities[node.flagsSet], "(set) "] : "",
+      ];
       const name = [
         ...printAttrs(path, options, print, { inline: true }),
         promoted,
