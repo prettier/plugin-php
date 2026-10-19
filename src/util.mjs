@@ -354,6 +354,13 @@ function lineShouldEndWithSemicolon(path) {
   if (node.kind === "method" && node.isAbstract) {
     return true;
   }
+  // a hooked property ends with its closing brace, not a semicolon
+  if (
+    node.kind === "propertystatement" &&
+    node.properties.some((property) => property.hooks?.length > 0)
+  ) {
+    return false;
+  }
   if (node.kind === "method") {
     const { parent } = path;
     if (parent && parent.kind === "interface") {

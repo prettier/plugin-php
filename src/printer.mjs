@@ -1477,6 +1477,38 @@ function printFunction(path, options, print) {
   ];
 }
 
+// PHP 8.4 property hooks (`{ get => ...; set(...) { ... } }`) on a property or a
+// promoted constructor parameter. PER-CS puts the opening brace on the
+// declaration line and one hook per line, preserving single blank lines.
+function printPropertyHooks(path, options, print) {
+  const { node } = path;
+
+  if (!node.hooks || node.hooks.length === 0) {
+    return "";
+  }
+
+  // Interface / abstract declarations (`{ get; set; }`) stay on the property's line.
+  if (node.hooks.every((hook) => !hook.body)) {
+    return [" { ", join(" ", path.map(print, "hooks")), " }"];
+  }
+
+  const printedHooks = path.map(({ node: hook, isLast }) => {
+    const parts = [print()];
+
+    if (!isLast) {
+      parts.push(hardline);
+
+      if (isNextLineEmpty(options.originalText, locEnd(hook))) {
+        parts.push(hardline);
+      }
+    }
+
+    return parts;
+  }, "hooks");
+
+  return [" {", indent([hardline, ...printedHooks]), hardline, "}"];
+}
+
 function printBodyControlStructure(
   path,
   options,
@@ -1785,14 +1817,13 @@ function printNode(path, options, print) {
         node.parenthesizedExpression ? ")" : "",
       ];
     case "parameter": {
-      let promoted = "";
-      if (node.flags === 1) {
-        promoted = "public ";
-      } else if (node.flags === 2) {
-        promoted = "protected ";
-      } else if (node.flags === 4) {
-        promoted = "private ";
-      }
+      const visibilities = { 1: "public", 2: "protected", 4: "private" };
+      // promoted constructor property: `public`, and/or the asymmetric set
+      // visibility `private(set)` (PHP 8.4)
+      const promoted = [
+        node.flags ? [visibilities[node.flags], " "] : "",
+        node.flagsSet ? [visibilities[node.flagsSet], "(set) "] : "",
+      ];
       const name = [
         ...printAttrs(path, options, print, { inline: true }),
         promoted,
@@ -1804,6 +1835,7 @@ function printNode(path, options, print) {
         "$",
         print("name"),
       ];
+      const hooks = printPropertyHooks(path, options, print);
 
       if (node.value) {
         return group([
@@ -1821,10 +1853,11 @@ function printNode(path, options, print) {
             false,
             options
           ),
+          hooks,
         ]);
       }
 
-      return name;
+      return [name, hooks];
     }
     case "variadic":
       return ["...", print("what")];
@@ -1846,7 +1879,41 @@ function printNode(path, options, print) {
               ),
             ]
           : "",
+        printPropertyHooks(path, options, print),
       ]);
+    case "propertyhook": {
+      const declaration = [
+        ...printAttrs(path, options, print, { inline: true }),
+        node.isFinal ? "final " : "",
+        node.byref ? "&" : "",
+        node.name,
+        node.parameter ? ["(", print("parameter"), ")"] : "",
+      ];
+
+      // `get;` / `set;` in an interface or abstract class
+      if (!node.body) {
+        return [...declaration, ";"];
+      }
+
+      // `get => expr;`
+      if (node.body.kind !== "block") {
+        return group([
+          ...declaration,
+          " =>",
+          printAssignmentRight(node, node.body, print("body"), false, options),
+          ";",
+        ]);
+      }
+
+      // `get { ... }` - like a closure, the brace stays on the hook's line
+      return [
+        ...declaration,
+        " {",
+        indent([hasEmptyBody(path) ? "" : hardline, print("body")]),
+        hasEmptyBody(path) ? "" : hardline,
+        "}",
+      ];
+    }
     case "propertystatement": {
       const attrs = [];
       path.each(() => {
@@ -1869,10 +1936,18 @@ function printNode(path, options, print) {
 
       return group([
         ...attrs,
+        node.isAbstract ? "abstract " : "",
+        node.isFinal ? "final " : "",
         hasVisibility
           ? [node.visibility === null ? "var" : node.visibility, ""]
           : "",
-        node.isStatic ? [hasVisibility ? " " : "", "static"] : "",
+        // asymmetric visibility: `public private(set)`
+        node.visibilitySet
+          ? [hasVisibility ? " " : "", node.visibilitySet, "(set)"]
+          : "",
+        node.isStatic
+          ? [hasVisibility || node.visibilitySet ? " " : "", "static"]
+          : "",
         firstProperty ? [" ", firstProperty] : "",
         indent(
           printed.slice(1).map((p) => [",", hasValue ? hardline : line, p])

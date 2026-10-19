@@ -592,8 +592,8 @@ function handleFunctionParameter(
     return false;
   }
   if (
-    precedingNode.kind === "typereference" &&
-    followingNode.kind === "identifier"
+    precedingNode?.kind === "typereference" &&
+    followingNode?.kind === "identifier"
   ) {
     addTrailingComment(precedingNode, comment);
     return true;

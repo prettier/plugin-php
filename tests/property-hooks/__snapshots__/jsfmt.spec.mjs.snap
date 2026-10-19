@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`property-hooks.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.4"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+declare(strict_types=1);
+
+interface HasName
+{
+    public string $name { get; set; }
+    public int $count { get; }
+}
+
+abstract class Base
+{
+    abstract public string $abstractHooked { get; }
+}
+
+#[Attr]
+class Company
+{
+    public ?int $plain = null;
+
+    // Collections set $agencyId to null before adding entities, but otherwise should be readonly
+    public ?int $agencyId {
+        get => $this->agency?->id;
+        // a comment between the hooks
+        set (?int $id) {
+            if ($id !== null) {
+                throw new \\Exception(self::class . "::agencyId set hook should only be used to clear collections: ". var_export($id, true));
+            }
+        }
+    }
+
+    public string $fullName {
+        get => "$this->firstName $this->lastName";
+    }
+
+    public string $withDefault = 'x' {
+        final get { return strtoupper($this->withDefault); }
+
+        #[Deprecated] set { $this->withDefault = $value; }
+    }
+
+    public array $byRef { &get => $this->items; }
+
+    public string $longExpr {
+        get => $this->someService->buildTheFullDisplayName($this->firstName, $this->middleName, $this->lastName) ?? 'unknown';
+        set(string $value) => $this->firstName = trim($value); // trailing comment on the hook
+    }
+
+    public string $emptyBody { set { } }
+
+    public function __construct(
+        public string $promoted { get => strtolower($this->promoted); set(string $v) { $this->promoted = $v; } },
+        private readonly int $normal = 0,
+    ) {
+    }
+
+    /* leading block */
+    public string $lastOne {
+        get => 'a';
+        // comment after the last hook
+    }
+}
+
+final class Flags
+{
+    final public int $b = 1;
+    public private(set) int $c;
+    private(set) int $d;
+    protected(set) static int $e;
+    public private(set) string $f { get => $this->f; }
+
+    public function __construct(
+        public private(set) int $promotedAsymmetric,
+        private(set) int $promotedSetOnly,
+        protected(set) readonly int $promotedSetOnlyReadonly,
+        public private(set) string $promotedWithHook { get => strtolower($this->promotedWithHook); },
+    ) {}
+}
+
+=====================================output=====================================
+<?php
+
+declare(strict_types=1);
+
+interface HasName
+{
+    public string $name { get; set; }
+    public int $count { get; }
+}
+
+abstract class Base
+{
+    abstract public string $abstractHooked { get; }
+}
+
+#[Attr]
+class Company
+{
+    public ?int $plain = null;
+
+    // Collections set $agencyId to null before adding entities, but otherwise should be readonly
+    public ?int $agencyId {
+        get => $this->agency?->id;
+        // a comment between the hooks
+        set(?int $id) {
+            if ($id !== null) {
+                throw new \\Exception(
+                    self::class .
+                        "::agencyId set hook should only be used to clear collections: " .
+                        var_export($id, true),
+                );
+            }
+        }
+    }
+
+    public string $fullName {
+        get => "$this->firstName $this->lastName";
+    }
+
+    public string $withDefault = "x" {
+        final get {
+            return strtoupper($this->withDefault);
+        }
+
+        #[Deprecated] set {
+            $this->withDefault = $value;
+        }
+    }
+
+    public array $byRef {
+        &get => $this->items;
+    }
+
+    public string $longExpr {
+        get =>
+            $this->someService->buildTheFullDisplayName(
+                $this->firstName,
+                $this->middleName,
+                $this->lastName,
+            ) ?? "unknown";
+        set(string $value) => ($this->firstName = trim($value)); // trailing comment on the hook
+    }
+
+    public string $emptyBody {
+        set {}
+    }
+
+    public function __construct(
+        public string $promoted {
+            get => strtolower($this->promoted);
+            set(string $v) {
+                $this->promoted = $v;
+            }
+        },
+        private readonly int $normal = 0,
+    ) {}
+
+    /* leading block */
+    public string $lastOne {
+        get => "a";
+        // comment after the last hook
+    }
+}
+
+final class Flags
+{
+    final public int $b = 1;
+    public private(set) int $c;
+    public private(set) int $d;
+    public protected(set) static int $e;
+    public private(set) string $f {
+        get => $this->f;
+    }
+
+    public function __construct(
+        public private(set) int $promotedAsymmetric,
+        private(set) int $promotedSetOnly,
+        protected(set) readonly int $promotedSetOnlyReadonly,
+        public private(set) string $promotedWithHook {
+            get => strtolower($this->promotedWithHook);
+        },
+    ) {}
+}
+
+================================================================================
+`;
