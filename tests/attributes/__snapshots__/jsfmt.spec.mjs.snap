@@ -243,6 +243,58 @@ class ParamCommentFunctionAnnotation
 ================================================================================
 `;
 
+exports[`attributes-body-comments.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class A
+{
+    #[Override]
+    public function typed(): array
+    {
+        // leading comment in the body of an attributed method
+        $vals = [];
+
+        // between statements
+        return $vals;
+    }
+
+    #[Override] // trailing the attribute
+    public function untyped()
+    {
+        // only a comment
+    }
+}
+
+=====================================output=====================================
+<?php
+
+class A
+{
+    #[Override]
+    public function typed(): array
+    {
+        // leading comment in the body of an attributed method
+        $vals = [];
+
+        // between statements
+        return $vals;
+    }
+
+    #[Override] // trailing the attribute
+    public function untyped()
+    {
+        // only a comment
+    }
+}
+
+================================================================================
+`;
+
 exports[`attributes-per-cs.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
