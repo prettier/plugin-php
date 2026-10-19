@@ -148,36 +148,30 @@ class D
     }
 }
 
-#[
-    W(
-        "a",
-        null,
-        "looooong",
-        "paraaaams",
-        "list",
-        "aaaaaaaaaaaaa",
-        "vvvvvvvvvvvv",
-        "cccccccccc",
-        "eeeeeeeeeee",
-    ),
-    X,
-]
+#[W(
+    "a",
+    null,
+    "looooong",
+    "paraaaams",
+    "list",
+    "aaaaaaaaaaaaa",
+    "vvvvvvvvvvvv",
+    "cccccccccc",
+    "eeeeeeeeeee",
+)]
+#[X]
 function Y(
-    #[
-        ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
-            12345678,
-            1234578,
-        ),
-    ]
+    #[ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ(
+        12345678,
+        1234578,
+    )]
     string $_,
 ): string {
     return new #[NON, Anon] class {};
 }
 
-#[
-    IA("interface"),
-    \\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB,
-]
+#[IA("interface")]
+#[\\Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong\\Namespace\\WithStuff\\IB]
 interface IC
 {
     #[ID]
@@ -207,10 +201,8 @@ class A {}
 
 class ValueModel
 {
-    #[
-        Assert\\NotBlank(allowNull: false, groups: ["foo"]),
-        Assert\\Length(max: 255, groups: ["foo"]),
-    ]
+    #[Assert\\NotBlank(allowNull: false, groups: ["foo"])]
+    #[Assert\\Length(max: 255, groups: ["foo"])]
     public ?string $value = null;
 }
 
@@ -246,6 +238,104 @@ class ParamCommentFunctionAnnotation
     ) {
         return $a + $middle + $b;
     }
+}
+
+================================================================================
+`;
+
+exports[`attributes-per-cs.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+#[AsCommand(name: 'app:insertions:autorenew', description: 'Automatically applies a new IO for carriers with an IO marked auto-renew')]
+class ApplyAutoRenewInsertionCommand extends Command
+{
+    #[ORM\\Column(type: 'string', length: 255, nullable: true, options: ['comment' => 'A long enough comment to break'])]
+    public ?string $description = null;
+
+    #[ORM\\Id, ORM\\GeneratedValue(strategy: 'CUSTOM'), ORM\\CustomIdGenerator(class: SomeVeryLongGeneratorClassName::class)]
+    public int $id;
+
+    #[Short, Other]
+    public const int FLAG = 1;
+
+    #[Route('/api/insertions/{id}/auto-renew', name: 'api_insertions_auto_renew', methods: ['POST'])]
+    public function apply(
+        #[MapRequestPayload(acceptFormat: 'json', validationGroups: ['create', 'auto-renew'], serializationContext: [])] AutoRenewRequest $request,
+        #[Short] int $id,
+    ): void {
+        $fn = #[Pure] function () {};
+        $long = #[SomeAttribute(first: 'aaaaaaaaaaaaaaaaaaaa', second: 'bbbbbbbbbbbbbbbbbbbbbb', third: 'cccc')] function () {};
+        $anon = new #[Lazy, Title('Staff')] class extends Component {};
+    }
+}
+
+enum Suit: string
+{
+    #[Description(text: 'The suit of hearts, which is one of the four suits in a standard deck of cards')]
+    case Hearts = 'H';
+}
+
+=====================================output=====================================
+<?php
+
+#[AsCommand(
+    name: "app:insertions:autorenew",
+    description: "Automatically applies a new IO for carriers with an IO marked auto-renew",
+)]
+class ApplyAutoRenewInsertionCommand extends Command
+{
+    #[ORM\\Column(
+        type: "string",
+        length: 255,
+        nullable: true,
+        options: ["comment" => "A long enough comment to break"],
+    )]
+    public ?string $description = null;
+
+    #[ORM\\Id]
+    #[ORM\\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\\CustomIdGenerator(class: SomeVeryLongGeneratorClassName::class)]
+    public int $id;
+
+    #[Short, Other]
+    public const int FLAG = 1;
+
+    #[Route(
+        "/api/insertions/{id}/auto-renew",
+        name: "api_insertions_auto_renew",
+        methods: ["POST"],
+    )]
+    public function apply(
+        #[MapRequestPayload(
+            acceptFormat: "json",
+            validationGroups: ["create", "auto-renew"],
+            serializationContext: [],
+        )]
+        AutoRenewRequest $request,
+        #[Short] int $id,
+    ): void {
+        $fn = #[Pure] function () {};
+        $long = #[SomeAttribute(
+            first: "aaaaaaaaaaaaaaaaaaaa",
+            second: "bbbbbbbbbbbbbbbbbbbbbb",
+            third: "cccc",
+        )]
+        function () {};
+        $anon = new #[Lazy, Title("Staff")] class extends Component {};
+    }
+}
+
+enum Suit: string
+{
+    #[Description(
+        text: "The suit of hearts, which is one of the four suits in a standard deck of cards",
+    )]
+    case Hearts = "H";
 }
 
 ================================================================================

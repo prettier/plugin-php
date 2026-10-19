@@ -1217,27 +1217,38 @@ function printAttrs(path, options, print, { inline = false } = {}) {
   return [...allAttrs, inline ? "" : hardline];
 }
 
+// PER-CS 12.3: an attribute whose argument list is split over several lines
+// must be the only one in its `#[...]` block, and its arguments follow the
+// multiline function call rules (`#[Name(` ... `)]`). So a block is printed on
+// one line while it fits; otherwise each attribute gets a block of its own and
+// only the argument lists break.
 function printAttrGroup(path, options, print, { inline = false } = {}) {
-  const attrGroup = ["#["];
-  attrGroup.push(softline);
-  path.each(() => {
-    const attrNode = path.node;
-    if (attrGroup.length > 2) {
-      attrGroup.push(",", line);
-    }
+  const printedAttrs = path.map(({ node: attrNode }) => {
     const attrStmt = [attrNode.name];
     if (attrNode.args.length > 0) {
       attrStmt.push(printArgumentsList(path, options, print, "args"));
     }
-    attrGroup.push(group(attrStmt));
+    return group(attrStmt);
   }, "attrs");
-  return group([
-    indent(attrGroup),
-    ifBreak(shouldPrintComma(options, 8.0) ? "," : ""),
-    softline,
-    "]",
-    inline ? ifBreak(softline, " ") : "",
-  ]);
+  const separator = inline ? ifBreak(softline, " ") : "";
+
+  if (printedAttrs.length === 1) {
+    return group(["#[", printedAttrs[0], "]", separator]);
+  }
+
+  const printedOneBlock = ["#[", join(", ", printedAttrs), "]", separator];
+  const printedOneBlockEach = group(
+    [
+      join(
+        inline ? line : hardline,
+        printedAttrs.map((attr) => ["#[", attr, "]"])
+      ),
+      inline ? line : "",
+    ],
+    { shouldBreak: true }
+  );
+
+  return conditionalGroup([printedOneBlock, printedOneBlockEach]);
 }
 
 function printClass(path, options, print) {

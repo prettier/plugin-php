@@ -101,6 +101,17 @@ function clean(node, newObj) {
     newObj.name.name = normalizeMagicMethodName(newObj.name.name);
   }
 
+  // #[A, B] -> #[A] #[B]: the printer gives an attribute whose arguments
+  // break a block of its own (PER-CS 12.3), which is the same declaration.
+  if (Array.isArray(node.attrGroups) && node.attrGroups.length > 1) {
+    newObj.attrGroups = [
+      {
+        ...newObj.attrGroups[0],
+        attrs: newObj.attrGroups.flatMap((attrGroup) => attrGroup.attrs),
+      },
+    ];
+  }
+
   if (node.kind === "noop") {
     return null;
   }
