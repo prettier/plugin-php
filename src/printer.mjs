@@ -2161,11 +2161,64 @@ function printNode(path, options, print) {
 
       return parts;
     }
-    case "clone":
-      return [
-        "clone ",
-        node.what.comments ? indent(print("what")) : print("what"),
+    case "clone": {
+      if (!node.properties) {
+        return [
+          "clone ",
+          node.what.comments ? indent(print("what")) : print("what"),
+        ];
+      }
+
+      // PHP 8.5 clone with: `clone($obj, ['prop' => $value])`, laid out like
+      // a call with two arguments (see printArgumentsList). No trailing comma:
+      // php-parser does not accept one after the properties expression.
+      const printedWhat = print("what");
+      const printedProperties = print("properties");
+      const printedArguments = [printedWhat, ",", line, printedProperties];
+      const allArgsBrokenOut = () =>
+        group(["clone(", indent([line, ...printedArguments]), line, ")"], {
+          shouldBreak: true,
+        });
+
+      if (!shouldGroupLastArg([node.what, node.properties])) {
+        return group(
+          ["clone(", indent([softline, ...printedArguments]), softline, ")"],
+          {
+            shouldBreak: willBreak(printedWhat) || willBreak(printedProperties),
+          }
+        );
+      }
+
+      const somePrintedArgumentsWillBreak =
+        willBreak(printedWhat) || willBreak(printedProperties);
+      const simpleConcat = [
+        "clone(",
+        printedWhat,
+        ", ",
+        printedProperties,
+        ")",
       ];
+
+      return [
+        somePrintedArgumentsWillBreak ? breakParent : "",
+        conditionalGroup(
+          [
+            somePrintedArgumentsWillBreak
+              ? ifBreak(allArgsBrokenOut(), simpleConcat)
+              : simpleConcat,
+            [
+              "clone(",
+              printedWhat,
+              ", ",
+              group(printedProperties, { shouldBreak: true }),
+              ")",
+            ],
+            allArgsBrokenOut(),
+          ],
+          { shouldBreak: willBreak(printedWhat) }
+        ),
+      ];
+    }
     case "propertylookup":
     case "nullsafepropertylookup":
     case "staticlookup":

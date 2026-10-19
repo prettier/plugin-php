@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`clone-with.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+phpVersion: "8.5"
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+$copy = clone($obj);
+$copy = clone($obj, ['name' => $name]);
+$copy = clone($this->template, ['id' => null, 'createdAt' => new DateTimeImmutable()]);
+$copy = clone($obj, $overrides);
+$copy = clone($obj, array_merge($defaults, ['name' => $name, 'email' => $email, 'createdAt' => $now]));
+$copy = clone($this->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongPropertyName, ['id' => null, 'createdAt' => $now, 'updatedAt' => $now]);
+$copy = clone($obj, [
+    'name' => $name,
+]);
+
+=====================================output=====================================
+<?php
+
+$copy = clone $obj;
+$copy = clone($obj, ["name" => $name]);
+$copy = clone($this->template, [
+    "id" => null,
+    "createdAt" => new DateTimeImmutable(),
+]);
+$copy = clone($obj, $overrides);
+$copy = clone(
+    $obj,
+    array_merge($defaults, [
+        "name" => $name,
+        "email" => $email,
+        "createdAt" => $now,
+    ])
+);
+$copy = clone(
+    $this->veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongPropertyName,
+    ["id" => null, "createdAt" => $now, "updatedAt" => $now]
+);
+$copy = clone($obj, [
+    "name" => $name,
+]);
+
+================================================================================
+`;
