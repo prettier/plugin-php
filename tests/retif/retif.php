@@ -203,3 +203,8 @@ $var = [
     'bar' => is_my_very_long() || !current_user_can("read") ? call_1() : call_2(),
     'bar' => is_my_very_very_very_long() || !current_user_can("read") ? call_1() : call_2()
 ];
+
+var_dump((1 ? 2 : 3) ?: 4);
+$var = (1 ? 2 : 3) ?: 4;
+$var = (1 ?: 2) ?: 4;
+$var = ($someOtherReallyReallyLongVariable ? $someOtherReallyReallyLongVariable : $someOtherReallyReallyLongVariable) ?: $someOtherReallyReallyLongVariable;

@@ -192,7 +192,12 @@ function needsParens(path, options) {
         case "bin":
         case "retif":
           if (key === "test" && !parent.trueExpr) {
-            return false;
+            // A full ternary in the test position of a shorthand ternary
+            // (`?:`) needs parens: `1 ? 2 : 3 ?: 4` is a syntax error in
+            // PHP 8. Shorthand ternaries chain left-associatively, so they
+            // don't need parens here.
+            // https://github.com/prettier/plugin-php/issues/2115
+            return !!node.trueExpr;
           }
 
           return true;
