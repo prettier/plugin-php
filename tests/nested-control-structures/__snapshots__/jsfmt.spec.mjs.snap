@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`nested-control-structures.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+foreach ($x as $y)
+  foreach ($a as $b) {
+    $a = $x;
+  }
+
+if ($foo)
+  try {
+  } catch (Exception $e) {
+  }
+
+foreach ($a as $b) while ($c) { $d = 1; }
+
+if ($x) switch ($y) { case 1: $z = 2; }
+
+while ($x) do { $a = 1; } while ($y);
+
+=====================================output=====================================
+<?php
+
+foreach ($x as $y) {
+    foreach ($a as $b) {
+        $a = $x;
+    }
+}
+
+if ($foo) {
+    try {
+    } catch (Exception $e) {
+    }
+}
+
+foreach ($a as $b) {
+    while ($c) {
+        $d = 1;
+    }
+}
+
+if ($x) {
+    switch ($y) {
+        case 1:
+            $z = 2;
+    }
+}
+
+while ($x) {
+    do {
+        $a = 1;
+    } while ($y);
+}
+
+================================================================================
+`;
