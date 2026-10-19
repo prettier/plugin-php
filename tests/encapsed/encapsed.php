@@ -405,6 +405,7 @@ echo "text ${foo['foo']} text";
 echo "text ${foo[foo]} text";
 echo "text ${foo[call()]} text";
 echo "text ${foo[$var ? 'foo' : 'bar']} text";
+echo "text ${foo[$index_var]} text";
 
 // T_CURLY_OPEN variable '}'
 echo "text {$var} text";

@@ -2314,6 +2314,10 @@ function printNode(path, options, print) {
           parent.curly) ||
         (parentParent &&
           parent.kind === "offsetlookup" &&
+          // Only the base variable of the lookup follows the `${` printed
+          // by the encapsedpart; a variable in the offset position is a
+          // nested variable and keeps its own `$`.
+          parent.what === node &&
           parentParent.kind === "encapsedpart" &&
           parentParent.syntax === "simple" &&
           parentParent.curly)
