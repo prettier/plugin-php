@@ -103,3 +103,16 @@ class ParamCommentFunctionAnnotation {
     }
 
 }
+
+// issue #2437: attributes on anonymous classes print one per line
+$anonymous = new
+    #[Lazy]
+    #[Computed]
+    #[Title('Staff')]
+    class extends Component {
+        public $editing = [];
+
+        public $branches;
+    };
+
+$singleAttributeAnonymous = new #[Single] class {};

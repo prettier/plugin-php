@@ -2129,18 +2129,22 @@ function printNode(path, options, print) {
 
       const parts = [];
 
-      parts.push("new ");
-
       if (isAnonymousClassNode) {
+        const hasAttrs =
+          node.what.attrGroups && node.what.attrGroups.length > 0;
+        // Attributes on anonymous classes print one per line, like named
+        // classes, with `new` on its own line.
+        const breakAfterNew = hasAttrs ? hardline : " ";
         parts.push(
+          "new",
+          breakAfterNew,
           node.what.leadingComments &&
             node.what.leadingComments[0].kind === "commentblock"
-            ? [printComments(node.what.leadingComments, options), " "]
+            ? [printComments(node.what.leadingComments, options), breakAfterNew]
             : "",
-          ...path.call(
-            () => printAttrs(path, options, print, { inline: true }),
-            "what"
-          ),
+          ...(hasAttrs
+            ? path.call(() => printAttrs(path, options, print), "what")
+            : []),
           node.what.isReadonly ? "readonly class" : "class",
           node.arguments.length > 0
             ? [" ", printArgumentsList(path, options, print)]
@@ -2148,6 +2152,7 @@ function printNode(path, options, print) {
           group(print("what"))
         );
       } else {
+        parts.push("new ");
         const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
         const printed = [
           isExpression ? "(" : "",
