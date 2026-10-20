@@ -163,6 +163,24 @@ const printers = {
           parentNode.comments.some(isSimpleIgnore))
       );
     },
+    printPrettierIgnored(path, options) {
+      const { node } = path;
+      const { originalText } = options;
+      const start = locStart(node);
+      let end = locEnd(node);
+
+      if (node.kind === "propertystatement") {
+        // The parser does not include the trailing semicolon in the
+        // propertystatement location, so extend the ignored slice over it.
+        // Otherwise `// prettier-ignore` emits syntactically invalid PHP.
+        const match = /^\s*;/.exec(originalText.slice(end));
+        if (match) {
+          end += match[0].length;
+        }
+      }
+
+      return originalText.slice(start, end);
+    },
   },
 };
 
