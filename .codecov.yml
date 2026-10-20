@@ -1,10 +1,8 @@
-comment: off
+comment: false
 
 coverage:
   status:
-    patch:
-      default:
-        target: 80%
     project:
       default:
-        target: auto
+        target: 95%
+    patch: off
