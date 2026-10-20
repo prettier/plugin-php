@@ -26,6 +26,10 @@
       groupName: "ESlint",
       matchManagers: ["eslint", "eslint-config-*", "eslint-plugin-*"],
     },
+    {
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    }
   ],
   ignoreDeps: ["node"],
 }
