@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      - run: yarn add jest-light-runner@0.7.13
+      - run: yarn upgrade jest-light-runner@0.7.13
         if: ${{ matrix.node-version == '20.x'}}
       - run: yarn --frozen-lockfile
         if: ${{ matrix.node-version != '20.x'}}
