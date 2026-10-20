@@ -34,3 +34,4 @@ $cached_var = &drupal_static(__FUNCTION__);
 
 $test = ['key' => &$value];
 $test = ['key' => &$value['something']];
+$x = $y =& $z;
