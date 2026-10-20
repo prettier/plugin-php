@@ -1,0 +1,31 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  dependencyDashboardApproval: true,
+  postUpdateOptions: ["yarnDedupeHighest"],
+  lockFileMaintenance: { enabled: true },
+  rangeStrategy: "bump",
+  packageRules: [
+    {
+      groupName: "non-major dev-dependencies",
+      matchDepTypes: ["devDependencies"],
+      matchUpdateTypes: ["minor", "patch"],
+    },
+    {
+      groupName: "GitHub Actions",
+      matchManagers: ["github-actions"],
+    },
+    {
+      groupName: "Prettier",
+      matchPackageNames: ["prettier"],
+    },
+    {
+      groupName: "Rollup",
+      matchManagers: ["rollup", "@rollup/*"],
+    },
+    {
+      groupName: "ESlint",
+      matchManagers: ["eslint", "eslint-config-*", "eslint-plugin-*"],
+    },
+  ],
+  ignoreDeps: ["node"],
+}
