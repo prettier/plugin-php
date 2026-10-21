@@ -22,7 +22,6 @@ test("Syntax errors have the expected structure", async () => {
       codeFrame: stripAnsi(err.codeFrame),
     });
 
-    // eslint-disable-next-line jest/no-conditional-expect
     expect(errObject).toMatchSnapshot();
   }
 });
