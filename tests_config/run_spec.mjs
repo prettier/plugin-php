@@ -73,7 +73,6 @@ global.run_spec = (importMeta, parsers, options) => {
       visualizedOutput = visualizeEndOfLine(output);
     });
 
-    // eslint-disable-next-line jest/valid-title
     test(basename, async () => {
       expect(visualizedOutput).toEqual(
         visualizeEndOfLine(consistentEndOfLine(output))
