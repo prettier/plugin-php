@@ -1039,9 +1039,9 @@ function printLines(path, options, print, childrenAttribute = "children") {
       const beforeInline =
         childNode.leadingComments && childNode.leadingComments.length
           ? [
-              isFirstNode && node.kind !== "namespace" && !isBlockNestedNode
-                ? "<?php"
-                : "",
+              // Only a program can start with no open tag; blocks and declares
+              // are printed inside an already open <?php region.
+              isFirstNode && node.kind === "program" ? "<?php" : "",
               node.kind === "namespace" || !isBlockNestedNode ? hardline : "",
               printComments(childNode.leadingComments, options),
               hardline,
