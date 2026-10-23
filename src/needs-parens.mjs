@@ -179,7 +179,10 @@ function needsParens(path, options) {
       } else if (parent.kind === "silent") {
         return false;
       } else if (parent.kind === "call") {
-        return false;
+        // `($fn = function () {})()` needs the parentheses: without them
+        // the call binds to the closure instead of the assignment result.
+        // https://github.com/prettier/plugin-php/issues/2409
+        return key === "what";
       }
 
       return true;
