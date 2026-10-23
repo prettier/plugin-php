@@ -61,7 +61,43 @@ function parse(text, opts) {
     }
   });
 
+  fixShortFormIfBodyLoc(ast);
+
   return ast;
+}
+
+// In the short form (`if (): ... else: ... endif;`) php-parser ends the `if`
+// body where the whole statement ends, so it overlaps the alternate. Comments
+// inside the alternate are then claimed by both blocks and printed twice.
+// End the body at its last child instead.
+function fixShortFormIfBodyLoc(node) {
+  if (!node || typeof node !== "object") {
+    return;
+  }
+
+  if (Array.isArray(node)) {
+    node.forEach(fixShortFormIfBodyLoc);
+    return;
+  }
+
+  if (
+    node.kind === "if" &&
+    node.shortForm &&
+    node.alternate &&
+    node.body &&
+    node.body.kind === "block" &&
+    node.body.loc
+  ) {
+    const { body } = node;
+    const lastChild = body.children[body.children.length - 1];
+    body.loc.end = lastChild ? lastChild.loc.end : body.loc.start;
+  }
+
+  for (const key of Object.keys(node)) {
+    if (key !== "loc" && key !== "leadingComments" && key !== "comments") {
+      fixShortFormIfBodyLoc(node[key]);
+    }
+  }
 }
 
 export default parse;
