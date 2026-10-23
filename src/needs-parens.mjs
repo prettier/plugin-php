@@ -29,6 +29,10 @@ function needsParens(path, options) {
   }
 
   switch (node.kind) {
+    case "intersectiontype":
+      // An intersection inside a union is a DNF type and must keep its
+      // parentheses: `(A&B)|C` is valid PHP, `A&B|C` is a parse error.
+      return parent.kind === "uniontype";
     case "pre":
     case "post":
       if (parent.kind === "unary") {
