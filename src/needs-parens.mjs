@@ -249,8 +249,18 @@ function needsParens(path, options) {
           return false;
       }
     case "print":
-    case "include":
       return parent.kind === "bin";
+    case "include":
+      switch (parent.kind) {
+        case "call":
+        case "propertylookup":
+        case "nullsafepropertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+          return key === "what";
+        default:
+          return parent.kind === "bin";
+      }
   }
 
   return false;
