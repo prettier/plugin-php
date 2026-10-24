@@ -949,6 +949,12 @@ function wrapPartsIntoGroups(parts, indexes) {
 function printLines(path, options, print, childrenAttribute = "children") {
   const { node, parent: parentNode } = path;
 
+  // Whether `genericPrint` will append a final hardline after this node.
+  // A statement group running to the end of the node must not add its own
+  // trailing hardline in that case, or the file ends with a blank line.
+  // See https://github.com/prettier/plugin-php/issues/2430
+  const endsWithHardline = fileShouldEndWithHardline(path);
+
   let lastInlineIndex = -1;
 
   const parts = [];
@@ -1017,10 +1023,11 @@ function printLines(path, options, print, childrenAttribute = "children") {
             : hardline
           : "";
         const after =
-          shouldBreak && childNode.kind !== "halt"
-            ? isBlockNestedNode && isLastNode
-              ? ""
-              : hardline
+          shouldBreak &&
+          childNode.kind !== "halt" &&
+          !(isBlockNestedNode && isLastNode) &&
+          !(isLastNode && endsWithHardline)
+            ? hardline
             : "";
 
         if (shouldBreak) {
