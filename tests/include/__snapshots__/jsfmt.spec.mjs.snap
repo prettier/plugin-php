@@ -82,6 +82,36 @@ include "foo.php" . " MORE OUTPUT";
 ================================================================================
 `;
 
+exports[`invoke.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+(include 'a.php')();
+(require 'b.php')();
+(include_once 'c.php')();
+(require_once 'd.php')();
+$x = (include 'e.php')->prop;
+$y = (include 'f.php')['key'];
+$z = (include 'g.php')?->method();
+$w = (include 'h.php')::CONSTANT;
+
+=====================================output=====================================
+<?php
+(include "a.php")();
+(require "b.php")();
+(include_once "c.php")();
+(require_once "d.php")();
+$x = (include "e.php")->prop;
+$y = (include "f.php")["key"];
+$z = (include "g.php")?->method();
+$w = (include "h.php")::CONSTANT;
+
+================================================================================
+`;
+
 exports[`single.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
