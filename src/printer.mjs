@@ -2063,6 +2063,11 @@ function printNode(path, options, print) {
     }
     case "foreach": {
       const body = printBodyControlStructure(path, options, print, "body");
+      // Only a plain variable prints its own &
+      const value =
+        node.value.byref && node.value.kind !== "variable"
+          ? ["&", print("value")]
+          : print("value");
 
       // We want to keep dangling comments above the loop to stay consistent.
       // Any comment positioned between the for statement and the parentheses
@@ -2086,8 +2091,8 @@ function printNode(path, options, print) {
               "as ",
               group(
                 node.key
-                  ? indent(join([" =>", line], [print("key"), print("value")]))
-                  : print("value")
+                  ? indent(join([" =>", line], [print("key"), value]))
+                  : value
               ),
             ]),
             softline,
