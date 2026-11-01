@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`assign-call.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+($fib = function () { return 42; })(10);
+
+$result = ($fib = function ($n) use (&$fib) {
+    return $n <= 1 ? $n : $fib($n - 1) + $fib($n - 2);
+})(10);
+
+($fn = fn () => 42)();
+
+call($a = $b);
+
+=====================================output=====================================
+<?php
+($fib = function () {
+    return 42;
+})(10);
+
+$result = ($fib = function ($n) use (&$fib) {
+    return $n <= 1 ? $n : $fib($n - 1) + $fib($n - 2);
+})(10);
+
+($fn = fn() => 42)();
+
+call($a = $b);
+
+================================================================================
+`;
