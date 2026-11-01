@@ -553,10 +553,17 @@ function handleFunction(
       enclosingNode.body &&
       locStart(comment) > argumentsLocEnd &&
       locEnd(comment) < locStart(enclosingNode.body);
-    const nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+    let nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
       text,
       locEnd(comment)
     );
+    // skip the trailing comma of the argument list, if any
+    if (text.charAt(nextCharIndex) === ",") {
+      nextCharIndex = getNextNonSpaceNonCommentCharacterIndex(
+        text,
+        nextCharIndex + 1
+      );
+    }
     // we additionally need to check if this isn't a trailing argument comment,
     // by checking the next character isn't ")"
     if (
