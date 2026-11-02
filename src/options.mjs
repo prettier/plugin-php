@@ -61,10 +61,10 @@ function getComposerPhpVersion() {
 
         if (versionMatch) {
           return parseFloat(`${versionMatch[1]}.${versionMatch[2]}`);
-        } else {
-          getComposerError = `Could not decode PHP version (${composerJson.require.php}})`;
-          return null;
         }
+
+        getComposerError = `Could not decode PHP version (${composerJson.require.php}})`;
+        return null;
       }
     } catch (e) {
       getComposerError = `Error reading composer.json: ${e.message}`;
