@@ -331,13 +331,17 @@ function lineShouldEndWithSemicolon(path) {
     return false;
   }
   // for single line control structures written in a shortform (ie without a block),
-  // we need to make sure the single body node gets a semicolon
+  // we need to make sure the single body node gets a semicolon — unless the
+  // body is itself a compound statement, which the printer wraps in braces
+  // and never takes a trailing semicolon (emitting one is an empty statement
+  // and breaks idempotency).
+  // https://github.com/prettier/plugin-php/issues/2019
   if (
     ["for", "foreach", "while", "do", "if", "switch"].includes(
       parentNode.kind
     ) &&
     node.kind !== "block" &&
-    node.kind !== "if" &&
+    !["if", "for", "foreach", "while", "switch", "try"].includes(node.kind) &&
     (parentNode.body === node || parentNode.alternate === node)
   ) {
     return true;
