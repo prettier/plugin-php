@@ -34,6 +34,9 @@ singleQuote: false
 '\\u{aa}';
 '\\u{0000aa}';
 '\\u{9999}';
+'\\u{%04X}';
+'\\u{';
+'\\u{zz}';
 'multi
 line';
 '\\\\';
@@ -73,6 +76,9 @@ b'binary string\\n';
 '\\u{aa}';
 '\\u{0000aa}';
 '\\u{9999}';
+'\\u{%04X}';
+'\\u{';
+'\\u{zz}';
 'multi
 line';
 "\\\\";
