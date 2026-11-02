@@ -59,3 +59,46 @@ match ($a) {
 match($really_really_really_really_really_really_really_really_long_variable_name) {
 default => null
 };
+
+// https://github.com/prettier/plugin-php/issues/2435
+// When the conditions of a match arm break onto multiple lines, the body
+// on the indented `=>` line must keep the extra indent for its own breaks.
+echo match ($operation) {
+    "short", "really very long option 2" => SomeClass::fairlyLongMethodNameThatRunsOn($variable, ["short", "short"]),
+};
+
+// Same, with a method chain as the body and a trailing comment on the arm.
+echo match ($operation) {
+    "a very long first option text",
+    "a very long second option text",
+    "a third option"
+        => $service
+            ->firstStep($input)
+            ->secondStep(outerFunction(innerFunction(deepestFunction($value))))
+            ->thirdStep(fn($item) => $item + 1), // trailing comment
+    default => null,
+};
+
+// Same, with a method chain whose last step takes a nested chain argument.
+echo match ($operation) {
+    "a very long first option text",
+    "a very long second option text",
+    "a third option"
+        => $service
+            ->firstStep($input)
+            ->secondStep($second)
+            ->thirdStep(makeThing($inner->levelFour($deep))->levelTwo($second)),
+    default => null,
+};
+
+// Same, with an array as the body.
+echo match ($operation) {
+    "a very long first option text",
+    "a very long second option text",
+    "a third option"
+        => [
+            "first entry of the array body",
+            "second entry of the array body",
+        ],
+    default => null,
+};
