@@ -92,3 +92,9 @@ $var = Foo::keys($items)->filter(function ($x) { return $x > 2; })->map(function
 (new static(func_get_args()))->offset(10)->push($this)->each(function ($item) {
     VarDumper::dump($item);
 });
+
+$a->foo(get())->bar()->baz();
+$a->foo($b->method())->bar()->baz();
+$a->foo(fn() => 1)->bar()->baz();
+$a->foo(fn($x) => $x * 2)->bar()->baz();
+$a->foo(get(inner(deepest())))->bar()->baz();
