@@ -984,9 +984,13 @@ function printLines(path, options, print, childrenAttribute = "children") {
     const isBlockNestedNode =
       node.kind === "block" &&
       parentNode &&
-      ["function", "closure", "method", "try", "catch"].includes(
+      (["function", "closure", "method", "try", "catch"].includes(
         parentNode.kind
-      );
+      ) ||
+        (parentNode.kind === "if" &&
+          parentNode.shortForm &&
+          isInlineNode &&
+          childNode.leadingComments?.length > 0));
 
     let beforeCloseTagInlineNode = isBlockNestedNode && isFirstNode ? "" : " ";
 
