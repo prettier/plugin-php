@@ -691,6 +691,16 @@ function handleInlineComments(
   ) {
     addDanglingComment(precedingNode, comment);
     return true;
+  } else if (
+    precedingNode &&
+    precedingNode.kind === "inline" &&
+    followingNode
+  ) {
+    // A comment right after the open tag (`?>...<?php // comment`) belongs to
+    // the next statement; as a trailing comment of the inline node it would be
+    // printed twice (once by the inline node and once by prettier).
+    addLeadingComment(followingNode, comment);
+    return true;
   }
   return false;
 }
