@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`first-class-callable.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+return $this->longMethodName(
+    $this->longPropertyName->evenLongerMethodNameNowCausesTheDotsToWrapWithComma(...),
+);
+
+$f = strlen(...);
+
+$callable = $this->veryLongPropertyName->anotherVeryLongPropertyName->someMethodName(...);
+
+=====================================output=====================================
+<?php
+
+return $this->longMethodName(
+    $this->longPropertyName->evenLongerMethodNameNowCausesTheDotsToWrapWithComma(
+        ...
+    ),
+);
+
+$f = strlen(...);
+
+$callable = $this->veryLongPropertyName->anotherVeryLongPropertyName->someMethodName(
+    ...
+);
+
+================================================================================
+`;

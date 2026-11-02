@@ -618,13 +618,23 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const { node } = path;
   const lastArg = getLast(args);
 
+  // A first-class callable `foo(...)` is a single `variadicplaceholder`
+  // argument: PHP never allows a trailing comma after it, so emitting one
+  // produces a syntax error.
+  // https://github.com/prettier/plugin-php/issues/2149
+  const isFirstClassCallable =
+    node.kind === "call" &&
+    args.length === 1 &&
+    args[0].kind === "variadicplaceholder";
+
   const maybeTrailingComma =
-    (shouldPrintComma(options, 7.3) &&
+    !isFirstClassCallable &&
+    ((shouldPrintComma(options, 7.3) &&
       ["call", "new", "unset", "isset"].includes(node.kind)) ||
-    (shouldPrintComma(options, 8.0) &&
-      ["function", "closure", "method", "arrowfunc", "attribute"].includes(
-        node.kind
-      ))
+      (shouldPrintComma(options, 8.0) &&
+        ["function", "closure", "method", "arrowfunc", "attribute"].includes(
+          node.kind
+        )))
       ? indent([
           lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
             ? hardline
