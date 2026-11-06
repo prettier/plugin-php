@@ -228,12 +228,23 @@ function isDocNode(node) {
  * Heredoc/Nowdoc nodes need a trailing linebreak if they
  * appear as function arguments or array elements
  */
-function docShouldHaveTrailingNewline(path, recurse = 0) {
+// Before PHP 7.3 the closing marker of a heredoc or nowdoc had to be alone on
+// its line, so anything following it (`,`, `:`, `=>`) needed a line break.
+// Flexible heredocs (7.3+) lift that restriction; the marker is then followed
+// by the comma, as in PER-CS 10. Two exceptions keep the line break in every
+// version: a concatenation operator, which the `bin` printer lays out on its
+// own line, and the `:` of a `case`, which php-parser does not accept right
+// after a closing marker although PHP does.
+function docShouldHaveTrailingNewline(path, options, recurse = 0) {
   const node = path.getNode(recurse);
   const parent = path.getNode(recurse + 1);
   const parentParent = path.getNode(recurse + 2);
 
   if (!parent) {
+    return false;
+  }
+
+  if (options.phpVersion >= 7.3 && !["bin", "case"].includes(parent.kind)) {
     return false;
   }
 
@@ -271,7 +282,8 @@ function docShouldHaveTrailingNewline(path, recurse = 0) {
 
   if (parent.kind === "bin") {
     return (
-      parent.left === node || docShouldHaveTrailingNewline(path, recurse + 1)
+      parent.left === node ||
+      docShouldHaveTrailingNewline(path, options, recurse + 1)
     );
   }
 
@@ -319,7 +331,7 @@ function docShouldHaveTrailingNewline(path, recurse = 0) {
   }
 
   if (parent.kind === "retif") {
-    return docShouldHaveTrailingNewline(path, recurse + 1);
+    return docShouldHaveTrailingNewline(path, options, recurse + 1);
   }
 
   return false;
@@ -564,19 +576,26 @@ function isNextLineEmptyAfterNamespace(text, node) {
   return hasNewline(text, idx);
 }
 
-function shouldPrintHardlineBeforeTrailingComma(lastElem) {
-  if (
-    lastElem.kind === "nowdoc" ||
-    (lastElem.kind === "encapsed" && lastElem.type === "heredoc")
-  ) {
+function isHeredocNode(node) {
+  return (
+    node.kind === "nowdoc" ||
+    (node.kind === "encapsed" && node.type === "heredoc")
+  );
+}
+
+// Before PHP 7.3 the closing marker of a heredoc or nowdoc had to be alone on
+// its line, so a trailing comma after it needed a line of its own. Flexible
+// heredocs (7.3+) allow `LABEL,`, which is also what PER-CS 10 shows.
+function shouldPrintHardlineBeforeTrailingComma(lastElem, options) {
+  if (options.phpVersion >= 7.3) {
+    return false;
+  }
+
+  if (isHeredocNode(lastElem)) {
     return true;
   }
 
-  if (
-    lastElem.kind === "entry" &&
-    (lastElem.value.kind === "nowdoc" ||
-      (lastElem.value.kind === "encapsed" && lastElem.value.type === "heredoc"))
-  ) {
+  if (lastElem.kind === "entry" && isHeredocNode(lastElem.value)) {
     return true;
   }
 
@@ -754,6 +773,7 @@ export {
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
+  isHeredocNode,
   isDocNode,
   getAncestorNode,
   normalizeMagicMethodName,
