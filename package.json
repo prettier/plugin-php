@@ -51,7 +51,7 @@
     "jest-environment-jsdom": "30.5.2",
     "jest-light-runner": "0.8.2",
     "jest-snapshot-serializer-raw": "^2.0.0",
-    "prettier": "^3.6.1",
+    "prettier": "^3.9.10",
     "rollup": "^4.64.10",
     "strip-ansi": "^7.2.0"
   },
