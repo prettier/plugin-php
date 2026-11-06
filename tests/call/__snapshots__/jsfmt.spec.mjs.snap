@@ -655,24 +655,18 @@ string
 $var\`,
 );
 
-call(
-    <<<FOO
+call(<<<FOO
     string
     string
     string
     $var
-    FOO
-    ,
-);
+    FOO);
 
-call(
-    <<<'FOO'
+call(<<<'FOO'
     string
     string
     string
-    FOO
-    ,
-);
+    FOO);
 
 call(
     <<<FOO
@@ -680,15 +674,13 @@ call(
     string
     string
     $var
-    FOO
-    ,
+    FOO,
     <<<FOO
     string
     string
     string
     $var
-    FOO
-    ,
+    FOO,
 );
 
 call(
@@ -696,14 +688,12 @@ call(
     string
     string
     string
-    FOO
-    ,
+    FOO,
     <<<'FOO'
     string
     string
     string
-    FOO
-    ,
+    FOO,
 );
 
 $var = ($this->foo)();

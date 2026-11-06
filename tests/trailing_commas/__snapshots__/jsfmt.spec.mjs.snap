@@ -1571,8 +1571,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "foo",
@@ -1581,8 +1580,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     <<<'EOT'
@@ -1590,8 +1588,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "bar",
 ];
 
@@ -1602,8 +1599,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "foo",
@@ -1612,8 +1608,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     <<<EOT
@@ -1621,8 +1616,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "bar",
 ];
 
@@ -1633,8 +1627,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "foo",
@@ -1643,8 +1636,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "key" => <<<'EOT'
@@ -1652,8 +1644,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "bar",
 ];
 
@@ -1664,8 +1655,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "foo",
@@ -1674,8 +1664,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "key" => <<<EOT
@@ -1683,8 +1672,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "bar",
 ];
 
@@ -1695,8 +1683,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "collection" => [
         [
             "one" => <<<'EOT'
@@ -1704,16 +1691,14 @@ $expected = [
             # bar
             baz
 
-            EOT
-        ,
+            EOT,
         ],
         [
             "two" => <<<'EOT'
             foo
             # bar
             baz
-            EOT
-        ,
+            EOT,
         ],
     ],
 ];
@@ -1725,8 +1710,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "collection" => [
         [
             "one" => <<<EOT
@@ -1734,16 +1718,14 @@ $expected = [
             # bar
             baz
 
-            EOT
-        ,
+            EOT,
         ],
         [
             "two" => <<<EOT
             foo
             # bar
             baz
-            EOT
-        ,
+            EOT,
         ],
     ],
 ];
@@ -3319,23 +3301,17 @@ call(
     ],
 );
 
-call(
-    <<<'EOT'
+call(<<<'EOT'
     My name is "$name". I am printing some $foo->foo.
     Now, I am printing some {$foo->bar[1]}.
     This should not print a capital 'A': \\x41
-    EOT
-    ,
-);
+    EOT);
 
-call(
-    <<<EOT
+call(<<<EOT
     My name is "$name". I am printing some $foo->foo.
     Now, I am printing some {$foo->bar[1]}.
     This should not print a capital 'A': \\x41
-    EOT
-    ,
-);
+    EOT);
 
 $sel = $this->connections
 
