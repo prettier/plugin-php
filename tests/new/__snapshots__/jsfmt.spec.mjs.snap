@@ -254,8 +254,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
     $arg,
 );
 
@@ -265,8 +264,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
 );
 
 $var = new Foo(
@@ -275,8 +273,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
     $arg,
 );
 
@@ -285,8 +282,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $arg,
 );
 
@@ -296,8 +292,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
 );
 
 $var = new Foo(
@@ -306,8 +301,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $arg,
 );
 
@@ -690,8 +684,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
     $arg,
 );
 
@@ -701,8 +694,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
 );
 
 $var = new Foo(
@@ -711,8 +703,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
     $arg,
 );
 
@@ -721,8 +712,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $arg,
 );
 
@@ -732,8 +722,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
 );
 
 $var = new Foo(
@@ -742,8 +731,7 @@ $var = new Foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $arg,
 );
 

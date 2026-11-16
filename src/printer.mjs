@@ -32,6 +32,7 @@ import {
   hasEmptyBody,
   isNextLineEmptyAfterNamespace,
   shouldPrintHardlineBeforeTrailingComma,
+  isHeredocNode,
   isDocNode,
   getAncestorNode,
   isReferenceLikeNode,
@@ -626,7 +627,7 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
         node.kind
       ))
       ? indent([
-          lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
+          lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg, options)
             ? hardline
             : "",
           ",",
@@ -1648,6 +1649,32 @@ function isStringOnItsOwnLine(node, text) {
   );
 }
 
+// `foo(<<<'SQL' ... SQL)` and `foo("multi-line string")`: a single string-like argument
+// stays on the call's line instead of breaking the argument list (PER-CS 4.7:
+// one argument spanning several lines does not split the list). A heredoc only
+// hugs from PHP 7.3 on, when its closing marker may be followed by `)`.
+function shouldHugSingleStringArgument(node, options) {
+  if (node.arguments.length !== 1) {
+    return false;
+  }
+
+  const [argument] = node.arguments;
+
+  return (
+    isStringOnItsOwnLine(argument, options.originalText) ||
+    (options.phpVersion >= 7.3 && isHeredocNode(argument))
+  );
+}
+
+function printSingleStringArgument(path, print) {
+  const [argument] = path.node.arguments;
+  const printed = path.map(print, "arguments");
+
+  // PER-CS 10: the heredoc body and closing marker are indented once past the
+  // statement; a quoted string keeps its literal lines as they are.
+  return ["(", isHeredocNode(argument) ? indent(printed) : printed, ")"];
+}
+
 function printComposedTypes(path, print, glue) {
   return group(
     path.map(({ isFirst }) => (isFirst ? [print()] : [glue, print()]), "types")
@@ -2162,17 +2189,9 @@ function printNode(path, options, print) {
 
       return node.kind;
     case "call": {
-      // Multiline strings as single arguments
-      if (
-        node.arguments.length === 1 &&
-        isStringOnItsOwnLine(node.arguments[0], options.originalText)
-      ) {
-        return [
-          print("what"),
-          "(",
-          join(", ", path.map(print, "arguments")),
-          ")",
-        ];
+      // Multiline strings and heredocs as single arguments
+      if (shouldHugSingleStringArgument(node, options)) {
+        return [print("what"), printSingleStringArgument(path, print)];
       }
 
       // chain: Call (*LookupNode (Call (*LookupNode (...))))
@@ -2186,19 +2205,16 @@ function printNode(path, options, print) {
       const isAnonymousClassNode =
         node.what && node.what.kind === "class" && node.what.isAnonymous;
 
-      // Multiline strings as single arguments
+      // Multiline strings and heredocs as single arguments
       if (
         !isAnonymousClassNode &&
-        node.arguments.length === 1 &&
-        isStringOnItsOwnLine(node.arguments[0], options.originalText)
+        shouldHugSingleStringArgument(node, options)
       ) {
         return [
           "new ",
           ...path.call(printAttrs, "what"),
           print("what"),
-          "(",
-          join(", ", path.map(print, "arguments")),
-          ")",
+          printSingleStringArgument(path, print),
         ];
       }
 
@@ -2590,7 +2606,8 @@ function printNode(path, options, print) {
           ifBreak(
             !needsForcedTrailingComma && shouldPrintComma(options, 5.0)
               ? [
-                  lastElem && shouldPrintHardlineBeforeTrailingComma(lastElem)
+                  lastElem &&
+                  shouldPrintHardlineBeforeTrailingComma(lastElem, options)
                     ? hardline
                     : "",
                   ",",
@@ -2942,7 +2959,8 @@ function printNode(path, options, print) {
             node.type === "heredoc" ? linebreak : "",
             ...path.map(print, "value"),
             getEncapsedQuotes(node, { opening: false }),
-            node.type === "heredoc" && docShouldHaveTrailingNewline(path)
+            node.type === "heredoc" &&
+            docShouldHaveTrailingNewline(path, options)
               ? hardline
               : "",
           ];
@@ -2969,7 +2987,7 @@ function printNode(path, options, print) {
         join(linebreak, node.value.split("\n")),
         linebreak,
         node.label,
-        docShouldHaveTrailingNewline(path) ? hardline : "",
+        docShouldHaveTrailingNewline(path, options) ? hardline : "",
       ];
     }
     case "name":

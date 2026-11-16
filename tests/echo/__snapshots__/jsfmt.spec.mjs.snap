@@ -427,16 +427,14 @@ echo <<<EOD
     Example of string
     spanning multiple lines
     using heredoc syntax.
-    EOD
-    ,
+    EOD,
     "test";
 
 echo <<<'EOD'
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOD
-    ,
+    EOD,
     "test";
 
 echo 'string

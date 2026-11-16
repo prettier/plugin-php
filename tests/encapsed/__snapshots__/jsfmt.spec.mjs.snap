@@ -1588,25 +1588,20 @@ $code = <<<EOF
 \\$kernel = unserialize('$kernel');
 \\$request = unserialize('$request');
 EOF;
-$content = sprintf(
-    <<<EOF
+$content = sprintf(<<<EOF
     foo
-    EOF
-    ,
-);
+    EOF);
 $content = [
     <<<EOF
     foo
-    EOF
-    ,
+    EOF,
     "bar",
 ];
 $content = [
     "bar",
     <<<EOF
     foo
-    EOF
-,
+    EOF,
 ];
 
 function foo(
@@ -1615,8 +1610,7 @@ function foo(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $c = 1
 ) {
     echo $b;
@@ -1628,8 +1622,7 @@ function foo1(
     Example of string
     spanning multiple lines
     using nowdoc syntax.
-    EOF
-    ,
+    EOF,
     $c = 1
 ) {
     echo $b;
@@ -1728,8 +1721,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "foo" => "bar",
 ];
 $expected = [
@@ -1739,8 +1731,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "foo" => <<<'EOT'
@@ -1748,22 +1739,19 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "bar" => <<<'EOT'
     foo
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "baz" => <<<'EOT'
     foo
     # bar
     baz
 
-    EOT
-,
+    EOT,
 ];
 $expected = [
     "test" => <<<'EOT'
@@ -1771,8 +1759,7 @@ $expected = [
     # bar
     baz
 
-    EOT
-    ,
+    EOT,
     "collection" => [
         [
             "one" => <<<'EOT'
@@ -1780,16 +1767,14 @@ $expected = [
             # bar
             baz
 
-            EOT
-        ,
+            EOT,
         ],
         [
             "two" => <<<'EOT'
             foo
             # bar
             baz
-            EOT
-        ,
+            EOT,
         ],
     ],
 ];
@@ -2057,22 +2042,16 @@ function b()
 }
 
 // Heredoc in function call with correct indentation
-printf(
-    <<<EOT
+printf(<<<EOT
     Heredoc text used directly as argument
     in a function call.
-    EOT
-    ,
-);
+    EOT);
 
 // Heredoc in function call with wrong indentation
-printf(
-    <<<EOT
+printf(<<<EOT
     Heredoc text used directly as argument
     in a function call.
-    EOT
-    ,
-);
+    EOT);
 
 ================================================================================
 `;
