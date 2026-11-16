@@ -46,3 +46,22 @@ $list = [<<<'A'
 $s = <<<'EOF'
     string
     EOF . $var;
+
+// The `:` of a case keeps its own line in every version: php-parser does not
+// accept `MARKER:` (PHP does), so the output would not parse again.
+switch ($i) {
+    case <<<'TXT'
+        string
+        TXT
+    :
+        print <<<'TXT'
+            string
+            TXT;
+        break;
+
+    case <<<TXT
+        other {$x}
+        TXT
+    :
+        break;
+}
