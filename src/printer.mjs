@@ -66,6 +66,13 @@ const {
   isPreviousLineEmpty,
 } = prettierUtil;
 
+// Sentinel injected by parser.mjs into the source text for top-level `?>\n<?`
+// sequences (see https://github.com/glayzzle/php-parser/issues/170). It can
+// also end up inside string/heredoc/nowdoc contents; strip it when printing
+// those so it never leaks into the output.
+// https://github.com/prettier/plugin-php/issues/2087
+const PSEUDO_INLINE_PLACEHOLDER = "___PSEUDO_INLINE_PLACEHOLDER___";
+
 /**
  * Determine if we should print a trailing comma based on the config & php version
  *
@@ -618,13 +625,23 @@ function printArgumentsList(path, options, print, argumentsKey = "arguments") {
   const { node } = path;
   const lastArg = getLast(args);
 
+  // A first-class callable `foo(...)` is a single `variadicplaceholder`
+  // argument: PHP never allows a trailing comma after it, so emitting one
+  // produces a syntax error.
+  // https://github.com/prettier/plugin-php/issues/2149
+  const isFirstClassCallable =
+    node.kind === "call" &&
+    args.length === 1 &&
+    args[0].kind === "variadicplaceholder";
+
   const maybeTrailingComma =
-    (shouldPrintComma(options, 7.3) &&
+    !isFirstClassCallable &&
+    ((shouldPrintComma(options, 7.3) &&
       ["call", "new", "unset", "isset"].includes(node.kind)) ||
-    (shouldPrintComma(options, 8.0) &&
-      ["function", "closure", "method", "arrowfunc", "attribute"].includes(
-        node.kind
-      ))
+      (shouldPrintComma(options, 8.0) &&
+        ["function", "closure", "method", "arrowfunc", "attribute"].includes(
+          node.kind
+        )))
       ? indent([
           lastArg && shouldPrintHardlineBeforeTrailingComma(lastArg)
             ? hardline
@@ -2875,9 +2892,12 @@ function printNode(path, options, print) {
             closingTagIndentation = lines[lines.length - 2].search(/\S/);
           }
         }
+        // Strip the pseudo inline placeholder the parser injected into the
+        // source text (see https://github.com/prettier/plugin-php/issues/2087)
+        const raw = node.raw.replaceAll(PSEUDO_INLINE_PLACEHOLDER, "");
         return join(
           linebreak,
-          node.raw
+          raw
             .split("\n")
             .map((s, i) =>
               i > 0 || node.loc.start.column === 0
@@ -2889,7 +2909,7 @@ function printNode(path, options, print) {
 
       const quote = useDoubleQuote(node, options) ? '"' : "'";
 
-      let stringValue = node.raw;
+      let stringValue = node.raw.replaceAll(PSEUDO_INLINE_PLACEHOLDER, "");
 
       if (node.raw[0] === "b") {
         stringValue = stringValue.slice(1);
@@ -2954,7 +2974,7 @@ function printNode(path, options, print) {
     case "inline":
       return join(
         literalline,
-        node.raw.replace("___PSEUDO_INLINE_PLACEHOLDER___", "").split("\n")
+        node.raw.replaceAll(PSEUDO_INLINE_PLACEHOLDER, "").split("\n")
       );
     case "magic":
       return node.value;
@@ -2966,7 +2986,14 @@ function printNode(path, options, print) {
         node.label,
         "'",
         linebreak,
-        join(linebreak, node.value.split("\n")),
+        // The parser injects `___PSEUDO_INLINE_PLACEHOLDER___` into the raw
+        // source text for top-level `?>\n<?` sequences; strip it back out so
+        // it never leaks into string contents.
+        // https://github.com/prettier/plugin-php/issues/2087
+        join(
+          linebreak,
+          node.value.replaceAll(PSEUDO_INLINE_PLACEHOLDER, "").split("\n")
+        ),
         linebreak,
         node.label,
         docShouldHaveTrailingNewline(path) ? hardline : "",
