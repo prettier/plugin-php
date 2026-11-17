@@ -2419,7 +2419,16 @@ function printNode(path, options, print) {
       if (node.expr) {
         const printedExpr = print("expr");
 
-        parts.push(" ", node.expr.comments ? indent(printedExpr) : printedExpr);
+        // Only comments printed around the expression (leading or
+        // trailing) need the extra indent. Dangling comments are printed
+        // by the expression itself at its own indent; wrapping those in
+        // indent() as well shifts them and the closing line one level
+        // too deep, e.g. an array holding only a comment.
+        const shouldIndent =
+          node.expr.comments &&
+          (hasLeadingComment(node.expr) || hasTrailingComment(node.expr));
+
+        parts.push(" ", shouldIndent ? indent(printedExpr) : printedExpr);
       }
 
       if (hasDanglingComments(node)) {
