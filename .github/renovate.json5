@@ -20,11 +20,11 @@
     },
     {
       groupName: "Rollup",
-      matchManagers: ["rollup", "@rollup/*"],
+      matchPackageNames: ["rollup", "@rollup/*"],
     },
     {
       groupName: "ESlint",
-      matchManagers: ["eslint", "eslint-config-*", "eslint-plugin-*"],
+      matchPackageNames: ["eslint", "eslint-config-*", "eslint-plugin-*"],
     },
     {
       matchDepTypes: ["peerDependencies"],
