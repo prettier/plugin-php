@@ -62,3 +62,16 @@ class FuncVisibility {
     private function b(){    }
 
 }
+
+class PrettierIgnoreProperty {
+    private static array $foo = ["hello" =>  "world"];
+
+    // prettier-ignore
+    private static array $foo_ignored = ["hello" =>  "world"];
+
+    // prettier-ignore
+    public readonly array $bar_ignored = [1,   2];
+
+    // prettier-ignore
+    private static $a_ignored = [1,  2], $b_ignored = [3,   4];
+}
