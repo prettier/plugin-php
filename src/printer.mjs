@@ -1622,6 +1622,27 @@ function printAssignmentRight(
   return [" ", ref, printedRight];
 }
 
+// Without parentheses, `new` only accepts a class name or a variable,
+// possibly with property and static property lookups. Anything else, like
+// `new ($a ?? $b)()`, must keep them or it changes meaning or stops parsing.
+function isNewClassReference(node) {
+  switch (node.kind) {
+    case "name":
+    case "variable":
+    case "selfreference":
+    case "staticreference":
+    case "parentreference":
+      return true;
+    case "propertylookup":
+    case "nullsafepropertylookup":
+      return isNewClassReference(node.what);
+    case "staticlookup":
+      return node.offset.kind === "variable" && isNewClassReference(node.what);
+    default:
+      return false;
+  }
+}
+
 function needsHardlineAfterDanglingComment(node) {
   if (!node.comments) {
     return false;
@@ -2223,7 +2244,7 @@ function printNode(path, options, print) {
           group(print("what"))
         );
       } else {
-        const isExpression = ["call", "offsetlookup"].includes(node.what.kind);
+        const isExpression = !isNewClassReference(node.what);
         const printed = [
           isExpression ? "(" : "",
           print("what"),
