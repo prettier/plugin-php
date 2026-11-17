@@ -12,6 +12,7 @@ function parse(text, opts) {
 
   // Todo https://github.com/glayzzle/php-parser/issues/170
   text = text.replace(/\?>\n<\?/g, "?>\n___PSEUDO_INLINE_PLACEHOLDER___<?");
+  text = text.replace(/\?><\?/g, "?>___PSEUDO_INLINE_PLACEHOLDER___<?");
 
   // initialize a new parser instance
   const parser = new engine({
