@@ -63,3 +63,9 @@ foreach (
 foreach ($test as &$i) {
     $test2 = $i;
 }
+
+foreach ($test as &$object->property) {
+}
+
+foreach ($test as $key => &$array[$key]) {
+}
