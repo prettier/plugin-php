@@ -4763,6 +4763,55 @@ if (
 ================================================================================
 `;
 
+exports[`last-parameter.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+class Ulid
+{
+    public static function isValid(string $ulid /* , int $format = self::FORMAT_BASE_32 */): bool
+    {
+        return true;
+    }
+
+    public static function isValidAgain(
+        string $ulid /* , int $format = self::FORMAT_BASE_32 */,
+    ): bool {
+        return true;
+    }
+
+    public function progressStart(int $max = 0 /* , ?string $format = null */,): void
+    {
+    }
+}
+
+=====================================output=====================================
+<?php
+class Ulid
+{
+    public static function isValid(
+        string $ulid /* , int $format = self::FORMAT_BASE_32 */,
+    ): bool {
+        return true;
+    }
+
+    public static function isValidAgain(
+        string $ulid /* , int $format = self::FORMAT_BASE_32 */,
+    ): bool {
+        return true;
+    }
+
+    public function progressStart(
+        int $max = 0 /* , ?string $format = null */,
+    ): void {}
+}
+
+================================================================================
+`;
+
 exports[`list.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
