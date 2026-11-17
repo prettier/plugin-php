@@ -55,6 +55,7 @@ const {
   literalline,
   align,
   dedentToRoot,
+  markAsRoot,
 } = doc.builders;
 const { willBreak } = doc.utils;
 const {
@@ -864,6 +865,21 @@ function printLookupNodes(path, options, print) {
     default:
       throw new Error(`Have not implemented lookup kind ${node.kind} yet.`);
   }
+}
+
+/**
+ * Join the body lines of a flexible heredoc or nowdoc. `hardline` trims
+ * trailing whitespace, which is part of the string, so a line ending in
+ * whitespace is followed by a `literalline` that keeps the indentation.
+ */
+function joinHeredocLines(lines) {
+  return markAsRoot(
+    lines.flatMap((line, index) =>
+      index === 0
+        ? [line]
+        : [/[\t ]$/.test(lines[index - 1]) ? literalline : hardline, line]
+    )
+  );
 }
 
 function getEncapsedQuotes(node, { opening = true } = {}) {
@@ -2866,25 +2882,23 @@ function printNode(path, options, print) {
         const parentParent = path.grandparent;
         let closingTagIndentation = 0;
         const flexible = options.phpVersion >= 7.3;
-        let linebreak = literalline;
         if (parentParent.type === "heredoc") {
-          linebreak = flexible ? hardline : literalline;
           const lines = parentParent.raw.split("\n");
           closingTagIndentation = lines[lines.length - 1].search(/\S/);
           if (closingTagIndentation === -1) {
             closingTagIndentation = lines[lines.length - 2].search(/\S/);
           }
         }
-        return join(
-          linebreak,
-          node.raw
-            .split("\n")
-            .map((s, i) =>
-              i > 0 || node.loc.start.column === 0
-                ? s.substring(closingTagIndentation)
-                : s
-            )
-        );
+        const valueLines = node.raw
+          .split("\n")
+          .map((s, i) =>
+            i > 0 || node.loc.start.column === 0
+              ? s.substring(closingTagIndentation)
+              : s
+          );
+        return parentParent.type === "heredoc" && flexible
+          ? joinHeredocLines(valueLines)
+          : join(literalline, valueLines);
       }
 
       const quote = useDoubleQuote(node, options) ? '"' : "'";
@@ -2960,15 +2974,13 @@ function printNode(path, options, print) {
       return node.value;
     case "nowdoc": {
       const flexible = options.phpVersion >= 7.3;
-      const linebreak = flexible ? hardline : literalline;
+      const lines = [...node.value.split("\n"), node.label];
       return [
         "<<<'",
         node.label,
         "'",
-        linebreak,
-        join(linebreak, node.value.split("\n")),
-        linebreak,
-        node.label,
+        flexible ? hardline : literalline,
+        flexible ? joinHeredocLines(lines) : join(literalline, lines),
         docShouldHaveTrailingNewline(path) ? hardline : "",
       ];
     }
