@@ -49,6 +49,7 @@ const {
   indent,
   dedent,
   ifBreak,
+  indentIfBreak,
   hardline,
   hardlineWithoutBreakParent,
   softline,
@@ -3028,17 +3029,24 @@ function printNode(path, options, print) {
             ? hardline
             : "";
 
+        const condsGroupId = Symbol("match-arm-conds");
+
         return [
           "",
           hardline,
           maybeEmptyLineBetweenArms,
           ...maybeLeadingComment,
           group([
-            group([conds, indent(line)]),
-            "=> ",
-            body,
-            maybeTrailingComma,
-            ...maybeTrailingComment,
+            group([conds, indent(line)], { id: condsGroupId }),
+            // When the conditions break onto multiple lines, the `=>` moves to
+            // its own indented line - the body then needs the same extra
+            // indent level for its own line breaks (see #2435).
+            indentIfBreak(
+              ["=> ", body, maybeTrailingComma, ...maybeTrailingComment],
+              {
+                groupId: condsGroupId,
+              }
+            ),
           ]),
         ].slice(!path.isFirst ? 0 : 1);
       }, "arms");
