@@ -538,8 +538,9 @@ function useDoubleQuote(node, options) {
   if (node.isDoubleQuote === options.singleQuote) {
     // We have a double quote and the user passed singleQuote:true, or the other way around.
     const rawValue = node.raw.slice(node.raw[0] === "b" ? 2 : 1, -1);
+    // In double quotes, PHP reads any `\u{` as a code point escape and rejects an invalid one.
     const isComplex = rawValue.match(
-      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{([0-9a-fA-F]+)})|\r?\n|'|"|\$/
+      /\\([$nrtfve]|[xX][0-9a-fA-F]{1,2}|[0-7]{1,3}|u{)|\r?\n|'|"|\$/
     );
     return node.isDoubleQuote ? isComplex : !isComplex;
   }
