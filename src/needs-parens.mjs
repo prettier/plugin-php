@@ -162,6 +162,18 @@ function needsParens(path, options) {
           return node.kind === "yieldfrom" || !!(node.key || node.value);
       }
     }
+    case "match":
+      // `match (...) {...}()` and the like are syntax errors
+      switch (parent.kind) {
+        case "propertylookup":
+        case "nullsafepropertylookup":
+        case "staticlookup":
+        case "offsetlookup":
+        case "call":
+          return key === "what";
+        default:
+          return false;
+      }
     case "assign": {
       if (
         parent.kind === "for" &&
