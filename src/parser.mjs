@@ -61,6 +61,47 @@ function parse(text, opts) {
     }
   });
 
+  // php-parser does not clear the attribute groups of a class constant,
+  // so the next class member reuses the same attrgroup object and the
+  // printer emits the attribute twice. Drop every attrgroup occurrence
+  // after the first one, ordered by source position. Two attribute
+  // groups written in the source are always distinct objects, so a
+  // repeated object can only come from this parser bug.
+  const attrGroupUses = [];
+  const collectAttrGroups = (node) => {
+    if (!node || typeof node !== "object") {
+      return;
+    }
+    if (Array.isArray(node)) {
+      node.forEach(collectAttrGroups);
+      return;
+    }
+    if (Array.isArray(node.attrGroups)) {
+      for (const attrGroup of node.attrGroups) {
+        attrGroupUses.push({ owner: node, attrGroup });
+      }
+    }
+    for (const value of Object.values(node)) {
+      collectAttrGroups(value);
+    }
+  };
+  collectAttrGroups(ast);
+  attrGroupUses.sort(
+    (a, b) =>
+      (a.attrGroup.loc?.start?.offset ?? 0) -
+      (b.attrGroup.loc?.start?.offset ?? 0)
+  );
+  const seenAttrGroups = new Set();
+  for (const { owner, attrGroup } of attrGroupUses) {
+    if (seenAttrGroups.has(attrGroup)) {
+      owner.attrGroups = owner.attrGroups.filter(
+        (group) => group !== attrGroup
+      );
+    } else {
+      seenAttrGroups.add(attrGroup);
+    }
+  }
+
   return ast;
 }
 
