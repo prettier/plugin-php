@@ -392,3 +392,53 @@ enum Suit: string
 
 ================================================================================
 `;
+
+exports[`classconstant.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+class QuoteSearch extends Model
+{
+    #[Deprecated(message: 'use \\App\\Enums\\MoveType')]
+    public const TYPES = [
+        'IMPORT' => 'import',
+        'EXPORT' => 'export',
+    ];
+
+    protected $attributes = [
+        'search_job_completed' => false,
+    ];
+
+    #[Foo]
+    public const OTHER = 1;
+
+    public function bar()
+    {
+    }
+}
+
+=====================================output=====================================
+<?php
+class QuoteSearch extends Model
+{
+    #[Deprecated(message: "use \\App\\Enums\\MoveType")]
+    public const TYPES = [
+        "IMPORT" => "import",
+        "EXPORT" => "export",
+    ];
+
+    protected $attributes = [
+        "search_job_completed" => false,
+    ];
+
+    #[Foo]
+    public const OTHER = 1;
+
+    public function bar() {}
+}
+
+================================================================================
+`;
