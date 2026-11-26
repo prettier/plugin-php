@@ -296,6 +296,25 @@ function handleLastFunctionArgComments(
     return true;
   }
 
+  // A comment on the same line as the last parameter, with the closing
+  // paren after it, belongs to that parameter. Without this it falls
+  // through to the body branch below and lands inside the body.
+  // https://github.com/prettier/plugin-php/issues/1745
+  if (
+    precedingNode &&
+    enclosingNode &&
+    (enclosingNode.kind === "function" || enclosingNode.kind === "method") &&
+    enclosingNode.arguments &&
+    enclosingNode.arguments.length > 0 &&
+    enclosingNode.arguments[enclosingNode.arguments.length - 1] ===
+      precedingNode &&
+    nextCharacter === ")" &&
+    !hasNewlineInRange(text, locEnd(precedingNode), locStart(comment))
+  ) {
+    addTrailingComment(precedingNode, comment);
+    return true;
+  }
+
   if (
     enclosingNode &&
     (enclosingNode.kind === "function" || enclosingNode.kind === "method") &&

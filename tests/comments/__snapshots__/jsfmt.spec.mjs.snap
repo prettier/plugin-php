@@ -6937,6 +6937,68 @@ throw /* Comment */ new Foo() /* Comment */; // Comment
 ================================================================================
 `;
 
+exports[`trailing-parameter-comment.php 1`] = `
+====================================options=====================================
+parsers: ["php"]
+printWidth: 80
+                                                                                | printWidth
+=====================================input======================================
+<?php
+
+class MyClass
+{
+    public static function from(
+        int $value1, // comment works
+        int $value2 // comment gets moved down
+    ) {
+        return $value1 + $value2;
+    }
+
+    public function withReturnType(
+        int $value1,
+        int $value2 // trailing comment
+    ): int {
+        return $value1 + $value2;
+    }
+}
+
+function plainFunction(
+    int $value1,
+    int $value2 // trailing comment
+) {
+    return $value1 + $value2;
+}
+
+=====================================output=====================================
+<?php
+
+class MyClass
+{
+    public static function from(
+        int $value1, // comment works
+        int $value2, // comment gets moved down
+    ) {
+        return $value1 + $value2;
+    }
+
+    public function withReturnType(
+        int $value1,
+        int $value2, // trailing comment
+    ): int {
+        return $value1 + $value2;
+    }
+}
+
+function plainFunction(
+    int $value1,
+    int $value2, // trailing comment
+) {
+    return $value1 + $value2;
+}
+
+================================================================================
+`;
+
 exports[`trait.php 1`] = `
 ====================================options=====================================
 parsers: ["php"]
